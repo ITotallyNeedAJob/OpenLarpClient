@@ -2,6 +2,7 @@
 
 by one guy with jadx and enough deepseek agent to not be countable on one hand
 buildable source of the LarpClient client · MC 1.21.11 · Fabric 1.21.11
+
 BY IQEA ACADEMY : 
 
 https://discord.gg/k9g3sNdbF
