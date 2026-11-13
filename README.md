@@ -5,6 +5,10 @@ buildable source of the LarpClient client · MC 1.21.11 · Fabric 1.21.11
 BY IQEA ACADEMY : discord.gg/34Ck8RhEvt
 
 ---
+<p align="center">
+  <img src="deobf1.jpg" alt="java hooks" height="150" />
+  <img src="deobf2.jpg" alt="unload" height="150" />
+</p>
 
 ## what is this
 
