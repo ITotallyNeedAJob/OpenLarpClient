@@ -1,0 +1,69 @@
+// LarpClient 2.2.6 - buildable source rebuild of LarpClient-2.2.6-deobf-v4.jar
+// MC 1.21.11 / yarn 1.21.11+build.6 / Fabric Loom 1.16.3
+plugins {
+    id 'fabric-loom' version '1.16.3'
+}
+
+version = '2.2.6'
+group = 'com.larpclient'
+base { archivesName = 'larp-client' }
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.fabricmc.net/' }
+    maven { url = 'https://repo.llamalad7.dev/releases/' }
+}
+
+dependencies {
+    minecraft 'com.mojang:minecraft:1.21.11'
+    mappings 'net.fabricmc:yarn:1.21.11+build.6:v2'
+
+    // fabric.mod.json requires fabricloader >=0.19.5
+    modImplementation 'net.fabricmc:fabric-loader:0.19.5'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.141.6+1.21.11'
+
+    // MixinExtras injectors (@WrapOperation / @ModifyExpressionValue / @WrapMethod)
+    include modImplementation('io.github.llamalad7:mixinextras-fabric:0.5.5')
+
+    // JNA comes with Minecraft at runtime; needed only to compile the media-session classes.
+    compileOnly 'net.java.dev.jna:jna:5.17.0'
+    compileOnly 'net.java.dev.jna:jna-platform:5.17.0'
+    // ReleaseMixinPlugin implements IMixinInfo hooks and uses ASM tree.
+    compileOnly 'org.ow2.asm:asm-tree:9.8'
+
+    // Nested jars declared in fabric.mod.json: compile against, never bundle twice.
+    compileOnly fileTree(dir: 'libs', include: '*.jar')
+
+    // All 835 decompiled sources compile from source; no prebuilt .class fallback needed.
+}
+
+loom {
+    // Original jar ships this widener; applying it in dev is what makes the
+    // direct private-MC-field accesses in the decompiled sources legal to javac.
+    accessWidenerPath = file('src/main/resources/larpclient.accesswidener')
+    // Original jar has no refmaps -> modern annotation-remapping path.
+    mixin { useLegacyMixinAp = false }
+}
+
+tasks.named('jar') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+    options.compilerArgs += ['-Xmaxerrs', '100000', '-Xmaxwarns', '0', '-nowarn']
+    options.fork = true
+    options.forkOptions.memoryMaximumSize = '2g'
+    options.failOnError = true
+}
+
+java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
+
+// Dump the resolved, access-widened, named-namespace classpath for fast javac iteration.
+tasks.register('printClasspath') {
+    doLast {
+        new File(projectDir, 'compile-cp.txt').text = sourceSets.main.compileClasspath.asPath
+        println 'wrote compile-cp.txt (' + sourceSets.main.compileClasspath.files.size() + ' entries)'
+    }
+}

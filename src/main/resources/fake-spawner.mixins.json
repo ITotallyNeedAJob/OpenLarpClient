@@ -1,0 +1,33 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.larpclient.mixin.compat",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "com.larpclient.mixin.compat.CompatibilityMixinPlugin",
+  "client": [
+    "ClientPlayerInteractionManagerMixin",
+    "ClientWorldMixin",
+    "WorldMixin",
+    "WorldChunkMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "WorldRendererMixin",
+    "ChunkRendererRegionMixin",
+    "WorldEventHandlerMixin",
+    "ItemModelManagerMixin",
+    "ItemStackMixin",
+    "HandledScreenMixin",
+    "CreativeInventoryScreenMixin",
+    "InGameHudMixin",
+    "HeldItemRendererMixin",
+    "ItemEntityRendererMixin",
+    "ItemStackEntityRenderStateMixin",
+    "MinecraftClientMixin",
+    "MouseMixin",
+    "BasePreviewRendererMixin",
+    "sodium.LevelSliceMixin",
+    "ClientPlayNetworkHandlerOnItemPickupAnimationMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

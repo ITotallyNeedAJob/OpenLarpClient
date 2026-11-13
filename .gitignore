@@ -1,0 +1,22 @@
+# gradle
+.gradle/
+build/
+out/
+
+# pipeline intermediates (not part of the rebuild)
+tools/gradle.zip
+tools/gradle-8.14.3/
+tools/classes/
+out/jc/
+out/broken.txt
+out/sources.txt
+out/javac.log
+compile-cp.txt
+build.log
+*.class
+
+# misc
+.idea/
+*.iml
+.DS_Store
+Thumbs.db

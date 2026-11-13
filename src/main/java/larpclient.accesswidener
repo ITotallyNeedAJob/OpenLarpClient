@@ -1,0 +1,52 @@
+accessWidener	v2	named
+accessible	field	net/minecraft/client/MinecraftClient	session	Lnet/minecraft/client/session/Session;
+mutable	field	net/minecraft/client/MinecraftClient	session	Lnet/minecraft/client/session/Session;
+accessible	field	net/minecraft/client/MinecraftClient	gameProfileFuture	Ljava/util/concurrent/CompletableFuture;
+mutable	field	net/minecraft/client/MinecraftClient	gameProfileFuture	Ljava/util/concurrent/CompletableFuture;
+accessible	field	net/minecraft/client/MinecraftClient	userApiService	Lcom/mojang/authlib/minecraft/UserApiService;
+mutable	field	net/minecraft/client/MinecraftClient	userApiService	Lcom/mojang/authlib/minecraft/UserApiService;
+accessible	field	net/minecraft/client/MinecraftClient	userPropertiesFuture	Ljava/util/concurrent/CompletableFuture;
+mutable	field	net/minecraft/client/MinecraftClient	userPropertiesFuture	Ljava/util/concurrent/CompletableFuture;
+accessible	field	net/minecraft/client/MinecraftClient	socialInteractionsManager	Lnet/minecraft/client/network/SocialInteractionsManager;
+mutable	field	net/minecraft/client/MinecraftClient	socialInteractionsManager	Lnet/minecraft/client/network/SocialInteractionsManager;
+accessible	field	net/minecraft/client/MinecraftClient	telemetryManager	Lnet/minecraft/client/session/telemetry/TelemetryManager;
+mutable	field	net/minecraft/client/MinecraftClient	telemetryManager	Lnet/minecraft/client/session/telemetry/TelemetryManager;
+accessible	field	net/minecraft/client/MinecraftClient	profileKeys	Lnet/minecraft/client/session/ProfileKeys;
+mutable	field	net/minecraft/client/MinecraftClient	profileKeys	Lnet/minecraft/client/session/ProfileKeys;
+accessible	field	net/minecraft/client/MinecraftClient	abuseReportContext	Lnet/minecraft/client/session/report/AbuseReportContext;
+accessible	field	net/minecraft/client/MinecraftClient	apiServices	Lnet/minecraft/util/ApiServices;
+mutable	field	net/minecraft/client/MinecraftClient	apiServices	Lnet/minecraft/util/ApiServices;
+accessible	field	net/minecraft/client/MinecraftClient	realmsPeriodicCheckers	Lnet/minecraft/client/realms/RealmsPeriodicCheckers;
+mutable	field	net/minecraft/client/MinecraftClient	realmsPeriodicCheckers	Lnet/minecraft/client/realms/RealmsPeriodicCheckers;
+accessible	method	net/minecraft/client/realms/RealmsClient	<init>	(Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/client/MinecraftClient;)V
+accessible	field	net/minecraft/client/realms/RealmsClient	instance	Lnet/minecraft/client/realms/RealmsClient;
+accessible	field	net/minecraft/client/realms/RealmsAvailability	currentFuture	Ljava/util/concurrent/CompletableFuture;
+accessible	class	net/minecraft/client/gui/screen/ingame/CreativeInventoryScreen$class_484
+accessible	method	net/minecraft/client/gui/screen/ingame/CreativeInventoryScreen$class_484	<init>	(Lnet/minecraft/screen/slot/Slot;III)V
+accessible	field	net/minecraft/client/gui/screen/ingame/CreativeInventoryScreen$class_484	slot	Lnet/minecraft/screen/slot/Slot;
+accessible	field	net/minecraft/client/option/SimpleOption	value	Ljava/lang/Object;
+mutable	field	net/minecraft/client/option/SimpleOption	value	Ljava/lang/Object;
+accessible	field	net/minecraft/entity/player/PlayerAbilities	flySpeed	F
+mutable	field	net/minecraft/entity/player/PlayerAbilities	flySpeed	F
+accessible	field	net/minecraft/entity/player/PlayerInventory	selectedSlot	I
+mutable	field	net/minecraft/entity/player/PlayerInventory	selectedSlot	I
+accessible	method	net/minecraft/client/MinecraftClient	doAttack	()Z
+accessible	method	net/minecraft/client/MinecraftClient	doItemUse	()V
+accessible	field	net/minecraft/client/render/RenderLayer	renderSetup	Lnet/minecraft/client/render/RenderSetup;
+accessible	field	net/minecraft/client/render/RenderSetup	textures	Ljava/util/Map;
+accessible	class	net/minecraft/client/render/RenderSetup$class_12338
+accessible	method	net/minecraft/client/render/RenderSetup$class_12338	comp_5228	()Lnet/minecraft/util/Identifier;
+accessible	class	net/minecraft/client/gui/screen/ChatInputSuggestor$class_464
+accessible	field	net/minecraft/client/gui/screen/ChatInputSuggestor	window	Lnet/minecraft/client/gui/screen/ChatInputSuggestor$class_464;
+accessible	field	net/minecraft/client/gui/screen/ChatInputSuggestor$class_464	area	Lnet/minecraft/client/util/math/Rect2i;
+accessible	field	net/minecraft/client/render/RenderSetup	outputTarget	Lnet/minecraft/client/render/OutputTarget;
+accessible	field	net/minecraft/client/render/RenderSetup	textureTransform	Lnet/minecraft/client/render/TextureTransform;
+accessible	field	net/minecraft/client/render/RenderSetup	layeringTransform	Lnet/minecraft/client/render/LayeringTransform;
+accessible	field	net/minecraft/client/input/Input	movementVector	Lnet/minecraft/util/math/Vec2f;
+mutable	field	net/minecraft/client/input/Input	movementVector	Lnet/minecraft/util/math/Vec2f;
+accessible	class	net/minecraft/client/world/ClientChunkManager$class_3681
+accessible	field	net/minecraft/client/world/ClientChunkManager	chunks	Lnet/minecraft/client/world/ClientChunkManager$class_3681;
+accessible	field	net/minecraft/client/world/ClientChunkManager$class_3681	chunks	Ljava/util/concurrent/atomic/AtomicReferenceArray;
+accessible	method	net/minecraft/client/render/BuiltChunkStorage	getRenderedChunk	(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/client/render/chunk/ChunkBuilder$class_851;
+accessible	class	net/minecraft/client/render/block/BlockModelRenderer$class_10931
+accessible	field	net/minecraft/client/gl/GlGpuBuffer	id	I

@@ -1,0 +1,252 @@
+package com.larpclient;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public final class SelectionSettings {
+   public static final int v = 32;
+   public static final String S = "Selection Version";
+   public static final String a = "Selection Error";
+   public static final String U = "Item Mode";
+   public static final String Z = "Protect Hotbar";
+   public static final String J = "Protect Named Items";
+   public static final String i = "Protect Enchanted Items";
+   public static final String f = "Protect Filled Containers";
+   public static final List<String> F = List.of("Selected items", "All except excluded", "All inventory items");
+
+   public static String CAsString(int var0) {
+      return "Selected Item " + (var0 + 1);
+   }
+
+   public static String RAsString(int var0) {
+      return "Excluded Item " + (var0 + 1);
+   }
+
+   public static boolean HAsBoolean(String var0) {
+      return var0 != null && var0.length() <= 128 && var0.matches("[a-z0-9_.-]+:[a-z0-9/._-]+");
+   }
+
+   public static SelectionSettings.Type_r gAsP7_Type_r(Map<String, ?> var0) {
+      try {
+         if (!"1".equals(var0.get("Selection Version"))) {
+            throw new IllegalArgumentException("Unsupported item selection version");
+         } else {
+            String var1 = xAsString(var0.get("Selection Error"));
+            String var2 = xAsString(var0.get("Item Mode"));
+            if (!F.contains(var2)) {
+               throw new IllegalArgumentException("Invalid item selection mode");
+            } else {
+               return new SelectionSettings.Type_r(
+                  var2,
+                  OAsSet(var0, false),
+                  OAsSet(var0, true),
+                  MAsBoolean(var0.get("Protect Hotbar")),
+                  MAsBoolean(var0.get("Protect Named Items")),
+                  MAsBoolean(var0.get("Protect Enchanted Items")),
+                  MAsBoolean(var0.get("Protect Filled Containers")),
+                  var1
+               );
+            }
+         }
+      } catch (RuntimeException var31) {
+         return new SelectionSettings.Type_r(
+            F.getFirst(), Set.of(), Set.of(), true, true, true, true, "Invalid item selection. Open Choose items and save to repair."
+         );
+      }
+   }
+
+   private static Set<String> OAsSet(Map<String, ?> var0, boolean var1) {
+      LinkedHashSet var2 = new LinkedHashSet();
+
+      for (int var3 = 0; var3 < 32; var3++) {
+         String var4 = xAsString(var0.get(var1 ? RAsString(var3) : CAsString(var3)));
+         if (!var4.isEmpty() && !HAsBoolean(var4)) {
+            throw new IllegalArgumentException("Invalid item ID");
+         }
+
+         if (!var4.isEmpty()) {
+            var2.add(var4);
+         }
+      }
+
+      return var2;
+   }
+
+   private static String xAsString(Object var0) {
+      if (var0 instanceof String) {
+         return (String)var0;
+      } else {
+         throw new IllegalArgumentException("Expected selection text");
+      }
+   }
+
+   private static boolean MAsBoolean(Object var0) {
+      if (var0 instanceof Boolean var1) {
+         return var1;
+      } else {
+         throw new IllegalArgumentException("Expected selection boolean");
+      }
+   }
+
+   public static List<String> cAsList(Collection<String> var0) {
+      LinkedHashSet var1 = new LinkedHashSet();
+
+      for (String var3 : var0) {
+         if (!HAsBoolean(var3)) {
+            throw new IllegalArgumentException("Use an exact namespaced item ID: " + var3);
+         }
+
+         var1.add(var3);
+      }
+
+      if (var1.size() > 32) {
+         throw new IllegalArgumentException("Each item list supports up to 32 items.");
+      } else {
+         return List.copyOf(var1);
+      }
+   }
+
+   public static Set<String> eAsSet() {
+      LinkedHashSet var0 = new LinkedHashSet<>(
+         List.of(
+            "Selection Version",
+            "Selection Error",
+            "Item Mode",
+            "Protect Hotbar",
+            "Protect Named Items",
+            "Protect Enchanted Items",
+            "Protect Filled Containers"
+         )
+      );
+
+      for (int var1 = 0; var1 < 32; var1++) {
+         var0.add(CAsString(var1));
+         var0.add(RAsString(var1));
+      }
+
+      return Set.copyOf(var0);
+   }
+
+   public static void EAsVoid(JsonObject var0) {
+      boolean var1 = var0.keySet()
+         .stream()
+         .noneMatch(
+            var0x -> eAsSet().contains(var0x) || var0x.startsWith("Selected Item ") || var0x.startsWith("Excluded Item ") || var0x.startsWith("Selection ")
+         );
+      if (var1) {
+         TAsVoid(var0, true, "");
+      } else {
+         try {
+            if (var0.keySet()
+               .stream()
+               .anyMatch(var0x -> (var0x.startsWith("Selected Item ") || var0x.startsWith("Excluded Item ")) && !eAsSet().contains(var0x))) {
+               throw new IllegalArgumentException("Unsupported item selection slot");
+            }
+
+            LinkedHashMap var2 = new LinkedHashMap();
+
+            for (String var4 : eAsSet()) {
+               JsonElement var5 = var0.get(var4);
+               if (var5 == null || !var5.isJsonPrimitive()) {
+                  throw new IllegalArgumentException("Missing selection field");
+               }
+
+               JsonPrimitive var6 = var5.getAsJsonPrimitive();
+               if (List.of("Protect Hotbar", "Protect Named Items", "Protect Enchanted Items", "Protect Filled Containers").contains(var4)) {
+                  if (!var6.isBoolean()) {
+                     throw new IllegalArgumentException("Invalid protection");
+                  }
+
+                  var2.put(var4, Boolean.valueOf(var6.getAsBoolean()));
+               } else {
+                  if (!var6.isString()) {
+                     throw new IllegalArgumentException("Invalid item ID field");
+                  }
+
+                  var2.put(var4, var6.getAsString());
+               }
+            }
+
+            SelectionSettings.Type_r var8 = gAsP7_Type_r(var2);
+            if (!var8.error.isEmpty()) {
+               throw new IllegalArgumentException(var8.error);
+            }
+         } catch (RuntimeException var71) {
+            TAsVoid(var0, false, "Invalid item selection. Open Choose items and save to repair.");
+         }
+      }
+   }
+
+   private static void TAsVoid(JsonObject var0, boolean var1, String var2) {
+      var0.addProperty("Selection Version", "1");
+      var0.addProperty("Selection Error", var2);
+      var0.addProperty("Item Mode", var1 ? F.get(2) : F.getFirst());
+
+      for (String var4 : List.of("Protect Hotbar", "Protect Named Items", "Protect Enchanted Items", "Protect Filled Containers")) {
+         var0.addProperty(var4, !var1);
+      }
+
+      for (int var5 = 0; var5 < 32; var5++) {
+         var0.addProperty(CAsString(var5), "");
+         var0.addProperty(RAsString(var5), "");
+      }
+   }
+
+   private SelectionSettings() {
+   }
+
+   public static record Type_o(String id, int count, int inventorySlot, boolean named, boolean enchanted, boolean filled) {
+   }
+
+   public static record Type_r(
+      String mode, Set<String> selected, Set<String> excluded, boolean hotbar, boolean named, boolean enchanted, boolean filled, String error
+   ) {
+      public Type_r(String mode, Set<String> selected, Set<String> excluded, boolean hotbar, boolean named, boolean enchanted, boolean filled, String error) {
+         selected = Set.copyOf(selected);
+         excluded = Set.copyOf(excluded);
+         this.mode = mode;
+         this.selected = selected;
+         this.excluded = excluded;
+         this.hotbar = hotbar;
+         this.named = named;
+         this.enchanted = enchanted;
+         this.filled = filled;
+         this.error = error;
+      }
+
+      public String rejection(SelectionSettings.Type_o var1) {
+         if (!this.error.isEmpty()) {
+            return this.error;
+         } else if (var1.count <= 0 || var1.id.equals("minecraft:air")) {
+            return "Empty stack";
+         } else if (this.excluded.contains(var1.id)) {
+            return "Excluded item";
+         } else if (this.mode.equals(SelectionSettings.F.getFirst()) && !this.selected.contains(var1.id)) {
+            return "Item is not selected";
+         } else if (this.hotbar && var1.inventorySlot >= 0 && var1.inventorySlot < 9) {
+            return "Protected hotbar";
+         } else if (this.named && var1.named) {
+            return "Protected custom name";
+         } else if (this.enchanted && var1.enchanted) {
+            return "Protected enchantments";
+         } else {
+            return this.filled && var1.filled ? "Protected container contents" : "";
+         }
+      }
+
+      public boolean eligible(SelectionSettings.Type_o var1) {
+         return this.rejection(var1).isEmpty();
+      }
+
+      public boolean needsSelection() {
+         return this.error.isEmpty() && this.mode.equals(SelectionSettings.F.getFirst()) && this.selected.isEmpty();
+      }
+   }
+}
