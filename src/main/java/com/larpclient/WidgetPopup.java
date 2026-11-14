@@ -6,12 +6,12 @@ public final class WidgetPopup {
    private double B;
    private boolean t;
    private boolean L;
-   private aq.Type_x I = aq.Type_x.REST;
+   private PopupScale.Type_x I = PopupScale.Type_x.REST;
 
    public WidgetPopup() {
    }
 
-   public aq.Type_x AAsAq_Type_x() {
+   public PopupScale.Type_x AAsAq_Type_x() {
       return this.I;
    }
 
@@ -23,7 +23,7 @@ public final class WidgetPopup {
       return this.L;
    }
 
-   public aq.Type_x XAsAq_Type_x(long var1, boolean var3, boolean var4) {
+   public PopupScale.Type_x XAsAq_Type_x(long var1, boolean var3, boolean var4) {
       if (this.L) {
          return this.I;
       } else if (!var4) {
@@ -41,8 +41,8 @@ public final class WidgetPopup {
             return this.I;
          } else {
             if (var3) {
-               double var5 = w2.Type_e.BACK_OUT.zAsDouble(this.B / 240.0);
-               this.I = new aq.Type_x(0.965 + 0.035 * var5, 7.0 * (1.0 - var5));
+               double var5 = WeatherRenderer.Type_e.BACK_OUT.zAsDouble(this.B / 240.0);
+               this.I = new PopupScale.Type_x(0.965 + 0.035 * var5, 7.0 * (1.0 - var5));
             }
 
             return this.I;
@@ -53,6 +53,6 @@ public final class WidgetPopup {
    public void OAsVoid() {
       this.L = true;
       this.B = 240.0;
-      this.I = aq.Type_x.REST;
+      this.I = PopupScale.Type_x.REST;
    }
 }

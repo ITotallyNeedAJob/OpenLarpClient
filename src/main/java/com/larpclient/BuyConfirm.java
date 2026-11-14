@@ -7,21 +7,21 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
 public final class BuyConfirm {
-   private final ParticleEmitterEngine LineSegment = new ParticleEmitterEngine();
-   private final RibbonTrailEngine PriceDetector = new RibbonTrailEngine();
-   private final Random GroundSample = new Random();
+   private final ParticleEmitterEngine e = new ParticleEmitterEngine();
+   private final RibbonTrailEngine m = new RibbonTrailEngine();
+   private final Random k = new Random();
    private final Vec3d[] C = new Vec3d[32];
    private final Vec3d[] r = new Vec3d[32];
    private final Vec3d[] X = new Vec3d[32];
    private final Vec3d[] J = new Vec3d[32];
    private final double[] M = new double[32];
-   private final double[] HexEdgeloop = new double[32];
-   private final double[] ChinaHatCodec = new double[32];
+   private final double[] p = new double[32];
+   private final double[] i = new double[32];
    private final int[] n = new int[32];
    private final BuyConfirm.Type_u[] O = new BuyConfirm.Type_u[32];
    private int L;
    private boolean T;
-   private final x4 K = new x4();
+   private final EffectRenderParams K = new EffectRenderParams();
    private Vec3d B;
    private BuyConfirm.Type_d u;
    private double P;
@@ -33,8 +33,8 @@ public final class BuyConfirm {
       this.K.O = 1536;
       this.K.K = 4;
       this.K.a = this.K.D = this.K.b = 0.0;
-      this.K.t = ay.Type_r.FADE_IN_OUT;
-      this.K.o = ay.Type_z.PULSE;
+      this.K.t = FadeCurve.Type_r.FADE_IN_OUT;
+      this.K.o = FadeCurve.Type_z.PULSE;
    }
 
    public void eAsVoid() {
@@ -92,8 +92,8 @@ public final class BuyConfirm {
       this.e.B = Math.clamp((long)var2.maximum, 128, 2048) - var4;
       this.e.IAsVoid(var2.speed);
       this.m.DAsVoid();
-      this.K.I = bg.XAsInt(var2.color, var2.opacity);
-      this.K.A = bg.XAsInt(var2.tailColor, var2.opacity * 0.35);
+      this.K.I = ColorUtil.XAsInt(var2.color, var2.opacity);
+      this.K.A = ColorUtil.XAsInt(var2.tailColor, var2.opacity * 0.35);
       this.K.i = var2.bloom;
       this.K.d = var2.radius * 2.0 + var2.height + 8.0;
       if (var2.sparkles) {
@@ -106,8 +106,8 @@ public final class BuyConfirm {
          this.K.v = var2.lifetime;
          this.K.g = var2.size * 0.6;
          this.K.R = var2.size;
-         this.K.t = ay.Type_r.FADE_IN_OUT;
-         this.K.o = ay.Type_z.PULSE;
+         this.K.t = FadeCurve.Type_r.FADE_IN_OUT;
+         this.K.o = FadeCurve.Type_z.PULSE;
          this.K.w = this.K.L = 0.0;
          this.K.C = var2.verticalTravel * 0.5;
          this.K.r = var2.sidewaysTravel * 0.5;
@@ -160,13 +160,13 @@ public final class BuyConfirm {
             RibbonTrailEngine.Type_f var10 = new RibbonTrailEngine.Type_f(
                var2.trailLength,
                var2.trailWidth,
-               bg.XAsInt(var2.color, var2.opacity * var14),
-               bg.XAsInt(var2.tailColor, var2.opacity * 0.3 * var14),
+               ColorUtil.XAsInt(var2.color, var2.opacity * var14),
+               ColorUtil.XAsInt(var2.tailColor, var2.opacity * 0.3 * var14),
                var2.bloom,
                true,
-               x4.Type_g.ADDITIVE,
+               EffectRenderParams.Type_g.ADDITIVE,
                RibbonTrailEngine.Type_b.HEAD_HEAVY,
-               ay.Type_r.LINEAR
+               FadeCurve.Type_r.LINEAR
             );
             this.m.CAsVoid(var11, this.C[var11], var10);
             this.K.q = ParticleEmitterEngine.Type_a.Glow;
@@ -174,10 +174,10 @@ public final class BuyConfirm {
             this.K.M = 1;
             this.K.x = this.K.v = 0.15;
             this.K.g = this.K.R = var2.size * 1.6;
-            this.K.t = ay.Type_r.LINEAR;
-            this.K.o = ay.Type_z.SHRINK;
-            this.K.I = bg.XAsInt(var2.color, var2.opacity * var14);
-            this.K.A = bg.XAsInt(var2.tailColor, var2.opacity * 0.35 * var14);
+            this.K.t = FadeCurve.Type_r.LINEAR;
+            this.K.o = FadeCurve.Type_z.SHRINK;
+            this.K.I = ColorUtil.XAsInt(var2.color, var2.opacity * var14);
+            this.K.A = ColorUtil.XAsInt(var2.tailColor, var2.opacity * 0.35 * var14);
             this.K.w = this.K.L = 0.0;
             this.K.C = this.K.r = 0.0;
             this.e.pAsVoid(this.C[var11], this.K);
@@ -199,8 +199,8 @@ public final class BuyConfirm {
                if (!(var7.squaredDistanceTo(var1) > var4 * var4)) {
                   double var8 = this.u.size * 0.65;
                   if (var3 == null || var3.isVisible(new Box(var7.x - var8, var7.y - var8, var7.z - var8, var7.x + var8, var7.y + var8, var7.z + var8))) {
-                     int var10 = bg.XAsInt(this.u.color, this.u.opacity * this.i[var6]);
-                     var10 = bg.xAsInt(var10, var10 & 0xFF000000 | 16777215, 0.7);
+                     int var10 = ColorUtil.XAsInt(this.u.color, this.u.opacity * this.i[var6]);
+                     var10 = ColorUtil.xAsInt(var10, var10 & 0xFF000000 | 16777215, 0.7);
                      if (var10 >>> 24 != 0) {
                         this.O[this.L++] = new BuyConfirm.Type_u(var7, var8, var10);
                      }
@@ -261,24 +261,24 @@ public final class BuyConfirm {
       this.e.MAsVoid(var1, var2, var3, var4);
       this.m.RAsVoid(var1, var3, var4);
       if (!var4 || this.T) {
-         var1.blend(x4.Type_g.ADDITIVE);
+         var1.blend(EffectRenderParams.Type_g.ADDITIVE);
 
          for (int var5 = 0; var5 < this.L; var5++) {
             BuyConfirm.Type_u var6 = this.O[var5];
             var1.cAsVoid(var6.position.x, var6.position.y, var6.position.z, var6.size, 0.0, var6.color, ParticleEmitterEngine.Type_a.Circle, 0.0, 0.0, 0.0);
          }
 
-         var1.blend(x4.Type_g.ALPHA);
+         var1.blend(EffectRenderParams.Type_g.ALPHA);
       }
    }
 
    private static double UAsDouble(double var0, double var2, Vec3d var4, Vec3d var5, BuyConfirm.Type_d var6) {
       double var7 = Math.hypot(var4.x - var5.x, var4.z - var5.z);
       double var9 = Math.abs(var4.y - var5.y);
-      return ay.RAsDouble(var0 / 0.15)
-         * ay.RAsDouble((12.0 - var2) / 0.35)
-         * ay.RAsDouble((var6.radius * 1.4 - var7) / (var6.radius * 0.15))
-         * ay.RAsDouble((var6.height * 0.7 - var9) / (var6.height * 0.1));
+      return FadeCurve.RAsDouble(var0 / 0.15)
+         * FadeCurve.RAsDouble((12.0 - var2) / 0.35)
+         * FadeCurve.RAsDouble((var6.radius * 1.4 - var7) / (var6.radius * 0.15))
+         * FadeCurve.RAsDouble((var6.height * 0.7 - var9) / (var6.height * 0.1));
    }
 
    public static record Type_d(

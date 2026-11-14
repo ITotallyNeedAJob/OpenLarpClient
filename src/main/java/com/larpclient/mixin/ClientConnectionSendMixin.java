@@ -32,7 +32,7 @@ public class ClientConnectionSendMixin {
          } else if (FakeLag.JAsBoolean() && FakeLag.FAsBoolean((ClientConnection)(Object)this, var1, var2, var3)) {
             var4.cancel();
          } else {
-            db.uAsVoid(var1);
+            FallDamage.uAsVoid(var1);
          }
       }
    }

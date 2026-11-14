@@ -91,10 +91,10 @@ public class Nametags extends Module {
    private void kAsVoid(DrawContext var1, RenderTickCounter var2) {
       this.f.clear();
       if (this.isOperational() && this.isInGame() && !mc.options.hudHidden) {
-         long var3 = op.RAsLong();
+         long var3 = OpenScreen.RAsLong();
          Camera var5 = mc.gameRenderer.getCamera();
          Vec3d var6 = var5.getCameraPos();
-         Matrix4f var7 = w3.pAsMatrix4f(new Matrix4f());
+         Matrix4f var7 = WebRenderer.pAsMatrix4f(new Matrix4f());
          Vector3f var8 = var5.getRotation().transform(new Vector3f(0.0F, 0.025F * this.scale.getValue().floatValue(), 0.0F));
          int var9 = mc.getWindow().getScaledWidth();
          int var10 = mc.getWindow().getScaledHeight();
@@ -115,7 +115,7 @@ public class Nametags extends Module {
                      Vec3d var19 = var15.getLerpedPos(var12);
                      Vec3d var20 = var15.getAttachments().getPointNullable(EntityAttachmentType.NAME_TAG, 0, var15.getLerpedYaw(var12));
                      double var21 = Math.max((double)var15.getHeight(), var20 == null ? 0.0 : var20.y);
-                     d5.Type_e var23 = d5.vAsD5_Type_e(
+                     ProjectionUtil.Type_e var23 = ProjectionUtil.vAsD5_Type_e(
                         var19.add(var20 == null ? 0.0 : var20.x, var21 + this.height.getValue(), var20 == null ? 0.0 : var20.z),
                         var6,
                         var7,
@@ -151,13 +151,13 @@ public class Nametags extends Module {
                         try {
                            var1.getMatrices().translate(var23.x(), var23.y()).scale(var23.scale());
                            Text var42 = TextDrawing.ZAsText(
-                              TextDrawing.sAsString(ml.cAsString(var15.getUuid(), var15.getName().getString()), 160, TextDrawing.Type_x.MEDIUM),
+                              TextDrawing.sAsString(ModuleList.cAsString(var15.getUuid(), var15.getName().getString()), 160, TextDrawing.Type_x.MEDIUM),
                               TextDrawing.Type_x.MEDIUM
                            );
                            Text var27 = TextDrawing.ZAsText(TextDrawing.LAsString(var41.trim(), 180), TextDrawing.Type_x.REGULAR);
-                           int var28 = this.background.getValue() ? bg.XAsInt(bd.M, this.opacity.getValue()) : 0;
+                           int var28 = this.background.getValue() ? ColorUtil.XAsInt(UiStyle.M, this.opacity.getValue()) : 0;
                            int var29 = var41.isEmpty() ? -16 : -30;
-                           this.IAsVoid(var1, var42, var29, bd.u, var28);
+                           this.IAsVoid(var1, var42, var29, UiStyle.u, var28);
                            if (!var41.isEmpty()) {
                               this.IAsVoid(var1, var27, -16, -3090461, var28);
                            }
@@ -199,7 +199,7 @@ public class Nametags extends Module {
             }
          }
 
-         op.aAsVoid("Nametags", var3);
+         OpenScreen.aAsVoid("Nametags", var3);
       }
    }
 

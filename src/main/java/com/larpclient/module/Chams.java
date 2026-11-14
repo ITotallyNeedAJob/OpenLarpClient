@@ -30,13 +30,13 @@ public class Chams extends Module {
    private final BooleanSetting throughWalls = this.addSetting(new BooleanSetting("Through Walls", "Draw the occluded material pass", true));
    private final BooleanSetting outline = this.addSetting(new BooleanSetting("Outline", "Add a vanilla silhouette outline", false));
    private final NumberSetting maxEntities = this.addSetting(new NumberSetting("Max Entities", "Nearest models drawn", 32.0, 8.0, 128.0, 8.0));
-   public final bp h = new bp(var1x -> this.addSetting(var1x));
+   public final BridgeRenderer h = new BridgeRenderer(var1x -> this.addSetting(var1x));
    private final BooleanSetting renderSelf = this.addSetting(new BooleanSetting("Render Self", "Include your model in third person", false));
    private final BooleanSetting teamColors = this.addSetting(new BooleanSetting("Team Colors", "Use entity team colors instead of the gradient", false));
    private final ChamsOutlineEffect H = new ChamsOutlineEffect("Chams");
    private static Chams v;
    private List<ChamsOutlineEffect.Type_a> E = List.of();
-   private bp.Type_e R;
+   private BridgeRenderer.Type_e R;
    private Object V;
    private Object g;
    private boolean z;
@@ -128,7 +128,7 @@ public class Chams extends Module {
                var2.add(
                   new ChamsOutlineEffect.Type_a(
                      CosmeticSubmissionHandler.oAsEntityRenderState(var4, var1),
-                     bg.pAsInt(this.iAsInt(var4), ThemeSettings.RAsDouble((double)mc.player.distanceTo(var4), this.range.getValue()))
+                     ColorUtil.pAsInt(this.iAsInt(var4), ThemeSettings.RAsDouble((double)mc.player.distanceTo(var4), this.range.getValue()))
                   )
                );
             }

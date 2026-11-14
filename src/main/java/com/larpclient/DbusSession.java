@@ -22,9 +22,9 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 final class DbusSession implements AutoCloseable {
-   static final int DropletTrail = 1048576;
-   private static final int BloomUtility = 32;
-   private static final int ChinaHatCodec = 65536;
+   static final int l = 1048576;
+   private static final int b = 32;
+   private static final int i = 65536;
    private final SocketChannel g;
    private final Selector C;
    private int q;
@@ -329,7 +329,7 @@ final class DbusSession implements AutoCloseable {
       private int I;
       final int q;
       long b;
-      private String PriceDetector = "";
+      private String m = "";
 
       Type_k(ByteBuffer var1) throws IOException {
          this.w = var1;
@@ -339,7 +339,7 @@ final class DbusSession implements AutoCloseable {
             this.q = var1.get(1);
             this.Y = (int)(16L + ((long)var1.getInt(12) & 4294967295L) + 7L & -8L);
             this.c = 12;
-            Object var3 = this.WAsObject("PetEffectRenderer(yv)", new int[1], 0);
+            Object var3 = this.WAsObject("a(yv)", new int[1], 0);
             if (var3 instanceof List) {
                for (Object var4 : (List)var3) {
                   List var5 = (List)var4;

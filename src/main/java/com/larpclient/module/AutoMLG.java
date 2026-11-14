@@ -33,7 +33,7 @@ public final class AutoMLG extends Module {
       new NumberSetting("Fall Distance", "Blocks fallen before the water bucket is readied", 8.0, 3.0, 40.0, 1.0)
    );
    private final BooleanSetting pickUp = this.addSetting(new BooleanSetting("Pick Up", "Pick the water back up after landing", true));
-   private final pg A = new pg(this);
+   private final ParticleGeometry A = new ParticleGeometry(this);
    private AutoMLG.Type_c d = AutoMLG.Type_c.IDLE;
    private ClientPlayerEntity e;
    private ClientWorld g;
@@ -79,7 +79,7 @@ public final class AutoMLG extends Module {
 
    @Override
    public void onDisable() {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       if (this.d != AutoMLG.Type_c.IDLE && this.e != null && this.e == getMc().player) {
          this.A.vAsVoid(mc, true);
          this.e.setPitch(this.l);
@@ -91,14 +91,14 @@ public final class AutoMLG extends Module {
    }
 
    private void tAsVoid() {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       this.d = AutoMLG.Type_c.IDLE;
       this.r = 0;
    }
 
    private boolean FAsBoolean() {
-      p5.Type_u var1 = p5.NAsP5_Type_u();
-      return !b_.jAsBoolean() || mc.currentScreen != null || var1 != p5.Type_u.NONE;
+      ParticleEmitter.Type_u var1 = ParticleEmitter.NAsP5_Type_u();
+      return !ModuleImportBroker.jAsBoolean() || mc.currentScreen != null || var1 != ParticleEmitter.Type_u.NONE;
    }
 
    @Override
@@ -164,7 +164,7 @@ public final class AutoMLG extends Module {
          this.CAsVoid();
          this.k = "Falling";
          if (this.sAsVec3d(this.e.getYaw(), 89.5F) != null) {
-            b_.UAsVoid(this, this::XAsVoid, this::cAsBoolean);
+            ModuleImportBroker.UAsVoid(this, this::XAsVoid, this::cAsBoolean);
          }
       } else {
          this.d = AutoMLG.Type_c.RESTORE;
@@ -179,7 +179,7 @@ public final class AutoMLG extends Module {
          this.k = "Pick up timed out";
          this.d = AutoMLG.Type_c.RESTORE;
       } else if (lAsBoolean(this.e.isOnGround(), this.e.isTouchingWater(), this.r)) {
-         b_.UAsVoid(this, this::yAsVoid, () -> this.d == AutoMLG.Type_c.PICKUP && this.NAsBoolean(Items.BUCKET));
+         ModuleImportBroker.UAsVoid(this, this::yAsVoid, () -> this.d == AutoMLG.Type_c.PICKUP && this.NAsBoolean(Items.BUCKET));
       }
    }
 
@@ -190,13 +190,13 @@ public final class AutoMLG extends Module {
          ((ClientPlayerInteractionManagerAccessor)mc.interactionManager).larpSyncCarriedItem();
       }
 
-      dq.RAsVoid(this, dq.Type_s.AUTOMLG, this.e.getYaw(), this.l, 1.0);
+      ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.AUTOMLG, this.e.getYaw(), this.l, 1.0);
       this.tAsVoid();
       this.k = "Ready";
    }
 
    private void CAsVoid() {
-      dq.RAsVoid(this, dq.Type_s.AUTOMLG, this.e.getYaw(), 89.5F, 1.0);
+      ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.AUTOMLG, this.e.getYaw(), 89.5F, 1.0);
    }
 
    private Vec3d sAsVec3d(float var1, float var2) {
@@ -218,7 +218,7 @@ public final class AutoMLG extends Module {
 
    private boolean NAsBoolean(Item var1) {
       int var2 = BlockPlacementController.qAsInt(var1, true);
-      return var2 == -2 || var2 >= 0 && (var2 == this.e.getInventory().getSelectedSlot() || pg.yAsBoolean(this));
+      return var2 == -2 || var2 >= 0 && (var2 == this.e.getInventory().getSelectedSlot() || ParticleGeometry.yAsBoolean(this));
    }
 
    private Hand BAsHand(Item var1) {

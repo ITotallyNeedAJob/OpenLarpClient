@@ -11,13 +11,13 @@ import net.minecraft.world.dimension.DimensionType.Skybox;
 
 public final class HalloweenWorldEffects {
    private final HalloweenCinders H = new HalloweenCinders();
-   private final wg C = new wg();
+   private final WorldGeometry C = new WorldGeometry();
    private Object U;
    private Object x;
    private Vec3d F;
    private int B = -1;
    private int u;
-   private int MenuPopupProvider = -1;
+   private int f = -1;
    private boolean K;
    private boolean O;
 
@@ -74,7 +74,7 @@ public final class HalloweenWorldEffects {
             }
 
             this.f = var6;
-            WeaponTrailRenderer.PAsVoid(mb.dAsDouble(), 0.22);
+            WeaponTrailRenderer.PAsVoid(MediaSession.dAsDouble(), 0.22);
          } else {
             this.C.yAsVoid();
          }

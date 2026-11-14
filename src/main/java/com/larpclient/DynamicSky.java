@@ -1,7 +1,7 @@
 package com.larpclient;
 
 public final class DynamicSky {
-   public DynamicSky.Type_l ChinaHatCodec = DynamicSky.Type_l.RECYCLE;
+   public DynamicSky.Type_l i = DynamicSky.Type_l.RECYCLE;
    public String V = "";
    public double M;
    public double A;

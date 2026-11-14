@@ -19,7 +19,7 @@ public abstract class BasePreviewRendererMixin {
       require = 0
    )
    private void larpclient$injectDrawInnerTooltip(CallbackInfo var1) {
-      rj.NAsVoid(true);
+      RifleJoint.NAsVoid(true);
    }
 
    @Inject(
@@ -28,6 +28,6 @@ public abstract class BasePreviewRendererMixin {
       require = 0
    )
    private void larpclient$injectDrawInnerTooltip2(CallbackInfo var1) {
-      rj.NAsVoid(false);
+      RifleJoint.NAsVoid(false);
    }
 }

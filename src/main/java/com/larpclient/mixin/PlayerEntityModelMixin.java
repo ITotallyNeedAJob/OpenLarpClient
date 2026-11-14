@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin({PlayerEntityModel.class})
-public abstract class PlayerEntityModelMixin implements xk {
+public abstract class PlayerEntityModelMixin implements XKeybind {
    private static final String E = "setupAnim(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;)V";
    @Unique
    private boolean r;
@@ -43,8 +43,8 @@ public abstract class PlayerEntityModelMixin implements xk {
       at = {@At("TAIL")}
    )
    private void larpclient$injectV2(PlayerEntityRenderState var1, CallbackInfo var2) {
-      mc var3 = (mc)var1;
-      if (mj.gAsBoolean((PlayerEntityModel)(Object)this, this.r, var3.larp$headless(), var3.larp$korblox())) {
+      MediaControls var3 = (MediaControls)var1;
+      if (MotionBlur.gAsBoolean((PlayerEntityModel)(Object)this, this.r, var3.larp$headless(), var3.larp$korblox())) {
          this.w = true;
       }
    }

@@ -47,8 +47,8 @@ import javax.net.ssl.SSLParameters;
 import net.minecraft.network.NetworkingBackend;
 
 final class ProxySessionJoin {
-   static final URI BoxUtils = URI.create("https://sessionserver.mojang.com/session/minecraft/join");
-   static final int SahurDanceEngine = 10000;
+   static final URI c = URI.create("https://sessionserver.mojang.com/session/minecraft/join");
+   static final int d = 10000;
    static final int W = 15;
    static final int D = 65536;
 
@@ -93,7 +93,7 @@ final class ProxySessionJoin {
    static long GAsLong(ProxyValidation.Type_y var0) throws IOException, InterruptedException {
       long var1 = System.nanoTime();
       CompletableFuture var3 = new CompletableFuture();
-      ChannelFuture var4 = JAsBootstrap(var0, new ProxySessionJoin.Type_k(var0, var3)).connect(IAsInetSocketAddress(var0, BoxUtils.getHost()));
+      ChannelFuture var4 = JAsBootstrap(var0, new ProxySessionJoin.Type_k(var0, var3)).connect(IAsInetSocketAddress(var0, c.getHost()));
       var4.addListener(var1x -> {
          if (!var1x.isSuccess()) {
             var3.completeExceptionally(var1x.cause());
@@ -230,7 +230,7 @@ final class ProxySessionJoin {
       }
 
       public void channelInactive(ChannelHandlerContext var1) {
-         this.d.completeExceptionally(new IOException("The connection closed before PetEffectRenderer response"));
+         this.d.completeExceptionally(new IOException("The connection closed before a response"));
       }
 
       public void handlerRemoved(ChannelHandlerContext var1) {

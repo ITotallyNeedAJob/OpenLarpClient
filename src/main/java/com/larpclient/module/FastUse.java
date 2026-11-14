@@ -47,7 +47,7 @@ public final class FastUse extends Module {
    public static int HAsInt(int var0) {
       if (G != null && G.isEnabled()) {
          FastUse var1 = G;
-         if (var1 != null && var1.isRuntimeActive() && !b_.EAsBoolean()) {
+         if (var1 != null && var1.isRuntimeActive() && !ModuleImportBroker.EAsBoolean()) {
             ClientPlayerEntity var2 = getMc().player;
             if (var2 == null) {
                return var0;

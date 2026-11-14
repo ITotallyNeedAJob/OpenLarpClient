@@ -97,13 +97,13 @@ public class Speed extends Module {
             this.Y = this.mode.getValue();
          }
 
-         if (r6.VAsBoolean()
+         if (ModuleKeybindChecker.VAsBoolean()
             && !TargetStrafe.HAsBoolean()
             && mc.currentScreen == null
             && !mc.player.isTouchingWater()
             && !mc.player.isInLava()
             && !mc.player.isClimbing()) {
-            Vec3d var2 = r6.JAsVec3d();
+            Vec3d var2 = ModuleKeybindChecker.JAsVec3d();
             boolean var3 = mc.player.isOnGround();
             if (this.mode.pAsBoolean("Entity Collision")) {
                if (var1 == 0) {
@@ -154,7 +154,7 @@ public class Speed extends Module {
                   Vec3d var10 = var2.multiply(this.g);
                   Vec3d var11 = new Vec3d(var9.x, 0.0, var9.z);
                   double var12 = (this.mode.pAsBoolean("Strafe") && !var3 ? 0.04 * this.strafe.getValue() : 0.08) * yAsDouble(this.speed.getValue());
-                  var11 = r6.PAsVec3d(var11, var10, var12);
+                  var11 = ModuleKeybindChecker.PAsVec3d(var11, var10, var12);
                   mc.player.setVelocity(var11.x, var9.y, var11.z);
                   if (var3 && this.autoJump.getValue() && !this.mode.pAsBoolean("Vanilla") && var9.y <= 0.0) {
                      if (this.mode.pAsBoolean("LowHop")) {

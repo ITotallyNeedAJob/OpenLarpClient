@@ -1,14 +1,14 @@
 package com.larpclient;
 
 public final class BloomUtility {
-   public static final int LineSegment = 6;
+   public static final int e = 6;
    public static final int G = 96;
-   public static final int PriceDetector = 18;
-   public static final int BoxUtils = 4;
+   public static final int m = 18;
+   public static final int c = 4;
    private static final double[] q = new double[]{0.0, 0.67, 0.9, 0.975, 1.0};
-   private static final double[] ChinaHatCodec = new double[]{0.0, 0.08, 0.5, 1.0, 0.35};
+   private static final double[] i = new double[]{0.0, 0.08, 0.5, 1.0, 0.35};
    public static final int h = -16185079;
-   private final dd N = new dd();
+   private final DanceData N = new DanceData();
    private double d;
 
    public BloomUtility() {
@@ -73,7 +73,7 @@ public final class BloomUtility {
       if (var10 < var12 * 2.0 + 6.0) {
          return new BloomUtility.Type_h(0.0, 0.0, var8, 0.0, 0.0);
       } else {
-         double var14 = dd.floor(((double)(var0 / 2) + wAsDouble(var0, 7) * 0.45) / 9.0 + var3 * (0.008 + var6 * 0.009));
+         double var14 = DanceData.floor(((double)(var0 / 2) + wAsDouble(var0, 7) * 0.45) / 9.0 + var3 * (0.008 + var6 * 0.009));
          double var16 = -var12 + var14 * ((double)var2 + var12 * 2.0);
          double var18 = 0.12 + wAsDouble(var0, 11) * 0.68;
          double var20 = Math.sin(var3 * 0.13 + (double)var0 * 1.7) * var10 * 0.035;

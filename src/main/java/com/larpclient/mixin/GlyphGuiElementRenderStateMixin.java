@@ -33,7 +33,7 @@ public abstract class GlyphGuiElementRenderStateMixin {
    private void larpclient$injectHandler(CallbackInfoReturnable<TextureSetup> var1) {
       GpuTextureView var2 = this.comp_4637.textureView();
       GpuTexture var3 = var2.texture();
-      if (var3.getFormat() == TextureFormat.RED8 && xa.XAsBoolean(var3)) {
+      if (var3.getFormat() == TextureFormat.RED8 && XRayEffect.XAsBoolean(var3)) {
          var1.setReturnValue(TextureSetup.withLightmap(var2, RenderSystem.getSamplerCache().get(FilterMode.LINEAR)));
       }
    }

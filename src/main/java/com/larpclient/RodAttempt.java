@@ -9,10 +9,10 @@ public final class RodAttempt {
    public static final float n = 0.12F;
    public static final int S = 73;
    private static final int[] Z = new int[]{4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
-   private static final float[] ChatPayParser = new float[]{0.27F, 0.2F, 0.2F, 0.1F};
+   private static final float[] g = new float[]{0.27F, 0.2F, 0.2F, 0.1F};
    public static final List<RodAttempt.Type_s> L = YAsList();
    public static final List<RodAttempt.Type_t> T;
-   public static final List<RodAttempt.Type_d> PriceDetector = List.of(
+   public static final List<RodAttempt.Type_d> m = List.of(
       new RodAttempt.Type_d(0, 1, 0.028F, true),
       new RodAttempt.Type_d(1, 2, 0.024F, true),
       new RodAttempt.Type_d(2, 3, 0.019F, true),
@@ -25,7 +25,7 @@ public final class RodAttempt {
       new RodAttempt.Type_d(25, 13, 0.005F, false)
    );
    public static final float h = 1.38F;
-   public static final float PetEffectRenderer = 0.16F;
+   public static final float a = 0.16F;
    public static final float E = 2.0F;
 
    private static List<RodAttempt.Type_s> YAsList() {
@@ -196,27 +196,27 @@ public final class RodAttempt {
 
    public static int ZAsInt(RodAttempt.Type_r var0, int var1) {
       float var2 = var1 < L.size() ? L.get(var1).x / 1.52F : 0.4F;
-      int var3 = bg.xAsInt(var0.primary, var0.secondary, (double)Math.clamp(var2, 0.0F, 1.0F));
+      int var3 = ColorUtil.xAsInt(var0.primary, var0.secondary, (double)Math.clamp(var2, 0.0F, 1.0F));
       int var4 = var1 >= L.size() && (var1 - L.size()) % 3 != 0 ? 1 : 0;
       double var5 = var4 != 0 ? 0.9 : (var1 >= L.size() ? 0.56 : (var1 < 3 ? 0.3 : 0.62));
       int var7 = var1 >= L.size() ? 212 : (var1 < 3 ? 225 : 145);
-      return VAsInt(bg.xAsInt(-15526620, var3, var5), Math.round((float)(var7 * (var3 >>> 24)) / 255.0F));
+      return VAsInt(ColorUtil.xAsInt(-15526620, var3, var5), Math.round((float)(var7 * (var3 >>> 24)) / 255.0F));
    }
 
    public static int iAsInt(RodAttempt.Type_r var0, int var1, boolean var2) {
       double var3 = var1 >= L.size() ? 0.4 : (double)Math.clamp(L.get(var1).x / 1.52F, 0.0F, 1.0F);
-      int var5 = bg.xAsInt(var0.primary, var0.secondary, var3);
-      return VAsInt(bg.xAsInt(var5, -1, var2 ? 0.22 : 0.38), Math.round((float)(var2 ? 88 : 215) * var0.pulse * (float)(var5 >>> 24) / 255.0F));
+      int var5 = ColorUtil.xAsInt(var0.primary, var0.secondary, var3);
+      return VAsInt(ColorUtil.xAsInt(var5, -1, var2 ? 0.22 : 0.38), Math.round((float)(var2 ? 88 : 215) * var0.pulse * (float)(var5 >>> 24) / 255.0F));
    }
 
    public static boolean UAsBoolean(RodAttempt.Type_r var0) {
       return var0.primary >>> 24 > 0 || var0.secondary >>> 24 > 0;
    }
 
-   public static void vAsVoid(o_ var0, RodAttempt.Type_r var1, RodAttempt.Type_x var2) {
+   public static void vAsVoid(RenderPipeline var0, RodAttempt.Type_r var1, RodAttempt.Type_x var2) {
       List var3 = var1.points;
       if (var2 != RodAttempt.Type_x.SURFACE) {
-         var0.blend(x4.Type_g.ADDITIVE);
+         var0.blend(EffectRenderParams.Type_g.ADDITIVE);
          double var9 = (var2 == RodAttempt.Type_x.HALO ? 0.047 : 0.008) * (double)var1.size;
 
          for (int var11 = 0; var11 < L.size(); var11++) {
@@ -229,7 +229,7 @@ public final class RodAttempt {
             );
          }
       } else {
-         var0.blend(x4.Type_g.ALPHA);
+         var0.blend(EffectRenderParams.Type_g.ALPHA);
 
          for (RodAttempt.Type_t var5 : T) {
             LAsVoid(var0, (Vec3d)var3.get(var5.a), ZAsInt(var1, var5.a));
@@ -254,7 +254,7 @@ public final class RodAttempt {
 
    public static void MAsVoid(EffectGeometryRenderer var0, RodAttempt.Type_r var1) {
       if (UAsBoolean(var1)) {
-         var0.blend(x4.Type_g.ADDITIVE);
+         var0.blend(EffectRenderParams.Type_g.ADDITIVE);
          List var2 = var1.points;
 
          for (int var3 = 0; var3 < L.size(); var3++) {
@@ -275,20 +275,20 @@ public final class RodAttempt {
       }
    }
 
-   private static void bAsVoid(o_ var0, Vec3d var1, Vec3d var2, Vec3d var3, double var4, int var6, int var7) {
+   private static void bAsVoid(RenderPipeline var0, Vec3d var1, Vec3d var2, Vec3d var3, double var4, int var6, int var7) {
       Vec3d var8 = var3.multiply(var4 * 0.4);
-      LAsVoid(var0, var1.add(var8), bg.pAsInt(var6, 0.72));
-      LAsVoid(var0, var2.add(var8), bg.pAsInt(var7, 0.72));
-      LAsVoid(var0, var2.subtract(var8), bg.pAsInt(var7, 0.45));
-      LAsVoid(var0, var1.subtract(var8), bg.pAsInt(var6, 0.45));
+      LAsVoid(var0, var1.add(var8), ColorUtil.pAsInt(var6, 0.72));
+      LAsVoid(var0, var2.add(var8), ColorUtil.pAsInt(var7, 0.72));
+      LAsVoid(var0, var2.subtract(var8), ColorUtil.pAsInt(var7, 0.45));
+      LAsVoid(var0, var1.subtract(var8), ColorUtil.pAsInt(var6, 0.45));
    }
 
-   private static void rAsVoid(o_ var0, Vec3d var1, Vec3d var2, Vec3d var3, Vec3d var4, double var5, int var7) {
+   private static void rAsVoid(RenderPipeline var0, Vec3d var1, Vec3d var2, Vec3d var3, Vec3d var4, double var5, int var7) {
       Vec3d var8 = var3.subtract(var2).normalize().multiply(var5);
       Vec3d var9 = var8.crossProduct(var4).normalize().multiply(var5);
       LAsVoid(var0, var1.add(var8), var7);
-      LAsVoid(var0, var1.add(var9), bg.pAsInt(var7, 0.75));
-      LAsVoid(var0, var1.subtract(var8), bg.pAsInt(var7, 0.55));
+      LAsVoid(var0, var1.add(var9), ColorUtil.pAsInt(var7, 0.75));
+      LAsVoid(var0, var1.subtract(var8), ColorUtil.pAsInt(var7, 0.55));
       LAsVoid(var0, var1.subtract(var9), var7);
    }
 
@@ -296,7 +296,7 @@ public final class RodAttempt {
       return new RodAttempt.Type_s(var0.x + (var1.x - var0.x) * var2, var0.y + (var1.y - var0.y) * var2, var0.z + (var1.z - var0.z) * var2);
    }
 
-   private static void LAsVoid(o_ var0, Vec3d var1, int var2) {
+   private static void LAsVoid(RenderPipeline var0, Vec3d var1, int var2) {
       var0.vertex(var1.x, var1.y, var1.z, var2);
    }
 

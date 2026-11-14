@@ -47,8 +47,8 @@ public final class AutoTrap extends BlockPlacementController.Type_k implements P
    private final BooleanSetting Y = this.UAsBooleanSetting("Predict Sort", "Build blocks closest to the predicted opponent first", true);
    private final NumberSetting L = this.KAsNumberSetting("Placement Preview", "Ticks to show the next block before placing", 6.0, 2.0, 40.0, 1.0);
    private final NumberSetting A = this.KAsNumberSetting("Turn Speed", "Maximum player aim turn speed in degrees per second", 180.0, 30.0, 360.0, 15.0);
-   private final px g = new px();
-   private final m1 U = new m1();
+   private final PixelUtil g = new PixelUtil();
+   private final RotationAccumulator U = new RotationAccumulator();
    private PlayerEntity y;
    private Object x;
    private Object S;
@@ -84,7 +84,7 @@ public final class AutoTrap extends BlockPlacementController.Type_k implements P
    }
 
    private void QAsVoid() {
-      p5.GAsVoid(p5.Type_u.AUTOTRAP);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AUTOTRAP);
       this.g.oAsVoid();
       this.U.aAsVoid();
       this.y = null;
@@ -95,18 +95,18 @@ public final class AutoTrap extends BlockPlacementController.Type_k implements P
 
    @Override
    protected void aim(float var1, float var2) {
-      if (this.isEnabled() && p5.fAsBoolean(p5.Type_u.AUTOTRAP)) {
+      if (this.isEnabled() && ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.AUTOTRAP)) {
          if (this.qAsBoolean()) {
             super.aim(var1, var2);
          } else {
             float[] var3 = this.U.DAsFloatArray(mc.player.age, mc.player.getYaw(), mc.player.getPitch(), var1, var2, this.A.getValue());
-            dq.yAsVoid(dq.Type_s.PLACEMENT, var3[0], var3[1], 1.0);
+            ModuleDetector.yAsVoid(ModuleDetector.Type_s.PLACEMENT, var3[0], var3[1], 1.0);
          }
 
-         if (dq.CAsBoolean(dq.Type_s.PLACEMENT)) {
-            p5.jAsVoid(p5.Type_u.AUTOTRAP);
+         if (ModuleDetector.CAsBoolean(ModuleDetector.Type_s.PLACEMENT)) {
+            ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.AUTOTRAP);
          } else {
-            p5.GAsVoid(p5.Type_u.AUTOTRAP);
+            ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AUTOTRAP);
          }
       }
    }
@@ -156,7 +156,7 @@ public final class AutoTrap extends BlockPlacementController.Type_k implements P
 
    public float KAsFloat(float var1) {
       if (this.isEnabled()) {
-         if (this.isRuntimeActive() && p5.NAsP5_Type_u() == p5.Type_u.AUTOTRAP && dq.CAsBoolean(dq.Type_s.PLACEMENT)) {
+         if (this.isRuntimeActive() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.AUTOTRAP && ModuleDetector.CAsBoolean(ModuleDetector.Type_s.PLACEMENT)) {
             mc.player.setHeadYaw(mc.player.getYaw());
             return mc.player.getYaw();
          } else {
@@ -315,7 +315,7 @@ public final class AutoTrap extends BlockPlacementController.Type_k implements P
       if (!this.cAsBoolean()) {
          this.g.oAsVoid();
          this.U.aAsVoid();
-      } else if (this.RAsBoolean() && p5.NAsP5_Type_u() != p5.Type_u.NONE && p5.NAsP5_Type_u() != p5.Type_u.AUTOTRAP) {
+      } else if (this.RAsBoolean() && ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.NONE && ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.AUTOTRAP) {
          this.g.oAsVoid();
          this.U.aAsVoid();
          this.KAsVoid("Waiting for camera control");
@@ -390,12 +390,12 @@ public final class AutoTrap extends BlockPlacementController.Type_k implements P
                         this.J.getValue(),
                         () -> this.cAsBoolean() && this.y == var12 && this.oAsBoolean(var12) && this.HAsItem() == var1 && this.WAsBoolean(var12, var10),
                         () -> {
-                           float[] var2x = dq.QAsFloatArray(mc.player.getEyePos(), var7.getPos());
+                           float[] var2x = ModuleDetector.QAsFloatArray(mc.player.getEyePos(), var7.getPos());
                            int var3x = Math.abs(MathHelper.wrapDegrees(var2x[0] - mc.player.getYaw())) < 2.0F
                                  && Math.abs(var2x[1] - mc.player.getPitch()) < 2.0F
                               ? 1
                               : 0;
-                           return (!this.RAsBoolean() || p5.NAsP5_Type_u() == p5.Type_u.AUTOTRAP)
+                           return (!this.RAsBoolean() || ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.AUTOTRAP)
                               && this.SAsBoolean(mc.player.age, this.rAsBoolean(), var3x != 0);
                         },
                         var2x -> {

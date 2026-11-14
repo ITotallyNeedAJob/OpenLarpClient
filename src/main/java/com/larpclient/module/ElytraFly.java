@@ -19,7 +19,7 @@ public class ElytraFly extends Module {
 
    @Override
    public void onTick() {
-      if (this.isInGame() && mc.player.isGliding() && r6.VAsBoolean()) {
+      if (this.isInGame() && mc.player.isGliding() && ModuleKeybindChecker.VAsBoolean()) {
          Vec3d var1 = mc.player.getVelocity();
          Vec3d var2 = mc.player.getRotationVector().multiply(this.speed.getValue());
          if (this.mode.pAsBoolean("Glide")) {
@@ -32,7 +32,7 @@ public class ElytraFly extends Module {
             var2 = new Vec3d(var3.x, Math.max(var1.y, -0.02), var3.z);
          }
 
-         mc.player.setVelocity(r6.PAsVec3d(var1, var2, this.mode.pAsBoolean("Boost") ? 0.04 : 0.08));
+         mc.player.setVelocity(ModuleKeybindChecker.PAsVec3d(var1, var2, this.mode.pAsBoolean("Boost") ? 0.04 : 0.08));
       }
    }
 }

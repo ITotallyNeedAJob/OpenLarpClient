@@ -49,7 +49,7 @@ public final class PrimeChunkFinder extends Module {
    private final BooleanSetting notifications = this.addSetting(new BooleanSetting("Notifications", "Notify once per discovered chunk", true));
    private final BooleanSetting chatAlerts = this.addSetting(new BooleanSetting("Chat Alerts", "Report discovery coordinates in local chat", true));
    private final ThemeSettings F = new ThemeSettings(var1 -> this.addSetting(var1));
-   private final we a = new we();
+   private final WetEffect a = new WetEffect();
    private final LinkedHashMap<Long, String> r = new LinkedHashMap<>();
    private final Set<Long> U = new HashSet<>();
    private final LinkedHashMap<Long, Long> f = new LinkedHashMap<>();
@@ -235,7 +235,7 @@ public final class PrimeChunkFinder extends Module {
       return var2 == null ? Blocks.AIR.getDefaultState() : var2.getBlockState(var1);
    }
 
-   private boolean UAsBoolean(we.Type_i var1) {
+   private boolean UAsBoolean(WetEffect.Type_i var1) {
       int var2 = Math.max(var1.before(), var1.after());
       BlockPos var3 = var1.pos();
       int var4 = Math.max(5, 15 - var2);
@@ -331,7 +331,7 @@ public final class PrimeChunkFinder extends Module {
             }
          }
 
-         for (we.Type_i var11 : this.a.cAsList(8)) {
+         for (WetEffect.Type_i var11 : this.a.cAsList(8)) {
             BlockPos var12 = var11.pos();
             long var14 = ChunkPos.toLong(var12.getX() >> 4, var12.getZ() >> 4);
             if (!this.vAsBoolean(var14)

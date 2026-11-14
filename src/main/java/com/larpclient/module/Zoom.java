@@ -31,7 +31,7 @@ public final class Zoom extends Module {
    public final NumberSetting transitionTime = this.addSetting(
       new NumberSetting("Transition Time", "Seconds to reach approximately 99 percent of a new zoom", 0.15, 0.0, 0.5, 0.01)
    );
-   private final mg m = new mg();
+   private final MovementTrace m = new MovementTrace();
    private Object Y;
    private Object U;
    private boolean d;
@@ -132,7 +132,7 @@ public final class Zoom extends Module {
          Zoom var2 = i;
          if (var2 != null && !var1) {
             var2.KAsVoid();
-            return mg.AAsFloat(var0, var2.m.SAsDouble());
+            return MovementTrace.AAsFloat(var0, var2.m.SAsDouble());
          } else {
             return var0;
          }

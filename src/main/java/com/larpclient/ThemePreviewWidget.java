@@ -24,7 +24,7 @@ public final class ThemePreviewWidget extends GuiWidget {
          int var8 = var6 != 0 ? -131587 : -15724526;
          int var9 = var6 != 0 ? -1776409 : -14408664;
          GuiDrawing.CAsVoid(var1, var7, this.x, var4, 36, 6, var8);
-         GuiDrawing.wAsVoid(var1, var7, this.x, var4, 36, 6, bd.A);
+         GuiDrawing.wAsVoid(var1, var7, this.x, var4, 36, 6, UiStyle.A);
          GuiDrawing.CAsVoid(var1, var7 + 5, this.x + 4, 8, 28, 2, var6 != 0 ? -723723 : -15132387);
 
          for (int var10 = 0; var10 < 3; var10++) {
@@ -32,7 +32,7 @@ public final class ThemePreviewWidget extends GuiWidget {
          }
 
          TextDrawing.NAsVoid(
-            var1, var6 != 0 ? "Light" : "Dark", var7 + 4, this.x + 40, var6 == (this.L.getAsBoolean() ? 1 : 0) ? bd.u : bd.e, TextDrawing.Type_s.HELP
+            var1, var6 != 0 ? "Light" : "Dark", var7 + 4, this.x + 40, var6 == (this.L.getAsBoolean() ? 1 : 0) ? UiStyle.u : UiStyle.e, TextDrawing.Type_s.HELP
          );
       }
 

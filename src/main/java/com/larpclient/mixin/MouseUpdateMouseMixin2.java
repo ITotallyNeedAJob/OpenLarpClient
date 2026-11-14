@@ -25,7 +25,7 @@ public abstract class MouseUpdateMouseMixin2 {
       allow = 1
    )
    private void larpclient$modifyArgsUpdateMouse(Args var1, double var2) {
-      w7.Type_h var4 = AimAssist.OAsW7_Type_h(MinecraftClient.getInstance().player, (Double)var1.get(0), (Double)var1.get(1), var2);
+      WaveEffect.Type_h var4 = AimAssist.OAsW7_Type_h(MinecraftClient.getInstance().player, (Double)var1.get(0), (Double)var1.get(1), var2);
       var1.set(0, (Double)var1.get(0) + var4.yaw());
       var1.set(1, (Double)var1.get(1) + var4.pitch());
    }

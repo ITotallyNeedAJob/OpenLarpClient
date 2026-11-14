@@ -25,7 +25,7 @@ public abstract class MinecraftClientDoAttackMixin {
    )
    private void larpclient$injectDoAttack(CallbackInfoReturnable<Boolean> var1) {
       AutoClicker var2 = AutoClicker.GAsAutoClicker();
-      if (var2 != null && var2.NAsBoolean() && !var2.gAsBoolean() && !b_.EAsBoolean()) {
+      if (var2 != null && var2.NAsBoolean() && !var2.gAsBoolean() && !ModuleImportBroker.EAsBoolean()) {
          var1.setReturnValue(false);
       }
    }
@@ -37,7 +37,7 @@ public abstract class MinecraftClientDoAttackMixin {
    )
    private void larpclient$injectDoItemUse(CallbackInfo var1) {
       AutoClicker var2 = AutoClicker.GAsAutoClicker();
-      if (var2 != null && var2.jAsBoolean() && !var2.gAsBoolean() && !b_.EAsBoolean()) {
+      if (var2 != null && var2.jAsBoolean() && !var2.gAsBoolean() && !ModuleImportBroker.EAsBoolean()) {
          var1.cancel();
       }
    }

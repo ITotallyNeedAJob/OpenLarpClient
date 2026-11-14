@@ -33,11 +33,11 @@ public final class SettingWidget extends GuiWidget {
    private long h;
    private long K;
    private String q;
-   private final w2 d;
-   private final w2 A;
-   private final w2 N;
-   private final w2 b;
-   private final w2 D;
+   private final WeatherRenderer d;
+   private final WeatherRenderer A;
+   private final WeatherRenderer N;
+   private final WeatherRenderer b;
+   private final WeatherRenderer D;
    private int R;
    private int u;
    private int X;
@@ -63,8 +63,8 @@ public final class SettingWidget extends GuiWidget {
       TextInputWidget var10001;
       label45: {
          this.s = "";
-         this.d = new w2(0.0);
-         this.A = new w2(0.0);
+         this.d = new WeatherRenderer(0.0);
+         this.A = new WeatherRenderer(0.0);
          this.R = 1;
          this.u = -1;
          this.Z = List.of();
@@ -97,10 +97,10 @@ public final class SettingWidget extends GuiWidget {
 
       // Vineflower could not resugar this constructor call (see $VF marker).
       // Bytecode: new w2, dup, iload var10003, i2d, invokespecial w2.<init>(D)V
-      w2 var9 = new w2((double)var10003);
+      WeatherRenderer var9 = new WeatherRenderer((double)var10003);
       this.N = var9;
-      this.b = new w2(var1 instanceof NumberSetting var7 ? var7.getNormalizedValue() : 0.0);
-      this.D = new w2(this.qAsNumberSetting() != null ? this.qAsNumberSetting().getNormalizedValue() : 0.0);
+      this.b = new WeatherRenderer(var1 instanceof NumberSetting var7 ? var7.getNormalizedValue() : 0.0);
+      this.D = new WeatherRenderer(this.qAsNumberSetting() != null ? this.qAsNumberSetting().getNormalizedValue() : 0.0);
       this.F = this.eAsBoolean() ? 38 : 26;
    }
 
@@ -135,7 +135,7 @@ public final class SettingWidget extends GuiWidget {
          int var1 = this.tAsInt();
          String var2 = this.t instanceof BooleanSetting ? "toggle" : "cycle";
          String var3 = var1 == -1
-            ? "Middle click to bind PetEffectRenderer key or mouse button that " + var2 + "SkyChunkCache this."
+            ? "Middle click to bind a key or mouse button that " + var2 + "s this."
             : "Shortcut: " + KeybindNames.eAsString(var1) + ". Middle click to change, then Escape/Delete to clear.";
          return this.t.getDescription() + " " + var3;
       }
@@ -187,13 +187,13 @@ public final class SettingWidget extends GuiWidget {
          String var9 = TextDrawing.HAsString(this.t.getDisplayName(), Math.max(1, var2 - var8 - 4));
          TextDrawing.UAsVoid(var1, var9, var3, var4, var5);
          int var10 = var3 + TextDrawing.UAsInt(var9) + 4;
-         GuiDrawing.CAsVoid(var1, var10, var4 - 2, var8, 13, 3, bg.XAsInt(var5, 0.08));
+         GuiDrawing.CAsVoid(var1, var10, var4 - 2, var8, 13, 3, ColorUtil.XAsInt(var5, 0.08));
          TextDrawing.NAsVoid(
             var1,
             TextDrawing.zAsString(var7, var8 - 8, TextDrawing.Type_s.HELP),
             var10 + 4,
             var4,
-            this.P ? var6 : bg.XAsInt(var5, 0.7),
+            this.P ? var6 : ColorUtil.XAsInt(var5, 0.7),
             TextDrawing.Type_s.HELP
          );
       }
@@ -329,27 +329,27 @@ public final class SettingWidget extends GuiWidget {
       if (this.Y) {
          boolean var4 = this.contains((double)var2, (double)var3);
          double var5 = this.d.bAsDouble(!var4 && !this.y ? 0.0 : 1.0, 150);
-         int var7 = mi.readableAccent(bd.tAsInt(this.k), bd.m);
+         int var7 = MouseInput.readableAccent(UiStyle.tAsInt(this.k), UiStyle.m);
          if (this.O && this.t instanceof BooleanSetting var19) {
             double var21 = this.N.bAsDouble(var19.getValue() ? 1.0 : 0.0, 150);
-            int var25 = mi.readableAccent(bd.tAsInt(this.k), bd.M | 0xFF000000);
-            int var27 = bg.xAsInt(bd._Z | 0xFF000000, bd.h | 0xFF000000, var5);
-            int var28 = bg.xAsInt(var27, var25, var21);
-            int var31 = bd.hAsBoolean() ? this.F / 2 : 7;
+            int var25 = MouseInput.readableAccent(UiStyle.tAsInt(this.k), UiStyle.M | 0xFF000000);
+            int var27 = ColorUtil.xAsInt(UiStyle._Z | 0xFF000000, UiStyle.h | 0xFF000000, var5);
+            int var28 = ColorUtil.xAsInt(var27, var25, var21);
+            int var31 = UiStyle.hAsBoolean() ? this.F / 2 : 7;
             if (var21 > 0.01) {
-               GuiDrawing.HAsVoid(var1, (float)this.k, (float)this.x, (float)this.V, (float)this.F, (float)var31, 5.0F, bg.XAsInt(var25, 0.22 * var21));
+               GuiDrawing.HAsVoid(var1, (float)this.k, (float)this.x, (float)this.V, (float)this.F, (float)var31, 5.0F, ColorUtil.XAsInt(var25, 0.22 * var21));
             }
 
             GuiDrawing.CAsVoid(var1, this.k, this.x, this.V, this.F, var31, var28);
-            GuiDrawing.wAsVoid(var1, this.k, this.x, this.V, this.F, var31, bg.xAsInt(bd.A, var25, var21));
+            GuiDrawing.wAsVoid(var1, this.k, this.x, this.V, this.F, var31, ColorUtil.xAsInt(UiStyle.A, var25, var21));
             if (this.y && this.Q) {
                GuiDrawing.dAsVoid(var1, this.k, this.x, this.V, this.F, var31);
             }
 
-            this.ZAsVoid(var1, this.V - 16, this.k + 8, this.x + (this.F - 9) / 2, mi.controlInk(var28), var7);
+            this.ZAsVoid(var1, this.V - 16, this.k + 8, this.x + (this.F - 9) / 2, MouseInput.controlInk(var28), var7);
          } else {
-            if (var5 > 0.001 && bd.hAsBoolean()) {
-               GuiDrawing.CAsVoid(var1, this.k, this.x, this.V, this.F, bd.T + 1, bg.XAsInt(bd.u, 0.028 * var5));
+            if (var5 > 0.001 && UiStyle.hAsBoolean()) {
+               GuiDrawing.CAsVoid(var1, this.k, this.x, this.V, this.F, UiStyle.T + 1, ColorUtil.XAsInt(UiStyle.u, 0.028 * var5));
             }
 
             this.ZAsVoid(
@@ -357,7 +357,7 @@ public final class SettingWidget extends GuiWidget {
                this.t instanceof BooleanSetting ? this.V - 42 : (this.eAsBoolean() ? this.V - this.TAsInt() - 16 : this.V / 2 - 12),
                this.k + 4,
                this.x + 7,
-               bd.u,
+               UiStyle.u,
                var7
             );
             int var8 = this.y && this.Q ? 1 : 0;
@@ -371,7 +371,7 @@ public final class SettingWidget extends GuiWidget {
                GuiDrawing.TAsVoid(var1, this.wAsInt(), this.x + 3, this.TAsInt(), 20, !this.E && var8 == 0 ? var5 * 0.3 : 1.0);
                String var23 = TextDrawing.HAsString(this.E ? this.s + "_" : this.MAsString(), this.TAsInt() - 10);
                TextDrawing.UAsVoid(
-                  var1, var23, this.wAsInt() + this.TAsInt() - 6 - TextDrawing.UAsInt(var23), this.x + 7, this.E ? bd.u : bg.xAsInt(bd.e, bd.u, var5)
+                  var1, var23, this.wAsInt() + this.TAsInt() - 6 - TextDrawing.UAsInt(var23), this.x + 7, this.E ? UiStyle.u : ColorUtil.xAsInt(UiStyle.e, UiStyle.u, var5)
                );
                if (this.p) {
                   this.b.aAsVoid(var10.getNormalizedValue());
@@ -379,7 +379,7 @@ public final class SettingWidget extends GuiWidget {
 
                double var12 = this.b.bAsDouble(var10.getNormalizedValue(), 160);
                NumberSetting var14 = this.qAsNumberSetting();
-               if (bd.hAsBoolean()) {
+               if (UiStyle.hAsBoolean()) {
                   double var32 = -1.0;
                   if (var14 != null) {
                      if (this.p) {
@@ -393,7 +393,7 @@ public final class SettingWidget extends GuiWidget {
                   return;
                }
 
-               GuiDrawing.CAsVoid(var1, this.zAsInt(), this.JAsInt() + 1, this.QAsInt(), 2, 1, bd.A);
+               GuiDrawing.CAsVoid(var1, this.zAsInt(), this.JAsInt() + 1, this.QAsInt(), 2, 1, UiStyle.A);
                if (var14 == null) {
                   GuiDrawing.CAsVoid(var1, this.zAsInt(), this.JAsInt() + 1, (int)((double)this.QAsInt() * var12), 2, 1, var7);
                   bAsVoid(var1, this.zAsInt() + (int)((double)this.QAsInt() * var12), this.JAsInt() + 2, var5);
@@ -422,10 +422,10 @@ public final class SettingWidget extends GuiWidget {
 
                   this.g.render(var1, var2, var3);
                } else if (this.t instanceof ColorSetting var13) {
-                  TextDrawing.UAsVoid(var1, TextDrawing.HAsString(String.format("#%08X", var13.getValue()), var26 - 28), var24 + 6, this.x + 6, bd.e);
+                  TextDrawing.UAsVoid(var1, TextDrawing.HAsString(String.format("#%08X", var13.getValue()), var26 - 28), var24 + 6, this.x + 6, UiStyle.e);
                   GuiDrawing.CAsVoid(var1, this.k + this.V - 23, this.x + 6, 14, 12, 3, var13.getValue());
                   RoundedShapePipeline.SAsVoid(
-                     var1, (float)(this.k + this.V - 23), (float)(this.x + 6), 14.0F, 12.0F, 3.0F, bg.pAsInt(bd.I, 2.0), bg.pAsInt(bd.a, 2.5)
+                     var1, (float)(this.k + this.V - 23), (float)(this.x + 6), 14.0F, 12.0F, 3.0F, ColorUtil.pAsInt(UiStyle.I, 2.0), ColorUtil.pAsInt(UiStyle.a, 2.5)
                   );
                } else {
                   int var30;
@@ -446,10 +446,10 @@ public final class SettingWidget extends GuiWidget {
                      TextDrawing.HAsString(this.w ? "Press key…" : this.MAsString(), var26 - 22 - var30),
                      var24 + 6 + var30,
                      this.x + 6,
-                     this.w ? var7 : (var34 != 0 ? bd.e : bd.u)
+                     this.w ? var7 : (var34 != 0 ? UiStyle.e : UiStyle.u)
                   );
                   if (this.t instanceof ModeSetting) {
-                     GuiIcons.aAsVoid(var1, this.z ? GuiIcons.S : GuiIcons.C, this.k + this.V - 20, this.x + 5, 14, bd.e);
+                     GuiIcons.aAsVoid(var1, this.z ? GuiIcons.S : GuiIcons.C, this.k + this.V - 20, this.x + 5, 14, UiStyle.e);
                   }
                }
             }
@@ -458,11 +458,11 @@ public final class SettingWidget extends GuiWidget {
    }
 
    private void NAsVoid(DrawContext var1, double var2, double var4, double var6, int var8) {
-      String var9 = bd.yAsBd_Type_p().slider();
+      String var9 = UiStyle.yAsBd_Type_p().slider();
       switch (var9) {
          case "Minimal":
          case "Classic":
-            this.KAsVoid(var1, var2, var4, var6, var8, bd.yAsBd_Type_p().slider().equals("Classic"));
+            this.KAsVoid(var1, var2, var4, var6, var8, UiStyle.yAsBd_Type_p().slider().equals("Classic"));
             return;
          default:
             float var23 = (float)(this.JAsInt() + 2);
@@ -472,16 +472,16 @@ public final class SettingWidget extends GuiWidget {
             float var13 = var12 / 2.0F;
             float var14 = var23 - var13;
             int var15 = var4 >= 0.0 ? 1 : 0;
-            RoundedShapePipeline.nAsVoid(var1, var11, var14, var24, var12, var13, bg.XAsInt(bd.u, 0.1));
-            RoundedShapePipeline.SAsVoid(var1, var11, var14, var24, var12, var13, bg.XAsInt(bd.A, 0.5), bg.XAsInt(bd.A, 0.5));
+            RoundedShapePipeline.nAsVoid(var1, var11, var14, var24, var12, var13, ColorUtil.XAsInt(UiStyle.u, 0.1));
+            RoundedShapePipeline.SAsVoid(var1, var11, var14, var24, var12, var13, ColorUtil.XAsInt(UiStyle.A, 0.5), ColorUtil.XAsInt(UiStyle.A, 0.5));
             float var16 = var15 != 0 ? (float)((double)var24 * Math.min(var2, var4)) : 0.0F;
             float var17 = (float)((double)var24 * (var15 != 0 ? Math.max(var2, var4) : var2));
             float var18 = var11 + Math.max(0.0F, Math.min(var16 - var13, var24 - var12));
             float var19 = var11 + Math.min(var24, Math.max(var17 + var13, var16 + var12));
             float var20 = Math.max(var12, var19 - var18);
-            int var21 = bg.xAsInt(var8, bd.Q | 0xFF000000, 0.6);
+            int var21 = ColorUtil.xAsInt(var8, UiStyle.Q | 0xFF000000, 0.6);
             if (var6 > 0.01) {
-               GuiDrawing.HAsVoid(var1, var18, var14, var20, var12, var13, 5.0F, bg.XAsInt(var8, 0.35 * var6));
+               GuiDrawing.HAsVoid(var1, var18, var14, var20, var12, var13, 5.0F, ColorUtil.XAsInt(var8, 0.35 * var6));
             }
 
             RoundedShapePipeline.gAsVoid(var1, var18, var14, var20, var12, var13, var21, var8);
@@ -503,16 +503,16 @@ public final class SettingWidget extends GuiWidget {
       float var13 = var9 ? 4.0F : 2.5F + (float)var6;
       float var14 = var10 - var13 / 2.0F;
       int var15 = var4 >= 0.0 ? 1 : 0;
-      RoundedShapePipeline.nAsVoid(var1, var12, var14, var11, var13, var13 / 2.0F, bg.XAsInt(bd.u, var9 ? 0.14 : 0.16));
+      RoundedShapePipeline.nAsVoid(var1, var12, var14, var11, var13, var13 / 2.0F, ColorUtil.XAsInt(UiStyle.u, var9 ? 0.14 : 0.16));
       float var16 = var15 != 0 ? (float)((double)var11 * Math.min(var2, var4)) : 0.0F;
       float var17 = (float)((double)var11 * (var15 != 0 ? Math.max(var2, var4) : var2));
       float var18 = Math.max(var13, var17 - var16);
       if (var9) {
          if (var6 > 0.01) {
-            GuiDrawing.HAsVoid(var1, var12 + var16, var14, var18, var13, var13 / 2.0F, 5.0F, bg.XAsInt(var8, 0.4 * var6));
+            GuiDrawing.HAsVoid(var1, var12 + var16, var14, var18, var13, var13 / 2.0F, 5.0F, ColorUtil.XAsInt(var8, 0.4 * var6));
          }
 
-         RoundedShapePipeline.gAsVoid(var1, var12 + var16, var14, var18, var13, var13 / 2.0F, bg.xAsInt(var8, bd.Q | 0xFF000000, 0.6), var8);
+         RoundedShapePipeline.gAsVoid(var1, var12 + var16, var14, var18, var13, var13 / 2.0F, ColorUtil.xAsInt(var8, UiStyle.Q | 0xFF000000, 0.6), var8);
       } else {
          RoundedShapePipeline.nAsVoid(var1, var12 + var16, var14, var18, var13, var13 / 2.0F, var8);
       }
@@ -529,7 +529,7 @@ public final class SettingWidget extends GuiWidget {
       float var6 = var1 - var3 / 2.0F;
       float var7 = var2 - var3 / 2.0F;
       RoundedShapePipeline.CAsVoid(var0, var6, var7, var3, var3, var3 / 2.0F, 1.5F, 1073741824, 1342177280);
-      RoundedShapePipeline.nAsVoid(var0, var6, var7, var3, var3, var3 / 2.0F, var5 ? -1 : bd.m | 0xFF000000);
+      RoundedShapePipeline.nAsVoid(var0, var6, var7, var3, var3, var3 / 2.0F, var5 ? -1 : UiStyle.m | 0xFF000000);
       RoundedShapePipeline.cAsVoid(var0, var6, var7, var3, var3, var3 / 2.0F, var4);
    }
 
@@ -538,7 +538,7 @@ public final class SettingWidget extends GuiWidget {
       float var8 = var2 - var3 / 2.0F;
       RoundedShapePipeline.CAsVoid(var0, var7, var8, var3, var3, var3 / 2.0F, 1.5F, 1174405120, 1375731712);
       if (var4 > 0.01) {
-         GuiDrawing.HAsVoid(var0, var7, var8, var3, var3, var3 / 2.0F, 5.0F, bg.XAsInt(var6, 0.45 * var4));
+         GuiDrawing.HAsVoid(var0, var7, var8, var3, var3, var3 / 2.0F, 5.0F, ColorUtil.XAsInt(var6, 0.45 * var4));
       }
 
       RoundedShapePipeline.nAsVoid(var0, var7, var8, var3, var3, var3 / 2.0F, -1);
@@ -554,13 +554,13 @@ public final class SettingWidget extends GuiWidget {
 
    public void oAsVoid(DrawContext var1, int var2, int var3) {
       if (this.yAsBoolean()) {
-         try (qg var4 = qg.nAsQg(this.A.bAsDouble(1.0, 160))) {
-            boolean var5 = bd.hAsBoolean();
+         try (QueueGroup var4 = QueueGroup.nAsQg(this.A.bAsDouble(1.0, 160))) {
+            boolean var5 = UiStyle.hAsBoolean();
             if (var5) {
-               GuiDrawing.PAsVoid(var1, this.M, this.C, this.L, this.o, bd.p, bd.V, 1.0);
+               GuiDrawing.PAsVoid(var1, this.M, this.C, this.L, this.o, UiStyle.p, UiStyle.V, 1.0);
             } else {
                GuiDrawing.bAsVoid(var1, this.M, this.C, this.L, this.o);
-               GuiDrawing.OAsVoid(var1, this.M, this.C, this.L, this.o, bd.T, bd.V, 1.0);
+               GuiDrawing.OAsVoid(var1, this.M, this.C, this.L, this.o, UiStyle.T, UiStyle.V, 1.0);
             }
 
             var1.enableScissor(this.M, this.C, this.M + this.L, this.C + this.o);
@@ -574,7 +574,7 @@ public final class SettingWidget extends GuiWidget {
                   int var26 = this.C + this.SAsInt();
                   int var27 = Math.min(this.Z.size() - this.n, this.KAsInt());
                   if (this.Z.isEmpty() && this.KAsInt() > 0) {
-                     TextDrawing.UAsVoid(var1, "No matching blocks", this.M + 8, var26 + 6, bd.e);
+                     TextDrawing.UAsVoid(var1, "No matching blocks", this.M + 8, var26 + 6, UiStyle.e);
                   }
 
                   for (int var28 = 0; var28 < var27; var28++) {
@@ -584,9 +584,9 @@ public final class SettingWidget extends GuiWidget {
                      boolean var33 = var6.pAsBoolean(var29);
                      int var34 = var32 || this.l != null && this.G == var28 + this.n ? 1 : 0;
                      if (var5 && var33) {
-                        GuiDrawing.CAsVoid(var1, this.M + 2, var30 + 1, this.L - 4, 18, bd.T, bd.RAsInt(this.M, var34 != 0 ? 1.3 : 1.0));
+                        GuiDrawing.CAsVoid(var1, this.M + 2, var30 + 1, this.L - 4, 18, UiStyle.T, UiStyle.RAsInt(this.M, var34 != 0 ? 1.3 : 1.0));
                      } else if (var34 != 0 || var33) {
-                        GuiDrawing.CAsVoid(var1, this.M + 2, var30 + 1, this.L - 4, 18, bd.T, var5 ? bg.XAsInt(bd.u, 0.08) : bd.h);
+                        GuiDrawing.CAsVoid(var1, this.M + 2, var30 + 1, this.L - 4, 18, UiStyle.T, var5 ? ColorUtil.XAsInt(UiStyle.u, 0.08) : UiStyle.h);
                      }
 
                      int var16 = VAsInt(var1, var6, var29, this.M + 8, var30 + 2);
@@ -595,7 +595,7 @@ public final class SettingWidget extends GuiWidget {
                         TextDrawing.HAsString(var6.getModeLabel(var29), this.L - 16 - var16),
                         this.M + 8 + var16,
                         var30 + 6,
-                        !var33 && !var32 ? bg.xAsInt(bd.e, bd.u, 0.5) : bd.u
+                        !var33 && !var32 ? ColorUtil.xAsInt(UiStyle.e, UiStyle.u, 0.5) : UiStyle.u
                      );
                   }
 
@@ -607,22 +607,22 @@ public final class SettingWidget extends GuiWidget {
 
                   for (int var11 = 0; var11 < 4; var11++) {
                      int var12 = this.C + 6 + var11 * 18;
-                     TextDrawing.UAsVoid(var1, var9[var11], this.M + 5, var12, bd.e);
+                     TextDrawing.UAsVoid(var1, var9[var11], this.M + 5, var12, UiStyle.e);
 
                      for (int var13 = 0; var13 < var10; var13 += 3) {
                         float var14 = (float)var13 / (float)var10;
 
                         int var15 = switch (var11) {
-                           case 0 -> bg.HSBtoRGB(var14, 1.0F, 1.0F);
-                           case 1 -> bg.HSBtoRGB(var25[0], var14, var25[2]);
-                           case 2 -> bg.HSBtoRGB(var25[0], var25[1], var14);
-                           default -> bg.xAsInt(bd.d, var7.getValue() | 0xFF000000, (double)var14);
+                           case 0 -> ColorUtil.HSBtoRGB(var14, 1.0F, 1.0F);
+                           case 1 -> ColorUtil.HSBtoRGB(var25[0], var14, var25[2]);
+                           case 2 -> ColorUtil.HSBtoRGB(var25[0], var25[1], var14);
+                           default -> ColorUtil.xAsInt(UiStyle.d, var7.getValue() | 0xFF000000, (double)var14);
                         };
                         GuiTextureDrawing.CAsVoid(var1, this.M + 20 + var13, var12, Math.min(3, var10 - var13), 10, var15);
                      }
 
                      float var31 = var11 < 3 ? var25[var11] : (float)(var7.getValue() >>> 24) / 255.0F;
-                     GuiTextureDrawing.pAsVoid(var1, this.M + 19 + (int)(var31 * (float)var10), var12 - 1, 3, 12, bd.u);
+                     GuiTextureDrawing.pAsVoid(var1, this.M + 19 + (int)(var31 * (float)var10), var12 - 1, 3, 12, UiStyle.u);
                   }
                }
             } finally {
@@ -631,7 +631,7 @@ public final class SettingWidget extends GuiWidget {
 
             if (!var5) {
                RoundedShapePipeline.SAsVoid(
-                  var1, (float)this.M, (float)this.C, (float)this.L, (float)this.o, (float)bd.T, bg.pAsInt(bd.I, 1.5), bg.pAsInt(bd.a, 1.5)
+                  var1, (float)this.M, (float)this.C, (float)this.L, (float)this.o, (float)UiStyle.T, ColorUtil.pAsInt(UiStyle.I, 1.5), ColorUtil.pAsInt(UiStyle.a, 1.5)
                );
             }
          }
@@ -828,7 +828,7 @@ public final class SettingWidget extends GuiWidget {
             }
 
             int var10 = this.X == 3 ? (int)(var14 * 255.0) : var8 >>> 24;
-            var11.setValue(Integer.valueOf(bg.HSBtoRGB(var9[0], var9[1], var9[2]) & 16777215 | var10 << 24));
+            var11.setValue(Integer.valueOf(ColorUtil.HSBtoRGB(var9[0], var9[1], var9[2]) & 16777215 | var10 << 24));
             if (var8 != var11.getValue()) {
                GuiSounds.rAsVoid(GuiSounds.Type_o.SLIDER);
             }

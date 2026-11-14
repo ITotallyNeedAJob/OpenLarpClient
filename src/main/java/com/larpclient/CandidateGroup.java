@@ -19,7 +19,7 @@ public final class CandidateGroup {
    private final Map<Long, CandidateGroup.Type_n[]> z = new LinkedHashMap<>();
    private final Set<Long> P = new HashSet<>();
    private final Set<Long> I = new HashSet<>();
-   private final Set<Long> PetEffectRenderer = new HashSet<>();
+   private final Set<Long> a = new HashSet<>();
    private int x;
    private int S;
 

@@ -52,8 +52,8 @@ public final class SelfVisuals extends Module {
    public final NumberSetting glowIntensity = this.addSetting(new NumberSetting("Glow Intensity", "Halo and trail brightness", 1.0, 0.2, 2.0, 0.05));
    public final BooleanSetting cometBloom = this.addSetting(new BooleanSetting("Comet Bloom", "Submit comets to the shared bloom pass", true));
    public final BooleanSetting themeColors = this.addSetting(new BooleanSetting("Theme Colors", "Use current theme accents for comets", true));
-   public final ColorSetting cometColor = this.addSetting(new ColorSetting("Comet Color", "Core and trail head", bd.w));
-   public final ColorSetting tailColor = this.addSetting(new ColorSetting("Tail Color", "Faded trail end", bd.Q));
+   public final ColorSetting cometColor = this.addSetting(new ColorSetting("Comet Color", "Core and trail head", UiStyle.w));
+   public final ColorSetting tailColor = this.addSetting(new ColorSetting("Tail Color", "Faded trail end", UiStyle.Q));
    public final NumberSetting glassOpacity = this.addSetting(new NumberSetting("Glass Opacity", "Liquid surface opacity", 0.62, 0.1, 1.0, 0.02));
    public final NumberSetting refractionStrength = this.addSetting(
       new NumberSetting("Refraction Strength", "Screen displacement in pixels", 3.5, 0.0, 12.0, 0.25)
@@ -94,11 +94,11 @@ public final class SelfVisuals extends Module {
    }
 
    public int pAsInt() {
-      return this.themePalette.getValue() ? bd.w : this.primaryColor.getValue();
+      return this.themePalette.getValue() ? UiStyle.w : this.primaryColor.getValue();
    }
 
    public int gAsInt() {
-      return this.themePalette.getValue() ? bd.Q : this.secondaryColor.getValue();
+      return this.themePalette.getValue() ? UiStyle.Q : this.secondaryColor.getValue();
    }
 
    public CosmeticSubmissionHandler.Type_n rAsO0_Type_n() {
@@ -184,7 +184,7 @@ public final class SelfVisuals extends Module {
       this.cometColor.visibleWhen(() -> this.style.pAsBoolean("Comets") && !this.themeColors.getValue());
       this.tailColor.visibleWhen(() -> this.style.pAsBoolean("Comets") && !this.themeColors.getValue());
       this.style.onChanged(var0 -> {
-         ai.uAsVoid();
+         CometRenderer.uAsVoid();
          ClientLog.GAsVoid("SelfVisuals", "Style: {}", var0);
       });
    }
@@ -267,7 +267,7 @@ public final class SelfVisuals extends Module {
 
    @Override
    public void onEnable() {
-      ai.uAsVoid();
+      CometRenderer.uAsVoid();
       ClientLog.GAsVoid(
          "SelfVisuals",
          "Style: {}; third-person: {}; first-person arms: {}",
@@ -279,7 +279,7 @@ public final class SelfVisuals extends Module {
 
    @Override
    public void onDisable() {
-      ai.uAsVoid();
+      CometRenderer.uAsVoid();
       CosmeticSubmissionHandler.XAsVoid();
       EntityHaloEffect.aAsVoid();
    }

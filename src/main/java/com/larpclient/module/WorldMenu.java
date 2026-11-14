@@ -55,7 +55,7 @@ public final class WorldMenu extends Module {
    private static final int e = 9;
    private static final int R = 16;
    private static final int D = 22;
-   private ov.Type_v f;
+   private OverlayVideo.Type_v f;
    private Object N;
    private ClickGuiScreen X;
    private ClickGuiScreen p;
@@ -69,8 +69,8 @@ public final class WorldMenu extends Module {
    private long j;
    private int Y = -1;
    private WorldMenu.Type_d I;
-   private final w2 t = new w2(0.0);
-   private final w2 s = new w2(0.0);
+   private final WeatherRenderer t = new WeatherRenderer(0.0);
+   private final WeatherRenderer s = new WeatherRenderer(0.0);
    private double K = 1.0;
    private long o;
 
@@ -103,10 +103,10 @@ public final class WorldMenu extends Module {
       return this.panelSize.getValue() / Math.max(1.0, var2[3] - var2[1]);
    }
 
-   private xt.Type_f xAsXt_Type_f(ClickGuiScreen var1, ov.Type_v var2) {
+   private XTexture.Type_f xAsXt_Type_f(ClickGuiScreen var1, OverlayVideo.Type_v var2) {
       Camera var3 = getMc().gameRenderer.getCamera();
       Vec3d var4 = var3.getCameraPos();
-      return ov.AAsXt_Type_f(
+      return OverlayVideo.AAsXt_Type_f(
          var2,
          this.oAsDouble(var1),
          (double)var1.width / 2.0,
@@ -114,19 +114,19 @@ public final class WorldMenu extends Module {
          var4.x,
          var4.y,
          var4.z,
-         w3.pAsMatrix4f(new Matrix4f()),
+         WebRenderer.pAsMatrix4f(new Matrix4f()),
          (double)var1.width,
          (double)var1.height
       );
    }
 
-   private static double CAsDouble(ClickGuiScreen var0, xt.Type_f var1) {
+   private static double CAsDouble(ClickGuiScreen var0, XTexture.Type_f var1) {
       double[] var2 = var0.TAsDoubleArray2();
       double[] var3 = var1.bounds(var2[0], var2[1], var2[2], var2[3]);
       if (var3[0] == -10000.0) {
          return 0.0;
       } else {
-         double var4 = (double)w3.pAsFloat();
+         double var4 = (double)WebRenderer.pAsFloat();
          double var6 = (double)((Integer)getMc().options.getFov().getValue()).intValue();
          double var8 = var4 > 1.0 && var4 < 179.0 && var6 > 1.0 && var6 < 179.0
             ? Math.tan(Math.toRadians(var4) / 2.0) / Math.tan(Math.toRadians(var6) / 2.0)
@@ -173,10 +173,10 @@ public final class WorldMenu extends Module {
    private void mAsVoid(ClickGuiScreen var1) {
       Camera var2 = getMc().gameRenderer.getCamera();
       Vec3d var3 = var2.getCameraPos();
-      ov.Type_v var4 = ov.LAsOv_Type_v(var3.x, var3.y, var3.z, (double)var2.getYaw(), (double)var2.getPitch(), 1.0);
+      OverlayVideo.Type_v var4 = OverlayVideo.LAsOv_Type_v(var3.x, var3.y, var3.z, (double)var2.getYaw(), (double)var2.getPitch(), 1.0);
       double var5 = CAsDouble(var1, this.xAsXt_Type_f(var1, var4));
       double var7 = var5 > 0.0 ? Math.clamp(var5 / (this.menuHeight.getValue() / 100.0), 0.5, 16.0) : 2.0;
-      this.f = ov.LAsOv_Type_v(var3.x, var3.y, var3.z, (double)var2.getYaw(), (double)var2.getPitch(), var7);
+      this.f = OverlayVideo.LAsOv_Type_v(var3.x, var3.y, var3.z, (double)var2.getYaw(), (double)var2.getPitch(), var7);
       this.N = getMc().world;
       this.F = var3;
       this.t.aAsVoid(1.0);
@@ -329,7 +329,7 @@ public final class WorldMenu extends Module {
             if (!var4.options.hudHidden && !(var4.currentScreen instanceof HudEditorScreen)) {
                Vec3d var5 = var4.gameRenderer.getCamera().getCameraPos();
                if (this.placement.pAsBoolean("Follow") && this.F != null && this.I == null) {
-                  this.f = new ov.Type_v(
+                  this.f = new OverlayVideo.Type_v(
                      this.f.x() + var5.x - this.F.x, this.f.y() + var5.y - this.F.y, this.f.z() + var5.z - this.F.z, this.f.yaw(), this.f.pitch()
                   );
                }
@@ -342,7 +342,7 @@ public final class WorldMenu extends Module {
                if (!this.f.faces(var5.x, var5.y, var5.z)) {
                   this.t.aAsVoid(0.0);
                } else {
-                  xt.Type_f var6 = this.xAsXt_Type_f(var3, this.f);
+                  XTexture.Type_f var6 = this.xAsXt_Type_f(var3, this.f);
                   double[] var7 = var3.TAsDoubleArray2();
                   double[] var8 = var6.bounds(0.0, 0.0, (double)var3.width, Math.max((double)var3.height, var7[3] + 24.0));
                   if (!(var8[2] < 0.0) && !(var8[3] < 0.0) && !(var8[0] > (double)var3.width) && !(var8[1] > (double)var3.height)) {
@@ -373,10 +373,10 @@ public final class WorldMenu extends Module {
                         int var16 = var18 != 0 ? (int)Math.floor(var13[0]) : -10000;
                         int var17 = var18 != 0 ? (int)Math.floor(var13[1]) : -10000;
                         var1.createNewRootLayer();
-                        xt.oAsVoid(var1, var6, false, () -> {
+                        XTexture.oAsVoid(var1, var6, false, () -> {
                            var1.createNewRootLayer();
 
-                           try (qg var7x = qg.nAsQg(var11)) {
+                           try (QueueGroup var7x = QueueGroup.nAsQg(var11)) {
                               var3.render(var1, var16, var17, var2);
                            }
                         });
@@ -404,12 +404,12 @@ public final class WorldMenu extends Module {
 
    private void gAsVoid(ClickGuiScreen var1) {
       Camera var2 = getMc().gameRenderer.getCamera();
-      double[] var3 = ov.rAsDoubleArray2(
-         w3.pAsMatrix4f(new Matrix4f()), (double)var1.width / 2.0, (double)var1.height / 2.0, (double)var1.width, (double)var1.height
+      double[] var3 = OverlayVideo.rAsDoubleArray2(
+         WebRenderer.pAsMatrix4f(new Matrix4f()), (double)var1.width / 2.0, (double)var1.height / 2.0, (double)var1.width, (double)var1.height
       );
       if (var3 != null) {
          Vec3d var4 = var2.getCameraPos();
-         this.f = ov.UAsOv_Type_v(var4.x, var4.y, var4.z, var3, this.I.distance(), this.I.right(), this.I.up());
+         this.f = OverlayVideo.UAsOv_Type_v(var4.x, var4.y, var4.z, var3, this.I.distance(), this.I.right(), this.I.up());
       }
    }
 
@@ -578,11 +578,11 @@ public final class WorldMenu extends Module {
       }
    }
 
-   private static int[] lAsIntArray(xm var0) {
+   private static int[] lAsIntArray(XModel var0) {
       return new int[]{var0.left() + (var0.width() - 76) / 2, var0.top() + var0.height() + 9, 76, 6};
    }
 
-   private static boolean TAsBoolean(xm var0, double var1, double var3) {
+   private static boolean TAsBoolean(XModel var0, double var1, double var3) {
       int[] var5 = lAsIntArray(var0);
       return var1 >= (double)(var5[0] - 16)
          && var1 < (double)(var5[0] + var5[2] + 16)
@@ -590,21 +590,21 @@ public final class WorldMenu extends Module {
          && var3 < (double)(var5[1] + var5[3] + 9);
    }
 
-   private static int[] dAsIntArray(xm var0) {
+   private static int[] dAsIntArray(XModel var0) {
       int[] var1 = lAsIntArray(var0);
       return new int[]{var1[0] + var1[2] + 22, var1[1] + var1[3] / 2 - 8, 16, 16};
    }
 
-   private static boolean jAsBoolean(xm var0, double var1, double var3) {
+   private static boolean jAsBoolean(XModel var0, double var1, double var3) {
       int[] var5 = dAsIntArray(var0);
       return var1 >= (double)(var5[0] - 4) && var1 < (double)(var5[0] + var5[2] + 4) && var3 >= (double)(var5[1] - 4) && var3 < (double)(var5[1] + var5[3] + 4);
    }
 
-   public static boolean IAsBoolean(xm var0, double var1, double var3) {
+   public static boolean IAsBoolean(XModel var0, double var1, double var3) {
       return TAsBoolean(var0, var1, var3) || jAsBoolean(var0, var1, var3);
    }
 
-   public static void eAsVoid(DrawContext var0, ClickGuiScreen var1, xm var2, int var3, int var4) {
+   public static void eAsVoid(DrawContext var0, ClickGuiScreen var1, XModel var2, int var3, int var4) {
       if (n != null && n.isEnabled()) {
          WorldMenu var5 = n;
          if (var5 != null && IAsBoolean(var1)) {
@@ -613,7 +613,7 @@ public final class WorldMenu extends Module {
       }
    }
 
-   private void nAsVoid(DrawContext var1, ClickGuiScreen var2, xm var3, int var4, int var5) {
+   private void nAsVoid(DrawContext var1, ClickGuiScreen var2, XModel var3, int var4, int var5) {
       int var6 = var2 == this.X ? 1 : 0;
       int var7 = var6 != 0 && this.I != null ? 1 : 0;
       int var8 = var7 != 0 || var6 != 0 && TAsBoolean(var3, (double)var4, (double)var5) ? 1 : 0;
@@ -621,17 +621,17 @@ public final class WorldMenu extends Module {
       int[] var11 = lAsIntArray(var3);
       int var12 = var11[2] + (int)Math.round(18.0 * var9);
       int var13 = var11[0] - (var12 - var11[2]) / 2;
-      int var14 = var7 != 0 ? bd.WAsInt(var13, bd.m) : bg.XAsInt(bd.u, 0.34 + 0.42 * var9);
+      int var14 = var7 != 0 ? UiStyle.WAsInt(var13, UiStyle.m) : ColorUtil.XAsInt(UiStyle.u, 0.34 + 0.42 * var9);
       GuiTextureDrawing.AAsVoid(var1, (float)var13, (float)var11[1], (float)var12, (float)var11[3], (float)(var11[3] / 2), var14);
       int[] var15 = dAsIntArray(var3);
       int var16 = var6 != 0 && this.I == null && jAsBoolean(var3, (double)var4, (double)var5) ? 1 : 0;
       GuiTextureDrawing.AAsVoid(
-         var1, (float)var15[0], (float)var15[1], (float)var15[2], (float)var15[3], (float)(var15[2] / 2), var16 != 0 ? -1750963 : bg.XAsInt(bd.u, 0.16)
+         var1, (float)var15[0], (float)var15[1], (float)var15[2], (float)var15[3], (float)(var15[2] / 2), var16 != 0 ? -1750963 : ColorUtil.XAsInt(UiStyle.u, 0.16)
       );
-      GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier("x"), var15[0] + 3, var15[1] + 3, var15[2] - 6, var16 != 0 ? -1 : bg.XAsInt(bd.u, 0.8));
+      GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier("x"), var15[0] + 3, var15[1] + 3, var15[2] - 6, var16 != 0 ? -1 : ColorUtil.XAsInt(UiStyle.u, 0.8));
    }
 
-   public static boolean jAsBoolean(ClickGuiScreen var0, double var1, double var3, int var5, xm var6) {
+   public static boolean jAsBoolean(ClickGuiScreen var0, double var1, double var3, int var5, XModel var6) {
       if (n != null && n.isEnabled()) {
          WorldMenu var7 = n;
          return var7 != null && var7.ZAsBoolean(var0, var1, var3, var5, var6);
@@ -640,7 +640,7 @@ public final class WorldMenu extends Module {
       }
    }
 
-   private boolean ZAsBoolean(ClickGuiScreen var1, double var2, double var4, int var6, xm var7) {
+   private boolean ZAsBoolean(ClickGuiScreen var1, double var2, double var4, int var6, XModel var7) {
       if (var6 != 0 || var1 != this.X || !this.rAsBoolean()) {
          return false;
       } else if (jAsBoolean(var7, var2, var4)) {

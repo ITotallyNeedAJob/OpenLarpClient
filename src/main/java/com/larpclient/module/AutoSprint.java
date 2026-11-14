@@ -29,7 +29,7 @@ public final class AutoSprint extends Module {
          AutoSprint var2 = Y;
          if (var2 != null && var2.isRuntimeActive() && var0 != null) {
             try {
-               if (var0 != getMc().player || !r6.VAsBoolean()) {
+               if (var0 != getMc().player || !ModuleKeybindChecker.VAsBoolean()) {
                   var2.s = "Movement unavailable";
                   return var1;
                } else if (AutoTunnel.SAsVec2f() != null) {

@@ -11,10 +11,10 @@ public final class MediaSession {
    }
 
    public static void qAsVoid(float var0) {
-      PetEffectRenderer = Math.clamp(var0, 0.0F, 1.0F);
+      a = Math.clamp(var0, 0.0F, 1.0F);
       double var1 = (double)((float)F + a) * 0.05;
       Y = Math.clamp(var1 - u, 0.0, 0.1);
-      CropHelper = var1;
+      u = var1;
    }
 
    public static double RAsDouble() {

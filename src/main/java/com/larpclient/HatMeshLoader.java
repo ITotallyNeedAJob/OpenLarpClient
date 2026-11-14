@@ -11,22 +11,22 @@ import java.util.Locale;
 import org.joml.Matrix4f;
 
 public final class HatMeshLoader {
-   public static final double HexEdgeloop = 0.995;
+   public static final double p = 0.995;
    public static final float F = 0.13F;
    public static final float B = 0.21666665F;
-   private static final int[] ChatPayParser = new int[]{0, 1, 3, 2, 0, 1, 3, 2};
+   private static final int[] g = new int[]{0, 1, 3, 2, 0, 1, 3, 2};
    private static final List<HatMeshLoader.Type_a> E = BAsList(0.37F, 0.072F);
-   static final int AuctionNotifier = 827149390;
-   static final int PriceDetector = 8192;
+   static final int o = 827149390;
+   static final int m = 8192;
    static final float r = 0.065F;
-   static final float CropHelper = 4.0F;
+   static final float u = 4.0F;
    private static final EnumMap<HatMeshLoader.Type_l, HatMeshLoader.Type_y> A = new EnumMap<>(HatMeshLoader.Type_l.class);
-   private static final EnumMap<HatMeshLoader.Type_l, Boolean> GroundSample = new EnumMap<>(HatMeshLoader.Type_l.class);
+   private static final EnumMap<HatMeshLoader.Type_l, Boolean> k = new EnumMap<>(HatMeshLoader.Type_l.class);
 
    private static List<HatMeshLoader.Type_a> BAsList(float var0, float var1) {
       ArrayList var2 = new ArrayList();
 
-      for (int var3 = 0; var3 < ChatPayParser.length; var3++) {
+      for (int var3 = 0; var3 < g.length; var3++) {
          float var4 = (float)Math.toRadians(22.5 + (double)(45 * var3));
          var2.add(new HatMeshLoader.Type_a(g[var3], var0 * (float)Math.sin((double)var4), var1, -var0 * (float)Math.cos((double)var4), var4));
       }
@@ -52,7 +52,7 @@ public final class HatMeshLoader {
 
    public static HatMeshLoader.Type_y tAsNu_Type_y(HatMeshLoader.Type_l var0) {
       HatMeshLoader.Type_y var1 = A.get(var0);
-      if (var1 == null && !GroundSample.containsKey(var0)) {
+      if (var1 == null && !k.containsKey(var0)) {
          try (InputStream var2 = HatMeshLoader.class.getResourceAsStream("/assets/larp-client/models/hats/" + var0.v + ".bin")) {
             if (var2 == null) {
                throw new IOException("missing resource");
@@ -64,7 +64,7 @@ public final class HatMeshLoader {
                "ChinaHat", "{} mesh loaded; {} triangles, {} blocks tall", var0.m, var1.triangles(), String.format(Locale.ROOT, "%.3f", var1.rise())
             );
          } catch (RuntimeException | IOException var71) {
-            GroundSample.put(var0, true);
+            k.put(var0, true);
             ClientLog.lAsVoid("ChinaHat", var0.m + " mesh unavailable; accessory hidden until restart", var71);
          }
 
@@ -138,7 +138,7 @@ public final class HatMeshLoader {
                float var15 = var1.getFloat();
                int var16 = var1.getInt() & 16777215;
                var5[var7] = var1.getInt() != 0;
-               var4[var7] = var5[var7] ? var16 : mo.wAsInt(0xFF000000 | var16, kAsDouble(var13, var14, var15)) & 16777215;
+               var4[var7] = var5[var7] ? var16 : ModuleOption.wAsInt(0xFF000000 | var16, kAsDouble(var13, var14, var15)) & 16777215;
             }
 
             return new HatMeshLoader.Type_y(var3, var4, var5, var6);
@@ -167,13 +167,13 @@ public final class HatMeshLoader {
       return var3 == null ? 0.0 : (double)var3.rise() * var1;
    }
 
-   public static void gAsVoid(o_ var0, Matrix4f var1, HatMeshLoader.Type_l var2, double var3, double var5, boolean var7) {
+   public static void gAsVoid(RenderPipeline var0, Matrix4f var1, HatMeshLoader.Type_l var2, double var3, double var5, boolean var7) {
       HatMeshLoader.Type_y var8 = tAsNu_Type_y(var2);
       if (var8 != null) {
          float var9 = (float)var3;
          int var10 = (int)(Math.clamp(var5, 0.0, 1.0) * 255.0) << 24;
          float[] var11 = var8.points;
-         var0.blend(x4.Type_g.ALPHA);
+         var0.blend(EffectRenderParams.Type_g.ALPHA);
          var0.solid(var5 >= 0.995);
 
          try {

@@ -116,7 +116,7 @@ public class Freelook extends Module {
    @Override
    public void onDisable() {
       this.W = false;
-      p5.GAsVoid(p5.Type_u.FREELOOK);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.FREELOOK);
    }
 
    @Override
@@ -128,21 +128,21 @@ public class Freelook extends Module {
    }
 
    private void OAsVoid() {
-      if (!r6.NAsBoolean("Freecam")) {
-         p5.jAsVoid(p5.Type_u.FREELOOK);
+      if (!ModuleKeybindChecker.NAsBoolean("Freecam")) {
+         ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.FREELOOK);
       }
    }
 
    public static boolean HAsBoolean() {
-      return k != null && k.isEnabled() ? p5.NAsP5_Type_u() == p5.Type_u.FREELOOK : false;
+      return k != null && k.isEnabled() ? ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.FREELOOK : false;
    }
 
    public static float DAsFloat() {
-      return p5.JAsFloat();
+      return ParticleEmitter.JAsFloat();
    }
 
    public static float LAsFloat() {
-      return p5.mAsFloat();
+      return ParticleEmitter.mAsFloat();
    }
 
    public static float iAsFloat() {

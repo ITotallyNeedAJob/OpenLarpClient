@@ -138,7 +138,7 @@ public final class TargetStrafe extends Module {
    }
 
    private LivingEntity ZAsLivingEntity() {
-      if (this.isInGame() && r6.VAsBoolean() && mc.isWindowFocused() && mc.currentScreen == null && !mc.isPaused()) {
+      if (this.isInGame() && ModuleKeybindChecker.VAsBoolean() && mc.isWindowFocused() && mc.currentScreen == null && !mc.isPaused()) {
          ClientPlayerEntity var1 = mc.player;
          Fly var2 = Fly.bAsFly();
          AirStuck var3 = AirStuck.zAsAirStuck();
@@ -147,9 +147,9 @@ public final class TargetStrafe extends Module {
             && (var3 == null || !var3.wAsBoolean())
             && (var4 == null || !var4.ZAsBoolean())
             && AutoTunnel.SAsVec2f() == null
-            && p5.NAsP5_Type_u() != p5.Type_u.AUTOTRAP
-            && p5.NAsP5_Type_u() != p5.Type_u.AUTOWEB
-            && p5.NAsP5_Type_u() != p5.Type_u.AUTOANCHOR) {
+            && ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.AUTOTRAP
+            && ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.AUTOWEB
+            && ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.AUTOANCHOR) {
             if (var1.hasVehicle()
                || var1.isSpectator()
                || var1.getAbilities().flying

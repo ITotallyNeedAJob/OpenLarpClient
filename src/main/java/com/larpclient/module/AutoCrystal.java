@@ -134,9 +134,9 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
    private LivingEntity s;
    private long O;
    private long X;
-   private final com.larpclient.t A = new com.larpclient.t();
+   private final com.larpclient.SmoothInput A = new com.larpclient.SmoothInput();
    private static AutoCrystal Kn;
-   private final dl t = new dl();
+   private final CooldownTracker t = new CooldownTracker();
    private String b = "Waiting for a target";
 
    @Override
@@ -267,7 +267,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
    private boolean wAsBoolean() {
       return this.isRuntimeActive()
          && this.isInGame()
-         && b_.jAsBoolean()
+         && ModuleImportBroker.jAsBoolean()
          && mc.isWindowFocused()
          && this.yAsBoolean()
          && (!this.f.getValue() || !mc.player.isUsingItem())
@@ -275,13 +275,13 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
    }
 
    private boolean yAsBoolean() {
-      p5.Type_u var1 = p5.NAsP5_Type_u();
-      return this.rotation.pAsBoolean("Visible") ? p5.fAsBoolean(p5.Type_u.AUTOCRYSTAL) : var1 == p5.Type_u.NONE;
+      ParticleEmitter.Type_u var1 = ParticleEmitter.NAsP5_Type_u();
+      return this.rotation.pAsBoolean("Visible") ? ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.AUTOCRYSTAL) : var1 == ParticleEmitter.Type_u.NONE;
    }
 
    private void tAsVoid() {
       this.P = this.v = null;
-      p5.GAsVoid(p5.Type_u.AUTOCRYSTAL);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AUTOCRYSTAL);
    }
 
    public boolean zAsBoolean() {
@@ -303,7 +303,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
 
    public float DAsFloat(float var1) {
       if (this.isEnabled()) {
-         if (this.isRuntimeActive() && p5.NAsP5_Type_u() == p5.Type_u.AUTOCRYSTAL) {
+         if (this.isRuntimeActive() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.AUTOCRYSTAL) {
             mc.player.setHeadYaw(mc.player.getYaw());
             return mc.player.getYaw();
          } else {
@@ -382,8 +382,8 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
    }
 
    private AutoCrystal.Type_b qAsAutoCrystal_Type_b(Vec3d var1, List<LivingEntity> var2, AutoCrystal.Type_h var3, BlockPos var4, boolean var5, boolean var6) {
-      double var7 = (double)nf.aAsFloat(mc.player, var1, var4);
-      if (this.N.getValue() && !nf.uAsBoolean(var7, this.x.getValue(), (double)(mc.player.getHealth() + mc.player.getAbsorptionAmount()))) {
+      double var7 = (double)NebulaSky.aAsFloat(mc.player, var1, var4);
+      if (this.N.getValue() && !NebulaSky.uAsBoolean(var7, this.x.getValue(), (double)(mc.player.getHealth() + mc.player.getAbsorptionAmount()))) {
          if (var3 != null) {
             var3.E++;
             var3.Y = Math.min(var3.Y, var7);
@@ -395,7 +395,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
 
          for (LivingEntity var11 : var2) {
             if (this.UAsBoolean(var11)) {
-               double var12 = (double)nf.DAsFloat(var11, var1, var4, var5 ? this.BAsVec3d(var11) : Vec3d.ZERO);
+               double var12 = (double)NebulaSky.DAsFloat(var11, var1, var4, var5 ? this.BAsVec3d(var11) : Vec3d.ZERO);
                if (!(var12 <= 0.0) && !(var12 < this.GAsDouble(var11))) {
                   if (!var6 || !(var12 < aAsDouble(var11))) {
                      AutoCrystal.Type_b var14 = new AutoCrystal.Type_b(var11, var12, var7, var12 >= aAsDouble(var11));
@@ -417,7 +417,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
    }
 
    private Optional<Vec3d> PAsOptional(EndCrystalEntity var1, Vec3d var2) {
-      return b_.nAsOptional(var1, this.ZAsDouble(), var2 == null ? var1.getBoundingBox().getCenter() : var2, var2);
+      return ModuleImportBroker.nAsOptional(var1, this.ZAsDouble(), var2 == null ? var1.getBoundingBox().getCenter() : var2, var2);
    }
 
    public static Box ZAsBox(BlockPos var0) {
@@ -535,7 +535,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
                      for (Entity var8 : mc.world.getEntities()) {
                         if (var8 instanceof EndCrystalEntity) {
                            EndCrystalEntity var9 = (EndCrystalEntity)var8;
-                           if (this.t.cAsBoolean(var1, var8.getId()) && !(b_.HAsDouble(var8) > this.ZAsDouble())) {
+                           if (this.t.cAsBoolean(var1, var8.getId()) && !(ModuleImportBroker.HAsDouble(var8) > this.ZAsDouble())) {
                               AutoCrystal.Type_b var10 = this.NAsAutoCrystal_Type_b(var8.getEntityPos(), var3);
                               if (var10 != null && (var16 == null || !(var10.value() <= var16.value()))) {
                                  Optional var11 = this.PAsOptional(var9, null);
@@ -641,7 +641,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
                      var24 = Math.max(var24, Math.min(aAsDouble(var21), var7 + this.G.getValue()));
                   }
 
-                  if ((double)nf.vAsFloat(var22, 1.0) * 1.5 >= var24) {
+                  if ((double)NebulaSky.vAsFloat(var22, 1.0) * 1.5 >= var24) {
                      var18 = Math.min(var18, var22);
                   }
                }
@@ -695,7 +695,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
       if (!(var2.squaredDistanceTo(Vec3d.ofCenter(var1)) > (var3 + 1.0) * (var3 + 1.0))
          && BlockPlacementController.jAsBoolean(var1)
          && mc.world.isAir(var1.up())) {
-         if (this.KE.getValue() && o5.lAsDouble(var2, ZAsBox(var1)) > this.ZAsDouble()) {
+         if (this.KE.getValue() && OptifineBridge.lAsDouble(var2, ZAsBox(var1)) > this.ZAsDouble()) {
             return false;
          } else {
             for (Direction var8 : Direction.values()) {
@@ -782,7 +782,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
       this.j = null;
       this.s = null;
       this.A.VAsVoid();
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
    }
 
    private double JAsDouble() {
@@ -838,27 +838,27 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
       if (var1.support() != null) {
          return this.JAsBlockHitResult(var1.support(), var1.base(), mc.player.getRotationVector()) != null;
       } else {
-         return var1.crystal() != null ? b_.nAsBoolean(var1.crystal(), this.ZAsDouble()) : b_.TAsBlockHitResult(var1.base(), this.JAsDouble()) != null;
+         return var1.crystal() != null ? ModuleImportBroker.nAsBoolean(var1.crystal(), this.ZAsDouble()) : ModuleImportBroker.TAsBlockHitResult(var1.base(), this.JAsDouble()) != null;
       }
    }
 
    public void LAsVoid() {
       if (this.isEnabled() && this.isRuntimeActive() && this.isInGame() && this.KD != null && this.O == mc.world.getTime()) {
-         if (b_.nAsBoolean(this) && this.aAsBoolean(this.KD)) {
+         if (ModuleImportBroker.nAsBoolean(this) && this.aAsBoolean(this.KD)) {
             if (this.rotation.pAsBoolean("Visible")) {
-               if (!p5.fAsBoolean(p5.Type_u.AUTOCRYSTAL)) {
+               if (!ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.AUTOCRYSTAL)) {
                   this.A.VAsVoid();
                   return;
                }
 
-               p5.jAsVoid(p5.Type_u.AUTOCRYSTAL);
+               ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.AUTOCRYSTAL);
                this.P = mc.player;
                this.v = mc.world;
                this.KY = mc.player.age;
-               float[] var1 = dq.QAsFloatArray(mc.player.getEyePos(), this.KD.aim());
-               float[] var2 = com.larpclient.t.JAsFloatArray(mc.player.getYaw(), mc.player.getPitch(), var1[0], var1[1], this.T.getValue());
-               dq.yAsVoid(dq.Type_s.AUTOCRYSTAL, var2[0], var2[1], 1.0);
-               dq.aAsVoid();
+               float[] var1 = ModuleDetector.QAsFloatArray(mc.player.getEyePos(), this.KD.aim());
+               float[] var2 = com.larpclient.SmoothInput.JAsFloatArray(mc.player.getYaw(), mc.player.getPitch(), var1[0], var1[1], this.T.getValue());
+               ModuleDetector.yAsVoid(ModuleDetector.Type_s.AUTOCRYSTAL, var2[0], var2[1], 1.0);
+               ModuleDetector.aAsVoid();
             }
 
             this.A.hAsVoid((long)mc.player.age, this.UAsBoolean(this.KD));
@@ -897,7 +897,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
       this.j = var5;
       this.s = var1.victim();
       if (var1.crystal() != null) {
-         b_.tAsVoid(this, var1.crystal(), this.ZAsDouble(), false, () -> this.qAsBoolean(var1), 1, () -> {
+         ModuleImportBroker.tAsVoid(this, var1.crystal(), this.ZAsDouble(), false, () -> this.qAsBoolean(var1), 1, () -> {
             this.t.gAsVoid(mc.world.getTime(), var1.crystal().getId(), this.y.getValue().intValue(), this.Kw.getValue().intValue());
             this.KO = var4;
             this.b = "Waiting for crystal removal";
@@ -908,9 +908,9 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
             }
          });
       } else if (var1.support() != null) {
-         b_.UAsVoid(this, () -> this.tAsVoid(var1), () -> this.qAsBoolean(var1));
+         ModuleImportBroker.UAsVoid(this, () -> this.tAsVoid(var1), () -> this.qAsBoolean(var1));
       } else {
-         b_.UAsVoid(this, () -> this.XAsVoid(var1.base()), () -> this.qAsBoolean(var1));
+         ModuleImportBroker.UAsVoid(this, () -> this.XAsVoid(var1.base()), () -> this.qAsBoolean(var1));
       }
    }
 
@@ -986,18 +986,18 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
             double var5 = this.JAsDouble();
             if (var4.squaredDistanceTo(Vec3d.ofCenter(var1)) > (var5 + 1.0) * (var5 + 1.0)) {
                return null;
-            } else if (this.KE.getValue() && o5.lAsDouble(var4, ZAsBox(var1)) > this.ZAsDouble()) {
+            } else if (this.KE.getValue() && OptifineBridge.lAsDouble(var4, ZAsBox(var1)) > this.ZAsDouble()) {
                return null;
             } else {
                if (var2 != null) {
-                  BlockHitResult var7 = b_.eAsBlockHitResult(var1, var5, var2.subtract(var4));
+                  BlockHitResult var7 = ModuleImportBroker.eAsBlockHitResult(var1, var5, var2.subtract(var4));
                   if (var7 != null) {
                      return var7;
                   }
                }
 
                for (Vec3d var8 : HAsList(var1, var4)) {
-                  BlockHitResult var9 = b_.eAsBlockHitResult(var1, var5, var8.subtract(var4));
+                  BlockHitResult var9 = ModuleImportBroker.eAsBlockHitResult(var1, var5, var8.subtract(var4));
                   if (var9 != null) {
                      return var9;
                   }
@@ -1014,7 +1014,7 @@ public final class AutoCrystal extends Module implements PlacementPreview.Type_e
    }
 
    private void XAsVoid(BlockPos var1) {
-      BlockHitResult var2 = b_.TAsBlockHitResult(var1, this.JAsDouble());
+      BlockHitResult var2 = ModuleImportBroker.TAsBlockHitResult(var1, this.JAsDouble());
       int var3 = this.jAsInt();
       if (var2 != null && var3 != -1 && this.gAsBlockHitResult(var1, var2.getPos()) != null) {
          int var4 = mc.player.getInventory().getSelectedSlot();

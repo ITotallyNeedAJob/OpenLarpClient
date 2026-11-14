@@ -13,7 +13,7 @@ import com.larpclient.SahurPoseUtils;
 import com.larpclient.WalkPose;
 import com.larpclient.MovementInput;
 import com.larpclient.UiStyle;
-import com.larpclient.d;
+import com.larpclient.SahurDanceEngine;
 import com.larpclient.DiscordRPC;
 import com.larpclient.LandQuery;
 import com.larpclient.MediaSession;
@@ -69,8 +69,8 @@ public final class KillFX extends Module {
    private final BooleanSetting sound = this.addSetting(new BooleanSetting("Sound", "Local windup and finishing cues", true));
    private final NumberSetting volume = this.addSetting(new NumberSetting("Volume", "Local sound volume", 0.55, 0.0, 1.0, 0.05));
    private final NumberSetting renderDistance = this.addSetting(new NumberSetting("Render Distance", "Maximum distance in blocks", 48.0, 8.0, 64.0, 4.0));
-   private final wm B = new wm();
-   private final r0 z = new r0();
+   private final WidgetManager B = new WidgetManager();
+   private final AccountWalkAnim z = new AccountWalkAnim();
    private final ArrayList<KillFX.Type_g> L = new ArrayList<>();
    private List<KillFX.Type_e> g = List.of();
    private Object t;
@@ -174,7 +174,7 @@ public final class KillFX extends Module {
          MinecraftClient var2 = getMc();
          Entity var3 = var2.world.getEntityById(var1.entityId());
          if (var3 instanceof PlayerEntity && var3 != var2.player) {
-            this.B.SAsVoid(var3, var1.sourceCauseId() == var2.player.getId(), mb.dAsDouble());
+            this.B.SAsVoid(var3, var1.sourceCauseId() == var2.player.getId(), MediaSession.dAsDouble());
          }
       }
    }
@@ -188,17 +188,17 @@ public final class KillFX extends Module {
                this.L.removeIf(var1x -> var1x.E == var4);
                this.g = this.g.stream().filter(var1x -> var1x.owner.E != var4).toList();
             } else if (var1.getStatus() == 3
-               && this.B.VAsBoolean(var4, mb.dAsDouble())
+               && this.B.VAsBoolean(var4, MediaSession.dAsDouble())
                && !(var4.getEntityPos().squaredDistanceTo(var2.player.getEntityPos()) > this.renderDistance.getValue() * this.renderDistance.getValue())) {
-               az.Type_f var5 = Halloween.RAsBoolean() ? az.Type_f.SOUL_PYRE : this.QAsAz_Type_f();
-               int var6 = var5 == az.Type_f.SOUL_PYRE ? -19633 : (var5 == az.Type_f.SINGULARITY ? -5144321 : -10101505);
-               int var7 = var5 == az.Type_f.SOUL_PYRE ? -8915729 : (var5 == az.Type_f.SINGULARITY ? -8328705 : -32547);
-               if (var5 == az.Type_f.STAR_OF_DAVID) {
+               WalkPose.Type_f var5 = Halloween.RAsBoolean() ? WalkPose.Type_f.SOUL_PYRE : this.QAsAz_Type_f();
+               int var6 = var5 == WalkPose.Type_f.SOUL_PYRE ? -19633 : (var5 == WalkPose.Type_f.SINGULARITY ? -5144321 : -10101505);
+               int var7 = var5 == WalkPose.Type_f.SOUL_PYRE ? -8915729 : (var5 == WalkPose.Type_f.SINGULARITY ? -8328705 : -32547);
+               if (var5 == WalkPose.Type_f.STAR_OF_DAVID) {
                   var6 = -8474625;
                   var7 = -1444097;
                }
 
-               if (var5 == az.Type_f.TUNG_TUNG || var5 == az.Type_f.TUNG_TUNG_FLOSS) {
+               if (var5 == WalkPose.Type_f.TUNG_TUNG || var5 == WalkPose.Type_f.TUNG_TUNG_FLOSS) {
                   var6 = -18594;
                   var7 = -5188;
                }
@@ -207,15 +207,15 @@ public final class KillFX extends Module {
                   var6 = this.primaryColor.getValue();
                   var7 = this.secondaryColor.getValue();
                } else if (this.colors.pAsBoolean("Theme")) {
-                  var6 = bd.w;
-                  var7 = bd.Q;
+                  var6 = UiStyle.w;
+                  var7 = UiStyle.Q;
                }
 
                long var8 = var4.getUuid().getMostSignificantBits() ^ var4.getUuid().getLeastSignificantBits() ^ ++this.N;
                double var10 = Halloween.RAsBoolean()
                   ? Math.atan2(var2.player.getX() - var4.getX(), var2.player.getZ() - var4.getZ())
                   : Math.toRadians((double)var4.bodyYaw);
-               az var12 = new az(var5, var4.getEntityPos(), var10, mb.dAsDouble(), var8, var4.getSkin().model() == PlayerSkinType.SLIM);
+               WalkPose var12 = new WalkPose(var5, var4.getEntityPos(), var10, MediaSession.dAsDouble(), var8, var4.getSkin().model() == PlayerSkinType.SLIM);
                if (this.L.size() >= 4) {
                   this.L.removeFirst();
                }
@@ -226,12 +226,12 @@ public final class KillFX extends Module {
                if (!var13.o) {
                   this.EAsVoid(
                      var13,
-                     var5 == az.Type_f.SOUL_PYRE
+                     var5 == WalkPose.Type_f.SOUL_PYRE
                         ? SoundEvents.ITEM_FIRECHARGE_USE
                         : (
-                           var5 == az.Type_f.TUNG_TUNG_FLOSS
+                           var5 == WalkPose.Type_f.TUNG_TUNG_FLOSS
                               ? SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP
-                              : (var5 == az.Type_f.TUNG_TUNG ? SoundEvents.ENTITY_IRON_GOLEM_ATTACK : SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE)
+                              : (var5 == WalkPose.Type_f.TUNG_TUNG ? SoundEvents.ENTITY_IRON_GOLEM_ATTACK : SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE)
                         ),
                      0.8F
                   );
@@ -245,34 +245,34 @@ public final class KillFX extends Module {
       }
    }
 
-   private az.Type_f QAsAz_Type_f() {
+   private WalkPose.Type_f QAsAz_Type_f() {
       if (!this.style.pAsBoolean("Random")) {
          String var3 = this.style.getValue();
 
          return switch (var3) {
-            case "Execution" -> az.Type_f.EXECUTION;
-            case "Singularity" -> az.Type_f.SINGULARITY;
-            case "Star of David" -> az.Type_f.STAR_OF_DAVID;
-            case "Tung Tung" -> az.Type_f.TUNG_TUNG;
-            case "Tung Tung Floss" -> az.Type_f.TUNG_TUNG_FLOSS;
-            default -> az.Type_f.SOUL_PYRE;
+            case "Execution" -> WalkPose.Type_f.EXECUTION;
+            case "Singularity" -> WalkPose.Type_f.SINGULARITY;
+            case "Star of David" -> WalkPose.Type_f.STAR_OF_DAVID;
+            case "Tung Tung" -> WalkPose.Type_f.TUNG_TUNG;
+            case "Tung Tung Floss" -> WalkPose.Type_f.TUNG_TUNG_FLOSS;
+            default -> WalkPose.Type_f.SOUL_PYRE;
          };
       } else {
-         int var1 = az.Type_f.values().length;
-         int var2 = Math.floorMod(this.N * 31L + Double.doubleToLongBits(mb.dAsDouble()), var1);
+         int var1 = WalkPose.Type_f.values().length;
+         int var2 = Math.floorMod(this.N * 31L + Double.doubleToLongBits(MediaSession.dAsDouble()), var1);
          if (var2 == this.J) {
             var2 = (var2 + 1) % var1;
          }
 
          this.J = var2;
-         return az.Type_f.values()[var2];
+         return WalkPose.Type_f.values()[var2];
       }
    }
 
    public void kAsVoid() {
       if (this.isEnabled() && this.XAsBoolean()) {
          MinecraftClient var1 = getMc();
-         double var2 = mb.dAsDouble();
+         double var2 = MediaSession.dAsDouble();
          this.B.JAsVoid(var2, var1xx -> {
             if (var1xx instanceof Entity var2x && !var2x.isRemoved() && var2x.getEntityWorld() == var1.world) {
                return true;
@@ -296,35 +296,35 @@ public final class KillFX extends Module {
                   ClientLog.XAsVoid("Halloween", "Pumpkin smash impact: victim={}, age={}s", var5.E.getId(), var2 - var5.a.U);
                }
             } else {
-               var5.a.bAsVoid(var2, (var1xx, var2x) -> lq.AAsLq_Type_l(var1.world, var1xx, var2x));
-               double var6 = var5.a.C == az.Type_f.EXECUTION
+               var5.a.bAsVoid(var2, (var1xx, var2x) -> LandQuery.AAsLq_Type_l(var1.world, var1xx, var2x));
+               double var6 = var5.a.C == WalkPose.Type_f.EXECUTION
                   ? 0.85
                   : (
-                     var5.a.C == az.Type_f.SINGULARITY
+                     var5.a.C == WalkPose.Type_f.SINGULARITY
                         ? 1.9
                         : (
-                           var5.a.C == az.Type_f.TUNG_TUNG_FLOSS
+                           var5.a.C == WalkPose.Type_f.TUNG_TUNG_FLOSS
                               ? 1.62
-                              : (var5.a.C == az.Type_f.TUNG_TUNG ? 1.56 : (var5.a.C == az.Type_f.STAR_OF_DAVID ? 1.85 : 1.25))
+                              : (var5.a.C == WalkPose.Type_f.TUNG_TUNG ? 1.56 : (var5.a.C == WalkPose.Type_f.STAR_OF_DAVID ? 1.85 : 1.25))
                         )
                   );
                if (!var5.Z && var2 - var5.a.U >= var6) {
                   var5.Z = true;
                   this.EAsVoid(
                      var5,
-                     var5.a.C == az.Type_f.EXECUTION
+                     var5.a.C == WalkPose.Type_f.EXECUTION
                         ? (SoundEvent)SoundEvents.ITEM_TRIDENT_THUNDER.value()
                         : (
-                           var5.a.C == az.Type_f.SINGULARITY
+                           var5.a.C == WalkPose.Type_f.SINGULARITY
                               ? (SoundEvent)SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE.value()
                               : (
-                                 var5.a.C == az.Type_f.TUNG_TUNG_FLOSS
+                                 var5.a.C == WalkPose.Type_f.TUNG_TUNG_FLOSS
                                     ? SoundEvents.ENTITY_PLAYER_BIG_FALL
                                     : (
-                                       var5.a.C == az.Type_f.TUNG_TUNG
+                                       var5.a.C == WalkPose.Type_f.TUNG_TUNG
                                           ? SoundEvents.BLOCK_ANVIL_LAND
                                           : (
-                                             var5.a.C == az.Type_f.STAR_OF_DAVID
+                                             var5.a.C == WalkPose.Type_f.STAR_OF_DAVID
                                                 ? SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE
                                                 : SoundEvents.BLOCK_BEACON_DEACTIVATE
                                           )
@@ -363,10 +363,10 @@ public final class KillFX extends Module {
                if (!(var9.a.X.squaredDistanceTo(var2) > this.renderDistance.getValue() * this.renderDistance.getValue())) {
                   if (var9.o) {
                      if (Halloween.RAsBoolean()) {
-                        double var17 = mb.RAsDouble() - var9.a.U;
+                        double var17 = MediaSession.RAsDouble() - var9.a.U;
                         Vec3d var18 = var9.a.X;
-                        if (w3.BAsFrustum() == null
-                           || w3.BAsFrustum().isVisible(new Box(var18.x - 3.5, var18.y, var18.z - 3.5, var18.x + 3.5, var18.y + 5.6, var18.z + 3.5))) {
+                        if (WebRenderer.BAsFrustum() == null
+                           || WebRenderer.BAsFrustum().isVisible(new Box(var18.x - 3.5, var18.y, var18.z - 3.5, var18.x + 3.5, var18.y + 5.6, var18.z + 3.5))) {
                            PumpkinRenderer.GAsVoid();
                            if (var9.T == null) {
                               if (CosmeticSubmissionHandler.oAsEntityRenderState(var9.E, 1.0F) instanceof PlayerEntityRenderState var22) {
@@ -376,7 +376,7 @@ public final class KillFX extends Module {
                               }
                            }
 
-                           az.Type_x[] var20 = var9.T == null ? null : HalloweenShockwaveGeometry.wAsAz_xArray(var9.a, var17);
+                           WalkPose.Type_x[] var20 = var9.T == null ? null : HalloweenShockwaveGeometry.wAsAz_xArray(var9.a, var17);
                            var7.add(
                               new KillFX.Type_e(
                                  var9,
@@ -403,30 +403,30 @@ public final class KillFX extends Module {
                         var9.T = var11;
                      }
 
-                     double var16 = Math.max(0.0, mb.RAsDouble() - var9.a.U);
-                     aa.Type_z var12 = var9.a.C == az.Type_f.STAR_OF_DAVID ? aa.iAsAa_Type_z(aa.IAsVec3d(var9.a, var16), var2, var5, var6) : aa.a;
-                     az.Type_x[] var13 = new az.Type_x[6];
+                     double var16 = Math.max(0.0, MediaSession.RAsDouble() - var9.a.U);
+                     SahurPoseUtils.Type_z var12 = var9.a.C == WalkPose.Type_f.STAR_OF_DAVID ? SahurPoseUtils.iAsAa_Type_z(SahurPoseUtils.IAsVec3d(var9.a, var16), var2, var5, var6) : SahurPoseUtils.a;
+                     WalkPose.Type_x[] var13 = new WalkPose.Type_x[6];
 
                      for (int var14 = 0; var14 < var13.length; var14++) {
-                        var13[var14] = var9.a.JAsAz_Type_x(var14, var16, (double)mb.LAsFloat(), var12);
+                        var13[var14] = var9.a.JAsAz_Type_x(var14, var16, (double)MediaSession.LAsFloat(), var12);
                      }
 
-                     dj.Type_z var21 = null;
-                     d.Type_g var15 = null;
-                     if (var9.a.C == az.Type_f.TUNG_TUNG) {
+                     DiscordRPC.Type_z var21 = null;
+                     SahurDanceEngine.Type_g var15 = null;
+                     if (var9.a.C == WalkPose.Type_f.TUNG_TUNG) {
                         SahurPetRenderer.OAsVoid();
                         if (var9.d == null) {
-                           var9.d = new dj(SahurPetRenderer.TAsAo_Type_u());
+                           var9.d = new DiscordRPC(SahurPetRenderer.TAsAo_Type_u());
                            ClientLog.XAsVoid("KillFX", "Tung Tung ready: shared Sahur mesh, height={} blocks, articulated bat strike at {}s", 3.6, 1.56);
                         }
 
                         var21 = var9.d.oAsDj_Type_z(var9.a, var16, var2);
                      }
 
-                     if (var9.a.C == az.Type_f.TUNG_TUNG_FLOSS) {
+                     if (var9.a.C == WalkPose.Type_f.TUNG_TUNG_FLOSS) {
                         SahurPetRenderer.OAsVoid();
                         if (var9.c == null) {
-                           var9.c = new d(SahurPetRenderer.TAsAo_Type_u());
+                           var9.c = new SahurDanceEngine(SahurPetRenderer.TAsAo_Type_u());
                            ClientLog.XAsVoid("KillFX", "Tung Tung Floss ready: articulated jump, landing at {}s, four Floss cycles, expiry={}s", 1.62, 7.5);
                         }
 
@@ -495,7 +495,7 @@ public final class KillFX extends Module {
 
    public void CAsVoid(EffectGeometryRenderer var1, MatrixStack var2, EffectDrawBuffers var3, boolean var4) {
       if (this.isEnabled() && this.TAsBoolean()) {
-         long var5 = op.RAsLong();
+         long var5 = OpenScreen.RAsLong();
 
          try {
             for (KillFX.Type_e var8 : this.g) {
@@ -517,11 +517,11 @@ public final class KillFX extends Module {
                      SahurPetRenderer.QAsVoid(var2, var3, var8.floss.transform(), var8.floss.vertices(), var8.floss.colors(), var8.floss.opacity());
                   }
 
-                  b0.yAsVoid(var1, var8.owner.a, var8.parts, var8.age, var8.owner.J, var8.owner.I, var4, var8.starPlane, var8.strike, var8.floss);
+                  MovementInput.yAsVoid(var1, var8.owner.a, var8.parts, var8.age, var8.owner.J, var8.owner.I, var4, var8.starPlane, var8.strike, var8.floss);
                }
             }
          } finally {
-            op.aAsVoid("KillFX", var5);
+            OpenScreen.aAsVoid("KillFX", var5);
          }
       }
    }
@@ -532,12 +532,12 @@ public final class KillFX extends Module {
    private static record Type_e(
       KillFX.Type_g owner,
       PlayerEntityRenderState skin,
-      az.Type_x[] parts,
+      WalkPose.Type_x[] parts,
       double age,
       Vec3d camera,
-      aa.Type_z starPlane,
-      dj.Type_z strike,
-      d.Type_g floss,
+      SahurPoseUtils.Type_z starPlane,
+      DiscordRPC.Type_z strike,
+      SahurDanceEngine.Type_g floss,
       HalloweenShockwaveGeometry.Type_k soul,
       int generation
    ) {
@@ -545,20 +545,20 @@ public final class KillFX extends Module {
 
    private static final class Type_g {
       final AbstractClientPlayerEntity E;
-      final az a;
+      final WalkPose a;
       final int J;
       final int I;
       final boolean B;
       final boolean C;
       final double u;
       PlayerEntityRenderState T;
-      dj d;
-      d c;
+      DiscordRPC d;
+      SahurDanceEngine c;
       boolean Z;
       boolean v;
       boolean o;
 
-      Type_g(AbstractClientPlayerEntity var1, az var2, int var3, int var4, boolean var5, boolean var6, double var7) {
+      Type_g(AbstractClientPlayerEntity var1, WalkPose var2, int var3, int var4, boolean var5, boolean var6, double var7) {
          this.E = var1;
          this.a = var2;
          this.J = var3;

@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 public final class FontCache {
    private final Map<FontCache.Type_c, Integer> L = lAsMap();
-   private final Map<FontCache.Type_c, String> BoxUtils = lAsMap();
+   private final Map<FontCache.Type_c, String> c = lAsMap();
    private Object O;
    private int q;
 

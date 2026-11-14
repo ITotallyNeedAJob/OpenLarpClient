@@ -15,12 +15,12 @@ public final class SkyEffectManager implements AutoCloseable {
    private static final Set<String> Q = new HashSet<>();
    private static int T = -1;
    private static boolean I;
-   private final bl F = new bl();
-   private final Map<String, ad> BloomUtility = new HashMap<>();
-   private ad k;
+   private final BloomSettings F = new BloomSettings();
+   private final Map<String, SkyEffect> b = new HashMap<>();
+   private SkyEffect k;
    private String G;
    private int M = -1;
-   private double SmoothInput = Double.NaN;
+   private double t = Double.NaN;
    private boolean d;
 
    public SkyEffectManager() {
@@ -67,7 +67,7 @@ public final class SkyEffectManager implements AutoCloseable {
    public boolean QAsBoolean(Framebuffer var1) {
       this.d = false;
       if (Halloween.OAsBoolean() && gAsBoolean("Harvest Moon")) {
-         long var2 = op.RAsLong();
+         long var2 = OpenScreen.RAsLong();
 
          try {
             if (this.M != BloomQuality.J) {
@@ -81,11 +81,11 @@ public final class SkyEffectManager implements AutoCloseable {
 
                this.G = "Harvest Moon";
                this.t = Double.NaN;
-               this.k = this.b.computeIfAbsent(this.G, var0 -> new dy());
+               this.k = this.b.computeIfAbsent(this.G, var0 -> new DynamicLoader());
                ClientLog.GAsVoid("Halloween", "Harvest Moon owns the sky; existing selections retained");
             }
 
-            double var4 = mb.RAsDouble();
+            double var4 = MediaSession.RAsDouble();
             this.F.a = Double.isNaN(this.t) ? 0.0 : Math.clamp(var4 - this.t, 0.0, 0.1);
             this.t = var4;
             this.F.L = var1;
@@ -99,7 +99,7 @@ public final class SkyEffectManager implements AutoCloseable {
             ClientLog.lAsVoid("Halloween", "Harvest Moon shader failed; existing or native sky restored until F3+T or toggle", var101);
          } finally {
             this.F.L = null;
-            op.aAsVoid("Harvest Moon CPU", var2);
+            OpenScreen.aAsVoid("Harvest Moon CPU", var2);
          }
 
          return false;
@@ -112,7 +112,7 @@ public final class SkyEffectManager implements AutoCloseable {
       if (!gAsBoolean(var2.ZAsString())) {
          return false;
       } else {
-         long var3 = op.RAsLong();
+         long var3 = OpenScreen.RAsLong();
 
          try {
             if (this.M != BloomQuality.J) {
@@ -127,16 +127,16 @@ public final class SkyEffectManager implements AutoCloseable {
                this.t = Double.NaN;
                this.G = var2.ZAsString();
                this.k = this.b.computeIfAbsent(this.G, var0 -> {
-                  return (ad)(switch (var0) {
-                     case "Ocean" -> new dw();
-                     case "Israel Flag" -> new dm();
+                  return (SkyEffect)(switch (var0) {
+                     case "Ocean" -> new WaterDistortion();
+                     case "Israel Flag" -> new IsraelFlagEffect();
                      default -> new NebulaSkyRenderer();
                   });
                });
                ClientLog.GAsVoid("Sky", "Sky mode switched: {}; resource generation={}", this.G, this.M);
             }
 
-            double var5 = mb.RAsDouble();
+            double var5 = MediaSession.RAsDouble();
             this.F.a = Double.isNaN(this.t) ? 0.0 : Math.clamp(var5 - this.t, 0.0, 0.1);
             this.t = var5;
             this.F.L = var1;
@@ -151,7 +151,7 @@ public final class SkyEffectManager implements AutoCloseable {
          } finally {
             this.F.L = null;
             this.F.U = null;
-            op.aAsVoid("Sky", var3);
+            OpenScreen.aAsVoid("Sky", var3);
          }
 
          return false;
@@ -159,7 +159,7 @@ public final class SkyEffectManager implements AutoCloseable {
    }
 
    private void GAsVoid() {
-      for (ad var2 : this.b.values()) {
+      for (SkyEffect var2 : this.b.values()) {
          var2.reload();
       }
 
@@ -172,7 +172,7 @@ public final class SkyEffectManager implements AutoCloseable {
    public void close() {
       this.d = false;
 
-      for (ad var2 : this.b.values()) {
+      for (SkyEffect var2 : this.b.values()) {
          var2.close();
       }
 

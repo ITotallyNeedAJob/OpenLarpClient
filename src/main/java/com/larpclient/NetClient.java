@@ -8,8 +8,8 @@ public final class NetClient {
    public static final double E = 1420.0;
    private static final double D = 150.0;
    private static final double Q = 610.0;
-   private static final double TextLayout = 720.0;
-   private static final double DropletTrail = 600.0;
+   private static final double j = 720.0;
+   private static final double l = 600.0;
    private static final double F = 0.28;
    public static final int C = 12;
    private static final double z = 1.4;
@@ -19,7 +19,7 @@ public final class NetClient {
    private double A;
    private double v;
    private boolean O;
-   private final Set<Integer> ChinaHatCodec = new HashSet<>();
+   private final Set<Integer> i = new HashSet<>();
 
    private NetClient(NetClient.Type_c var1, boolean var2) {
       this.c = var1;
@@ -259,7 +259,7 @@ public final class NetClient {
       public Type_c() {
       }
 
-      public nc cAsNc() {
+      public NetClient cAsNc() {
          return new NetClient(this, !this.Z);
       }
    }

@@ -47,7 +47,7 @@ import net.minecraft.world.RaycastContext.FluidHandling;
 import net.minecraft.world.RaycastContext.ShapeType;
 
 public final class BlockPlacementController {
-   private static final Map<Module, BlockPlacementController.Type_e> BloomUtility = new LinkedHashMap<>();
+   private static final Map<Module, BlockPlacementController.Type_e> b = new LinkedHashMap<>();
    private static final Map<Module, String> O = new HashMap<>();
    private static final Map<Module, Long> T = new HashMap<>();
    private static final Direction[] R = new Direction[]{Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST, Direction.DOWN};
@@ -76,18 +76,18 @@ public final class BlockPlacementController {
    }
 
    public static void WAsVoid(Module var0) {
-      BloomUtility.remove(var0);
-      b_.KAsVoid(var0);
+      b.remove(var0);
+      ModuleImportBroker.KAsVoid(var0);
    }
 
    public static void dAsVoid() {
-      BloomUtility.clear();
+      b.clear();
       O.clear();
       T.clear();
    }
 
    public static boolean tAsBoolean(Module var0) {
-      BlockPlacementController.Type_e var1 = BloomUtility.get(var0);
+      BlockPlacementController.Type_e var1 = b.get(var0);
       MinecraftClient var2 = MinecraftClient.getInstance();
       return var1 != null && var2.player != null && rAsBoolean(var1.world, var2.world, var1.player, var2.player, var1.tick, var2.player.age);
    }
@@ -130,7 +130,7 @@ public final class BlockPlacementController {
    }
 
    private static BlockHitResult hAsBlockHitResult(BlockPos var0, Vec3d var1, double var2, boolean var4) {
-      if (!b_.jAsBoolean()) {
+      if (!ModuleImportBroker.jAsBoolean()) {
          return null;
       } else {
          MinecraftClient var5 = MinecraftClient.getInstance();
@@ -147,7 +147,7 @@ public final class BlockPlacementController {
                      && !var12.isSpectator()
                      && !AntiTrap.TAsBoolean(var12)
                      && !IgnoreEntity.yAsBoolean(var12)
-                     && o5.EAsBoolean(var6, var10.getPos(), var12.getBoundingBox())) {
+                     && OptifineBridge.EAsBoolean(var6, var10.getPos(), var12.getBoundingBox())) {
                      return null;
                   }
                }
@@ -223,7 +223,7 @@ public final class BlockPlacementController {
    }
 
    public static BlockHitResult HAsBlockHitResult(BlockPos var0, Item var1, double var2, boolean var4, boolean var5) {
-      if (var1 instanceof BlockItem && b_.jAsBoolean()) {
+      if (var1 instanceof BlockItem && ModuleImportBroker.jAsBoolean()) {
          MinecraftClient var6 = MinecraftClient.getInstance();
          return MAsBlockHitResult(
             var0,
@@ -321,7 +321,7 @@ public final class BlockPlacementController {
    public static boolean xAsBoolean(
       Module var0, BlockPos var1, Item var2, double var3, boolean var5, boolean var6, BooleanSupplier var7, Consumer<Boolean> var8
    ) {
-      if (b_.jAsBoolean() && qAsInt(var2, var6) != -1) {
+      if (ModuleImportBroker.jAsBoolean() && qAsInt(var2, var6) != -1) {
          MinecraftClient var9 = MinecraftClient.getInstance();
          Vec3d var10 = var5 ? Vec3d.ofCenter(var1).subtract(var9.player.getEyePos()) : var9.player.getRotationVector();
          BlockHitResult var11 = hAsBlockHitResult(var1, var10, var3, false);
@@ -370,8 +370,8 @@ public final class BlockPlacementController {
       BlockPlacementController.Type_e var13 = new BlockPlacementController.Type_e(
          var0, var1.toImmutable(), var2, var3, var4, var6, var7, var9, var10, var11, var12.world, var12.player, var12.player.age
       );
-      BloomUtility.put(var0, var13);
-      b_.UAsVoid(
+      b.put(var0, var13);
+      ModuleImportBroker.UAsVoid(
          var0,
          () -> tAsVoid(var13, var8),
          () -> JAsBoolean(var13) && var13.actionReady.getAsBoolean() && qAsInt(var3, var8) != -1 && CAsBlockHitResult(var13, var8) != null
@@ -381,10 +381,10 @@ public final class BlockPlacementController {
 
    private static boolean JAsBoolean(BlockPlacementController.Type_e var0) {
       MinecraftClient var1 = MinecraftClient.getInstance();
-      return BloomUtility.get(var0.source) == var0
+      return b.get(var0.source) == var0
          && rAsBoolean(var0.world, var1.world, var0.player, var1.player, var0.tick, var1.player == null ? 0 : var1.player.age)
          && var0.source.isRuntimeActive()
-         && b_.jAsBoolean()
+         && ModuleImportBroker.jAsBoolean()
          && var1.isWindowFocused()
          && var0.valid.getAsBoolean();
    }
@@ -417,7 +417,7 @@ public final class BlockPlacementController {
    }
 
    public static void wAsVoid() {
-      BloomUtility.values().removeIf(var0x -> {
+      b.values().removeIf(var0x -> {
          if (JAsBoolean(var0x)) {
             return false;
          } else {
@@ -425,37 +425,37 @@ public final class BlockPlacementController {
             return true;
          }
       });
-      Optional var0 = BloomUtility.values()
+      Optional var0 = b.values()
          .stream()
-         .filter(var0x -> var0x.visible && JAsBoolean(var0x) && b_.nAsBoolean(var0x.source))
-         .max(Comparator.comparingInt(var0x -> b_.bAsInt(var0x.source.getName())));
+         .filter(var0x -> var0x.visible && JAsBoolean(var0x) && ModuleImportBroker.nAsBoolean(var0x.source))
+         .max(Comparator.comparingInt(var0x -> ModuleImportBroker.bAsInt(var0x.source.getName())));
       if (var0.isEmpty() || !(((BlockPlacementController.Type_e)var0.get()).source instanceof AutoTrap)) {
-         p5.GAsVoid(p5.Type_u.AUTOTRAP);
+         ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AUTOTRAP);
       }
 
       if (var0.isEmpty() || !(((BlockPlacementController.Type_e)var0.get()).source instanceof AutoWeb)) {
-         p5.GAsVoid(p5.Type_u.AUTOWEB);
+         ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AUTOWEB);
       }
 
       if (var0.isEmpty() || !(((BlockPlacementController.Type_e)var0.get()).source instanceof AutoAnchor)) {
-         p5.GAsVoid(p5.Type_u.AUTOANCHOR);
+         ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AUTOANCHOR);
       }
 
       if (var0.isPresent() && !(((BlockPlacementController.Type_e)var0.get()).source instanceof Scaffold)) {
-         p5.GAsVoid(p5.Type_u.SCAFFOLD);
+         ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.SCAFFOLD);
       }
 
       if (!var0.isEmpty()) {
          BlockPlacementController.Type_e var1 = (BlockPlacementController.Type_e)var0.get();
          MinecraftClient var2 = MinecraftClient.getInstance();
-         float[] var3 = dq.QAsFloatArray(var2.player.getEyePos(), var1.hit.getPos());
+         float[] var3 = ModuleDetector.QAsFloatArray(var2.player.getEyePos(), var1.hit.getPos());
          if (var1.source instanceof BlockPlacementController.Type_n var4) {
             var4.aimPlacement(var3[0], var3[1]);
          } else {
-            dq.yAsVoid(dq.Type_s.PLACEMENT, var3[0], var3[1], 1.0);
+            ModuleDetector.yAsVoid(ModuleDetector.Type_s.PLACEMENT, var3[0], var3[1], 1.0);
          }
 
-         dq.aAsVoid();
+         ModuleDetector.aAsVoid();
       }
    }
 
@@ -481,7 +481,7 @@ public final class BlockPlacementController {
                var0.completed.accept(var7);
             } finally {
                var4.player.getInventory().setSelectedSlot(var5);
-               BloomUtility.remove(var0.source, var0);
+               b.remove(var0.source, var0);
             }
          } else {
             uAsVoid(var0.source, "Execution lost its valid support ray or inventory item");
@@ -514,14 +514,14 @@ public final class BlockPlacementController {
 
    public abstract static class Type_k extends Module implements BlockPlacementController.Type_n {
       protected final NumberSetting h = this.KAsNumberSetting("Range", "Placement reach capped by native block reach", 4.1, 1.0, 6.0, 0.1);
-      protected final NumberSetting HexEdgeloop = this.KAsNumberSetting("Target Range", "Search distance for survival opponents", 6.0, 1.0, 12.0, 0.5);
+      protected final NumberSetting p = this.KAsNumberSetting("Target Range", "Search distance for survival opponents", 6.0, 1.0, 12.0, 0.5);
       protected final NumberSetting d;
       protected final ModeSetting rotation;
       protected final BooleanSetting J;
       protected final BooleanSetting Q;
       protected final BooleanSetting j;
       private long k;
-      private String B = "Waiting for PetEffectRenderer target";
+      private String B = "Waiting for a target";
 
       protected Type_k(String var1, String var2) {
          this(var1, var2, 0);
@@ -540,7 +540,7 @@ public final class BlockPlacementController {
 
       protected void aim(float var1, float var2) {
          if (this.isEnabled()) {
-            dq.yAsVoid(dq.Type_s.PLACEMENT, var1, var2, 1.0);
+            ModuleDetector.yAsVoid(ModuleDetector.Type_s.PLACEMENT, var1, var2, 1.0);
          }
       }
 
@@ -593,7 +593,7 @@ public final class BlockPlacementController {
 
       protected final boolean cAsBoolean() {
          return this.isEnabled()
-            ? b_.jAsBoolean()
+            ? ModuleImportBroker.jAsBoolean()
                && mc.isWindowFocused()
                && (!this.Q.getValue() || !mc.player.isUsingItem())
                && (!this.j.getValue() || !mc.options.attackKey.isPressed())
@@ -656,7 +656,7 @@ public final class BlockPlacementController {
       public void onDisable() {
          BlockPlacementController.WAsVoid(this);
          this.k = 0L;
-         this.B = "Waiting for PetEffectRenderer target";
+         this.B = "Waiting for a target";
          ClientLog.XAsVoid(this.getName(), "Placement intents cleared");
       }
    }

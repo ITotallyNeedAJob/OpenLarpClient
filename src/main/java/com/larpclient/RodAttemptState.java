@@ -116,7 +116,7 @@ public final class RodAttemptState {
    }
 
    public static final class Type_g {
-      private int DropletTrail = -1;
+      private int l = -1;
       private int p;
 
       public Type_g() {

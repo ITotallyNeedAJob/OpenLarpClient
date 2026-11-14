@@ -17,8 +17,8 @@ import net.minecraft.util.Identifier;
 import org.slf4j.LoggerFactory;
 
 public final class StartupPresentation extends ReloadableTexture {
-   public static final Identifier SmoothInput = Identifier.of("larp-client", "textures/gui/startup-brand.png");
-   public static final Identifier PriceDetector = Identifier.of("larp-client", "startup/typography");
+   public static final Identifier t = Identifier.of("larp-client", "textures/gui/startup-brand.png");
+   public static final Identifier m = Identifier.of("larp-client", "startup/typography");
    private final String R;
 
    public static StartupPresentation.Type_a gAsW_Type_a(Path var0) {

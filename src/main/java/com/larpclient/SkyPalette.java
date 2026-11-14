@@ -127,7 +127,7 @@ public final class SkyPalette implements AutoCloseable {
       }
    }
 
-   public void dAsVoid(bl var1, SkyShaderEffect var2, ByteBuffer var3) {
+   public void dAsVoid(BloomSettings var1, SkyShaderEffect var2, ByteBuffer var3) {
       boolean var4 = var2.LAsRenderPipeline().getFragmentShader().getPath().startsWith("larp/");
       this.yAsVoid(var4);
       if (var4 && this.T == null) {

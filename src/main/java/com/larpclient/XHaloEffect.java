@@ -5,11 +5,11 @@ import java.util.List;
 import org.joml.Matrix4f;
 
 public final class XHaloEffect {
-   private static final int SmoothInput = 32;
-   private static final int PriceDetector = 6;
+   private static final int t = 32;
+   private static final int m = 6;
    private static final int v = 12;
    public static final List<XHaloEffect.Type_y> U = dAsList();
-   public static final int ChatPayParser = 16;
+   public static final int g = 16;
 
    private static XHaloEffect.Type_h AAsXh_Type_h(double var0, double var2, double var4) {
       return new XHaloEffect.Type_h(var0, Math.sqrt(Math.max(0.0, 1.0 - var0 * var0 - var2 * var2)) + var4, var2);
@@ -89,10 +89,10 @@ public final class XHaloEffect {
       return List.copyOf(var0);
    }
 
-   public static void YAsVoid(o_ var0, Matrix4f var1, double var2, double var4, double var6, int var8, int var9, boolean var10) {
+   public static void YAsVoid(RenderPipeline var0, Matrix4f var1, double var2, double var4, double var6, int var8, int var9, boolean var10) {
       for (XHaloEffect.Type_y var12 : U) {
          if (!var12.hem || var10) {
-            int var13 = var12.symbol ? var9 : (var12.hem ? bg.xAsInt(var8, var9, 0.25) : var8);
+            int var13 = var12.symbol ? var9 : (var12.hem ? ColorUtil.xAsInt(var8, var9, 0.25) : var8);
             vAsVoid(var0, var1, var12.a, var2, var4, var6, var13);
             vAsVoid(var0, var1, var12.b, var2, var4, var6, var13);
             vAsVoid(var0, var1, var12.c, var2, var4, var6, var13);
@@ -101,7 +101,7 @@ public final class XHaloEffect {
       }
    }
 
-   private static void vAsVoid(o_ var0, Matrix4f var1, XHaloEffect.Type_h var2, double var3, double var5, double var7, int var9) {
+   private static void vAsVoid(RenderPipeline var0, Matrix4f var1, XHaloEffect.Type_h var2, double var3, double var5, double var7, int var9) {
       var0.modelVertex(var1, (float)(var2.x * var3), (float)(-0.5 - var7 - var2.rise * var5), (float)(var2.z * var3 + 0.035), var9);
    }
 

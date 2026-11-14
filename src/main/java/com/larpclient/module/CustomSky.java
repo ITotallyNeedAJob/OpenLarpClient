@@ -295,7 +295,7 @@ public class CustomSky extends Module {
    }
 
    public float fAsFloat() {
-      return (float)(mb.RAsDouble() * this.animationSpeed.getValue());
+      return (float)(MediaSession.RAsDouble() * this.animationSpeed.getValue());
    }
 
    public float KAsFloat() {

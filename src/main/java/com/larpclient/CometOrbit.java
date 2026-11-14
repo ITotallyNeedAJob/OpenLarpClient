@@ -4,11 +4,11 @@ import java.util.Arrays;
 import net.minecraft.util.math.Vec3d;
 
 public final class CometOrbit {
-   public static final int BloomUtility = 3;
-   public static final int SahurDanceEngine = 256;
-   private static final double ChatPayParser = 0.008333333333333333;
-   private final Vec3d[][] PriceDetector = new Vec3d[3][256];
-   private final double[] GroundSample = new double[256];
+   public static final int b = 3;
+   public static final int d = 256;
+   private static final double g = 0.008333333333333333;
+   private final Vec3d[][] m = new Vec3d[3][256];
+   private final double[] k = new double[256];
    private final Vec3d[] Z = new Vec3d[3];
    private int I;
    private int U;
@@ -91,7 +91,7 @@ public final class CometOrbit {
    }
 
    public double yAsDouble(double var1) {
-      return Double.isNaN(this.N) ? 0.0 : ay.RAsDouble((var1 - this.P) / 0.15);
+      return Double.isNaN(this.N) ? 0.0 : FadeCurve.RAsDouble((var1 - this.P) / 0.15);
    }
 
    public Vec3d gAsVec3d(int var1) {

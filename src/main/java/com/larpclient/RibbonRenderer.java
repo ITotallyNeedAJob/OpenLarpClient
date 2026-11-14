@@ -4,18 +4,18 @@ import java.util.List;
 import net.minecraft.util.math.Vec3d;
 
 public final class RibbonRenderer {
-   public static RibbonRenderer.Type_g iAsDc_Type_g(List<lb.Type_l> var0, double var1, RibbonRenderer.Type_c var3) {
+   public static RibbonRenderer.Type_g iAsDc_Type_g(List<TrailPointBuffer.Type_l> var0, double var1, RibbonRenderer.Type_c var3) {
       if (var0.size() >= 2 && !(var1 - var0.getLast().time() >= var3.duration)) {
          int var4 = var3.smoothing ? Math.clamp((long)var3.subdivisions, 1, 4) : 1;
          RibbonRenderer.Type_l var5 = new RibbonRenderer.Type_l(var0.size() * var4 * 12);
          RibbonRenderer.Type_l var6 = new RibbonRenderer.Type_l(var0.size() * var4 * 20 + var0.size() * 4);
 
          for (int var7 = 1; var7 < var0.size(); var7++) {
-            lb.Type_l var8 = var0.get(var7 - 1);
-            lb.Type_l var9 = var0.get(var7);
+            TrailPointBuffer.Type_l var8 = var0.get(var7 - 1);
+            TrailPointBuffer.Type_l var9 = var0.get(var7);
             if (var8.stroke() == var9.stroke() && !(var8.tip().squaredDistanceTo(var9.tip()) < 1.0E-9)) {
-               lb.Type_l var10 = var7 > 1 && var0.get(var7 - 2).stroke() == var8.stroke() ? var0.get(var7 - 2) : var8;
-               lb.Type_l var11 = var7 + 1 < var0.size() && var0.get(var7 + 1).stroke() == var8.stroke() ? var0.get(var7 + 1) : var9;
+               TrailPointBuffer.Type_l var10 = var7 > 1 && var0.get(var7 - 2).stroke() == var8.stroke() ? var0.get(var7 - 2) : var8;
+               TrailPointBuffer.Type_l var11 = var7 + 1 < var0.size() && var0.get(var7 + 1).stroke() == var8.stroke() ? var0.get(var7 + 1) : var9;
                int var12 = var7 - 1;
 
                while (var12 > 0 && var0.get(var12 - 1).stroke() == var8.stroke()) {
@@ -50,7 +50,7 @@ public final class RibbonRenderer {
    }
 
    private static RibbonRenderer.Type_o gAsDc_Type_o(
-      lb.Type_l var0, lb.Type_l var1, lb.Type_l var2, lb.Type_l var3, double var4, double var6, int var8, double var9, RibbonRenderer.Type_c var11
+      TrailPointBuffer.Type_l var0, TrailPointBuffer.Type_l var1, TrailPointBuffer.Type_l var2, TrailPointBuffer.Type_l var3, double var4, double var6, int var8, double var9, RibbonRenderer.Type_c var11
    ) {
       Vec3d var12 = var11.smoothing ? RibbonCapacity.dAsVec3d(var0.tip(), var1.tip(), var2.tip(), var3.tip(), var4) : var1.tip().lerp(var2.tip(), var4);
       Vec3d var13 = var11.smoothing ? RibbonCapacity.dAsVec3d(var0.root(), var1.root(), var2.root(), var3.root(), var4) : var1.root().lerp(var2.root(), var4);
@@ -71,10 +71,10 @@ public final class RibbonRenderer {
          var23 *= 0.7 + 0.3 * (1.0 - var17);
       }
 
-      int var25 = bg.xAsInt(var11.secondary, var11.primary, 1.0 - var17 * 0.8);
+      int var25 = ColorUtil.xAsInt(var11.secondary, var11.primary, 1.0 - var17 * 0.8);
       if (var11.style.equals("Prismatic")) {
-         int var26 = bg.HSBtoRGB((float)((0.53 + var17 * 0.35 + var9 * 0.08) % 1.0), 0.5F, 1.0F);
-         var25 = bg.xAsInt(var25, var26, 0.45);
+         int var26 = ColorUtil.HSBtoRGB((float)((0.53 + var17 * 0.35 + var9 * 0.08) % 1.0), 0.5F, 1.0F);
+         var25 = ColorUtil.xAsInt(var25, var26, 0.45);
       }
 
       return new RibbonRenderer.Type_o(var12, var14, var23, var25, var21 * var11.intensity);
@@ -83,13 +83,13 @@ public final class RibbonRenderer {
    private static void WAsVoid(RibbonRenderer.Type_l var0, RibbonRenderer.Type_l var1, RibbonRenderer.Type_o var2, RibbonRenderer.Type_o var3, RibbonRenderer.Type_c var4, double var5) {
       if (!(var2.width < 1.0E-7) || !(var3.width < 1.0E-7)) {
          boolean var7 = var4.style.equals("Void");
-         int var8 = var7 ? bg.xAsInt(var2.color, -16317420, 0.95) : var2.color;
-         int var9 = var7 ? bg.xAsInt(var3.color, -16317420, 0.95) : var3.color;
+         int var8 = var7 ? ColorUtil.xAsInt(var2.color, -16317420, 0.95) : var2.color;
+         int var9 = var7 ? ColorUtil.xAsInt(var3.color, -16317420, 0.95) : var3.color;
          DAsVoid(var0, var2, var3, 1.0, 0.8, var8, var9, 0.0, var7 ? 0.68 : 0.09);
          DAsVoid(var0, var2, var3, 0.8, 0.12, var8, var9, var7 ? 0.68 : 0.09, var7 ? 0.85 : 0.32);
          DAsVoid(var0, var2, var3, 0.12, 0.0, var8, var9, var7 ? 0.85 : 0.32, 0.05);
          double var10 = var4.style.equals("Prismatic") ? 0.009 : 0.014;
-         CAsVoid(var1, var2, var3, 0.0, var10, bg.xAsInt(var2.color, -1, 0.72), bg.xAsInt(var3.color, -1, 0.72), 0.92);
+         CAsVoid(var1, var2, var3, 0.0, var10, ColorUtil.xAsInt(var2.color, -1, 0.72), ColorUtil.xAsInt(var3.color, -1, 0.72), 0.92);
          CAsVoid(var1, var2, var3, 0.56, var10 * 0.46, var2.color, var3.color, 0.34);
          if (var7) {
             CAsVoid(var1, var2, var3, 0.95, var10 * 0.65, var2.color, var3.color, 0.7);
@@ -98,7 +98,7 @@ public final class RibbonRenderer {
          if (var4.style.equals("Prismatic")) {
             double var12 = Math.sin(var5 * 1.3);
             double var14 = Math.max(0.0, var12) * Math.max(0.0, var12);
-            CAsVoid(var1, var2, var3, 0.84, var10 * 0.5, bg.xAsInt(var2.color, var4.secondary, 0.7), bg.xAsInt(var3.color, var4.secondary, 0.7), 0.48 * var14);
+            CAsVoid(var1, var2, var3, 0.84, var10 * 0.5, ColorUtil.xAsInt(var2.color, var4.secondary, 0.7), ColorUtil.xAsInt(var3.color, var4.secondary, 0.7), 0.48 * var14);
          }
 
          if (var4.halo) {
@@ -115,10 +115,10 @@ public final class RibbonRenderer {
          var2.atAsVec3d(var3),
          var2.atAsVec3d(var5),
          var1.atAsVec3d(var5),
-         bg.pAsInt(var7, var1.opacity * var9),
-         bg.pAsInt(var8, var2.opacity * var9),
-         bg.pAsInt(var8, var2.opacity * var11),
-         bg.pAsInt(var7, var1.opacity * var11)
+         ColorUtil.pAsInt(var7, var1.opacity * var9),
+         ColorUtil.pAsInt(var8, var2.opacity * var9),
+         ColorUtil.pAsInt(var8, var2.opacity * var11),
+         ColorUtil.pAsInt(var7, var1.opacity * var11)
       );
    }
 
@@ -127,12 +127,12 @@ public final class RibbonRenderer {
       Vec3d var12 = var2.atAsVec3d(var3);
       Vec3d var13 = var1.axis.multiply(var5 * Math.sqrt(Math.max(0.0, var1.opacity)) * 0.5);
       Vec3d var14 = var2.axis.multiply(var5 * Math.sqrt(Math.max(0.0, var2.opacity)) * 0.5);
-      int var15 = bg.pAsInt(var7, var1.opacity * var9);
-      int var16 = bg.pAsInt(var8, var2.opacity * var9);
+      int var15 = ColorUtil.pAsInt(var7, var1.opacity * var9);
+      int var16 = ColorUtil.pAsInt(var8, var2.opacity * var9);
       AAsVoid(var0, var11.add(var13), var12.add(var14), var12.subtract(var14), var11.subtract(var13), var15, var16, var16, var15);
    }
 
-   private static void JAsVoid(RibbonRenderer.Type_l var0, lb.Type_l var1, lb.Type_l var2, double var3, RibbonRenderer.Type_c var5) {
+   private static void JAsVoid(RibbonRenderer.Type_l var0, TrailPointBuffer.Type_l var1, TrailPointBuffer.Type_l var2, double var3, RibbonRenderer.Type_c var5) {
       double var6 = var3 - var2.time();
       double var8 = Math.min(0.3, var5.duration * 1.2);
       if (!(var6 < 0.0) && !(var6 >= var8)) {
@@ -144,7 +144,7 @@ public final class RibbonRenderer {
             Vec3d var15 = var2.tip().add(var14.multiply(var6)).add(0.0, -0.18 * var6 * var6, 0.0);
             Vec3d var16 = var15.subtract(var14.multiply(0.035));
             Vec3d var17 = new Vec3d(-var14.y, var14.x, 0.0).normalize().multiply(0.0025 * (1.0 - var6 / var8));
-            int var18 = bg.pAsInt(bg.xAsInt(var5.primary, -1, 0.55), (1.0 - var6 / var8) * var5.intensity * 0.8);
+            int var18 = ColorUtil.pAsInt(ColorUtil.xAsInt(var5.primary, -1, 0.55), (1.0 - var6 / var8) * var5.intensity * 0.8);
             AAsVoid(var0, var15.add(var17), var16.add(var17), var16.subtract(var17), var15.subtract(var17), var18, 0, 0, var18);
          }
       }

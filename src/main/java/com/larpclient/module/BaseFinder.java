@@ -56,7 +56,7 @@ public final class BaseFinder extends sf {
    private final ModeSetting baseStyle = this.addSetting(
       new ModeSetting("Base Style", "Box style for the detected building evidence", "Box", "Box", "Corners", "Filled")
    );
-   private final qv.Type_s G = new qv.Type_s();
+   private final QueueView.Type_s G = new QueueView.Type_s();
    private final BooleanSetting visibilityDiagnostic = this.addSetting(
       new BooleanSetting("Visibility Diagnostic", "Experimental received-data observations in latest.log; does not recover hidden blocks", false)
    );
@@ -116,13 +116,13 @@ public final class BaseFinder extends sf {
       return List.copyOf(var1);
    }
 
-   public static Box FAsBox(ChunkPos var0, wl.Type_v var1) {
+   public static Box FAsBox(ChunkPos var0, WidgetLayer.Type_v var1) {
       Box var2 = var1.base().bounds();
       return var2 == null ? null : var2.offset((double)var0.getStartX(), 0.0, (double)var0.getStartZ()).expand(0.08);
    }
 
    @Override
-   protected void drawEvidence(ChunkPos var1, wl.Type_v var2, ThemeSettings var3, int var4) {
+   protected void drawEvidence(ChunkPos var1, WidgetLayer.Type_v var2, ThemeSettings var3, int var4) {
       if (this.baseBoxes.getValue()) {
          Box var5 = FAsBox(var1, var2);
          if (var5 != null) {
@@ -133,18 +133,18 @@ public final class BaseFinder extends sf {
 
    @Override
    protected boolean candidate(BlockState var1) {
-      if (qv.GAsBoolean(var1)) {
+      if (QueueView.GAsBoolean(var1)) {
          return this.honeyClues.getValue();
       } else {
-         qv.Type_k var2 = qv.xAsQv_Type_k(var1, 16, this.V);
-         if (var2 == qv.Type_k.DEDICATED) {
+         QueueView.Type_k var2 = QueueView.xAsQv_Type_k(var1, 16, this.V);
+         if (var2 == QueueView.Type_k.DEDICATED) {
             return true;
          } else {
             return this.detection.getValue().equals("Conservative")
                ? false
-               : var2 == qv.Type_k.STORAGE
-                  || var2 == qv.Type_k.UTILITY
-                  || this.detection.getValue().equals("Broad") && (var2 == qv.Type_k.CRAFTED || var2 == qv.Type_k.ALTERED && this.terrainClues.getValue());
+               : var2 == QueueView.Type_k.STORAGE
+                  || var2 == QueueView.Type_k.UTILITY
+                  || this.detection.getValue().equals("Broad") && (var2 == QueueView.Type_k.CRAFTED || var2 == QueueView.Type_k.ALTERED && this.terrainClues.getValue());
          }
       }
    }
@@ -194,25 +194,25 @@ public final class BaseFinder extends sf {
 
    @Override
    protected void count(BlockState var1, int var2, int var3, int var4) {
-      if (var3 >= this.minimumY() && var3 <= this.maximumY() && (!qv.GAsBoolean(var1) || this.honeyClues.getValue() && this.H)) {
+      if (var3 >= this.minimumY() && var3 <= this.maximumY() && (!QueueView.GAsBoolean(var1) || this.honeyClues.getValue() && this.H)) {
          this.G.vAsVoid(var1, var2, var3, var4, this.V, this.detection.getValue().equals("Broad") && this.terrainClues.getValue());
       }
    }
 
    @Override
-   protected wl.Type_v evidence() {
-      ae var1 = this.G
+   protected WidgetLayer.Type_v evidence() {
+      FinderSummary var1 = this.G
          .mAsAe(
             this.detection.getValue(),
             this.minStorage.getValue().intValue(),
             this.minUtilities.getValue().intValue(),
             this.minEnderChests.getValue().intValue()
          );
-      return new wl.Type_v(0, 0, 0, var1.sampleY(), var1);
+      return new WidgetLayer.Type_v(0, 0, 0, var1.sampleY(), var1);
    }
 
    @Override
-   protected boolean qualifies(wl.Type_v var1) {
+   protected boolean qualifies(WidgetLayer.Type_v var1) {
       return var1.base()
          .qualifies(
             this.detection.getValue(),
@@ -223,7 +223,7 @@ public final class BaseFinder extends sf {
    }
 
    @Override
-   protected String describe(wl.Type_v var1) {
+   protected String describe(WidgetLayer.Type_v var1) {
       return var1.base().describe();
    }
 
@@ -286,8 +286,8 @@ public final class BaseFinder extends sf {
    }
 
    public static boolean hAsBoolean(BlockState var0, int var1, boolean var2) {
-      qv.Type_k var3 = qv.xAsQv_Type_k(var0, var1, var2);
-      return var3 != qv.Type_k.NONE && var3 != qv.Type_k.ALTERED || var0.isOf(Blocks.SPAWNER);
+      QueueView.Type_k var3 = QueueView.xAsQv_Type_k(var0, var1, var2);
+      return var3 != QueueView.Type_k.NONE && var3 != QueueView.Type_k.ALTERED || var0.isOf(Blocks.SPAWNER);
    }
 
    public static boolean UAsBoolean(BlockState var0) {

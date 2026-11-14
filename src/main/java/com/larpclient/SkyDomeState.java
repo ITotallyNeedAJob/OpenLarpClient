@@ -5,10 +5,10 @@ import java.util.Random;
 public final class SkyDomeState {
    public static final int M = 96;
    private static final double W = 48.0;
-   private final dv[] K = new dv[96];
+   private final DynamicSky[] K = new DynamicSky[96];
    private final Random b;
-   private final pp r;
-   private n8 H;
+   private final PanelPosition r;
+   private RandomStringGenerator H;
    private boolean Y;
    private double d;
    private double p;
@@ -20,17 +20,17 @@ public final class SkyDomeState {
    public double V;
    public double O;
 
-   public SkyDomeState(long var1, n8 var3) {
+   public SkyDomeState(long var1, RandomStringGenerator var3) {
       this.b = new Random(var1);
-      this.r = new pp(this.b);
+      this.r = new PanelPosition(this.b);
       this.H = var3;
 
       for (int var4 = 0; var4 < 96; var4++) {
-         this.K[var4] = new dv();
+         this.K[var4] = new DynamicSky();
       }
    }
 
-   public dv[] cAsDvArray() {
+   public DynamicSky[] cAsDvArray() {
       return this.K;
    }
 
@@ -38,7 +38,7 @@ public final class SkyDomeState {
       return this.y;
    }
 
-   public void nAsVoid(n8 var1) {
+   public void nAsVoid(RandomStringGenerator var1) {
       this.H = var1;
       this.iAsVoid();
    }
@@ -52,9 +52,9 @@ public final class SkyDomeState {
       this.y = 0.0;
       this.O = 0.0;
 
-      for (dv var4 : this.K) {
+      for (DynamicSky var4 : this.K) {
          var4.T = false;
-         var4.i = dv.Type_l.RECYCLE;
+         var4.i = DynamicSky.Type_l.RECYCLE;
          var4.m = var4.I = 0.0;
          var4.V = "";
       }
@@ -68,7 +68,7 @@ public final class SkyDomeState {
       return Math.atan2(Math.sin(var0), Math.cos(var0));
    }
 
-   public boolean VAsBoolean(d1 var1, double var2, double var4, double var6, double var8, double var10, double var12, double var14, double var16) {
+   public boolean VAsBoolean(SkyConfig var1, double var2, double var4, double var6, double var8, double var10, double var12, double var14, double var16) {
       var16 = Math.clamp(var16, 0.0, 0.1);
       double var18 = var2 - this.d;
       double var20 = var4 - this.p;
@@ -80,7 +80,7 @@ public final class SkyDomeState {
          this.g = var4;
          this.V = var6;
          this.Y = true;
-         this.O = var1.z == d1.Type_n.PLAYER ? var8 : 0.0;
+         this.O = var1.z == SkyConfig.Type_n.PLAYER ? var8 : 0.0;
       }
 
       this.d = var2;
@@ -90,25 +90,25 @@ public final class SkyDomeState {
       this.P = this.P + (var2 - this.P) * var25;
       this.g = this.g + (var4 - this.g) * var25;
       this.V = this.V + (var6 - this.V) * var25;
-      double var27 = var1.z == d1.Type_n.WORLD ? 0.0 : var8;
+      double var27 = var1.z == SkyConfig.Type_n.WORLD ? 0.0 : var8;
       this.O = aAsDouble(this.O + aAsDouble(var27 - this.O) * NAsDouble(2.5, var16));
       this.y += var16;
       int var29 = var12 * var12 + var14 * var14 > 1.0E-4 ? 1 : 0;
-      int var30 = var1.c == d1.Type_k.LOOK_DIRECTION || var1.c == d1.Type_k.MOVEMENT_DIRECTION && var29 != 0 ? 1 : 0;
-      double var31 = (var1.c == d1.Type_k.MOVEMENT_DIRECTION ? Math.atan2(var12, var14) : var10) - this.O;
+      int var30 = var1.c == SkyConfig.Type_k.LOOK_DIRECTION || var1.c == SkyConfig.Type_k.MOVEMENT_DIRECTION && var29 != 0 ? 1 : 0;
+      double var31 = (var1.c == SkyConfig.Type_k.MOVEMENT_DIRECTION ? Math.atan2(var12, var14) : var10) - this.O;
       int var33 = Math.clamp((long)var1.X, 0, 96);
 
       for (int var34 = 0; var34 < 96; var34++) {
-         dv var35 = this.K[var34];
+         DynamicSky var35 = this.K[var34];
          if (var34 >= var33 || var35.o != this.k) {
             var35.CAsVoid();
          }
 
-         if (var35.i != dv.Type_l.RECYCLE) {
-            a1.rAsVoid(var35, var1, var16);
+         if (var35.i != DynamicSky.Type_l.RECYCLE) {
+            SmoothStepUtil.rAsVoid(var35, var1, var16);
          }
 
-         if (var35.i == dv.Type_l.RECYCLE && var34 < var33) {
+         if (var35.i == DynamicSky.Type_l.RECYCLE && var34 < var33) {
             var35.I -= var16;
             if (!(var35.I > 0.0)) {
                String var36 = this.H.next(this.y, this.b);
@@ -128,8 +128,8 @@ public final class SkyDomeState {
                   var35.q = var1.k * (0.65 + this.b.nextDouble() * 0.7);
                   var35.o = this.k;
                   var35.T = true;
-                  var35.i = dv.Type_l.SPAWNING;
-                  a1.rAsVoid(var35, var1, 0.0);
+                  var35.i = DynamicSky.Type_l.SPAWNING;
+                  SmoothStepUtil.rAsVoid(var35, var1, 0.0);
                }
             }
          }

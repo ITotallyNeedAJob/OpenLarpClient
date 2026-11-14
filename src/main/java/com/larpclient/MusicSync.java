@@ -33,7 +33,7 @@ public final class MusicSync {
       }
 
       double var5 = var0.getEntityPos().distanceTo(Vec3d.ofCenter(var1));
-      return var5 > 10.0 ? 0.0F : nf.DAsFloat(var0, nf.sAsFloat(var5, (double)var2, 5.0));
+      return var5 > 10.0 ? 0.0F : NebulaSky.DAsFloat(var0, NebulaSky.sAsFloat(var5, (double)var2, 5.0));
    }
 
    public static float LAsFloat(LivingEntity var0, BlockPos var1, BlockPos var2) {

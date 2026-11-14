@@ -22,9 +22,9 @@ public abstract class MouseMixin {
    }
 
    @Unique
-   private static float HexEdgeloop() {
+   private static float p() {
       Screen var0 = MinecraftClient.getInstance().currentScreen;
-      return var0 instanceof HandledScreen && var0 instanceof aj var1 ? var1.larpContainerScale() : 1.0F;
+      return var0 instanceof HandledScreen && var0 instanceof ContainerScaleSupplier var1 ? var1.larpContainerScale() : 1.0F;
    }
 
    @Unique
@@ -33,20 +33,20 @@ public abstract class MouseMixin {
       if (var4 == null) {
          return new double[]{var0, var2};
       } else {
-         xt.Type_s var5 = xt.JAsXt_Type_s(var4);
+         XTexture.Type_s var5 = XTexture.JAsXt_Type_s(var4);
          if (var5 != null) {
             double[] var6 = var5.inverse(var0, var2);
             var0 = var6[0];
             var2 = var6[1];
          }
 
-         aq.Type_x var10 = MenuPopupProvider.bAsAq_Type_x(var4);
+         PopupScale.Type_x var10 = MenuPopupProvider.bAsAq_Type_x(var4);
          var0 = var10.localX(var0, (double)var4.width / 2.0);
          var2 = var10.localY(var2, (double)var4.height / 2.0);
          GUIAnimation var7 = GUIAnimation.kAsGUIAnimation();
          return var7 == null
             ? new double[]{var0, var2}
-            : new double[]{var7.uAsDouble(var0, (double)var4.width / 2.0, HexEdgeloop()), var7.uAsDouble(var2, (double)var4.height / 2.0, HexEdgeloop())};
+            : new double[]{var7.uAsDouble(var0, (double)var4.width / 2.0, p()), var7.uAsDouble(var2, (double)var4.height / 2.0, p())};
       }
    }
 

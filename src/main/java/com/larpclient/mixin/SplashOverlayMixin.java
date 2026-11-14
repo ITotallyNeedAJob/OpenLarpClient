@@ -51,11 +51,11 @@ public class SplashOverlayMixin {
       try {
          var0.registerTexture(StartupPresentation.t, new StartupPresentation());
          var0.registerTexture(StartupPresentation.m, new StartupPresentation(StartupPresentation.m, "textures/gui/startup-brand.png"));
-         BloomUtility = true;
+         b = true;
       } catch (RuntimeException var3) {
          var0.destroyTexture(StartupPresentation.t);
          var0.destroyTexture(StartupPresentation.m);
-         BloomUtility = false;
+         b = false;
          LoggerFactory.getLogger("Larp/Startup").warn("Intro assets unavailable; vanilla startup fallback retained", var3);
       }
 
@@ -94,11 +94,11 @@ public class SplashOverlayMixin {
             long var2 = System.nanoTime();
             if (!this.a) {
                this.a = true;
-               o2.W.NAsVoid(var2);
+               OverlayManager.W.NAsVoid(var2);
                ClientLog.GAsVoid("Startup", "Resources ready; finishing logo/title intro before menu reveal");
             }
 
-            if (!o2.W.SAsBoolean(var2, B)) {
+            if (!OverlayManager.W.SAsBoolean(var2, B)) {
                return;
             }
 
@@ -129,8 +129,8 @@ public class SplashOverlayMixin {
       } else if (b) {
          var5.cancel();
          long var6 = System.nanoTime();
-         o2 var8 = o2.W;
-         if (var8.RAsO2_Type_u(var6, B) == o2.Type_u.STARTUP) {
+         OverlayManager var8 = OverlayManager.W;
+         if (var8.RAsO2_Type_u(var6, B) == OverlayManager.Type_u.STARTUP) {
             ClientLog.GAsVoid("Startup", "Black intro started; logo spin, soft glow and typewriter title");
          }
 
@@ -146,7 +146,7 @@ public class SplashOverlayMixin {
             var1.createNewRootLayer();
          }
 
-         oy.AAsVoid(var1, var6, B);
+         OxygenEffect.AAsVoid(var1, var6, B);
       }
    }
 }

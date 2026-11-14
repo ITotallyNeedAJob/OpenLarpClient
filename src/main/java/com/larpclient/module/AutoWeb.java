@@ -67,13 +67,13 @@ public final class AutoWeb extends BlockPlacementController.Type_k implements Pl
 
    @Override
    protected void aim(float var1, float var2) {
-      if (this.isEnabled() && p5.fAsBoolean(p5.Type_u.AUTOWEB)) {
+      if (this.isEnabled() && ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.AUTOWEB)) {
          super.aim(var1, var2);
-         if (dq.CAsBoolean(dq.Type_s.PLACEMENT)) {
+         if (ModuleDetector.CAsBoolean(ModuleDetector.Type_s.PLACEMENT)) {
             this.s = mc.player;
             this.z = mc.world;
             this.a = mc.player.age;
-            p5.jAsVoid(p5.Type_u.AUTOWEB);
+            ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.AUTOWEB);
          } else {
             this.fAsVoid();
          }
@@ -82,7 +82,7 @@ public final class AutoWeb extends BlockPlacementController.Type_k implements Pl
 
    private void fAsVoid() {
       this.s = this.z = null;
-      p5.GAsVoid(p5.Type_u.AUTOWEB);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AUTOWEB);
    }
 
    public boolean kAsBoolean() {
@@ -101,7 +101,7 @@ public final class AutoWeb extends BlockPlacementController.Type_k implements Pl
 
    public float zAsFloat(float var1) {
       if (this.isEnabled()) {
-         if (this.isRuntimeActive() && p5.NAsP5_Type_u() == p5.Type_u.AUTOWEB && dq.CAsBoolean(dq.Type_s.PLACEMENT)) {
+         if (this.isRuntimeActive() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.AUTOWEB && ModuleDetector.CAsBoolean(ModuleDetector.Type_s.PLACEMENT)) {
             mc.player.setHeadYaw(mc.player.getYaw());
             return mc.player.getYaw();
          } else {

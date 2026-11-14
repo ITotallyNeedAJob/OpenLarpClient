@@ -12,7 +12,7 @@ public final class HomeMacro extends Module {
    private Object y;
    private Object W;
    private Object Q;
-   private final oe.Type_z H = new oe.Type_z();
+   private final OfferPanel.Type_z H = new OfferPanel.Type_z();
    private int A;
 
    public HomeMacro() {

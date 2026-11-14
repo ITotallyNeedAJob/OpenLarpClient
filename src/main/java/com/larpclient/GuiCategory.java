@@ -24,7 +24,7 @@ public enum GuiCategory {
    public final String n;
    private static final Set<String> v = Set.of("AutoArmor", "AutoGap", "Fake Lag");
    private static final Set<String> X = Set.of("IgnoreEntity");
-   private static final Set<String> CropHelper = Set.of("Freecam", "SmoothCamera", "TargetHUD", "CustomCrosshair", "Damage Markers", "Stretched Res");
+   private static final Set<String> u = Set.of("Freecam", "SmoothCamera", "TargetHUD", "CustomCrosshair", "Damage Markers", "Stretched Res");
    private static final Set<String> V = Set.of("Light Debug", "Motion Scanner", "Prime Chunk Finder", "Holes ESP");
    private static final Set<String> S = Set.of(
       "Animations",
@@ -95,7 +95,7 @@ public enum GuiCategory {
          return COMBAT;
       } else if (X.contains(var0.getName())) {
          return PLAYER;
-      } else if (CropHelper.contains(var0.getName())) {
+      } else if (u.contains(var0.getName())) {
          return VISUALS;
       } else if (S.contains(var0.getName())) {
          return COSMETICS;
@@ -122,7 +122,7 @@ public enum GuiCategory {
    }
 
    public List<Module> nAsList(List<Module> var1, String var2, ClientPreferences var3) {
-      return nk.sAsList(var1, var3)
+      return Notification.sAsList(var1, var3)
          .stream()
          .filter(var3xx -> this.GAsBoolean(var3xx, var2, var3))
          .sorted(

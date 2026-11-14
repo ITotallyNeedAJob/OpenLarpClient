@@ -16,9 +16,9 @@ public final class LyricsController implements AutoCloseable {
    private final LyricsLookupClient A;
    private final ScheduledExecutorService S;
    private final LinkedHashMap<String, LyricsController.Type_j> v = new LinkedHashMap<>(16, 0.75F, true);
-   private volatile LyricsController.Type_r HexEdgeloop = new LyricsController.Type_r(null, null, "Looking for Spotify desktop…");
+   private volatile LyricsController.Type_r p = new LyricsController.Type_r(null, null, "Looking for Spotify desktop…");
    private volatile boolean a;
-   private volatile CompletableFuture<mr> T;
+   private volatile CompletableFuture<ModuleRegistry> T;
    private String f;
    private long c;
    private static LyricsController w;
@@ -64,7 +64,7 @@ public final class LyricsController implements AutoCloseable {
          try {
             long var1 = System.nanoTime();
             if (this.T != null && this.T.isDone()) {
-               mr var3 = this.T.join();
+               ModuleRegistry var3 = this.T.join();
                long var4 = Math.min(var3.retryAfterSeconds(), 31536000L);
                long var6 = TimeUnit.SECONDS.toNanos(var4);
                long var8 = var4 > 0L ? ThreadLocalRandom.current().nextLong(var6 / 4L + 1L) : 0L;
@@ -87,7 +87,7 @@ public final class LyricsController implements AutoCloseable {
             }
 
             if (var14 == null) {
-               this.tAsVoid(new LyricsController.Type_r(null, null, "Open Spotify desktop and play PetEffectRenderer song"));
+               this.tAsVoid(new LyricsController.Type_r(null, null, "Open Spotify desktop and play a song"));
                return;
             }
 
@@ -104,7 +104,7 @@ public final class LyricsController implements AutoCloseable {
                this.c = var1 + TimeUnit.SECONDS.toNanos(1L);
             }
 
-            mr var16 = var5 == null ? null : var5.value;
+            ModuleRegistry var16 = var5 == null ? null : var5.value;
             String var7 = var5 == null ? "Looking up lyrics…" : var16.status();
             if (!var14.playing()) {
                var7 = "Spotify paused: " + var7;
@@ -145,9 +145,9 @@ public final class LyricsController implements AutoCloseable {
       this.p = new LyricsController.Type_r(null, null, "Spotify lyrics stopped");
    }
 
-   private static record Type_j(mr value, long expires) {
+   private static record Type_j(ModuleRegistry value, long expires) {
    }
 
-   public static record Type_r(MediaSessionMetadata playback, mr lyrics, String status) {
+   public static record Type_r(MediaSessionMetadata playback, ModuleRegistry lyrics, String status) {
    }
 }

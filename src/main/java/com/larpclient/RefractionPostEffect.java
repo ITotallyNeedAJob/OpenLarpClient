@@ -58,15 +58,15 @@ public final class RefractionPostEffect {
          }
       }
 
-      TextLayout = false;
-      SahurDanceEngine = 0;
+      j = false;
+      d = 0;
    }
 
    public static boolean HAsBoolean(String var0, Runnable var1, double var2) {
-      if (!N && SahurDanceEngine < 2 && x9.kAsBoolean() && !(var2 <= 0.0) && !F.contains(var0)) {
+      if (!N && d < 2 && BloomQualityHelper.kAsBoolean() && !(var2 <= 0.0) && !F.contains(var0)) {
          GpuTextureView var4 = RenderSystem.outputColorTextureOverride;
          GpuTextureView var5 = RenderSystem.outputDepthTextureOverride;
-         long var6 = op.RAsLong();
+         long var6 = OpenScreen.RAsLong();
 
          try {
             GpuTextureView var8 = SceneRenderResources.gAsGpuTextureView();
@@ -83,7 +83,7 @@ public final class RefractionPostEffect {
 
             Framebuffer var10 = MinecraftClient.getInstance().getFramebuffer();
             O.FAsVoid(var10.textureWidth, var10.textureHeight, 1, BloomFramebuffers.Type_b.LOCAL_MASK);
-            TextLayout = true;
+            j = true;
             CommandEncoder var11 = RenderSystem.getDevice().createCommandEncoder();
             var11.clearColorTexture(O.u.getColorAttachment(), 0);
             RenderSystem.outputColorTextureOverride = O.u.getColorAttachmentView();
@@ -145,7 +145,7 @@ public final class RefractionPostEffect {
 
             d++;
             SceneRenderResources.cAsVoid();
-            op.FAsVoid("Localized refraction composites", 1L);
+            OpenScreen.FAsVoid("Localized refraction composites", 1L);
          } catch (RuntimeException var27) {
             F.add(var0);
             ClientLog.lAsVoid("Refraction", "Owner=" + var0 + "; mask/composite failed, base material retained until resource reload", var27);
@@ -153,7 +153,7 @@ public final class RefractionPostEffect {
          } finally {
             RenderSystem.outputColorTextureOverride = var4;
             RenderSystem.outputDepthTextureOverride = var5;
-            op.aAsVoid(var0 + " refraction CPU", var6);
+            OpenScreen.aAsVoid(var0 + " refraction CPU", var6);
          }
 
          return true;
@@ -167,8 +167,8 @@ public final class RefractionPostEffect {
          EAsVoid();
       }
 
-      op.YAsVoid("Refraction mask bytes (estimate)", O.hAsLong());
-      op.YAsVoid("Refraction quarantined owners", (long)F.size());
+      OpenScreen.YAsVoid("Refraction mask bytes (estimate)", O.hAsLong());
+      OpenScreen.YAsVoid("Refraction quarantined owners", (long)F.size());
    }
 
    public static void EAsVoid() {

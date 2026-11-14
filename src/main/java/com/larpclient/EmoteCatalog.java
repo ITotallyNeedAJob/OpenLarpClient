@@ -9,28 +9,28 @@ import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.util.Identifier;
 
 public final class EmoteCatalog {
-   public static final String SkyChunkCache = "Empty";
+   public static final String s = "Empty";
    private static final String I = "/assets/larp-client/emotes/";
    public static final String X = "cash_fans";
-   public static final String ScreenScale = "ak47";
-   public static final List<EmoteCatalog.Type_a> BloomUtility = List.of(
+   public static final String y = "ak47";
+   public static final List<EmoteCatalog.Type_a> b = List.of(
       new EmoteCatalog.Type_a("Take the L", "take_the_l.json", null),
       new EmoteCatalog.Type_a("Floss", "floss.json", null),
       new EmoteCatalog.Type_a("Maybach Bounce", "maybach_bounce.json", null, "maybach"),
       new EmoteCatalog.Type_a("Money Spread", "money_spread.json", null, "cash_fans"),
       new EmoteCatalog.Type_a("AK Spray", "ak_spray.json", null, "ak47")
    );
-   private static final Map<String, EmotecraftJsonReader> PriceDetector = new ConcurrentHashMap<>();
+   private static final Map<String, EmotecraftJsonReader> m = new ConcurrentHashMap<>();
 
    private EmoteCatalog() {
    }
 
    public static String[] wAsStringArray() {
-      String[] var0 = new String[BloomUtility.size() + 1];
+      String[] var0 = new String[b.size() + 1];
       var0[0] = "Empty";
 
-      for (int var1 = 0; var1 < BloomUtility.size(); var1++) {
-         var0[var1 + 1] = BloomUtility.get(var1).label();
+      for (int var1 = 0; var1 < b.size(); var1++) {
+         var0[var1 + 1] = b.get(var1).label();
       }
 
       return var0;
@@ -47,7 +47,7 @@ public final class EmoteCatalog {
    }
 
    public static EmotecraftJsonReader pAsNh(EmoteCatalog.Type_a var0) {
-      EmotecraftJsonReader var1 = PriceDetector.get(var0.label());
+      EmotecraftJsonReader var1 = m.get(var0.label());
       if (var1 != null) {
          return var1;
       } else {
@@ -62,7 +62,7 @@ public final class EmoteCatalog {
                ClientLog.XAsVoid(
                   "Emotes", "Loaded {} by {}: ticks {}..{}, loop={} from {}, ignored={}", var0.label(), var3.Q, var3.M, var3.y, var3.e, var3.i, var3.EAsSet()
                );
-               PriceDetector.put(var0.label(), var3);
+               m.put(var0.label(), var3);
                var4 = var3;
             }
 

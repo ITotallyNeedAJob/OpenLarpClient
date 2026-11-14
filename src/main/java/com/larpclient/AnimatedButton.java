@@ -8,8 +8,8 @@ import net.minecraft.text.Text;
 
 public final class AnimatedButton extends ButtonWidget {
    private final AnimatedButton.Type_u f;
-   private final w2 Z = new w2(0.0);
-   private nc.Type_q q = nc.Type_q.REST;
+   private final WeatherRenderer Z = new WeatherRenderer(0.0);
+   private NetClient.Type_q q = NetClient.Type_q.REST;
    private double r;
    public Consumer<DrawContext> C;
 
@@ -27,11 +27,11 @@ public final class AnimatedButton extends ButtonWidget {
          case QUIET -> -6513508;
          case SESSION -> -3618616;
       };
-      return bg.xAsInt(var3, -657931, var1);
+      return ColorUtil.xAsInt(var3, -657931, var1);
    }
 
    public static int lAsInt(double var0, boolean var2) {
-      return var2 ? -657931 : bg.XAsInt(-3092272, var0 * 0.65);
+      return var2 ? -657931 : ColorUtil.XAsInt(-3092272, var0 * 0.65);
    }
 
    public static void LAsVoid(DrawContext var0, float var1, int var2, float var3, int var4) {
@@ -48,7 +48,7 @@ public final class AnimatedButton extends ButtonWidget {
       }
    }
 
-   public void rAsVoid(nc.Type_q var1) {
+   public void rAsVoid(NetClient.Type_q var1) {
       this.q = var1;
    }
 
@@ -99,14 +99,14 @@ public final class AnimatedButton extends ButtonWidget {
          String var13 = TextDrawing.sAsString(this.getMessage().getString(), var11 - 40, TextDrawing.Type_x.MEDIUM);
          int var14 = TextDrawing.qAsInt(var13, TextDrawing.Type_x.MEDIUM);
          int var15 = var10 + (var12 - 9) / 2;
-         TextDrawing.oAsVoid(var1, var13, var9 + (var11 - var14) / 2, var15, bg.pAsInt(zAsInt(this.f, var7), this.q.alpha()), TextDrawing.Type_x.MEDIUM);
+         TextDrawing.oAsVoid(var1, var13, var9 + (var11 - var14) / 2, var15, ColorUtil.pAsInt(zAsInt(this.f, var7), this.q.alpha()), TextDrawing.Type_x.MEDIUM);
          if (var7 > 0.0) {
             LAsVoid(
                var1,
                (float)var9 + (float)var11 / 2.0F,
                Math.min(var15 + 13, var10 + var12 - 1),
                (float)((double)var14 * var7),
-               bg.pAsInt(lAsInt(var7, var4 != 0), this.q.alpha())
+               ColorUtil.pAsInt(lAsInt(var7, var4 != 0), this.q.alpha())
             );
          }
       }

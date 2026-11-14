@@ -25,7 +25,7 @@ import net.minecraft.world.RaycastContext.ShapeType;
 import net.minecraft.world.explosion.ExplosionImpl;
 
 public final class NebulaSky {
-   public static final double BoxUtils = 6.0;
+   public static final double c = 6.0;
 
    public static float vAsFloat(double var0, double var2) {
       return sAsFloat(var0, var2, 6.0);

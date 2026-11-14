@@ -4,7 +4,7 @@ import java.util.Random;
 
 public final class DanceData {
    public static final int H = 160;
-   private final DanceData.Type_r[] MenuPopupProvider = new DanceData.Type_r[160];
+   private final DanceData.Type_r[] f = new DanceData.Type_r[160];
    private long N;
    private double B;
 

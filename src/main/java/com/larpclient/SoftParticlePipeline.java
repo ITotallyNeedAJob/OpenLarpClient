@@ -65,8 +65,8 @@ public final class SoftParticlePipeline {
             return;
          }
 
-         if (PetEffectRenderer == null) {
-            PetEffectRenderer = RenderSystem.getDevice().createBuffer(() -> "Larp particle depth parameters", 136, 16L);
+         if (a == null) {
+            a = RenderSystem.getDevice().createBuffer(() -> "Larp particle depth parameters", 136, 16L);
          }
 
          CommandEncoder var1 = RenderSystem.getDevice().createCommandEncoder();
@@ -75,7 +75,7 @@ public final class SoftParticlePipeline {
          try {
             ByteBuffer var4 = var3.malloc(16);
             var4.putFloat(2.0F).putFloat(-1.0F).putFloat(0.16F).putFloat(0.0F).flip();
-            var1.writeToBuffer(PetEffectRenderer.slice(), var4);
+            var1.writeToBuffer(a.slice(), var4);
          } catch (Throwable var81) {
             if (var3 != null) {
                try {
@@ -93,7 +93,7 @@ public final class SoftParticlePipeline {
          }
 
          n = true;
-         op.YAsVoid("Soft particle depth consumers", 1L);
+         OpenScreen.YAsVoid("Soft particle depth consumers", 1L);
       } catch (RuntimeException var91) {
          Q = true;
 
@@ -107,7 +107,7 @@ public final class SoftParticlePipeline {
       }
    }
 
-   static boolean FAsBoolean(ImmediateMaterialState var0, bk.Type_c var1) {
+   static boolean FAsBoolean(ImmediateMaterialState var0, BladeRendering.Type_c var1) {
       if (!var0.pipeline().getShaderDefines().flags().contains("SOFT_PARTICLE")) {
          return false;
       } else if (!n) {
@@ -140,7 +140,7 @@ public final class SoftParticlePipeline {
 
                      RenderSystem.bindDefaultUniforms(var6);
                      var6.setUniform("DynamicTransforms", var0.dynamicTransforms());
-                     var6.setUniform("ParticleDepth", PetEffectRenderer.slice());
+                     var6.setUniform("ParticleDepth", a.slice());
                      var6.bindTexture("SceneDepth", var2, RenderSystem.getSamplerCache().get(FilterMode.NEAREST));
 
                      for (ImmediateMaterialState.Type_l var9 : var0.textures()) {
@@ -185,9 +185,9 @@ public final class SoftParticlePipeline {
 
    public static void yAsVoid() {
       n = false;
-      if (PetEffectRenderer != null) {
+      if (a != null) {
          AutoCloseable[] var0 = new AutoCloseable[]{a};
-         PetEffectRenderer = null;
+         a = null;
          RuntimeException var1 = null;
 
          for (AutoCloseable var5 : var0) {

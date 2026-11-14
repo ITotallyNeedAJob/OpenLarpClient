@@ -10,14 +10,14 @@ public final class HudWidgetSettings {
    private final List<GuiWidget> V = new ArrayList<>();
    private final Runnable y;
    private final Runnable b;
-   private d7.Type_p x;
+   private WidgetLayoutUtil.Type_p x;
    private HudRenderer.Type_m Z;
    private GuiWidget l;
    private boolean B;
    private double w;
    private double P;
    private int t;
-   private final w2 h = new w2(0.0);
+   private final WeatherRenderer h = new WeatherRenderer(0.0);
 
    public HudWidgetSettings(Runnable var1, Runnable var2) {
       this.y = var1;
@@ -28,7 +28,7 @@ public final class HudWidgetSettings {
       return this.x != null;
    }
 
-   public d7.Type_p lAsD7_Type_p() {
+   public WidgetLayoutUtil.Type_p lAsD7_Type_p() {
       return this.x;
    }
 
@@ -107,8 +107,8 @@ public final class HudWidgetSettings {
 
    private void KAsVoid(int var1, int var2, int var3, int var4, int var5) {
       int var6 = Math.min(var5 - 10, 46 + this.V.stream().mapToInt(var0 -> var0.F + 2).sum());
-      this.x = new d7.Type_p(
-         d7.LAsInt(var1, Math.min(var3, var4 - 10), var4), d7.LAsInt(var2, var6, var5), Math.max(1, Math.min(var3, var4 - 10)), Math.max(1, var6)
+      this.x = new WidgetLayoutUtil.Type_p(
+         WidgetLayoutUtil.LAsInt(var1, Math.min(var3, var4 - 10), var4), WidgetLayoutUtil.LAsInt(var2, var6, var5), Math.max(1, Math.min(var3, var4 - 10)), Math.max(1, var6)
       );
       this.t = 0;
       this.h.aAsVoid(0.0);
@@ -209,9 +209,9 @@ public final class HudWidgetSettings {
       if (!this.rAsBoolean()) {
          return false;
       } else if (this.B) {
-         this.x = new d7.Type_p(
-            d7.LAsInt((int)Math.round(var1 - this.w), this.x.width(), var5),
-            d7.LAsInt((int)Math.round(var3 - this.P), this.x.height(), var6),
+         this.x = new WidgetLayoutUtil.Type_p(
+            WidgetLayoutUtil.LAsInt((int)Math.round(var1 - this.w), this.x.width(), var5),
+            WidgetLayoutUtil.LAsInt((int)Math.round(var3 - this.P), this.x.height(), var6),
             this.x.width(),
             this.x.height()
          );
@@ -283,12 +283,12 @@ public final class HudWidgetSettings {
       if (this.rAsBoolean()) {
          this.BAsVoid();
 
-         try (qg var4 = qg.nAsQg(this.h.yAsDouble())) {
+         try (QueueGroup var4 = QueueGroup.nAsQg(this.h.yAsDouble())) {
             GuiTextureDrawing.AAsVoid(
                var1, (float)(this.x.x() - 3), (float)(this.x.y() - 3), (float)(this.x.width() + 6), (float)(this.x.height() + 6), 13.0F, 1593835520
             );
             GuiTextureDrawing.AAsVoid(var1, (float)this.x.x(), (float)this.x.y(), (float)this.x.width(), (float)this.x.height(), 10.0F, -183957239);
-            ww.fAsVoid(
+            WorldWidget.fAsVoid(
                var1, this.Z == null ? "HUD Elements" : HudRenderer.XAsString(this.Z.a), (double)(this.x.x() + 12), (double)(this.x.y() + 11), 13.0, -1250068
             );
             GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier("x"), this.x.x() + this.x.width() - 20, this.x.y() + 12, 12, -5592406);

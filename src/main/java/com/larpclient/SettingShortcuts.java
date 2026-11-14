@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 
 public final class SettingShortcuts {
    private static final int F = 256;
-   private final Map<String, Map<String, Integer>> TextLayout = new LinkedHashMap<>();
+   private final Map<String, Map<String, Integer>> j = new LinkedHashMap<>();
    private List<SettingShortcuts.Type_x> q;
    private List<Module> n;
 
@@ -52,7 +52,7 @@ public final class SettingShortcuts {
 
    public void bAsVoid(Module var1, Setting<?> var2, int var3) {
       if (!lAsBoolean(var2)) {
-         throw new IllegalArgumentException("Only toggle and choice settings take PetEffectRenderer shortcut");
+         throw new IllegalArgumentException("Only toggle and choice settings take a shortcut");
       } else if (var3 != -1 && !KeybindNames.hAsBoolean(var3)) {
          throw new IllegalArgumentException("Invalid bind code");
       } else {

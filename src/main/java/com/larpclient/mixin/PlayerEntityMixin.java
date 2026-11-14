@@ -17,6 +17,6 @@ public abstract class PlayerEntityMixin {
       at = {@At("RETURN")}
    )
    private void larpclient$injectBeforePlayerAttack(CallbackInfo var1) {
-      pk.OAsVoid((PlayerEntity)(Object)this);
+      ParticleKind.OAsVoid((PlayerEntity)(Object)this);
    }
 }

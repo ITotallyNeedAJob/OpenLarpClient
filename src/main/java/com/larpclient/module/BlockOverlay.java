@@ -43,12 +43,12 @@ public final class BlockOverlay extends Module {
    private final BooleanSetting fill = this.addSetting(new BooleanSetting("Fill", "Subtle tint over the selected shape", true));
    private final NumberSetting fillOpacity = this.addSetting(vAsNumberSetting("Fill Opacity", "Keep the block texture visible", 0.15, 0.01, 0.3, 0.01));
    private final NumberSetting glow = this.addSetting(vAsNumberSetting("Glow", "Soft edge halo and shared quality-controlled bloom", 1.5, 0.0, 1.5, 0.05));
-   private final xz u = new xz();
+   private final XZombieEffect u = new XZombieEffect();
    private Object E;
    private Object g;
    private Vec3d d;
    private VoxelShape V;
-   private dz D;
+   private SkyZone D;
    private BlockPos K;
    private int v = -1;
    private boolean y;
@@ -151,14 +151,14 @@ public final class BlockOverlay extends Module {
                         }
                      }
 
-                     xz.Type_n var11 = this.u.wAsXz_Type_n(var7, mb.RAsDouble(), this.transition.getValue() / 1000.0);
+                     XZombieEffect.Type_n var11 = this.u.wAsXz_Type_n(var7, MediaSession.RAsDouble(), this.transition.getValue() / 1000.0);
                      BlockOverlay.Type_d var9 = this.D != null && var11.bounds() != null
                         ? new BlockOverlay.Type_d(
                            this.K,
                            this.D,
                            var11.bounds().expand(0.002),
                            var11.alpha(),
-                           this.colorMode.pAsBoolean("Theme") ? bd.w : this.color.getValue(),
+                           this.colorMode.pAsBoolean("Theme") ? UiStyle.w : this.color.getValue(),
                            this.outlineOpacity.getValue(),
                            this.outlineThickness.getValue(),
                            this.fill.getValue() ? this.fillOpacity.getValue() : 0.0,
@@ -179,9 +179,9 @@ public final class BlockOverlay extends Module {
       }
    }
 
-   private dz SAsDz(VoxelShape var1) {
+   private SkyZone SAsDz(VoxelShape var1) {
       if (var1 != this.V) {
-         this.D = dz.build(var1);
+         this.D = SkyZone.build(var1);
          this.V = var1;
       }
 
@@ -214,15 +214,15 @@ public final class BlockOverlay extends Module {
       if (this.isEnabled()) {
          BlockOverlay.Type_d var4 = VAsBlockOverlay_Type_d(var3);
          if (this.isRuntimeActive() && var4 != null && !(var4.alpha < 0.001) && (!var2 || !(var4.glow <= 0.0))) {
-            long var5 = op.RAsLong();
-            rh.lAsVoid(var1, var2, var4.geometry, var4.bounds, var4.alpha, var4.color, var4.opacity, var4.width, var4.fillOpacity, var4.glow);
-            op.aAsVoid(var2 ? "BlockOverlay glow" : "BlockOverlay base", var5);
+            long var5 = OpenScreen.RAsLong();
+            RibbonHelper.lAsVoid(var1, var2, var4.geometry, var4.bounds, var4.alpha, var4.color, var4.opacity, var4.width, var4.fillOpacity, var4.glow);
+            OpenScreen.aAsVoid(var2 ? "BlockOverlay glow" : "BlockOverlay base", var5);
          }
       }
    }
 
    private static record Type_d(
-      BlockPos selected, dz geometry, Box bounds, double alpha, int color, double opacity, double width, double fillOpacity, double glow
+      BlockPos selected, SkyZone geometry, Box bounds, double alpha, int color, double opacity, double width, double fillOpacity, double glow
    ) {
    }
 }

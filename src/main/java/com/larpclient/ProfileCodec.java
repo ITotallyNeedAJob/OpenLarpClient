@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 public final class ProfileCodec {
-   private static final Pattern SmoothInput = Pattern.compile(
+   private static final Pattern t = Pattern.compile(
       "^(?:license[_ -]?key|(?:access|refresh|install|session)[_ -]?token|token|password|client[_ -]?secret|authorization|auth(?:\\.json)?|hwid)$", 2
    );
    private static final Pattern E = Pattern.compile("-----BEGIN .*PRIVATE KEY-----|\\bBearer\\s+\\S+", 2);
@@ -186,7 +186,7 @@ public final class ProfileCodec {
                      throw new IllegalArgumentException("Invalid profile field name");
                   }
 
-                  if (Set.of("__proto__", "constructor", "prototype").contains(var6) || SmoothInput.matcher(var6).matches()) {
+                  if (Set.of("__proto__", "constructor", "prototype").contains(var6) || t.matcher(var6).matches()) {
                      throw new IllegalArgumentException("Remove unsafe or authentication fields before sharing");
                   }
 
@@ -210,7 +210,7 @@ public final class ProfileCodec {
 
                if (var3 && E.matcher(var7).find()) {
                   throw new IllegalArgumentException(
-                     "Text that looks like PetEffectRenderer credential, such as \"Bearer ...\", cannot be shared. Change it, then share again."
+                     "Text that looks like a credential, such as \"Bearer ...\", cannot be shared. Change it, then share again."
                   );
                }
             }

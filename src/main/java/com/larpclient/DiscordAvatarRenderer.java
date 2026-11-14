@@ -24,7 +24,7 @@ public final class DiscordAvatarRenderer {
    private static final int X = 512;
    private static final long P = TimeUnit.MINUTES.toNanos(1L);
    private static final AtomicInteger L = new AtomicInteger();
-   private final Identifier ChatPayParser = Identifier.of("larp-client", "discord/avatar-" + L.getAndIncrement());
+   private final Identifier g = Identifier.of("larp-client", "discord/avatar-" + L.getAndIncrement());
    private volatile String H = "";
    private volatile CrosshairSettings.Type_q G;
    private volatile boolean p;
@@ -58,7 +58,7 @@ public final class DiscordAvatarRenderer {
             if (!this.HAsBoolean(var7, var9)) {
                return false;
             } else {
-               var1.drawTexture(RenderPipelines.GUI_TEXTURED, this.g, var2, var3, 0.0F, 0.0F, var4, var4, this.y, this.y, this.y, this.y, qg.iAsInt(-1));
+               var1.drawTexture(RenderPipelines.GUI_TEXTURED, this.g, var2, var3, 0.0F, 0.0F, var4, var4, this.y, this.y, this.y, this.y, QueueGroup.iAsInt(-1));
                return true;
             }
          }
@@ -136,7 +136,7 @@ public final class DiscordAvatarRenderer {
 
    private static void dAsVoid(byte[] var0) throws IOException {
       if (var0.length < 24) {
-         throw new IOException("Avatar response is not PetEffectRenderer PNG");
+         throw new IOException("Avatar response is not a PNG");
       } else {
          ByteBuffer var1 = ByteBuffer.wrap(var0);
          if (var1.getLong() == -8552249625308161526L && var1.getInt() == 13 && var1.getInt() == 1229472850) {
@@ -146,7 +146,7 @@ public final class DiscordAvatarRenderer {
                throw new IOException("Avatar is " + var2 + "x" + var3 + "; at most 512 per side");
             }
          } else {
-            throw new IOException("Avatar response is not PetEffectRenderer PNG");
+            throw new IOException("Avatar response is not a PNG");
          }
       }
    }

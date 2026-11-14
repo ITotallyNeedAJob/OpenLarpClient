@@ -17,7 +17,7 @@ public final class ProfileSettingsPanel extends SettingsPanel {
    final PlatformService wq = PlatformService.x;
    final ProfileManager wv = LarpClient.CAsLarpClient().fAsBo();
    final ProfileImportPreview wI = new ProfileImportPreview(this);
-   private final bv HexEdgeloop = new bv(this);
+   private final BulletTracer p = new BulletTracer(this);
    String Z = "";
    String Y = "";
    String G = "";
@@ -35,16 +35,16 @@ public final class ProfileSettingsPanel extends SettingsPanel {
    private String U = "Cancel";
    private boolean wO;
    private final List<ActionButton> w = new ArrayList<>();
-   private final List<ActionButton> LineSegment = new ArrayList<>();
+   private final List<ActionButton> e = new ArrayList<>();
    private final Map<ActionButton, List<ActionButton>> wT = new LinkedHashMap<>();
    private TextInputWidget wB;
    private TextInputWidget wA;
    private TextInputWidget wY;
    private int u;
    private int j;
-   private int ScreenScale = 62;
-   private final w2 F = new w2(0.0);
-   private final dr<JsonObject> I = new dr<>(var1x -> this.JAsMinecraftClient().execute(var1x), this::fAsBoolean);
+   private int y = 62;
+   private final WeatherRenderer F = new WeatherRenderer(0.0);
+   private final AsyncExecutor<JsonObject> I = new AsyncExecutor<>(var1x -> this.JAsMinecraftClient().execute(var1x), this::fAsBoolean);
 
    ProfileSettingsPanel(ClickGuiScreen var1) {
       super("Configs");
@@ -275,7 +275,7 @@ public final class ProfileSettingsPanel extends SettingsPanel {
       } else if (this.wI.m != null) {
          this.wI.DAsVoid();
       } else if (this.wf) {
-         this.QAsVoid("Import config", "Paste PetEffectRenderer share code. Nothing loads until you confirm.");
+         this.QAsVoid("Import config", "Paste a share code. Nothing loads until you confirm.");
          this.wY = this.wI.cAsQq();
          this.rAsQo("Cancel", () -> {
             this.wf = false;
@@ -505,7 +505,7 @@ public final class ProfileSettingsPanel extends SettingsPanel {
       int var4 = Math.min(180, Math.max(1, var2 - var3));
       this.wB.bounds(var1 + var3, this.P.bodyTop(), var4);
       this.wB.F = 20;
-      TextLayout.Type_u var5 = com.larpclient.j.LAsJ_Type_u(var2, this.e.stream().map(var0 -> TextDrawing.jAsInt(var0.X, TextDrawing.Type_s.HELP) + 12).toList());
+      TextLayout.Type_u var5 = com.larpclient.TextLayout.LAsJ_Type_u(var2, this.e.stream().map(var0 -> TextDrawing.jAsInt(var0.X, TextDrawing.Type_s.HELP) + 12).toList());
       this.y = 27 + var5.height() + 8;
 
       for (int var6 = 0; var6 < this.e.size(); var6++) {
@@ -517,7 +517,7 @@ public final class ProfileSettingsPanel extends SettingsPanel {
       }
 
       super.layout();
-      o1 var12 = o1.calculate(var2, this.w.size());
+      OverlayRenderer var12 = OverlayRenderer.calculate(var2, this.w.size());
       int var13 = Math.max(1, this.P.bottom() - this.bodyTop());
       this.j = var12.height();
       this.u = Math.clamp((long)this.u, 0, Math.max(0, this.j - var13));
@@ -556,7 +556,7 @@ public final class ProfileSettingsPanel extends SettingsPanel {
          TextDrawing.zAsString("Configs", Math.max(1, this.wB.k - this.P.contentX() - 6), TextDrawing.Type_s.TITLE),
          this.P.contentX(),
          this.P.bodyTop() + 3,
-         bd.u,
+         UiStyle.u,
          TextDrawing.Type_s.TITLE
       );
       this.wB.render(var1, var2, var3);
@@ -585,7 +585,7 @@ public final class ProfileSettingsPanel extends SettingsPanel {
 
       GuiDrawing.aAsVoid(var1, this.UAsInt() - 3, this.bodyTop(), Math.max(1, this.P.bottom() - this.bodyTop()), this.j, (int)Math.round(this.F.yAsDouble()));
       if (this.w.isEmpty()) {
-         TextDrawing.UAsVoid(var1, this.wg ? "Loading..." : "No configs found", this.P.contentX() + 8, this.bodyTop() + 8, bd.e);
+         TextDrawing.UAsVoid(var1, this.wg ? "Loading..." : "No configs found", this.P.contentX() + 8, this.bodyTop() + 8, UiStyle.e);
       }
    }
 

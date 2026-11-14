@@ -5,9 +5,9 @@ import java.util.List;
 import net.minecraft.util.math.Vec3d;
 
 public final class HexEdgeloop {
-   public static final List<lc.Type_w> SahurDanceEngine = dAsList();
+   public static final List<LightmapAtlas.Type_w> d = dAsList();
 
-   private static List<lc.Type_w> dAsList() {
+   private static List<LightmapAtlas.Type_w> dAsList() {
       Vec3d[] var0 = new Vec3d[6];
 
       for (int var1 = 0; var1 < 6; var1++) {
@@ -19,7 +19,7 @@ public final class HexEdgeloop {
 
       for (int var5 = 0; var5 < 2; var5++) {
          for (int var3 = 0; var3 < 3; var3++) {
-            var4.add(new lc.Type_w(var0[var5 + var3 * 2], var0[var5 + (var3 * 2 + 2) % 6], 0.5));
+            var4.add(new LightmapAtlas.Type_w(var0[var5 + var3 * 2], var0[var5 + (var3 * 2 + 2) % 6], 0.5));
          }
       }
 

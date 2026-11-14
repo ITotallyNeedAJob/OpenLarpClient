@@ -24,15 +24,15 @@ public enum CinematicQuality {
    }
 
    public int HAsInt() {
-      return Math.min(this.t, x9.jAsInt(this.t));
+      return Math.min(this.t, BloomQualityHelper.jAsInt(this.t));
    }
 
    public int EAsInt() {
-      return Math.max(8, x9.jAsInt(this.j));
+      return Math.max(8, BloomQualityHelper.jAsInt(this.j));
    }
 
    public boolean dAsBoolean() {
-      return x9.K != BloomQuality.Type_w.Off;
+      return BloomQualityHelper.K != BloomQuality.Type_w.Off;
    }
 
    public static CinematicQuality xAsM7(String var0) {

@@ -1,7 +1,7 @@
 package com.larpclient;
 
 public record WidgetInfo(int left, int top, int width, int height, int cardY, int cardWidth, int cardHeight, int statusY, int footerY) {
-   public static wi calculate(int var0, int var1) {
+   public static WidgetInfo calculate(int var0, int var1) {
       int var2 = Math.min(560, var0 - 24);
       int var3 = Math.min(292, var1 - 24);
       int var4 = (var0 - var2) / 2;

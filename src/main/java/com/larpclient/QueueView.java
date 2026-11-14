@@ -15,7 +15,7 @@ import net.minecraft.util.math.Direction.Axis;
 
 public final class QueueView {
    private static final Set<Block> S = Set.of(Blocks.BEACON, Blocks.RESPAWN_ANCHOR, Blocks.ENCHANTING_TABLE, Blocks.CRAFTER, Blocks.OBSERVER, Blocks.CONDUIT);
-   private static final Set<Block> BloomUtility = Set.of(Blocks.CHEST, Blocks.TRAPPED_CHEST, Blocks.BARREL, Blocks.HOPPER, Blocks.DISPENSER, Blocks.DROPPER);
+   private static final Set<Block> b = Set.of(Blocks.CHEST, Blocks.TRAPPED_CHEST, Blocks.BARREL, Blocks.HOPPER, Blocks.DISPENSER, Blocks.DROPPER);
    private static final Set<Block> T = Set.of(
       Blocks.CRAFTING_TABLE,
       Blocks.FURNACE,
@@ -33,7 +33,7 @@ public final class QueueView {
       Blocks.FLETCHING_TABLE,
       Blocks.COMPOSTER
    );
-   private static final Set<Block> SmoothInput = Set.of(
+   private static final Set<Block> t = Set.of(
       Blocks.GLASS,
       Blocks.GLASS_PANE,
       Blocks.TINTED_GLASS,
@@ -61,11 +61,11 @@ public final class QueueView {
          return QueueView.Type_k.DEDICATED;
       } else if (var0.isOf(Blocks.ENDER_CHEST)) {
          return var2 ? QueueView.Type_k.STORAGE : QueueView.Type_k.DEDICATED;
-      } else if (BloomUtility.contains(var3)) {
+      } else if (b.contains(var3)) {
          return QueueView.Type_k.STORAGE;
       } else if (T.contains(var3)) {
          return QueueView.Type_k.UTILITY;
-      } else if (!SmoothInput.contains(var3) && !(var3 instanceof StainedGlassBlock) && !(var3 instanceof StainedGlassPaneBlock)) {
+      } else if (!t.contains(var3) && !(var3 instanceof StainedGlassBlock) && !(var3 instanceof StainedGlassPaneBlock)) {
          if (var0.isOf(Blocks.DEEPSLATE) && var0.get(Properties.AXIS) != Axis.Y) {
             return QueueView.Type_k.ALTERED;
          } else {
@@ -141,15 +141,15 @@ public final class QueueView {
          }
       }
 
-      public ae zAsAe(String var1, int var2, int var3) {
+      public FinderSummary zAsAe(String var1, int var2, int var3) {
          return this.mAsAe(var1, var2, var3, 1);
       }
 
-      public ae mAsAe(String var1, int var2, int var3, int var4) {
-         ae var5 = ae.EMPTY;
+      public FinderSummary mAsAe(String var1, int var2, int var3, int var4) {
+         FinderSummary var5 = FinderSummary.EMPTY;
 
          for (QueueView.Type_s.Type_z var7 : this.C.values()) {
-            ae var8 = var7.hAsAe();
+            FinderSummary var8 = var7.hAsAe();
             boolean var9 = var8.qualifies(var1, var2, var3, var4);
             boolean var10 = var5.qualifies(var1, var2, var3, var4);
             if (var9 && !var10 || var9 == var10 && (var8.weight() > var5.weight() || var8.weight() == var5.weight() && var8.sampleY() < var5.sampleY())) {
@@ -171,7 +171,7 @@ public final class QueueView {
          String A = "";
          int U = 16;
          int F = Integer.MAX_VALUE;
-         int BoxUtils = 16;
+         int c = 16;
          int H;
          int R = Integer.MIN_VALUE;
          int Z;
@@ -189,11 +189,11 @@ public final class QueueView {
             this.Z = Math.max(this.Z, var3 + 1);
          }
 
-         ae hAsAe() {
+         FinderSummary hAsAe() {
             Box var1 = this.F == Integer.MAX_VALUE
                ? null
                : new Box((double)this.U, (double)this.F, (double)this.c, (double)this.H, (double)this.R, (double)this.Z);
-            return new ae(this.I, this.i, this.L, this.r, this.J, this.e, this.A, var1, this.X);
+            return new FinderSummary(this.I, this.i, this.L, this.r, this.J, this.e, this.A, var1, this.X);
          }
       }
    }

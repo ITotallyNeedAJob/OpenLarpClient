@@ -7,7 +7,7 @@ public final class CrosshairDrawingCodec {
    public static final int A = 7;
    private static final int G = 225;
    private static final int J = 57;
-   public static final CrosshairDrawingCodec ChatPayParser = new CrosshairDrawingCodec(new BitSet(225));
+   public static final CrosshairDrawingCodec g = new CrosshairDrawingCodec(new BitSet(225));
    public static final CrosshairDrawingCodec O;
    private final BitSet W;
 

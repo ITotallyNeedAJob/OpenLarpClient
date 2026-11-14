@@ -10,9 +10,9 @@ final class PetEffectRenderer {
             SahurPetRenderer.AAsVoid(var0, var1.center(), var1.rotation(), (float)var1.scale());
          }
       } else {
-         int var3 = var2 ? bg.pAsInt(var1.glow(), var1.glowStrength() * 0.6) : var1.body();
-         int var4 = bg.pAsInt(var1.glow(), var2 ? var1.glowStrength() : 1.0);
-         br var5 = new br(var0, var1.center(), var1.rotation(), var1.scale(), var2).wAsBr(var1.realism() ? "Matte" : var1.finish(), var1.view());
+         int var3 = var2 ? ColorUtil.pAsInt(var1.glow(), var1.glowStrength() * 0.6) : var1.body();
+         int var4 = ColorUtil.pAsInt(var1.glow(), var2 ? var1.glowStrength() : 1.0);
+         BrushStroke var5 = new BrushStroke(var0, var1.center(), var1.rotation(), var1.scale(), var2).wAsBr(var1.realism() ? "Matte" : var1.finish(), var1.view());
          String var6 = var1.style();
          switch (var6) {
             case "Jellyfish":
@@ -33,7 +33,7 @@ final class PetEffectRenderer {
       }
    }
 
-   private static void LAsVoid(br var0, double var1, double var3, double var5, double var7, int var9, boolean var10) {
+   private static void LAsVoid(BrushStroke var0, double var1, double var3, double var5, double var7, int var9, boolean var10) {
       for (int var11 = -1; var11 <= 1; var11 += 2) {
          var0.LAsVoid((double)var11 * var1, var3, var5, var7, var10 ? 0.003 : var7 * 0.8, var7 * 0.5, -658456);
          var0.LAsVoid((double)var11 * var1, var3 - 0.001, var5 + var7 * 0.43, var7 * 0.42, var10 ? 0.002 : var7 * 0.55, var7 * 0.18, -15263967);
@@ -43,19 +43,19 @@ final class PetEffectRenderer {
       }
    }
 
-   private static void JAsVoid(br var0, Pets.Type_w var1, int var2, int var3, boolean var4) {
+   private static void JAsVoid(BrushStroke var0, Pets.Type_w var1, int var2, int var3, boolean var4) {
       double var5 = Math.pow(Math.max(0.0, Math.sin(var1.time() * 2.4)), 3.0);
       double var7 = 0.2 + var5 * 0.03;
       double var9 = 0.15 - var5 * 0.03;
       var0.LAsVoid(0.0, -0.02, 0.0, var7 * 0.45, var9 * 0.5, var7 * 0.45, var3);
       if (!var4) {
          if (var1.finish().equals("Crystal") && !var1.realism()) {
-            var0.rAsVoid(var7, var9, var9 * 0.5, var1.time() * 0.3, bg.pAsInt(var2, 0.65));
+            var0.rAsVoid(var7, var9, var9 * 0.5, var1.time() * 0.3, ColorUtil.pAsInt(var2, 0.65));
          } else {
-            var0.LAsVoid(0.0, 0.0, 0.0, var7, var9, var7, bg.pAsInt(bg.xAsInt(var2, -1, 0.35), 0.47));
+            var0.LAsVoid(0.0, 0.0, 0.0, var7, var9, var7, ColorUtil.pAsInt(ColorUtil.xAsInt(var2, -1, 0.35), 0.47));
          }
 
-         var0.KAsVoid(var7 * 0.9, 0.018, new Quaternionf(), bg.xAsInt(var2, -1, 0.5));
+         var0.KAsVoid(var7 * 0.9, 0.018, new Quaternionf(), ColorUtil.xAsInt(var2, -1, 0.5));
          LAsVoid(var0, 0.07, 0.01, var7 * 0.92, 0.02, var3, Math.sin(var1.time() * 0.8) > 0.995);
       }
 
@@ -72,7 +72,7 @@ final class PetEffectRenderer {
                Math.sin(var12) * var18 + Math.cos(var1.time() * 1.9 - var16 * 3.5 + (double)var11) * 0.05 * var16
             );
             if (var14 != null) {
-               var0.CAsVoid(var14, var20, 0.012 * (1.0 - (var16 - 0.125) * 0.7), 0.012 * (1.0 - var16 * 0.7), bg.pAsInt(var3, 0.9 * (1.0 - var16 * 0.6)));
+               var0.CAsVoid(var14, var20, 0.012 * (1.0 - (var16 - 0.125) * 0.7), 0.012 * (1.0 - var16 * 0.7), ColorUtil.pAsInt(var3, 0.9 * (1.0 - var16 * 0.6)));
             }
 
             var14 = var20;
@@ -83,23 +83,23 @@ final class PetEffectRenderer {
          for (int var21 = 0; var21 < 4; var21++) {
             double var22 = var1.time() * 0.3 + (double)var21 * Math.PI / 2.0;
             var0.LAsVoid(
-               Math.cos(var22) * var7 * 0.32, var9 * 0.05, Math.sin(var22) * var7 * 0.32, var7 * 0.16, var9 * 0.18, var7 * 0.09, bg.xAsInt(var2, -1, 0.5)
+               Math.cos(var22) * var7 * 0.32, var9 * 0.05, Math.sin(var22) * var7 * 0.32, var7 * 0.16, var9 * 0.18, var7 * 0.09, ColorUtil.xAsInt(var2, -1, 0.5)
             );
          }
       }
    }
 
-   private static void AAsVoid(br var0, Pets.Type_w var1, int var2, int var3, boolean var4) {
+   private static void AAsVoid(BrushStroke var0, Pets.Type_w var1, int var2, int var3, boolean var4) {
       double var5 = Math.pow(Math.max(0.0, Math.sin(var1.time() * 2.6)), 6.0);
       double var7 = 1.0 + var5 * 0.12;
-      var0.rAsVoid(0.13 * var7, 0.042 * var7, 0.042 * var7, var1.time() * 0.9, bg.xAsInt(var3, -1, 0.3 + 0.3 * var5));
+      var0.rAsVoid(0.13 * var7, 0.042 * var7, 0.042 * var7, var1.time() * 0.9, ColorUtil.xAsInt(var3, -1, 0.3 + 0.3 * var5));
       if (!var4) {
          if (var1.finish().equals("Crystal") && !var1.realism()) {
-            var0.rAsVoid(0.125, 0.13, 0.13, var1.time() * 0.9, bg.pAsInt(var2, 0.65));
+            var0.rAsVoid(0.125, 0.13, 0.13, var1.time() * 0.9, ColorUtil.pAsInt(var2, 0.65));
          } else if (var1.finish().equals("Obsidian") && !var1.realism()) {
-            var0.SAsVoid(0.0, 0.0, 0.0, 0.11, 0.11, 0.11, bg.pAsInt(var2, 0.9));
+            var0.SAsVoid(0.0, 0.0, 0.0, 0.11, 0.11, 0.11, ColorUtil.pAsInt(var2, 0.9));
          } else {
-            var0.LAsVoid(0.0, 0.0, 0.0, 0.125, 0.125, 0.125, bg.pAsInt(var2, 0.5));
+            var0.LAsVoid(0.0, 0.0, 0.0, 0.125, 0.125, 0.125, ColorUtil.pAsInt(var2, 0.5));
          }
 
          LAsVoid(var0, 0.042, 0.03, 0.112, 0.017, var3, Math.sin(var1.time() * 0.8) > 0.995);
@@ -113,9 +113,9 @@ final class PetEffectRenderer {
       }
    }
 
-   private static void bAsVoid(br var0, Pets.Type_w var1, int var2, int var3, boolean var4) {
+   private static void bAsVoid(BrushStroke var0, Pets.Type_w var1, int var2, int var3, boolean var4) {
       double var7 = Math.min(0.12, var1.speed() * 0.03);
-      int var9 = var4 ? bg.pAsInt(var3, 0.32) : bg.pAsInt(bg.xAsInt(var2, -1, 0.35), 0.88);
+      int var9 = var4 ? ColorUtil.pAsInt(var3, 0.32) : ColorUtil.pAsInt(ColorUtil.xAsInt(var2, -1, 0.35), 0.88);
 
       for (int var10 = 0; var10 < 18; var10++) {
          for (int var11 = 0; var11 < 32; var11++) {
@@ -157,9 +157,9 @@ final class PetEffectRenderer {
       );
    }
 
-   private static void mAsVoid(EffectGeometryRenderer var0, br var1, Pets.Type_w var2, int var3, int var4, boolean var5) {
-      int var6 = bg.xAsInt(var3, -9830, 0.5);
-      int var7 = bg.xAsInt(var3, -728387, 0.65);
+   private static void mAsVoid(EffectGeometryRenderer var0, BrushStroke var1, Pets.Type_w var2, int var3, int var4, boolean var5) {
+      int var6 = ColorUtil.xAsInt(var3, -9830, 0.5);
+      int var7 = ColorUtil.xAsInt(var3, -728387, 0.65);
       var1.LAsVoid(0.0, -var2.wings() * 0.015, 0.0, 0.085, 0.085, 0.13, var3);
       var1.LAsVoid(0.0, -0.01, -0.1, 0.07, 0.065, 0.08, var3);
       if (!var5) {
@@ -170,10 +170,10 @@ final class PetEffectRenderer {
 
       var1.CAsVoid(new Vec3d(0.0, 0.04, 0.1), new Vec3d(0.0, 0.15, 0.17), 0.05, 0.043, var3);
       Vec3d var25 = var1.EAsVec3d(0.0, 0.15, 0.17);
-      br var9 = new br(var0, var25, new Quaternionf(var2.rotation()).rotateY((float)(-var2.gazeYaw())).rotateX((float)var2.gazePitch()), var2.scale(), var5)
+      BrushStroke var9 = new BrushStroke(var0, var25, new Quaternionf(var2.rotation()).rotateY((float)(-var2.gazeYaw())).rotateX((float)var2.gazePitch()), var2.scale(), var5)
          .wAsBr(var2.realism() ? "Matte" : var2.finish(), var2.view());
       var9.LAsVoid(0.0, 0.0, 0.0, 0.075, 0.068, 0.08, var3);
-      var9.LAsVoid(0.0, -0.026, 0.06, 0.055, 0.032, 0.085, bg.xAsInt(var3, var6, 0.25));
+      var9.LAsVoid(0.0, -0.026, 0.06, 0.055, 0.032, 0.085, ColorUtil.xAsInt(var3, var6, 0.25));
       if (!var5) {
          LAsVoid(var9, 0.042, 0.018, 0.078, 0.018, var4, Math.sin(var2.time() * 0.8) > 0.995);
 
@@ -184,7 +184,7 @@ final class PetEffectRenderer {
                new Vec3d((double)var10 * 0.035, 0.0, -0.005),
                new Vec3d((double)var10 * 0.11, 0.022, -0.07),
                new Vec3d((double)var10 * 0.065, -0.04, -0.04),
-               bg.pAsInt(var4, 0.8)
+               ColorUtil.pAsInt(var4, 0.8)
             );
          }
 
@@ -227,7 +227,7 @@ final class PetEffectRenderer {
             var1.CAsVoid(var15, var17[var20], 0.008, 0.003, var6);
          }
 
-         int var38 = bg.pAsInt(bg.xAsInt(var3, var4, 0.3), var5 ? 0.25 : 0.78);
+         int var38 = ColorUtil.pAsInt(ColorUtil.xAsInt(var3, var4, 0.3), var5 ? 0.25 : 0.78);
          var1.iAsVoid(var13, var15, var17[0], var38);
          var1.iAsVoid(var15, var17[0], var17[1], var38);
          var1.iAsVoid(var15, var17[1], var17[2], var38);
@@ -261,7 +261,7 @@ final class PetEffectRenderer {
             for (int var32 = 0; var32 < 5; var32++) {
                for (int var35 = -1; var35 <= 1; var35 += 2) {
                   double var36 = 0.075 - (double)var32 * 0.04;
-                  var1.LAsVoid((double)var35 * 0.07, 0.035, var36, 0.013, 0.008, 0.014, bg.xAsInt(var3, -1, 0.15));
+                  var1.LAsVoid((double)var35 * 0.07, 0.035, var36, 0.013, 0.008, 0.014, ColorUtil.xAsInt(var3, -1, 0.15));
                }
             }
          }
@@ -269,11 +269,11 @@ final class PetEffectRenderer {
 
       double var33 = var2.time() % 4.0 / 4.0;
       if (var33 < 0.2 && !var5) {
-         var9.LAsVoid(0.0, -0.02, 0.15 + var33 * 0.6, 0.025 + var33 * 0.1, 0.025 + var33 * 0.1, 0.05 + var33 * 0.2, bg.XAsInt(var4, 1.0 - var33 * 5.0));
+         var9.LAsVoid(0.0, -0.02, 0.15 + var33 * 0.6, 0.025 + var33 * 0.1, 0.025 + var33 * 0.1, 0.05 + var33 * 0.2, ColorUtil.XAsInt(var4, 1.0 - var33 * 5.0));
       }
    }
 
-   private static void ZAsVoid(br var0, Pets.Type_w var1, int var2, boolean var3) {
+   private static void ZAsVoid(BrushStroke var0, Pets.Type_w var1, int var2, boolean var3) {
       var0.LAsVoid(0.0, 0.0, 0.0, 0.1, 0.08, 0.15, var2);
       if (!var3) {
          for (int var4 = 0; var4 < 3; var4++) {

@@ -7,7 +7,7 @@ import java.util.Map;
 public final class OpenScreen {
    private static final Map<String, Double> Z = new LinkedHashMap<>();
    private static final Map<String, Long> n = new LinkedHashMap<>();
-   private static final Map<String, Long> AuctionNotifier = new LinkedHashMap<>();
+   private static final Map<String, Long> o = new LinkedHashMap<>();
 
    public OpenScreen() {
    }
@@ -25,16 +25,16 @@ public final class OpenScreen {
    }
 
    public static void sAsVoid() {
-      AuctionNotifier.clear();
+      o.clear();
       if (Boolean.getBoolean("larp.debug")) {
-         AuctionNotifier.putAll(n);
+         o.putAll(n);
       }
 
       n.clear();
    }
 
    public static Map<String, Long> gAsMap() {
-      return Collections.unmodifiableMap(AuctionNotifier.isEmpty() ? n : o);
+      return Collections.unmodifiableMap(o.isEmpty() ? n : o);
    }
 
    public static long RAsLong() {

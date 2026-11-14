@@ -48,7 +48,7 @@ public final class RoundedShapePipeline {
    private static boolean G;
    private static boolean C;
    private static boolean w;
-   public static final float MenuPopupProvider = 64.0F;
+   public static final float f = 64.0F;
    private static boolean Q;
    private static boolean W;
    private static boolean N;
@@ -89,13 +89,13 @@ public final class RoundedShapePipeline {
    }
 
    public static void EAsVoid() {
-      if (A && !ChatPayParser && !z) {
+      if (A && !g && !z) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.q);
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.r);
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.G);
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.V);
-            ChatPayParser = true;
+            g = true;
             ClientLog.GAsVoid("UI", "Smooth GUI/HUD fills, one-pixel rims, focus rings and soft glows ready; native batching and clipping retained");
          } catch (RuntimeException var5) {
             z = true;
@@ -103,10 +103,10 @@ public final class RoundedShapePipeline {
          }
       }
 
-      if (S && ChatPayParser && !HexEdgeloop && !R) {
+      if (S && g && !p && !R) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.m);
-            HexEdgeloop = true;
+            p = true;
             ClientLog.GAsVoid("UI", "Selected-card contour light ready");
          } catch (RuntimeException var4) {
             R = true;
@@ -114,7 +114,7 @@ public final class RoundedShapePipeline {
          }
       }
 
-      if (G && ChatPayParser && !C && !w) {
+      if (G && g && !C && !w) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.O);
             C = true;
@@ -125,7 +125,7 @@ public final class RoundedShapePipeline {
          }
       }
 
-      if (Q && ChatPayParser && !W && !N) {
+      if (Q && g && !W && !N) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.j);
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.v);
@@ -139,12 +139,12 @@ public final class RoundedShapePipeline {
          }
       }
 
-      if (Q && W && HexEdgeloop && !X && !c) {
+      if (Q && W && p && !X && !c) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.K);
             X = true;
          } catch (RuntimeException var1) {
-            BoxUtils = true;
+            c = true;
             ClientLog.lAsVoid("UI", "World Menu contour light pipeline unavailable; it keeps its four corners until resource reload", var1);
          }
       }
@@ -154,10 +154,10 @@ public final class RoundedShapePipeline {
       w = false;
       C = false;
       R = false;
-      HexEdgeloop = false;
+      p = false;
       z = false;
-      ChatPayParser = false;
-      BoxUtils = false;
+      g = false;
+      c = false;
       X = false;
       N = false;
       W = false;
@@ -173,7 +173,7 @@ public final class RoundedShapePipeline {
             if (!g) {
                GuiDrawing.KAsVoid(var0, Math.round(var1), Math.round(var2), Math.round(var3), Math.round(var4), Math.max(1, Math.round(var7)), var6);
             } else {
-               int var8 = qg.iAsInt(var6);
+               int var8 = QueueGroup.iAsInt(var6);
                if (var8 >>> 24 != 0) {
                   var0.state
                      .addSimpleElement(
@@ -204,11 +204,11 @@ public final class RoundedShapePipeline {
                A = true;
                if (!g) {
                   GuiDrawing.KAsVoid(
-                     var0, Math.round(var1), Math.round(var2), Math.round(var3), Math.round(var4), Math.max(1, Math.round(var8)), bg.xAsInt(var6, var7, 0.5)
+                     var0, Math.round(var1), Math.round(var2), Math.round(var3), Math.round(var4), Math.max(1, Math.round(var8)), ColorUtil.xAsInt(var6, var7, 0.5)
                   );
                } else {
-                  var6 = qg.iAsInt(var6);
-                  var7 = qg.iAsInt(var7);
+                  var6 = QueueGroup.iAsInt(var6);
+                  var7 = QueueGroup.iAsInt(var7);
                   if (var6 >>> 24 != 0 || var7 >>> 24 != 0) {
                      var0.state
                         .addSimpleElement(
@@ -241,8 +241,8 @@ public final class RoundedShapePipeline {
          if (!g) {
             GuiDrawing.WAsVoid(var0, Math.round(var1), Math.round(var2), Math.round(var3), Math.round(var4), Math.max(1, Math.round(var8)), var6);
          } else {
-            var6 = qg.iAsInt(var6);
-            var7 = qg.iAsInt(var7);
+            var6 = QueueGroup.iAsInt(var6);
+            var7 = QueueGroup.iAsInt(var7);
             if (var6 >>> 24 != 0 || var7 >>> 24 != 0) {
                var0.state
                   .addSimpleElement(
@@ -260,7 +260,7 @@ public final class RoundedShapePipeline {
          if (!g) {
             GuiDrawing.WAsVoid(var0, Math.round(var1), Math.round(var2), Math.round(var3), Math.round(var4), Math.max(1, Math.round(var7)), var6);
          } else {
-            var6 = qg.iAsInt(var6);
+            var6 = QueueGroup.iAsInt(var6);
             if (var6 >>> 24 != 0) {
                var0.state
                   .addSimpleElement(
@@ -289,8 +289,8 @@ public final class RoundedShapePipeline {
          float var9 = Math.clamp(var5, 0.5F, Math.max(0.5F, Math.min(var3, var4) * 0.5F));
          A = true;
          if (g) {
-            var7 = qg.iAsInt(var7);
-            var8 = qg.iAsInt(var8);
+            var7 = QueueGroup.iAsInt(var7);
+            var8 = QueueGroup.iAsInt(var8);
             if (var7 >>> 24 != 0 || var8 >>> 24 != 0) {
                float var10 = var6 + 1.0F;
                var0.state
@@ -322,7 +322,7 @@ public final class RoundedShapePipeline {
          A = true;
          S = true;
          if (p) {
-            var9 = qg.iAsInt(var9);
+            var9 = QueueGroup.iAsInt(var9);
             if (var9 >>> 24 != 0) {
                float var11 = Math.max(0.0F, var6) + 1.0F;
                var0.state
@@ -355,7 +355,7 @@ public final class RoundedShapePipeline {
          A = true;
          G = true;
          if (C) {
-            var9 = qg.iAsInt(var9);
+            var9 = QueueGroup.iAsInt(var9);
             if (var9 >>> 24 != 0) {
                var0.state
                   .addSimpleElement(
@@ -432,7 +432,7 @@ public final class RoundedShapePipeline {
       static final RenderPipeline r = iAsRenderPipeline(1, false);
       static final RenderPipeline G = iAsRenderPipeline(2, false);
       static final RenderPipeline V = iAsRenderPipeline(-1, false);
-      static final RenderPipeline PriceDetector = fAsRenderPipeline(false);
+      static final RenderPipeline m = fAsRenderPipeline(false);
       static final RenderPipeline O = RenderPipeline.builder(new Snippet[]{RenderPipelines.GUI_SNIPPET})
          .withLocation(Identifier.of("larp-client", "gui_rounded_ripple"))
          .withVertexShader(Identifier.of("larp-client", "gui/rounded"))
@@ -440,7 +440,7 @@ public final class RoundedShapePipeline {
          .withVertexFormat(RoundedShapePipeline.L, DrawMode.QUADS)
          .withShaderDefine("LARP_UI_RIPPLE")
          .build();
-      static final RenderPipeline TextLayout = iAsRenderPipeline(0, true);
+      static final RenderPipeline j = iAsRenderPipeline(0, true);
       static final RenderPipeline v = iAsRenderPipeline(1, true);
       static final RenderPipeline N = iAsRenderPipeline(2, true);
       static final RenderPipeline S = iAsRenderPipeline(-1, true);

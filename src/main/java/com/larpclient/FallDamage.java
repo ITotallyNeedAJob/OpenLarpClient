@@ -23,22 +23,22 @@ public final class FallDamage {
    public static synchronized void uAsVoid(Packet<?> var0) {
       if (var0 instanceof PlayerMoveC2SPacket var1) {
          if (var1.changesLook()) {
-            PetEffectRenderer = var1.getYaw(a);
+            a = var1.getYaw(a);
             v = var1.getPitch(v);
             z = true;
          }
 
          double var3 = var1.getY(O);
          if (var1.isOnGround()) {
-            AuraModule = 0.0;
+            x = 0.0;
          } else if (var1.changesPosition() && i) {
             double var5 = O - var3;
-            AuraModule = var5 < 0.0 ? 0.0 : AuraModule + var5;
+            x = var5 < 0.0 ? 0.0 : x + var5;
          }
 
          if (var1.changesPosition()) {
             O = var3;
-            ChinaHatCodec = true;
+            i = true;
          }
 
          B = var1.isOnGround();
@@ -52,8 +52,8 @@ public final class FallDamage {
    }
 
    public static synchronized void tAsVoid() {
-      ChinaHatCodec = false;
-      AuraModule = 0.0;
+      i = false;
+      x = 0.0;
       O = 0.0;
       B = true;
       D = false;
@@ -73,7 +73,7 @@ public final class FallDamage {
          return false;
       } else {
          MinecraftClient var2 = MinecraftClient.getInstance();
-         return var2.getServer() != null && r6.NAsBoolean("NoFall")
+         return var2.getServer() != null && ModuleKeybindChecker.NAsBoolean("NoFall")
             ? false
             : QAsBoolean(var0.getY(), var0.getVelocity().y, var0.getAttackCooldownProgress(0.0F));
       }

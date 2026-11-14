@@ -18,7 +18,7 @@ public class InputMixin {
       cancellable = true
    )
    private void larpclient$injectJump(CallbackInfo var1) {
-      if (p5.oAsBoolean()) {
+      if (ParticleEmitter.oAsBoolean()) {
          var1.cancel();
       }
    }

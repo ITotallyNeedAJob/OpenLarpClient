@@ -22,9 +22,9 @@ public record MouseInput(int background, int title, int subtitle, int accent, bo
       return contrast(-1, var0) > contrast(-15132391, var0) ? -1 : -15132391;
    }
 
-   public static mi atAsMi(double var0, double var2, int var4) {
-      int var5 = bg.xAsInt(bd.M, bd.h, Math.clamp(var2, 0.0, 1.0)) | 0xFF000000;
-      return new MouseInput(var5, bd.u, bd.e, readableAccent(var4, var5), controlInk(var5) == -15132391);
+   public static MouseInput atAsMi(double var0, double var2, int var4) {
+      int var5 = ColorUtil.xAsInt(UiStyle.M, UiStyle.h, Math.clamp(var2, 0.0, 1.0)) | 0xFF000000;
+      return new MouseInput(var5, UiStyle.u, UiStyle.e, readableAccent(var4, var5), controlInk(var5) == -15132391);
    }
 
    public static int readableAccent(int var0, int var1) {
@@ -33,13 +33,13 @@ public record MouseInput(int background, int title, int subtitle, int accent, bo
          return var2;
       } else {
          for (int var3 = 1; var3 <= 20; var3++) {
-            int var4 = bg.xAsInt(var2, bd.u, (double)var3 / 20.0);
+            int var4 = ColorUtil.xAsInt(var2, UiStyle.u, (double)var3 / 20.0);
             if (contrast(var4, var1) >= 3.0) {
                return var4;
             }
          }
 
-         return bd.u;
+         return UiStyle.u;
       }
    }
 }

@@ -23,14 +23,14 @@ public final class HeadlessKorblox extends Module {
    );
    public final NumberSetting length = this.addSetting(
       new NumberSetting(
-         "Length", "Spike length; 1 matches the Roblox leg, the longest reaches the foot", 1.0, 0.6, Math.floor(ms.fAsDouble() * 20.0) / 20.0, 0.05
+         "Length", "Spike length; 1 matches the Roblox leg, the longest reaches the foot", 1.0, 0.6, Math.floor(ModuleSearch.fAsDouble() * 20.0) / 20.0, 0.05
       )
    );
    public final NumberSetting thickness = this.addSetting(new NumberSetting("Thickness", "Spike and hip knob width", 1.0, 0.6, 1.5, 0.05));
    public final ColorSetting hipColor = this.addSetting(new ColorSetting("Hip Color", "Color at the hip knob", -14935272));
    public final ColorSetting tipColor = this.addSetting(new ColorSetting("Tip Color", "Color the bone fades to at its point", -10178636));
    public final NumberSetting tipGlow = this.addSetting(new NumberSetting("Tip Glow", "How brightly the point glows in the dark", 0.3, 0.0, 1.0, 0.05));
-   private la U;
+   private LimbData U;
 
    public HeadlessKorblox() {
       super("Headless Korblox", "Go headless and swap a leg for the Korblox bone spike, like the Roblox combo", Category.VISUALS, -1);
@@ -76,7 +76,7 @@ public final class HeadlessKorblox extends Module {
       }
    }
 
-   public la kAsLa(PlayerLikeEntity var1) {
+   public LimbData kAsLa(PlayerLikeEntity var1) {
       if (!this.isEnabled()) {
          return null;
       } else {
@@ -88,7 +88,7 @@ public final class HeadlessKorblox extends Module {
       return this.isEnabled() ? this.isOperational() && this.self.getValue() && this.headless.getValue() : false;
    }
 
-   public la uAsLa() {
+   public LimbData uAsLa() {
       if (!this.isEnabled()) {
          return null;
       } else {
@@ -112,14 +112,14 @@ public final class HeadlessKorblox extends Module {
       return var10000;
    }
 
-   private la WAsLa() {
+   private LimbData WAsLa() {
       int var1 = this.leg.pAsBoolean("Both") ? 3 : (this.leg.pAsBoolean("Left") ? 2 : 1);
       int var2 = this.hipColor.getValue();
       int var3 = this.tipColor.getValue();
       float var4 = this.tipGlow.getValue().floatValue();
       float var5 = this.length.getValue().floatValue();
       float var6 = this.thickness.getValue().floatValue();
-      la var7 = this.U;
+      LimbData var7 = this.U;
       if (var7 == null
          || var7.legs() != var1
          || var7.hip() != var2
@@ -127,7 +127,7 @@ public final class HeadlessKorblox extends Module {
          || var7.glow() != var4
          || var7.length() != var5
          || var7.thickness() != var6) {
-         this.U = var7 = new la(var1, var2, var3, var4, var5, var6);
+         this.U = var7 = new LimbData(var1, var2, var3, var4, var5, var6);
       }
 
       return var7;

@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier;
 import org.lwjgl.system.MemoryStack;
 
 public final class WorldColorPostEffect {
-   private static final RenderPipeline GroundSample = RenderPipeline.builder(new Snippet[0])
+   private static final RenderPipeline k = RenderPipeline.builder(new Snippet[0])
       .withLocation(ZAsIdentifier("world_color"))
       .withVertexShader(ZAsIdentifier("post/fullscreen"))
       .withFragmentShader(ZAsIdentifier("post/world_color"))
@@ -35,14 +35,14 @@ public final class WorldColorPostEffect {
    private static GpuBuffer d;
    private static double I = -100.0;
    private static int q;
-   private static int CropHelper = -1;
+   private static int u = -1;
    private static boolean K;
 
    public WorldColorPostEffect() {
    }
 
    public static void CAsVoid(int var0) {
-      I = mb.RAsDouble();
+      I = MediaSession.RAsDouble();
       q = var0;
    }
 
@@ -50,23 +50,23 @@ public final class WorldColorPostEffect {
       MinecraftClient var0 = MinecraftClient.getInstance();
       WorldColor var1 = WorldColor.FAsWorldColor();
       if (var0.world != null) {
-         double var2 = Math.max(0.0, 1.0 - (mb.RAsDouble() - I) / 0.24);
+         double var2 = Math.max(0.0, 1.0 - (MediaSession.RAsDouble() - I) / 0.24);
          var2 *= var2;
          int var4 = var1 != null && var1.isRuntimeActive() ? 1 : 0;
          if (var4 != 0 || var2 != 0.0) {
-            if (CropHelper != BloomQuality.J) {
+            if (u != BloomQuality.J) {
                YAsVoid();
                K = false;
-               CropHelper = BloomQuality.J;
+               u = BloomQuality.J;
             }
 
             if (!K) {
-               long var5 = op.RAsLong();
+               long var5 = OpenScreen.RAsLong();
 
                try {
-                  if (SahurDanceEngine == null) {
+                  if (d == null) {
                      WorldLabelLayout.DAsVoid(k);
-                     SahurDanceEngine = RenderSystem.getDevice().createBuffer(() -> "Larp WorldColor parameters", 136, 96L);
+                     d = RenderSystem.getDevice().createBuffer(() -> "Larp WorldColor parameters", 136, 96L);
                      ClientLog.GAsVoid("Shader", "WorldColor shader loaded");
                   }
 
@@ -88,7 +88,7 @@ public final class WorldColorPostEffect {
                      NAsVoid(var10, q, (float)var2);
                      var10.putFloat(1.0F / (float)var7.textureWidth).putFloat(1.0F / (float)var7.textureHeight).putFloat(0.0F).putFloat(0.0F);
                      var10.flip();
-                     var8.writeToBuffer(SahurDanceEngine.slice(), var10);
+                     var8.writeToBuffer(d.slice(), var10);
                   } catch (Throwable var231) {
                      if (var9 != null) {
                         try {
@@ -109,7 +109,7 @@ public final class WorldColorPostEffect {
 
                   try {
                      var26.setPipeline(k);
-                     var26.setUniform("Grade", SahurDanceEngine.slice());
+                     var26.setUniform("Grade", d.slice());
                      var26.bindTexture("Source", v.f.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
                      var26.draw(0, 3);
                   } catch (Throwable var22) {
@@ -132,7 +132,7 @@ public final class WorldColorPostEffect {
                   YAsVoid();
                   ClientLog.lAsVoid("WorldColor", "WorldPostRenderer stage=grade framebuffer=scene shader=post/world_color; disabled until reload", var24);
                } finally {
-                  op.aAsVoid("WorldColor", var5);
+                  OpenScreen.aAsVoid("WorldColor", var5);
                }
             }
          }
@@ -145,9 +145,9 @@ public final class WorldColorPostEffect {
 
    public static void YAsVoid() {
       v.close();
-      if (SahurDanceEngine != null) {
-         SahurDanceEngine.close();
-         SahurDanceEngine = null;
+      if (d != null) {
+         d.close();
+         d = null;
       }
    }
 

@@ -6,7 +6,7 @@ import com.larpclient.BridgeRenderer;
 
 public final class HandChams extends Module {
    private static HandChams d;
-   public final bp t = new bp(var1 -> this.addSetting(var1));
+   public final BridgeRenderer t = new BridgeRenderer(var1 -> this.addSetting(var1));
 
    public HandChams() {
       super("Hand Chams", "Animated gradient outlines, fill and glow on your hands and held items", Category.RENDER, -1);
@@ -24,12 +24,12 @@ public final class HandChams extends Module {
 
    @Override
    public void onDisable() {
-      b8.lAsVoid();
+      ButtonWidget.lAsVoid();
       this.t.EAsVoid();
    }
 
    @Override
    public void onTick() {
-      b8.yAsVoid();
+      ButtonWidget.yAsVoid();
    }
 }

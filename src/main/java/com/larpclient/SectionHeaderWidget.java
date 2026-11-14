@@ -33,15 +33,15 @@ public final class SectionHeaderWidget extends GuiWidget {
    public void render(DrawContext var1, int var2, int var3) {
       if (this.Y) {
          if (this.j) {
-            TextDrawing.NAsVoid(var1, TextDrawing.zAsString(this.P, this.V, TextDrawing.Type_s.SECTION), this.k, this.x + 3, bd.u, TextDrawing.Type_s.SECTION);
+            TextDrawing.NAsVoid(var1, TextDrawing.zAsString(this.P, this.V, TextDrawing.Type_s.SECTION), this.k, this.x + 3, UiStyle.u, TextDrawing.Type_s.SECTION);
          } else {
             TextDrawing.Type_s var4 = TextDrawing.Type_s.EYEBROW;
             String var5 = TextDrawing.zAsString(this.P.toUpperCase(Locale.ROOT), this.V - 8, var4);
             int var6 = this.x + this.F - var4.zAsInt() - 2;
-            TextDrawing.NAsVoid(var1, var5, this.k + 4, var6, bd.W, var4);
-            if (bd.hAsBoolean()) {
+            TextDrawing.NAsVoid(var1, var5, this.k + 4, var6, UiStyle.W, var4);
+            if (UiStyle.hAsBoolean()) {
                int var7 = this.k + 4 + TextDrawing.jAsInt(var5, var4) + 6;
-               GuiTextureDrawing.oAsVoid(var1, var7, var6 + var4.zAsInt() / 2, this.k + this.V - 4 - var7, false, bd.I);
+               GuiTextureDrawing.oAsVoid(var1, var7, var6 + var4.zAsInt() / 2, this.k + this.V - 4 - var7, false, UiStyle.I);
             }
          }
       }

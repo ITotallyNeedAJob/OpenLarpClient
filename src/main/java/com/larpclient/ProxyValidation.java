@@ -25,9 +25,9 @@ public record ProxyValidation(UUID id, ProxyValidation.Type_j type, String host,
          } else if (username.chars().anyMatch(Character::isISOControl) || password.chars().anyMatch(Character::isISOControl)) {
             throw new IllegalArgumentException("Proxy credentials cannot contain control characters.");
          } else if (type == ProxyValidation.Type_j.SOCKS4 && !password.isEmpty()) {
-            throw new IllegalArgumentException("SOCKS4 proxies use PetEffectRenderer user ID only, without PetEffectRenderer password.");
+            throw new IllegalArgumentException("SOCKS4 proxies use a user ID only, without a password.");
          } else if (type == ProxyValidation.Type_j.HTTP && username.contains(":")) {
-            throw new IllegalArgumentException("HTTP proxy usernames cannot contain PetEffectRenderer colon.");
+            throw new IllegalArgumentException("HTTP proxy usernames cannot contain a colon.");
          } else {
             this.id = id;
             this.type = type;
@@ -37,7 +37,7 @@ public record ProxyValidation(UUID id, ProxyValidation.Type_j type, String host,
             this.password = password;
          }
       } else {
-         throw new IllegalArgumentException("Use PetEffectRenderer proxy port from 1 to 65535.");
+         throw new IllegalArgumentException("Use a proxy port from 1 to 65535.");
       }
    }
 
@@ -172,7 +172,7 @@ public record ProxyValidation(UUID id, ProxyValidation.Type_j type, String host,
       } catch (NumberFormatException var2) {
       }
 
-      throw new IllegalArgumentException("Use PetEffectRenderer proxy port from 1 to 65535.");
+      throw new IllegalArgumentException("Use a proxy port from 1 to 65535.");
    }
 
    private static String host(String var0) {

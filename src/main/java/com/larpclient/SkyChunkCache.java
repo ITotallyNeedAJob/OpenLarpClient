@@ -12,7 +12,7 @@ import net.minecraft.util.math.ChunkPos;
 
 public final class SkyChunkCache {
    public static final int Q = -4;
-   public static final int AuraModule = 8;
+   public static final int x = 8;
    public static final int Z = 625;
    private final Map<Long, byte[][]> v = new HashMap<>();
    private final Map<Long, BitSet> W = new HashMap<>();

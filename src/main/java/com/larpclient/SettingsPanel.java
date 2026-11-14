@@ -10,8 +10,8 @@ import net.minecraft.client.input.KeyInput;
 
 abstract class SettingsPanel extends GuiPanel {
    protected ClickGuiScreen i;
-   protected xm P;
-   protected final List<GuiWidget> DropletTrail = new ArrayList<>();
+   protected XModel P;
+   protected final List<GuiWidget> l = new ArrayList<>();
    protected final List<ActionButton> E = new ArrayList<>();
    protected int s;
    protected int H;
@@ -27,19 +27,19 @@ abstract class SettingsPanel extends GuiPanel {
    private final List<ActionButton> N = new ArrayList<>();
    private final ActionButton n = new ActionButton("", this::dismissDialog);
    private List<String> J = List.of();
-   private List<String> PetEffectRenderer = List.of();
+   private List<String> a = List.of();
    private int M;
    private int c;
    private int B;
    private int x;
-   private final w2 SahurDanceEngine = new w2(1.0);
-   private final w2 z = new w2(0.0);
-   private final w2 q = new w2(0.0);
-   private final w2 ChatPayParser = new w2(0.0);
+   private final WeatherRenderer d = new WeatherRenderer(1.0);
+   private final WeatherRenderer z = new WeatherRenderer(0.0);
+   private final WeatherRenderer q = new WeatherRenderer(0.0);
+   private final WeatherRenderer g = new WeatherRenderer(0.0);
    private boolean D;
    private boolean v;
    private boolean h;
-   private static final int PriceDetector = 300;
+   private static final int m = 300;
    private static final int V = 14;
    private static final int K = 20;
 
@@ -61,14 +61,14 @@ abstract class SettingsPanel extends GuiPanel {
       this.n.Y = false;
    }
 
-   final void AAsVoid(ClickGuiScreen var1, xm var2) {
+   final void AAsVoid(ClickGuiScreen var1, XModel var2) {
       this.i = var1;
       this.P = var2;
       this.init(var1.width, var1.height);
       this.sAsVoid();
    }
 
-   void hAsVoid(xm var1) {
+   void hAsVoid(XModel var1) {
       if (this.P == null || this.P.width() != var1.width() || this.P.height() != var1.height()) {
          this.D = false;
       }
@@ -383,8 +383,8 @@ abstract class SettingsPanel extends GuiPanel {
 
             int var7 = (int)Math.round(this.q.bAsDouble((double)var6.k, 200));
             int var8 = (int)Math.round(this.g.bAsDouble((double)var6.V, 200));
-            int var9 = bd.hAsBoolean() ? bd.WAsInt(var7, bd.m) : bg.XAsInt(bd.u, 0.75);
-            GuiDrawing.HAsVoid(context, (float)(var7 + 7), (float)(var6.x + var6.F), (float)Math.max(1, var8 - 14), 2.0F, 1.0F, 4.0F, bg.XAsInt(var9, 0.45));
+            int var9 = UiStyle.hAsBoolean() ? UiStyle.WAsInt(var7, UiStyle.m) : ColorUtil.XAsInt(UiStyle.u, 0.75);
+            GuiDrawing.HAsVoid(context, (float)(var7 + 7), (float)(var6.x + var6.F), (float)Math.max(1, var8 - 14), 2.0F, 1.0F, 4.0F, ColorUtil.XAsInt(var9, 0.45));
             GuiDrawing.CAsVoid(context, var7 + 7, var6.x + var6.F, Math.max(1, var8 - 14), 2, 1, var9);
          }
       }
@@ -399,7 +399,7 @@ abstract class SettingsPanel extends GuiPanel {
             TextDrawing.zAsString(this.W, Math.max(1, this.r - this.titleX() - 32), TextDrawing.Type_s.TITLE),
             this.titleX(),
             this.titleY(),
-            bd.u,
+            UiStyle.u,
             TextDrawing.Type_s.TITLE
          );
       }
@@ -411,7 +411,7 @@ abstract class SettingsPanel extends GuiPanel {
 
       context.enableScissor(this.H, this.k, this.r, this.S);
 
-      try (qg var22 = qg.nAsQg(this.revealAmount())) {
+      try (QueueGroup var22 = QueueGroup.nAsQg(this.revealAmount())) {
          for (GuiWidget var27 : this.l) {
             if (this.aAsBoolean() && var27.Y && !this.bAsBoolean(var27) && var27.x + var27.F > this.k && var27.x < this.S) {
                var27.render(context, mouseY >= this.k && mouseY < this.S ? mouseX : -1, mouseY);
@@ -427,9 +427,9 @@ abstract class SettingsPanel extends GuiPanel {
       }
 
       if (this.O) {
-         try (qg var26 = qg.nAsQg(this.revealAmount())) {
+         try (QueueGroup var26 = QueueGroup.nAsQg(this.revealAmount())) {
             if (this.X - 4 > var23) {
-               int var28 = bg.pAsInt(bd.I, 1.2);
+               int var28 = ColorUtil.pAsInt(UiStyle.I, 1.2);
                if (this.s > 0) {
                   GuiDrawing.CAsVoid(context, this.M + 14, this.k - 1, this.B - 28, 1, 0, var28);
                }
@@ -453,25 +453,25 @@ abstract class SettingsPanel extends GuiPanel {
    private void qAsVoid(DrawContext var1, int var2, int var3) {
       double var4 = this.revealAmount();
       GuiDrawing.CAsVoid(
-         var1, this.P.contentX(), this.P.bodyTop(), this.P.right() - this.P.contentX(), this.P.bottom() - this.P.bodyTop(), bd.l, bg.pAsInt(-1728053248, var4)
+         var1, this.P.contentX(), this.P.bodyTop(), this.P.right() - this.P.contentX(), this.P.bottom() - this.P.bodyTop(), UiStyle.l, ColorUtil.pAsInt(-1728053248, var4)
       );
       RoundedShapePipeline.CAsVoid(
-         var1, (float)this.M, (float)(this.c + 3), (float)this.B, (float)this.x, (float)bd.l, 16.0F, bg.pAsInt(805306368, var4), bg.pAsInt(1342177280, var4)
+         var1, (float)this.M, (float)(this.c + 3), (float)this.B, (float)this.x, (float)UiStyle.l, 16.0F, ColorUtil.pAsInt(805306368, var4), ColorUtil.pAsInt(1342177280, var4)
       );
-      GuiDrawing.PAsVoid(var1, this.M, this.c, this.B, this.x, bd.l, bg.pAsInt(bd.V, var4), 0.0);
+      GuiDrawing.PAsVoid(var1, this.M, this.c, this.B, this.x, UiStyle.l, ColorUtil.pAsInt(UiStyle.V, var4), 0.0);
 
-      try (qg var6 = qg.nAsQg(var4)) {
+      try (QueueGroup var6 = QueueGroup.nAsQg(var4)) {
          int var7 = this.c + 14;
 
          for (String var9 : this.J) {
-            TextDrawing.NAsVoid(var1, var9, this.M + 14, var7, bd.u, TextDrawing.Type_s.TITLE);
+            TextDrawing.NAsVoid(var1, var9, this.M + 14, var7, UiStyle.u, TextDrawing.Type_s.TITLE);
             var7 += TextDrawing.Type_s.TITLE.zAsInt() + 3;
          }
 
          var7++;
 
          for (String var14 : this.a) {
-            TextDrawing.NAsVoid(var1, var14, this.M + 14, var7, bd.e, TextDrawing.Type_s.HELP);
+            TextDrawing.NAsVoid(var1, var14, this.M + 14, var7, UiStyle.e, TextDrawing.Type_s.HELP);
             var7 += TextDrawing.Type_s.HELP.zAsInt() + 3;
          }
       }
@@ -699,7 +699,7 @@ abstract class SettingsPanel extends GuiPanel {
 
    private static final class Type_n extends GuiWidget {
       private final Supplier<String> S;
-      private List<String> BoxUtils = List.of();
+      private List<String> c = List.of();
       private int D = -1;
       private String X;
 
@@ -725,7 +725,7 @@ abstract class SettingsPanel extends GuiPanel {
       @Override
       public void render(DrawContext var1, int var2, int var3) {
          for (int var4 = 0; var4 < this.c.size(); var4++) {
-            TextDrawing.UAsVoid(var1, this.c.get(var4), this.k + 4, this.x + 4 + var4 * 12, bd.e);
+            TextDrawing.UAsVoid(var1, this.c.get(var4), this.k + 4, this.x + 4 + var4 * 12, UiStyle.e);
          }
       }
    }
@@ -738,7 +738,7 @@ abstract class SettingsPanel extends GuiPanel {
 
       @Override
       public void render(DrawContext var1, int var2, int var3) {
-         GuiDrawing.CAsVoid(var1, this.k, this.x + 2, Math.max(1, this.V), 1, 0, bg.pAsInt(bd.I, 1.2));
+         GuiDrawing.CAsVoid(var1, this.k, this.x + 2, Math.max(1, this.V), 1, 0, ColorUtil.pAsInt(UiStyle.I, 1.2));
       }
    }
 }

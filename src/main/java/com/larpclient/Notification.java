@@ -14,12 +14,12 @@ public final class Notification extends Module {
    private final SkyShader O;
    private final ClientPreferences r;
    private final ModeSetting style;
-   private static nk i;
+   private static Notification i;
    private static List<Module> L = List.of();
    private static List<Module> Y = List.of();
 
    public Notification(CustomSky var1, SkyShader var2, ClientPreferences var3) {
-      super(var1.getName(), "Choose PetEffectRenderer sky effect and adjust its appearance", var1.getCategory(), -1);
+      super(var1.getName(), "Choose a sky effect and adjust its appearance", var1.getCategory(), -1);
       this.j = var1;
       this.O = var2;
       this.r = var3;
@@ -27,7 +27,7 @@ public final class Notification extends Module {
       var1.skyStyle().getModes().forEach(var1x -> var4.add("World: " + var1x));
       var2.mode().getModes().forEach(var1x -> var4.add("Shader: " + var1x));
       this.style = new ModeSetting(
-         "Style", "Choose PetEffectRenderer sky. Classic and shader skies retain their own appearance settings", "World: Nebula", var4.toArray(String[]::new)
+         "Style", "Choose a sky. Classic and shader skies retain their own appearance settings", "World: Nebula", var4.toArray(String[]::new)
       ) {
          public String getValue() {
             return Notification.this.BAsString() + ": " + (Notification.this.BAsString().equals("World") ? var1.skyStyle() : var2.mode()).getValue();
@@ -65,7 +65,7 @@ public final class Notification extends Module {
 
    private static KeybindSetting xAsU(String var0, Module var1) {
       KeybindSetting var2 = new KeybindSetting(
-         var0, "Retains the original sky shortcut. Takes PetEffectRenderer key or PetEffectRenderer middle or side mouse button; Escape/Delete clears it", var1.getKeyBind()
+         var0, "Retains the original sky shortcut. Takes a key or a middle or side mouse button; Escape/Delete clears it", var1.getKeyBind()
       );
       var2.onChanged(var1::setKeyBind);
       return var2;
@@ -168,7 +168,7 @@ public final class Notification extends Module {
    }
 
    public static List<Module> sAsList(List<Module> var0, ClientPreferences var1) {
-      if (ChinaHatCodec != null && ChinaHatCodec.r == var1 && L.equals(var0)) {
+      if (i != null && i.r == var1 && L.equals(var0)) {
          return Y;
       } else {
          CustomSky var2 = null;
@@ -185,8 +185,8 @@ public final class Notification extends Module {
          }
 
          if (var2 != null && var3 != null) {
-            if (ChinaHatCodec == null || ChinaHatCodec.j != var2 || ChinaHatCodec.O != var3 || ChinaHatCodec.r != var1) {
-               ChinaHatCodec = new Notification(var2, var3, var1);
+            if (i == null || i.j != var2 || i.O != var3 || i.r != var1) {
+               i = new Notification(var2, var3, var1);
             }
 
             ArrayList var7 = new ArrayList(var0.size() - 1);
@@ -211,6 +211,6 @@ public final class Notification extends Module {
    public static Module YAsModule(Module var0, List<Module> var1, ClientPreferences var2) {
       return !(var0 instanceof CustomSky) && !(var0 instanceof SkyShader)
          ? var0
-         : sAsList(var1, var2).stream().filter(var0x -> var0x instanceof nk).findFirst().orElse(var0);
+         : sAsList(var1, var2).stream().filter(var0x -> var0x instanceof Notification).findFirst().orElse(var0);
    }
 }

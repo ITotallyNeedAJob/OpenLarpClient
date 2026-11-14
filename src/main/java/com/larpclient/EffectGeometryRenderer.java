@@ -21,14 +21,14 @@ import org.joml.Matrix4f;
 import org.joml.Quaternionfc;
 import org.joml.Vector3f;
 
-public final class EffectGeometryRenderer implements o_ {
-   public static final RenderLayer AuraModule = RenderLayer.of("larp_effects", RenderSetup.builder(WorldLabelLayout.g).translucent().build());
-   private static final RenderLayer[][] I = new RenderLayer[x4.Type_i.values().length][3];
-   private static final RenderLayer[][] TextLayout = new RenderLayer[x4.Type_i.values().length][3];
+public final class EffectGeometryRenderer implements com.larpclient.RenderPipeline {
+   public static final RenderLayer x = RenderLayer.of("larp_effects", RenderSetup.builder(WorldLabelLayout.g).translucent().build());
+   private static final RenderLayer[][] I = new RenderLayer[EffectRenderParams.Type_i.values().length][3];
+   private static final RenderLayer[][] j = new RenderLayer[EffectRenderParams.Type_i.values().length][3];
    private static final RenderLayer m;
-   private static final double[] BoxUtils = new double[60];
+   private static final double[] c = new double[60];
    private final double[] Q = new double[18];
-   private static final RenderLayer[] MenuPopupProvider = new RenderLayer[3];
+   private static final RenderLayer[] f = new RenderLayer[3];
    private static final RenderLayer O = RenderLayer.of(
       "larp_geometry_solid",
       RenderSetup.builder(
@@ -43,7 +43,7 @@ public final class EffectGeometryRenderer implements o_ {
          .build()
    );
    private boolean C;
-   private x4.Type_g B = x4.Type_g.ALPHA;
+   private EffectRenderParams.Type_g B = EffectRenderParams.Type_g.ALPHA;
    private boolean W;
    private final EffectDrawBuffers u;
    private final MatrixStack e;
@@ -83,7 +83,7 @@ public final class EffectGeometryRenderer implements o_ {
    }
 
    @Override
-   public void blend(x4.Type_g var1) {
+   public void blend(EffectRenderParams.Type_g var1) {
       this.B = var1;
    }
 
@@ -92,7 +92,7 @@ public final class EffectGeometryRenderer implements o_ {
       this.W = var1;
    }
 
-   public static RenderLayer fAsRenderLayer(x4.Type_g var0) {
+   public static RenderLayer fAsRenderLayer(EffectRenderParams.Type_g var0) {
       return f[var0.ordinal()];
    }
 
@@ -101,7 +101,7 @@ public final class EffectGeometryRenderer implements o_ {
    }
 
    public static void YAsVoid() {
-      for (RenderLayer var3 : I[x4.Type_i.DEFAULT.ordinal()]) {
+      for (RenderLayer var3 : I[EffectRenderParams.Type_i.DEFAULT.ordinal()]) {
          WorldLabelLayout.DAsVoid(var3.getRenderPipeline());
       }
 
@@ -110,7 +110,7 @@ public final class EffectGeometryRenderer implements o_ {
       }
 
       WorldLabelLayout.DAsVoid(O.getRenderPipeline());
-      WorldLabelLayout.DAsVoid(PriceDetector.getRenderPipeline());
+      WorldLabelLayout.DAsVoid(m.getRenderPipeline());
    }
 
    static ImmediateMaterialState aAsPw(ImmediateMaterialState var0) {
@@ -126,7 +126,7 @@ public final class EffectGeometryRenderer implements o_ {
    }
 
    public static void aAsVoid() {
-      for (RenderLayer var3 : j[x4.Type_i.DEFAULT.ordinal()]) {
+      for (RenderLayer var3 : j[EffectRenderParams.Type_i.DEFAULT.ordinal()]) {
          WorldLabelLayout.DAsVoid(var3.getRenderPipeline());
       }
    }
@@ -156,7 +156,7 @@ public final class EffectGeometryRenderer implements o_ {
    public void dAsVoid(EntityRenderState var1, double var2, double var4, double var6, int var8, int var9, boolean var10) {
       Matrix4f var11 = CosmeticSubmissionHandler.dAsMatrix4f(var1, this.e);
       if (var11 != null) {
-         xh.YAsVoid(this, var11, var2, var4, var6, var8, var9, var10);
+         XHaloEffect.YAsVoid(this, var11, var2, var4, var6, var8, var9, var10);
       }
    }
 
@@ -206,7 +206,7 @@ public final class EffectGeometryRenderer implements o_ {
             var11, this.K.x + (double)var14.x, this.K.y + (double)var14.y + 0.24F * var3, this.K.z + (double)var14.z, 0.0, 1.0, 0.0, var3 * var5, var7
          );
          this.pAsVoid(var1, var9, var10, 1.0);
-         op.YAsVoid("China Hat fire particles", (long)var1.aAsInt());
+         OpenScreen.YAsVoid("China Hat fire particles", (long)var1.aAsInt());
       }
    }
 
@@ -271,7 +271,7 @@ public final class EffectGeometryRenderer implements o_ {
       this.u
          .XAsVertexConsumer(f[this.B.ordinal()])
          .vertex(this.H, (float)(var1 - this.K.x), (float)(var3 - this.K.y), (float)(var5 - this.K.z))
-         .color(this.B == x4.Type_g.PREMULTIPLIED_ALPHA ? JAsInt(var7) : var7);
+         .color(this.B == EffectRenderParams.Type_g.PREMULTIPLIED_ALPHA ? JAsInt(var7) : var7);
    }
 
    private void DAsVoid(VertexConsumer var1, double var2, double var4, double var6, int var8) {
@@ -313,8 +313,8 @@ public final class EffectGeometryRenderer implements o_ {
    }
 
    public void zAsVoid(double var1, double var3, double var5, double var7, double var9, double var11, double var13, double var15, int var17, int var18) {
-      this.ZAsVoid(var1, var3, var5, var7, var9, var11, var13 * 2.5, var15 * 2.5, bg.pAsInt(var17, 0.07), bg.pAsInt(var18, 0.07));
-      this.ZAsVoid(var1, var3, var5, var7, var9, var11, var13 * 1.25, var15 * 1.25, bg.pAsInt(var17, 0.3), bg.pAsInt(var18, 0.3));
+      this.ZAsVoid(var1, var3, var5, var7, var9, var11, var13 * 2.5, var15 * 2.5, ColorUtil.pAsInt(var17, 0.07), ColorUtil.pAsInt(var18, 0.07));
+      this.ZAsVoid(var1, var3, var5, var7, var9, var11, var13 * 1.25, var15 * 1.25, ColorUtil.pAsInt(var17, 0.3), ColorUtil.pAsInt(var18, 0.3));
       this.ZAsVoid(
          var1,
          var3,
@@ -324,8 +324,8 @@ public final class EffectGeometryRenderer implements o_ {
          var11,
          var13 * 0.23,
          var15 * 0.23,
-         bg.xAsInt(var17, var17 & 0xFF000000 | 16777215, 0.48),
-         bg.xAsInt(var18, var18 & 0xFF000000 | 16777215, 0.48)
+         ColorUtil.xAsInt(var17, var17 & 0xFF000000 | 16777215, 0.48),
+         ColorUtil.xAsInt(var18, var18 & 0xFF000000 | 16777215, 0.48)
       );
    }
 
@@ -393,14 +393,14 @@ public final class EffectGeometryRenderer implements o_ {
       if (!var2) {
          return var0;
       } else {
-         return var1 < 2 ? bg.pAsInt(var0, var1 == 0 ? 0.07 : 0.3) : bg.xAsInt(var0, var0 & 0xFF000000 | 16777215, 0.48);
+         return var1 < 2 ? ColorUtil.pAsInt(var0, var1 == 0 ? 0.07 : 0.3) : ColorUtil.xAsInt(var0, var0 & 0xFF000000 | 16777215, 0.48);
       }
    }
 
    public void UAsVoid(EntityRenderState var1, Vec3d var2, double var3, double var5, double var7, int var9, int var10, boolean var11) {
       Matrix4f var12 = CosmeticSubmissionHandler.dAsMatrix4f(var1, this.e);
       if (var12 != null) {
-         mo.JAsVoid(this, var12, var3, var5, var7, var9, var10, var11);
+         ModuleOption.JAsVoid(this, var12, var3, var5, var7, var9, var10, var11);
       } else {
          this.bAsVoid(var2, var3, var5, var9, var10, var11);
       }
@@ -415,7 +415,7 @@ public final class EffectGeometryRenderer implements o_ {
       }
 
       if (var8) {
-         this.oAsVoid(var1, var2, 0.009, bg.xAsInt(var7, var7 & 0xFF000000 | 16777215, 0.4));
+         this.oAsVoid(var1, var2, 0.009, ColorUtil.xAsInt(var7, var7 & 0xFF000000 | 16777215, 0.4));
       }
    }
 
@@ -453,15 +453,15 @@ public final class EffectGeometryRenderer implements o_ {
       double var32 = var24 * var12 - var20 * var16;
       double var34 = var20 * var14 - var22 * var12;
       VertexConsumer var36 = this.u.XAsVertexConsumer(f[this.B.ordinal()]);
-      int var37 = this.B == x4.Type_g.PREMULTIPLIED_ALPHA ? 1 : 0;
+      int var37 = this.B == EffectRenderParams.Type_g.PREMULTIPLIED_ALPHA ? 1 : 0;
 
       for (int var38 = 0; var38 < 4; var38++) {
          double var39 = Math.max(0.0, var7 + ((double)var38 / 2.0 - 1.0) * var9);
          double var41 = Math.max(0.0, var7 + ((double)(var38 + 1) / 2.0 - 1.0) * var9);
          double var43 = var38 == 0 ? 0.0 : (var38 == 2 ? 1.0 : 0.22);
          double var45 = var38 == 3 ? 0.0 : (var38 == 1 ? 1.0 : 0.22);
-         int var47 = bg.pAsInt(var11, var43);
-         int var48 = bg.pAsInt(var11, var45);
+         int var47 = ColorUtil.pAsInt(var11, var43);
+         int var48 = ColorUtil.pAsInt(var11, var45);
          if (var37 != 0) {
             var47 = JAsInt(var47);
             var48 = JAsInt(var48);
@@ -483,13 +483,13 @@ public final class EffectGeometryRenderer implements o_ {
    }
 
    public void IAsVoid(double var1, double var3, double var5, double var7, double var9, double var11, double var13, int var15) {
-      bz.XAsVoid(this.Q, var7, var9, var11, var13);
+      SkyBlend.XAsVoid(this.Q, var7, var9, var11, var13);
 
-      for (int var16 = 0; var16 < bz.uAsInt(); var16++) {
-         int var17 = bz.lAsInt(this.Q, var16, var15);
+      for (int var16 = 0; var16 < SkyBlend.uAsInt(); var16++) {
+         int var17 = SkyBlend.lAsInt(this.Q, var16, var15);
 
          for (int var18 = 0; var18 < 4; var18++) {
-            int var19 = bz.CAsInt(var16, var18) * 3;
+            int var19 = SkyBlend.CAsInt(var16, var18) * 3;
             this.vertex(var1 + this.Q[var19], var3 + this.Q[var19 + 1], var5 + this.Q[var19 + 2], var17);
          }
       }
@@ -556,7 +556,7 @@ public final class EffectGeometryRenderer implements o_ {
    public void cAsVoid(
       double var1, double var3, double var5, double var7, double var9, int var11, ParticleEmitterEngine.Type_a var12, double var13, double var15, double var17
    ) {
-      this.hAsVoid(var1, var3, var5, var7, var9, var11, var12, var13, var15, var17, x4.Type_i.DEFAULT);
+      this.hAsVoid(var1, var3, var5, var7, var9, var11, var12, var13, var15, var17, EffectRenderParams.Type_i.DEFAULT);
    }
 
    public void hAsVoid(
@@ -570,7 +570,7 @@ public final class EffectGeometryRenderer implements o_ {
       double var13,
       double var15,
       double var17,
-      x4.Type_i var19
+      EffectRenderParams.Type_i var19
    ) {
       byte var20 = switch (var12) {
          case Glow -> 0;
@@ -592,7 +592,7 @@ public final class EffectGeometryRenderer implements o_ {
          var21 = var12 == ParticleEmitterEngine.Type_a.Streak ? 3.0 : 1.6;
       }
 
-      VertexConsumer var23 = this.u.XAsVertexConsumer((this.C ? TextLayout : I)[var19.ordinal()][this.B.ordinal()]);
+      VertexConsumer var23 = this.u.XAsVertexConsumer((this.C ? j : I)[var19.ordinal()][this.B.ordinal()]);
       double var24 = Math.cos(var9);
       double var26 = Math.sin(var9);
 
@@ -613,16 +613,16 @@ public final class EffectGeometryRenderer implements o_ {
    }
 
    public void gAsVoid(double var1, double var3, double var5, double var7, double var9, double var11, double var13, double var15, int var17) {
-      ol.cAsVoid(c, var7, var9, var11, var13, var15);
+      OfferListener.cAsVoid(c, var7, var9, var11, var13, var15);
       VertexConsumer var18 = this.u.XAsVertexConsumer(m);
 
       for (int var19 = 0; var19 < 18; var19++) {
-         int var20 = ol.UAsInt(c, var19, var17);
+         int var20 = OfferListener.UAsInt(c, var19, var17);
 
          for (int var21 = 0; var21 < 4; var21++) {
-            int var22 = ol.LAsInt(var19, var21) * 3;
+            int var22 = OfferListener.LAsInt(var19, var21) * 3;
             var18.vertex(this.H, (float)(var1 - this.K.x + c[var22]), (float)(var3 - this.K.y + c[var22 + 1]), (float)(var5 - this.K.z + c[var22 + 2]))
-               .texture((float)ol.IAsDouble(var19, var21), (float)ol.wAsDouble(var19, var21))
+               .texture((float)OfferListener.IAsDouble(var19, var21), (float)OfferListener.wAsDouble(var19, var21))
                .color(var20);
          }
       }
@@ -636,14 +636,14 @@ public final class EffectGeometryRenderer implements o_ {
          double var18 = (double)(var15 + 1) / (double)var14;
          double var20 = var6 + (var8 - var6) * var16;
          double var22 = var6 + (var8 - var6) * var18;
-         int var24 = bg.xAsInt(var10, var11, var16);
-         int var25 = bg.xAsInt(var10, var11, var18);
+         int var24 = ColorUtil.xAsInt(var10, var11, var16);
+         int var25 = ColorUtil.xAsInt(var10, var11, var18);
          double var26 = var1.y + Math.sin(var20 * 2.0) * var12;
          double var28 = var1.y + Math.sin(var22 * 2.0) * var12;
          this.vertex(var1.x + Math.cos(var20) * var2, var26, var1.z + Math.sin(var20) * var2, var24);
          this.vertex(var1.x + Math.cos(var22) * var2, var28, var1.z + Math.sin(var22) * var2, var25);
-         this.vertex(var1.x + Math.cos(var22) * (var2 + var4), var28, var1.z + Math.sin(var22) * (var2 + var4), bg.pAsInt(var25, 0.15));
-         this.vertex(var1.x + Math.cos(var20) * (var2 + var4), var26, var1.z + Math.sin(var20) * (var2 + var4), bg.pAsInt(var24, 0.15));
+         this.vertex(var1.x + Math.cos(var22) * (var2 + var4), var28, var1.z + Math.sin(var22) * (var2 + var4), ColorUtil.pAsInt(var25, 0.15));
+         this.vertex(var1.x + Math.cos(var20) * (var2 + var4), var26, var1.z + Math.sin(var20) * (var2 + var4), ColorUtil.pAsInt(var24, 0.15));
       }
    }
 
@@ -667,11 +667,11 @@ public final class EffectGeometryRenderer implements o_ {
          .withBlend(BlendFunction.TRANSLUCENT)
          .withCull(true)
          .build();
-      PriceDetector = RenderLayer.of(
+      m = RenderLayer.of(
          "larp_cash", RenderSetup.builder(var0).texture("Sampler0", Identifier.of("larp-client", "textures/particles/cash.png")).translucent().build()
       );
 
-      for (x4.Type_g var4 : x4.Type_g.values()) {
+      for (EffectRenderParams.Type_g var4 : EffectRenderParams.Type_g.values()) {
          BlendFunction var5 = switch (var4) {
             case ALPHA -> BlendFunction.TRANSLUCENT;
             case ADDITIVE -> BlendFunction.LIGHTNING;
@@ -684,7 +684,7 @@ public final class EffectGeometryRenderer implements o_ {
             .withDepthWrite(false)
             .withBlend(var5)
             .withCull(false);
-         if (var4 == x4.Type_g.PREMULTIPLIED_ALPHA) {
+         if (var4 == EffectRenderParams.Type_g.PREMULTIPLIED_ALPHA) {
             var6.withShaderDefine("PREMULTIPLIED");
          }
 
@@ -692,14 +692,14 @@ public final class EffectGeometryRenderer implements o_ {
          SoftParticlePipeline.WAsVoid(var6);
          RenderPipeline var8 = var6.withLocation(Identifier.of("larp-client", "soft_sprites_" + var4.name().toLowerCase(Locale.ROOT))).build();
 
-         for (x4.Type_i var12 : x4.Type_i.values()) {
+         for (EffectRenderParams.Type_i var12 : EffectRenderParams.Type_i.values()) {
             I[var12.ordinal()][var4.ordinal()] = RenderLayer.of(
                "larp_sprites_" + var12 + "_" + var4,
                RenderSetup.builder(var7).texture("Sampler0", Identifier.of("larp-client", "textures/particles/" + var12.k)).translucent().build()
             );
          }
 
-         for (x4.Type_i var17 : x4.Type_i.values()) {
+         for (EffectRenderParams.Type_i var17 : EffectRenderParams.Type_i.values()) {
             j[var17.ordinal()][var4.ordinal()] = RenderLayer.of(
                "larp_soft_sprites_" + var17 + "_" + var4,
                RenderSetup.builder(var8).texture("Sampler0", Identifier.of("larp-client", "textures/particles/" + var17.k)).translucent().build()
@@ -721,7 +721,7 @@ public final class EffectGeometryRenderer implements o_ {
       }
 
       E = new double[65];
-      ChinaHatCodec = new double[65];
+      i = new double[65];
 
       for (int var13 = 0; var13 <= 64; var13++) {
          E[var13] = Math.cos((double)var13 * Math.PI / 32.0);

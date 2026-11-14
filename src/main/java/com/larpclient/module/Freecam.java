@@ -41,11 +41,11 @@ public class Freecam extends Module {
    private final ModeSetting activation = this.addSetting(
       new ModeSetting("Activation", "Toggle the module key or keep it held to use Freecam", "Toggle", "Toggle", "Hold")
    );
-   private final ot M = new ot();
+   private final OuterEffect M = new OuterEffect();
    private static Freecam E;
    private ClientPlayerEntity B;
    private ClientWorld A;
-   private ot.Type_s K;
+   private OuterEffect.Type_s K;
    private boolean g;
    private boolean Q;
    private boolean P;
@@ -154,8 +154,8 @@ public class Freecam extends Module {
       MinecraftClient var1 = getMc();
       this.B = var1.player;
       this.A = var1.world;
-      p5.jAsVoid(p5.Type_u.FREECAM);
-      this.M.OAsVoid(ot.tAsPlayerInput(xAsPlayerInput(), this.B.input.playerInput), this.B.isSneaking(), this.keepWalking.getValue());
+      ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.FREECAM);
+      this.M.OAsVoid(OuterEffect.tAsPlayerInput(xAsPlayerInput(), this.B.input.playerInput), this.B.isSneaking(), this.keepWalking.getValue());
       this.SAsVoid(true);
       this.VAsVoid();
       this.mAsVoid();
@@ -196,7 +196,7 @@ public class Freecam extends Module {
          this.A = null;
          this.K = null;
          this.M.DAsVoid();
-         p5.GAsVoid(p5.Type_u.FREECAM);
+         ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.FREECAM);
          if (var1.world != null) {
             ((WorldRendererAccessor)var1.worldRenderer).larpOcclusionGraph().scheduleTerrainUpdate();
          }
@@ -209,16 +209,16 @@ public class Freecam extends Module {
    public void onTick() {
       XAsVoid();
       if (this.isRuntimeActive()) {
-         p5.jAsVoid(p5.Type_u.FREECAM);
+         ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.FREECAM);
          this.SAsVoid(false);
          this.VAsVoid();
-         p5.DAsVoid(this.M.bAsDouble(this.speed.getValue(), this.resetScrollSpeed.getValue()), this.vertical.getValue(), this.smooth.getValue());
+         ParticleEmitter.DAsVoid(this.M.bAsDouble(this.speed.getValue(), this.resetScrollSpeed.getValue()), this.vertical.getValue(), this.smooth.getValue());
          this.mAsVoid();
       }
    }
 
    public static boolean yAsBoolean() {
-      return E != null && E.isEnabled() ? p5.oAsBoolean() : false;
+      return E != null && E.isEnabled() ? ParticleEmitter.oAsBoolean() : false;
    }
 
    public static boolean bAsBoolean() {
@@ -258,7 +258,7 @@ public class Freecam extends Module {
       if (this.B != null) {
          this.M
             .jAsVoid(
-               ot.tAsPlayerInput(xAsPlayerInput(), this.B.input.playerInput),
+               OuterEffect.tAsPlayerInput(xAsPlayerInput(), this.B.input.playerInput),
                this.keepWalking.getValue(),
                this.keysMoveBody.getValue(),
                this.B.isSneaking(),
@@ -290,7 +290,7 @@ public class Freecam extends Module {
    private void mAsVoid() {
       if (this.A != null && this.B != null) {
          ChunkPos var1 = this.B.getChunkPos();
-         ot.Type_s var2 = ot.yAsOt_Type_s(p5.dAsVec3d(1.0F), var1.x, var1.z, this.chunks.getValue().intValue(), this.GAsInt());
+         OuterEffect.Type_s var2 = OuterEffect.yAsOt_Type_s(ParticleEmitter.dAsVec3d(1.0F), var1.x, var1.z, this.chunks.getValue().intValue(), this.GAsInt());
          ClientChunkManager var3 = this.A.getChunkManager();
          var3.setChunkMapCenter(var2.x(), var2.z());
          var3.updateLoadDistance(var2.radius());
@@ -310,7 +310,7 @@ public class Freecam extends Module {
          Freecam var2 = E;
          MinecraftClient var3 = MinecraftClient.getInstance();
          if (var2 != null
-            && p5.oAsBoolean()
+            && ParticleEmitter.oAsBoolean()
             && var2.scrollSpeed.getValue()
             && var3.currentScreen == null
             && var3.getOverlay() == null

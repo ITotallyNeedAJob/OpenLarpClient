@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.RaycastContext.FluidHandling;
 import net.minecraft.world.RaycastContext.ShapeType;
 
-public final class QueueItem implements oi.Type_q {
+public final class QueueItem implements OfferItem.Type_q {
    private final World Z;
    private final Entity W;
 

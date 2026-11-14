@@ -77,7 +77,7 @@ public final class MicrosoftAccounts {
          this.vault = new AccountVault(var2);
          this.proxyMarker = var2.resolve("proxy-enabled");
          if (Files.exists(this.proxyMarker, LinkOption.NOFOLLOW_LINKS)) {
-            ProxyRoute.iAsVoid("The saved proxy is still loading. Try again in PetEffectRenderer moment.");
+            ProxyRoute.iAsVoid("The saved proxy is still loading. Try again in a moment.");
 
             try {
                this.worker.execute(this::restoreProxy);
@@ -169,7 +169,7 @@ public final class MicrosoftAccounts {
                         if (this.current(var2, var1)) {
                            this.code = var4x.getUserCode();
                            this.verification = var5x;
-                           this.message("Approve this code on Microsoft'SkyChunkCache website.", false);
+                           this.message("Approve this code on Microsoft's website.", false);
                            this.openBrowser();
                         }
                      });
@@ -344,7 +344,7 @@ public final class MicrosoftAccounts {
 
    public void archive(Screen var1) {
       boolean var2 = ProxyRoute.fAsPy_Type_y() != null || ProxyRoute.jAsString() != null;
-      this.run(var1, "Starting PetEffectRenderer new saved list...", () -> {
+      this.run(var1, "Starting a new saved list...", () -> {
          this.vault.archive();
          this.vault.open();
          this.syncProxy();
@@ -594,7 +594,7 @@ public final class MicrosoftAccounts {
             });
          } catch (RejectedExecutionException var9) {
             this.busy = false;
-            this.message("A cancelled request is finishing. Retry in PetEffectRenderer moment.", true);
+            this.message("A cancelled request is finishing. Retry in a moment.", true);
          }
       }
    }

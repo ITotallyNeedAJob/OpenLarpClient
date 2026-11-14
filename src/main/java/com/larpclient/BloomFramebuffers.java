@@ -13,7 +13,7 @@ public final class BloomFramebuffers implements AutoCloseable {
    private BloomFramebuffers.Type_k q;
 
    private static SimpleFramebuffer FAsSimpleFramebuffer(String var0, int var1, int var2, boolean var3, BloomFramebuffers.Type_d var4) {
-      return (SimpleFramebuffer)(var4 == BloomFramebuffers.Type_d.RGBA16_FLOAT ? new qc(var0, var1, var2, var3) : new SimpleFramebuffer(var0, var1, var2, var3));
+      return (SimpleFramebuffer)(var4 == BloomFramebuffers.Type_d.RGBA16_FLOAT ? new CrosshairCodec(var0, var1, var2, var3) : new SimpleFramebuffer(var0, var1, var2, var3));
    }
 
    public BloomFramebuffers() {
@@ -79,7 +79,7 @@ public final class BloomFramebuffers implements AutoCloseable {
                if (var10 != null) {
                   var1 += (long)var10.getWidth(0)
                      * (long)var10.getHeight(0)
-                     * (long)(var6 instanceof qc && var10 == var6.getColorAttachment() ? 8 : var10.getFormat().pixelSize());
+                     * (long)(var6 instanceof CrosshairCodec && var10 == var6.getColorAttachment() ? 8 : var10.getFormat().pixelSize());
                }
             }
          }

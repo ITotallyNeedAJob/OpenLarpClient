@@ -21,7 +21,7 @@ public abstract class LightmapTextureManagerMixin {
    @Shadow
    private boolean field_4135;
    @Unique
-   private int PriceDetector = -1;
+   private int m = -1;
    @Unique
    private float Y;
    @Unique

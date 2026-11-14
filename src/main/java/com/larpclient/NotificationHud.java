@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 public class NotificationHud implements HudElement {
    private static final NotificationHud n = new NotificationHud();
-   private final List<NotificationHud.Type_m> TextLayout = new ArrayList<>();
+   private final List<NotificationHud.Type_m> j = new ArrayList<>();
    private static final int v = 5;
    private static final int r = 7;
    private static final int T = 260;
@@ -21,14 +21,14 @@ public class NotificationHud implements HudElement {
    private static final int G = 10;
    private static final int L = 52;
    private static final int S = 14;
-   private static final int ChinaHatCodec = 5;
+   private static final int i = 5;
    private static final int Z = 16;
    private static final int H = 12;
    private static final int D = 7;
    private static final int P = 20;
    private static final int M = 30;
-   private static final int ScreenScale = 5;
-   private static final double ChatPayParser = 12.0;
+   private static final int y = 5;
+   private static final double g = 12.0;
    private static final double J = 9.0;
    private static final int B = 330;
    private static final int U = 280;
@@ -36,10 +36,10 @@ public class NotificationHud implements HudElement {
    private static final int h = 8;
    private static final int X = 14;
    private static final int E = -603321844;
-   private static final int SmoothInput = -1;
-   private static final int PetEffectRenderer = -6908266;
-   private static final int BloomUtility = -5592406;
-   private static final double HexEdgeloop = 0.58;
+   private static final int t = -1;
+   private static final int a = -6908266;
+   private static final int b = -5592406;
+   private static final double p = 0.58;
    public static final String O = "Enabled";
    public static final String W = "Disabled";
    private static final long A = 2000L;
@@ -115,9 +115,9 @@ public class NotificationHud implements HudElement {
 
          while (var7.hasNext()) {
             NotificationHud.Type_m var9 = (NotificationHud.Type_m)var7.next();
-            var9.F.YAsDouble(1.0, 330, w2.Type_e.BACK_OUT);
+            var9.F.YAsDouble(1.0, 330, WeatherRenderer.Type_e.BACK_OUT);
             if (var9.sAsLong() > var9.a) {
-               var9.z.YAsDouble(1.0, 280, w2.Type_e.SINE_OUT);
+               var9.z.YAsDouble(1.0, 280, WeatherRenderer.Type_e.SINE_OUT);
             }
 
             if (var9.z.yAsDouble() >= 0.95) {
@@ -133,7 +133,7 @@ public class NotificationHud implements HudElement {
                      var9.A.aAsVoid((double)(var14 - 14));
                   }
 
-                  int var15 = var6.ZAsInt(var17) + (int)Math.round(var9.A.YAsDouble((double)var14, 240, w2.Type_e.QUAD_OUT) - (1.0 - var9.F.yAsDouble()) * 8.0);
+                  int var15 = var6.ZAsInt(var17) + (int)Math.round(var9.A.YAsDouble((double)var14, 240, WeatherRenderer.Type_e.QUAD_OUT) - (1.0 - var9.F.yAsDouble()) * 8.0);
                   pAsVoid(var1, var6, var16, var17, var13, var15, var12, var9.Z, var9.p, var9.v, var10);
                   var8++;
                }
@@ -182,7 +182,7 @@ public class NotificationHud implements HudElement {
 
       HudRenderer.xAsVoid(
          var1,
-         new d7.Type_p(
+         new WidgetLayoutUtil.Type_p(
             var1.PAsInt(var2) + (int)Math.floor((double)(var4 - var1.PAsInt(var2)) * var1.vAsDouble()),
             var1.ZAsInt(var3) + (int)Math.floor((double)(var5 - var1.ZAsInt(var3)) * var1.vAsDouble()),
             (int)Math.ceil((double)var6 * var1.vAsDouble()),
@@ -201,10 +201,10 @@ public class NotificationHud implements HudElement {
 
    private static int eAsInt(String var0, String var1) {
       if (var0.isBlank()) {
-         return ww.WAsInt(var1, 12.0);
+         return WorldWidget.WAsInt(var1, 12.0);
       } else {
-         int var2 = ww.WAsInt(var0, 12.0);
-         return var1.isBlank() ? var2 : var2 + 5 + ww.WAsInt(var1, 12.0);
+         int var2 = WorldWidget.WAsInt(var0, 12.0);
+         return var1.isBlank() ? var2 : var2 + 5 + WorldWidget.WAsInt(var1, 12.0);
       }
    }
 
@@ -231,10 +231,10 @@ public class NotificationHud implements HudElement {
    private static int NAsInt(String var0, NotificationHud.Type_u var1) {
       NotificationHud.Type_h var2 = VAsW8_Type_h(var0);
       if (var2 != NotificationHud.Type_h.NONE) {
-         return var2 == NotificationHud.Type_h.ON ? bd.w : -6908266;
+         return var2 == NotificationHud.Type_h.ON ? UiStyle.w : -6908266;
       } else {
          return switch (var1) {
-            case INFO, SUCCESS -> bd.w;
+            case INFO, SUCCESS -> UiStyle.w;
             case WARNING -> -996986;
             case DANGER -> -6908266;
          };
@@ -248,18 +248,18 @@ public class NotificationHud implements HudElement {
    }
 
    private static void AAsVoid(DrawContext var0, int var1, int var2, int var3, String var4, String var5, NotificationHud.Type_u var6, double var7) {
-      GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, (float)var3, 30.0F, 10.0F, bg.pAsInt(-603321844, var7));
-      ww.aAsVoid(var0, RAsString(var4, var6), var1 + 12, var2 + 7, 16, bg.pAsInt(NAsInt(var4, var6), var7));
-      ww.aAsVoid(var0, "chevron-right", var1 + 30, var2 + 5, 20, bg.pAsInt(-5592406, var7 * 0.58));
+      GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, (float)var3, 30.0F, 10.0F, ColorUtil.pAsInt(-603321844, var7));
+      WorldWidget.aAsVoid(var0, RAsString(var4, var6), var1 + 12, var2 + 7, 16, ColorUtil.pAsInt(NAsInt(var4, var6), var7));
+      WorldWidget.aAsVoid(var0, "chevron-right", var1 + 30, var2 + 5, 20, ColorUtil.pAsInt(-5592406, var7 * 0.58));
       int var9 = var3 - 52 - 14;
       if (var4.isBlank()) {
-         ww.fAsVoid(var0, ww.xAsString(var5, (double)var9, 12.0), (double)(var1 + 52), (double)var2 + 9.0, 12.0, bg.pAsInt(-1, var7));
+         WorldWidget.fAsVoid(var0, WorldWidget.xAsString(var5, (double)var9, 12.0), (double)(var1 + 52), (double)var2 + 9.0, 12.0, ColorUtil.pAsInt(-1, var7));
       } else {
-         String var10 = ww.xAsString(var4, (double)var9, 12.0);
-         ww.fAsVoid(var0, var10, (double)(var1 + 52), (double)var2 + 9.0, 12.0, bg.pAsInt(-1, var7));
+         String var10 = WorldWidget.xAsString(var4, (double)var9, 12.0);
+         WorldWidget.fAsVoid(var0, var10, (double)(var1 + 52), (double)var2 + 9.0, 12.0, ColorUtil.pAsInt(-1, var7));
          if (!var5.isBlank()) {
-            int var11 = ww.WAsInt(var10, 12.0) + 5;
-            ww.fAsVoid(var0, ww.xAsString(var5, (double)(var9 - var11), 12.0), (double)(var1 + 52 + var11), (double)var2 + 9.0, 12.0, bg.pAsInt(bd.w, var7));
+            int var11 = WorldWidget.WAsInt(var10, 12.0) + 5;
+            WorldWidget.fAsVoid(var0, WorldWidget.xAsString(var5, (double)(var9 - var11), 12.0), (double)(var1 + 52 + var11), (double)var2 + 9.0, 12.0, ColorUtil.pAsInt(UiStyle.w, var7));
          }
       }
    }
@@ -280,9 +280,9 @@ public class NotificationHud implements HudElement {
       final long a;
       long X = System.nanoTime();
       boolean I;
-      final w2 F = new w2(0.0);
-      final w2 z = new w2(0.0);
-      final w2 A = new w2(0.0);
+      final WeatherRenderer F = new WeatherRenderer(0.0);
+      final WeatherRenderer z = new WeatherRenderer(0.0);
+      final WeatherRenderer A = new WeatherRenderer(0.0);
 
       Type_m(String var1, String var2, NotificationHud.Type_u var3, long var4) {
          this.Z = var1 == null ? "" : var1;

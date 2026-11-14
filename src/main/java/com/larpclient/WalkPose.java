@@ -4,17 +4,17 @@ import net.minecraft.util.math.Vec3d;
 import org.joml.Quaternionfc;
 
 public final class WalkPose {
-   public static final int MenuPopupProvider = 6;
-   public static final double TextLayout = 1.25;
+   public static final int f = 6;
+   public static final double j = 1.25;
    public static final double w = 4.6;
    public static final double P = 0.9375;
    public static final double[][] A = new double[][]{{0.0, -4.0, 0.0}, {0.0, 6.0, 0.0}, {-6.0, 6.0, 0.0}, {6.0, 6.0, 0.0}, {-1.9, 18.0, 0.0}, {1.9, 18.0, 0.0}};
-   private final Vec3d[] SmoothInput = new Vec3d[6];
+   private final Vec3d[] t = new Vec3d[6];
    private final Vec3d[] Z = new Vec3d[6];
    private final Vec3d[] h = new Vec3d[6];
-   private final double[] BoxUtils = new double[6];
-   private final double[] AuraModule = new double[6];
-   private final boolean[] PriceDetector = new boolean[6];
+   private final double[] c = new double[6];
+   private final double[] x = new double[6];
+   private final boolean[] m = new boolean[6];
    public final WalkPose.Type_f C;
    public final Vec3d X;
    public final double M;
@@ -39,7 +39,7 @@ public final class WalkPose {
    }
 
    public static double mAsDouble(double var0) {
-      return ay.RAsDouble(var0);
+      return FadeCurve.RAsDouble(var0);
    }
 
    public static double GAsDouble(double var0, double var2, double var4) {
@@ -59,7 +59,7 @@ public final class WalkPose {
       return var0 == 0 ? 0.46 : (var0 == 1 ? 0.47 : 0.42);
    }
 
-   public void bAsVoid(double var1, lq.Type_a var3) {
+   public void bAsVoid(double var1, LandQuery.Type_a var3) {
       double var4 = this.N - this.U;
       double var6 = var1 - this.U;
       this.N = var1;
@@ -88,7 +88,7 @@ public final class WalkPose {
                Vec3d var11 = this.t[var10].add(this.h[var10].multiply(var23));
                double var12 = jAsDouble(var10);
                Vec3d var14 = new Vec3d(0.0, -var12, 0.0);
-               lq.Type_l var15 = var3 == null ? null : var3.HAsLq_Type_l(this.t[var10].add(var14), var11.add(var14));
+               LandQuery.Type_l var15 = var3 == null ? null : var3.HAsLq_Type_l(this.t[var10].add(var14), var11.add(var14));
                Vec3d var16 = var11.subtract(this.t[var10]);
 
                for (int var17 = 0; var17 < 2 && var3 != null; var17++) {
@@ -96,7 +96,7 @@ public final class WalkPose {
                   if (!(Math.abs(var18) < 1.0E-8)) {
                      Vec3d var20 = var17 == 0 ? new Vec3d(Math.copySign(var12, var18), 0.0, 0.0) : new Vec3d(0.0, 0.0, Math.copySign(var12, var18));
                      Vec3d var21 = this.t[var10].add(var20);
-                     lq.Type_l var22 = var3.HAsLq_Type_l(var21, var11.add(var20));
+                     LandQuery.Type_l var22 = var3.HAsLq_Type_l(var21, var11.add(var20));
                      if (var22 != null && (var15 == null || var21.squaredDistanceTo(var22.point()) < this.t[var10].add(var14).squaredDistanceTo(var15.point()))
                         )
                       {
@@ -128,14 +128,14 @@ public final class WalkPose {
    }
 
    public WalkPose.Type_x QAsAz_Type_x(int var1, double var2, double var4) {
-      return this.JAsAz_Type_x(var1, var2, var4, aa.a);
+      return this.JAsAz_Type_x(var1, var2, var4, SahurPoseUtils.a);
    }
 
-   public WalkPose.Type_x JAsAz_Type_x(int var1, double var2, double var4, aa.Type_z var6) {
+   public WalkPose.Type_x JAsAz_Type_x(int var1, double var2, double var4, SahurPoseUtils.Type_z var6) {
       if (this.C == WalkPose.Type_f.STAR_OF_DAVID) {
-         return aa.zAsAz_Type_x(this, var1, var2, var6);
+         return SahurPoseUtils.zAsAz_Type_x(this, var1, var2, var6);
       } else if (this.C == WalkPose.Type_f.TUNG_TUNG) {
-         return dj.AAsAz_Type_x(this, var1, var2);
+         return DiscordRPC.AAsAz_Type_x(this, var1, var2);
       } else if (this.C == WalkPose.Type_f.TUNG_TUNG_FLOSS) {
          return SahurDanceEngine.lAsAz_Type_x(this, var1, var2);
       } else {

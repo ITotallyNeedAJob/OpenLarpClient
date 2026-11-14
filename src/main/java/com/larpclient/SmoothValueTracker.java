@@ -16,7 +16,7 @@ public final class SmoothValueTracker {
       this.p = 0;
    }
 
-   public d7.Type_d LAsD7_Type_d(double var1, double var3, boolean var5, double var6) {
+   public WidgetLayoutUtil.Type_d LAsD7_Type_d(double var1, double var3, boolean var5, double var6) {
       if (var5) {
          if (this.p == 0 && Math.max(Math.abs(var1 - this.b), Math.abs(var3 - this.q)) > 2.0) {
             this.p = Math.abs(var1 - this.b) >= Math.abs(var3 - this.q) ? 1 : 2;
@@ -44,10 +44,10 @@ public final class SmoothValueTracker {
          this.F = var3;
       }
 
-      return new d7.Type_d((int)Math.round(this.t), (int)Math.round(this.F), -1, -1);
+      return new WidgetLayoutUtil.Type_d((int)Math.round(this.t), (int)Math.round(this.F), -1, -1);
    }
 
-   public static double YAsDouble(d7.Type_q var0, double var1, double var3) {
+   public static double YAsDouble(WidgetLayoutUtil.Type_q var0, double var1, double var3) {
       double var5 = (var1 - var0.mouseX()) / Math.max(20.0, (double)var0.bounds().width() / var0.initialScale());
       double var7 = (var3 - var0.mouseY()) / Math.max(20.0, (double)var0.bounds().height() / var0.initialScale());
       return Math.clamp((double)Math.round((var0.initialScale() + (Math.abs(var5) > Math.abs(var7) ? var5 : var7)) / 0.02) * 0.02, 0.5, 2.5);

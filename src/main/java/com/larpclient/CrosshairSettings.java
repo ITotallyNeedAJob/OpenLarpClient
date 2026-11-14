@@ -21,10 +21,10 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
 public final class CrosshairSettings {
-   public static final Identifier AuraModule = Identifier.of("larp-client", "crosshair/crosshair.png");
+   public static final Identifier x = Identifier.of("larp-client", "crosshair/crosshair.png");
    static final int E = 4096;
    static final int h = 512;
-   static final int PriceDetector = 16777216;
+   static final int m = 16777216;
    private static final CrosshairSettings.Type_p live = new CrosshairSettings.Type_p("live");
    private static final CrosshairSettings.Type_p preview = new CrosshairSettings.Type_p("preview");
    private static CrosshairSettings.Type_q X;
@@ -117,7 +117,7 @@ public final class CrosshairSettings {
          try (ImageInputStream var3 = ImageIO.createImageInputStream(new ByteArrayInputStream(var1))) {
             Iterator var4 = ImageIO.getImageReaders(var3);
             if (!var4.hasNext()) {
-               throw new IOException("not PetEffectRenderer PNG image");
+               throw new IOException("not a PNG image");
             }
 
             ImageReader var5 = (ImageReader)var4.next();

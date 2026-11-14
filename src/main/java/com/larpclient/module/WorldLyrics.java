@@ -28,8 +28,8 @@ public final class WorldLyrics extends Module {
    private final BooleanSetting gradient = this.addSetting(new BooleanSetting("Gradient", "Flow the lyric tint into the client accent color", true));
    private final BooleanSetting glow = this.addSetting(new BooleanSetting("Glow", "Soft text bloom", true));
    private final BooleanSetting throughWalls = this.addSetting(new BooleanSetting("Through Walls", "Keep lyrics visible behind blocks and entities", true));
-   private final nb w = new nb();
-   private final rv f = new rv();
+   private final NetworkBridge w = new NetworkBridge();
+   private final RenderVariant f = new RenderVariant();
    private final Quaterniond m = new Quaterniond();
    private LyricsController r;
    private WorldTextRenderer o;
@@ -152,21 +152,21 @@ public final class WorldLyrics extends Module {
             }
 
             double var13 = this.style.pAsBoolean("Floating") ? 1.5 : (this.style.pAsBoolean("Dreamy") ? 2.2 : 0.65);
-            List<rv.Type_x> var9 = this.f
+            List<RenderVariant.Type_x> var9 = this.f
                .KAsList(
                   var1.pos.x,
                   var1.pos.y,
                   var1.pos.z,
                   this.m.set(var1.orientation),
-                  (double)(1.0F / w3.CAsMatrix4fc().m00()),
-                  (double)(1.0F / w3.CAsMatrix4fc().m11()),
+                  (double)(1.0F / WebRenderer.CAsMatrix4fc().m00()),
+                  (double)(1.0F / WebRenderer.CAsMatrix4fc().m11()),
                   this.size.getValue(),
                   var13,
                   var5,
                   this.o::mAsInt
                );
             int var10 = this.motion.pAsBoolean("Pop") ? 1 : (this.motion.pAsBoolean("Wave") ? 2 : 0);
-            int var11 = this.gradient.getValue() ? bd.w | 0xFF000000 : 0;
+            int var11 = this.gradient.getValue() ? UiStyle.w | 0xFF000000 : 0;
             List var12 = var9.stream()
                .map(
                   var3x -> new WorldTextRenderer.Type_d(
@@ -175,7 +175,7 @@ public final class WorldLyrics extends Module {
                         var3x.y(),
                         var3x.z(),
                         var3x.scale(),
-                        bg.pAsInt(this.color.getValue(), var10 == 0 ? var3x.opacity() : 1.0),
+                        ColorUtil.pAsInt(this.color.getValue(), var10 == 0 ? var3x.opacity() : 1.0),
                         (float)var3x.qx(),
                         (float)var3x.qy(),
                         (float)var3x.qz(),
@@ -195,7 +195,7 @@ public final class WorldLyrics extends Module {
    private double gAsDouble(CameraRenderState var1) {
       Vector3d var2 = new Vector3d(0.0, 0.0, -1.0).rotate(this.m.set(var1.orientation)).normalize();
       Vec3d var3 = var1.pos.add(var2.x * 7.99, var2.y * 7.99, var2.z * 7.99);
-      lq.Type_l var4 = lq.AAsLq_Type_l(getMc().world, var1.pos, var3);
+      LandQuery.Type_l var4 = LandQuery.AAsLq_Type_l(getMc().world, var1.pos, var3);
       return var4 == null ? 8.0 : Math.max(0.6, var1.pos.distanceTo(var4.point()) - 0.35);
    }
 

@@ -27,13 +27,13 @@ import net.minecraft.util.Identifier;
 import org.lwjgl.system.MemoryStack;
 
 public final class ChamsOutlineEffect implements AutoCloseable {
-   private static final int SahurDanceEngine = 0;
+   private static final int d = 0;
    private static final double F = 1.0;
-   private static final RenderPipeline AuctionNotifier = mAsRenderPipeline("chams_edge", false);
-   private static final RenderPipeline GroundSample = qAsRenderPipeline();
+   private static final RenderPipeline o = mAsRenderPipeline("chams_edge", false);
+   private static final RenderPipeline k = qAsRenderPipeline();
    private static final RenderPipeline N = mAsRenderPipeline("chams_blur", false);
    private static final RenderPipeline C = mAsRenderPipeline("chams_composite", true);
-   private static final RenderPipeline ChatPayParser = RenderPipeline.builder(new Snippet[0])
+   private static final RenderPipeline g = RenderPipeline.builder(new Snippet[0])
       .withLocation(rAsIdentifier("chams_hand_mask"))
       .withVertexShader(rAsIdentifier("post/fullscreen"))
       .withFragmentShader(rAsIdentifier("post/chams_hand_mask"))
@@ -50,7 +50,7 @@ public final class ChamsOutlineEffect implements AutoCloseable {
    private SimpleFramebuffer X;
    private GpuBuffer H;
    private EffectDrawBuffers S;
-   private int PetEffectRenderer = -1;
+   private int a = -1;
    private boolean p;
    private boolean Z;
    private boolean W;
@@ -146,7 +146,7 @@ public final class ChamsOutlineEffect implements AutoCloseable {
       }
    }
 
-   public void GAsVoid(List<ChamsOutlineEffect.Type_a> var1, MatrixStack var2, bp.Type_e var3, boolean var4) {
+   public void GAsVoid(List<ChamsOutlineEffect.Type_a> var1, MatrixStack var2, BridgeRenderer.Type_e var3, boolean var4) {
       if (var1.isEmpty()) {
          this.close();
       } else if (this.wAsBoolean()) {
@@ -217,7 +217,7 @@ public final class ChamsOutlineEffect implements AutoCloseable {
       }
    }
 
-   public void oAsVoid(bp.Type_e var1) {
+   public void oAsVoid(BridgeRenderer.Type_e var1) {
       Framebuffer var2 = this.kAsFramebuffer();
       if (var2 != null) {
          try {
@@ -231,7 +231,7 @@ public final class ChamsOutlineEffect implements AutoCloseable {
    public void tAsVoid(List<ChamsOutlineEffect.Type_k> var1) {
       Framebuffer var2 = this.kAsFramebuffer();
       if (var2 != null) {
-         long var3 = op.RAsLong();
+         long var3 = OpenScreen.RAsLong();
 
          try {
             for (ChamsOutlineEffect.Type_k var6 : var1) {
@@ -243,7 +243,7 @@ public final class ChamsOutlineEffect implements AutoCloseable {
          } catch (RuntimeException var10) {
             this.fAsVoid("hand region composite", var10);
          } finally {
-            op.aAsVoid(this.i + " gradient post", var3);
+            OpenScreen.aAsVoid(this.i + " gradient post", var3);
          }
       }
    }
@@ -299,8 +299,8 @@ public final class ChamsOutlineEffect implements AutoCloseable {
       }
    }
 
-   private void wAsVoid(bp.Type_e var1) {
-      long var2 = op.RAsLong();
+   private void wAsVoid(BridgeRenderer.Type_e var1) {
+      long var2 = OpenScreen.RAsLong();
 
       try {
          if (this.T) {
@@ -316,15 +316,15 @@ public final class ChamsOutlineEffect implements AutoCloseable {
          this.oAsVoid(C, this.X, MinecraftClient.getInstance().getFramebuffer(), var1, 0.0F, 0.0F);
          SceneRenderResources.cAsVoid();
       } finally {
-         op.aAsVoid(this.i + " gradient post", var2);
+         OpenScreen.aAsVoid(this.i + " gradient post", var2);
       }
    }
 
-   private void oAsVoid(RenderPipeline var1, Framebuffer var2, Framebuffer var3, bp.Type_e var4, float var5, float var6) {
+   private void oAsVoid(RenderPipeline var1, Framebuffer var2, Framebuffer var3, BridgeRenderer.Type_e var4, float var5, float var6) {
       this.DAsVoid(var1, var2, var3, var4, var5, var6, null);
    }
 
-   private void DAsVoid(RenderPipeline var1, Framebuffer var2, Framebuffer var3, bp.Type_e var4, float var5, float var6, ChamsOutlineEffect.Type_k var7) {
+   private void DAsVoid(RenderPipeline var1, Framebuffer var2, Framebuffer var3, BridgeRenderer.Type_e var4, float var5, float var6, ChamsOutlineEffect.Type_k var7) {
       CommandEncoder var8 = RenderSystem.getDevice().createCommandEncoder();
       MemoryStack var9 = MemoryStack.stackPush();
 
@@ -379,7 +379,7 @@ public final class ChamsOutlineEffect implements AutoCloseable {
          }
 
          var18.draw(0, 3);
-         op.FAsVoid(this.i + " fullscreen draws", 1L);
+         OpenScreen.FAsVoid(this.i + " fullscreen draws", 1L);
       } catch (Throwable var18x) {
          if (var18 != null) {
             try {
@@ -458,6 +458,6 @@ public final class ChamsOutlineEffect implements AutoCloseable {
    public static record Type_a(EntityRenderState state, int color) {
    }
 
-   public static record Type_k(int x, int y, int width, int height, bp.Type_e frame) {
+   public static record Type_k(int x, int y, int width, int height, BridgeRenderer.Type_e frame) {
    }
 }

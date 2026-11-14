@@ -8,20 +8,20 @@ public final class IslandLyricsPreview {
    public static final int C = 20;
    static final int F = 44;
    static final int U = 10;
-   static final int HexEdgeloop = 13;
+   static final int p = 13;
    static final long n = 380000000L;
    static final long X = 520000000L;
    static final double S = 1.6;
-   private static final int LineSegment = -1250068;
-   private static final int BloomUtility = -4671294;
+   private static final int e = -1250068;
+   private static final int b = -4671294;
    private static final int w = 805306368;
    private static final Identifier z = Identifier.of("larp-client", "textures/gui/logo.png");
    private static final IslandLyricsPreview.Type_a T = new IslandLyricsPreview.Type_a(
       IslandLyricsPreview.Type_m.LYRIC, "Island Lyrics preview line", "sample", true, 0.0
    );
-   private final IslandLyricsPreview.Type_i SahurDanceEngine = new IslandLyricsPreview.Type_i(44.0F, 170.0F, 19.0F);
+   private final IslandLyricsPreview.Type_i d = new IslandLyricsPreview.Type_i(44.0F, 170.0F, 19.0F);
    private final IslandLyricsPreview.Type_i I = new IslandLyricsPreview.Type_i(14.0F, 170.0F, 19.0F);
-   private final IslandLyricsPreview.Type_i SmoothInput = new IslandLyricsPreview.Type_i(0.0F, 90.0F, 18.0F);
+   private final IslandLyricsPreview.Type_i t = new IslandLyricsPreview.Type_i(0.0F, 90.0F, 18.0F);
    private final IslandLyricsPreview.Type_i Y = new IslandLyricsPreview.Type_i(0.0F, 120.0F, 20.0F);
    private IslandLyricsPreview.Type_a L = IslandLyricsPreview.Type_a.IDLE;
    private IslandLyricsPreview.Type_a E = IslandLyricsPreview.Type_a.IDLE;
@@ -126,24 +126,24 @@ public final class IslandLyricsPreview {
       int var14 = var3 + (20 - var6) / 2;
       int var15 = var6 / 2;
 
-      try (qg var16 = qg.nAsQg((double)Math.clamp(var7, 0.0F, 1.0F))) {
+      try (QueueGroup var16 = QueueGroup.nAsQg((double)Math.clamp(var7, 0.0F, 1.0F))) {
          RoundedShapePipeline.CAsVoid(var1, (float)var13, (float)var14, (float)var5, (float)var6, (float)var15, 3.0F, 805306368, 805306368);
          RoundedShapePipeline.nAsVoid(var1, (float)var13, (float)var14, (float)var5, (float)var6, (float)var15, MenuLogoLayout.zAsInt());
          var1.enableScissor(var13 + 2, var14, var13 + var5 - 2, var14 + var6);
 
          try {
             if (var8 < 1.0F && this.E.kind != IslandLyricsPreview.Type_m.IDLE) {
-               try (qg var17 = qg.nAsQg((double)(1.0F - var8) * 0.5)) {
+               try (QueueGroup var17 = QueueGroup.nAsQg((double)(1.0F - var8) * 0.5)) {
                   int var18 = Math.round(var8 * 3.0F);
                   this.kAsVoid(var1, this.E, var13 - var18, var14, var5, var6, var11, 0.0F, 1.0F);
                   this.kAsVoid(var1, this.E, var13 + var18, var14, var5, var6, var11, 0.0F, 1.0F);
                }
             }
 
-            try (qg var35 = qg.nAsQg((double)var8)) {
+            try (QueueGroup var35 = QueueGroup.nAsQg((double)var8)) {
                if (this.L.kind == IslandLyricsPreview.Type_m.IDLE) {
                   double var36 = 0.5 + 0.5 * Math.sin((double)var11 / 9.0E8);
-                  PAsVoid(var1, (float)var13 + (float)var5 / 2.0F, (float)var14 + (float)var6 / 2.0F, 2.2F, bg.pAsInt(bd.w, 0.55 + 0.35 * var36));
+                  PAsVoid(var1, (float)var13 + (float)var5 / 2.0F, (float)var14 + (float)var6 / 2.0F, 2.2F, ColorUtil.pAsInt(UiStyle.w, 0.55 + 0.35 * var36));
                } else {
                   this.kAsVoid(var1, this.L, var13, var14, var5, var6, var11, var10, var9);
                }
@@ -168,13 +168,13 @@ public final class IslandLyricsPreview {
             if (var10 < 1.0F) {
                EAsVoid(var1, var2.text, (double)((float)var12 - var9), var14, var10);
             } else {
-               ww.fAsVoid(var1, var2.text, (double)((float)var12 - var9), var14, 10.0, -1250068);
+               WorldWidget.fAsVoid(var1, var2.text, (double)((float)var12 - var9), var14, 10.0, -1250068);
             }
          } finally {
             var1.disableScissor();
          }
       } else {
-         ww.fAsVoid(var1, HudSdfAtlas.bAsString(var2.text, (double)var13, 10.0), (double)var12, var14, 10.0, -4671294);
+         WorldWidget.fAsVoid(var1, HudSdfAtlas.bAsString(var2.text, (double)var13, 10.0), (double)var12, var14, 10.0, -4671294);
       }
    }
 
@@ -189,8 +189,8 @@ public final class IslandLyricsPreview {
          float var12 = HudSdfAtlas.jAsFloat(var11, 10.0);
          float var13 = Math.clamp((var6 - (var8 + var12 / 2.0F) / var7 * 0.5F) / 0.5F, 0.0F, 1.0F);
          if (var13 > 0.0F && !Character.isWhitespace(var10)) {
-            try (qg var14 = qg.nAsQg((double)var13)) {
-               ww.fAsVoid(var0, var11, var2 + (double)var8, var4 + (double)(4.0F * (1.0F - GAsFloat(var13))), 10.0, -1250068);
+            try (QueueGroup var14 = QueueGroup.nAsQg((double)var13)) {
+               WorldWidget.fAsVoid(var0, var11, var2 + (double)var8, var4 + (double)(4.0F * (1.0F - GAsFloat(var13))), 10.0, -1250068);
             }
          }
 
@@ -221,7 +221,7 @@ public final class IslandLyricsPreview {
 
          try {
             var0.getMatrices().translate((float)var1 + (float)var8 * 3.5F, var2 - var9 / 2.0F);
-            RoundedShapePipeline.nAsVoid(var0, 0.0F, 0.0F, 2.0F, (float)Math.max(2, Math.round(var9)), 1.0F, bg.pAsInt(bd.w, 0.95));
+            RoundedShapePipeline.nAsVoid(var0, 0.0F, 0.0F, 2.0F, (float)Math.max(2, Math.round(var9)), 1.0F, ColorUtil.pAsInt(UiStyle.w, 0.95));
          } finally {
             var0.getMatrices().popMatrix();
          }

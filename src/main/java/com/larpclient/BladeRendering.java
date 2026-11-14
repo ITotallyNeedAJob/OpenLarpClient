@@ -20,7 +20,7 @@ import net.minecraft.client.util.BufferAllocator;
 public final class BladeRendering implements AutoCloseable {
    private final Supplier<String> f;
    private final int n;
-   private final ArrayList<BladeRendering.Type_v> PriceDetector = new ArrayList<>();
+   private final ArrayList<BladeRendering.Type_v> m = new ArrayList<>();
    private int v;
 
    public BladeRendering(Supplier<String> var1, int var2) {

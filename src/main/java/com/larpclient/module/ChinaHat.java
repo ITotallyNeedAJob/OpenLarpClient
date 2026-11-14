@@ -116,11 +116,11 @@ public final class ChinaHat extends Module {
    }
 
    private ChinaHat.Type_y FAsChinaHat_Type_y() {
-      int var1 = this.fireTheme.getValue() ? bd.w : this.fireColor.getValue();
+      int var1 = this.fireTheme.getValue() ? UiStyle.w : this.fireColor.getValue();
       return new ChinaHat.Type_y(
-         this.hornTheme.getValue() ? bd.Q : this.hornColor.getValue(),
+         this.hornTheme.getValue() ? UiStyle.Q : this.hornColor.getValue(),
          var1,
-         this.fireTheme.getValue() ? HornsMeshRenderer.lAsInt(bd.w) : this.fireCoreColor.getValue(),
+         this.fireTheme.getValue() ? HornsMeshRenderer.lAsInt(UiStyle.w) : this.fireCoreColor.getValue(),
          this.fireSize.getValue(),
          this.fireHeat.getValue()
       );
@@ -149,8 +149,8 @@ public final class ChinaHat extends Module {
       JsonObject var1 = new JsonObject();
       var1.addProperty("version", 1);
       var1.addProperty("enabled", this.isOperational() && this.mode.pAsBoolean("Cone"));
-      var1.addProperty("top", this.themeColors.getValue() ? bd.w : this.topColor.getValue());
-      var1.addProperty("rim", this.themeColors.getValue() ? bd.Q : this.rimColor.getValue());
+      var1.addProperty("top", this.themeColors.getValue() ? UiStyle.w : this.topColor.getValue());
+      var1.addProperty("rim", this.themeColors.getValue() ? UiStyle.Q : this.rimColor.getValue());
       var1.addProperty("radius", this.radius.getValue());
       var1.addProperty("height", this.height.getValue());
       var1.addProperty("offset", this.offset.getValue());
@@ -175,7 +175,7 @@ public final class ChinaHat extends Module {
                   this.accessorySize.getValue(),
                   HatMeshLoader.LAsDouble(var1, this.accessorySize.getValue()),
                   0.0,
-                  bg.XAsInt(16777215, this.accessoryOpacity.getValue()),
+                  ColorUtil.XAsInt(16777215, this.accessoryOpacity.getValue()),
                   0,
                   false,
                   var1
@@ -188,8 +188,8 @@ public final class ChinaHat extends Module {
                      this.kippahSize.getValue(),
                      this.kippahHeight.getValue(),
                      this.kippahOffset.getValue(),
-                     bg.XAsInt(this.kippahColor.getValue(), var2),
-                     bg.XAsInt(this.starColor.getValue(), var2),
+                     ColorUtil.XAsInt(this.kippahColor.getValue(), var2),
+                     ColorUtil.XAsInt(this.starColor.getValue(), var2),
                      this.outline.getValue()
                   )
                   : new ChinaHat.Type_a(
@@ -197,8 +197,8 @@ public final class ChinaHat extends Module {
                      this.radius.getValue(),
                      this.height.getValue(),
                      this.offset.getValue(),
-                     bg.XAsInt(this.themeColors.getValue() ? bd.w : this.topColor.getValue(), var2),
-                     bg.XAsInt(this.themeColors.getValue() ? bd.Q : this.rimColor.getValue(), var2),
+                     ColorUtil.XAsInt(this.themeColors.getValue() ? UiStyle.w : this.topColor.getValue(), var2),
+                     ColorUtil.XAsInt(this.themeColors.getValue() ? UiStyle.Q : this.rimColor.getValue(), var2),
                      this.outline.getValue()
                   );
             }
@@ -273,8 +273,8 @@ public final class ChinaHat extends Module {
                         : this.isOperational() && this.otherPlayers.getValue()
                   )
                   && var3.get("enabled").getAsBoolean()) {
-                  int var12 = bg.XAsInt(var3.get("top").getAsInt(), var3.get("opacity").getAsDouble());
-                  int var13 = bg.XAsInt(var3.get("rim").getAsInt(), var3.get("opacity").getAsDouble());
+                  int var12 = ColorUtil.XAsInt(var3.get("top").getAsInt(), var3.get("opacity").getAsDouble());
+                  int var13 = ColorUtil.XAsInt(var3.get("rim").getAsInt(), var3.get("opacity").getAsDouble());
                   if (var10.isAlive()
                      && !var10.isInvisible()
                      && !var10.isSpectator()
@@ -313,7 +313,7 @@ public final class ChinaHat extends Module {
                                  this.accessorySize.getValue(),
                                  0.0,
                                  0.0,
-                                 bg.XAsInt(16777215, this.accessoryOpacity.getValue()),
+                                 ColorUtil.XAsInt(16777215, this.accessoryOpacity.getValue()),
                                  0,
                                  false,
                                  var5,
@@ -333,8 +333,8 @@ public final class ChinaHat extends Module {
                                  this.kippahSize.getValue(),
                                  this.kippahHeight.getValue(),
                                  this.kippahOffset.getValue(),
-                                 bg.XAsInt(this.kippahColor.getValue(), var16),
-                                 bg.XAsInt(this.starColor.getValue(), var16),
+                                 ColorUtil.XAsInt(this.kippahColor.getValue(), var16),
+                                 ColorUtil.XAsInt(this.starColor.getValue(), var16),
                                  this.outline.getValue()
                               )
                            );
@@ -370,8 +370,8 @@ public final class ChinaHat extends Module {
       if (this.isEnabled()) {
          this.A++;
          if (this.y == mc.world) {
-            var1.blend(x4.Type_g.ALPHA);
-            double var3 = mb.RAsDouble();
+            var1.blend(EffectRenderParams.Type_g.ALPHA);
+            double var3 = MediaSession.RAsDouble();
             byte var5 = 0;
 
             for (ChinaHat.Type_k var7 : this.f) {

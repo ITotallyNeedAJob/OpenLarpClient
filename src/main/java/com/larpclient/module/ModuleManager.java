@@ -28,7 +28,7 @@ import net.minecraft.client.MinecraftClient;
 
 public class ModuleManager {
    private final List<Module> c = new ArrayList<>();
-   private final qs n = new qs();
+   private final QueueSort n = new QueueSort();
 
    public ModuleManager() {
    }
@@ -205,11 +205,11 @@ public class ModuleManager {
             var3.suspendForDisconnect();
          }
 
-         o9.yAsVoid();
-         p5.gAsVoid();
-         dq.bAsVoid();
-         b_.AAsVoid();
-         pk.kAsVoid();
+         OutlineEffect.yAsVoid();
+         ParticleEmitter.gAsVoid();
+         ModuleDetector.bAsVoid();
+         ModuleImportBroker.AAsVoid();
+         ParticleKind.kAsVoid();
       }
 
       if (this.n.qAsBoolean(var1.player, var1.world, var1.player != null && var1.player.isAlive())) {
@@ -218,18 +218,18 @@ public class ModuleManager {
          }
 
          FakeLag.AAsVoid();
-         o9.yAsVoid();
-         p5.gAsVoid();
-         dq.bAsVoid();
-         b_.AAsVoid();
-         pk.kAsVoid();
+         OutlineEffect.yAsVoid();
+         ParticleEmitter.gAsVoid();
+         ModuleDetector.bAsVoid();
+         ModuleImportBroker.AAsVoid();
+         ParticleKind.kAsVoid();
       }
    }
 
    public void rAsVoid() {
       this.OAsVoid();
-      dq.bAsVoid();
-      b_.KAsVoid();
+      ModuleDetector.bAsVoid();
+      ModuleImportBroker.KAsVoid();
 
       for (Module var2 : this.c) {
          var2.activatePending();
@@ -250,7 +250,7 @@ public class ModuleManager {
          }
 
          if (var4 == Module.Type_s.INTENT) {
-            dq.aAsVoid();
+            ModuleDetector.aAsVoid();
          }
       }
    }

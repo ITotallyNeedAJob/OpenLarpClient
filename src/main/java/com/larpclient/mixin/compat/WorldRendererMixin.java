@@ -49,7 +49,7 @@ public abstract class WorldRendererMixin {
                Collection var8 = var5.gAsCollection(this.field_4085, var1.getCameraPos(), var7.getRenderDistance());
                LongOpenHashSet var9 = new LongOpenHashSet();
                var3.blockEntityRenderStates
-                  .removeIf(var2x -> var5.vAsBoolean(var2x.pos) && !var7.rendersOutsideBoundingBox() && !w3.BAsFrustum().isVisible(new Box(var2x.pos)));
+                  .removeIf(var2x -> var5.vAsBoolean(var2x.pos) && !var7.rendersOutsideBoundingBox() && !WebRenderer.BAsFrustum().isVisible(new Box(var2x.pos)));
 
                for (BlockEntityRenderState var11 : var3.blockEntityRenderStates) {
                   if (var5.vAsBoolean(var11.pos)) {
@@ -65,7 +65,7 @@ public abstract class WorldRendererMixin {
                      BlockEntityRenderer var14 = this.field_27741.get(var12);
                      if (var14 != null
                         && var14.isInRenderDistance(var12, var1.getCameraPos())
-                        && (var14.rendersOutsideBoundingBox() || w3.BAsFrustum().isVisible(new Box(var13)))) {
+                        && (var14.rendersOutsideBoundingBox() || WebRenderer.BAsFrustum().isVisible(new Box(var13)))) {
                         if (var9.contains(var13.asLong())) {
                            var22++;
                         } else {

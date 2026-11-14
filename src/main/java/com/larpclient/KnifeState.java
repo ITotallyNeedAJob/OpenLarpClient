@@ -8,7 +8,7 @@ public final class KnifeState {
    private double z;
    private double L = Double.NaN;
    private double H;
-   private final KnifeState.Type_i HexEdgeloop = new KnifeState.Type_i();
+   private final KnifeState.Type_i p = new KnifeState.Type_i();
 
    public KnifeState() {
    }

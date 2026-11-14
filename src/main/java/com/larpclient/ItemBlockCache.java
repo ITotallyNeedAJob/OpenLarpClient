@@ -18,7 +18,7 @@ public final class ItemBlockCache {
    private static void yAsVoid() {
       ClientWorld var0 = MinecraftClient.getInstance().world;
       if (var0 != t) {
-         SmoothInput = var0;
+         t = var0;
          X.clear();
       }
 

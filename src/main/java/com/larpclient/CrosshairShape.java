@@ -17,15 +17,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public final class CrosshairShape {
-   public static final String BoxUtils = "Draw Your Own";
-   public static final List<String> SmoothInput = List.of("Star of David", "67", "Draw Your Own", "Cross", "Dot", "Heart", "Star", "Crown");
-   private static final List<String> LineSegment = List.of("Star of David", "Cross");
+   public static final String c = "Draw Your Own";
+   public static final List<String> t = List.of("Star of David", "67", "Draw Your Own", "Cross", "Dot", "Heart", "Star", "Crown");
+   private static final List<String> e = List.of("Star of David", "Cross");
    private static final double D = 7.0;
    public static final double h = 0.65;
    public static final double S = 1.0;
    public static final double q = 0.5;
-   public static final double MenuPopupProvider = 8.0;
-   private static final int BloomUtility = 8;
+   public static final double f = 8.0;
+   private static final int b = 8;
    static final String A = "/assets/larp-client/font/semibold.ttf";
    private static Shape v;
    private final CrosshairShape.Type_b K;
@@ -49,7 +49,7 @@ public final class CrosshairShape {
    }
 
    public static boolean AAsBoolean(String var0) {
-      return LineSegment.contains(var0);
+      return e.contains(var0);
    }
 
    public static double uAsDouble(double var0) {

@@ -18,7 +18,7 @@ public final class KorbloxLegRenderer {
    private static final Identifier v = Identifier.of("larp-client", "dynamic/korblox_leg");
    private static final int r = 15728880;
    private static final int S = 64;
-   private static int PriceDetector = -1;
+   private static int m = -1;
    private static int P = -1;
 
    private KorbloxLegRenderer() {
@@ -26,7 +26,7 @@ public final class KorbloxLegRenderer {
 
    public static boolean DAsBoolean() {
       int var0 = BloomQuality.J;
-      if (PriceDetector == var0) {
+      if (m == var0) {
          return true;
       } else if (P == var0) {
          return false;
@@ -35,7 +35,7 @@ public final class KorbloxLegRenderer {
             NativeImageBackedTexture var1 = new NativeImageBackedTexture(() -> "LARP Korblox leg", 64, 64, false);
 
             try {
-               int[] var2 = ms.sAsIntArray();
+               int[] var2 = ModuleSearch.sAsIntArray();
                NativeImage var3 = var1.getImage();
 
                for (int var4 = 0; var4 < var2.length; var4++) {
@@ -49,8 +49,8 @@ public final class KorbloxLegRenderer {
                throw var51;
             }
 
-            PriceDetector = var0;
-            ClientLog.GAsVoid("Korblox", "Leg ready: {} faces, generated {}x{} texture, resource generation {}", ms.ZAsMs_Type_w().faces(), 64, 64, var0);
+            m = var0;
+            ClientLog.GAsVoid("Korblox", "Leg ready: {} faces, generated {}x{} texture, resource generation {}", ModuleSearch.ZAsMs_Type_w().faces(), 64, 64, var0);
             return true;
          } catch (RuntimeException var61) {
             P = var0;
@@ -60,7 +60,7 @@ public final class KorbloxLegRenderer {
       }
    }
 
-   public static void JAsVoid(MatrixStack var0, RenderCommandQueue var1, ModelPart var2, la var3, int var4, int var5, boolean var6) {
+   public static void JAsVoid(MatrixStack var0, RenderCommandQueue var1, ModelPart var2, LimbData var3, int var4, int var5, boolean var6) {
       var0.push();
 
       try {
@@ -76,7 +76,7 @@ public final class KorbloxLegRenderer {
       }
    }
 
-   public static void xAsVoid(MatrixStack var0, Immediate var1, ModelPart var2, la var3, int var4, int var5, boolean var6) {
+   public static void xAsVoid(MatrixStack var0, Immediate var1, ModelPart var2, LimbData var3, int var4, int var5, boolean var6) {
       var0.push();
 
       try {
@@ -92,9 +92,9 @@ public final class KorbloxLegRenderer {
       }
    }
 
-   static void aAsVoid(Entry var0, VertexConsumer var1, la var2, int var3, int var4, boolean var5, boolean var6) {
-      long var7 = op.RAsLong();
-      ms.Type_w var9 = ms.ZAsMs_Type_w();
+   static void aAsVoid(Entry var0, VertexConsumer var1, LimbData var2, int var3, int var4, boolean var5, boolean var6) {
+      long var7 = OpenScreen.RAsLong();
+      ModuleSearch.Type_w var9 = ModuleSearch.ZAsMs_Type_w();
       float[] var10 = var9.uvs();
       float[] var11 = var9.gradient();
       float[] var12 = new float[6];
@@ -104,8 +104,8 @@ public final class KorbloxLegRenderer {
       for (int var15 = 0; var15 < var9.faces(); var15++) {
          for (int var16 = 0; var16 < 4; var16++) {
             int var17 = var13[var15 * 4 + (var5 ? (4 - var16) % 4 : var16)];
-            ms.dAsVoid(var9, var17, (double)var2.length(), (double)var2.thickness(), var5, var12);
-            int var18 = var6 ? ms.xAsInt(var2.tip(), (double)var2.glow(), var11[var17]) : ms.EAsInt(var2.hip(), var2.tip(), var11[var17]);
+            ModuleSearch.dAsVoid(var9, var17, (double)var2.length(), (double)var2.thickness(), var5, var12);
+            int var18 = var6 ? ModuleSearch.xAsInt(var2.tip(), (double)var2.glow(), var11[var17]) : ModuleSearch.EAsInt(var2.hip(), var2.tip(), var11[var17]);
             var1.vertex(var0, var12[0] / 16.0F, var12[1] / 16.0F, var12[2] / 16.0F)
                .color(var18)
                .texture(var10[var17 * 2] + var14, var10[var17 * 2 + 1])
@@ -115,12 +115,12 @@ public final class KorbloxLegRenderer {
          }
       }
 
-      op.aAsVoid("Korblox", var7);
+      OpenScreen.aAsVoid("Korblox", var7);
    }
 
    private static final class Type_c {
-      static final RenderLayer ChatPayParser = RenderLayers.entityCutout(KorbloxLegRenderer.v);
-      static final RenderLayer HexEdgeloop = RenderLayers.eyes(KorbloxLegRenderer.v);
+      static final RenderLayer g = RenderLayers.entityCutout(KorbloxLegRenderer.v);
+      static final RenderLayer p = RenderLayers.eyes(KorbloxLegRenderer.v);
 
       private Type_c() {
       }

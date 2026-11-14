@@ -29,7 +29,7 @@ public class Criticals extends Module {
    public static boolean dAsBoolean() {
       if (R == null || !R.isEnabled()) {
          return false;
-      } else if (R != null && R.isRuntimeActive() && b_.jAsBoolean() && r6.hAsBoolean()) {
+      } else if (R != null && R.isRuntimeActive() && ModuleImportBroker.jAsBoolean() && ModuleKeybindChecker.hAsBoolean()) {
          ClientPlayerEntity var0 = getMc().player;
          return !var0.isTouchingWater()
             && !var0.isInLava()
@@ -90,6 +90,6 @@ public class Criticals extends Module {
 
    @Override
    public void onDisable() {
-      b_.AAsVoid();
+      ModuleImportBroker.AAsVoid();
    }
 }

@@ -53,7 +53,7 @@ public final class Performance extends Module {
          "Blur", "Blur quality behind the ClickGUI window and HUD panels", BloomQuality.v.name(), "Off", "Low", "Medium", "High", "Ultra"
       );
       var2.onChanged(var0 -> BloomQuality.v = BloomQuality.Type_w.valueOf(var0));
-      BloomQuality.Type_w var3 = x9.K;
+      BloomQuality.Type_w var3 = BloomQualityHelper.K;
       ModeSetting var4 = new ModeSetting(
          "Effects",
          "Particle detail, glow and refraction for trails, weather and After Dark",

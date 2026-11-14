@@ -14,7 +14,7 @@ public final class PlayerCosmeticsFeature extends FeatureRenderer<PlayerEntityRe
    }
 
    public void render(MatrixStack var1, OrderedRenderCommandQueue var2, int var3, PlayerEntityRenderState var4, float var5, float var6) {
-      la var7 = ((mc)var4).larp$korblox();
+      LimbData var7 = ((MediaControls)var4).larp$korblox();
       if (var7 != null && !var4.invisible && !var4.spectator) {
          int var8 = LivingEntityRenderer.getOverlay(var4, 0.0F);
          PlayerEntityModel var9 = (PlayerEntityModel)this.getContextModel();

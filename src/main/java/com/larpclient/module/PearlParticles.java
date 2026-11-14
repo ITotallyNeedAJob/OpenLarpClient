@@ -95,7 +95,7 @@ public final class PearlParticles extends Module {
          this.J = getMc().world;
          this.x = this.getPlayer();
          this.a = var1;
-         double var2 = mb.dAsDouble();
+         double var2 = MediaSession.dAsDouble();
          this.M.entrySet().removeIf(var0 -> getMc().world.getEntityById(var0.getKey()) != var0.getValue() || var0.getValue().isRemoved());
          HashSet var4 = new HashSet();
          int var5 = 0;
@@ -149,7 +149,7 @@ public final class PearlParticles extends Module {
          if (this.isRuntimeActive() && this.isInGame() && this.J == getMc().world) {
             for (PearlParticles.Type_y var4 : this.F) {
                double var5 = this.hAsDouble(var4, var1);
-               if (var5 >= 0.001 && bg.pAsInt(this.iAsInt(var4, var1), var5) >>> 24 != 0) {
+               if (var5 >= 0.001 && ColorUtil.pAsInt(this.iAsInt(var4, var1), var5) >>> 24 != 0) {
                   return true;
                }
             }
@@ -169,7 +169,7 @@ public final class PearlParticles extends Module {
    }
 
    private int iAsInt(PearlParticles.Type_y var1, double var2) {
-      return this.colorAnimation.getValue() ? bg.xAsInt(bd.w, bd.Q, 0.5 + 0.5 * Math.sin(var2 * 2.0 + (double)var1.O * 0.04)) : this.color.getValue();
+      return this.colorAnimation.getValue() ? ColorUtil.xAsInt(UiStyle.w, UiStyle.Q, 0.5 + 0.5 * Math.sin(var2 * 2.0 + (double)var1.O * 0.04)) : this.color.getValue();
    }
 
    public void aAsVoid(MatrixStack var1, EffectDrawBuffers var2, CameraRenderState var3, double var4, boolean var6) {
@@ -179,11 +179,11 @@ public final class PearlParticles extends Module {
          for (PearlParticles.Type_y var9 : this.F) {
             double var10 = this.hAsDouble(var9, var4);
             if (!(var10 < 0.001)) {
-               Vec3d var12 = var9.D.lerp(var9.P, (double)mb.LAsFloat());
+               Vec3d var12 = var9.D.lerp(var9.P, (double)MediaSession.LAsFloat());
                int var13 = this.iAsInt(var9, var4);
                double var14 = Math.clamp((var4 - var9.G) / this.K.getValue(), 0.0, 1.0);
-               var13 = bg.xAsInt(var13, var13 & 0xFF000000 | 16777215, 0.22 * Math.pow(1.0 - var14, 4.0));
-               var7.aAsVoid(var12, xAsDouble(this.V.getValue(), var14, var9.O), bg.pAsInt(var13, var10));
+               var13 = ColorUtil.xAsInt(var13, var13 & 0xFF000000 | 16777215, 0.22 * Math.pow(1.0 - var14, 4.0));
+               var7.aAsVoid(var12, xAsDouble(this.V.getValue(), var14, var9.O), ColorUtil.pAsInt(var13, var10));
             }
          }
       }
@@ -193,7 +193,7 @@ public final class PearlParticles extends Module {
       int var5 = var4 * -1640531527;
       var5 ^= var5 >>> 16;
       double var6 = 0.74 + 0.26 * (double)(var5 >>> 8 & 65535) / 65535.0;
-      return var0 * var6 * (1.0 - 0.55 * ay.RAsDouble(var2));
+      return var0 * var6 * (1.0 - 0.55 * FadeCurve.RAsDouble(var2));
    }
 
    private static final class Type_y {

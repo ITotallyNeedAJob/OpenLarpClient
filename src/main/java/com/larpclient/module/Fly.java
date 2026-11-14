@@ -48,7 +48,7 @@ public class Fly extends Module {
 
    @Override
    public void onTick() {
-      if (!this.isInGame() || !this.vAsBoolean() || !r6.VAsBoolean()) {
+      if (!this.isInGame() || !this.vAsBoolean() || !ModuleKeybindChecker.VAsBoolean()) {
          this.YAsVoid();
       } else if (this.mode.pAsBoolean("Vanilla")) {
          PlayerAbilities var1 = mc.player.getAbilities();
@@ -83,8 +83,8 @@ public class Fly extends Module {
          this.YAsVoid();
          Vec3d var4 = mc.player.getVelocity();
          if (!mc.player.isOnGround() && var4.y < 0.0 && !mc.player.isTouchingWater() && !mc.player.isInLava()) {
-            Vec3d var5 = r6.JAsVec3d().multiply(this.speed.getValue() * 0.15);
-            Vec3d var3 = r6.PAsVec3d(new Vec3d(var4.x, 0.0, var4.z), var5, 0.04);
+            Vec3d var5 = ModuleKeybindChecker.JAsVec3d().multiply(this.speed.getValue() * 0.15);
+            Vec3d var3 = ModuleKeybindChecker.PAsVec3d(new Vec3d(var4.x, 0.0, var4.z), var5, 0.04);
             mc.player.setVelocity(var3.x, Math.min(0.0, var4.y + Math.min(0.08, -this.glideSpeed.getValue() - var4.y)), var3.z);
          }
       }

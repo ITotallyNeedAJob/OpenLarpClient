@@ -53,8 +53,8 @@ public final class GUIAnimation extends Module {
          }
       }
    );
-   private final w2 P = new w2(0.0);
-   private final w2 U = new w2(0.0);
+   private final WeatherRenderer P = new WeatherRenderer(0.0);
+   private final WeatherRenderer U = new WeatherRenderer(0.0);
    private final Map<Slot, GUIAnimation.Type_v> A = new WeakHashMap<>();
    private Object I;
    private float Y = Float.NaN;
@@ -108,7 +108,7 @@ public final class GUIAnimation extends Module {
          return false;
       } else {
          SmoothCamera var1 = SmoothCamera.XAsSmoothCamera();
-         return this.isRuntimeActive() && this.O.getValue() && p5.NAsP5_Type_u() == p5.Type_u.NONE && (var1 == null || !var1.isRuntimeActive());
+         return this.isRuntimeActive() && this.O.getValue() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.NONE && (var1 == null || !var1.isRuntimeActive());
       }
    }
 
@@ -135,7 +135,7 @@ public final class GUIAnimation extends Module {
             return 1.0F;
          } else {
             double var3 = Math.clamp((double)(System.nanoTime() - var1) / ((double)this.LAsLong() * 1000000.0), 0.0, 1.0);
-            return (float)(0.86 + 0.14 * w2.Type_e.BACK_OUT.zAsDouble(var3));
+            return (float)(0.86 + 0.14 * WeatherRenderer.Type_e.BACK_OUT.zAsDouble(var3));
          }
       } else {
          return 1.0F;
@@ -192,7 +192,7 @@ public final class GUIAnimation extends Module {
 
    public float qAsFloat(float var1) {
       if (this.isEnabled()) {
-         if (this.isRuntimeActive() && this.c.getValue() && p5.NAsP5_Type_u() == p5.Type_u.NONE) {
+         if (this.isRuntimeActive() && this.c.getValue() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.NONE) {
             long var2 = System.nanoTime();
             if (Float.isNaN(this.Y)) {
                this.Y = var1;

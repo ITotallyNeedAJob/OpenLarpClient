@@ -14,7 +14,7 @@ public final class ShieldBreaker extends Module {
    private final BooleanSetting swapBack = this.addSetting(
       new BooleanSetting("Swap Back", "Return to your previous hotbar slot on the tick after the hit", true)
    );
-   private final pg g = new pg(this);
+   private final ParticleGeometry g = new ParticleGeometry(this);
    private String l = "Ready";
    private PlayerEntity t;
    private int z;
@@ -34,23 +34,23 @@ public final class ShieldBreaker extends Module {
          ShieldBreaker var2 = K;
          if (var2 != null
             && var2.isRuntimeActive()
-            && !b_.pAsBoolean()
+            && !ModuleImportBroker.pAsBoolean()
             && var1 instanceof PlayerEntity var3
             && var0 == getMc().player
             && !var2.g.FAsBoolean()
-            && pk.PAsBoolean(var3, var0)
-            && !pk.NAsBoolean(var3)) {
+            && ParticleKind.PAsBoolean(var3, var0)
+            && !ParticleKind.NAsBoolean(var3)) {
             Mace var4 = Mace.yAsMace();
             if (var4 != null && var4.lAsBoolean(var0, var3)) {
                var2.l = "Stun Slam by Auto Mace";
             } else {
-               int var5 = pk.JAsInt(var0);
+               int var5 = ParticleKind.JAsInt(var0);
                if (var5 < 0) {
                   var2.l = "No axe in hotbar";
                } else if (!var2.g.uAsBoolean(var0, var5)) {
                   var2.l = "Hotbar busy";
                } else {
-                  pk.wAsVoid(var3);
+                  ParticleKind.wAsVoid(var3);
                   var2.t = var3;
                   var2.z = var3.age;
                   var2.l = "Shield break hit";
@@ -60,7 +60,7 @@ public final class ShieldBreaker extends Module {
                      var3.getId(),
                      var5 + 1,
                      var3.getItemUseTime(),
-                     pk.WAsInt(var0)
+                     ParticleKind.WAsInt(var0)
                   );
                }
             }
@@ -119,7 +119,7 @@ public final class ShieldBreaker extends Module {
          } else if (!var1.isUsingItem()) {
             this.t = null;
             ClientLog.XAsVoid("ShieldBreaker", "Shield of {} went down {} ticks after the axe hit", var1.getId(), var2);
-         } else if (!pk.NAsBoolean(var1)) {
+         } else if (!ParticleKind.NAsBoolean(var1)) {
             this.t = null;
             this.l = "Retrying";
             ClientLog.GAsVoid("ShieldBreaker", "Shield of {} still up {} ticks after the axe hit; the next hit retries", var1.getId(), var2);

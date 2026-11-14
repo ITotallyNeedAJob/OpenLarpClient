@@ -9,8 +9,8 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 
 public final class EffectDrawBuffers implements AutoCloseable {
-   private final bk M = new bk(() -> "Larp effects", 524288);
-   private final LinkedHashMap<RenderLayer, bk.Type_v> V = new LinkedHashMap<>();
+   private final BladeRendering M = new BladeRendering(() -> "Larp effects", 524288);
+   private final LinkedHashMap<RenderLayer, BladeRendering.Type_v> V = new LinkedHashMap<>();
    private RenderLayer X;
    private VertexConsumer J;
 
@@ -50,28 +50,28 @@ public final class EffectDrawBuffers implements AutoCloseable {
 
             for (Entry var3 : this.V.entrySet()) {
                if (!NAsBoolean((RenderLayer)var3.getKey())) {
-                  bk.Type_c var4 = this.M.UAsBk_Type_c((bk.Type_v)var3.getValue());
+                  BladeRendering.Type_c var4 = this.M.UAsBk_Type_c((BladeRendering.Type_v)var3.getValue());
                   if (var4 != null) {
                      ImmediateMaterialState var5 = var1.apply(ImmediateMaterialState.prepare((RenderLayer)var3.getKey()));
                      if (!JumpRingRenderer.QAsBoolean(var5, var4) && !SoftParticlePipeline.FAsBoolean(var5, var4)) {
                         var5.drawFromBuffer(var4);
                      }
 
-                     op.FAsVoid("Effect draw groups", 1L);
+                     OpenScreen.FAsVoid("Effect draw groups", 1L);
                   }
                }
             }
 
             for (Entry var10 : this.V.entrySet()) {
                if (NAsBoolean((RenderLayer)var10.getKey())) {
-                  bk.Type_c var11 = this.M.UAsBk_Type_c((bk.Type_v)var10.getValue());
+                  BladeRendering.Type_c var11 = this.M.UAsBk_Type_c((BladeRendering.Type_v)var10.getValue());
                   if (var11 != null) {
                      ImmediateMaterialState var12 = var1.apply(ImmediateMaterialState.prepare((RenderLayer)var10.getKey()));
                      if (!JumpRingRenderer.QAsBoolean(var12, var11) && !SoftParticlePipeline.FAsBoolean(var12, var11)) {
                         var12.drawFromBuffer(var11);
                      }
 
-                     op.FAsVoid("Effect draw groups", 1L);
+                     OpenScreen.FAsVoid("Effect draw groups", 1L);
                   }
                }
             }

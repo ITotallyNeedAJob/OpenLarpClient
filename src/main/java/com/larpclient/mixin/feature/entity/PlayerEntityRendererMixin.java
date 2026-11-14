@@ -23,6 +23,6 @@ public class PlayerEntityRendererMixin {
    private void larpclient$injectZV(
       MatrixStack var1, OrderedRenderCommandQueue var2, int var3, Identifier var4, ModelPart var5, boolean var6, CallbackInfo var7
    ) {
-      ((b2)((PlayerEntityRenderer)(Object)this).getModel()).larpRestoreWalkRig();
+      ((ArmReach)((PlayerEntityRenderer)(Object)this).getModel()).larpRestoreWalkRig();
    }
 }

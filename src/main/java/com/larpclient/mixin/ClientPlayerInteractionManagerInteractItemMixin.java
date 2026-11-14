@@ -34,7 +34,7 @@ public abstract class ClientPlayerInteractionManagerInteractItemMixin {
       at = {@At("RETURN")}
    )
    private void larpclient$injectHandler2(PlayerEntity var1, Hand var2, CallbackInfoReturnable<ActionResult> var3) {
-      pk.OAsVoid(var1);
+      ParticleKind.OAsVoid(var1);
    }
 
    @Inject(
@@ -42,7 +42,7 @@ public abstract class ClientPlayerInteractionManagerInteractItemMixin {
       at = {@At("RETURN")}
    )
    private void larpclient$injectHandler(ClientPlayerEntity var1, Hand var2, BlockHitResult var3, CallbackInfoReturnable<ActionResult> var4) {
-      pk.OAsVoid(var1);
+      ParticleKind.OAsVoid(var1);
    }
 
    @Inject(
@@ -50,7 +50,7 @@ public abstract class ClientPlayerInteractionManagerInteractItemMixin {
       at = {@At("RETURN")}
    )
    private void larpclient$injectHandler(PlayerEntity var1, Entity var2, EntityHitResult var3, Hand var4, CallbackInfoReturnable<ActionResult> var5) {
-      pk.OAsVoid(var1);
+      ParticleKind.OAsVoid(var1);
    }
 
    @Inject(
@@ -58,7 +58,7 @@ public abstract class ClientPlayerInteractionManagerInteractItemMixin {
       at = {@At("RETURN")}
    )
    private void larpclient$injectHandler(PlayerEntity var1, Entity var2, Hand var3, CallbackInfoReturnable<ActionResult> var4) {
-      pk.OAsVoid(var1);
+      ParticleKind.OAsVoid(var1);
    }
 
    @Inject(
@@ -66,6 +66,6 @@ public abstract class ClientPlayerInteractionManagerInteractItemMixin {
       at = {@At("RETURN")}
    )
    private void larpclient$injectV(PlayerEntity var1, CallbackInfo var2) {
-      pk.OAsVoid(var1);
+      ParticleKind.OAsVoid(var1);
    }
 }

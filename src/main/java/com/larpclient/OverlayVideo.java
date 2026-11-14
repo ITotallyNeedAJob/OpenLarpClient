@@ -40,7 +40,7 @@ public final class OverlayVideo {
       return new OverlayVideo.Type_v(var13 - (var22[0] - var19.x), var15 - (var22[1] - var19.y), var17 - (var22[2] - var19.z), var19.yaw, var19.pitch);
    }
 
-   public static xt.Type_f AAsXt_Type_f(
+   public static XTexture.Type_f AAsXt_Type_f(
       OverlayVideo.Type_v var0, double var1, double var3, double var5, double var7, double var9, double var11, Matrix4fc var13, double var14, double var16
    ) {
       double[] var18 = var0.right();
@@ -59,7 +59,7 @@ public final class OverlayVideo {
       double[] var40 = gAsDoubleArray2(var13, var32, var34, var36, 1.0);
       double var41 = var14 / 2.0;
       double var43 = var16 / 2.0;
-      return new xt.Type_f(
+      return new XTexture.Type_f(
          var41 * (var38[0] + var38[2]),
          var41 * (var39[0] + var39[2]),
          var41 * (var40[0] + var40[2]),

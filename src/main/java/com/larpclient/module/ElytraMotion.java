@@ -62,7 +62,7 @@ public final class ElytraMotion extends Module {
       return this.isEnabled()
          ? this.isRuntimeActive()
             && this.OAsBoolean()
-            && r6.VAsBoolean()
+            && ModuleKeybindChecker.VAsBoolean()
             && !mc.player.hasVehicle()
             && this.lAsBoolean()
             && (this.x >= 0 && this.qAsBoolean() || mc.player.isGliding())
@@ -88,7 +88,7 @@ public final class ElytraMotion extends Module {
 
    @Override
    public void onDisable() {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       if (this.RAsBoolean() && this.oAsBoolean()) {
          this.mAsVoid();
       } else if (this.x >= 0) {
@@ -105,11 +105,11 @@ public final class ElytraMotion extends Module {
    @Override
    public void onTick() {
       if (!this.OAsBoolean()) {
-         b_.KAsVoid(this);
+         ModuleImportBroker.KAsVoid(this);
          this.Q = false;
          this.e = false;
          this.JAsVoid();
-      } else if (r6.VAsBoolean()) {
+      } else if (ModuleKeybindChecker.VAsBoolean()) {
          if (this.x >= 0 && !this.RAsBoolean()) {
             this.JAsVoid();
             this.Q = false;
@@ -125,7 +125,7 @@ public final class ElytraMotion extends Module {
 
             this.Q = true;
             if (this.swapChestplate.getValue() && this.x < 0 && mc.player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA) && this.jAsBoolean()) {
-               b_.UAsVoid(
+               ModuleImportBroker.UAsVoid(
                   this,
                   this::sAsVoid,
                   () -> this.ZAsBoolean()
@@ -142,14 +142,14 @@ public final class ElytraMotion extends Module {
             }
 
             if (this.x >= 0 && this.jAsBoolean()) {
-               b_.UAsVoid(this, this::mAsVoid, () -> !this.ZAsBoolean() && this.RAsBoolean() && this.jAsBoolean());
+               ModuleImportBroker.UAsVoid(this, this::mAsVoid, () -> !this.ZAsBoolean() && this.RAsBoolean() && this.jAsBoolean());
             } else if (this.e && this.x < 0) {
                if (!this.VAsBoolean()) {
                   this.e = false;
                   return;
                }
 
-               b_.UAsVoid(this, () -> {
+               ModuleImportBroker.UAsVoid(this, () -> {
                   if (this.VAsBoolean()) {
                      ElytraHelper.mAsVoid();
                      if (this.useFirework.getValue()) {
@@ -169,8 +169,8 @@ public final class ElytraMotion extends Module {
    private boolean VAsBoolean() {
       AirStuck var1 = AirStuck.zAsAirStuck();
       return this.OAsBoolean()
-         && r6.VAsBoolean()
-         && b_.jAsBoolean()
+         && ModuleKeybindChecker.VAsBoolean()
+         && ModuleImportBroker.jAsBoolean()
          && !mc.player.getAbilities().flying
          && !mc.player.isOnGround()
          && !mc.player.isTouchingWater()
@@ -182,7 +182,7 @@ public final class ElytraMotion extends Module {
    }
 
    private boolean jAsBoolean() {
-      return this.oAsBoolean() && b_.jAsBoolean();
+      return this.oAsBoolean() && ModuleImportBroker.jAsBoolean();
    }
 
    private boolean oAsBoolean() {

@@ -31,7 +31,7 @@ public final class ColoredGeometryPipeline {
       .add("UV1", VertexFormatElement.UV1)
       .add("UV2", VertexFormatElement.UV2)
       .build();
-   private static final RenderPipeline BloomUtility = RenderPipeline.builder(new Snippet[]{RenderPipelines.GUI_SNIPPET})
+   private static final RenderPipeline b = RenderPipeline.builder(new Snippet[]{RenderPipelines.GUI_SNIPPET})
       .withLocation(Identifier.of("larp-client", "gui_exit_snapshot"))
       .withVertexShader(Identifier.of("larp-client", "gui/snapshot"))
       .withFragmentShader(Identifier.of("larp-client", "gui/snapshot"))
@@ -39,7 +39,7 @@ public final class ColoredGeometryPipeline {
       .withVertexFormat(Q, DrawMode.QUADS)
       .build();
    static final double M = 2.0;
-   static final double AuctionNotifier = 1.6;
+   static final double o = 1.6;
    private static SimpleFramebuffer c;
    private static boolean U;
    private static int A = -1;
@@ -47,7 +47,7 @@ public final class ColoredGeometryPipeline {
    private final long v;
    private final double j;
    private final List<ColoredGeometryPipeline.Type_i> V;
-   private final List<ColoredGeometryPipeline.Type_c> SmoothInput = new ArrayList<>();
+   private final List<ColoredGeometryPipeline.Type_c> t = new ArrayList<>();
    private boolean d;
 
    private ColoredGeometryPipeline(String var1, List<ColoredGeometryPipeline.Type_i> var2, int var3) {
@@ -83,10 +83,10 @@ public final class ColoredGeometryPipeline {
       } else {
          try {
             Framebuffer var0 = MinecraftClient.getInstance().getFramebuffer();
-            if (BoxUtils == null || BoxUtils.textureWidth != var0.textureWidth || BoxUtils.textureHeight != var0.textureHeight) {
+            if (c == null || c.textureWidth != var0.textureWidth || c.textureHeight != var0.textureHeight) {
                IAsVoid();
                WorldLabelLayout.DAsVoid(b);
-               BoxUtils = new SimpleFramebuffer("Larp ClickGUI exit", var0.textureWidth, var0.textureHeight, false);
+               c = new SimpleFramebuffer("Larp ClickGUI exit", var0.textureWidth, var0.textureHeight, false);
             }
 
             BloomQuality.ZAsVoid(c);
@@ -109,20 +109,20 @@ public final class ColoredGeometryPipeline {
    }
 
    public static void IAsVoid() {
-      if (BoxUtils != null) {
-         BoxUtils.delete();
-         BoxUtils = null;
+      if (c != null) {
+         c.delete();
+         c = null;
       }
    }
 
    void kAsVoid(DrawContext var1) {
-      if (BoxUtils != null) {
+      if (c != null) {
          double var2 = this.BAsDouble();
          Window var4 = MinecraftClient.getInstance().getWindow();
          float var5 = (float)var4.getScaleFactor();
-         float var6 = (float)BoxUtils.textureWidth;
-         float var7 = (float)BoxUtils.textureHeight;
-         TextureSetup var8 = TextureSetup.of(BoxUtils.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.NEAREST));
+         float var6 = (float)c.textureWidth;
+         float var7 = (float)c.textureHeight;
+         TextureSetup var8 = TextureSetup.of(c.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.NEAREST));
          ArrayList var9 = new ArrayList();
          float var10 = Float.MAX_VALUE;
          float var11 = Float.MAX_VALUE;
@@ -183,7 +183,7 @@ public final class ColoredGeometryPipeline {
             float var13 = var9.width * var10[0];
             float var14 = Math.max(1.0F, var9.height * var10[1]);
             RoundedShapePipeline.nAsVoid(
-               var1, var11 - var13 / 2.0F, var12 - var14 / 2.0F, var13, var14, Math.min(var9.radius, Math.min(var13, var14) / 2.0F), bg.XAsInt(-1, var6)
+               var1, var11 - var13 / 2.0F, var12 - var14 / 2.0F, var13, var14, Math.min(var9.radius, Math.min(var13, var14) / 2.0F), ColorUtil.XAsInt(-1, var6)
             );
          }
       }
@@ -191,8 +191,8 @@ public final class ColoredGeometryPipeline {
 
    private static float[] fAsFloatArray(double var0) {
       double var2 = Math.min(1.0, var0 / 0.55);
-      float var4 = (float)(1.0 - w2.Type_e.CUBIC_IN.zAsDouble(var2) * 0.99);
-      float var5 = var0 < 0.55 ? 1.0F : (float)Math.max(0.003, 1.0 - w2.Type_e.CUBIC_IN.zAsDouble((var0 - 0.55) / 0.45));
+      float var4 = (float)(1.0 - WeatherRenderer.Type_e.CUBIC_IN.zAsDouble(var2) * 0.99);
+      float var5 = var0 < 0.55 ? 1.0F : (float)Math.max(0.003, 1.0 - WeatherRenderer.Type_e.CUBIC_IN.zAsDouble((var0 - 0.55) / 0.45));
       return new float[]{var5, var4};
    }
 
@@ -357,7 +357,7 @@ public final class ColoredGeometryPipeline {
          float var37;
          switch (var33) {
             case "Shatter":
-               float var37x = (float)(w2.Type_e.CUBIC_OUT.zAsDouble(var4) * (0.35 + 0.45 * (double)this.speed) * (double)var16 * 0.9);
+               float var37x = (float)(WeatherRenderer.Type_e.CUBIC_OUT.zAsDouble(var4) * (0.35 + 0.45 * (double)this.speed) * (double)var16 * 0.9);
                var37 = this.dirX * var37x;
                var11 = this.dirY * var37x + (float)(var4 * var4 * (double)var6.height * 0.9);
                var12 = (float)((double)this.spin * 2.4 * var4);
@@ -372,12 +372,12 @@ public final class ColoredGeometryPipeline {
                var14 = 1.0 - ColoredGeometryPipeline.nAsDouble(0.6, 1.0, var4);
                break;
             case "Slice":
-               var37 = (float)((double)this.dirX * w2.Type_e.CUBIC_IN.zAsDouble(var4) * (double)var6.width * 0.75);
+               var37 = (float)((double)this.dirX * WeatherRenderer.Type_e.CUBIC_IN.zAsDouble(var4) * (double)var6.width * 0.75);
                var11 = (float)((double)(this.dirY * 4.0F) * var4);
                var14 = 1.0 - ColoredGeometryPipeline.nAsDouble(0.35, 1.0, var4);
                break;
             case "Implode":
-               double var35 = w2.Type_e.CUBIC_IN.zAsDouble(var4);
+               double var35 = WeatherRenderer.Type_e.CUBIC_IN.zAsDouble(var4);
                float var40 = var6.x + var6.width / 2.0F;
                float var42 = var6.y + var6.height / 2.0F;
                double var44 = var35 * 1.6;

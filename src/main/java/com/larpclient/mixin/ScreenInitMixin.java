@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin({Screen.class})
-public abstract class ScreenInitMixin implements aj, MenuPopupProvider {
+public abstract class ScreenInitMixin implements ContainerScaleSupplier, MenuPopupProvider {
    @Shadow
    public int field_22789;
    @Shadow
@@ -35,7 +35,7 @@ public abstract class ScreenInitMixin implements aj, MenuPopupProvider {
    @Unique
    private boolean t;
    @Unique
-   private wz W;
+   private WidgetPopup W;
    @Unique
    private boolean L;
 
@@ -44,11 +44,11 @@ public abstract class ScreenInitMixin implements aj, MenuPopupProvider {
 
    @Override
    public void larpOpenMenuPopup() {
-      this.W = new wz();
+      this.W = new WidgetPopup();
    }
 
    @Override
-   public wz larpMenuPopup() {
+   public WidgetPopup larpMenuPopup() {
       return this.W;
    }
 
@@ -77,7 +77,7 @@ public abstract class ScreenInitMixin implements aj, MenuPopupProvider {
    private void U(DrawContext var1, int var2, int var3, float var4, Operation<Void> var5) {
       MinecraftClient var6 = MinecraftClient.getInstance();
       if (this.W != null && var6.world == null) {
-         aq.Type_x var7 = this.W.XAsAq_Type_x(System.nanoTime(), var6.getOverlay() == null && var6.isWindowFocused(), MenuPopupProvider.CAsBoolean());
+         PopupScale.Type_x var7 = this.W.XAsAq_Type_x(System.nanoTime(), var6.getOverlay() == null && var6.isWindowFocused(), MenuPopupProvider.CAsBoolean());
          if (!this.W.LAsBoolean()) {
             var1.getMatrices().pushMatrix();
             var1.getMatrices().mul(var7.matrix((double)this.field_22789 / 2.0, (double)this.field_22790 / 2.0));
@@ -101,7 +101,7 @@ public abstract class ScreenInitMixin implements aj, MenuPopupProvider {
          }
       }
 
-      xt.Type_n var16 = Module3DUI.jAsXt_Type_n((Screen)(Object)this);
+      XTexture.Type_n var16 = Module3DUI.jAsXt_Type_n((Screen)(Object)this);
       if (var16 == null) {
          this.A(var1, var2, var3, var4, var5);
       } else {
@@ -111,10 +111,10 @@ public abstract class ScreenInitMixin implements aj, MenuPopupProvider {
          double[] var8 = var16.inverse((double)var2, (double)var3);
 
          try {
-            xt.oAsVoid(var1, var16, true, () -> this.A(var1, (int)Math.floor(var8[0]), (int)Math.floor(var8[1]), var4, var5));
+            XTexture.oAsVoid(var1, var16, true, () -> this.A(var1, (int)Math.floor(var8[0]), (int)Math.floor(var8[1]), var4, var5));
          } finally {
             var1.createNewRootLayer();
-            xt.cAsVoid((double)this.J, (double)this.field_22789 / 2.0, (double)this.field_22790 / 2.0);
+            XTexture.cAsVoid((double)this.J, (double)this.field_22789 / 2.0, (double)this.field_22790 / 2.0);
          }
       }
    }
@@ -155,7 +155,7 @@ public abstract class ScreenInitMixin implements aj, MenuPopupProvider {
       cancellable = true
    )
    private void larpclient$injectV(DrawContext var1, CallbackInfo var2) {
-      if (xt.JAsXt_Type_s(this) != null) {
+      if (XTexture.JAsXt_Type_s(this) != null) {
          var2.cancel();
       }
    }

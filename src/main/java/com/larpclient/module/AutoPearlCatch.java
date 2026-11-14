@@ -66,7 +66,7 @@ public final class AutoPearlCatch extends Module {
       new NumberSetting("Turn Speed", "Maximum player turn in degrees per tick; your camera stays on your look. 180 turns at once", 90.0, 10.0, 180.0, 5.0)
    );
    private final BooleanSetting swapBack = this.addSetting(new BooleanSetting("Swap Back", "Return to your previous hotbar slot after each throw", true));
-   private final pg Z = new pg(this);
+   private final ParticleGeometry Z = new ParticleGeometry(this);
    private final PearlCatchAttempt s = new PearlCatchAttempt();
    private final Set<Integer> a = new HashSet<>();
    private final List<AutoPearlCatch.Type_g> O = new ArrayList<>();
@@ -78,7 +78,7 @@ public final class AutoPearlCatch extends Module {
    private float[] X;
    private float S;
    private float r;
-   private List<oi.Type_d> T;
+   private List<OfferItem.Type_d> T;
    private Vec3d p;
    private Vec3d g = Vec3d.ZERO;
    private Vec3d N;
@@ -89,8 +89,8 @@ public final class AutoPearlCatch extends Module {
    private float E;
    private float c;
    private EnderPearlEntity L;
-   private oi.Type_v l;
-   private oi.Type_v Q;
+   private OfferItem.Type_v l;
+   private OfferItem.Type_v Q;
    private String b = "Set a Catch Bind";
 
    public AutoPearlCatch() {
@@ -169,8 +169,8 @@ public final class AutoPearlCatch extends Module {
          }
 
          this.j++;
-         if (p5.NAsP5_Type_u() == p5.Type_u.PEARLCATCH) {
-            this.X = p5.sAsFloatArray(p5.JAsFloat(), p5.mAsFloat(), mc.options.getPerspective().isFrontView());
+         if (ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.PEARLCATCH) {
+            this.X = ParticleEmitter.sAsFloatArray(ParticleEmitter.JAsFloat(), ParticleEmitter.mAsFloat(), mc.options.getPerspective().isFrontView());
          }
 
          Vec3d var5 = this.H.getEntityPos();
@@ -282,9 +282,9 @@ public final class AutoPearlCatch extends Module {
          float var4 = var2[1];
          float var5 = this.MAsBoolean() ? -90.0F : var4;
          Vec3d var6 = this.H.getEyePos();
-         oi.Type_v var7;
+         OfferItem.Type_v var7;
          if (this.qAsBoolean()) {
-            oi.Type_y var8 = oi.iAsOi_Type_y(var6, var3, var5, this.UAsVec3d(), this.zAsOi_Type_q(), 0.6);
+            OfferItem.Type_y var8 = OfferItem.iAsOi_Type_y(var6, var3, var5, this.UAsVec3d(), this.zAsOi_Type_q(), 0.6);
             if (var8 == null) {
                this.dAsVoid(this.MAsBoolean() ? "No instant catch: clear the space above you" : "No instant catch along this look; clear the space ahead");
                return;
@@ -293,9 +293,9 @@ public final class AutoPearlCatch extends Module {
             var5 = var8.pitch();
             var7 = var8.plan();
          } else {
-            Vec3d var11 = oi.uAsVec3d(var3, var5);
+            Vec3d var11 = OfferItem.uAsVec3d(var3, var5);
             var7 = this.zAsBoolean()
-               ? oi.uAsOi_Type_v(
+               ? OfferItem.uAsOi_Type_v(
                   this.VAsList(var6, var11, this.UAsVec3d(), this.delay.getValue().intValue()), var6, this.UAsVec3d(), var11, this.zAsOi_Type_q()
                )
                : this.FAsOi_Type_v(var6, var11, this.UAsVec3d());
@@ -337,11 +337,11 @@ public final class AutoPearlCatch extends Module {
       }
    }
 
-   private oi.Type_v FAsOi_Type_v(Vec3d var1, Vec3d var2, Vec3d var3) {
-      oi.Type_v var4 = null;
+   private OfferItem.Type_v FAsOi_Type_v(Vec3d var1, Vec3d var2, Vec3d var3) {
+      OfferItem.Type_v var4 = null;
 
       for (int var5 = 1; var5 <= 20; var5++) {
-         oi.Type_v var6 = oi.SAsOi_Type_v(this.VAsList(var1, var2, var3, var5), var1, var3, this.zAsOi_Type_q());
+         OfferItem.Type_v var6 = OfferItem.SAsOi_Type_v(this.VAsList(var1, var2, var3, var5), var1, var3, this.zAsOi_Type_q());
          if (var6 != null && var6.reliability() >= 0.6) {
             return var6;
          }
@@ -354,11 +354,11 @@ public final class AutoPearlCatch extends Module {
       return var4;
    }
 
-   private List<oi.Type_d> VAsList(Vec3d var1, Vec3d var2, Vec3d var3, int var4) {
-      return oi.NAsList(var1, var2, var3, var4, this.zAsOi_Type_q());
+   private List<OfferItem.Type_d> VAsList(Vec3d var1, Vec3d var2, Vec3d var3, int var4) {
+      return OfferItem.NAsList(var1, var2, var3, var4, this.zAsOi_Type_q());
    }
 
-   private String rAsString(oi.Type_v var1) {
+   private String rAsString(OfferItem.Type_v var1) {
       if (this.zAsBoolean() && !this.MAsBoolean()) {
          return "Fixed Delay only catches near straight up; use Instant or Solved for Look";
       } else if (var1 == null) {
@@ -377,11 +377,11 @@ public final class AutoPearlCatch extends Module {
    }
 
    private void zAsVoid() {
-      if (b_.nAsBoolean(this)) {
+      if (ModuleImportBroker.nAsBoolean(this)) {
          this.SAsVoid(this.E, this.c);
       }
 
-      b_.UAsVoid(this, this.qAsBoolean() ? this::DAsVoid : this::hAsVoid, this::HAsBoolean);
+      ModuleImportBroker.UAsVoid(this, this.qAsBoolean() ? this::DAsVoid : this::hAsVoid, this::HAsBoolean);
    }
 
    private boolean HAsBoolean() {
@@ -400,8 +400,8 @@ public final class AutoPearlCatch extends Module {
          return false;
       } else {
          Vec3d var1 = this.H.getEyePos();
-         Vec3d var2 = oi.uAsVec3d(this.H.getYaw(), this.H.getPitch());
-         oi.Type_v var3 = oi.uAsOi_Type_v(oi.jAsList(var1, var2, this.UAsVec3d(), this.zAsOi_Type_q()), var1, this.UAsVec3d(), var2, this.zAsOi_Type_q());
+         Vec3d var2 = OfferItem.uAsVec3d(this.H.getYaw(), this.H.getPitch());
+         OfferItem.Type_v var3 = OfferItem.uAsOi_Type_v(OfferItem.jAsList(var1, var2, this.UAsVec3d(), this.zAsOi_Type_q()), var1, this.UAsVec3d(), var2, this.zAsOi_Type_q());
          if (var3 != null && !(var3.reliability() < 0.6)) {
             this.Q = var3;
             return true;
@@ -412,7 +412,7 @@ public final class AutoPearlCatch extends Module {
    }
 
    private void DAsVoid() {
-      oi.Type_v var1 = this.Q;
+      OfferItem.Type_v var1 = this.Q;
       this.B = this.H.getEntityPos();
       byte var3 = 0;
 
@@ -461,7 +461,7 @@ public final class AutoPearlCatch extends Module {
          this.E = this.H.getYaw();
          this.c = this.H.getPitch();
          this.C = var1;
-         this.G = oi.uAsVec3d(this.E, this.c);
+         this.G = OfferItem.uAsVec3d(this.E, this.c);
          this.e = var2;
          this.s.jAsVoid(this.j, this.zAsBoolean() ? this.delay.getValue().intValue() + 1 : 21);
          this.b = this.zAsBoolean() ? "Pearl thrown; wind charge in " + this.delay.getValue().intValue() + " ticks" : "Pearl thrown; aiming the wind charge";
@@ -474,30 +474,30 @@ public final class AutoPearlCatch extends Module {
       if (this.L != null && this.L.isRemoved()) {
          this.DAsVoid("The pearl came down before the wind charge");
       } else if (this.zAsBoolean()) {
-         if (b_.nAsBoolean(this)) {
+         if (ModuleImportBroker.nAsBoolean(this)) {
             this.SAsVoid(this.E, this.c);
          }
 
          if (this.s.XAsLong(this.j) >= (long)this.delay.getValue().intValue()) {
-            b_.UAsVoid(this, this::xAsVoid, this::TAsBoolean);
+            ModuleImportBroker.UAsVoid(this, this::xAsVoid, this::TAsBoolean);
          }
       } else {
          List var1 = this.WAsList();
          if (this.N == null) {
-            this.N = ((oi.Type_d)var1.get(0)).BAsVec3d();
+            this.N = ((OfferItem.Type_d)var1.get(0)).BAsVec3d();
          }
 
-         oi.Type_v var2 = oi.SAsOi_Type_v(var1, this.H.getEyePos(), this.UAsVec3d(), this.zAsOi_Type_q());
+         OfferItem.Type_v var2 = OfferItem.SAsOi_Type_v(var1, this.H.getEyePos(), this.UAsVec3d(), this.zAsOi_Type_q());
          if (var2 != null && !(var2.reliability() < 0.6)) {
             this.l = var2;
-            float[] var3 = dq.QAsFloatArray(Vec3d.ZERO, var2.direction());
+            float[] var3 = ModuleDetector.QAsFloatArray(Vec3d.ZERO, var2.direction());
             this.E = var3[0];
             this.c = MathHelper.clamp(var3[1], -90.0F, 90.0F);
-            if (b_.nAsBoolean(this)) {
+            if (ModuleImportBroker.nAsBoolean(this)) {
                this.SAsVoid(this.E, this.c);
             }
 
-            b_.UAsVoid(this, this::xAsVoid, this::TAsBoolean);
+            ModuleImportBroker.UAsVoid(this, this::xAsVoid, this::TAsBoolean);
             this.b = "Aiming wind charge";
          } else {
             this.b = "Waiting for a reliable catch line";
@@ -512,8 +512,8 @@ public final class AutoPearlCatch extends Module {
          && this.xAsBoolean(Items.WIND_CHARGE)
          && this.eAsBoolean(Items.WIND_CHARGE)
          && !Aura.WAsBoolean()) {
-         Vec3d var1 = oi.uAsVec3d(this.H.getYaw(), this.H.getPitch());
-         oi.Type_v var2 = oi.uAsOi_Type_v(this.WAsList(), this.H.getEyePos(), this.UAsVec3d(), var1, this.zAsOi_Type_q());
+         Vec3d var1 = OfferItem.uAsVec3d(this.H.getYaw(), this.H.getPitch());
+         OfferItem.Type_v var2 = OfferItem.uAsOi_Type_v(this.WAsList(), this.H.getEyePos(), this.UAsVec3d(), var1, this.zAsOi_Type_q());
          if (this.zAsBoolean()) {
             this.Q = var2;
             return this.s.XAsLong(this.j) == (long)this.delay.getValue().intValue() && this.rAsBoolean(this.E, this.c);
@@ -529,7 +529,7 @@ public final class AutoPearlCatch extends Module {
    }
 
    private void xAsVoid() {
-      oi.Type_v var1 = this.Q;
+      OfferItem.Type_v var1 = this.Q;
       long var2 = this.s.XAsLong(this.j);
       if (!this.fAsBoolean(Items.WIND_CHARGE)) {
          this.DAsVoid("The wind charge throw was rejected");
@@ -558,7 +558,7 @@ public final class AutoPearlCatch extends Module {
       }
    }
 
-   private void kAsVoid(oi.Type_v var1) {
+   private void kAsVoid(OfferItem.Type_v var1) {
       if (this.O.size() >= 4) {
          this.O.remove(0);
       }
@@ -587,7 +587,7 @@ public final class AutoPearlCatch extends Module {
          }
 
          if (var2.w == null && !var2.s && var2.L < 0L && var3 != null) {
-            var2.w = oi.FAsOi_Type_d(new oi.Type_x(var3.getEntityPos(), var3.getVelocity(), 1 + var3.age), this.zAsOi_Type_q()).BAsVec3d();
+            var2.w = OfferItem.FAsOi_Type_d(new OfferItem.Type_x(var3.getEntityPos(), var3.getVelocity(), 1 + var3.age), this.zAsOi_Type_q()).BAsVec3d();
             var2.s = true;
          }
 
@@ -658,7 +658,7 @@ public final class AutoPearlCatch extends Module {
       }
    }
 
-   private List<oi.Type_d> WAsList() {
+   private List<OfferItem.Type_d> WAsList() {
       if (this.z != this.j || this.T == null) {
          this.T = this.VAsList(this.C, this.G, this.e, (int)Math.max(1L, this.s.XAsLong(this.j)));
          this.z = this.j;
@@ -680,11 +680,11 @@ public final class AutoPearlCatch extends Module {
    }
 
    private String hAsString() {
-      if (!b_.jAsBoolean() || mc.currentScreen != null) {
+      if (!ModuleImportBroker.jAsBoolean() || mc.currentScreen != null) {
          return "Paused: a screen is open";
       } else if (!mc.isWindowFocused()) {
          return "Paused: the window lost focus";
-      } else if (p5.NAsP5_Type_u() != p5.Type_u.PEARLCATCH && !p5.fAsBoolean(p5.Type_u.PEARLCATCH)) {
+      } else if (ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.PEARLCATCH && !ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.PEARLCATCH)) {
          return "Paused: Freecam or Freelook holds the view";
       } else if (this.H.hasVehicle()) {
          return "Not while riding";
@@ -721,7 +721,7 @@ public final class AutoPearlCatch extends Module {
 
    private boolean eAsBoolean(Item var1) {
       int var2 = BlockPlacementController.qAsInt(var1, true);
-      return var2 == -2 || var2 == this.H.getInventory().getSelectedSlot() || var2 >= 0 && pg.yAsBoolean(this);
+      return var2 == -2 || var2 == this.H.getInventory().getSelectedSlot() || var2 >= 0 && ParticleGeometry.yAsBoolean(this);
    }
 
    private boolean fAsBoolean(Item var1) {
@@ -766,16 +766,16 @@ public final class AutoPearlCatch extends Module {
    }
 
    private float[] BAsFloatArray() {
-      return !p5.TAsBoolean()
+      return !ParticleEmitter.TAsBoolean()
          ? new float[]{this.H.getYaw(), this.H.getPitch()}
-         : p5.sAsFloatArray(p5.JAsFloat(), p5.mAsFloat(), mc.options.getPerspective().isFrontView());
+         : ParticleEmitter.sAsFloatArray(ParticleEmitter.JAsFloat(), ParticleEmitter.mAsFloat(), mc.options.getPerspective().isFrontView());
    }
 
    private void SAsVoid(float var1, float var2) {
-      p5.jAsVoid(p5.Type_u.PEARLCATCH);
-      if (p5.NAsP5_Type_u() == p5.Type_u.PEARLCATCH) {
-         float[] var3 = com.larpclient.t.JAsFloatArray(this.H.getYaw(), this.H.getPitch(), var1, var2, this.turnSpeed.getValue());
-         dq.RAsVoid(this, dq.Type_s.PEARLCATCH, var3[0], var3[1], 1.0);
+      ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.PEARLCATCH);
+      if (ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.PEARLCATCH) {
+         float[] var3 = com.larpclient.SmoothInput.JAsFloatArray(this.H.getYaw(), this.H.getPitch(), var1, var2, this.turnSpeed.getValue());
+         ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.PEARLCATCH, var3[0], var3[1], 1.0);
       }
    }
 
@@ -793,8 +793,8 @@ public final class AutoPearlCatch extends Module {
       return var2 == null ? 0 : Math.max(0, Math.round((float)var2.getLatency() / 50.0F));
    }
 
-   private oi.Type_q zAsOi_Type_q() {
-      return new qi(this.t, this.H);
+   private OfferItem.Type_q zAsOi_Type_q() {
+      return new QueueItem(this.t, this.H);
    }
 
    private boolean MAsBoolean() {
@@ -824,7 +824,7 @@ public final class AutoPearlCatch extends Module {
 
    private void DAsVoid(String var1) {
       boolean var2 = this.s.kAsBoolean();
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       this.tAsVoid();
       this.GAsVoid();
       if (var2) {
@@ -835,7 +835,7 @@ public final class AutoPearlCatch extends Module {
 
    private void GAsVoid() {
       this.s.TAsVoid();
-      p5.GAsVoid(p5.Type_u.PEARLCATCH);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.PEARLCATCH);
       this.a.clear();
       this.L = null;
       this.l = this.Q = null;
@@ -875,7 +875,7 @@ public final class AutoPearlCatch extends Module {
    private static final class Type_g {
       final Set<Integer> R;
       final Vec3d a;
-      final oi.Type_v m;
+      final OfferItem.Type_v m;
       final long W;
       final long A;
       EnderPearlEntity F;
@@ -883,7 +883,7 @@ public final class AutoPearlCatch extends Module {
       boolean s;
       long L = -1L;
 
-      Type_g(Set<Integer> var1, Vec3d var2, oi.Type_v var3, Vec3d var4, long var5, long var7) {
+      Type_g(Set<Integer> var1, Vec3d var2, OfferItem.Type_v var3, Vec3d var4, long var5, long var7) {
          this.R = var1;
          this.a = var2;
          this.m = var3;

@@ -30,7 +30,7 @@ public final class CosmeticPlayerModel extends PlayerEntityModel {
       this.c = var1.getChild("left_leg");
    }
 
-   public void jAsVoid(w9.Type_w var1) {
+   public void jAsVoid(WindEffect.Type_w var1) {
       this.C.age = var1.ageInTicks();
       this.C.limbSwingAnimationProgress = var1.walkPosition();
       this.C.limbSwingAmplitude = var1.walkSpeed();
@@ -62,7 +62,7 @@ public final class CosmeticPlayerModel extends PlayerEntityModel {
 
    void mAsVoid(AccountCosmeticsRenderer.Type_b var1) {
       this.J = var1;
-      la var2 = var1 == null ? null : var1.korblox();
+      LimbData var2 = var1 == null ? null : var1.korblox();
       this.F.visible = var1 == null || !var1.headless();
       this.V.visible = var2 == null || !var2.right();
       this.c.visible = var2 == null || !var2.left();

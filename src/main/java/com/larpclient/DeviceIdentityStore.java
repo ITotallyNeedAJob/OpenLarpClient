@@ -38,7 +38,7 @@ public final class DeviceIdentityStore {
 
    public static synchronized DeviceIdentityStore FAsW1() throws IOException {
       if (K == null) {
-         K = cAsW1(l5.d);
+         K = cAsW1(NativeLibraryLoader.d);
       }
 
       return K;

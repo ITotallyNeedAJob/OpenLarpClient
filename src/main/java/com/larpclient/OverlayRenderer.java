@@ -4,7 +4,7 @@ public record OverlayRenderer(int columns, int cardWidth, int height) {
    public static final int CARD_HEIGHT = 48;
    public static final int GAP = 8;
 
-   public static o1 calculate(int var0, int var1) {
+   public static OverlayRenderer calculate(int var0, int var1) {
       int var2 = Math.clamp((long)((var0 + 8) / 200), 1, 3);
       int var3 = Math.max(1, (var0 - 8 * (var2 - 1)) / var2);
       int var4 = (var1 + var2 - 1) / var2;

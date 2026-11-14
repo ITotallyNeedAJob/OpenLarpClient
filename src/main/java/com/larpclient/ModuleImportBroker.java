@@ -32,19 +32,19 @@ import net.minecraft.world.RaycastContext.FluidHandling;
 import net.minecraft.world.RaycastContext.ShapeType;
 
 public final class ModuleImportBroker {
-   private static final List<ModuleImportBroker.Type_p> SkyChunkCache = new ArrayList<>();
+   private static final List<ModuleImportBroker.Type_p> s = new ArrayList<>();
    private static boolean F;
    private static boolean c;
    private static final List<ModuleImportBroker.Type_c> L = new ArrayList<>();
    private static ModuleImportBroker.Type_c K;
    private static int j;
    private static long M = Long.MIN_VALUE;
-   private static final Set<Integer> ScreenScale = new HashSet<>();
+   private static final Set<Integer> y = new HashSet<>();
    private static String R;
    private static boolean f;
 
    public static void UAsVoid(Module var0, Runnable var1, BooleanSupplier var2) {
-      SkyChunkCache.add(new ModuleImportBroker.Type_p(var0, var1, var2));
+      s.add(new ModuleImportBroker.Type_p(var0, var1, var2));
    }
 
    public static boolean nAsBoolean(Module var0) {
@@ -60,16 +60,16 @@ public final class ModuleImportBroker {
          && var2.getAsBoolean()
          && K == null
          && !F
-         && ScreenScale.isEmpty()
+         && y.isEmpty()
          && (R == null || R.equals(var0.getName()))) {
          R = var0.getName();
          F = true;
-         BoxUtils = true;
+         c = true;
 
          try {
             var1.run();
          } finally {
-            BoxUtils = false;
+            c = false;
          }
 
          return true;
@@ -84,7 +84,7 @@ public final class ModuleImportBroker {
          MinecraftClient var4 = MinecraftClient.getInstance();
          ModuleImportBroker.Type_c var5 = new ModuleImportBroker.Type_c(var0, var1, var2, false, () -> true, 1);
          GAsVoid(var5);
-         return pk.BAsBoolean(var4.player);
+         return ParticleKind.BAsBoolean(var4.player);
       } else {
          return false;
       }
@@ -93,12 +93,12 @@ public final class ModuleImportBroker {
    public static boolean WAsBoolean(Module var0, Entity var1, Runnable var2) {
       XAsVoid();
       if (var0 != null && var1 != null && var0.isRuntimeActive() && tAsBoolean(var0) && K == null && !F && YAsBoolean(var0.getName(), var1)) {
-         MenuPopupProvider = true;
+         f = true;
 
          try {
             var2.run();
          } finally {
-            MenuPopupProvider = false;
+            f = false;
          }
 
          return true;
@@ -109,13 +109,13 @@ public final class ModuleImportBroker {
 
    public static boolean DAsBoolean(Module var0, Entity var1, Runnable var2) {
       XAsVoid();
-      if (var0 != null && var1 != null && var0.isRuntimeActive() && tAsBoolean(var0) && ScreenScale.contains(var1.getId())) {
-         MenuPopupProvider = true;
+      if (var0 != null && var1 != null && var0.isRuntimeActive() && tAsBoolean(var0) && y.contains(var1.getId())) {
+         f = true;
 
          try {
             var2.run();
          } finally {
-            MenuPopupProvider = false;
+            f = false;
          }
 
          return true;
@@ -125,7 +125,7 @@ public final class ModuleImportBroker {
    }
 
    public static boolean EAsBoolean() {
-      return MenuPopupProvider || c;
+      return f || c;
    }
 
    public static boolean JAsBoolean() {
@@ -157,11 +157,11 @@ public final class ModuleImportBroker {
    }
 
    public static boolean jAsBoolean() {
-      return PAsBoolean() && !p5.oAsBoolean();
+      return PAsBoolean() && !ParticleEmitter.oAsBoolean();
    }
 
    public static boolean tAsBoolean(Module var0) {
-      return fAsBoolean(var0) && !p5.oAsBoolean();
+      return fAsBoolean(var0) && !ParticleEmitter.oAsBoolean();
    }
 
    public static boolean fAsBoolean(Module var0) {
@@ -173,12 +173,12 @@ public final class ModuleImportBroker {
    }
 
    public static boolean NAsBoolean() {
-      return !L.isEmpty() || !SkyChunkCache.isEmpty() || K != null;
+      return !L.isEmpty() || !s.isEmpty() || K != null;
    }
 
    public static void KAsVoid() {
       L.clear();
-      SkyChunkCache.clear();
+      s.clear();
       XAsVoid();
    }
 
@@ -192,29 +192,29 @@ public final class ModuleImportBroker {
    private static void uAsVoid(long var0) {
       if (M != var0) {
          M = var0;
-         ScreenScale.clear();
+         y.clear();
          R = null;
          F = false;
       }
    }
 
    public static void AAsVoid() {
-      db.tAsVoid();
+      FallDamage.tAsVoid();
       BlockPlacementController.dAsVoid();
       L.clear();
-      SkyChunkCache.clear();
+      s.clear();
       F = false;
-      BoxUtils = false;
+      c = false;
       K = null;
-      ScreenScale.clear();
+      y.clear();
       R = null;
       M = Long.MIN_VALUE;
-      MenuPopupProvider = false;
+      f = false;
    }
 
    public static void KAsVoid(Module var0) {
       L.removeIf(var1 -> var1.source == var0);
-      SkyChunkCache.removeIf(var1 -> var1.source == var0);
+      s.removeIf(var1 -> var1.source == var0);
       if (K != null && K.source == var0) {
          K = null;
       }
@@ -234,7 +234,7 @@ public final class ModuleImportBroker {
    }
 
    public static double HAsDouble(Entity var0) {
-      return o5.lAsDouble(MinecraftClient.getInstance().player.getEyePos(), var0.getBoundingBox());
+      return OptifineBridge.lAsDouble(MinecraftClient.getInstance().player.getEyePos(), var0.getBoundingBox());
    }
 
    public static boolean nAsBoolean(Entity var0, double var1) {
@@ -272,7 +272,7 @@ public final class ModuleImportBroker {
             if (HAsDouble(var0) > var5 + 1.0E-7) {
                return "range";
             } else {
-               Optional var8 = o5.iAsOptional(var7, var3, var0.getBoundingBox(), var5);
+               Optional var8 = OptifineBridge.iAsOptional(var7, var3, var0.getBoundingBox(), var5);
                if (var8.isEmpty()) {
                   return "alignment";
                } else {
@@ -297,7 +297,7 @@ public final class ModuleImportBroker {
          return false;
       } else {
          for (Entity var7 : var3) {
-            if (var7 != var0 && var7.canHit() && !var7.isSpectator() && o5.EAsBoolean(var1, var2, var7.getBoundingBox())) {
+            if (var7 != var0 && var7.canHit() && !var7.isSpectator() && OptifineBridge.EAsBoolean(var1, var2, var7.getBoundingBox())) {
                return false;
             }
          }
@@ -321,7 +321,7 @@ public final class ModuleImportBroker {
          BlockHitResult var9 = var4.world.raycast(new RaycastContext(var7, var8, ShapeType.OUTLINE, FluidHandling.NONE, var4.player));
          if (var9.getType() == Type.BLOCK && var9.getBlockPos().equals(var0)) {
             for (Entity var11 : var4.world.getOtherEntities(var4.player, new Box(var7, var8).expand(1.0))) {
-               if (var11.canHit() && !var11.isSpectator() && o5.EAsBoolean(var7, var9.getPos(), var11.getBoundingBox())) {
+               if (var11.canHit() && !var11.isSpectator() && OptifineBridge.EAsBoolean(var7, var9.getPos(), var11.getBoundingBox())) {
                   return null;
                }
             }
@@ -337,8 +337,8 @@ public final class ModuleImportBroker {
       if (jAsBoolean() && var0 != null && !(HAsDouble(var0) > var1 + 1.0E-7)) {
          Vec3d var5 = MinecraftClient.getInstance().player.getEyePos();
          List var6 = CAsList(var0, var5);
-         return com.larpclient.c.bAsOptional(var0.getBoundingBox(), var5, var3, var4, var5xx -> {
-            Optional var6x = o5.iAsOptional(var5, var5xx.subtract(var5), var0.getBoundingBox(), var1);
+         return com.larpclient.BoxUtils.bAsOptional(var0.getBoundingBox(), var5, var3, var4, var5xx -> {
+            Optional var6x = OptifineBridge.iAsOptional(var5, var5xx.subtract(var5), var0.getBoundingBox(), var1);
             return var6x.isPresent() && QAsBoolean(var0, var5, (Vec3d)var6x.get(), var6);
          });
       } else {
@@ -405,7 +405,7 @@ public final class ModuleImportBroker {
 
    public static void aAsVoid() {
       XAsVoid();
-      if (SAsBoolean() && !p5.oAsBoolean()) {
+      if (SAsBoolean() && !ParticleEmitter.oAsBoolean()) {
          if (!PAsBoolean()) {
             L.clear();
             K = null;
@@ -415,15 +415,15 @@ public final class ModuleImportBroker {
          MinecraftClient var0 = MinecraftClient.getInstance();
          L.sort(Comparator.<ModuleImportBroker.Type_c>comparingInt(var0x -> bAsInt(var0x.source.getName())).reversed());
          if (K != null) {
-            int var1 = !SkyChunkCache.stream()
+            int var1 = !s.stream()
                      .anyMatch(var0x -> var0x.source.isRuntimeActive() && var0x.valid.getAsBoolean() && bAsInt(var0x.source.getName()) > bAsInt(iAsString(K)))
                   && xAsBoolean(K)
                   && Criticals.dAsBoolean()
-                  && (var0.player.age == TextLayout || !var0.player.isOnGround())
+                  && (var0.player.age == j || !var0.player.isOnGround())
                   && L.stream().noneMatch(var0x -> xAsBoolean(var0x) && bAsInt(iAsString(var0x)) > bAsInt(iAsString(K)))
                ? 1
                : 0;
-            switch (mk.UAsMk_Type_g(var0.player.age - j, var1 != 0, Criticals.yAsBoolean())) {
+            switch (ModuleKeybinds.UAsMk_Type_g(var0.player.age - j, var1 != 0, Criticals.yAsBoolean())) {
                case CANCEL:
                   K.rejected.accept("critical delay cancelled");
                   K = null;
@@ -434,18 +434,18 @@ public final class ModuleImportBroker {
                   break;
                case WAIT:
                   L.clear();
-                  SkyChunkCache.clear();
+                  s.clear();
                   return;
             }
          }
 
-         SkyChunkCache.sort(Comparator.<ModuleImportBroker.Type_p>comparingInt(var0x -> bAsInt(var0x.source.getName())).reversed());
+         s.sort(Comparator.<ModuleImportBroker.Type_p>comparingInt(var0x -> bAsInt(var0x.source.getName())).reversed());
 
          for (ModuleImportBroker.Type_c var2 : List.copyOf(L)) {
-            if (SkyChunkCache.stream()
+            if (s.stream()
                .anyMatch(var1x -> var1x.source.isRuntimeActive() && var1x.valid.getAsBoolean() && bAsInt(var1x.source.getName()) > bAsInt(iAsString(var2)))) {
                var2.rejected.accept("interaction ownership");
-            } else if (!LAsBoolean(iAsString(var2), var2.target) || ScreenScale.size() >= var2.limit) {
+            } else if (!LAsBoolean(iAsString(var2), var2.target) || y.size() >= var2.limit) {
                var2.rejected.accept("interaction ownership");
             } else if (xAsBoolean(var2)) {
                if (JAsBoolean(var2)) {
@@ -462,19 +462,19 @@ public final class ModuleImportBroker {
                if (tAsBoolean(var8.source) && var8.source.isRuntimeActive() && var8.valid.getAsBoolean() && (R == null || R.equals(var8.source.getName()))) {
                   R = var8.source.getName();
                   F = true;
-                  BoxUtils = true;
+                  c = true;
 
                   try {
                      var8.action.run();
                      break;
                   } finally {
-                     BoxUtils = false;
+                     c = false;
                   }
                }
             }
          }
 
-         SkyChunkCache.clear();
+         s.clear();
       } else {
          AAsVoid();
       }
@@ -488,7 +488,7 @@ public final class ModuleImportBroker {
       if (var0.target instanceof LivingEntity && Criticals.qAsBoolean()) {
          var0.rejected.accept("critical delay");
          K = var0;
-         TextLayout = MinecraftClient.getInstance().player.age;
+         j = MinecraftClient.getInstance().player.age;
          return true;
       } else {
          return false;
@@ -496,10 +496,10 @@ public final class ModuleImportBroker {
    }
 
    private static void GAsVoid(ModuleImportBroker.Type_c var0) {
-      if (xAsBoolean(var0) && ScreenScale.size() < var0.limit && YAsBoolean(iAsString(var0), var0.target)) {
+      if (xAsBoolean(var0) && y.size() < var0.limit && YAsBoolean(iAsString(var0), var0.target)) {
          MinecraftClient var1 = MinecraftClient.getInstance();
          int var2 = var0.aim != null ? 1 : 0;
-         MenuPopupProvider = true;
+         f = true;
 
          try {
             if (var2 != 0) {
@@ -511,7 +511,7 @@ public final class ModuleImportBroker {
             var1.player.swingHand(Hand.MAIN_HAND);
             var0.completed.run();
          } finally {
-            MenuPopupProvider = false;
+            f = false;
             if (var2 != 0) {
                var1.player
                   .networkHandler
@@ -522,7 +522,7 @@ public final class ModuleImportBroker {
    }
 
    private static boolean LAsBoolean(String var0, Entity var1) {
-      return (R == null || R.equals(var0)) && !ScreenScale.contains(var1.getId());
+      return (R == null || R.equals(var0)) && !y.contains(var1.getId());
    }
 
    private static boolean YAsBoolean(String var0, Entity var1) {
@@ -530,7 +530,7 @@ public final class ModuleImportBroker {
          return false;
       } else {
          R = var0;
-         ScreenScale.add(var1.getId());
+         y.add(var1.getId());
          return true;
       }
    }

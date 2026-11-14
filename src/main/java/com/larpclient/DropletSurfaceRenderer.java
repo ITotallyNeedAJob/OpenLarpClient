@@ -27,8 +27,8 @@ import org.joml.Vector3f;
 import org.lwjgl.system.MemoryStack;
 
 public final class DropletSurfaceRenderer {
-   private static final int CropHelper = 512;
-   private static final int GroundSample = 8240;
+   private static final int u = 512;
+   private static final int k = 8240;
    private static final RenderPipeline L = RenderPipeline.builder(new Snippet[0])
       .withLocation(SAsIdentifier("pipeline/temple/droplet_surface"))
       .withVertexShader(SAsIdentifier("temple/droplet_surface"))
@@ -67,10 +67,10 @@ public final class DropletSurfaceRenderer {
                T = new SimpleFramebuffer("Larp volumetric water surface", var1.textureWidth, var1.textureHeight, true);
             }
 
-            if (HexEdgeloop == null) {
+            if (p == null) {
                WorldLabelLayout.DAsVoid(L);
                WorldLabelLayout.DAsVoid(h);
-               HexEdgeloop = RenderSystem.getDevice().createBuffer(() -> "Larp volumetric droplet batch", 136, 8240L);
+               p = RenderSystem.getDevice().createBuffer(() -> "Larp volumetric droplet batch", 136, 8240L);
                ClientLog.GAsVoid("TerrainMaterials", "Volumetric surface ready; {} droplets maximum, {} per draw", 4096, 512);
             }
 
@@ -80,10 +80,10 @@ public final class DropletSurfaceRenderer {
             var3.clearColorAndDepthTextures(T.getColorAttachment(), 0, T.getDepthAttachment(), 1.0);
             var3.copyTextureToTexture(var1.getDepthAttachment(), T.getDepthAttachment(), 0, 0, 0, 0, 0, var1.textureWidth, var1.textureHeight);
             CameraRenderState var4 = var0.cameraRenderState;
-            Matrix4f var5 = new Matrix4f(w3.VAsMatrix4fc()).invert();
+            Matrix4f var5 = new Matrix4f(WebRenderer.VAsMatrix4fc()).invert();
             Vector3f var6 = var5.transformDirection(new Vector3f(1.0F, 0.0F, 0.0F));
             Vector3f var7 = var5.transformDirection(new Vector3f(0.0F, 1.0F, 0.0F));
-            float var8 = mb.LAsFloat();
+            float var8 = MediaSession.LAsFloat();
 
             for (short var9 = 0; var9 < VolumetricWaterEngine.jAsInt(); var9 = (short)(var9 + 512)) {
                int var10 = Math.min(512, VolumetricWaterEngine.jAsInt() - var9);
@@ -105,7 +105,7 @@ public final class DropletSurfaceRenderer {
                   var12.putFloat(var7.x).putFloat(var7.y).putFloat(var7.z).putFloat(0.0F);
                   var12.putFloat((float)var1.textureWidth).putFloat((float)var1.textureHeight).putFloat(0.0F).putFloat(0.0F);
                   var12.flip();
-                  var3.writeToBuffer(HexEdgeloop.slice(), var12);
+                  var3.writeToBuffer(p.slice(), var12);
                } catch (Throwable var20) {
                   if (var11 != null) {
                      try {
@@ -129,7 +129,7 @@ public final class DropletSurfaceRenderer {
                try {
                   var23.setPipeline(L);
                   var23.setUniform("LarpMaterial", WetReflectionEffect.MAsGpuBuffer().slice());
-                  var23.setUniform("DropletBatch", HexEdgeloop.slice());
+                  var23.setUniform("DropletBatch", p.slice());
                   var23.draw(0, 6 * var10);
                } catch (Throwable var191) {
                   if (var23 != null) {
@@ -185,9 +185,9 @@ public final class DropletSurfaceRenderer {
          T = null;
       }
 
-      if (HexEdgeloop != null) {
-         HexEdgeloop.close();
-         HexEdgeloop = null;
+      if (p != null) {
+         p.close();
+         p = null;
       }
    }
 

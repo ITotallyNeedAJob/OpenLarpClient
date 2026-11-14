@@ -2,16 +2,16 @@ package com.larpclient;
 
 public final class ParticleFilter {
    public static final int G = 7;
-   public static final int SkyChunkCache = 9;
-   public static final int MenuPopupProvider = 504;
+   public static final int s = 9;
+   public static final int f = 504;
    public static final double v = 0.20625;
    public static final double Z = -1.0;
-   public static final double LineSegment = 8.5;
-   public static final double ChinaHatCodec = 0.0;
-   static final double AuctionNotifier = 0.0125;
+   public static final double e = 8.5;
+   public static final double i = 0.0;
+   static final double o = 0.0125;
    public static final double A = 0.2375;
    public static final double Q = -0.38;
-   static final double BoxUtils = 0.006;
+   static final double c = 0.006;
    static final double q = 0.0375;
    private static final double U = 0.035;
    private static final double D = 0.9;
@@ -48,17 +48,17 @@ public final class ParticleFilter {
             var33[var54] = yAsDouble(var54) > 0.0 ? -2.0 * var28 * var55 / 0.39999999999999997 : 0.0;
          }
 
-         ol.PAsVoid(var31, 0.20625, var32);
+         OfferListener.PAsVoid(var31, 0.20625, var32);
 
          for (int var93 = 0; var93 < 18; var93++) {
-            boolean var94 = ol.HAsBoolean(var93);
+            boolean var94 = OfferListener.HAsBoolean(var93);
             double var56 = 0.0;
             double var58 = 0.0;
             double var60 = 0.0;
             if (var94) {
-               int var62 = ol.LAsInt(var93, 0) * 3;
-               int var63 = ol.LAsInt(var93, 1) * 3;
-               int var64 = ol.LAsInt(var93, 2) * 3;
+               int var62 = OfferListener.LAsInt(var93, 0) * 3;
+               int var63 = OfferListener.LAsInt(var93, 1) * 3;
+               int var64 = OfferListener.LAsInt(var93, 2) * 3;
                double var65 = var31[var63] - var31[var62];
                double var67 = var31[var63 + 1] - var31[var62 + 1];
                double var69 = var31[var63 + 2] - var31[var62 + 2];
@@ -74,7 +74,7 @@ public final class ParticleFilter {
             }
 
             for (int var95 = 0; var95 < 4; var95++) {
-               int var96 = ol.LAsInt(var93, var95);
+               int var96 = OfferListener.LAsInt(var93, var95);
                int var97 = var96 / 4;
                double var98 = var31[var96 * 3] + 0.20625 - 0.0125;
                double var99 = var31[var96 * 3 + 1];
@@ -85,8 +85,8 @@ public final class ParticleFilter {
                var30[var34] = (float)(var16 + (var15[0] * var101 + var15[1] * var102 + var15[2] * var103) * var9);
                var30[var34 + 1] = (float)(0.53125 + (var15[3] * var101 + var15[4] * var102 + var15[5] * var103) * var9);
                var30[var34 + 2] = (float)(0.0 + (var15[6] * var101 + var15[7] * var102 + var15[8] * var103) * var9);
-               var30[var34 + 3] = (float)ol.IAsDouble(var93, var95);
-               var30[var34 + 4] = (float)ol.wAsDouble(var93, var95);
+               var30[var34 + 3] = (float)OfferListener.IAsDouble(var93, var95);
+               var30[var34 + 4] = (float)OfferListener.wAsDouble(var93, var95);
                double var104 = var56;
                double var105 = var58;
                double var106 = var60;

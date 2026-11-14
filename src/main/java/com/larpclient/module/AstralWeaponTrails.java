@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
-public final class AstralWeaponTrails extends Module implements qn {
+public final class AstralWeaponTrails extends Module implements QueueNode {
    private static AstralWeaponTrails O;
    private final ModeSetting style = this.addSetting(new ModeSetting("Style", "Energy ribbon appearance", "Astral", "Astral", "Prismatic", "Void"));
    private final NumberSetting trailDuration = this.addSetting(new NumberSetting("Trail Duration", "Seconds of recent blade motion", 0.28, 0.1, 0.7, 0.02));
@@ -65,21 +65,21 @@ public final class AstralWeaponTrails extends Module implements qn {
    }
 
    public int lAsInt() {
-      return Math.max(16, x9.jAsInt(64));
+      return Math.max(16, BloomQualityHelper.jAsInt(64));
    }
 
-   public dc.Type_c vAsDc_Type_c() {
-      return new dc.Type_c(
+   public RibbonRenderer.Type_c vAsDc_Type_c() {
+      return new RibbonRenderer.Type_c(
          this.style.getValue(),
          this.trailDuration.getValue(),
          this.width.getValue(),
          this.intensity.getValue(),
-         this.themeColors.getValue() ? bd.w : this.primaryColor.getValue(),
-         this.themeColors.getValue() ? bd.Q : this.secondaryColor.getValue(),
-         this.bloom.getValue() && x9.K != BloomQuality.Type_w.Off,
+         this.themeColors.getValue() ? UiStyle.w : this.primaryColor.getValue(),
+         this.themeColors.getValue() ? UiStyle.Q : this.secondaryColor.getValue(),
+         this.bloom.getValue() && BloomQualityHelper.K != BloomQuality.Type_w.Off,
          this.sparks.getValue(),
          this.motionSmoothing.getValue(),
-         x9.kAsBoolean() ? 3 : 2
+         BloomQualityHelper.kAsBoolean() ? 3 : 2
       );
    }
 
@@ -154,7 +154,7 @@ public final class AstralWeaponTrails extends Module implements qn {
                   WeaponTrailRenderer.TAsVoid(Hand.OFF_HAND);
                }
 
-               WeaponTrailRenderer.PAsVoid(mb.dAsDouble(), this.trailDuration.getValue());
+               WeaponTrailRenderer.PAsVoid(MediaSession.dAsDouble(), this.trailDuration.getValue());
             } else {
                WeaponTrailRenderer.LAsVoid();
             }

@@ -18,19 +18,19 @@ public final class QueueManager {
 
    public static Vec2f hAsVec2f(Vec2f var0) {
       MinecraftClient var1 = MinecraftClient.getInstance();
-      return var1.player != null && !TargetStrafe.yAsBoolean() && hAsBoolean() && !KAsBoolean() ? TAsVec2f(var0, p5.jAsFloat(), var1.player.getYaw()) : var0;
+      return var1.player != null && !TargetStrafe.yAsBoolean() && hAsBoolean() && !KAsBoolean() ? TAsVec2f(var0, ParticleEmitter.jAsFloat(), var1.player.getYaw()) : var0;
    }
 
    public static boolean hAsBoolean() {
-      p5.Type_u var0 = p5.NAsP5_Type_u();
-      if (var0 != p5.Type_u.AUTOTRAP
-         && var0 != p5.Type_u.AUTOWEB
-         && var0 != p5.Type_u.SCAFFOLD
-         && var0 != p5.Type_u.AUTOANCHOR
-         && var0 != p5.Type_u.MACE
-         && var0 != p5.Type_u.AUTOCRYSTAL
-         && var0 != p5.Type_u.PEARLCATCH
-         && var0 != p5.Type_u.WINDHOP) {
+      ParticleEmitter.Type_u var0 = ParticleEmitter.NAsP5_Type_u();
+      if (var0 != ParticleEmitter.Type_u.AUTOTRAP
+         && var0 != ParticleEmitter.Type_u.AUTOWEB
+         && var0 != ParticleEmitter.Type_u.SCAFFOLD
+         && var0 != ParticleEmitter.Type_u.AUTOANCHOR
+         && var0 != ParticleEmitter.Type_u.MACE
+         && var0 != ParticleEmitter.Type_u.AUTOCRYSTAL
+         && var0 != ParticleEmitter.Type_u.PEARLCATCH
+         && var0 != ParticleEmitter.Type_u.WINDHOP) {
          Aura var1 = Aura.fAsAura();
          return var1 != null && var1.DAsBoolean();
       } else {
@@ -39,16 +39,16 @@ public final class QueueManager {
    }
 
    public static boolean KAsBoolean() {
-      p5.Type_u var0 = p5.NAsP5_Type_u();
+      ParticleEmitter.Type_u var0 = ParticleEmitter.NAsP5_Type_u();
       return (
-            var0 == p5.Type_u.MACE
-               || var0 == p5.Type_u.AUTOTRAP
-               || var0 == p5.Type_u.AUTOWEB
-               || var0 == p5.Type_u.SCAFFOLD
-               || var0 == p5.Type_u.AUTOANCHOR
-               || var0 == p5.Type_u.AUTOCRYSTAL
-               || var0 == p5.Type_u.PEARLCATCH
-               || var0 == p5.Type_u.WINDHOP
+            var0 == ParticleEmitter.Type_u.MACE
+               || var0 == ParticleEmitter.Type_u.AUTOTRAP
+               || var0 == ParticleEmitter.Type_u.AUTOWEB
+               || var0 == ParticleEmitter.Type_u.SCAFFOLD
+               || var0 == ParticleEmitter.Type_u.AUTOANCHOR
+               || var0 == ParticleEmitter.Type_u.AUTOCRYSTAL
+               || var0 == ParticleEmitter.Type_u.PEARLCATCH
+               || var0 == ParticleEmitter.Type_u.WINDHOP
          )
          && !TargetStrafe.yAsBoolean();
    }
@@ -60,7 +60,7 @@ public final class QueueManager {
          if (var2 == 0.0F && var3 == 0.0F) {
             return var1;
          } else {
-            double var4 = MathHelper.wrapDegrees(Math.toDegrees(Aura.rAsDouble(p5.jAsFloat(), var2, var3)));
+            double var4 = MathHelper.wrapDegrees(Math.toDegrees(Aura.rAsDouble(ParticleEmitter.jAsFloat(), var2, var3)));
             float[] var6 = Aura.sAsFloatArray(var4, var0.getYaw());
             var0.input.movementVector = new Vec2f(var6[1], var6[0]).normalize();
             return new PlayerInput(var6[0] > 0.0F, var6[0] < 0.0F, var6[1] > 0.0F, var6[1] < 0.0F, var1.jump(), var1.sneak(), var1.sprint());

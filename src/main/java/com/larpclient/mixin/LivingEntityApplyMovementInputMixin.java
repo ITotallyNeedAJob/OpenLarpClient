@@ -121,7 +121,7 @@ public class LivingEntityApplyMovementInputMixin {
       )}
    )
    private float larpclient$redirectJump(LivingEntity var1) {
-      return var1 == MinecraftClient.getInstance().player && p5.NAsP5_Type_u() == p5.Type_u.SCAFFOLD ? p5.jAsFloat() : var1.getYaw();
+      return var1 == MinecraftClient.getInstance().player && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.SCAFFOLD ? ParticleEmitter.jAsFloat() : var1.getYaw();
    }
 
    @ModifyArgs(
@@ -135,7 +135,7 @@ public class LivingEntityApplyMovementInputMixin {
       if ((Object)this == MinecraftClient.getInstance().player) {
          Vec3d var8 = ((LivingEntity)(Object)this).getVelocity();
          Vec3d var9 = new Vec3d((Double)var1.get(0), (Double)var1.get(1), (Double)var1.get(2));
-         Vec3d var10 = var8.add(n5.eAsVec3d(var9.subtract(var8), false));
+         Vec3d var10 = var8.add(KnockbackAdjuster.eAsVec3d(var9.subtract(var8), false));
          var1.set(0, var10.x);
          var1.set(1, var10.y);
          var1.set(2, var10.z);

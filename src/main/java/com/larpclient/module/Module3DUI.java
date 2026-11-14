@@ -68,7 +68,7 @@ public final class Module3DUI extends Module {
    private final NumberSetting playerTurn = this.addSetting(
       new NumberSetting("Player Turn", "Degrees your player turns from its own facing; 180 faces the camera", 180.0, -180.0, 180.0, 5.0)
    );
-   private final w2 R = new w2(0.0);
+   private final WeatherRenderer R = new WeatherRenderer(0.0);
    private Perspective I;
    private boolean C;
    private static final double x = 3.5;
@@ -92,7 +92,7 @@ public final class Module3DUI extends Module {
          && var2.isAlive()
          && !var2.isSleeping()
          && !var2.isSpectator()
-         && !p5.oAsBoolean()
+         && !ParticleEmitter.oAsBoolean()
          && !Freelook.HAsBoolean();
    }
 
@@ -108,7 +108,7 @@ public final class Module3DUI extends Module {
 
    private double qAsDouble() {
       boolean var1 = this.rAsBoolean(getMc().currentScreen);
-      double var2 = this.R.YAsDouble(var1 ? 1.0 : 0.0, this.transition.getValue().intValue(), w2.Type_e.CUBIC_OUT);
+      double var2 = this.R.YAsDouble(var1 ? 1.0 : 0.0, this.transition.getValue().intValue(), WeatherRenderer.Type_e.CUBIC_OUT);
       return Math.clamp(var2, 0.0, 1.0);
    }
 
@@ -247,20 +247,20 @@ public final class Module3DUI extends Module {
       }
    }
 
-   public static xt.Type_n jAsXt_Type_n(Screen var0) {
+   public static XTexture.Type_n jAsXt_Type_n(Screen var0) {
       Module3DUI var1 = l;
-      xt.Type_n var2 = var1 == null ? null : var1.OAsXt_Type_n(var0);
-      xt.LAsVoid(var0, var2);
+      XTexture.Type_n var2 = var1 == null ? null : var1.OAsXt_Type_n(var0);
+      XTexture.LAsVoid(var0, var2);
       return var2;
    }
 
-   private xt.Type_n OAsXt_Type_n(Screen var1) {
+   private XTexture.Type_n OAsXt_Type_n(Screen var1) {
       if (this.I != null && this.rAsBoolean(var1)) {
          double var2 = this.qAsDouble();
          if (var2 <= 0.001) {
             return null;
          } else {
-            double[] var4 = xt.vAsDoubleArray2(var1);
+            double[] var4 = XTexture.vAsDoubleArray2(var1);
             if (var4 == null) {
                HandledScreenHooksAccessor var5 = (HandledScreenHooksAccessor)var1;
                var4 = new double[]{
@@ -280,7 +280,7 @@ public final class Module3DUI extends Module {
             int var17 = this.side.pAsBoolean("Right") ? 1 : -1;
             double var18 = (double)(-var17) * Math.toRadians(this.menuAngle.getValue());
             double var20 = 3.5 * Math.max(1.0, (var9 - var41) / 2.0);
-            double[] var22 = xt.Type_n.ofAsXt_Type_n(var13, var15, 0.0, 0.0, 1.0, var18, var20).bounds(var41, var7, var9, var11);
+            double[] var22 = XTexture.Type_n.ofAsXt_Type_n(var13, var15, 0.0, 0.0, 1.0, var18, var20).bounds(var41, var7, var9, var11);
             double var25 = (double)var1.width;
             double var27 = (double)var1.height;
             double var29 = Math.min(
@@ -300,7 +300,7 @@ public final class Module3DUI extends Module {
                   Math.round(var9),
                   Math.round(var7),
                   Math.round(var11),
-                  xt.vAsDoubleArray2(var1) != null,
+                  XTexture.vAsDoubleArray2(var1) != null,
                   String.format(Locale.ROOT, "%.2f", var29),
                   Math.round(var33),
                   Math.round(var35),
@@ -312,7 +312,7 @@ public final class Module3DUI extends Module {
             }
 
             double var39 = MathHelper.lerp(var2, 1.0, var29);
-            return xt.Type_n.ofAsXt_Type_n(
+            return XTexture.Type_n.ofAsXt_Type_n(
                var13, var15, MathHelper.lerp(var2, var13, var33), MathHelper.lerp(var2, var15, var35), var39, var18 * var2, var20 * var39
             );
          }
@@ -360,7 +360,7 @@ public final class Module3DUI extends Module {
    public void onDisable() {
       this.VAsVoid("module inactive");
       this.R.aAsVoid(0.0);
-      xt.LAsVoid(null, null);
+      XTexture.LAsVoid(null, null);
    }
 
    private static record Type_t(float yaw, float pitch, float weight) {

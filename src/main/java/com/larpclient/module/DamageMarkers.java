@@ -28,7 +28,7 @@ public final class DamageMarkers extends Module {
    private final BooleanSetting friendHits = this.addSetting(new BooleanSetting("Friend Hits", "Show damage attributed to friends", true));
    private final ModeSetting color = this.addSetting(new ModeSetting("Color", "Color by damage or a chosen tint", "Damage", "Damage", "Custom"));
    private final ColorSetting customColor = this.addSetting(new ColorSetting("Custom Color", "Chosen damage marker tint", -48060));
-   private final xx x = new xx(21463920019784013L);
+   private final XRayRenderer x = new XRayRenderer(21463920019784013L);
    private final HashMap<LivingEntity, Double> X = new HashMap<>();
    private WorldTextRenderer l;
    private Object d;
@@ -101,7 +101,7 @@ public final class DamageMarkers extends Module {
 
    public void SAsVoid(Entity var1) {
       if (this.isEnabled() && this.CAsBoolean() && var1 instanceof LivingEntity var2 && var1 != this.getPlayer()) {
-         this.x.gAsVoid(var1.getId(), var1, var2.getHealth(), mb.dAsDouble());
+         this.x.gAsVoid(var1.getId(), var1, var2.getHealth(), MediaSession.dAsDouble());
       }
    }
 
@@ -111,7 +111,7 @@ public final class DamageMarkers extends Module {
          if (var2 instanceof LivingEntity var3 && (var2 != this.getPlayer() || this.selfDamage.getValue())) {
             Entity var4 = var1.createDamageSource(getMc().world).getAttacker();
             if (var2 == this.getPlayer() || var4 == this.getPlayer() || this.friendHits.getValue() && this.DAsBoolean(var4)) {
-               this.x.gAsVoid(var2.getId(), var2, var3.getHealth(), mb.dAsDouble());
+               this.x.gAsVoid(var2.getId(), var2, var3.getHealth(), MediaSession.dAsDouble());
             }
          }
       }
@@ -125,7 +125,7 @@ public final class DamageMarkers extends Module {
          && getMc().world.getEntityById(var1.getEntityId()) instanceof LivingEntity var3
          && this.DAsBoolean(var3)
          && (this.X.size() < 128 || this.X.containsKey(var3))) {
-         this.X.put(var3, mb.dAsDouble() + 2.5);
+         this.X.put(var3, MediaSession.dAsDouble() + 2.5);
       }
    }
 
@@ -143,7 +143,7 @@ public final class DamageMarkers extends Module {
          }
 
          this.H = var1;
-         double var2 = mb.dAsDouble();
+         double var2 = MediaSession.dAsDouble();
          this.X.entrySet().removeIf(var2xx -> var2 > var2xx.getValue() || var2xx.getKey().isRemoved());
          this.x.BAsVoid(var2, var0 -> ((Entity)var0).isRemoved());
 
@@ -200,22 +200,22 @@ public final class DamageMarkers extends Module {
          }
 
          ArrayList var2 = new ArrayList();
-         double var3 = mb.RAsDouble();
+         double var3 = MediaSession.RAsDouble();
          Vector3f var5 = new Vector3f(0.0F, 0.0F, -1.0F).rotate(var1.orientation);
-         double var6 = Math.max(0.01, (double)Math.abs(w3.CAsMatrix4fc().m11()));
+         double var6 = Math.max(0.01, (double)Math.abs(WebRenderer.CAsMatrix4fc().m11()));
          double var8 = (double)Math.max(1, getMc().getWindow().getScaledHeight());
 
-         for (xx.Type_b var11 : this.x.vAsList(var3)) {
+         for (XRayRenderer.Type_b var11 : this.x.vAsList(var3)) {
             double var12 = var11.x() - var1.pos.x;
             double var14 = var11.y() - var1.pos.y;
             double var16 = var11.z() - var1.pos.z;
             double var18 = var12 * (double)var5.x + var14 * (double)var5.y + var16 * (double)var5.z;
             if (!(var18 <= 0.05)) {
-               int var20 = this.color.pAsBoolean("Custom") ? this.customColor.getValue() : xx.UAsInt(var11.damage());
+               int var20 = this.color.pAsBoolean("Custom") ? this.customColor.getValue() : XRayRenderer.UAsInt(var11.damage());
                double var21 = 0.5 * var18 / (var8 * var6 * 0.01890625);
                var2.add(
                   new WorldTextRenderer.Type_d(
-                     var11.text(), var11.x(), var11.y(), var11.z(), var21 * this.size.getValue() * var11.scale(), bg.XAsInt(var20, var11.opacity())
+                     var11.text(), var11.x(), var11.y(), var11.z(), var21 * this.size.getValue() * var11.scale(), ColorUtil.XAsInt(var20, var11.opacity())
                   )
                );
             }

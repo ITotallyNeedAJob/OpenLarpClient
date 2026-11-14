@@ -28,8 +28,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Flow.Subscription;
 
 public final class LyricsLookupClient implements AutoCloseable {
-   private static final int SmoothInput = 524288;
-   private final HttpClient PriceDetector = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(4L)).build();
+   private static final int t = 524288;
+   private final HttpClient m = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(4L)).build();
    private final URI N;
 
    public LyricsLookupClient() {
@@ -57,11 +57,11 @@ public final class LyricsLookupClient implements AutoCloseable {
       return URLEncoder.encode(var0, StandardCharsets.UTF_8);
    }
 
-   public CompletableFuture<mr> qAsCompletableFuture(MediaSessionMetadata var1) {
+   public CompletableFuture<ModuleRegistry> qAsCompletableFuture(MediaSessionMetadata var1) {
       return this.CAsCompletableFuture(URI.create(this.N.toString() + "?" + jAsURI(var1).getRawQuery()))
          .thenCompose(
             var2 -> {
-               mr var3 = WAsMr((HttpResponse<byte[]>)var2);
+               ModuleRegistry var3 = WAsMr((HttpResponse<byte[]>)var2);
                if (var2.statusCode() != 404 && (var2.statusCode() != 200 || var3.timed() != null || var3.status().equals("Instrumental track"))) {
                   return CompletableFuture.completedFuture(var3);
                } else {
@@ -69,7 +69,7 @@ public final class LyricsLookupClient implements AutoCloseable {
                   return CompletableFuture.<URI>supplyAsync(() -> var4, CompletableFuture.delayedExecutor(300L, TimeUnit.MILLISECONDS))
                      .thenCompose(this::CAsCompletableFuture)
                      .thenApply(var1xxx -> var1xxx.statusCode() == 200 ? YAsMr(var1xxx.body(), var1) : WAsMr((HttpResponse<byte[]>)var1xxx))
-                     .exceptionally(var0 -> mr.unavailable("Lyrics lookup failed; retrying shortly", 30L))
+                     .exceptionally(var0 -> ModuleRegistry.unavailable("Lyrics lookup failed; retrying shortly", 30L))
                      .thenApply(
                         var1xx -> {
                            if (var1xx.timed() == null && !var3.plain().isEmpty()) {
@@ -77,18 +77,18 @@ public final class LyricsLookupClient implements AutoCloseable {
                                     && !var1xx.status().equals("Lyrics provider busy; retrying shortly")
                                  ? 0
                                  : 1;
-                              return new mr(
+                              return new ModuleRegistry(
                                  null, var3.plain(), var2x != 0 ? var1xx.status() + "; showing untimed lyrics" : var3.status(), var1xx.retryAfterSeconds()
                               );
                            } else {
-                              return (mr)var1xx;
+                              return (ModuleRegistry)var1xx;
                            }
                         }
                      );
                }
             }
          )
-         .exceptionally(var0 -> mr.unavailable("Lyrics lookup failed; retrying shortly", 30L));
+         .exceptionally(var0 -> ModuleRegistry.unavailable("Lyrics lookup failed; retrying shortly", 30L));
    }
 
    private CompletableFuture<HttpResponse<byte[]>> CAsCompletableFuture(URI var1) {
@@ -100,26 +100,26 @@ public final class LyricsLookupClient implements AutoCloseable {
       return this.m.<byte[]>sendAsync(var2, var0 -> new LyricsLookupClient.Type_b()).orTimeout(12L, TimeUnit.SECONDS);
    }
 
-   private static mr WAsMr(HttpResponse<byte[]> var0) {
+   private static ModuleRegistry WAsMr(HttpResponse<byte[]> var0) {
       if (var0.statusCode() == 429) {
-         return mr.unavailable("Lyrics lookup rate limited", sAsLong(var0.headers().firstValue("Retry-After").orElse("60")));
+         return ModuleRegistry.unavailable("Lyrics lookup rate limited", sAsLong(var0.headers().firstValue("Retry-After").orElse("60")));
       } else if (var0.statusCode() == 404) {
-         return mr.unavailable("No lyrics found for this song", 600L);
+         return ModuleRegistry.unavailable("No lyrics found for this song", 600L);
       } else if (var0.statusCode() == 503) {
-         return mr.unavailable("Lyrics provider busy; retrying shortly", sAsLong(var0.headers().firstValue("Retry-After").orElse("2")));
+         return ModuleRegistry.unavailable("Lyrics provider busy; retrying shortly", sAsLong(var0.headers().firstValue("Retry-After").orElse("2")));
       } else {
          return var0.statusCode() != 200
-            ? mr.unavailable("Lyrics provider unavailable (HTTP " + var0.statusCode() + ")", 30L)
+            ? ModuleRegistry.unavailable("Lyrics provider unavailable (HTTP " + var0.statusCode() + ")", 30L)
             : yAsMr(new String(var0.body(), StandardCharsets.UTF_8));
       }
    }
 
-   public static mr YAsMr(byte[] var0, MediaSessionMetadata var1) {
+   public static ModuleRegistry YAsMr(byte[] var0, MediaSessionMetadata var1) {
       JsonArray var2 = JsonParser.parseString(new String(var0, StandardCharsets.UTF_8)).getAsJsonArray();
       if (var2.size() > 100) {
-         return mr.unavailable("Lyrics provider returned too many matches", 30L);
+         return ModuleRegistry.unavailable("Lyrics provider returned too many matches", 30L);
       } else {
-         mr var3 = null;
+         ModuleRegistry var3 = null;
          double var4 = Double.MAX_VALUE;
 
          for (JsonElement var7 : var2) {
@@ -133,7 +133,7 @@ public final class LyricsLookupClient implements AutoCloseable {
                         int var11 = !var1.album().isBlank() && NAsBoolean(var8, "albumName", var1.album()) ? 1 : 0;
                         double var12 = var1.duration() > 0.0 ? Math.abs(var9 - var1.duration()) : 0.0;
                         if (var1.duration() > 0.0 ? !(var12 > 2.0) : var11 != 0) {
-                           mr var14 = yAsMr(var8.toString());
+                           ModuleRegistry var14 = yAsMr(var8.toString());
                            if (var14.timed() != null || !var14.plain().isEmpty()) {
                               double var15 = var12 + (double)(var11 != 0 ? 0 : 10) + (double)(var14.timed() == null ? 100 : 0);
                               if (var15 < var4) {
@@ -149,7 +149,7 @@ public final class LyricsLookupClient implements AutoCloseable {
             }
          }
 
-         return var3 == null ? mr.unavailable("No lyrics found for this song", 600L) : var3;
+         return var3 == null ? ModuleRegistry.unavailable("No lyrics found for this song", 600L) : var3;
       }
    }
 
@@ -168,15 +168,15 @@ public final class LyricsLookupClient implements AutoCloseable {
          .strip();
    }
 
-   public static mr yAsMr(String var0) {
+   public static ModuleRegistry yAsMr(String var0) {
       JsonObject var1 = JsonParser.parseString(var0).getAsJsonObject();
       if (var1.has("instrumental") && var1.get("instrumental").getAsBoolean()) {
-         return mr.unavailable("Instrumental track", 600L);
+         return ModuleRegistry.unavailable("Instrumental track", 600L);
       } else {
          if (var1.has("syncedLyrics") && !var1.get("syncedLyrics").isJsonNull()) {
             TimedLyricsParser var2 = TimedLyricsParser.pAsX2(var1.get("syncedLyrics").getAsString());
             if (!var2.wAsList().isEmpty()) {
-               return new mr(var2, List.of(), "Synced lyrics", 0L);
+               return new ModuleRegistry(var2, List.of(), "Synced lyrics", 0L);
             }
          }
 
@@ -191,11 +191,11 @@ public final class LyricsLookupClient implements AutoCloseable {
                .map(var0x -> var0x.codePointCount(0, var0x.length()) > 96 ? var0x.substring(0, var0x.offsetByCodePoints(0, 96)) : var0x)
                .toList();
             if (!var3.isEmpty()) {
-               return new mr(null, var3, "Lyrics available without timing", 0L);
+               return new ModuleRegistry(null, var3, "Lyrics available without timing", 0L);
             }
          }
 
-         return mr.unavailable("No lyrics found for this song", 600L);
+         return ModuleRegistry.unavailable("No lyrics found for this song", 600L);
       }
    }
 

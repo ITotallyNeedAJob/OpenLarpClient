@@ -24,7 +24,7 @@ public abstract class SoundSystemMixin {
    @Final
    private Map<SoundInstance, SourceManager> field_18950;
    @Unique
-   private final Set<SoundInstance> LineSegment = new HashSet<>();
+   private final Set<SoundInstance> e = new HashSet<>();
 
    public SoundSystemMixin() {
    }

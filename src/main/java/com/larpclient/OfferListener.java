@@ -2,10 +2,10 @@ package com.larpclient;
 
 public final class OfferListener {
    public static final int B = 5;
-   public static final int SkyChunkCache = 20;
-   public static final int ChatPayParser = 18;
-   public static final double AuraModule = 0.421875;
-   private static final int[][] LineSegment = new int[18][4];
+   public static final int s = 20;
+   public static final int g = 18;
+   public static final double x = 0.421875;
+   private static final int[][] e = new int[18][4];
 
    private OfferListener() {
    }
@@ -46,7 +46,7 @@ public final class OfferListener {
       double var22 = var6 * var14 - var8 * var12;
       double var24 = Math.sqrt(var18 * var18 + var20 * var20 + var22 * var22);
       double var26 = Math.max(0.0, (-var18 * 0.3 + var20 * 0.8 + var22 * 0.5) / (var24 * Math.sqrt(0.98)));
-      int var28 = bg.xAsInt(var2, var2 & 0xFF000000, 1.0 - (HAsBoolean(var1) ? 0.6 + 0.2 * var26 : 0.72 + 0.28 * var26));
+      int var28 = ColorUtil.xAsInt(var2, var2 & 0xFF000000, 1.0 - (HAsBoolean(var1) ? 0.6 + 0.2 * var26 : 0.72 + 0.28 * var26));
       return var2 & 0xFF000000 | var28 & 16777215;
    }
 

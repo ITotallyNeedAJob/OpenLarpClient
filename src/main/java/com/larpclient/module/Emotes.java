@@ -77,7 +77,7 @@ public final class Emotes extends Module {
    private int O;
    private Object z;
    private Object v;
-   private du m;
+   private DurationTracker m;
    public static boolean B;
    private static final String[] a = new String[]{"none", "none", "Emotes", "Playing {} from slot {} (camera switch={}, prop={})"};
 
@@ -196,7 +196,7 @@ public final class Emotes extends Module {
       Perspective var4 = var1.prop() != null ? Perspective.THIRD_PERSON_FRONT : Perspective.THIRD_PERSON_BACK;
       int var5 = this.f && var3 == this.L ? 1 : 0;
       int var6 = var3.isFirstPerson() || var5 != 0 || var1.prop() != null && var3 == Perspective.THIRD_PERSON_BACK ? 1 : 0;
-      if (this.thirdPerson.getValue() && p5.NAsP5_Type_u() == p5.Type_u.NONE && var6 != 0 && var3 != var4) {
+      if (this.thirdPerson.getValue() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.NONE && var6 != 0 && var3 != var4) {
          if (var5 == 0) {
             this.N = var3;
          }
@@ -240,7 +240,7 @@ public final class Emotes extends Module {
          if (getMc().getSoundManager().get(var1.music()) == null) {
             ClientLog.XAsVoid("Emotes", "No music for {}: add {} with the emote music resource pack", var1.label(), var1.music());
          } else {
-            du var2 = new du(var1, this.x::getValue, 4);
+            DurationTracker var2 = new DurationTracker(var1, this.x::getValue, 4);
 
             try {
                PlayResult var3 = getMc().getSoundManager().play(var2);
@@ -255,7 +255,7 @@ public final class Emotes extends Module {
 
    private void iAsVoid() {
       if (this.m != null) {
-         du var1 = this.m;
+         DurationTracker var1 = this.m;
          this.m = null;
 
          try {
@@ -321,7 +321,7 @@ public final class Emotes extends Module {
 
    public static void gAsVoid(PlayerLikeEntity var0, PlayerEntityRenderState var1, float var2) {
       if (T != null && T.isEnabled()) {
-         o6 var3 = (o6)var1;
+         OptionPanel var3 = (OptionPanel)var1;
          Emotes var4 = T;
          if (var4 != null && var4.I != null && var4.isRuntimeActive() && var0 == getMc().player) {
             float var5 = var4.ZAsFloat(var2);
@@ -390,7 +390,7 @@ public final class Emotes extends Module {
    public static boolean LAsBoolean(PlayerEntityRenderState var0) {
       boolean var10000;
       if (T != null && T.isEnabled()) {
-         if (var0 instanceof o6 var1 && var1.larp$emoteWeight() > 0.0F) {
+         if (var0 instanceof OptionPanel var1 && var1.larp$emoteWeight() > 0.0F) {
             return true;
          }
 

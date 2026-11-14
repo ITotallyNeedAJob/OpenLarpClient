@@ -35,7 +35,7 @@ public final class SkyShaderSettings {
    }
 
    public static int GAsInt(Module var0, String var1) {
-      if (var0 instanceof nk) {
+      if (var0 instanceof Notification) {
          return Math.min(IAsInt("Sky Shader", var1), Math.min(IAsInt("CustomSky", var1), IAsInt("Sky", var1)));
       } else {
          int var2 = Math.min(IAsInt(var0.getDisplayName(), var1), IAsInt(var0.getName(), var1));

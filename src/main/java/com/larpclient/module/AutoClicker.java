@@ -36,8 +36,8 @@ public final class AutoClicker extends Module {
       new BooleanSetting("Only Entities", "Left clicks require an entity under your actual aim", false)
    );
    private final BooleanSetting breakBlocks = this.addSetting(new BooleanSetting("Break Blocks", "Keep native continuous mining while aiming at blocks", true));
-   private final x7 y = new x7();
-   private final x7 T = new x7();
+   private final TimestampTracker y = new TimestampTracker();
+   private final TimestampTracker T = new TimestampTracker();
    private boolean L;
    private boolean j;
    private String H = "Waiting for input";
@@ -124,13 +124,13 @@ public final class AutoClicker extends Module {
    }
 
    private boolean qAsBoolean() {
-      return r6.NAsBoolean("Aura") || p5.NAsP5_Type_u() != p5.Type_u.NONE;
+      return ModuleKeybindChecker.NAsBoolean("Aura") || ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.NONE;
    }
 
    private boolean qAsBoolean(boolean var1) {
       return (var1 ? this.jAsBoolean() : this.NAsBoolean())
          && this.AAsBoolean(var1)
-         && b_.jAsBoolean()
+         && ModuleImportBroker.jAsBoolean()
          && !this.qAsBoolean()
          && !mc.player.isUsingItem()
          && !mc.player.isRiding()
@@ -139,13 +139,13 @@ public final class AutoClicker extends Module {
 
    public boolean RAsBoolean() {
       return this.isEnabled()
-         ? this.jAsBoolean() && this.activation.pAsBoolean("Automatic") && !this.qAsBoolean() && b_.jAsBoolean() && mc.player.isUsingItem()
+         ? this.jAsBoolean() && this.activation.pAsBoolean("Automatic") && !this.qAsBoolean() && ModuleImportBroker.jAsBoolean() && mc.player.isUsingItem()
          : false;
    }
 
    @Override
    public void onTick() {
-      if (this.tAsBoolean() && b_.jAsBoolean() && !this.qAsBoolean()) {
+      if (this.tAsBoolean() && ModuleImportBroker.jAsBoolean() && !this.qAsBoolean()) {
          long var1 = System.nanoTime();
          this.H = mc.player.isUsingItem() ? "Using held item" : "Waiting for input";
          if (!this.qAsBoolean(false)) {
@@ -164,11 +164,11 @@ public final class AutoClicker extends Module {
             if (this.qAsBoolean(false) && this.y.dAsBoolean(var1)) {
                HitResult var5 = this.vAsHitResult();
                if (var5 instanceof EntityHitResult var6) {
-                  if (this.waitCooldown.getValue() && !b_.VAsBoolean()) {
+                  if (this.waitCooldown.getValue() && !ModuleImportBroker.VAsBoolean()) {
                      this.H = "Waiting for attack cooldown";
                   } else {
                      Entity var7 = var6.getEntity();
-                     b_.tAsVoid(
+                     ModuleImportBroker.tAsVoid(
                         this,
                         var7,
                         mc.player.getEntityInteractionRange(),
@@ -181,7 +181,7 @@ public final class AutoClicker extends Module {
                      var4 = 1;
                   }
                } else if (var5.getType() == Type.MISS && !this.onlyEntities.getValue()) {
-                  b_.UAsVoid(
+                  ModuleImportBroker.UAsVoid(
                      this,
                      () -> this.cAsVoid(() -> {
                            mc.doAttack();
@@ -190,7 +190,7 @@ public final class AutoClicker extends Module {
                      () -> this.qAsBoolean(false)
                            && !this.onlyEntities.getValue()
                            && this.vAsHitResult().getType() == Type.MISS
-                           && (!this.waitCooldown.getValue() || b_.VAsBoolean())
+                           && (!this.waitCooldown.getValue() || ModuleImportBroker.VAsBoolean())
                   );
                   var4 = 1;
                }
@@ -207,7 +207,7 @@ public final class AutoClicker extends Module {
    }
 
    private void vAsVoid() {
-      b_.UAsVoid(this, () -> this.cAsVoid(() -> {
+      ModuleImportBroker.UAsVoid(this, () -> this.cAsVoid(() -> {
             mc.doItemUse();
             this.RAsVoid(true);
          }), () -> this.qAsBoolean(true));
@@ -271,7 +271,7 @@ public final class AutoClicker extends Module {
    private void cAsVoid() {
       this.y.YAsVoid();
       this.T.YAsVoid();
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
    }
 
    @Override

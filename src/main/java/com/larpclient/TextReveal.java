@@ -46,7 +46,7 @@ public final class TextReveal {
    }
 
    public double mAsDouble(int var1) {
-      return var1 >= 0 && var1 < this.Q.length && this.Q[var1] != Long.MIN_VALUE ? w2.Type_e.CUBIC_OUT.zAsDouble((double)(this.g - this.Q[var1]) / 1.8E8) : 1.0;
+      return var1 >= 0 && var1 < this.Q.length && this.Q[var1] != Long.MIN_VALUE ? WeatherRenderer.Type_e.CUBIC_OUT.zAsDouble((double)(this.g - this.Q[var1]) / 1.8E8) : 1.0;
    }
 
    public double WAsDouble(int var1) {

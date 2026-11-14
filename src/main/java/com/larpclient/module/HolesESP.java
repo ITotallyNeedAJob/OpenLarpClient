@@ -39,7 +39,7 @@ public final class HolesESP extends Module {
    private final Map<Long, Map<BlockPos, Integer>> Z = new HashMap<>();
    private final Set<Long> U = new HashSet<>();
    private final ArrayDeque<Long> d = new ArrayDeque<>();
-   private final Map<Long, x_.Type_m> z = new HashMap<>();
+   private final Map<Long, BlockPosChecker.Type_m> z = new HashMap<>();
    private final Set<Long> K = new HashSet<>();
    private Map<BlockPos, Integer> X;
    private List<HolesESP.Type_t> s = List.of();
@@ -182,21 +182,21 @@ public final class HolesESP extends Module {
       }
    }
 
-   private x_.Type_m QAsX__Type_m(BlockPos var1) {
+   private BlockPosChecker.Type_m QAsX__Type_m(BlockPos var1) {
       if (this.l.isOutOfHeightLimit(var1)) {
-         return x_.Type_m.UNKNOWN;
+         return BlockPosChecker.Type_m.UNKNOWN;
       } else {
-         x_.Type_m var2 = this.z.get(var1.asLong());
+         BlockPosChecker.Type_m var2 = this.z.get(var1.asLong());
          if (var2 != null) {
             return var2;
          } else {
             WorldChunk var3 = this.l.getChunkManager().getWorldChunk(var1.getX() >> 4, var1.getZ() >> 4);
             if (var3 == null) {
-               return x_.Type_m.UNKNOWN;
+               return BlockPosChecker.Type_m.UNKNOWN;
             } else {
                this.t++;
                VoxelShape var4 = var3.getBlockState(var1).getCollisionShape(this.l, var1);
-               x_.Type_m var5 = var4.equals(VoxelShapes.fullCube()) ? x_.Type_m.FULL : x_.Type_m.OPEN;
+               BlockPosChecker.Type_m var5 = var4.equals(VoxelShapes.fullCube()) ? BlockPosChecker.Type_m.FULL : BlockPosChecker.Type_m.OPEN;
                this.z.put(var1.asLong(), var5);
                return var5;
             }
@@ -267,7 +267,7 @@ public final class HolesESP extends Module {
                   this.M++;
                   int var7 = var13 / var12;
                   BlockPos var8 = new BlockPos(this.D.getPos().getStartX() + var7 / 16, var5, this.D.getPos().getStartZ() + var7 % 16);
-                  int var9 = x_.LAsInt(var8, this.l.getTopYInclusive(), this::QAsX__Type_m);
+                  int var9 = BlockPosChecker.LAsInt(var8, this.l.getTopYInclusive(), this::QAsX__Type_m);
                   if (var9 >= 0) {
                      if (this.X.size() < 8192 && this.L + this.X.size() < 65536) {
                         this.X.put(var8, var9);
@@ -361,7 +361,7 @@ public final class HolesESP extends Module {
                if (Math.abs((long)(var5.pos().getX() >> 4) - (long)var2.x) <= (long)var3
                   && Math.abs((long)(var5.pos().getZ() >> 4) - (long)var2.z) <= (long)var3) {
                   int var6 = var5.kind() == 0 ? this.G.getValue() : this.R.getValue();
-                  GizmoDrawing.box(x_.BAsBox(var5.pos(), var5.kind()), DrawStyle.filled(var1 << 24 | var6 & 16777215)).ignoreOcclusion();
+                  GizmoDrawing.box(BlockPosChecker.BAsBox(var5.pos(), var5.kind()), DrawStyle.filled(var1 << 24 | var6 & 16777215)).ignoreOcclusion();
                }
             }
          }

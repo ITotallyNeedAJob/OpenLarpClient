@@ -12,11 +12,11 @@ public final class BridgeRenderer {
    public final NumberSetting Z = bAsNumberSetting("Line Width", "Outline radius in screen pixels", 2.0, 1.0, 8.0, 0.5);
    public final NumberSetting J = bAsNumberSetting("Outline Opacity", "Silhouette border opacity", 1.0, 0.0, 1.0, 0.05);
    public final NumberSetting P = bAsNumberSetting("Fill Opacity", "Gradient inside the silhouette", 0.25, 0.0, 1.0, 0.05);
-   public final NumberSetting SahurDanceEngine = bAsNumberSetting("Glow Radius", "Gaussian halo radius in pixels", 12.0, 0.0, 32.0, 1.0);
-   public final NumberSetting ScreenScale = bAsNumberSetting("Glow Intensity", "Soft halo strength", 0.75, 0.0, 1.0, 0.05);
+   public final NumberSetting d = bAsNumberSetting("Glow Radius", "Gaussian halo radius in pixels", 12.0, 0.0, 32.0, 1.0);
+   public final NumberSetting y = bAsNumberSetting("Glow Intensity", "Soft halo strength", 0.75, 0.0, 1.0, 0.05);
    public final NumberSetting h = bAsNumberSetting("Speed", "Gradient cycles per second", 0.5, 0.0, 3.0, 0.1);
    public final NumberSetting D = bAsNumberSetting("Gradient Scale", "Gradient repetitions across the screen", 1.0, 0.25, 4.0, 0.25);
-   private final BridgeRenderer.Type_f ChatPayParser = new BridgeRenderer.Type_f();
+   private final BridgeRenderer.Type_f g = new BridgeRenderer.Type_f();
 
    public BridgeRenderer(Consumer<Setting<?>> var1) {
       for (Setting var3 : List.of(this.color1, this.color2, this.Z, this.J, this.P, this.d, this.y, this.h, this.D)) {
@@ -56,7 +56,7 @@ public final class BridgeRenderer {
          this.J.getValue().floatValue(),
          this.d.getValue().floatValue(),
          this.y.getValue().floatValue(),
-         this.g.UAsFloat(mb.RAsDouble(), this.h.getValue()),
+         this.g.UAsFloat(MediaSession.RAsDouble(), this.h.getValue()),
          var1
       );
    }

@@ -22,7 +22,7 @@ import org.joml.Vector2f;
 public final class ClickGuiScreen extends GuiPanel {
    private final Screen n;
    private final List<ActionButton> D = new ArrayList<>();
-   private final List<ActionButton> GroundSample = new ArrayList<>();
+   private final List<ActionButton> k = new ArrayList<>();
    private final Map<ActionButton, Module> X = new IdentityHashMap<>();
    private final Map<ActionButton, FavoriteModuleWidget> W = new IdentityHashMap<>();
    private boolean q;
@@ -32,13 +32,13 @@ public final class ClickGuiScreen extends GuiPanel {
    private final InterfaceSettingsPanel r = new InterfaceSettingsPanel();
    private ProfileSettingsPanel R;
    private SettingsPanel B;
-   private xm F;
+   private XModel F;
    private ScreenScale h;
    private GuiCategory V;
    private Module z;
    private String E = "Modules";
-   private String SahurDanceEngine = "";
-   private String MenuPopupProvider = "";
+   private String d = "";
+   private String f = "";
    private boolean m;
    private boolean a;
    private boolean w;
@@ -52,22 +52,22 @@ public final class ClickGuiScreen extends GuiPanel {
    private boolean T;
    private boolean J;
    private boolean e;
-   private final w2 C = new w2(0.0);
-   private final w2 N = new w2(1.0);
+   private final WeatherRenderer C = new WeatherRenderer(0.0);
+   private final WeatherRenderer N = new WeatherRenderer(1.0);
    private TextInputWidget l;
    private ActionButton A;
    private ActionButton I;
    private ActionButton u;
    private ActionButton S;
-   private final AccountSkinPreview ChinaHatCodec = new AccountSkinPreview();
-   private static final DiscordAvatarRenderer TextLayout = new DiscordAvatarRenderer();
-   private final w2 ChatPayParser = new w2(0.0);
-   private final w2 ScreenScale = new w2(0.0);
-   private final w2 Z = new w2(0.0);
-   private final w2 G = new w2(0.0);
+   private final AccountSkinPreview i = new AccountSkinPreview();
+   private static final DiscordAvatarRenderer j = new DiscordAvatarRenderer();
+   private final WeatherRenderer g = new WeatherRenderer(0.0);
+   private final WeatherRenderer y = new WeatherRenderer(0.0);
+   private final WeatherRenderer Z = new WeatherRenderer(0.0);
+   private final WeatherRenderer G = new WeatherRenderer(0.0);
    private boolean M;
-   private wz s;
-   private final Matrix3x2f AuctionNotifier = new Matrix3x2f();
+   private WidgetPopup s;
+   private final Matrix3x2f o = new Matrix3x2f();
 
    public ClickGuiScreen() {
       this(null);
@@ -80,7 +80,7 @@ public final class ClickGuiScreen extends GuiPanel {
    }
 
    public void IAsVoid() {
-      this.s = new wz();
+      this.s = new WidgetPopup();
    }
 
    public static ClickGuiScreen cAsPn(Screen var0, String var1, boolean var2) {
@@ -159,13 +159,13 @@ public final class ClickGuiScreen extends GuiPanel {
          ArrayList var3 = new ArrayList();
          float var4 = this.o.m00();
          Vector2f var5 = this.o.transformPosition((float)this.F.left(), (float)this.F.top(), new Vector2f());
-         var3.add(new ColoredGeometryPipeline.Type_i(var5.x, var5.y, (float)this.F.width() * var4, (float)this.F.height() * var4, (float)bd.q * var4));
+         var3.add(new ColoredGeometryPipeline.Type_i(var5.x, var5.y, (float)this.F.width() * var4, (float)this.F.height() * var4, (float)UiStyle.q * var4));
          if (this.z != null && this.B == null && this.F.detachedInspector() && this.jAsDouble() > 0.5) {
-            xm var6 = this.F.moduleInspector(this.K);
+            XModel var6 = this.F.moduleInspector(this.K);
             Vector2f var7 = this.o.transformPosition((float)var6.inspectorX(), (float)var6.top(), new Vector2f());
             var3.add(
                new ColoredGeometryPipeline.Type_i(
-                  var7.x, var7.y, (float)(var6.right() - var6.inspectorX()) * var4, (float)var6.height() * var4, (float)bd.q * var4
+                  var7.x, var7.y, (float)(var6.right() - var6.inspectorX()) * var4, (float)var6.height() * var4, (float)UiStyle.q * var4
                )
             );
          }
@@ -197,7 +197,7 @@ public final class ClickGuiScreen extends GuiPanel {
                if (var4 != null) {
                   ClientPreferences var5 = LarpClient.CAsLarpClient().fAsBo().yAsN7();
 
-                  try (bd.Type_e var6 = bd.VAsBd_Type_e(var5.M, var5.G, var5.b)) {
+                  try (UiStyle.Type_e var6 = UiStyle.VAsBd_Type_e(var5.M, var5.G, var5.b)) {
                      TAsVoid(var0, var0.getScaledWindowWidth(), var0.getScaledWindowHeight(), 1.0 - var4.BAsDouble(), var5);
                   }
 
@@ -211,7 +211,7 @@ public final class ClickGuiScreen extends GuiPanel {
             }
          } else {
             if (var4 != null) {
-               ClientLog.XAsVoid("GUI", "Close effect {}", var4.fAsBoolean() ? "finished" : "stopped by PetEffectRenderer screen, world or window size change");
+               ClientLog.XAsVoid("GUI", "Close effect {}", var4.fAsBoolean() ? "finished" : "stopped by a screen, world or window size change");
             }
 
             QAsVoid();
@@ -229,7 +229,7 @@ public final class ClickGuiScreen extends GuiPanel {
    }
 
    private static ScreenScale uAsY(MinecraftClient var0) {
-      return com.larpclient.y.paired(var0.getWindow(), LarpClient.CAsLarpClient().fAsBo().yAsN7().JD);
+      return com.larpclient.ScreenScale.paired(var0.getWindow(), LarpClient.CAsLarpClient().fAsBo().yAsN7().JD);
    }
 
    protected void init() {
@@ -242,7 +242,7 @@ public final class ClickGuiScreen extends GuiPanel {
          this.d = var1.query();
          this.U = var1.moduleScroll();
          this.z = LarpClient.CAsLarpClient().mAsF().TAsModule(var1.module());
-         this.z = nk.YAsModule(this.z, LarpClient.CAsLarpClient().mAsF().NAsList(), LarpClient.CAsLarpClient().fAsBo().yAsN7());
+         this.z = Notification.YAsModule(this.z, LarpClient.CAsLarpClient().mAsF().NAsList(), LarpClient.CAsLarpClient().fAsBo().yAsN7());
          if (this.z == null && !var1.module().isEmpty()) {
             ClientLog.GAsVoid("GUI", "Restored unavailable module {} with no selection", var1.module());
          }
@@ -255,8 +255,8 @@ public final class ClickGuiScreen extends GuiPanel {
       }
 
       this.F = this.E.equals("Modules")
-         ? xm.calculateModules(this.h.width(), this.h.height(), this.z == null ? 0.0 : 1.0)
-         : xm.calculate(this.h.width(), this.h.height());
+         ? XModel.calculateModules(this.h.width(), this.h.height(), this.z == null ? 0.0 : 1.0)
+         : XModel.calculate(this.h.width(), this.h.height());
       this.J = false;
       this.g.aAsVoid(this.s == null ? 0.0 : 1.0);
       this.g.bAsDouble(1.0, this.UAsInt());
@@ -356,7 +356,7 @@ public final class ClickGuiScreen extends GuiPanel {
          this.HAsVoid();
          this.client.setScreen(new HudEditorScreen(this));
       } else {
-         this.f = "Join PetEffectRenderer world to edit the HUD.";
+         this.f = "Join a world to edit the HUD.";
       }
    }
 
@@ -455,7 +455,7 @@ public final class ClickGuiScreen extends GuiPanel {
          this.PAsVoid();
       }, 256);
       this.l
-         .AAsQq(var0 -> SkyShaderSettings.EAsList(nk.sAsList(LarpClient.CAsLarpClient().mAsF().NAsList(), LarpClient.CAsLarpClient().fAsBo().yAsN7()), var0));
+         .AAsQq(var0 -> SkyShaderSettings.EAsList(Notification.sAsList(LarpClient.CAsLarpClient().mAsF().NAsList(), LarpClient.CAsLarpClient().fAsBo().yAsN7()), var0));
       this.l.W = this.d;
       this.l.b = "search";
       this.Q.add(this.l);
@@ -641,7 +641,7 @@ public final class ClickGuiScreen extends GuiPanel {
 
       double var9 = this.g.bAsDouble(this.J ? 0.0 : 1.0, var1.n);
       this.K = this.y.bAsDouble(this.E.equals("Modules") && this.z != null && !this.e ? 1.0 : 0.0, 270);
-      this.F = (this.E.equals("Modules") ? xm.calculateModules(this.h.width(), this.h.height(), this.K) : xm.calculate(this.h.width(), this.h.height()))
+      this.F = (this.E.equals("Modules") ? XModel.calculateModules(this.h.width(), this.h.height(), this.K) : XModel.calculate(this.h.width(), this.h.height()))
          .offset(0, var1.A.equals("Slide") ? (int)Math.round((1.0 - var9) * 8.0) : 0);
       int var4 = this.F.navigationPitch(this.D.size());
       this.x = Math.clamp((long)this.x, 0, this.F.navigationScrollLimit(this.D.size()));
@@ -685,19 +685,19 @@ public final class ClickGuiScreen extends GuiPanel {
       }
 
       this.A.Y = this.E.equals("Modules") && this.z != null;
-      xm var13 = this.F.moduleInspector(this.K);
+      XModel var13 = this.F.moduleInspector(this.K);
       this.A.bounds(var13.right() - 30, var13.bodyTop() + 1, 22);
       this.A.F = 22;
       if (this.B != null) {
          this.B.hAsVoid(this.F);
       } else if (this.z != null) {
-         xm var14 = this.F.moduleInspector(this.K);
+         XModel var14 = this.F.moduleInspector(this.K);
          this.P.uAsVoid(var14, this.F.moduleInspectorClipLeft(this.K), var14.right());
       }
    }
 
    public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
-      long var5 = op.RAsLong();
+      long var5 = OpenScreen.RAsLong();
       this.NAsVoid();
       this.qAsVoid();
       double var7 = this.g.yAsDouble();
@@ -714,15 +714,15 @@ public final class ClickGuiScreen extends GuiPanel {
 
       this.o
          .set(this.h.transform())
-         .mul(xb.mAsMatrix3x2f(var9.A, var7, (double)this.F.left() + (double)this.F.width() / 2.0, (double)this.F.top() + (double)this.F.height() / 2.0));
+         .mul(XBlurEffect.mAsMatrix3x2f(var9.A, var7, (double)this.F.left() + (double)this.F.width() / 2.0, (double)this.F.top() + (double)this.F.height() / 2.0));
       if (this.s != null) {
-         aq.Type_x var11 = this.J
+         PopupScale.Type_x var11 = this.J
             ? this.s.AAsAq_Type_x()
-            : this.s.XAsAq_Type_x(System.nanoTime(), this.client.getOverlay() == null && this.client.isWindowFocused(), com.larpclient.f.CAsBoolean());
+            : this.s.XAsAq_Type_x(System.nanoTime(), this.client.getOverlay() == null && this.client.isWindowFocused(), com.larpclient.MenuPopupProvider.CAsBoolean());
          this.o
             .set(this.h.transform())
             .mul(var11.matrix((double)this.h.width() / 2.0, (double)this.h.height() / 2.0))
-            .mul(xb.mAsMatrix3x2f(var9.A, var7, (double)this.F.left() + (double)this.F.width() / 2.0, (double)this.F.top() + (double)this.F.height() / 2.0));
+            .mul(XBlurEffect.mAsMatrix3x2f(var9.A, var7, (double)this.F.left() + (double)this.F.width() / 2.0, (double)this.F.top() + (double)this.F.height() / 2.0));
       }
 
       Vector2f var117 = this.XAsVector2f((double)mouseX, (double)mouseY);
@@ -732,11 +732,11 @@ public final class ClickGuiScreen extends GuiPanel {
       context.getMatrices().mul(this.o);
 
       try (
-         bd.Type_e var12 = bd.jAsBd_Type_e(var9.M, var10 ? 1.0 : var9.G, var9.b, var9.pAsBd_Type_p());
+         UiStyle.Type_e var12 = UiStyle.jAsBd_Type_e(var9.M, var10 ? 1.0 : var9.G, var9.b, var9.pAsBd_Type_p());
          TextDrawing.Type_l var13 = TextDrawing.XAsV_Type_l();
-         qg var14 = qg.nAsQg(xb.NAsDouble(var9.A, var7));
+         QueueGroup var14 = QueueGroup.nAsQg(XBlurEffect.NAsDouble(var9.A, var7));
       ) {
-         if (!var10 && bd.yAsBd_Type_p().accentGlow()) {
+         if (!var10 && UiStyle.yAsBd_Type_p().accentGlow()) {
             GuiDrawing.fAsVoid(context, this.F.left(), this.F.top(), this.F.width(), this.F.height());
          }
 
@@ -752,7 +752,7 @@ public final class ClickGuiScreen extends GuiPanel {
             this.l.render(context, mouseX, mouseY);
             context.enableScissor(this.F.contentX(), this.F.bodyTop(), this.tAsInt(), this.F.bottom());
 
-            try (qg var15 = qg.nAsQg(0.35 + 0.65 * this.v)) {
+            try (QueueGroup var15 = QueueGroup.nAsQg(0.35 + 0.65 * this.v)) {
                for (ActionButton var17 : this.k) {
                   Module var18 = this.X.get(var17);
                   var17.i = var18 == this.z;
@@ -766,13 +766,13 @@ public final class ClickGuiScreen extends GuiPanel {
                }
 
                if (this.k.isEmpty() && !this.lAsBoolean()) {
-                  String var122 = this.V == GuiCategory.FAVORITES && this.d.isBlank() ? "Star PetEffectRenderer module to add it here." : "No matches";
+                  String var122 = this.V == GuiCategory.FAVORITES && this.d.isBlank() ? "Star a module to add it here." : "No matches";
                   TextDrawing.UAsVoid(
                      context,
                      TextDrawing.HAsString(var122, this.tAsInt() - this.F.contentX() - 16),
                      this.F.moduleListLeft(this.v) + 8,
                      this.F.bodyTop() + 12,
-                     bd.e
+                     UiStyle.e
                   );
                }
             } finally {
@@ -791,18 +791,18 @@ public final class ClickGuiScreen extends GuiPanel {
             }
 
             if (this.z != null) {
-               xm var118 = this.F.moduleInspector(this.K);
+               XModel var118 = this.F.moduleInspector(this.K);
                int var123 = this.F.columns() ? var118.inspectorX() : var118.contentX();
                double var126 = this.jAsDouble();
                if (this.F.detachedInspector()) {
-                  try (qg var131 = qg.nAsQg(var126)) {
+                  try (QueueGroup var131 = QueueGroup.nAsQg(var126)) {
                      GuiDrawing.gAsVoid(context, var123, var118.top(), var118.right() - var123, var118.height());
                   }
                }
 
                context.enableScissor(this.F.moduleInspectorClipLeft(this.K), this.ZAsInt(), var118.right(), this.kAsInt());
 
-               try (qg var132 = qg.nAsQg(var126)) {
+               try (QueueGroup var132 = QueueGroup.nAsQg(var126)) {
                   if (!this.F.detachedInspector()) {
                      GuiDrawing.iAsVoid(context, var123, this.F.bodyTop(), var118.right() - var123, this.F.bottom() - this.F.bodyTop());
                   }
@@ -815,7 +815,7 @@ public final class ClickGuiScreen extends GuiPanel {
 
                context.enableScissor(this.F.moduleInspectorClipLeft(this.K), var118.top() + 12, var118.right(), this.kAsInt());
 
-               try (qg var133 = qg.nAsQg(var126)) {
+               try (QueueGroup var133 = QueueGroup.nAsQg(var126)) {
                   this.P.MAsVoid(context, mouseX, mouseY);
                } finally {
                   context.disableScissor();
@@ -856,26 +856,26 @@ public final class ClickGuiScreen extends GuiPanel {
          }
 
          if (var125.isBlank()) {
-            var125 = "Enter opens settings · Space toggles · Tab navigates · Right click resets PetEffectRenderer setting";
+            var125 = "Enter opens settings · Space toggles · Tab navigates · Right click resets a setting";
          }
 
          int var130 = this.F.profileLeft();
          String var134 = "Profile: " + LarpClient.CAsLarpClient().fAsBo().ZAsString();
          TextDrawing.NAsVoid(
-            context, TextDrawing.zAsString(var134, this.F.profileWidth(), TextDrawing.Type_s.HELP), var130, this.F.profileY(), bd.e, TextDrawing.Type_s.HELP
+            context, TextDrawing.zAsString(var134, this.F.profileWidth(), TextDrawing.Type_s.HELP), var130, this.F.profileY(), UiStyle.e, TextDrawing.Type_s.HELP
          );
          TextDrawing.NAsVoid(
             context,
             TextDrawing.zAsString(var125, this.F.helpWidth(), TextDrawing.Type_s.HELP),
             this.F.helpLeft(),
             this.F.helpY(),
-            this.f.isBlank() ? bd.e : -24915,
+            this.f.isBlank() ? UiStyle.e : -24915,
             TextDrawing.Type_s.HELP
          );
-         double var121 = xb.cAsDouble(var9.A, var7);
+         double var121 = XBlurEffect.cAsDouble(var9.A, var7);
          if (var121 > 0.01) {
             RoundedShapePipeline.nAsVoid(
-               context, (float)this.F.left(), (float)this.F.top(), (float)this.F.width(), (float)this.F.height(), (float)bd.q, bg.XAsInt(-1, var121)
+               context, (float)this.F.left(), (float)this.F.top(), (float)this.F.width(), (float)this.F.height(), (float)UiStyle.q, ColorUtil.XAsInt(-1, var121)
             );
          }
 
@@ -887,7 +887,7 @@ public final class ClickGuiScreen extends GuiPanel {
       }
 
       HudRenderer.drawBuildWatermark(context);
-      op.aAsVoid("ClickGUI", var5);
+      OpenScreen.aAsVoid("ClickGUI", var5);
    }
 
    public double[] TAsDoubleArray2() {
@@ -917,7 +917,7 @@ public final class ClickGuiScreen extends GuiPanel {
          return true;
       } else {
          if (this.z != null && this.F.detachedInspector() && this.jAsDouble() > 0.2) {
-            xm var6 = this.F.moduleInspector(this.K);
+            XModel var6 = this.F.moduleInspector(this.K);
             if (var5.x >= (float)var6.inspectorX()
                && var5.x < (float)var6.right()
                && var5.y >= (float)var6.top()
@@ -971,26 +971,26 @@ public final class ClickGuiScreen extends GuiPanel {
    }
 
    private static void TAsVoid(DrawContext var0, int var1, int var2, double var3, ClientPreferences var5) {
-      int var6 = bg.XAsInt(-16777216, var5.JE);
+      int var6 = ColorUtil.XAsInt(-16777216, var5.JE);
       String var7 = var5.D;
       switch (var7) {
          case "None":
             break;
          case "Gradient":
-            int var11 = bg.pAsInt(var6, var3);
-            int var10 = bg.pAsInt(bg.xAsInt(var6, bg.XAsInt(bd.w, 0.5), 0.35), var3);
+            int var11 = ColorUtil.pAsInt(var6, var3);
+            int var10 = ColorUtil.pAsInt(ColorUtil.xAsInt(var6, ColorUtil.XAsInt(UiStyle.w, 0.5), 0.35), var3);
             GuiTextureDrawing.mAsVoid(var0, 0, 0, var1, var2, var11, var10);
             break;
          case "Aurora":
          case "Nebula":
          case "Waves":
             GuiAuroraRenderer.Type_d var9 = GuiAuroraRenderer.Type_d.valueOf(var5.D.toUpperCase(Locale.ROOT));
-            if (!GuiAuroraRenderer.AAsBoolean(var0, var1, var2, var3, bd.w, bd.Q, var5.M, var5.Z, var9, var5.JE)) {
-               GuiTextureDrawing.CAsVoid(var0, 0, 0, var1, var2, bg.pAsInt(var6, var3));
+            if (!GuiAuroraRenderer.AAsBoolean(var0, var1, var2, var3, UiStyle.w, UiStyle.Q, var5.M, var5.Z, var9, var5.JE)) {
+               GuiTextureDrawing.CAsVoid(var0, 0, 0, var1, var2, ColorUtil.pAsInt(var6, var3));
             }
             break;
          default:
-            GuiTextureDrawing.CAsVoid(var0, 0, 0, var1, var2, bg.pAsInt(var6, var3));
+            GuiTextureDrawing.CAsVoid(var0, 0, 0, var1, var2, ColorUtil.pAsInt(var6, var3));
       }
    }
 
@@ -1020,23 +1020,23 @@ public final class ClickGuiScreen extends GuiPanel {
             64,
             64,
             64,
-            qg.iAsInt(-1)
+            QueueGroup.iAsInt(-1)
          );
 
-         try (qg var5 = qg.nAsQg(1.0)) {
+         try (QueueGroup var5 = QueueGroup.nAsQg(1.0)) {
             int var6 = this.F.left() + 35;
             int var7 = var4 - 39;
             TextDrawing.NAsVoid(
-               var1, TextDrawing.zAsString("Larp Client", var7, TextDrawing.Type_s.BRAND), var6, this.F.top() + 10, bd.u, TextDrawing.Type_s.BRAND
+               var1, TextDrawing.zAsString("Larp Client", var7, TextDrawing.Type_s.BRAND), var6, this.F.top() + 10, UiStyle.u, TextDrawing.Type_s.BRAND
             );
             int var9 = var6 + TextDrawing.jAsInt("Version ", TextDrawing.Type_s.HELP);
-            TextDrawing.NAsVoid(var1, "Version ", var6, this.F.top() + 24, bd.W, TextDrawing.Type_s.HELP);
+            TextDrawing.NAsVoid(var1, "Version ", var6, this.F.top() + 24, UiStyle.W, TextDrawing.Type_s.HELP);
             TextDrawing.NAsVoid(
                var1,
                TextDrawing.zAsString(LarpClient.C, Math.max(1, var6 + var7 - var9), TextDrawing.Type_s.HELP),
                var9,
                this.F.top() + 24,
-               bd.WAsInt(var9, bd.m),
+               UiStyle.WAsInt(var9, UiStyle.m),
                TextDrawing.Type_s.HELP
             );
             WAsVoid(var1, "FEATURES", this.F.left() + 12, this.F.navigationTop() - 12, this.F.navigationRight());
@@ -1048,7 +1048,7 @@ public final class ClickGuiScreen extends GuiPanel {
       var1.enableScissor(this.F.left(), this.F.navigationTop(), this.F.contentX() - 10, this.F.navigationBottom());
 
       try {
-         try (qg var49 = qg.nAsQg(1.0)) {
+         try (QueueGroup var49 = QueueGroup.nAsQg(1.0)) {
             WAsVoid(var1, "OTHERS", this.F.left() + 12, this.D.get(GuiCategory.values().length).x - 12, this.F.navigationRight());
          }
 
@@ -1077,35 +1077,35 @@ public final class ClickGuiScreen extends GuiPanel {
       try {
          double var51 = this.S.bAsDouble(var2, var3);
          if (var51 > 0.001) {
-            GuiTextureDrawing.AAsVoid(var1, (float)this.S.k, (float)this.S.x, (float)this.S.V, (float)this.S.F, (float)bd.l, bg.XAsInt(bd.u, var51 * 0.045));
+            GuiTextureDrawing.AAsVoid(var1, (float)this.S.k, (float)this.S.x, (float)this.S.V, (float)this.S.F, (float)UiStyle.l, ColorUtil.XAsInt(UiStyle.u, var51 * 0.045));
          }
 
          DiscordPresenceStatus var53 = DiscordPresenceStatus.current();
-         if (!TextLayout.CAsBoolean(var1, this.F.left() + 8, this.S.x + 5, 20)) {
+         if (!j.CAsBoolean(var1, this.F.left() + 8, this.S.x + 5, 20)) {
             this.i.fAsVoid(var1, this.F.left() + 8, this.S.x + 5, 20);
          }
 
-         GuiTextureDrawing.RAsVoid(var1, this.F.left() + 25, this.S.x + 24, 4, bd.m);
+         GuiTextureDrawing.RAsVoid(var1, this.F.left() + 25, this.S.x + 24, 4, UiStyle.m);
          GuiTextureDrawing.RAsVoid(var1, this.F.left() + 25, this.S.x + 24, 3, var53.state().WAsInt());
 
-         try (qg var54 = qg.nAsQg(1.0)) {
+         try (QueueGroup var54 = QueueGroup.nAsQg(1.0)) {
             int var55 = Math.max(1, var4 - 40);
             String var10 = var53.account() != null ? var53.account().name() : this.client.getSession().getUsername();
             TextDrawing.TAsVoid(
-               var1, TextDrawing.mAsString(var10, var55, TextDrawing.Type_x.MEDIUM), this.F.left() + 34, this.S.x + 6, bd.u, TextDrawing.Type_x.MEDIUM
+               var1, TextDrawing.mAsString(var10, var55, TextDrawing.Type_x.MEDIUM), this.F.left() + 34, this.S.x + 6, UiStyle.u, TextDrawing.Type_x.MEDIUM
             );
             TextDrawing.NAsVoid(
                var1,
                TextDrawing.zAsString(var53.state().TAsString(), var55, TextDrawing.Type_s.HELP),
                this.F.left() + 34,
                this.S.x + 18,
-               bd.e,
+               UiStyle.e,
                TextDrawing.Type_s.HELP
             );
          }
 
          if (this.S.y && this.S.Q) {
-            GuiDrawing.dAsVoid(var1, this.S.k, this.S.x, this.S.V, this.S.F, bd.l);
+            GuiDrawing.dAsVoid(var1, this.S.k, this.S.x, this.S.V, this.S.F, UiStyle.l);
          }
       } finally {
          var1.disableScissor();
@@ -1113,7 +1113,7 @@ public final class ClickGuiScreen extends GuiPanel {
    }
 
    private static void WAsVoid(DrawContext var0, String var1, int var2, int var3, int var4) {
-      TextDrawing.NAsVoid(var0, var1, var2, var3, bg.XAsInt(bd.e, 0.8), TextDrawing.Type_s.EYEBROW);
+      TextDrawing.NAsVoid(var0, var1, var2, var3, ColorUtil.XAsInt(UiStyle.e, 0.8), TextDrawing.Type_s.EYEBROW);
    }
 
    private void JAsVoid(DrawContext var1) {
@@ -1140,14 +1140,14 @@ public final class ClickGuiScreen extends GuiPanel {
       if (this.M && !(var9 < 0.01)) {
          ActionButton var10 = this.D.getFirst();
          float var6 = (float)(this.F.navigationTop() - this.x) + (float)this.Z.yAsDouble();
-         int var7 = bd.WAsInt(var10.k, bd.m);
-         int var8 = bd.l;
-         GuiDrawing.HAsVoid(var1, (float)var10.k, var6, (float)var10.V, (float)var10.F, (float)var8, 9.0F, bg.XAsInt(var7, 0.22 * var9));
+         int var7 = UiStyle.WAsInt(var10.k, UiStyle.m);
+         int var8 = UiStyle.l;
+         GuiDrawing.HAsVoid(var1, (float)var10.k, var6, (float)var10.V, (float)var10.F, (float)var8, 9.0F, ColorUtil.XAsInt(var7, 0.22 * var9));
          RoundedShapePipeline.gAsVoid(
-            var1, (float)var10.k, var6, (float)var10.V, (float)var10.F, (float)var8, bg.XAsInt(var7, 0.26 * var9), bg.XAsInt(bd.Q, 0.08 * var9)
+            var1, (float)var10.k, var6, (float)var10.V, (float)var10.F, (float)var8, ColorUtil.XAsInt(var7, 0.26 * var9), ColorUtil.XAsInt(UiStyle.Q, 0.08 * var9)
          );
          RoundedShapePipeline.SAsVoid(
-            var1, (float)var10.k, var6, (float)var10.V, (float)var10.F, (float)var8, bg.XAsInt(var7, 0.35 * var9), bg.XAsInt(var7, 0.35 * var9)
+            var1, (float)var10.k, var6, (float)var10.V, (float)var10.F, (float)var8, ColorUtil.XAsInt(var7, 0.35 * var9), ColorUtil.XAsInt(var7, 0.35 * var9)
          );
       }
    }

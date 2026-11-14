@@ -17,7 +17,7 @@ public final class AirStuck extends Module {
    }
 
    public boolean wAsBoolean() {
-      return this.isEnabled() ? this.isRuntimeActive() && this.isInGame() && r6.VAsBoolean() && !mc.player.hasVehicle() : false;
+      return this.isEnabled() ? this.isRuntimeActive() && this.isInGame() && ModuleKeybindChecker.VAsBoolean() && !mc.player.hasVehicle() : false;
    }
 
    @Override

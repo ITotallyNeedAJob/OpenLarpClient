@@ -14,10 +14,10 @@ public final class EmoteWheelScreen extends Screen {
    private static final int S = 32;
    private static final int q = 5;
    private final Emotes C;
-   private final w2 h = new w2(0.0);
-   private final w2[] X = new w2[]{new w2(0.0), new w2(0.0), new w2(0.0), new w2(0.0)};
+   private final WeatherRenderer h = new WeatherRenderer(0.0);
+   private final WeatherRenderer[] X = new WeatherRenderer[]{new WeatherRenderer(0.0), new WeatherRenderer(0.0), new WeatherRenderer(0.0), new WeatherRenderer(0.0)};
    private int r = -1;
-   private double ChatPayParser = Double.NaN;
+   private double g = Double.NaN;
    private float Z = 1.0F;
    private boolean Y;
 
@@ -99,7 +99,7 @@ public final class EmoteWheelScreen extends Screen {
    }
 
    public void renderBackground(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
-      GuiTextureDrawing.CAsVoid(context, 0, 0, this.width, this.height, bg.XAsInt(-16777216, 0.25 * this.h.yAsDouble()));
+      GuiTextureDrawing.CAsVoid(context, 0, 0, this.width, this.height, ColorUtil.XAsInt(-16777216, 0.25 * this.h.yAsDouble()));
    }
 
    public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
@@ -112,7 +112,7 @@ public final class EmoteWheelScreen extends Screen {
       this.Z = (float)((0.9 + 0.1 * var6) * (double)var10);
       this.tAsVoid((double)mouseX, (double)mouseY);
 
-      try (qg var11 = qg.nAsQg(var6)) {
+      try (QueueGroup var11 = QueueGroup.nAsQg(var6)) {
          context.getMatrices().pushMatrix();
 
          try {
@@ -136,9 +136,9 @@ public final class EmoteWheelScreen extends Screen {
       boolean var4 = "Empty".equals(var3);
       EmoteCatalog.Type_a var5 = EmoteCatalog.LAsA2_Type_a(var3);
       double var6 = this.X[var2].bAsDouble(var2 == this.r ? 1.0 : 0.0, 160);
-      int var8 = var4 ? bg.XAsInt(bd.m, 0.5) : bg.XAsInt(bd.m, 0.84);
-      int var9 = bg.xAsInt(var8, bg.XAsInt(bg.xAsInt(bd.m, bd.w, 0.2), 0.94), var4 ? var6 * 0.4 : var6);
-      int var10 = bg.xAsInt(bg.XAsInt(-1381654, 0.09), var4 ? bg.XAsInt(-1381654, 0.3) : bd.w, var6);
+      int var8 = var4 ? ColorUtil.XAsInt(UiStyle.m, 0.5) : ColorUtil.XAsInt(UiStyle.m, 0.84);
+      int var9 = ColorUtil.xAsInt(var8, ColorUtil.XAsInt(ColorUtil.xAsInt(UiStyle.m, UiStyle.w, 0.2), 0.94), var4 ? var6 * 0.4 : var6);
+      int var10 = ColorUtil.xAsInt(ColorUtil.XAsInt(-1381654, 0.09), var4 ? ColorUtil.XAsInt(-1381654, 0.3) : UiStyle.w, var6);
       EmoteWheelRenderer.IAsVoid(var1, var2, var6 * 5.0, var9, var10);
       double var11 = (double)(var2 - 1) * Math.PI / 2.0;
       double var13 = 67.0 + var6 * 5.0;
@@ -146,12 +146,12 @@ public final class EmoteWheelScreen extends Screen {
       int var16 = (int)Math.round(Math.sin(var11) * var13);
       TextDrawing.Type_s var17 = TextDrawing.Type_s.BODY;
       if (!var4 && var5 != null) {
-         int var20 = bg.xAsInt(bd.e, -1381654, 0.55 + 0.45 * var6);
-         var1.drawTexture(RenderPipelines.GUI_TEXTURED, var5.icon(), var15 - 19, var16 - 19 - 5, 0.0F, 0.0F, 38, 38, 96, 96, 96, 96, qg.iAsInt(var20));
-         int var19 = bg.xAsInt(bd.u, -1381654, var6);
+         int var20 = ColorUtil.xAsInt(UiStyle.e, -1381654, 0.55 + 0.45 * var6);
+         var1.drawTexture(RenderPipelines.GUI_TEXTURED, var5.icon(), var15 - 19, var16 - 19 - 5, 0.0F, 0.0F, 38, 38, 96, 96, 96, 96, QueueGroup.iAsInt(var20));
+         int var19 = ColorUtil.xAsInt(UiStyle.u, -1381654, var6);
          TextDrawing.NAsVoid(var1, var3, var15 - TextDrawing.jAsInt(var3, var17) / 2, var16 + 19 - 4, var19, var17);
       } else {
-         int var18 = bg.xAsInt(bd.W, bd.e, var6);
+         int var18 = ColorUtil.xAsInt(UiStyle.W, UiStyle.e, var6);
          GuiTextureDrawing.CAsVoid(var1, var15 - 5, var16 - 9, 11, 1, var18);
          GuiTextureDrawing.CAsVoid(var1, var15, var16 - 14, 1, 11, var18);
          TextDrawing.NAsVoid(var1, "Empty", var15 - TextDrawing.jAsInt("Empty", var17) / 2, var16 + 4, var18, var17);
@@ -159,8 +159,8 @@ public final class EmoteWheelScreen extends Screen {
    }
 
    private void QAsVoid(DrawContext var1, List<String> var2) {
-      GuiTextureDrawing.RAsVoid(var1, 0, 0, 32, bg.XAsInt(bd.m, 0.9));
-      GuiDrawing.wAsVoid(var1, -32, -32, 65, 65, 32, bg.XAsInt(-1381654, 0.12));
+      GuiTextureDrawing.RAsVoid(var1, 0, 0, 32, ColorUtil.XAsInt(UiStyle.m, 0.9));
+      GuiDrawing.wAsVoid(var1, -32, -32, 65, 65, 32, ColorUtil.XAsInt(-1381654, 0.12));
       int var5 = -1381654;
       String var3;
       String var4;
@@ -169,12 +169,12 @@ public final class EmoteWheelScreen extends Screen {
          boolean var6 = "Empty".equals(var3);
          var4 = var6 ? "No emote" : (this.C.qAsBoolean() && var3.equals(this.C.TAsString()) ? "Playing" : "Release");
          if (var6) {
-            var5 = bd.W;
+            var5 = UiStyle.W;
          }
       } else {
          var3 = this.C.qAsBoolean() ? "Stop" : "Cancel";
          var4 = this.C.qAsBoolean() ? this.C.TAsString() : "Emotes";
-         var5 = bd.e;
+         var5 = UiStyle.e;
       }
 
       TextDrawing.Type_s var12 = TextDrawing.Type_s.MODULE;
@@ -182,11 +182,11 @@ public final class EmoteWheelScreen extends Screen {
       TextDrawing.NAsVoid(var1, var3, -TextDrawing.jAsInt(var3, var12) / 2, -8, var5, var12);
       TextDrawing.Type_s var7 = TextDrawing.Type_s.EYEBROW;
       var4 = RAsString(var4, var7, 50);
-      TextDrawing.NAsVoid(var1, var4, -TextDrawing.jAsInt(var4, var7) / 2, 5, bd.W, var7);
+      TextDrawing.NAsVoid(var1, var4, -TextDrawing.jAsInt(var4, var7) / 2, 5, UiStyle.W, var7);
       if (!Double.isNaN(this.g)) {
          int var8 = (int)Math.round(Math.cos(this.g) * 35.0);
          int var9 = (int)Math.round(Math.sin(this.g) * 35.0);
-         GuiTextureDrawing.RAsVoid(var1, var8, var9, 2, bd.w);
+         GuiTextureDrawing.RAsVoid(var1, var8, var9, 2, UiStyle.w);
       }
    }
 
@@ -194,7 +194,7 @@ public final class EmoteWheelScreen extends Screen {
       String var4 = KeybindNames.eAsString(this.C.wheelKey());
       String var5 = "Release " + var4 + " to play  ·  Esc to cancel";
       TextDrawing.Type_s var6 = TextDrawing.Type_s.HELP;
-      TextDrawing.NAsVoid(var1, var5, var2 - TextDrawing.jAsInt(var5, var6) / 2, var3, bd.e, var6);
+      TextDrawing.NAsVoid(var1, var5, var2 - TextDrawing.jAsInt(var5, var6) / 2, var3, UiStyle.e, var6);
    }
 
    private static String RAsString(String var0, TextDrawing.Type_s var1, int var2) {

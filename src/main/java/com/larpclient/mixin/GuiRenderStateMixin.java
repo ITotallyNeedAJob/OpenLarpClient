@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin({GuiRenderState.class})
-public abstract class GuiRenderStateMixin implements xt.Type_e {
+public abstract class GuiRenderStateMixin implements XTexture.Type_e {
    @Unique
    private static final int R = 4;
    @Shadow
@@ -27,9 +27,9 @@ public abstract class GuiRenderStateMixin implements xt.Type_e {
    @Unique
    private final int[] C = new int[4];
    @Unique
-   private final xt.Type_s[] D = new xt.Type_s[4];
+   private final XTexture.Type_s[] D = new XTexture.Type_s[4];
    @Unique
-   private final boolean[] ScreenScale = new boolean[4];
+   private final boolean[] y = new boolean[4];
    @Unique
    private int S;
    @Unique
@@ -41,7 +41,7 @@ public abstract class GuiRenderStateMixin implements xt.Type_e {
    }
 
    @Override
-   public void larpWarpBegin(xt.Type_s var1, boolean var2) {
+   public void larpWarpBegin(XTexture.Type_s var1, boolean var2) {
       if (this.S == 4) {
          this.K++;
          if (!r) {
@@ -93,9 +93,9 @@ public abstract class GuiRenderStateMixin implements xt.Type_e {
       }
 
       if (var4 < 0) {
-         xt.ZAsVoid(-1, null, false);
+         XTexture.ZAsVoid(-1, null, false);
       } else {
-         xt.ZAsVoid(var2 - this.V[var4], this.D[var4], this.y[var4]);
+         XTexture.ZAsVoid(var2 - this.V[var4], this.D[var4], this.y[var4]);
       }
 
       return var3.call(new Object[]{var1, var2});
@@ -106,6 +106,6 @@ public abstract class GuiRenderStateMixin implements xt.Type_e {
       at = {@At("RETURN")}
    )
    private void larpclient$injectV(CallbackInfo var1) {
-      xt.ZAsVoid(-1, null, false);
+      XTexture.ZAsVoid(-1, null, false);
    }
 }

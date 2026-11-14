@@ -15,7 +15,7 @@ public final class TotemHit extends Module {
    private final NumberSetting switchDelay = this.addSetting(
       new NumberSetting("Switch Delay", "Milliseconds before returning to your totem after the sword hit", 30.0, 10.0, 100.0, 1.0)
    );
-   private final pg l = new pg(this);
+   private final ParticleGeometry l = new ParticleGeometry(this);
    private long H;
    private String j = "Ready";
 
@@ -41,7 +41,7 @@ public final class TotemHit extends Module {
    public static void fAsVoid(ClientPlayerEntity var0, Entity var1) {
       if (G != null && G.isEnabled()) {
          TotemHit var2 = G;
-         if (var2 != null && var2.isRuntimeActive() && var1 != null && !b_.pAsBoolean()) {
+         if (var2 != null && var2.isRuntimeActive() && var1 != null && !ModuleImportBroker.pAsBoolean()) {
             MinecraftClient var3 = getMc();
             if (var0 == var3.player && !var2.l.FAsBoolean() && var0.getMainHandStack().isOf(Items.TOTEM_OF_UNDYING)) {
                int var4 = vAsInt(var0);

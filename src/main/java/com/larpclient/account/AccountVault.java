@@ -88,7 +88,7 @@ public final class AccountVault implements AutoCloseable {
    }
 
    // $VF: Could not verify finally blocks. A semaphore variable has been added to preserve control flow.
-   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with PetEffectRenderer copy of the class file (if you have the rights to distribute it!)
+   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with a copy of the class file (if you have the rights to distribute it!)
    public synchronized void open() throws IOException {
       this.close();
       byte[] var1 = null;
@@ -318,7 +318,7 @@ public final class AccountVault implements AutoCloseable {
 
          return var3;
       } else {
-         throw new AccountVault.Failure("Account vault is not PetEffectRenderer bounded regular file. Original file retained.");
+         throw new AccountVault.Failure("Account vault is not a bounded regular file. Original file retained.");
       }
    }
 

@@ -36,7 +36,7 @@ import net.minecraft.world.RaycastContext.ShapeType;
 public final class ParticleKind {
    private static PlayerEntity y;
    private static Object i;
-   private static int PriceDetector = -1;
+   private static int m = -1;
    private static LivingEntity Z;
    private static int Q;
    private static final double w = Math.toRadians(10.0);
@@ -44,34 +44,34 @@ public final class ParticleKind {
    public static void OAsVoid(PlayerEntity var0) {
       MinecraftClient var1 = MinecraftClient.getInstance();
       if (var0 == var1.player) {
-         ScreenScale = var0;
-         ChinaHatCodec = var1.world;
-         PriceDetector = var0.age;
+         y = var0;
+         i = var1.world;
+         m = var0.age;
       }
    }
 
    public static boolean BAsBoolean(ClientPlayerEntity var0) {
-      return var0 != null && ScreenScale == var0 && ChinaHatCodec == var0.getEntityWorld() && PriceDetector == var0.age;
+      return var0 != null && y == var0 && i == var0.getEntityWorld() && m == var0.age;
    }
 
    public static void kAsVoid() {
-      ScreenScale = null;
-      ChinaHatCodec = null;
-      PriceDetector = -1;
+      y = null;
+      i = null;
+      m = -1;
       Z = null;
    }
 
    public static boolean eAsBoolean(MinecraftClient var0) {
-      return FAsBoolean(var0, p5.Type_u.NONE);
+      return FAsBoolean(var0, ParticleEmitter.Type_u.NONE);
    }
 
-   public static boolean FAsBoolean(MinecraftClient var0, p5.Type_u var1) {
-      p5.Type_u var2 = p5.NAsP5_Type_u();
-      return b_.jAsBoolean()
+   public static boolean FAsBoolean(MinecraftClient var0, ParticleEmitter.Type_u var1) {
+      ParticleEmitter.Type_u var2 = ParticleEmitter.NAsP5_Type_u();
+      return ModuleImportBroker.jAsBoolean()
          && var0.getOverlay() == null
          && var0.isWindowFocused()
          && var0.getCameraEntity() == var0.player
-         && (var2 == p5.Type_u.NONE || var2 == var1);
+         && (var2 == ParticleEmitter.Type_u.NONE || var2 == var1);
    }
 
    public static boolean hAsBoolean(MinecraftClient var0, ClientPlayerEntity var1) {
@@ -260,7 +260,7 @@ public final class ParticleKind {
          return !var3.contains(DataComponentTypes.PIERCING_WEAPON)
                && var3.isItemEnabled(var0.world.getEnabledFeatures())
                && !var2.isBelowMinimumAttackCharge(var3, 0)
-            ? b_.ZAsBoolean(Mace.yAsMace(), var1.getEntity(), var2.getEntityInteractionRange())
+            ? ModuleImportBroker.ZAsBoolean(Mace.yAsMace(), var1.getEntity(), var2.getEntityInteractionRange())
             : false;
       } else {
          return false;

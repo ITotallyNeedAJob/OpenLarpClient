@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import org.lwjgl.system.MemoryStack;
 
-public abstract class SkyShaderEffect implements ad {
+public abstract class SkyShaderEffect implements SkyEffect {
    private final RenderPipeline t;
    private boolean Q;
    protected double i;
@@ -22,7 +22,7 @@ public abstract class SkyShaderEffect implements ad {
    }
 
    @Override
-   public final void render(bl var1) throws IOException {
+   public final void render(BloomSettings var1) throws IOException {
       if (!this.Q) {
          WorldLabelLayout.DAsVoid(this.t);
          this.load(var1);
@@ -55,24 +55,24 @@ public abstract class SkyShaderEffect implements ad {
       }
    }
 
-   protected void advance(bl var1) {
+   protected void advance(BloomSettings var1) {
       this.i = this.i + var1.a * (double)var1.U.animationSpeed();
       this.T = (this.T + var1.a * Math.toRadians((double)var1.U.DAsFloat())) % (Math.PI * 2);
    }
 
-   protected void load(bl var1) throws IOException {
+   protected void load(BloomSettings var1) throws IOException {
    }
 
    public void bindTextures(RenderPass var1) {
    }
 
-   protected abstract void write(bl var1, ByteBuffer var2);
+   protected abstract void write(BloomSettings var1, ByteBuffer var2);
 
-   protected void AAsVoid(bl var1, ByteBuffer var2) {
+   protected void AAsVoid(BloomSettings var1, ByteBuffer var2) {
       this.NAsVoid(var1, var2, 1.0F, 1.0F);
    }
 
-   protected void NAsVoid(bl var1, ByteBuffer var2, float var3, float var4) {
+   protected void NAsVoid(BloomSettings var1, ByteBuffer var2, float var3, float var4) {
       CustomSky var5 = var1.U;
       fAsVoid(var2, var5.YAsNv().zenith());
       fAsVoid(var2, var5.YAsNv().horizon());

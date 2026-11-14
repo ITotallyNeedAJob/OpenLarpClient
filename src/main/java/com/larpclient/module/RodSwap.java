@@ -52,7 +52,7 @@ public final class RodSwap extends Module {
    private final NumberSetting timeout = this.addSetting(
       new NumberSetting("Timeout", "Maximum milliseconds before returning to the sword, including delayed server replies", 1000.0, 250.0, 2000.0, 50.0)
    );
-   private final pg d = new pg(this);
+   private final ParticleGeometry d = new ParticleGeometry(this);
    private final RodAttemptState H = new RodAttemptState();
    private final RodAttemptState.Type_g P = new RodAttemptState.Type_g();
    private ClientPlayerEntity c;
@@ -146,14 +146,14 @@ public final class RodSwap extends Module {
          && this.c == var1.player
          && this.T != null
          && this.T == var1.world
-         && pk.eAsBoolean(var1)
+         && ParticleKind.eAsBoolean(var1)
          && !this.c.isSpectator()
          && this.c.isAlive();
    }
 
    private boolean QAsBoolean() {
       for (KeyBinding var4 : mc.options.hotbarKeys) {
-         if (pk.fAsBoolean(var4)) {
+         if (ParticleKind.fAsBoolean(var4)) {
             return true;
          }
       }
@@ -192,7 +192,7 @@ public final class RodSwap extends Module {
    }
 
    private boolean LAsBoolean(Entity var1) {
-      if (var1 instanceof PlayerEntity var2 && pk.FAsBoolean(this.c, var2) && !this.c.isTeammate(var2) && var2.canHit()) {
+      if (var1 instanceof PlayerEntity var2 && ParticleKind.FAsBoolean(this.c, var2) && !this.c.isTeammate(var2) && var2.canHit()) {
          return true;
       }
 
@@ -204,7 +204,7 @@ public final class RodSwap extends Module {
    }
 
    private PlayerEntity dAsPlayerEntity() {
-      m3.Type_d var1 = m3.kAsM3_Type_d(this.c.getEyePos(), this.c.getYaw(), this.c.getPitch());
+      VectorOffsetUtil.Type_d var1 = VectorOffsetUtil.kAsM3_Type_d(this.c.getEyePos(), this.c.getYaw(), this.c.getPitch());
       List var2 = this.T
          .getOtherEntities(
             this.c,
@@ -220,8 +220,8 @@ public final class RodSwap extends Module {
          Entity var9 = null;
 
          for (Entity var11 : (Iterable<Entity>) (var2)) {
-            Box var12 = var11.getBoundingBox().offset(m3.EAsVec3d(pAsVec3d(var11), var3)).expand(m3.XAsDouble(var3));
-            double var13 = m3.rAsDouble(var4, var5, var12);
+            Box var12 = var11.getBoundingBox().offset(VectorOffsetUtil.EAsVec3d(pAsVec3d(var11), var3)).expand(VectorOffsetUtil.XAsDouble(var3));
+            double var13 = VectorOffsetUtil.rAsDouble(var4, var5, var12);
             if (var13 < var7) {
                var7 = var13;
                var9 = var11;
@@ -229,7 +229,7 @@ public final class RodSwap extends Module {
          }
 
          if (var9 != null) {
-            return this.LAsBoolean(var9) && o5.lAsDouble(this.c.getEyePos(), var9.getBoundingBox()) <= this.range.getValue() ? (PlayerEntity)var9 : null;
+            return this.LAsBoolean(var9) && OptifineBridge.lAsDouble(this.c.getEyePos(), var9.getBoundingBox()) <= this.range.getValue() ? (PlayerEntity)var9 : null;
          }
 
          if (var6.getType() != Type.MISS) {
@@ -252,14 +252,14 @@ public final class RodSwap extends Module {
          && this.c.fishHook == null
          && !this.c.getOffHandStack().isOf(Items.FISHING_ROD)
          && !this.c.isTouchingWater()
-         && pk.hAsBoolean(mc, this.c)
-         && !pk.BAsBoolean(this.c)
-         && !pk.BAsBoolean(mc)
-         && !pk.IAsBoolean(mc)
+         && ParticleKind.hAsBoolean(mc, this.c)
+         && !ParticleKind.BAsBoolean(this.c)
+         && !ParticleKind.BAsBoolean(mc)
+         && !ParticleKind.IAsBoolean(mc)
          && !this.QAsBoolean()
-         && !dq.YAsBoolean()
-         && pg.yAsBoolean(this)
-         && !b_.MAsBoolean()
+         && !ModuleDetector.YAsBoolean()
+         && ParticleGeometry.yAsBoolean(this)
+         && !ModuleImportBroker.MAsBoolean()
          && ((MinecraftClientAccessor)mc).larpUseDelay() <= 0;
    }
 
@@ -268,8 +268,8 @@ public final class RodSwap extends Module {
          && this.automatic.getValue()
          && (!this.attackHeld.getValue() || mc.options.attackKey.isPressed())
          && this.P.gAsBoolean(var1.getId())
-         && m3.kAsBoolean(o5.lAsDouble(this.c.getEyePos(), var1.getBoundingBox()), this.c.getEntityInteractionRange(), this.range.getValue())
-         && m3.EAsBoolean(var1.getEntityPos().subtract(this.c.getEntityPos()), pAsVec3d(var1).subtract(pAsVec3d(this.c)));
+         && VectorOffsetUtil.kAsBoolean(OptifineBridge.lAsDouble(this.c.getEyePos(), var1.getBoundingBox()), this.c.getEntityInteractionRange(), this.range.getValue())
+         && VectorOffsetUtil.EAsBoolean(var1.getEntityPos().subtract(this.c.getEntityPos()), pAsVec3d(var1).subtract(pAsVec3d(this.c)));
    }
 
    public void CAsVoid() {
@@ -292,12 +292,12 @@ public final class RodSwap extends Module {
                this.H.YAsVoid(System.nanoTime());
             } else if (this.JAsBoolean()
                && this.KAsBoolean(this.S)
-               && pg.yAsBoolean(this)
-               && pk.hAsBoolean(mc, this.c)
-               && !pk.IAsBoolean(mc)
-               && !pk.BAsBoolean(mc)
+               && ParticleGeometry.yAsBoolean(this)
+               && ParticleKind.hAsBoolean(mc, this.c)
+               && !ParticleKind.IAsBoolean(mc)
+               && !ParticleKind.BAsBoolean(mc)
                && (!mc.options.attackKey.isPressed() || mc.crosshairTarget == null || mc.crosshairTarget.getType() != Type.BLOCK)
-               && (!this.LAsBoolean(this.U) || !(o5.lAsDouble(this.c.getEyePos(), this.U.getBoundingBox()) <= this.c.getEntityInteractionRange() + 0.15))) {
+               && (!this.LAsBoolean(this.U) || !(OptifineBridge.lAsDouble(this.c.getEyePos(), this.U.getBoundingBox()) <= this.c.getEntityInteractionRange() + 0.15))) {
                if (!this.LAsBoolean(this.U)) {
                   this.lAsVoid("Target unavailable", true);
                } else {
@@ -345,7 +345,7 @@ public final class RodSwap extends Module {
          this.lAsVoid("Paused", true);
       } else if (this.H.yAsBoolean()) {
          if (this.H.QAsAn_Type_o() == RodAttemptState.Type_o.REEL) {
-            b_.UAsVoid(this, this::VAsVoid, this::VAsBoolean);
+            ModuleImportBroker.UAsVoid(this, this::VAsVoid, this::VAsBoolean);
          }
       } else {
          long var1 = System.nanoTime();
@@ -372,7 +372,7 @@ public final class RodSwap extends Module {
                   if (var5 < 0) {
                      this.J = "No usable rod in hotbar";
                   } else {
-                     b_.UAsVoid(
+                     ModuleImportBroker.UAsVoid(
                         this,
                         () -> this.cAsVoid(var4, var5),
                         () -> this.xAsBoolean(System.nanoTime())
@@ -423,11 +423,11 @@ public final class RodSwap extends Module {
          && this.d.PAsBoolean()
          && this.JAsBoolean()
          && this.KAsBoolean(this.S)
-         && pg.yAsBoolean(this)
-         && pk.hAsBoolean(mc, this.c)
-         && !pk.IAsBoolean(mc)
-         && !pk.BAsBoolean(mc)
-         && !pk.BAsBoolean(this.c)
+         && ParticleGeometry.yAsBoolean(this)
+         && ParticleKind.hAsBoolean(mc, this.c)
+         && !ParticleKind.IAsBoolean(mc)
+         && !ParticleKind.BAsBoolean(mc)
+         && !ParticleKind.BAsBoolean(this.c)
          && ((MinecraftClientAccessor)mc).larpUseDelay() <= 0
          && this.a != null
          && this.c.fishHook == this.a
@@ -450,7 +450,7 @@ public final class RodSwap extends Module {
    }
 
    private void lAsVoid(String var1, boolean var2) {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       int var3 = !this.H.yAsBoolean() && !this.d.FAsBoolean() ? 0 : 1;
       RodAttemptState.Type_o var4 = this.H.QAsAn_Type_o();
       int var5 = this.c != null && this.c == getMc().player && this.T == mc.world && this.c.isAlive() ? 1 : 0;

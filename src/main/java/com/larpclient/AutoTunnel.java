@@ -49,31 +49,31 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.chunk.WorldChunk;
 
-public final class AutoTunnel extends nd {
+public final class AutoTunnel extends NodeRenderer {
    private static AutoTunnel L;
-   private final BooleanSetting TextLayout = this.QAsBooleanSetting("Legit", "Select the best hotbar tool while smoothly aiming at each block", false);
+   private final BooleanSetting j = this.QAsBooleanSetting("Legit", "Select the best hotbar tool while smoothly aiming at each block", false);
    private final ModeSetting width = this.addSetting(
-      new ModeSetting("Width", "Tunnel cross section; 1x1 is PetEffectRenderer crawl tunnel that needs PetEffectRenderer crawling start", "1x2", "1x1", "1x2", "3x3")
+      new ModeSetting("Width", "Tunnel cross section; 1x1 is a crawl tunnel that needs a crawling start", "1x2", "1x1", "1x2", "3x3")
    );
-   private final NumberSetting SkyChunkCache = this.HAsNumberSetting("Reach", "How far ahead to mine", 4.0, 2.0, 6.0, 1.0);
-   private final BooleanSetting J = this.QAsBooleanSetting("Base finder", "Walk PetEffectRenderer fixed heading, avoid hazards and stop at nearby storage clusters", false);
+   private final NumberSetting s = this.HAsNumberSetting("Reach", "How far ahead to mine", 4.0, 2.0, 6.0, 1.0);
+   private final BooleanSetting J = this.QAsBooleanSetting("Base finder", "Walk a fixed heading, avoid hazards and stop at nearby storage clusters", false);
    private final NumberSetting W = this.HAsNumberSetting("Hazard scan", "Distance ahead to inspect lava, water and drops", 6.0, 3.0, 12.0, 1.0);
    private final BooleanSetting V = this.QAsBooleanSetting("Avoid lava", "Avoid lava beside, above and below the tunnel", true);
-   private final BooleanSetting AuctionNotifier = this.QAsBooleanSetting("Avoid water", "Avoid water that would flood the tunnel", true);
+   private final BooleanSetting o = this.QAsBooleanSetting("Avoid water", "Avoid water that would flood the tunnel", true);
    private final BooleanSetting X = this.QAsBooleanSetting("Avoid drops", "Avoid drops of two or more blocks", true);
    private final BooleanSetting G = this.QAsBooleanSetting("Avoid gravel", "Avoid falling sand and gravel above the tunnel", false);
-   private final NumberSetting ChinaHatCodec = this.HAsNumberSetting("Detour", "Maximum sideways distance for PetEffectRenderer safe return to the main heading", 4.0, 2.0, 12.0, 1.0);
+   private final NumberSetting i = this.HAsNumberSetting("Detour", "Maximum sideways distance for a safe return to the main heading", 4.0, 2.0, 12.0, 1.0);
    private final BooleanSetting S = this.KAsBooleanSetting("Chests", "Include chests and trapped chests", true);
    private final BooleanSetting O = this.KAsBooleanSetting("Barrels", "Include barrels", true);
-   private final BooleanSetting SahurDanceEngine = this.KAsBooleanSetting("Ender Chests", "Include ender chests", true);
+   private final BooleanSetting d = this.KAsBooleanSetting("Ender Chests", "Include ender chests", true);
    private final BooleanSetting z = this.KAsBooleanSetting("Hoppers", "Include hoppers", true);
    private final BooleanSetting q = this.KAsBooleanSetting("Spawners", "Include mob spawners", true);
    private final BooleanSetting T = this.KAsBooleanSetting("Shulker Boxes", "Include uncolored and all colored shulker boxes", true);
    private final NumberSetting I = this.HAsNumberSetting(
-      "Blocks to flag", "Selected storage blocks within 12 blocks of each other needed for PetEffectRenderer find", 5.0, 1.0, 64.0, 1.0
+      "Blocks to flag", "Selected storage blocks within 12 blocks of each other needed for a find", 5.0, 1.0, 64.0, 1.0
    );
-   private final BooleanSetting PetEffectRenderer = this.QAsBooleanSetting("Skip dungeons", "Ignore spawners on cobblestone floors or near cobwebs", true);
-   private final NumberSetting AuraModule = this.HAsNumberSetting("Ignore near start", "Ignore finds this close to the starting point", 48.0, 0.0, 256.0, 8.0);
+   private final BooleanSetting a = this.QAsBooleanSetting("Skip dungeons", "Ignore spawners on cobblestone floors or near cobwebs", true);
+   private final NumberSetting x = this.HAsNumberSetting("Ignore near start", "Ignore finds this close to the starting point", 48.0, 0.0, 256.0, 8.0);
    private final ModeSetting onFind = this.addSetting(
       new ModeSetting("On find", "Report and stop, or disconnect after reporting", "Notify and stop", "Notify and stop", "Leave") {
          @Override
@@ -87,12 +87,12 @@ public final class AutoTunnel extends nd {
          }
       }
    );
-   private final BooleanSetting MenuPopupProvider = this.QAsBooleanSetting("Log finds", "Append time, server, dimension and coordinates to config/larp-client/bases.txt", true);
-   private final NumberSetting BloomUtility = this.HAsNumberSetting(
+   private final BooleanSetting f = this.QAsBooleanSetting("Log finds", "Append time, server, dimension and coordinates to config/larp-client/bases.txt", true);
+   private final NumberSetting b = this.HAsNumberSetting(
       "Save tool at", "Stop before the selected tool has fewer remaining uses; zero allows breaking", 30.0, 0.0, 200.0, 5.0
    );
-   private final NumberSetting CropHelper = this.HAsNumberSetting("Stop at health", "Stop when health reaches this value; zero disables the limit", 8.0, 0.0, 20.0, 1.0);
-   private final ChunkScanBudget<WorldChunk> ChatPayParser = new ChunkScanBudget<>();
+   private final NumberSetting u = this.HAsNumberSetting("Stop at health", "Stop when health reaches this value; zero disables the limit", 8.0, 0.0, 20.0, 1.0);
+   private final ChunkScanBudget<WorldChunk> g = new ChunkScanBudget<>();
    private final Map<Long, AutoTunnel.Type_x> r = new HashMap<>();
    private final List<BlockPos> w = new ArrayList<>();
    private final ArrayDeque<BlockPos> K = new ArrayDeque<>();
@@ -110,7 +110,7 @@ public final class AutoTunnel extends nd {
    private boolean h;
    private int F;
    private BlockPos N;
-   private Vec3d BoxUtils = Vec3d.ZERO;
+   private Vec3d c = Vec3d.ZERO;
    private double Q = 0.6;
    private final ChunkScanBudget.Type_v<WorldChunk> R = new ChunkScanBudget.Type_v<WorldChunk>() {
       public WorldChunk loaded(int var1, int var2) {
@@ -172,7 +172,7 @@ public final class AutoTunnel extends nd {
    }
 
    public AutoTunnel() {
-      super("Auto Tunnel", "Mine and walk PetEffectRenderer centered 1x1, 1x2 or 3x3 tunnel, including while menus are open");
+      super("Auto Tunnel", "Mine and walk a centered 1x1, 1x2 or 3x3 tunnel, including while menus are open");
       L = this;
 
       for (Setting var2 : List.of(this.W, this.i, this.S, this.O, this.d, this.z, this.q, this.T, this.I, this.x, this.onFind, this.f)) {
@@ -213,7 +213,7 @@ public final class AutoTunnel extends nd {
       if (L != null && L.isEnabled()) {
          AutoTunnel var0 = L;
          MinecraftClient var1 = MinecraftClient.getInstance();
-         return var0 != null && var0.isRuntimeActive() && b_.tAsBoolean(var0) && var1.getOverlay() == null && var1.player.networkHandler.isLoaded();
+         return var0 != null && var0.isRuntimeActive() && ModuleImportBroker.tAsBoolean(var0) && var1.getOverlay() == null && var1.player.networkHandler.isLoaded();
       } else {
          return false;
       }
@@ -236,15 +236,15 @@ public final class AutoTunnel extends nd {
             }
          }
 
-         float[] var9 = dq.QAsFloatArray(mc.player.getEyePos(), var5);
+         float[] var9 = ModuleDetector.QAsFloatArray(mc.player.getEyePos(), var5);
          int var7 = this.Y != null && MiningProgress.NAsBlockHitResult(this.Y, var3) == null ? 0 : 1;
          float[] var8 = this.H.eAsFloatArray(mc.player.getYaw(), mc.player.getPitch(), var9[0], var9[1], var7 != 0);
-         dq.RAsVoid(this, dq.Type_s.TUNNEL, var8[0], var8[1], 1.0);
+         ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.TUNNEL, var8[0], var8[1], 1.0);
       }
    }
 
    private void dAsVoid() {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       MiningProgress.cAsVoid(this);
       this.m = this.h = false;
       this.k = this.t = null;
@@ -298,7 +298,7 @@ public final class AutoTunnel extends nd {
             MiningProgress.cAsVoid(this);
             this.H.eAsVoid();
             this.Y = null;
-            this.SAsVoid("Waiting: 1x1 needs PetEffectRenderer crawling start, such as under PetEffectRenderer trapdoor");
+            this.SAsVoid("Waiting: 1x1 needs a crawling start, such as under a trapdoor");
          } else {
             if (this.J.getValue()) {
                this.DAsVoid();
@@ -350,7 +350,7 @@ public final class AutoTunnel extends nd {
                      () -> !this.wAsBoolean() && this.hAsString(var9, var8) == null && (!this.J.getValue() || !mc.world.getBlockState(var6).hasBlockEntity())
                   );
                   if (!var10) {
-                     this.SAsVoid("Waiting for PetEffectRenderer reachable tunnel face");
+                     this.SAsVoid("Waiting for a reachable tunnel face");
                   }
                } else {
                   MiningProgress.cAsVoid(this);
@@ -370,12 +370,12 @@ public final class AutoTunnel extends nd {
    private void BAsVoid(Direction var1, BlockPos var2) {
       Vec3d var3 = Vec3d.ofBottomCenter(this.l);
       boolean var4 = this.zAsBoolean(this.l, var1);
-      double var5 = com.larpclient.x.vAsDouble(mc.player.getEntityPos(), var3, var1) - (var4 ? -0.5 : 0.85);
+      double var5 = com.larpclient.AuraModule.vAsDouble(mc.player.getEntityPos(), var3, var1) - (var4 ? -0.5 : 0.85);
       Vec3d var7 = mc.player.getVelocity();
       double var8 = var7.x * (double)var1.getOffsetX() + var7.z * (double)var1.getOffsetZ();
-      Vec3d var10 = com.larpclient.x.WAsVec3d(mc.player.getEntityPos(), var3, var1);
+      Vec3d var10 = com.larpclient.AuraModule.WAsVec3d(mc.player.getEntityPos(), var3, var1);
       boolean var11 = this.H.UAsBoolean();
-      int var12 = b_.nAsBoolean(this) && !this.h && !qm.hAsBoolean() && this.eAsBoolean(OAsVec3d(var10)) ? 1 : 0;
+      int var12 = ModuleImportBroker.nAsBoolean(this) && !this.h && !QueueManager.hAsBoolean() && this.eAsBoolean(OAsVec3d(var10)) ? 1 : 0;
       this.m = this.H.fAsBoolean(var5, var8, var12 != 0);
       this.Z = this.m ? var10 : Vec3d.ZERO;
       if (this.m != var11) {
@@ -384,7 +384,7 @@ public final class AutoTunnel extends nd {
          );
       }
 
-      if (var2 == null && b_.nAsBoolean(this)) {
+      if (var2 == null && ModuleImportBroker.nAsBoolean(this)) {
          Vec3d var13 = var3.add((double)(var1.getOffsetX() * 6), 0.0, (double)(var1.getOffsetZ() * 6));
          if (mc.player.age % 60 == 0 && this.U.nextInt(4) == 0) {
             this.Q = this.U.nextDouble(0.35, 1.1);
@@ -404,17 +404,17 @@ public final class AutoTunnel extends nd {
          this.SAsVoid(
             this.h
                ? "Holding still while an inventory menu is open"
-               : (this.m ? (this.J.getValue() ? "Searching for bases" : "Following the cleared tunnel") : "Waiting at PetEffectRenderer protected or unreachable obstruction")
+               : (this.m ? (this.J.getValue() ? "Searching for bases" : "Following the cleared tunnel") : "Waiting at a protected or unreachable obstruction")
          );
       }
 
       if (this.F > 160) {
-         this.ZAsVoid("Movement blocked; clear the route or choose PetEffectRenderer new heading");
+         this.ZAsVoid("Movement blocked; clear the route or choose a new heading");
       }
    }
 
    public static BlockPos pAsBlockPos(BlockPos var0, Vec3d var1, Direction var2, boolean var3) {
-      return var3 && com.larpclient.x.vAsDouble(var1, Vec3d.ofBottomCenter(var0), var2) < 0.12 ? var0.offset(var2) : var0;
+      return var3 && com.larpclient.AuraModule.vAsDouble(var1, Vec3d.ofBottomCenter(var0), var2) < 0.12 ? var0.offset(var2) : var0;
    }
 
    private boolean KAsBoolean() {
@@ -427,12 +427,12 @@ public final class AutoTunnel extends nd {
          && mc.isWindowFocused()
          && mc.currentScreen == null
          && (
-            r6.pAsBoolean(mc.options.forwardKey)
-               || r6.pAsBoolean(mc.options.backKey)
-               || r6.pAsBoolean(mc.options.leftKey)
-               || r6.pAsBoolean(mc.options.rightKey)
-               || r6.pAsBoolean(mc.options.jumpKey)
-               || r6.pAsBoolean(mc.options.sneakKey)
+            ModuleKeybindChecker.pAsBoolean(mc.options.forwardKey)
+               || ModuleKeybindChecker.pAsBoolean(mc.options.backKey)
+               || ModuleKeybindChecker.pAsBoolean(mc.options.leftKey)
+               || ModuleKeybindChecker.pAsBoolean(mc.options.rightKey)
+               || ModuleKeybindChecker.pAsBoolean(mc.options.jumpKey)
+               || ModuleKeybindChecker.pAsBoolean(mc.options.sneakKey)
          );
    }
 
@@ -467,7 +467,7 @@ public final class AutoTunnel extends nd {
    private BlockPos qAsBlockPos(Direction var1, double var2) {
       for (int var4 = 0; (double)var4 < Math.ceil(var2); var4++) {
          BlockPos var5 = this.l.offset(var1, var4);
-         if (!this.K.isEmpty() && com.larpclient.x.vAsDouble(Vec3d.ofBottomCenter(var5), Vec3d.ofBottomCenter((Vec3i)this.K.peekFirst()), var1) < -0.01
+         if (!this.K.isEmpty() && com.larpclient.AuraModule.vAsDouble(Vec3d.ofBottomCenter(var5), Vec3d.ofBottomCenter((Vec3i)this.K.peekFirst()), var1) < -0.01
             || this.hAsString(var5, var1) != null) {
             break;
          }
@@ -499,7 +499,7 @@ public final class AutoTunnel extends nd {
    }
 
    private double aAsDouble(BlockPos var1) {
-      float[] var2 = dq.QAsFloatArray(mc.player.getEyePos(), Vec3d.ofCenter(var1));
+      float[] var2 = ModuleDetector.QAsFloatArray(mc.player.getEyePos(), Vec3d.ofCenter(var1));
       return Math.hypot((double)MathHelper.wrapDegrees(var2[0] - mc.player.getYaw()), (double)(var2[1] - mc.player.getPitch()));
    }
 
@@ -693,12 +693,12 @@ public final class AutoTunnel extends nd {
 
    public static PlayerInput LAsPlayerInput() {
       AutoTunnel var0 = L;
-      if (var0 != null && var0.fAsBoolean() && var0.m && !var0.h && var0.k != null && !p5.oAsBoolean() && !qm.hAsBoolean() && !var0.wAsBoolean()) {
+      if (var0 != null && var0.fAsBoolean() && var0.m && !var0.h && var0.k != null && !ParticleEmitter.oAsBoolean() && !QueueManager.hAsBoolean() && !var0.wAsBoolean()) {
          MinecraftClient var1 = MinecraftClient.getInstance();
          if (var0.v == var1.world
             && !(var0.Z.lengthSquared() < 1.0E-6)
             && var0.eAsBoolean(OAsVec3d(var0.Z))
-            && (!dq.YAsBoolean() || dq.CAsBoolean(dq.Type_s.TUNNEL))) {
+            && (!ModuleDetector.YAsBoolean() || ModuleDetector.CAsBoolean(ModuleDetector.Type_s.TUNNEL))) {
             PlayerInput var2 = var0.H.jAsPlayerInput(var1.player.getYaw(), var0.Z);
             return var2.backward() ? null : var2;
          } else {
@@ -711,7 +711,7 @@ public final class AutoTunnel extends nd {
 
    public static Vec2f SAsVec2f() {
       PlayerInput var0 = LAsPlayerInput();
-      return var0 == null ? null : com.larpclient.x.sAsVec2f(var0);
+      return var0 == null ? null : com.larpclient.AuraModule.sAsVec2f(var0);
    }
 
    public static boolean tAsBoolean(boolean var0, boolean var1) {
@@ -852,7 +852,7 @@ public final class AutoTunnel extends nd {
       boolean var13 = this.onFind.pAsBoolean("Leave");
       this.disable();
       if (var13) {
-         mc.disconnect(Text.literal("Larp Auto Tunnel found PetEffectRenderer base at " + var12));
+         mc.disconnect(Text.literal("Larp Auto Tunnel found a base at " + var12));
       }
    }
 

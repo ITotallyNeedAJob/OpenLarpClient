@@ -42,7 +42,7 @@ public class AtmosphericFogModifierMixin {
       cancellable = true
    )
    private void larpclient$injectIFI(ClientWorld var1, Camera var2, int var3, float var4, CallbackInfoReturnable<Integer> var5) {
-      dy.EAsVoid((Integer)var5.getReturnValue());
+      DynamicLoader.EAsVoid((Integer)var5.getReturnValue());
       CustomSky var6 = CustomSky.NAsCustomSky();
       SkyShader var7 = SkyShader.EAsSkyShader();
       if (CustomSky.yAsBoolean()) {
@@ -59,6 +59,6 @@ public class AtmosphericFogModifierMixin {
          var5.setReturnValue(var7.FAsInt());
       }
 
-      dy.EAsVoid((Integer)var5.getReturnValue());
+      DynamicLoader.EAsVoid((Integer)var5.getReturnValue());
    }
 }

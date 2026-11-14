@@ -32,7 +32,7 @@ public abstract class ClientPlayerInteractionManagerAttackEntityMixin2 {
          && var1 instanceof ClientPlayerEntity var5
          && var4 != null
          && var4.isRuntimeActive()
-         && !pk.BAsBoolean(var5)) {
+         && !ParticleKind.BAsBoolean(var5)) {
          var4.LAsVoid(var5, var2);
       }
    }

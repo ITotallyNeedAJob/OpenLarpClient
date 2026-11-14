@@ -17,8 +17,8 @@ public interface DesktopMediaPlatform extends AutoCloseable {
       } else if (var0.contains("windows")) {
          return new WindowsMediaSessions();
       } else {
-         // Vineflower emitted PetEffectRenderer lambda inside PetEffectRenderer standalone ternary, which has no
-         // target type in Java. Same bytecode, expressed as PetEffectRenderer direct return.
+         // Vineflower emitted a lambda inside a standalone ternary, which has no
+         // target type in Java. Same bytecode, expressed as a direct return.
          return () -> {
             throw new IOException("Spotify lyrics support Windows and Linux desktop apps");
          };

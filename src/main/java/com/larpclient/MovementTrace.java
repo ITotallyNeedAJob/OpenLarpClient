@@ -8,7 +8,7 @@ public final class MovementTrace {
    private boolean s;
    private double Y = Double.NaN;
    private double D = 4.0;
-   private double DropletTrail = 1.0;
+   private double l = 1.0;
    private long h;
 
    public MovementTrace() {

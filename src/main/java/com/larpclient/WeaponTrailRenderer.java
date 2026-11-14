@@ -30,27 +30,27 @@ import net.minecraft.util.math.Direction.Axis;
 import org.joml.Vector3fc;
 
 public final class WeaponTrailRenderer {
-   private static final lb[] R = new lb[]{new lb(), new lb()};
-   private static final ac[] ScreenScale = new ac[]{new ac(), new ac()};
-   private static final LinkedHashMap<BakedQuad, LineSegment.Type_c> AuraModule = new LinkedHashMap<>();
+   private static final TrailPointBuffer[] R = new TrailPointBuffer[]{new TrailPointBuffer(), new TrailPointBuffer()};
+   private static final RopeStateKey[] y = new RopeStateKey[]{new RopeStateKey(), new RopeStateKey()};
+   private static final LinkedHashMap<BakedQuad, LineSegment.Type_c> x = new LinkedHashMap<>();
    private static final IdentityHashMap<float[], LineSegment.Type_c> X = new IdentityHashMap<>();
    private static int F = -1;
    private static boolean d;
    private static boolean s;
 
    public static void LAsVoid() {
-      for (lb var3 : R) {
+      for (TrailPointBuffer var3 : R) {
          var3.XAsVoid();
       }
 
-      for (ac var7 : y) {
+      for (RopeStateKey var7 : y) {
          var7.FAsVoid();
       }
 
-      AuraModule.clear();
+      x.clear();
       X.clear();
-      SkyChunkCache = false;
-      SahurDanceEngine = false;
+      s = false;
+      d = false;
    }
 
    public static void TAsVoid(Hand var0) {
@@ -64,7 +64,7 @@ public final class WeaponTrailRenderer {
    }
 
    public static void PAsVoid(double var0, double var2) {
-      for (lb var7 : R) {
+      for (TrailPointBuffer var7 : R) {
          var7.HAsVoid(var0, var2);
       }
    }
@@ -84,9 +84,9 @@ public final class WeaponTrailRenderer {
       }
    }
 
-   public static dc.Type_c VAsDc_Type_c() {
+   public static RibbonRenderer.Type_c VAsDc_Type_c() {
       CinematicQuality var0 = Halloween.HAsHalloween().fAsM7();
-      return new dc.Type_c("Astral", 0.22, 0.44, var0.n * 0.75, -7026494, -3046331, var0.dAsBoolean(), false, true, var0 == CinematicQuality.CINEMATIC ? 3 : 2);
+      return new RibbonRenderer.Type_c("Astral", 0.22, 0.44, var0.n * 0.75, -7026494, -3046331, var0.dAsBoolean(), false, true, var0 == CinematicQuality.CINEMATIC ? 3 : 2);
    }
 
    public static void oAsVoid(
@@ -127,8 +127,8 @@ public final class WeaponTrailRenderer {
          if (var12.Z != null) {
             HAsVoid(var6, var4, var12.E, var12.Z, var7, var7 > 0.0F, var3);
          } else if (!s) {
-            SkyChunkCache = true;
-            ClientLog.XAsVoid("WeaponTrails", "No usable native sword blade quads; this model keeps ordinary rendering without PetEffectRenderer guessed trail attachment");
+            s = true;
+            ClientLog.XAsVoid("WeaponTrails", "No usable native sword blade quads; this model keeps ordinary rendering without a guessed trail attachment");
          }
       } else {
          var0.render(var1, var2, var9, var10, var11);
@@ -162,7 +162,7 @@ public final class WeaponTrailRenderer {
    private static void HAsVoid(Hand var0, ItemStack var1, LineSegment.Type_c var2, LineSegment.Type_c var3, float var4, boolean var5, OrderedRenderCommandQueue var6) {
       AstralWeaponTrails var7 = AstralWeaponTrails.JAsAstralWeaponTrails();
       if (lAsBoolean(var1) && !d) {
-         long var8 = op.RAsLong();
+         long var8 = OpenScreen.RAsLong();
 
          try {
             if (F != BloomQuality.J) {
@@ -171,24 +171,24 @@ public final class WeaponTrailRenderer {
             }
 
             int var10 = var0 == Hand.MAIN_HAND ? 0 : 1;
-            lb var11 = R[var10];
-            dc.Type_c var12 = Halloween.bAsBoolean() ? VAsDc_Type_c() : var7.vAsDc_Type_c();
-            op.FAsVoid("Weapon trail blade captures", 1L);
-            op.FAsVoid("Weapon trail active captures", var5 && var4 > 0.0F ? 1L : 0L);
-            op.YAsVoid(var10 == 0 ? "Weapon trail main swing (milli)" : "Weapon trail offhand swing (milli)", (long)Math.round(var4 * 1000.0F));
+            TrailPointBuffer var11 = R[var10];
+            RibbonRenderer.Type_c var12 = Halloween.bAsBoolean() ? VAsDc_Type_c() : var7.vAsDc_Type_c();
+            OpenScreen.FAsVoid("Weapon trail blade captures", 1L);
+            OpenScreen.FAsVoid("Weapon trail active captures", var5 && var4 > 0.0F ? 1L : 0L);
+            OpenScreen.YAsVoid(var10 == 0 ? "Weapon trail main swing (milli)" : "Weapon trail offhand swing (milli)", (long)Math.round(var4 * 1000.0F));
             var11.MAsBoolean(
                y[var10].ZAsObject(var1, var2),
                var3.root(),
                var3.tip(),
-               mb.RAsDouble(),
+               MediaSession.RAsDouble(),
                var4,
                var5,
                var12.duration(),
-               Halloween.bAsBoolean() ? x9.jAsInt(48) : var7.lAsInt()
+               Halloween.bAsBoolean() ? BloomQualityHelper.jAsInt(48) : var7.lAsInt()
             );
-            dc.Type_g var13 = dc.iAsDc_Type_g(var11.eAsList(), mb.RAsDouble(), var12);
-            op.YAsVoid("Weapon trail history", (long)lAsInt());
-            op.FAsVoid("Weapon trail vertices", (long)var13.vertices());
+            RibbonRenderer.Type_g var13 = RibbonRenderer.iAsDc_Type_g(var11.eAsList(), MediaSession.RAsDouble(), var12);
+            OpenScreen.YAsVoid("Weapon trail history", (long)lAsInt());
+            OpenScreen.FAsVoid("Weapon trail vertices", (long)var13.vertices());
             if (var13.vertices() == 0) {
                return;
             }
@@ -206,12 +206,12 @@ public final class WeaponTrailRenderer {
          } catch (RuntimeException var171) {
             SAsVoid(var171);
          } finally {
-            op.aAsVoid("Weapon trails", var8);
+            OpenScreen.aAsVoid("Weapon trails", var8);
          }
       }
    }
 
-   private static void gAsVoid(OrderedRenderCommandQueue var0, dc.Type_l var1, boolean var2) {
+   private static void gAsVoid(OrderedRenderCommandQueue var0, RibbonRenderer.Type_l var1, boolean var2) {
       var0.getBatchingQueue(var2 ? 3 : 2).submitCustom(new MatrixStack(), WeaponTrailRenderer.Type_x.oAsRenderLayer(var2), (var1xx, var2x) -> {
          try {
             for (int var3 = 0; var3 < var1.DAsInt(); var3++) {
@@ -224,7 +224,7 @@ public final class WeaponTrailRenderer {
    }
 
    private static void SAsVoid(RuntimeException var0) {
-      for (lb var4 : R) {
+      for (TrailPointBuffer var4 : R) {
          var4.XAsVoid();
       }
 
@@ -232,7 +232,7 @@ public final class WeaponTrailRenderer {
          ClientLog.lAsVoid("WeaponTrails", "Native blade capture/submission failed; trails suspended until toggle or resource reload", var0);
       }
 
-      SahurDanceEngine = true;
+      d = true;
    }
 
    private WeaponTrailRenderer() {
@@ -293,8 +293,8 @@ public final class WeaponTrailRenderer {
 
    private static final class Type_x {
       private static final RenderLayer F = FAsRenderLayer(false);
-      private static final RenderLayer CropHelper = FAsRenderLayer(true);
-      private static int MenuPopupProvider = -1;
+      private static final RenderLayer u = FAsRenderLayer(true);
+      private static int f = -1;
 
       private Type_x() {
       }
@@ -311,14 +311,14 @@ public final class WeaponTrailRenderer {
       }
 
       static RenderLayer oAsRenderLayer(boolean var0) {
-         return var0 ? CropHelper : F;
+         return var0 ? u : F;
       }
 
       static void lAsVoid() {
-         if (MenuPopupProvider != BloomQuality.J) {
+         if (f != BloomQuality.J) {
             WorldLabelLayout.DAsVoid(F.getRenderPipeline());
-            WorldLabelLayout.DAsVoid(CropHelper.getRenderPipeline());
-            MenuPopupProvider = BloomQuality.J;
+            WorldLabelLayout.DAsVoid(u.getRenderPipeline());
+            f = BloomQuality.J;
             ClientLog.XAsVoid("WeaponTrails", "Native depth-tested hand ribbon materials validated for generation {}", f);
          }
       }

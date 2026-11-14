@@ -21,8 +21,8 @@ public class EntityChangeLookDirectionMixin {
    private void larpclient$injectChangeLookDirection(double var1, double var3, CallbackInfo var5) {
       Entity var6 = (Entity)(Object)this;
       MinecraftClient var7 = MinecraftClient.getInstance();
-      if (p5.NAsP5_Type_u() != p5.Type_u.NONE && var6 == var7.player) {
-         p5.kAsVoid(var1, var3);
+      if (ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.NONE && var6 == var7.player) {
+         ParticleEmitter.kAsVoid(var1, var3);
          var5.cancel();
       }
    }

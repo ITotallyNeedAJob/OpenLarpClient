@@ -11,12 +11,12 @@ import net.minecraft.util.Identifier;
 
 public final class DragonWingRenderer {
    public static final Identifier C = Identifier.ofVanilla("textures/entity/enderdragon/dragon.png");
-   public static final float TextLayout = 0.15F;
-   public static final float BoxUtils = 2.25F;
+   public static final float j = 0.15F;
+   public static final float c = 2.25F;
    public static final float S = 3.4F;
    public static final float P = 4.2F;
    public static final int K = 48;
-   public static final float PetEffectRenderer = 50.0F;
+   public static final float a = 50.0F;
    public static final float Y = 64.0F;
 
    public static float oAsFloat(boolean var0) {

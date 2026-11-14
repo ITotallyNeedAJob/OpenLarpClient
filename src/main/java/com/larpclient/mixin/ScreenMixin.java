@@ -40,7 +40,7 @@ public abstract class ScreenMixin {
    )
    private void larpclient$redirectIIFV(Screen var1, DrawContext var2, int var3, int var4, float var5) {
       boolean var6 = var1 instanceof LevelLoadingScreen;
-      if ((MinecraftClient.getInstance().world == null || var6) && !(var1 instanceof ChatScreen) && LineSegment(var1)) {
+      if ((MinecraftClient.getInstance().world == null || var6) && !(var1 instanceof ChatScreen) && e(var1)) {
          if (var6 && !this.A) {
             this.A = true;
             ClientLog.XAsVoid("Menu", "Terrain loading uses the shared custom menu background");
@@ -64,7 +64,7 @@ public abstract class ScreenMixin {
 
          try {
             ClientPreferences var13 = LarpClient.CAsLarpClient().fAsBo().yAsN7();
-            if (var1 instanceof xs var9) {
+            if (var1 instanceof XShader var9) {
                MenuNebulaRenderer.eAsVoid(var2, var1.width, var1.height, var9.atmosphere(), var9.dimAtmosphere(), var13.Z);
             } else {
                MenuNebulaRenderer.eAsVoid(var2, var1.width, var1.height, var13.Jf, var1.deferSubtitles(), var13.Z);
@@ -82,7 +82,7 @@ public abstract class ScreenMixin {
    }
 
    @Unique
-   private static boolean LineSegment(Screen var0) {
+   private static boolean e(Screen var0) {
       return ClientTitleScreen.QAsBoolean() ? true : var0.getClass().getName().startsWith("com.larpclient.") && !(var0 instanceof ClickGuiScreen);
    }
 
@@ -95,7 +95,7 @@ public abstract class ScreenMixin {
       DrawContext var0, Identifier var1, int var2, int var3, float var4, float var5, int var6, int var7, CallbackInfo var8
    ) {
       if (MinecraftClient.getInstance().world == null && ClientTitleScreen.QAsBoolean()) {
-         GuiTextureDrawing.CAsVoid(var0, var2, var3, var6, var7, bd.X);
+         GuiTextureDrawing.CAsVoid(var0, var2, var3, var6, var7, UiStyle.X);
          var8.cancel();
       }
    }

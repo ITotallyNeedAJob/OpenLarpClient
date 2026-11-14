@@ -9,7 +9,7 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public final class ModelTranslation {
-   private static final Vector3f AuraModule = new Vector3f(0.0F, -0.375F, 0.21F);
+   private static final Vector3f x = new Vector3f(0.0F, -0.375F, 0.21F);
 
    public static void yAsVoid(MatrixStack var0, int var1, float var2, float var3) {
       float var4 = Float.isFinite(var2) ? Math.clamp(var2, 0.0F, 1.0F) : 0.0F;
@@ -29,7 +29,7 @@ public final class ModelTranslation {
       var0.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((float)(var1 * -45)));
    }
 
-   public static wa BAsWa(int var0, float var1, float var2) {
+   public static WalkAnimation BAsWa(int var0, float var1, float var2) {
       MatrixStack var3 = new MatrixStack();
       yAsVoid(var3, var0, var1, var2);
       var3.translate((float)var0 * -0.25F, 0.35F, -0.18F);
@@ -39,10 +39,10 @@ public final class ModelTranslation {
       var5.multiplyPositionMatrix(var3.peek().getPositionMatrix());
       var5.scale(0.72F, 0.72F, 0.72F);
       var5.multiply(RotationAxis.POSITIVE_Z.rotation((float)var0 * 0.1F));
-      return new wa(new Matrix4f(var5.peek().getPositionMatrix()), new Matrix4f(var3.peek().getPositionMatrix()));
+      return new WalkAnimation(new Matrix4f(var5.peek().getPositionMatrix()), new Matrix4f(var3.peek().getPositionMatrix()));
    }
 
-   public static wa lAsWa(int var0, float var1, float var2, float var3) {
+   public static WalkAnimation lAsWa(int var0, float var1, float var2, float var3) {
       Matrix4f var4 = BAsWa(var0, var1, var2).arm();
       MatrixStack var5 = new MatrixStack();
       yAsVoid(var5, var0, var1, var2);
@@ -50,7 +50,7 @@ public final class ModelTranslation {
       Quaternionf var6 = new Quaternionf().rotationXYZ((float)Math.toRadians(15.0), (float)Math.toRadians(-20.0), (float)Math.toRadians(15.0));
       var5.multiply(new Quaternionf(var6.x, (float)var0 * var6.y, (float)var0 * var6.z, var6.w));
       var5.scale(0.72F * var3, 0.72F * var3, 0.72F * var3);
-      return new wa(new Matrix4f(var5.peek().getPositionMatrix()), new Matrix4f(var4));
+      return new WalkAnimation(new Matrix4f(var5.peek().getPositionMatrix()), new Matrix4f(var4));
    }
 
    public static float eAsFloat(float var0) {
@@ -60,7 +60,7 @@ public final class ModelTranslation {
       return var2 * var3;
    }
 
-   public static wa YAsWa(wa var0, int var1, float var2, float var3) {
+   public static WalkAnimation YAsWa(WalkAnimation var0, int var1, float var2, float var3) {
       float var4 = Float.isFinite(var3) ? Math.clamp(var3, 0.0F, 1.0F) : 0.0F;
       if (var4 <= 0.0F) {
          return var0;
@@ -81,7 +81,7 @@ public final class ModelTranslation {
          float var17 = 0.012F * (float)Math.sin((double)var14 * Math.PI) * var4;
          Vector3f var18 = new Vector3f(var7).lerp(var9, var4).add(0.0F, var17, 0.0F);
          Matrix4f var19 = new Matrix4f().translation(var18).rotate(var13).translate(-var7.x, -var7.y, -var7.z);
-         return new wa(new Matrix4f(var19).mul(var0.weapon()), new Matrix4f(var19).mul(var0.arm()));
+         return new WalkAnimation(new Matrix4f(var19).mul(var0.weapon()), new Matrix4f(var19).mul(var0.arm()));
       }
    }
 

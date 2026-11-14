@@ -62,7 +62,7 @@ public final class g {
          double var7 = ActionOwnership.UAsDouble(var1, var6.y + (double)var0.getStandingEyeHeight(), var3);
          if (!(var7 <= 0.0)) {
             Vec3d var9 = new Vec3d(var6.x, var3 + 0.06, var6.z);
-            int var10 = bg.xAsInt(bd.w, -1, 0.3) | 0xFF000000;
+            int var10 = ColorUtil.xAsInt(UiStyle.w, -1, 0.3) | 0xFF000000;
 
             for (int var11 = 0; var11 < 64; var11++) {
                GizmoDrawing.line(JAsVec3d(var9, var11, var7), JAsVec3d(var9, var11 + 1, var7), var10, 3.5F);
@@ -91,7 +91,7 @@ public final class g {
       Vec3d var5 = var0.getRotationVec(var2);
       Vec3d var6 = var4.add(var5.multiply(var4.distanceTo(var3.getCenter()) + var3.getAverageSideLength()));
       Optional<Vec3d> var7 = var3.expand((double)var1.getTargetingMargin()).raycast(var4, var6);
-      int var8 = (var7.isPresent() ? bg.xAsInt(bd.w, -8327246, 0.35) : bg.xAsInt(bd.w, -12672, 0.5)) | 0xFF000000;
+      int var8 = (var7.isPresent() ? ColorUtil.xAsInt(UiStyle.w, -8327246, 0.35) : ColorUtil.xAsInt(UiStyle.w, -12672, 0.5)) | 0xFF000000;
       GizmoDrawing.box(var3, DrawStyle.stroked(var8, 2.0F)).ignoreOcclusion();
       Vec3d var9 = var7.orElseGet(() -> dAsVec3d(var4, var5, var3.getCenter()));
       GizmoDrawing.box(new Box(var9, var9).expand(0.07), DrawStyle.filled(var8)).ignoreOcclusion();

@@ -9,7 +9,7 @@ public record SkyZone(Box bounds, List<SkyZone.Type_z> edges, List<Box> boxes) {
    public static final int MAX_EDGES = 128;
    public static final int MAX_BOXES = 32;
 
-   public static dz build(VoxelShape var0) {
+   public static SkyZone build(VoxelShape var0) {
       if (var0 != null && !var0.isEmpty()) {
          Box var1 = var0.getBoundingBox();
          ArrayList var2 = new ArrayList();

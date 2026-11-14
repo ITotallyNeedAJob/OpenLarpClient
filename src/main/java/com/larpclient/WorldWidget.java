@@ -23,10 +23,10 @@ import net.minecraft.util.Identifier;
 
 public final class WorldWidget {
    public static final int w = 32;
-   public static final int CropHelper = 12;
-   public static final int TextLayout = 13;
-   public static final int MenuPopupProvider = -267645934;
-   private static final Map<Module, Float> SkyChunkCache = new IdentityHashMap<>();
+   public static final int u = 12;
+   public static final int j = 13;
+   public static final int f = -267645934;
+   private static final Map<Module, Float> s = new IdentityHashMap<>();
    private static final Map<Identifier, Float> S = new HashMap<>();
    private static Object V;
    private static Object F;
@@ -38,12 +38,12 @@ public final class WorldWidget {
    }
 
    public static void KAsVoid() {
-      SkyChunkCache.clear();
+      s.clear();
       S.clear();
       Z.clear();
       F = null;
       V = null;
-      BloomUtility = 0L;
+      b = 0L;
       B = 0L;
    }
 
@@ -119,14 +119,14 @@ public final class WorldWidget {
       for (Module var7 : LarpClient.CAsLarpClient().mAsF().NAsList()) {
          HUD var8 = HUD.EAsHUD();
          int var9 = var7.getKeyBind() >= 0 && (var7.isEnabled() || var8 != null && var8.keybindDisplay.pAsBoolean("Always")) ? 1 : 0;
-         float var10 = var0 ? (float)(var9 != 0 ? 1 : 0) : vAsFloat(SkyChunkCache.getOrDefault(var7, 0.0F), var9 != 0, var3);
+         float var10 = var0 ? (float)(var9 != 0 ? 1 : 0) : vAsFloat(s.getOrDefault(var7, 0.0F), var9 != 0, var3);
          if (var10 < 0.05F && var9 == 0) {
             if (!var0) {
-               SkyChunkCache.remove(var7);
+               s.remove(var7);
             }
          } else {
             if (!var0) {
-               SkyChunkCache.put(var7, var10);
+               s.put(var7, var10);
             }
 
             if (!(var10 <= 0.05F)) {
@@ -150,7 +150,7 @@ public final class WorldWidget {
       long var1 = System.nanoTime();
       double var3 = YAsDouble(b, var1);
       if (!var0) {
-         BloomUtility = var1;
+         b = var1;
       }
 
       MinecraftClient var5 = MinecraftClient.getInstance();
@@ -220,7 +220,7 @@ public final class WorldWidget {
 
    public static void sAsVoid(DrawContext var0, String var1, int var2, int var3, int var4, int var5) {
       Identifier var6 = Identifier.of("larp-client", "textures/gui/larp/" + var1 + ".png");
-      var0.drawTexture(RenderPipelines.GUI_TEXTURED, var6, var2, var3, 0.0F, 0.0F, var4, var4, 16, 16, 16, 16, qg.iAsInt(var5));
+      var0.drawTexture(RenderPipelines.GUI_TEXTURED, var6, var2, var3, 0.0F, 0.0F, var4, var4, 16, 16, 16, 16, QueueGroup.iAsInt(var5));
    }
 
    public static void aAsVoid(DrawContext var0, String var1, int var2, int var3, int var4, int var5) {
@@ -229,14 +229,14 @@ public final class WorldWidget {
       }
    }
 
-   public static List<d7.Type_p> KAsList(WorldWidget.Type_j var0, int var1, int var2, boolean var3) {
+   public static List<WidgetLayoutUtil.Type_p> KAsList(WorldWidget.Type_j var0, int var1, int var2, boolean var3) {
       ArrayList var4 = new ArrayList();
-      var4.add(new d7.Type_p(var1, var2, var0.width(), var0.height()));
+      var4.add(new WidgetLayoutUtil.Type_p(var1, var2, var0.width(), var0.height()));
       double var5 = (double)(var2 + 39);
 
       for (WorldWidget.Type_x var8 : var0.rows()) {
          int var9 = var0.keys() ? 22 : 23;
-         var4.add(new d7.Type_p(var1, (int)Math.floor(var5), var0.width(), (int)Math.ceil((double)((float)var9 * var8.alpha()))));
+         var4.add(new WidgetLayoutUtil.Type_p(var1, (int)Math.floor(var5), var0.width(), (int)Math.ceil((double)((float)var9 * var8.alpha()))));
          var5 += (double)((float)var9 * var8.alpha());
       }
 
@@ -244,12 +244,12 @@ public final class WorldWidget {
    }
 
    public static void XAsVoid(DrawContext var0, WorldWidget.Type_j var1, int var2, int var3, boolean var4) {
-      lj.CAsVoid(var0, var2, var3, var1.width(), var1.height(), var1.title(), var1.keys() ? "keyboard" : "flask-conical", true);
+      LayerJob.CAsVoid(var0, var2, var3, var1.width(), var1.height(), var1.title(), var1.keys() ? "keyboard" : "flask-conical", true);
       List var5 = KAsList(var1, var2, var3, var4);
 
       for (int var6 = 0; var6 < var1.rows().size(); var6++) {
          WorldWidget.Type_x var7 = var1.rows().get(var6);
-         d7.Type_p var8 = (d7.Type_p)var5.get(var6 + 1);
+         WidgetLayoutUtil.Type_p var8 = (WidgetLayoutUtil.Type_p)var5.get(var6 + 1);
          int var9 = var8.y();
          int var10 = var8.height();
          double var11 = (double)var7.alpha();
@@ -259,7 +259,7 @@ public final class WorldWidget {
             double var13 = (double)var9 + (double)(var10 - 13) / 2.0;
             int var15 = var2 + 12;
             if (!var1.keys()) {
-               var0.drawGuiTexture(RenderPipelines.GUI_TEXTURED, var7.icon(), var15, var9 + (var10 - 15) / 2, 15, 15, bg.pAsInt(-1, var11));
+               var0.drawGuiTexture(RenderPipelines.GUI_TEXTURED, var7.icon(), var15, var9 + (var10 - 15) / 2, 15, 15, ColorUtil.pAsInt(-1, var11));
                var15 += 22;
             }
 
@@ -270,13 +270,13 @@ public final class WorldWidget {
             if (var1.keys()) {
                ModuleManager var20 = LarpClient.CAsLarpClient().mAsF();
                boolean var21 = var20.NAsList().stream().anyMatch(var1x -> var1x.isEnabled() && var1x.getDisplayName().equals(var7.label()));
-               var19 = var21 ? bd.w : -1494422292;
-               GuiTextureDrawing.AAsVoid(var0, (float)(var18 - 6), (float)(var9 + (var10 - 17) / 2), (float)var17, 17.0F, 4.0F, bg.pAsInt(-1275068416, var11));
+               var19 = var21 ? UiStyle.w : -1494422292;
+               GuiTextureDrawing.AAsVoid(var0, (float)(var18 - 6), (float)(var9 + (var10 - 17) / 2), (float)var17, 17.0F, 4.0F, ColorUtil.pAsInt(-1275068416, var11));
             }
 
             String var25 = xAsString(var7.label(), (double)(var18 - var15 - 14), 13.0);
-            aAsVoid(var0, var25, (double)var15, var13, bg.pAsInt(var19, var11));
-            aAsVoid(var0, var7.value(), (double)var18, var13, bg.pAsInt(-4671294, var11));
+            aAsVoid(var0, var25, (double)var15, var13, ColorUtil.pAsInt(var19, var11));
+            aAsVoid(var0, var7.value(), (double)var18, var13, ColorUtil.pAsInt(-4671294, var11));
          } finally {
             var0.disableScissor();
          }

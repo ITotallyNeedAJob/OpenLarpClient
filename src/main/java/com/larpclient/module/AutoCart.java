@@ -166,7 +166,7 @@ public final class AutoCart extends Module implements PlacementPreview.Type_e {
 
          long var1 = mc.world.getTime();
          if (this.N != AutoCart.Type_l.CONFIRM || !this.wAsBoolean(var1)) {
-            if (b_.jAsBoolean() && mc.isWindowFocused() && p5.NAsP5_Type_u() == p5.Type_u.NONE) {
+            if (ModuleImportBroker.jAsBoolean() && mc.isWindowFocused() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.NONE) {
                int var3 = this.TAsInt();
                if (var3 < 0) {
                   this.EAsVoid("Draw a Flame bow to arm");
@@ -177,7 +177,7 @@ public final class AutoCart extends Module implements PlacementPreview.Type_e {
                   } else if (Aura.WAsBoolean()) {
                      this.EAsVoid("Paused while Kill Aura lowers your shield");
                   } else {
-                     double[] var5 = wu.tAsDoubleArray2(wu.BAsDouble(Math.max(var3, this.r.getValue().intValue())));
+                     double[] var5 = WorldUpdater.tAsDoubleArray2(WorldUpdater.BAsDouble(Math.max(var3, this.r.getValue().intValue())));
                      this.U = this.gAsBoolean() ? this.WAsAutoCart_Type_t(var4, var5) : this.KAsAutoCart_Type_t(var4, var5);
                      if (this.U == null) {
                         this.N = AutoCart.Type_l.IDLE;
@@ -186,10 +186,10 @@ public final class AutoCart extends Module implements PlacementPreview.Type_e {
                      } else {
                         this.N = AutoCart.Type_l.AIM;
                         this.C.mAsVoid(this.U.rail());
-                        if (this.gAsBoolean() && b_.nAsBoolean(this)) {
-                           float[] var6 = dq.QAsFloatArray(mc.player.getEyePos(), this.U.aim());
-                           float[] var7 = com.larpclient.t.JAsFloatArray(mc.player.getYaw(), mc.player.getPitch(), var6[0], var6[1], this.u.getValue());
-                           dq.RAsVoid(this, dq.Type_s.AUTOCART, var7[0], var7[1], 1.0);
+                        if (this.gAsBoolean() && ModuleImportBroker.nAsBoolean(this)) {
+                           float[] var6 = ModuleDetector.QAsFloatArray(mc.player.getEyePos(), this.U.aim());
+                           float[] var7 = com.larpclient.SmoothInput.JAsFloatArray(mc.player.getYaw(), mc.player.getPitch(), var6[0], var6[1], this.u.getValue());
+                           ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.AUTOCART, var7[0], var7[1], 1.0);
                         }
 
                         double var9;
@@ -198,7 +198,7 @@ public final class AutoCart extends Module implements PlacementPreview.Type_e {
                         } else {
                            this.P = String.format(Locale.ROOT, "Armed; expected %.1f HP, worst self %.1f HP", this.U.damage(), this.U.self());
                            AutoCart.Type_t var8 = this.U;
-                           b_.UAsVoid(this, this::gAsVoid, () -> this.U == var8 && this.N == AutoCart.Type_l.AIM && this.ZAsBoolean());
+                           ModuleImportBroker.UAsVoid(this, this::gAsVoid, () -> this.U == var8 && this.N == AutoCart.Type_l.AIM && this.ZAsBoolean());
                         }
                      }
                   }
@@ -292,15 +292,15 @@ public final class AutoCart extends Module implements PlacementPreview.Type_e {
    }
 
    private AutoCart.Type_t NAsAutoCart_Type_t(AutoCart.Type_k var1, Vec3d var2, double[] var3, List<LivingEntity> var4, boolean var5) {
-      double var6 = (double)nf.TAsFloat(mc.player, var1.center(), var3[2]);
-      if (this.y.getValue() && !nf.uAsBoolean(var6, this.c.getValue(), (double)(mc.player.getHealth() + mc.player.getAbsorptionAmount()))) {
+      double var6 = (double)NebulaSky.TAsFloat(mc.player, var1.center(), var3[2]);
+      if (this.y.getValue() && !NebulaSky.uAsBoolean(var6, this.c.getValue(), (double)(mc.player.getHealth() + mc.player.getAbsorptionAmount()))) {
          return this.VAsObject(String.format(Locale.ROOT, "Worst-case self damage %.1f HP is over the limit", var6));
       } else {
          LivingEntity var8 = null;
          double var9 = 0.0;
 
          for (LivingEntity var12 : var4) {
-            double var13 = wu.jAsDouble(nf.wAsFloatArray(var12, var1.center(), var3));
+            double var13 = WorldUpdater.jAsDouble(NebulaSky.wAsFloatArray(var12, var1.center(), var3));
             if (var13 > var9) {
                var9 = var13;
                var8 = var12;
@@ -378,7 +378,7 @@ public final class AutoCart extends Module implements PlacementPreview.Type_e {
                   var20.add(var22.getBoundingBox());
                }
 
-               if (!wu.IAsBoolean(var17, var18, var25, var20)) {
+               if (!WorldUpdater.IAsBoolean(var17, var18, var25, var20)) {
                   return this.VAsObject("The arrow would hit something before the cart");
                } else {
                   return !this.PAsBoolean(var17) && !this.PAsBoolean(var24)
@@ -406,13 +406,13 @@ public final class AutoCart extends Module implements PlacementPreview.Type_e {
          Item var2 = bAsItem();
          if (var2 != null && BlockPlacementController.qAsInt(Items.TNT_MINECART, true) != -1) {
             Vec3d var3 = mc.player.getRotationVector();
-            Vec3d var4 = db.JAsVec3d(var3);
+            Vec3d var4 = FallDamage.JAsVec3d(var3);
             AutoCart.Type_k var5 = this.mAsAutoCart_Type_k(var3, var4, this.U.rail(), var2);
             if (var5 == null) {
                this.tAsVoid(var4.dotProduct(var3) < Math.cos(Math.toRadians(0.5)) ? "Waiting for the aim to reach the server" : this.S);
                return false;
             } else {
-               double[] var6 = wu.tAsDoubleArray2(wu.BAsDouble(var1));
+               double[] var6 = WorldUpdater.tAsDoubleArray2(WorldUpdater.BAsDouble(var1));
                AutoCart.Type_t var7 = this.NAsAutoCart_Type_t(
                   var5, this.U.aim(), var6, this.U.target() == null ? List.of() : List.of(this.U.target()), this.gAsBoolean()
                );
@@ -644,7 +644,7 @@ public final class AutoCart extends Module implements PlacementPreview.Type_e {
    }
 
    private void LAsVoid(String var1) {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       this.C.rAsVoid();
       this.wAsVoid(var1);
    }

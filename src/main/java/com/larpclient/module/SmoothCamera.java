@@ -48,16 +48,16 @@ public final class SmoothCamera extends Module {
       return w;
    }
 
-   public static boolean oAsBoolean(p5.Type_u var0) {
-      return var0 == p5.Type_u.NONE
-         || var0 == p5.Type_u.AURA
-         || var0 == p5.Type_u.AUTOTRAP
-         || var0 == p5.Type_u.AUTOWEB
-         || var0 == p5.Type_u.AUTOANCHOR
-         || var0 == p5.Type_u.MACE
-         || var0 == p5.Type_u.AUTOCRYSTAL
-         || var0 == p5.Type_u.PEARLCATCH
-         || var0 == p5.Type_u.WINDHOP;
+   public static boolean oAsBoolean(ParticleEmitter.Type_u var0) {
+      return var0 == ParticleEmitter.Type_u.NONE
+         || var0 == ParticleEmitter.Type_u.AURA
+         || var0 == ParticleEmitter.Type_u.AUTOTRAP
+         || var0 == ParticleEmitter.Type_u.AUTOWEB
+         || var0 == ParticleEmitter.Type_u.AUTOANCHOR
+         || var0 == ParticleEmitter.Type_u.MACE
+         || var0 == ParticleEmitter.Type_u.AUTOCRYSTAL
+         || var0 == ParticleEmitter.Type_u.PEARLCATCH
+         || var0 == ParticleEmitter.Type_u.WINDHOP;
    }
 
    private NumberSetting EAsNumberSetting(String var1, String var2, double var3) {
@@ -82,7 +82,7 @@ public final class SmoothCamera extends Module {
             && var1.getFocusedEntity() != null
             && (!(var1.getFocusedEntity() instanceof LivingEntity var4) || !var4.isSleeping())
             && !mc.gameRenderer.isRenderingPanorama()
-            && oAsBoolean(p5.NAsP5_Type_u())
+            && oAsBoolean(ParticleEmitter.NAsP5_Type_u())
             && (!var3.options.getPerspective().isFirstPerson() || this.enableFirstPOV.getValue())) {
             long var10 = System.nanoTime();
             Perspective var6 = var3.options.getPerspective();

@@ -196,7 +196,7 @@ public class ESP extends Module {
    private void zAsVoid(WorldRenderContext var1) {
       if (this.isEnabled() && this.isOperational() && this.isInGame() && this.mode.pAsBoolean("3D Box")) {
          float var2 = mc.getRenderTickCounter().getTickProgress(false);
-         long var3 = op.RAsLong();
+         long var3 = OpenScreen.RAsLong();
 
          try {
             for (Entity var6 : ThemeSettings.jAsList(
@@ -209,7 +209,7 @@ public class ESP extends Module {
          } catch (RuntimeException var12) {
             ClientLog.hAsVoid("ESP", "Entity overlay failed", var12);
          } finally {
-            op.aAsVoid("ESP", var3);
+            OpenScreen.aAsVoid("ESP", var3);
          }
       }
    }
@@ -217,7 +217,7 @@ public class ESP extends Module {
    private void FAsVoid(DrawContext var1, RenderTickCounter var2) {
       if (this.isOperational() && this.isInGame() && !mc.options.hudHidden) {
          Camera var3 = mc.gameRenderer.getCamera();
-         Matrix4f var4 = w3.pAsMatrix4f(new Matrix4f());
+         Matrix4f var4 = WebRenderer.pAsMatrix4f(new Matrix4f());
          int var5 = mc.getWindow().getScaledWidth();
          int var6 = mc.getWindow().getScaledHeight();
          float var7 = var2.getTickProgress(false);
@@ -226,7 +226,7 @@ public class ESP extends Module {
             mc.world.getEntities(), mc.player, this.range.getValue(), this.maxEntities.getValue().intValue(), this::kAsBoolean
          )) {
             if (this.u.throughWalls() || mc.player.canSee(var10)) {
-               d5.Type_s var11 = d5.dAsD5_Type_s(ThemeSettings.GAsBox(var10, var7), var3.getCameraPos(), var4, var5, var6, false);
+               ProjectionUtil.Type_s var11 = ProjectionUtil.dAsD5_Type_s(ThemeSettings.GAsBox(var10, var7), var3.getCameraPos(), var4, var5, var6, false);
                if (var11 != null) {
                   int var12 = var11.left();
                   int var13 = var11.top();
@@ -237,7 +237,7 @@ public class ESP extends Module {
                   if (var17 >>> 24 != 0) {
                      if (this.mode.pAsBoolean("Box") || this.mode.pAsBoolean("Corners") || this.mode.pAsBoolean("Filled")) {
                         if (this.mode.pAsBoolean("Filled")) {
-                           GuiTextureDrawing.CAsVoid(var1, var12, var13, var14, var15, bg.pAsInt(var17, this.u.fillOpacity()));
+                           GuiTextureDrawing.CAsVoid(var1, var12, var13, var14, var15, ColorUtil.pAsInt(var17, this.u.fillOpacity()));
                         }
 
                         int var18 = Math.max(1, Math.round(this.u.lineWidth()));
@@ -286,7 +286,7 @@ public class ESP extends Module {
                         int var34 = (int)Math.round((double)var15 * var31);
                         GuiTextureDrawing.CAsVoid(var1, var30 - 1, var13 - 1, var29 + 2, var15 + 2, -267382506);
                         GuiTextureDrawing.CAsVoid(var1, var30, var13, var29, var15, -13420994);
-                        int var37 = var31 < 0.5 ? bg.xAsInt(-44442, -10660, var31 * 2.0) : bg.xAsInt(-10660, -10951269, (var31 - 0.5) * 2.0);
+                        int var37 = var31 < 0.5 ? ColorUtil.xAsInt(-44442, -10660, var31 * 2.0) : ColorUtil.xAsInt(-10660, -10951269, (var31 - 0.5) * 2.0);
                         GuiTextureDrawing.CAsVoid(var1, var30, var13 + var15 - var34, var29, var34, var37);
                         if (var16.getAbsorptionAmount() > 0.0F) {
                            int var24 = Math.round((float)var15 * Math.min(1.0F, var16.getAbsorptionAmount() / Math.max(1.0F, var16.getMaxHealth())));
@@ -340,22 +340,22 @@ public class ESP extends Module {
       ArrayList var36 = new ArrayList(var34.length);
 
       for (Vec3d[] var40 : var34) {
-         d5.Type_w var41 = d5.CAsD5_Type_w(var40[0], var40[1], var35, var5, var6, var7, var8);
+         ProjectionUtil.Type_w var41 = ProjectionUtil.CAsD5_Type_w(var40[0], var40[1], var35, var5, var6, var7, var8);
          if (var41 != null) {
             var36.add(var41);
          }
       }
 
-      d5.Type_e var46 = d5.vAsD5_Type_e(var10.add(0.0, var11 * 0.875, 0.0), var35, var5, new Vector3f(var4.getVerticalPlane()), var6, var7, var8);
+      ProjectionUtil.Type_e var46 = ProjectionUtil.vAsD5_Type_e(var10.add(0.0, var11 * 0.875, 0.0), var35, var5, new Vector3f(var4.getVerticalPlane()), var6, var7, var8);
       int var47 = var46 == null ? 0 : Math.max(1, Math.round(var46.scale() * (float)var11 * 0.125F));
       int var48 = Math.max(1, Math.round(this.u.lineWidth()));
-      int var49 = bg.pAsInt(-401600234, (double)(var9 >>> 24) / 255.0);
+      int var49 = ColorUtil.pAsInt(-401600234, (double)(var9 >>> 24) / 255.0);
 
       for (int var50 = 0; var50 < 2; var50++) {
          int var42 = var50 == 0 ? var49 : var9;
          float var43 = var50 == 0 ? (float)(var48 + 2) : (float)var48;
 
-         for (d5.Type_w var45 : (Iterable<d5.Type_w>) (var36)) {
+         for (ProjectionUtil.Type_w var45 : (Iterable<ProjectionUtil.Type_w>) (var36)) {
             GuiTextureDrawing.dAsVoid(var1, var45.x1(), var45.y1(), var45.x2(), var45.y2(), var43, var42);
          }
 

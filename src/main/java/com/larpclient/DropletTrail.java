@@ -7,7 +7,7 @@ import net.minecraft.util.math.Vec3d;
 
 public final class DropletTrail {
    public static final int A = 6;
-   private final List<DropletTrail.Type_t> SkyChunkCache = new ArrayList<>();
+   private final List<DropletTrail.Type_t> s = new ArrayList<>();
 
    public DropletTrail() {
    }
@@ -39,15 +39,15 @@ public final class DropletTrail {
 
    public static double lAsDouble(DropletTrail.Type_t var0, double var1) {
       double var3 = (var1 - var0.born) / var0.duration;
-      return !(var3 < 0.0) && !(var3 >= 1.0) ? ay.Type_r.HOLD_FADE.fAsDouble(var3) : 0.0;
+      return !(var3 < 0.0) && !(var3 >= 1.0) ? FadeCurve.Type_r.HOLD_FADE.fAsDouble(var3) : 0.0;
    }
 
    public static double AAsDouble(DropletTrail.Type_t var0, double var1, double var3) {
       double var5 = (var3 - var0.born) / var0.duration;
       if (!(var5 < 0.0) && !(var5 >= 1.0) && !(var1 > var0.radius)) {
          double var7 = var0.radius * (1.0 - Math.pow(1.0 - var5, 3.0));
-         double var9 = ay.RAsDouble(1.0 - Math.abs(var1 - var7) / var0.waveWidth);
-         return var9 * ay.Type_r.HOLD_FADE.fAsDouble(var5);
+         double var9 = FadeCurve.RAsDouble(1.0 - Math.abs(var1 - var7) / var0.waveWidth);
+         return var9 * FadeCurve.Type_r.HOLD_FADE.fAsDouble(var5);
       } else {
          return 0.0;
       }
@@ -72,11 +72,11 @@ public final class DropletTrail {
       int to,
       double opacity,
       double glow,
-      List<lc.Type_w> edges,
+      List<LightmapAtlas.Type_w> edges,
       DropletTrail.Type_g style
    ) {
       public Type_t(
-         Vec3d var1, double var2, double var4, double var6, double var8, double var10, int var12, int var13, double var14, double var16, List<lc.Type_w> var18
+         Vec3d var1, double var2, double var4, double var6, double var8, double var10, int var12, int var13, double var14, double var16, List<LightmapAtlas.Type_w> var18
       ) {
          this(var1, var2, var4, var6, var8, var10, var12, var13, var14, var16, var18, DropletTrail.Type_g.TERRAIN);
       }

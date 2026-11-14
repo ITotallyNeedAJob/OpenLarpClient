@@ -6,19 +6,19 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.input.CharInput;
 import net.minecraft.client.input.KeyInput;
 
-public abstract class WorkspacePanel extends GuiPanel implements xs {
+public abstract class WorkspacePanel extends GuiPanel implements XShader {
    protected final Screen e;
    protected int S;
    protected int L;
    protected int r;
    protected int R;
-   private final w2 J = new w2(0.0);
+   private final WeatherRenderer J = new WeatherRenderer(0.0);
    private boolean j;
    private boolean F;
    private long K;
-   private double ChatPayParser = 1.0;
+   private double g = 1.0;
    private double W;
-   private double SkyChunkCache = 1.0;
+   private double s = 1.0;
 
    protected WorkspacePanel(String var1, Screen var2) {
       super(var1);
@@ -30,8 +30,8 @@ public abstract class WorkspacePanel extends GuiPanel implements xs {
       return true;
    }
 
-   protected qh AAsQh(String var1, Runnable var2, int var3, int var4, int var5) {
-      qh var6 = new qh(var1, "", var2);
+   protected QueueHandler AAsQh(String var1, Runnable var2, int var3, int var4, int var5) {
+      QueueHandler var6 = new QueueHandler(var1, "", var2);
       var6.bounds(var3, var4, var5);
       var6.F = 24;
       this.Q.add(var6);
@@ -53,7 +53,7 @@ public abstract class WorkspacePanel extends GuiPanel implements xs {
 
       double var2 = LarpClient.CAsLarpClient().fAsBo().yAsN7().Z ? this.J.bAsDouble(1.0, 260) : 1.0;
       if (this.F) {
-         var2 = this.s * (1.0 - w2.Type_e.CUBIC_IN.zAsDouble((double)(System.nanoTime() - this.K) / 1.6E8));
+         var2 = this.s * (1.0 - WeatherRenderer.Type_e.CUBIC_IN.zAsDouble((double)(System.nanoTime() - this.K) / 1.6E8));
       }
 
       this.g = var2;
@@ -61,13 +61,13 @@ public abstract class WorkspacePanel extends GuiPanel implements xs {
       var1.getMatrices().pushMatrix();
       var1.getMatrices().translate(0.0F, (float)this.W);
       GuiDrawing.bAsVoid(var1, this.S, this.L, this.r, this.R);
-      GuiDrawing.CAsVoid(var1, this.S, this.L, this.r, this.R, 7, bg.pAsInt(-451076058, var2));
+      GuiDrawing.CAsVoid(var1, this.S, this.L, this.r, this.R, 7, ColorUtil.pAsInt(-451076058, var2));
    }
 
    protected void drawControls(DrawContext var1, int var2, int var3) {
       for (GuiWidget var5 : this.Q) {
          if (var5.Y) {
-            if (var5 instanceof qh var6) {
+            if (var5 instanceof QueueHandler var6) {
                var6.c = this.g;
             }
 

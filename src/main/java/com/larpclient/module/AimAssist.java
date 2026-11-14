@@ -65,7 +65,7 @@ public final class AimAssist extends Module {
          return "Vertical";
       }
    });
-   private final w7.Type_p z = new w7.Type_p();
+   private final WaveEffect.Type_p z = new WaveEffect.Type_p();
    private PlayerEntity b;
    private PlayerEntity q;
    private long C;
@@ -109,7 +109,7 @@ public final class AimAssist extends Module {
       } else if (var1.currentScreen != null || var1.getOverlay() != null) {
          return "Paused: menu open";
       } else if (var1.isWindowFocused() && var1.mouse.isCursorLocked()) {
-         if (var1.getCameraEntity() != var1.player || p5.NAsP5_Type_u() != p5.Type_u.NONE || dq.YAsBoolean()) {
+         if (var1.getCameraEntity() != var1.player || ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.NONE || ModuleDetector.YAsBoolean()) {
             return "Paused: rotation owned";
          } else if (!var1.player.isUsingItem() && !var1.options.useKey.isPressed()) {
             return this.anubisWeaponsOnly.getValue() && !oAsBoolean(var1.player) ? "Waiting for a melee weapon" : null;
@@ -142,7 +142,7 @@ public final class AimAssist extends Module {
       }
    }
 
-   public static w7.Type_h OAsW7_Type_h(ClientPlayerEntity var0, double var1, double var3, double var5) {
+   public static WaveEffect.Type_h OAsW7_Type_h(ClientPlayerEntity var0, double var1, double var3, double var5) {
       if (U != null && U.isEnabled()) {
          AimAssist var7 = U;
          if (var7 != null && var7.isRuntimeActive()) {
@@ -152,17 +152,17 @@ public final class AimAssist extends Module {
                var7.zAsVoid("Paused: aim correction failed");
                ClientLog.lAsVoid("AimAssist", "Mouse correction failed; disabling and retaining native input", var9);
                var7.disable();
-               return w7.Type_h.STILL;
+               return WaveEffect.Type_h.STILL;
             }
          } else {
-            return w7.Type_h.STILL;
+            return WaveEffect.Type_h.STILL;
          }
       } else {
-         return w7.Type_h.STILL;
+         return WaveEffect.Type_h.STILL;
       }
    }
 
-   private w7.Type_h tAsW7_Type_h(ClientPlayerEntity var1, double var2, double var4, double var6) {
+   private WaveEffect.Type_h tAsW7_Type_h(ClientPlayerEntity var1, double var2, double var4, double var6) {
       String var8 = this.NAsString();
       if (var8 == null && var1 == mc.player) {
          this.rAsVoid(var1);
@@ -171,18 +171,18 @@ public final class AimAssist extends Module {
          if (var11 == 0) {
             this.z.BAsVoid();
             this.WAsVoid("Waiting for mouse movement");
-            return w7.Type_h.STILL;
+            return WaveEffect.Type_h.STILL;
          } else {
-            float[] var12 = w7.kAsFloatArray(var1.getYaw(), var1.getPitch(), var2, var4);
+            float[] var12 = WaveEffect.kAsFloatArray(var1.getYaw(), var1.getPitch(), var2, var4);
             Vec3d var13 = Vec3d.fromPolar(var12[1], var12[0]);
             this.nAsVoid(this.wAsPlayerEntity(var1, var9, var12[0], var12[1], var13));
-            float[] var14 = this.b == null ? null : w7.AAsFloatArray(var1.getEyePos(), var13, w7.YAsBox(this.b.getBoundingBox()), this.anubisRange.getValue());
-            double var15 = var14 == null ? 0.0 : l_.iAsDouble((double)(var14[0] - var12[0]));
+            float[] var14 = this.b == null ? null : WaveEffect.AAsFloatArray(var1.getEyePos(), var13, WaveEffect.YAsBox(this.b.getBoundingBox()), this.anubisRange.getValue());
+            double var15 = var14 == null ? 0.0 : AngleMath.iAsDouble((double)(var14[0] - var12[0]));
             double var17 = var14 == null ? 0.0 : (double)(var14[1] - var12[1]);
-            double var19 = w7.KAsDouble(
+            double var19 = WaveEffect.KAsDouble(
                (Double)mc.options.getMouseSensitivity().getValue(), mc.options.getPerspective().isFirstPerson(), var1.isUsingSpyglass()
             );
-            w7.Type_h var21 = this.z
+            WaveEffect.Type_h var21 = this.z
                .iAsW7_Type_h(var2, var4, var15, var17, var14 != null, this.anubisVertical.getValue(), var6, this.anubisSpeed.getValue(), this.e, var19, var9);
             if (this.b == null) {
                this.WAsVoid("No eligible target");
@@ -198,7 +198,7 @@ public final class AimAssist extends Module {
          }
       } else {
          this.zAsVoid(var8 == null ? "Waiting for input" : var8);
-         return w7.Type_h.STILL;
+         return WaveEffect.Type_h.STILL;
       }
    }
 
@@ -218,31 +218,31 @@ public final class AimAssist extends Module {
       ArrayList var7 = new ArrayList(2);
       long var8 = var2 - this.C;
       if (var8 >= 0L && var8 <= 1500L) {
-         w7.Type_c var10 = this.nAsW7_Type_c(this.q, var4, var5, var6);
+         WaveEffect.Type_c var10 = this.nAsW7_Type_c(this.q, var4, var5, var6);
          if (var10 != null) {
             var7.add(var10);
          }
       }
 
-      w7.Type_c var16 = this.nAsW7_Type_c(this.b, var4, var5, var6);
+      WaveEffect.Type_c var16 = this.nAsW7_Type_c(this.b, var4, var5, var6);
       if (var16 != null) {
          var7.add(var16);
       }
 
-      PlayerEntity var11 = w7.aAsObject(var7, this.q, var8, this.b, this.anubisRange.getValue(), this.anubisFov.getValue());
+      PlayerEntity var11 = WaveEffect.aAsObject(var7, this.q, var8, this.b, this.anubisRange.getValue(), this.anubisFov.getValue());
       if (var11 != null) {
          return var11;
       } else {
          ArrayList var12 = new ArrayList();
 
          for (PlayerEntity var14 : mc.world.getNonSpectatingEntities(PlayerEntity.class, var1.getBoundingBox().expand(this.anubisRange.getValue() + 0.5))) {
-            w7.Type_c var15 = this.nAsW7_Type_c(var14, var4, var5, var6);
+            WaveEffect.Type_c var15 = this.nAsW7_Type_c(var14, var4, var5, var6);
             if (var15 != null) {
                var12.add(var15);
             }
          }
 
-         return w7.aAsObject(var12, this.q, var2 - this.C, this.b, this.anubisRange.getValue(), this.anubisFov.getValue());
+         return WaveEffect.aAsObject(var12, this.q, var2 - this.C, this.b, this.anubisRange.getValue(), this.anubisFov.getValue());
       }
    }
 
@@ -254,7 +254,7 @@ public final class AimAssist extends Module {
       }
    }
 
-   private w7.Type_c<PlayerEntity> nAsW7_Type_c(PlayerEntity var1, float var2, float var3, Vec3d var4) {
+   private WaveEffect.Type_c<PlayerEntity> nAsW7_Type_c(PlayerEntity var1, float var2, float var3, Vec3d var4) {
       if (var1 != null
          && var1 != mc.player
          && var1.isAlive()
@@ -273,21 +273,21 @@ public final class AimAssist extends Module {
             return null;
          } else {
             Vec3d var7 = mc.player.getEyePos();
-            double var8 = var7.distanceTo(w7.gAsVec3d(var7, var1.getBoundingBox()));
+            double var8 = var7.distanceTo(WaveEffect.gAsVec3d(var7, var1.getBoundingBox()));
             if (var8 > this.anubisRange.getValue() + 0.5) {
                return null;
             } else {
-               Box var10 = w7.YAsBox(var1.getBoundingBox());
-               float[] var11 = w7.AAsFloatArray(var7, var4, var10, this.anubisRange.getValue());
-               double var12 = w7.oAsDouble(var2, var3, var11);
+               Box var10 = WaveEffect.YAsBox(var1.getBoundingBox());
+               float[] var11 = WaveEffect.AAsFloatArray(var7, var4, var10, this.anubisRange.getValue());
+               double var12 = WaveEffect.oAsDouble(var2, var3, var11);
                if (var12 > this.anubisFov.getValue() / 2.0 * 1.3) {
                   return null;
                } else {
-                  Vec3d var14 = w7.JAsVec3d(var7, var4, var10, this.anubisRange.getValue());
+                  Vec3d var14 = WaveEffect.JAsVec3d(var7, var4, var10, this.anubisRange.getValue());
                   BlockHitResult var15 = mc.world.raycast(new RaycastContext(var7, var14, ShapeType.COLLIDER, FluidHandling.NONE, mc.player));
                   return var15.getType() != Type.MISS && var15.getPos().squaredDistanceTo(var7) < var14.squaredDistanceTo(var7) - 0.001
                      ? null
-                     : new w7.Type_c<>(var1, var8, var12);
+                     : new WaveEffect.Type_c<>(var1, var8, var12);
                }
             }
          }

@@ -18,11 +18,11 @@ import net.minecraft.text.OrderedText;
 
 public final class AccountPopupController {
    static final UUID D = new UUID(0L, 0L);
-   private static final int AuctionNotifier = -2;
+   private static final int o = -2;
    private static final int L = 20;
    private final Screen O;
-   private final MicrosoftAccounts ChatPayParser = MicrosoftAccounts.INSTANCE;
-   private final w2 S = new w2(0.0);
+   private final MicrosoftAccounts g = MicrosoftAccounts.INSTANCE;
+   private final WeatherRenderer S = new WeatherRenderer(0.0);
    private final TextInputWidget k;
    private final TextInputWidget j;
    private final TextInputWidget Z;
@@ -38,7 +38,7 @@ public final class AccountPopupController {
    private int U;
    private int A;
    private int f;
-   private int BloomUtility = Integer.MIN_VALUE;
+   private int b = Integer.MIN_VALUE;
    private int c;
    private String N = "";
    private UUID q;
@@ -578,8 +578,8 @@ public final class AccountPopupController {
             MenuLayout.Type_c var14 = var6.panel();
             String var15 = this.eAsString(var4);
             var1.createNewRootLayer();
-            GuiDrawing.CAsVoid(var1, var14.x(), var14.y(), var14.width(), var14.height(), 5, bg.pAsInt(-99347436, var12));
-            GuiDrawing.wAsVoid(var1, var14.x(), var14.y(), var14.width(), var14.height(), 5, bg.pAsInt(-13290187, var12));
+            GuiDrawing.CAsVoid(var1, var14.x(), var14.y(), var14.width(), var14.height(), 5, ColorUtil.pAsInt(-99347436, var12));
+            GuiDrawing.wAsVoid(var1, var14.x(), var14.y(), var14.width(), var14.height(), 5, ColorUtil.pAsInt(-13290187, var12));
             var1.enableScissor(var14.x(), var14.y(), var14.x() + var14.width(), var14.y() + var14.height());
 
             try {
@@ -591,7 +591,7 @@ public final class AccountPopupController {
                      int var20 = var35;
                      int var21 = var19 != 0 && var34.stream().anyMatch(var1x -> var1x.line() == var20) ? 1 : 0;
                      if (var19 != 0) {
-                        GuiDrawing.CAsVoid(var1, var41.x(), var41.y(), var41.width(), var41.height(), 3, bg.pAsInt(-14342875, var12));
+                        GuiDrawing.CAsVoid(var1, var41.x(), var41.y(), var41.width(), var41.height(), 3, ColorUtil.pAsInt(-14342875, var12));
                      }
 
                      String var22 = var38.current() ? (var4 == AccountPopupController.Type_m.PROXIES ? "Active" : "Current") : var38.note();
@@ -609,7 +609,7 @@ public final class AccountPopupController {
                         TextDrawing.LAsString(var38.name(), var41.width() - var23),
                         var41.x() + 8,
                         var41.y() + 11,
-                        bg.pAsInt(var38.current() ? bd.u : bd.e, var12),
+                        ColorUtil.pAsInt(var38.current() ? UiStyle.u : UiStyle.e, var12),
                         var38.current() ? TextDrawing.Type_x.MEDIUM : TextDrawing.Type_x.REGULAR
                      );
                      if (!var22.isEmpty() && var21 == 0) {
@@ -618,7 +618,7 @@ public final class AccountPopupController {
                            var22,
                            var41.x() + var41.width() - 8 - TextDrawing.nAsInt(var22),
                            var41.y() + 11,
-                           bg.pAsInt("Expired".equals(var22) ? -24915 : bd.W, var12)
+                           ColorUtil.pAsInt("Expired".equals(var22) ? -24915 : UiStyle.W, var12)
                         );
                      }
                   }
@@ -627,7 +627,7 @@ public final class AccountPopupController {
                      int var36 = var6.capacity() * 32;
                      int var39 = Math.max(8, var36 * var6.capacity() / var5.size());
                      int var42 = (var36 - var39) * this.a / (var5.size() - var6.capacity());
-                     GuiTextureDrawing.CAsVoid(var1, var14.x() + var14.width() - 3, var14.y() + 6 + var42, 1, var39, bg.pAsInt(bd.e, var12));
+                     GuiTextureDrawing.CAsVoid(var1, var14.x() + var14.width() - 3, var14.y() + 6 + var42, 1, var39, ColorUtil.pAsInt(UiStyle.e, var12));
                   }
 
                   if (var6.statusHeight() > 0) {
@@ -638,20 +638,20 @@ public final class AccountPopupController {
                         var6.footer().y() - var6.statusHeight() + 1,
                         var14.width() - 20,
                         2,
-                        this.pAsBoolean(var4) ? -24915 : bd.W,
+                        this.pAsBoolean(var4) ? -24915 : UiStyle.W,
                         var12
                      );
                   }
 
-                  GuiTextureDrawing.CAsVoid(var1, var14.x() + 6, var6.footer().y() - 3, var14.width() - 12, 1, bg.pAsInt(-13619152, var12));
+                  GuiTextureDrawing.CAsVoid(var1, var14.x() + 6, var6.footer().y() - 3, var14.width() - 12, 1, ColorUtil.pAsInt(-13619152, var12));
                } else if (!TAsBoolean(var4)) {
                   if (var4 == AccountPopupController.Type_m.CODE) {
-                     ZAsVoid(var1, "Microsoft sign-in", var14.x() + 10, var14.y() + 12, var14.width() - 20, 1, bd.u, var12);
-                     ZAsVoid(var1, "microsoft.com/link", var14.x() + 10, var14.y() + 30, var14.width() - 20, 1, bd.e, var12);
-                     TextDrawing.uAsVoid(var1, this.g.code(), var14.x() + var14.width() / 2, var14.y() + 49, bg.pAsInt(bd.u, var12));
-                     ZAsVoid(var1, "Approve only the code shown here.", var14.x() + 10, var14.y() + 69, var14.width() - 20, 2, bd.e, var12);
+                     ZAsVoid(var1, "Microsoft sign-in", var14.x() + 10, var14.y() + 12, var14.width() - 20, 1, UiStyle.u, var12);
+                     ZAsVoid(var1, "microsoft.com/link", var14.x() + 10, var14.y() + 30, var14.width() - 20, 1, UiStyle.e, var12);
+                     TextDrawing.uAsVoid(var1, this.g.code(), var14.x() + var14.width() / 2, var14.y() + 49, ColorUtil.pAsInt(UiStyle.u, var12));
+                     ZAsVoid(var1, "Approve only the code shown here.", var14.x() + 10, var14.y() + 69, var14.width() - 20, 2, UiStyle.e, var12);
                   } else if (var4 == AccountPopupController.Type_m.RESET) {
-                     ZAsVoid(var1, "Start PetEffectRenderer new saved list?", var14.x() + 10, var14.y() + 12, var14.width() - 20, 1, bd.u, var12);
+                     ZAsVoid(var1, "Start a new saved list?", var14.x() + 10, var14.y() + 12, var14.width() - 20, 1, UiStyle.u, var12);
                      ZAsVoid(
                         var1,
                         "The old encrypted file will be kept for recovery. Add your accounts again.",
@@ -659,7 +659,7 @@ public final class AccountPopupController {
                         var14.y() + 34,
                         var14.width() - 20,
                         3,
-                        bd.e,
+                        UiStyle.e,
                         var12
                      );
                   } else {
@@ -670,7 +670,7 @@ public final class AccountPopupController {
                         var14.y() + 12,
                         var14.width() - 20,
                         Math.max(1, (var6.footer().y() - var14.y() - (var4 == AccountPopupController.Type_m.UNAVAILABLE ? 46 : 18)) / 10),
-                        this.g.error() ? -24915 : bd.e,
+                        this.g.error() ? -24915 : UiStyle.e,
                         var12
                      );
                   }
@@ -679,23 +679,23 @@ public final class AccountPopupController {
                   int var16 = var4 == AccountPopupController.Type_m.TOKEN ? 1 : 0;
                   ZAsVoid(
                      var1,
-                     var16 != 0 ? "Sign in with PetEffectRenderer token" : "Add PetEffectRenderer proxy for server traffic",
+                     var16 != 0 ? "Sign in with a token" : "Add a proxy for server traffic",
                      var14.x() + 10,
                      var14.y() + 10,
                      var14.width() - 20,
                      1,
-                     bd.u,
+                     UiStyle.u,
                      var12
                   );
                   if (var16 != 0) {
                      ZAsVoid(
                         var1,
-                        "Paste PetEffectRenderer Minecraft access token. It is checked with Minecraft and saved encrypted until it expires.",
+                        "Paste a Minecraft access token. It is checked with Minecraft and saved encrypted until it expires.",
                         var14.x() + 10,
                         var14.y() + 24,
                         var14.width() - 20,
                         2,
-                        bd.e,
+                        UiStyle.e,
                         var12
                      );
                   }
@@ -707,10 +707,10 @@ public final class AccountPopupController {
                   }
 
                   if (!var15.isBlank()) {
-                     ZAsVoid(var1, var15, var14.x() + 10, var6.footer().y() - 4 - 20, var14.width() - 20, 2, this.pAsBoolean(var4) ? -24915 : bd.W, var12);
+                     ZAsVoid(var1, var15, var14.x() + 10, var6.footer().y() - 4 - 20, var14.width() - 20, 2, this.pAsBoolean(var4) ? -24915 : UiStyle.W, var12);
                   }
 
-                  GuiTextureDrawing.CAsVoid(var1, var14.x() + 6, var6.footer().y() - 3, var14.width() - 12, 1, bg.pAsInt(-13619152, var12));
+                  GuiTextureDrawing.CAsVoid(var1, var14.x() + 6, var6.footer().y() - 3, var14.width() - 12, 1, ColorUtil.pAsInt(-13619152, var12));
                }
 
                for (int var37 = 0; var37 < var34.size(); var37++) {
@@ -720,12 +720,12 @@ public final class AccountPopupController {
                   int var45 = !this.T && WAsBoolean(var43, (double)var2, (double)var3) ? 1 : 0;
                   if (var40.selected() || var44 != 0 || var45 != 0) {
                      GuiDrawing.CAsVoid(
-                        var1, var43.x(), var43.y(), var43.width(), var43.height(), 3, bg.pAsInt(var40.selected() ? -13882324 : -13421773, var12)
+                        var1, var43.x(), var43.y(), var43.width(), var43.height(), 3, ColorUtil.pAsInt(var40.selected() ? -13882324 : -13421773, var12)
                      );
                   }
 
                   if (var44 != 0) {
-                     GuiDrawing.wAsVoid(var1, var43.x(), var43.y(), var43.width(), var43.height(), 3, bg.pAsInt(bd.e, var12));
+                     GuiDrawing.wAsVoid(var1, var43.x(), var43.y(), var43.width(), var43.height(), 3, ColorUtil.pAsInt(UiStyle.e, var12));
                   }
 
                   int var46 = TextDrawing.nAsInt(var40.label());
@@ -744,7 +744,7 @@ public final class AccountPopupController {
                         var40.label(),
                         0,
                         0,
-                        bg.pAsInt(var40.destructive() ? -24915 : (!var40.selected() && var45 == 0 && var44 == 0 ? bd.e : bd.u), var12)
+                        ColorUtil.pAsInt(var40.destructive() ? -24915 : (!var40.selected() && var45 == 0 && var44 == 0 ? UiStyle.e : UiStyle.u), var12)
                      );
                   } finally {
                      var1.getMatrices().popMatrix();
@@ -790,7 +790,7 @@ public final class AccountPopupController {
       List var10 = var9.textRenderer.wrapLines(TextDrawing.ZAsText(var1, TextDrawing.Type_x.REGULAR), var4);
 
       for (int var11 = 0; var11 < Math.min(var5, var10.size()); var11++) {
-         var0.drawText(var9.textRenderer, (OrderedText)var10.get(var11), var2, var3 + var11 * 10, bg.pAsInt(var6, var7), false);
+         var0.drawText(var9.textRenderer, (OrderedText)var10.get(var11), var2, var3 + var11 * 10, ColorUtil.pAsInt(var6, var7), false);
       }
    }
 

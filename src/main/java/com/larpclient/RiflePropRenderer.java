@@ -18,7 +18,7 @@ import org.joml.Matrix3f;
 import org.joml.Vector3f;
 
 public final class RiflePropRenderer {
-   private static final Identifier MenuPopupProvider = zAsIdentifier("models/emotes/ak47/mesh.bin");
+   private static final Identifier f = zAsIdentifier("models/emotes/ak47/mesh.bin");
    private static final Identifier Y = zAsIdentifier("models/emotes/ak47/albedo.png");
    private static final int R = 15728880;
    private static float[] y;
@@ -33,7 +33,7 @@ public final class RiflePropRenderer {
    }
 
    public static boolean vAsBoolean(PlayerEntityModel var0, PlayerEntityRenderState var1, MatrixStack var2, OrderedRenderCommandQueue var3, int var4) {
-      o6 var5 = (o6)var1;
+      OptionPanel var5 = (OptionPanel)var1;
       float var6 = var5.larp$emoteWeight();
       if (!(var6 <= 0.0F) && "ak47".equals(var5.larp$emoteProp())) {
          PlayerModel var7 = PlayerModel.hAsPlayerModel();
@@ -64,7 +64,7 @@ public final class RiflePropRenderer {
                   );
                   float[] var13 = y;
                   var3.submitCustom(var2, RenderLayers.entitySolid(Y), (var2x, var3x) -> DAsVoid(var13, var2x, var3x, var4));
-                  op.YAsVoid("Rifle quads", (long)(var13.length / 8 / 4));
+                  OpenScreen.YAsVoid("Rifle quads", (long)(var13.length / 8 / 4));
                   if (var12 != 0 && var6 >= 0.999F) {
                      MAsVoid(var2, var3, var4, var5.larp$emoteCycle());
                   }
@@ -113,21 +113,21 @@ public final class RiflePropRenderer {
    private static boolean rAsBoolean() {
       if (J == (long)BloomQuality.J) {
          return false;
-      } else if (ScreenScale != null && D == (long)BloomQuality.J) {
+      } else if (y != null && D == (long)BloomQuality.J) {
          return true;
       } else {
          try {
             try (InputStream var0 = MinecraftClient.getInstance().getResourceManager().getResourceOrThrow(f).getInputStream()) {
                MinecraftClient.getInstance().getResourceManager().getResourceOrThrow(Y);
-               ScreenScale = RifleMeshConstraints.FAsFloatArray(PropMeshReader.dAsNj_Type_a(var0));
+               y = RifleMeshConstraints.FAsFloatArray(PropMeshReader.dAsNj_Type_a(var0));
                D = (long)BloomQuality.J;
-               ClientLog.GAsVoid("Emotes", "Rifle ready: {} quads, resource generation {}", ScreenScale.length / 8 / 4, D);
+               ClientLog.GAsVoid("Emotes", "Rifle ready: {} quads, resource generation {}", y.length / 8 / 4, D);
             }
 
             return true;
          } catch (RuntimeException | IOException var51) {
             J = (long)BloomQuality.J;
-            ScreenScale = null;
+            y = null;
             ClientLog.lAsVoid("Emotes", "Rifle model unavailable; AK Spray shows held items until resource reload", var51);
             return false;
          }

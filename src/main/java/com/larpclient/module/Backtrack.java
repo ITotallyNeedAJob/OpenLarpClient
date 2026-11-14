@@ -71,7 +71,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.debug.gizmo.GizmoDrawing;
 
-public final class Backtrack extends Module implements qn {
+public final class Backtrack extends Module implements QueueNode {
    private static Backtrack D;
    private static final int y = 65536;
    private static final long z = System.nanoTime();
@@ -939,7 +939,7 @@ public final class Backtrack extends Module implements qn {
       this.W6 = new Vec3d((var1.minX + var1.maxX) / 2.0, var1.minY, (var1.minZ + var1.maxZ) / 2.0);
       this.W9 = Math.max(var1.getLengthX(), var1.getLengthZ()) / 2.0;
       this.W_ = var1.getLengthY();
-      this.Wv = mb.RAsDouble();
+      this.Wv = MediaSession.RAsDouble();
    }
 
    @Override
@@ -978,8 +978,8 @@ public final class Backtrack extends Module implements qn {
          this.WO = null;
          this.j.rAsVoid();
          if (this.isInGame() && !this.esp.pAsBoolean("None")) {
-            double var3 = mb.RAsDouble();
-            double var5 = mb.YAsDouble();
+            double var3 = MediaSession.RAsDouble();
+            double var5 = MediaSession.YAsDouble();
             this.r = this.bloom.getValue();
             this.m = this.color.getValue();
             this.i = this.gradient.getValue();
@@ -1001,7 +1001,7 @@ public final class Backtrack extends Module implements qn {
                this.f = var7.getLengthY();
                this.k = this.k + ((double)(this.R.NAsInt() + this.u.size() > 0 ? 1 : 0) - this.k) * (1.0 - Math.exp(-var5 * 10.0));
                Vec3d var10 = this.C.getLerpedPos(var1);
-               this.Ww = ay.RAsDouble((var10.distanceTo(this.c) - 0.05) / 0.45);
+               this.Ww = FadeCurve.RAsDouble((var10.distanceTo(this.c) - 0.05) / 0.45);
                if (this.ghostModel.getValue() && this.Ww > 0.01) {
                   EntityRenderState var11 = CosmeticSubmissionHandler.oAsEntityRenderState(this.C, var1);
                   var11.x = this.c.x;
@@ -1027,12 +1027,12 @@ public final class Backtrack extends Module implements qn {
                   for (int var15 = 0; var15 <= 24; var15++) {
                      double var16 = (double)var15 / 24.0;
                      double var18 = Math.pow(0.5 + 0.5 * Math.cos((var16 * 2.5 - var3 * 1.6) * Math.PI * 2.0), 6.0);
-                     double var20 = ay.RAsDouble(var16 / 0.12) * ay.RAsDouble((1.0 - var16) / 0.12);
+                     double var20 = FadeCurve.RAsDouble(var16 / 0.12) * FadeCurve.RAsDouble((1.0 - var16) / 0.12);
                      this.j
                         .bAsVoid(
                            var22.lerp(var23, var16).add(0.0, Math.sin(Math.PI * var16) * var13, 0.0),
                            0.03 * (1.0 + 0.7 * var18) * (0.35 + 0.65 * var20),
-                           bg.pAsInt(bg.xAsInt(this.m, this.i, var16), this.Ww * (0.3 + 0.7 * var18))
+                           ColorUtil.pAsInt(ColorUtil.xAsInt(this.m, this.i, var16), this.Ww * (0.3 + 0.7 * var18))
                         );
                   }
 
@@ -1050,16 +1050,16 @@ public final class Backtrack extends Module implements qn {
    @Override
    public void render(EffectGeometryRenderer var1, boolean var2) {
       if (this.isEnabled() && this.WC && (!var2 || this.r)) {
-         long var3 = op.RAsLong();
-         double var5 = mb.RAsDouble();
+         long var3 = OpenScreen.RAsLong();
+         double var5 = MediaSession.RAsDouble();
          if (this.c != null) {
             double var7 = 0.65 + 0.35 * this.k;
             Box var9 = new Box(this.c.x - this.T, this.c.y, this.c.z - this.I, this.c.x + this.T, this.c.y + this.f, this.c.z + this.I).expand(0.03);
             if (this.WO != null) {
-               var1.SAsVoid(this.WO, CosmeticSubmissionHandler.Type_n.HOLOGRAM, bg.xAsInt(this.m, this.i, 0.4), 0.55 * this.Ww * (var2 ? 0.5 : 1.0));
+               var1.SAsVoid(this.WO, CosmeticSubmissionHandler.Type_n.HOLOGRAM, ColorUtil.xAsInt(this.m, this.i, 0.4), 0.55 * this.Ww * (var2 ? 0.5 : 1.0));
             }
 
-            var1.blend(x4.Type_g.ADDITIVE);
+            var1.blend(EffectRenderParams.Type_g.ADDITIVE);
             if (!this.esp.pAsBoolean("Fill")) {
                this.yAsVoid(var1, var9, var5, var7);
             }
@@ -1074,19 +1074,19 @@ public final class Backtrack extends Module implements qn {
                var1.hAsVoid(this.j, true);
             }
 
-            var1.blend(x4.Type_g.ALPHA);
+            var1.blend(EffectRenderParams.Type_g.ALPHA);
             if (!var2 && !this.esp.pAsBoolean("Wireframe")) {
                this.fAsVoid(var1, var9, var7);
             }
          }
 
          if (this.t >= 0.0) {
-            var1.blend(x4.Type_g.ADDITIVE);
+            var1.blend(EffectRenderParams.Type_g.ADDITIVE);
             this.kAsVoid(var1, this.t);
-            var1.blend(x4.Type_g.ALPHA);
+            var1.blend(EffectRenderParams.Type_g.ALPHA);
          }
 
-         op.aAsVoid("Backtrack ESP", var3);
+         OpenScreen.aAsVoid("Backtrack ESP", var3);
       }
    }
 
@@ -1124,8 +1124,8 @@ public final class Backtrack extends Module implements qn {
       double var8 = Math.clamp((var3.y - var1.minY) / Math.max(1.0E-6, var1.getLengthY()), 0.0, 1.0);
       double var10 = Math.atan2(var3.z - var2.z, var3.x - var2.x);
       double var12 = Math.pow(0.5 + 0.5 * Math.cos(var10 * 2.0 + var8 * 4.0 - var4 * 3.2), 10.0);
-      int var14 = bg.xAsInt(this.m, this.i, var8);
-      return bg.pAsInt(bg.xAsInt(var14, var14 | 16777215, var12 * 0.6), var6 * (0.6 + 0.4 * var12));
+      int var14 = ColorUtil.xAsInt(this.m, this.i, var8);
+      return ColorUtil.pAsInt(ColorUtil.xAsInt(var14, var14 | 16777215, var12 * 0.6), var6 * (0.6 + 0.4 * var12));
    }
 
    private void wAsVoid(EffectGeometryRenderer var1, Box var2, double var3, double var5) {
@@ -1136,7 +1136,7 @@ public final class Backtrack extends Module implements qn {
       for (int var13 = 0; var13 < 3; var13++) {
          double var14 = Math.clamp(var9 - Math.signum(var11) * (double)var13 * 0.07, 0.0, 1.0);
          double var16 = var13 == 0 ? 0.85 : 0.4 / (double)var13 * Math.abs(var11);
-         int var18 = bg.pAsInt(bg.xAsInt(this.m, this.i, var14), var16 * var5);
+         int var18 = ColorUtil.pAsInt(ColorUtil.xAsInt(this.m, this.i, var14), var16 * var5);
          double var19 = var2.minY + var2.getLengthY() * var14;
          double var21 = var13 == 0 ? 0.04 : 0.025;
          var1.zAsVoid(var2.minX, var19, var2.minZ, var2.maxX, var19, var2.minZ, var21, var21, var18, var18);
@@ -1151,28 +1151,28 @@ public final class Backtrack extends Module implements qn {
       double var8 = Math.max(var2.getLengthX(), var2.getLengthZ()) * 0.75;
       double var10 = var2.minY + 0.02;
       double var12 = var3 / 1.3 - Math.floor(var3 / 1.3);
-      var1.bAsVoid(var7.x, var10, var7.z, var8 * (1.0 + 0.04 * Math.sin(var3 * 3.0)), 0.14, bg.pAsInt(this.i, 0.7 * var5));
-      var1.bAsVoid(var7.x, var10, var7.z, var8 * (1.0 + var12 * 1.1), 0.1, bg.pAsInt(this.m, 0.5 * var5 * (1.0 - var12) * (1.0 - var12)));
+      var1.bAsVoid(var7.x, var10, var7.z, var8 * (1.0 + 0.04 * Math.sin(var3 * 3.0)), 0.14, ColorUtil.pAsInt(this.i, 0.7 * var5));
+      var1.bAsVoid(var7.x, var10, var7.z, var8 * (1.0 + var12 * 1.1), 0.1, ColorUtil.pAsInt(this.m, 0.5 * var5 * (1.0 - var12) * (1.0 - var12)));
    }
 
    private void ZAsVoid(EffectGeometryRenderer var1, Box var2, double var3, double var5, boolean var7) {
       for (int var8 = 0; var8 < 8; var8++) {
          Vec3d var9 = DAsVec3d(var2, var8);
          double var10 = 0.5 + 0.5 * Math.sin(var3 * 4.5 + (double)var8 * 1.9);
-         int var12 = bg.xAsInt((var8 & 2) == 0 ? this.m : this.i, -1, 0.45);
+         int var12 = ColorUtil.xAsInt((var8 & 2) == 0 ? this.m : this.i, -1, 0.45);
          var1.cAsVoid(
-            var9.x, var9.y, var9.z, var7 ? 0.22 : 0.16, 0.0, bg.pAsInt(var12, (var7 ? 0.35 : 0.2) * var5), ParticleEmitterEngine.Type_a.Glow, 0.0, 0.0, 0.0
+            var9.x, var9.y, var9.z, var7 ? 0.22 : 0.16, 0.0, ColorUtil.pAsInt(var12, (var7 ? 0.35 : 0.2) * var5), ParticleEmitterEngine.Type_a.Glow, 0.0, 0.0, 0.0
          );
          if (!var7) {
-            var1.BAsVoid(var9.x, var9.y, var9.z, 0.05 + 0.035 * var10, var3 * 0.8 + (double)var8, bg.pAsInt(var12, var5 * (0.55 + 0.45 * var10)));
+            var1.BAsVoid(var9.x, var9.y, var9.z, 0.05 + 0.035 * var10, var3 * 0.8 + (double)var8, ColorUtil.pAsInt(var12, var5 * (0.55 + 0.45 * var10)));
          }
       }
    }
 
    private void fAsVoid(EffectGeometryRenderer var1, Box var2, double var3) {
       double var5 = this.esp.pAsBoolean("Fill") ? 1.8 : 1.0;
-      int var7 = bg.pAsInt(this.m, 0.16 * var5 * var3);
-      int var8 = bg.pAsInt(this.i, 0.035 * var5 * var3);
+      int var7 = ColorUtil.pAsInt(this.m, 0.16 * var5 * var3);
+      int var8 = ColorUtil.pAsInt(this.i, 0.035 * var5 * var3);
       double[][] var9 = new double[][]{
          {var2.minX, var2.minZ, var2.maxX, var2.minZ},
          {var2.maxX, var2.minZ, var2.maxX, var2.maxZ},
@@ -1199,10 +1199,10 @@ public final class Backtrack extends Module implements qn {
       Vec3d var8 = this.W6;
       double var9 = this.W9 * 1.5 * (1.0 + var4 * 2.2);
       double var11 = var8.y + 0.03;
-      var1.bAsVoid(var8.x, var11, var8.z, var9, 0.05 + 0.22 * (1.0 - var2), bg.pAsInt(this.m, 0.9 * var6));
-      var1.bAsVoid(var8.x, var11, var8.z, var9 * 0.7, 0.12, bg.pAsInt(this.i, 0.6 * var6));
+      var1.bAsVoid(var8.x, var11, var8.z, var9, 0.05 + 0.22 * (1.0 - var2), ColorUtil.pAsInt(this.m, 0.9 * var6));
+      var1.bAsVoid(var8.x, var11, var8.z, var9 * 0.7, 0.12, ColorUtil.pAsInt(this.i, 0.6 * var6));
       Box var13 = new Box(var8.x - this.W9, var8.y, var8.z - this.W9, var8.x + this.W9, var8.y + this.W_, var8.z + this.W9).expand(0.35 * var4);
-      int var14 = bg.pAsInt(bg.xAsInt(this.m, this.i, 0.5), var6 * var6);
+      int var14 = ColorUtil.pAsInt(ColorUtil.xAsInt(this.m, this.i, 0.5), var6 * var6);
 
       for (int[] var18 : G) {
          Vec3d var19 = DAsVec3d(var13, var18[0]);
@@ -1210,7 +1210,7 @@ public final class Backtrack extends Module implements qn {
          var1.zAsVoid(var19.x, var19.y, var19.z, var20.x, var20.y, var20.z, 0.05, 0.05, var14, var14);
       }
 
-      int var23 = bg.pAsInt(bg.xAsInt(this.i, -1, 0.5), var6);
+      int var23 = ColorUtil.pAsInt(ColorUtil.xAsInt(this.i, -1, 0.5), var6);
 
       for (int var24 = 0; var24 < 12; var24++) {
          double var25 = (double)var24 * Math.PI / 6.0 + var2;

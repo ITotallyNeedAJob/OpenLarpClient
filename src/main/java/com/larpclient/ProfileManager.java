@@ -25,14 +25,14 @@ import java.util.stream.Stream;
 import net.fabricmc.loader.api.FabricLoader;
 
 public final class ProfileManager {
-   private static final Gson CropHelper = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+   private static final Gson u = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
    private final Path I;
    private final Path N;
    private final Path t;
    private final PreferenceSaveQueue sf = new PreferenceSaveQueue(ProfileManager::rAsVoid);
    private String n = "Default";
    private String o;
-   private ClientPreferences AuraModule = new ClientPreferences();
+   private ClientPreferences x = new ClientPreferences();
    private final Map<String, JsonObject> H = new HashMap<>();
    private JsonObject A = new JsonObject();
    private JsonObject U = new JsonObject();
@@ -158,7 +158,7 @@ public final class ProfileManager {
             this.x.a = var2;
             return false;
          } else {
-            x9.K = var1;
+            BloomQualityHelper.K = var1;
             return true;
          }
       }
@@ -178,7 +178,7 @@ public final class ProfileManager {
 
    public boolean jAsBoolean() {
       try {
-         this.sf.lAsVoid(this.I.resolve("menu.json"), CropHelper.toJson(this.x.tAsJsonObject()));
+         this.sf.lAsVoid(this.I.resolve("menu.json"), u.toJson(this.x.tAsJsonObject()));
          return true;
       } catch (IOException var2) {
          ClientLog.lAsVoid("Menu", "Could not save local interface preferences", var2);
@@ -187,7 +187,7 @@ public final class ProfileManager {
    }
 
    public void NAsVoid() {
-      this.sf.PAsVoid(this.I.resolve("menu.json"), CropHelper.toJson(this.x.tAsJsonObject()));
+      this.sf.PAsVoid(this.I.resolve("menu.json"), u.toJson(this.x.tAsJsonObject()));
    }
 
    public void QAsVoid() {
@@ -451,7 +451,7 @@ public final class ProfileManager {
       }
 
       SoftParticlePipeline.S = this.x.O;
-      x9.K = this.x.a;
+      BloomQualityHelper.K = this.x.a;
       this.IAsVoid(xAsList());
    }
 
@@ -545,7 +545,7 @@ public final class ProfileManager {
       Path var5 = this.VAsPath(var1);
       if (!Files.isSymbolicLink(this.N) && !Files.isSymbolicLink(var5)) {
          if (Files.exists(var5, LinkOption.NOFOLLOW_LINKS) && !var3) {
-            throw new FileAlreadyExistsException("Choose PetEffectRenderer new profile name or explicitly confirm replacement.");
+            throw new FileAlreadyExistsException("Choose a new profile name or explicitly confirm replacement.");
          } else {
             String var6 = BAsString(var2);
             if (var3) {
@@ -575,7 +575,7 @@ public final class ProfileManager {
 
    private static String BAsString(JsonObject var0) {
       ProfileCodec.FAsJsonObject(var0);
-      String var1 = CropHelper.toJson(var0);
+      String var1 = u.toJson(var0);
       return var1.getBytes(StandardCharsets.UTF_8).length <= 131072 ? var1 : var0.toString();
    }
 
@@ -611,7 +611,7 @@ public final class ProfileManager {
          JsonObject var7 = new JsonObject();
 
          for (Setting var9 : var5.getSettings()) {
-            var7.add(var9.getName(), CropHelper.toJsonTree(var9.getValue()));
+            var7.add(var9.getName(), u.toJsonTree(var9.getValue()));
          }
 
          var6.add("settings", var7);

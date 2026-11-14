@@ -19,6 +19,6 @@ public class PlayerListEntryMixin {
       cancellable = true
    )
    private void larpclient$injectHandler(CallbackInfoReturnable<SkinTextures> var1) {
-      var1.setReturnValue(ml.HAsSkinTextures(((PlayerListEntry)(Object)this).getProfile().id(), (SkinTextures)var1.getReturnValue()));
+      var1.setReturnValue(ModuleList.HAsSkinTextures(((PlayerListEntry)(Object)this).getProfile().id(), (SkinTextures)var1.getReturnValue()));
    }
 }

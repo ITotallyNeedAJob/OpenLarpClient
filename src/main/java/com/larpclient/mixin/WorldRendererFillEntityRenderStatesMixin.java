@@ -34,7 +34,7 @@ public abstract class WorldRendererFillEntityRenderStatesMixin {
    private boolean larpclient$wrapOperationV(
       EntityRenderManager var1, Entity var2, Frustum var3, double var4, double var6, double var8, Operation<Boolean> var10
    ) {
-      return (!p5.oAsBoolean() || Freecam.bAsBoolean() || var2 != MinecraftClient.getInstance().player)
+      return (!ParticleEmitter.oAsBoolean() || Freecam.bAsBoolean() || var2 != MinecraftClient.getInstance().player)
          && (Boolean)var10.call(new Object[]{var1, var2, var3, var4, var6, var8});
    }
 
@@ -46,7 +46,7 @@ public abstract class WorldRendererFillEntityRenderStatesMixin {
       )}
    )
    private boolean larpclient$redirectV(WorldRenderer var1, BlockPos var2) {
-      return p5.oAsBoolean() || var1.isRenderingReady(var2);
+      return ParticleEmitter.oAsBoolean() || var1.isRenderingReady(var2);
    }
 
    @WrapOperation(
@@ -57,7 +57,7 @@ public abstract class WorldRendererFillEntityRenderStatesMixin {
       )}
    )
    private void larpclient$wrapOperationZV(WorldRenderer var1, Camera var2, Frustum var3, boolean var4, Operation<Void> var5) {
-      boolean var6 = p5.oAsBoolean();
+      boolean var6 = ParticleEmitter.oAsBoolean();
       if (var6 != this.H) {
          var1.scheduleTerrainUpdate();
       }

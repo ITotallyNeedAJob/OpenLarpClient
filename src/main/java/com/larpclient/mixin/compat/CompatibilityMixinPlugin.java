@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 public final class CompatibilityMixinPlugin implements IMixinConfigPlugin {
-   private static final String DropletTrail = "com.larpclient.mixin.compat.BasePreviewRendererMixin";
+   private static final String l = "com.larpclient.mixin.compat.BasePreviewRendererMixin";
    private static final String J = "com.larpclient.mixin.compat.sodium.LevelSliceMixin";
 
    public CompatibilityMixinPlugin() {

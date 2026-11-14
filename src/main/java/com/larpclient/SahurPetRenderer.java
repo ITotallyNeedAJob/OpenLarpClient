@@ -20,12 +20,12 @@ import org.joml.Matrix4f;
 import org.joml.Quaternionfc;
 
 public final class SahurPetRenderer {
-   public static final String ScreenScale = "Tung Tung Tung Sahur";
+   public static final String y = "Tung Tung Tung Sahur";
    private static final Identifier X = Identifier.of("larp-client", "models/pets/sahur/mesh.bin");
    private static final RenderLayer K = QAsRenderLayer(false);
-   private static final RenderLayer PriceDetector = QAsRenderLayer(true);
+   private static final RenderLayer m = QAsRenderLayer(true);
    private static SahurMeshReader.Type_u g;
-   private static long SmoothInput = -1L;
+   private static long t = -1L;
    private static long N = -1L;
 
    private static RenderLayer QAsRenderLayer(boolean var0) {
@@ -48,7 +48,7 @@ public final class SahurPetRenderer {
    }
 
    public static boolean SAsBoolean() {
-      return ChatPayParser != null && SmoothInput == (long)BloomQuality.J;
+      return g != null && t == (long)BloomQuality.J;
    }
 
    public static SahurMeshReader.Type_u TAsAo_Type_u() {
@@ -60,15 +60,15 @@ public final class SahurPetRenderer {
    }
 
    public static void bAsVoid() {
-      if (ChatPayParser == null || SmoothInput != (long)BloomQuality.J) {
-         ChatPayParser = null;
+      if (g == null || t != (long)BloomQuality.J) {
+         g = null;
 
          try (InputStream var0 = MinecraftClient.getInstance().getResourceManager().getResourceOrThrow(X).getInputStream()) {
             SahurMeshReader.Type_u var1 = SahurMeshReader.sAsAo_Type_u(var0);
             WorldLabelLayout.DAsVoid(K.getRenderPipeline());
-            ChatPayParser = var1;
-            SmoothInput = (long)BloomQuality.J;
-            ClientLog.XAsVoid("Sahur", "Static mesh ready: {} triangles, resource generation {}", ChatPayParser.triangles(), t);
+            g = var1;
+            t = (long)BloomQuality.J;
+            ClientLog.XAsVoid("Sahur", "Static mesh ready: {} triangles, resource generation {}", g.triangles(), t);
          } catch (IOException var51) {
             throw new IllegalStateException("Sahur asset load failed; reload resources to retry", var51);
          }
@@ -78,23 +78,23 @@ public final class SahurPetRenderer {
    public static void OAsVoid() {
       bAsVoid();
       if (N != (long)BloomQuality.J) {
-         WorldLabelLayout.DAsVoid(PriceDetector.getRenderPipeline());
+         WorldLabelLayout.DAsVoid(m.getRenderPipeline());
          N = (long)BloomQuality.J;
       }
    }
 
    public static void AAsVoid(EffectGeometryRenderer var0, Vec3d var1, Quaternionfc var2, float var3) {
       if (SAsBoolean()) {
-         var0.oAsVoid(K, var1, var2, var3, ChatPayParser.vertices(), ChatPayParser.colors());
-         op.FAsVoid("Sahur triangles", (long)ChatPayParser.triangles());
+         var0.oAsVoid(K, var1, var2, var3, g.vertices(), g.colors());
+         OpenScreen.FAsVoid("Sahur triangles", (long)g.triangles());
       }
    }
 
    public static void JAsVoid(MatrixStack var0, EffectDrawBuffers var1, Matrix4f var2) {
       if (SAsBoolean()) {
          Matrix4f var3 = new Matrix4f(var0.peek().getPositionMatrix()).mul(var2);
-         EffectGeometryRenderer.GAsVoid(var1, K, var3, ChatPayParser.vertices(), ChatPayParser.colors());
-         op.FAsVoid("Sahur triangles", (long)ChatPayParser.triangles());
+         EffectGeometryRenderer.GAsVoid(var1, K, var3, g.vertices(), g.colors());
+         OpenScreen.FAsVoid("Sahur triangles", (long)g.triangles());
       }
    }
 
@@ -102,7 +102,7 @@ public final class SahurPetRenderer {
       if (SAsBoolean()) {
          Matrix4f var5 = new Matrix4f(var0.peek().getPositionMatrix()).mul(var2);
          EffectGeometryRenderer.GAsVoid(var1, K, var5, var3, var4);
-         op.FAsVoid("Sahur triangles", (long)(var4.length / 3));
+         OpenScreen.FAsVoid("Sahur triangles", (long)(var4.length / 3));
       }
    }
 
@@ -113,10 +113,10 @@ public final class SahurPetRenderer {
 
          for (int var9 = 0; var9 < var4.length; var9++) {
             int var10 = var9 * 5;
-            var8.vertex(var7, var3[var10], var3[var10 + 1], var3[var10 + 2]).texture(var3[var10 + 3], var3[var10 + 4]).color(bg.pAsInt(var4[var9], var5));
+            var8.vertex(var7, var3[var10], var3[var10 + 1], var3[var10 + 2]).texture(var3[var10 + 3], var3[var10 + 4]).color(ColorUtil.pAsInt(var4[var9], var5));
          }
 
-         op.FAsVoid("Sahur triangles", (long)(var4.length / 3));
+         OpenScreen.FAsVoid("Sahur triangles", (long)(var4.length / 3));
       }
    }
 

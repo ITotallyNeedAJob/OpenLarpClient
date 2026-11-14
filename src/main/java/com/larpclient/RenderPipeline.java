@@ -4,7 +4,7 @@ import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix4f;
 
 public interface RenderPipeline {
-   void blend(x4.Type_g var1);
+   void blend(EffectRenderParams.Type_g var1);
 
    default void solid(boolean var1) {
    }

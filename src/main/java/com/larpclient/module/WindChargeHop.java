@@ -52,13 +52,13 @@ public final class WindChargeHop extends Module {
       )
    );
    private final BooleanSetting swapBack = this.addSetting(new BooleanSetting("Swap Back", "Return to your previous hotbar slot after the throw", true));
-   private final pg i = new pg(this);
+   private final ParticleGeometry i = new ParticleGeometry(this);
    private static final Map<String, Integer> n = new HashMap<>();
    private WindChargeHop.Type_y g = WindChargeHop.Type_y.IDLE;
    private boolean q;
    private ClientPlayerEntity J;
    private ClientWorld d;
-   private b6.Type_y k;
+   private BurstEffect.Type_y k;
    private long w;
    private long R = Long.MIN_VALUE;
    private int X;
@@ -144,7 +144,7 @@ public final class WindChargeHop extends Module {
                this.jAsVoid(var2);
             } else {
                this.AAsVoid();
-               b_.UAsVoid(this, this::jAsVoid, () -> this.g == WindChargeHop.Type_y.THROW && this.UAsString() == null && this.DAsBoolean());
+               ModuleImportBroker.UAsVoid(this, this::jAsVoid, () -> this.g == WindChargeHop.Type_y.THROW && this.UAsString() == null && this.DAsBoolean());
                if (++this.E > 10) {
                   this.jAsVoid("The throw could not go out");
                }
@@ -167,7 +167,7 @@ public final class WindChargeHop extends Module {
          float var3 = this.FAsFloatArray()[0];
          int var4 = !this.jump.pAsBoolean("Off") && var2.isOnGround() ? 1 : 0;
          int var5 = this.jump.pAsBoolean("With Throw") && var4 != 0 ? 1 : 0;
-         this.k = b6.rAsB6_Type_y(
+         this.k = BurstEffect.rAsB6_Type_y(
             var2.getEntityPos(),
             (double)var2.getStandingEyeHeight(),
             var2.getVelocity(),
@@ -197,21 +197,21 @@ public final class WindChargeHop extends Module {
                var4 != 0 ? this.jump.getValue() : "none"
             );
             this.AAsVoid();
-            b_.UAsVoid(this, this::jAsVoid, () -> this.g == WindChargeHop.Type_y.THROW && this.UAsString() == null && this.DAsBoolean());
+            ModuleImportBroker.UAsVoid(this, this::jAsVoid, () -> this.g == WindChargeHop.Type_y.THROW && this.UAsString() == null && this.DAsBoolean());
          }
       }
    }
 
-   private b6.Type_k lAsB6_Type_k(Vec3d var1, Vec3d var2) {
+   private BurstEffect.Type_k lAsB6_Type_k(Vec3d var1, Vec3d var2) {
       BlockHitResult var3 = this.d.raycast(new RaycastContext(var1, var2, ShapeType.COLLIDER, FluidHandling.NONE, this.J));
-      return var3.getType() == Type.MISS ? null : new b6.Type_k(var3.getPos(), Vec3d.of(var3.getSide().getVector()));
+      return var3.getType() == Type.MISS ? null : new BurstEffect.Type_k(var3.getPos(), Vec3d.of(var3.getSide().getVector()));
    }
 
    private void AAsVoid() {
-      if (b_.nAsBoolean(this)) {
-         p5.jAsVoid(p5.Type_u.WINDHOP);
-         if (p5.NAsP5_Type_u() == p5.Type_u.WINDHOP) {
-            dq.RAsVoid(this, dq.Type_s.WINDHOP, this.k.yaw(), this.k.pitch(), 1.0);
+      if (ModuleImportBroker.nAsBoolean(this)) {
+         ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.WINDHOP);
+         if (ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.WINDHOP) {
+            ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.WINDHOP, this.k.yaw(), this.k.pitch(), 1.0);
          }
       }
    }
@@ -243,7 +243,7 @@ public final class WindChargeHop extends Module {
             this.B = 40;
             String var4 = this.HAsString();
             int var5 = n.getOrDefault(var4, 0);
-            this.X = b6.DAsInt(this.k.ticks(), this.aAsInt(), var5);
+            this.X = BurstEffect.DAsInt(this.k.ticks(), this.aAsInt(), var5);
             if (this.jump.pAsBoolean("Timed") && var2 != 0 && this.X > 0) {
                this.g = WindChargeHop.Type_y.JUMP;
                this.Y = "Wind charge thrown; jump in " + this.X + " ticks";
@@ -303,11 +303,11 @@ public final class WindChargeHop extends Module {
    }
 
    private String UAsString() {
-      if (!b_.jAsBoolean() || mc.currentScreen != null) {
+      if (!ModuleImportBroker.jAsBoolean() || mc.currentScreen != null) {
          return "Paused: a screen is open";
       } else if (!mc.isWindowFocused()) {
          return "Paused: the window lost focus";
-      } else if (p5.NAsP5_Type_u() != p5.Type_u.WINDHOP && !p5.fAsBoolean(p5.Type_u.WINDHOP)) {
+      } else if (ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.WINDHOP && !ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.WINDHOP)) {
          return "Paused: Freecam, Freelook or a pearl catch holds the view";
       } else if (this.J.hasVehicle()) {
          return "Not while riding";
@@ -339,7 +339,7 @@ public final class WindChargeHop extends Module {
                      Locale.ROOT, "Wind charge cooling down (%.2f s)", (double)(var3 * (float)(var4 == null ? 10 : var4.getCooldownTicks())) / 20.0
                   );
                } else {
-                  return var1 >= 0 && var1 != this.J.getInventory().getSelectedSlot() && !pg.yAsBoolean(this) ? "Hotbar busy" : null;
+                  return var1 >= 0 && var1 != this.J.getInventory().getSelectedSlot() && !ParticleGeometry.yAsBoolean(this) ? "Hotbar busy" : null;
                }
             }
          }
@@ -355,7 +355,7 @@ public final class WindChargeHop extends Module {
       return var1 != -1
          && !this.J.getItemCooldownManager().isCoolingDown(this.KAsItemStack(var1))
          && !Aura.WAsBoolean()
-         && (var1 == -2 || var1 == this.J.getInventory().getSelectedSlot() || pg.yAsBoolean(this));
+         && (var1 == -2 || var1 == this.J.getInventory().getSelectedSlot() || ParticleGeometry.yAsBoolean(this));
    }
 
    private boolean IAsBoolean() {
@@ -389,9 +389,9 @@ public final class WindChargeHop extends Module {
    }
 
    private float[] FAsFloatArray() {
-      return !p5.TAsBoolean()
+      return !ParticleEmitter.TAsBoolean()
          ? new float[]{this.J.getYaw(), this.J.getPitch()}
-         : p5.sAsFloatArray(p5.JAsFloat(), p5.mAsFloat(), mc.options.getPerspective().isFrontView());
+         : ParticleEmitter.sAsFloatArray(ParticleEmitter.JAsFloat(), ParticleEmitter.mAsFloat(), mc.options.getPerspective().isFrontView());
    }
 
    private int aAsInt() {
@@ -407,10 +407,10 @@ public final class WindChargeHop extends Module {
 
    private void jAsVoid(String var1) {
       int var2 = this.g != WindChargeHop.Type_y.IDLE ? 1 : 0;
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       this.BAsVoid();
       this.g = WindChargeHop.Type_y.IDLE;
-      p5.GAsVoid(p5.Type_u.WINDHOP);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.WINDHOP);
       if (var2 != 0) {
          this.Y = var1;
          ClientLog.GAsVoid("WindHop", "Hop cancelled: {}", var1);

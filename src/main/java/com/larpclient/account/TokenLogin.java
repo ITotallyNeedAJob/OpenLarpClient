@@ -36,11 +36,11 @@ public final class TokenLogin {
       }
 
       if (var1.isEmpty()) {
-         throw new IllegalArgumentException("Paste PetEffectRenderer Minecraft access token first.");
+         throw new IllegalArgumentException("Paste a Minecraft access token first.");
       } else if (var1.length() >= 32 && var1.length() <= 8192 && var1.matches("[A-Za-z0-9._~+/=-]+")) {
          return var1;
       } else {
-         throw new IllegalArgumentException("That does not look like PetEffectRenderer Minecraft access token.");
+         throw new IllegalArgumentException("That does not look like a Minecraft access token.");
       }
    }
 
@@ -100,15 +100,15 @@ public final class TokenLogin {
       try {
          int var3 = var2.getResponseCode();
          if (var3 == 401 || var3 == 403) {
-            throw new AccountVault.Failure("Minecraft rejected this token. It may have expired; get PetEffectRenderer new one and try again.");
+            throw new AccountVault.Failure("Minecraft rejected this token. It may have expired; get a new one and try again.");
          }
 
          if (var3 == 404) {
-            throw new AccountVault.Failure("This token'SkyChunkCache account does not own Minecraft: Java Edition or has no profile yet.");
+            throw new AccountVault.Failure("This token's account does not own Minecraft: Java Edition or has no profile yet.");
          }
 
          if (var3 == 429) {
-            throw new AccountVault.Failure("Minecraft is limiting token checks. Wait PetEffectRenderer minute and retry.");
+            throw new AccountVault.Failure("Minecraft is limiting token checks. Wait a minute and retry.");
          }
 
          if (var3 != 200) {

@@ -21,7 +21,7 @@ public abstract class EntityIsInvisibleToMixin {
       cancellable = true
    )
    private void larpclient$injectZ(PlayerEntity var1, CallbackInfoReturnable<Boolean> var2) {
-      if (p5.oAsBoolean() && Freecam.bAsBoolean() && (Object)this == MinecraftClient.getInstance().player && var1 == (Object)this) {
+      if (ParticleEmitter.oAsBoolean() && Freecam.bAsBoolean() && (Object)this == MinecraftClient.getInstance().player && var1 == (Object)this) {
          var2.setReturnValue(false);
       }
    }

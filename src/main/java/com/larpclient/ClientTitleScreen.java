@@ -21,12 +21,12 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 
-public final class ClientTitleScreen extends Screen implements xs {
-   private static final nc.Type_c W = new nc.Type_c();
-   private static final w9.Type_f N = new w9.Type_f();
+public final class ClientTitleScreen extends Screen implements XShader {
+   private static final NetClient.Type_c W = new NetClient.Type_c();
+   private static final WindEffect.Type_f N = new WindEffect.Type_f();
    private static final String Z = "Larp Client";
-   private final nc D = W.cAsNc();
-   private final List<AnimatedButton> GroundSample = new ArrayList<>();
+   private final NetClient D = W.cAsNc();
+   private final List<AnimatedButton> k = new ArrayList<>();
    private final List<ClientTitleScreen.Type_c> r = new ArrayList<>();
    private RootMenuLayout b;
    private AnimatedButton o;
@@ -37,8 +37,8 @@ public final class ClientTitleScreen extends Screen implements xs {
    private UpdateLayout.Notice g;
    private boolean e;
    private boolean m;
-   private nc.Type_j G;
-   private final AccountSkinPreview MenuPopupProvider = new AccountSkinPreview();
+   private NetClient.Type_j G;
+   private final AccountSkinPreview f = new AccountSkinPreview();
    private final AccountWalkOnAnimation S = new AccountWalkOnAnimation(N.GAsW9());
    private final AccountPopupController R = new AccountPopupController(this);
 
@@ -83,7 +83,7 @@ public final class ClientTitleScreen extends Screen implements xs {
          )
       );
       this.addDrawableChild(new AnimatedButton(Text.translatable("menu.quit"), AnimatedButton.Type_u.QUIET, this.client::scheduleStop, this.b.navigation(4)));
-      w9.Type_i var1 = w9.UAsW9_Type_i(this.b);
+      WindEffect.Type_i var1 = WindEffect.UAsW9_Type_i(this.b);
       this.X = (AnimatedButton)this.addDrawableChild(
          new AnimatedButton(
             Text.literal("Switch Microsoft account: " + this.client.getSession().getUsername()),
@@ -97,14 +97,14 @@ public final class ClientTitleScreen extends Screen implements xs {
          String var2 = TextDrawing.sAsString(this.client.getSession().getUsername(), this.X.getWidth() - 32, TextDrawing.Type_x.SEMIBOLD);
          int var3x = TextDrawing.qAsInt(var2, TextDrawing.Type_x.SEMIBOLD);
          int var4x = this.X.getX() + (this.X.getWidth() - var3x - 14) / 2;
-         TextDrawing.oAsVoid(var1x, var2, var4x, this.X.getY() + 4, bg.pAsInt(-1513240, this.X.eAsDouble()), TextDrawing.Type_x.SEMIBOLD);
+         TextDrawing.oAsVoid(var1x, var2, var4x, this.X.getY() + 4, ColorUtil.pAsInt(-1513240, this.X.eAsDouble()), TextDrawing.Type_x.SEMIBOLD);
          GuiIcons.aAsVoid(
             var1x,
             GuiIcons.PAsIdentifier(this.R.yAsBoolean() ? "chevron-up" : "chevron-down"),
             var4x + var3x + 5,
             this.X.getY() + 4,
             9,
-            bg.pAsInt(-5592406, this.X.eAsDouble())
+            ColorUtil.pAsInt(-5592406, this.X.eAsDouble())
          );
          double var5 = this.X.HAsDouble();
          AnimatedButton.LAsVoid(
@@ -112,7 +112,7 @@ public final class ClientTitleScreen extends Screen implements xs {
             (float)this.X.getX() + (float)this.X.getWidth() / 2.0F,
             this.X.getY() + 17,
             (float)(20.0 + (double)(var3x + 14 - 20) * var5),
-            bg.pAsInt(bg.xAsInt(-11447983, -4342339, var5), this.X.eAsDouble())
+            ColorUtil.pAsInt(ColorUtil.xAsInt(-11447983, -4342339, var5), this.X.eAsDouble())
          );
       };
 
@@ -126,7 +126,7 @@ public final class ClientTitleScreen extends Screen implements xs {
       }
 
       this.Y = (AnimatedButton)this.addDrawableChild(
-         new AnimatedButton(Text.literal("Press to enter"), AnimatedButton.Type_u.PRIMARY, this::oAsVoid, nc.FAsD8_Type_c(this.width, this.height))
+         new AnimatedButton(Text.literal("Press to enter"), AnimatedButton.Type_u.PRIMARY, this::oAsVoid, NetClient.FAsD8_Type_c(this.width, this.height))
       );
       this.g = UpdateLayout.notice(this.width, this.height);
       this.P = (AnimatedButton)this.addDrawableChild(
@@ -157,13 +157,13 @@ public final class ClientTitleScreen extends Screen implements xs {
 
    public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
       this.ZAsNc();
-      nc.Type_a var5 = this.D.TAsNc_Type_a(this.b, this.VAsBoolean());
+      NetClient.Type_a var5 = this.D.TAsNc_Type_a(this.b, this.VAsBoolean());
       if (this.dAsN7().O && this.VAsBoolean()) {
          this.RAsVoid(context);
       }
 
       context.createNewRootLayer();
-      nc.Type_h var6 = this.D.WAsNc_Type_h(this.b, this.VAsBoolean());
+      NetClient.Type_h var6 = this.D.WAsNc_Type_h(this.b, this.VAsBoolean());
       if (var6.alpha() > 0.0) {
          this.fAsVoid(context, var6);
          context.createNewRootLayer();
@@ -180,7 +180,7 @@ public final class ClientTitleScreen extends Screen implements xs {
          context.getMatrices().popMatrix();
       }
 
-      nc.Type_q var7 = this.D.BAsNc_Type_q(this.VAsBoolean());
+      NetClient.Type_q var7 = this.D.BAsNc_Type_q(this.VAsBoolean());
       if (!this.D.wAsBoolean() && var7.alpha() > 0.0) {
          this.DAsVoid(
             context,
@@ -230,24 +230,24 @@ public final class ClientTitleScreen extends Screen implements xs {
          var1.getMatrices().translate(var2, var3);
          var1.getMatrices().scale(var4, var4);
          TextDrawing.oAsVoid(
-            var1, "Larp Client", -TextDrawing.qAsInt("Larp Client", TextDrawing.Type_x.SEMIBOLD) / 2, 0, bg.pAsInt(-1644826, var5), TextDrawing.Type_x.SEMIBOLD
+            var1, "Larp Client", -TextDrawing.qAsInt("Larp Client", TextDrawing.Type_x.SEMIBOLD) / 2, 0, ColorUtil.pAsInt(-1644826, var5), TextDrawing.Type_x.SEMIBOLD
          );
       } finally {
          var1.getMatrices().popMatrix();
       }
    }
 
-   private void fAsVoid(DrawContext var1, nc.Type_h var2) {
+   private void fAsVoid(DrawContext var1, NetClient.Type_h var2) {
       MenuLayout.Type_c var3 = this.b.title();
       float var4 = this.b.brandScale();
       float var5 = (float)((double)((float)var3.y() + ((float)var3.height() - 9.0F * var4) / 2.0F) + var2.lift());
-      int var6 = bg.pAsInt(-1644826, var2.alpha());
+      int var6 = ColorUtil.pAsInt(-1644826, var2.alpha());
       if (!(var2.clip() <= var2.x()) && !this.r.isEmpty()) {
          for (ClientTitleScreen.Type_c var8 : this.r) {
             double var9 = var2.x() + (double)(var8.x() * var4);
             double var11 = (double)Math.max(1.0F, var8.width() * var4);
             double var13 = Math.clamp((var9 + var11 - var2.clip()) / var11, 0.0, 1.0);
-            int var15 = qg.iAsInt(bg.pAsInt(var6, var13 * var13 * (3.0 - 2.0 * var13)));
+            int var15 = QueueGroup.iAsInt(ColorUtil.pAsInt(var6, var13 * var13 * (3.0 - 2.0 * var13)));
             if (var15 >>> 24 >= 4) {
                var1.getMatrices().pushMatrix();
 
@@ -288,7 +288,7 @@ public final class ClientTitleScreen extends Screen implements xs {
 
    private void RAsVoid(DrawContext var1) {
       for (int var2 = 0; var2 < 12; var2++) {
-         nc.Type_l var3 = this.D.oAsNc_Type_l(var2, this.b);
+         NetClient.Type_l var3 = this.D.oAsNc_Type_l(var2, this.b);
          if (!(var3.alpha() <= 0.0)) {
             var1.getMatrices().pushMatrix();
 
@@ -298,7 +298,7 @@ public final class ClientTitleScreen extends Screen implements xs {
                float var4 = (float)(var3.size() / 64.0);
                var1.getMatrices().scale(var4, var4);
                var1.drawTexture(
-                  RenderPipelines.GUI_TEXTURED, MenuLogoAssets.oAsIdentifier(), -32, -32, 0.0F, 0.0F, 64, 64, 64, 64, 64, 64, bg.XAsInt(-1513240, var3.alpha())
+                  RenderPipelines.GUI_TEXTURED, MenuLogoAssets.oAsIdentifier(), -32, -32, 0.0F, 0.0F, 64, 64, 64, 64, 64, 64, ColorUtil.XAsInt(-1513240, var3.alpha())
                );
             } finally {
                var1.getMatrices().popMatrix();
@@ -328,7 +328,7 @@ public final class ClientTitleScreen extends Screen implements xs {
       return this.dAsN7().Z && this.dAsN7().L != WorldTimePreset.Type_b.STATIC && (Double)this.client.options.getPanoramaSpeed().getValue() > 0.0;
    }
 
-   public nc ZAsNc() {
+   public NetClient ZAsNc() {
       this.D.oAsVoid(var1x -> InputUtil.isKeyPressed(this.client.getWindow(), var1x));
       long var1 = System.nanoTime();
       int var3 = this.client.getOverlay() == null && this.client.isWindowFocused() ? 1 : 0;
@@ -350,7 +350,7 @@ public final class ClientTitleScreen extends Screen implements xs {
 
          for (int var1 = 0; var1 < this.k.size(); var1++) {
             AnimatedButton var2 = this.k.get(var1);
-            nc.Type_q var3 = this.D.mAsNc_Type_q(var1);
+            NetClient.Type_q var3 = this.D.mAsNc_Type_q(var1);
             var2.rAsVoid(var3);
             var2.visible = var3.alpha() > 0.0;
             var2.active = this.D.wAsBoolean();
@@ -365,12 +365,12 @@ public final class ClientTitleScreen extends Screen implements xs {
          }
 
          if (this.G != this.D.aAsNc_Type_j()) {
-            nc.Type_j var5 = this.G;
+            NetClient.Type_j var5 = this.G;
             this.G = this.D.aAsNc_Type_j();
             this.setInitialFocus();
             if (this.D.wAsBoolean()) {
                ClientLog.GAsVoid("Menu", "Launch reveal settled; native navigation active");
-            } else if (this.D.LAsBoolean() && var5 == nc.Type_j.RETURN) {
+            } else if (this.D.LAsBoolean() && var5 == NetClient.Type_j.RETURN) {
                ClientLog.GAsVoid("Menu", "Entrance replay reached the welcome pose; waiting for entry");
             }
          }
@@ -379,9 +379,9 @@ public final class ClientTitleScreen extends Screen implements xs {
 
    private void RAsVoid() {
       if (this.X != null) {
-         int var1 = this.D.wAsBoolean() && (!w9.UAsW9_Type_i(this.b).visible() || this.S.AAsDouble() == 1.0) ? 1 : 0;
+         int var1 = this.D.wAsBoolean() && (!WindEffect.UAsW9_Type_i(this.b).visible() || this.S.AAsDouble() == 1.0) ? 1 : 0;
          this.X.visible = this.X.active = var1 != 0;
-         this.X.rAsVoid(nc.Type_q.REST);
+         this.X.rAsVoid(NetClient.Type_q.REST);
          this.X.setMessage(Text.literal("Switch Microsoft account: " + this.client.getSession().getUsername()));
       }
    }

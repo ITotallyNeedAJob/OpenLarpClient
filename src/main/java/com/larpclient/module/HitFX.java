@@ -25,7 +25,7 @@ public final class HitFX extends Module {
    private final BooleanSetting screenImpact = this.addSetting(new BooleanSetting("Screen Impact", "Brief subtle exposure and edge pulse", false));
    private final NumberSetting ringThickness = this.addSetting(new NumberSetting("Ring Thickness", "Shockwave width", 0.045, 0.01, 0.2, 0.005));
    private Vec3d o = Vec3d.ZERO;
-   private final x4 X = new x4();
+   private final EffectRenderParams X = new EffectRenderParams();
    private final ModeSetting particleType = this.addSetting(
       new ModeSetting(
          "Particle Type",
@@ -50,8 +50,8 @@ public final class HitFX extends Module {
    );
    private final NumberSetting distance = this.addSetting(new NumberSetting("Distance", "Render distance", 64.0, 8.0, 128.0, 8.0));
    private final BooleanSetting themeColors = this.addSetting(new BooleanSetting("Theme Colors", "Use the current theme palette", true));
-   private final ColorSetting color = this.addSetting(new ColorSetting("Color", "Start color", bd.w));
-   private final ColorSetting gradient = this.addSetting(new ColorSetting("Gradient", "End color", bd.Q));
+   private final ColorSetting color = this.addSetting(new ColorSetting("Color", "Start color", UiStyle.w));
+   private final ColorSetting gradient = this.addSetting(new ColorSetting("Gradient", "End color", UiStyle.Q));
    private final BooleanSetting bloom = this.addSetting(new BooleanSetting("Bloom", "Submit glow mask", true));
    private final BooleanSetting particles = this.addSetting(new BooleanSetting("Particles", "Emit particles", true));
    private final BooleanSetting hitRings = this.addSetting(new BooleanSetting("Hit Rings", "Expanding surface or airborne impact rings", true));
@@ -78,11 +78,11 @@ public final class HitFX extends Module {
    }
 
    public int lAsInt() {
-      return this.themeColors.getValue() ? bd.w : this.color.getValue();
+      return this.themeColors.getValue() ? UiStyle.w : this.color.getValue();
    }
 
    private int uAsInt() {
-      return this.themeColors.getValue() ? bd.Q : this.gradient.getValue();
+      return this.themeColors.getValue() ? UiStyle.Q : this.gradient.getValue();
    }
 
    private static NumberSetting fAsNumberSetting(String var0, String var1, double var2, double var4, double var6, double var8) {
@@ -198,32 +198,32 @@ public final class HitFX extends Module {
          ClientPlayerEntity var2 = this.getPlayer();
          Vec3d var3 = var2 != null && var2 != var1 ? var2.getEyePos() : var1.getBoundingBox().getCenter();
          Vec3d var4 = var2 != null && var2 != var1 ? var2.getRotationVec(1.0F) : new Vec3d(0.0, 0.0, 1.0);
-         com.larpclient.k var5 = com.larpclient.k.sample(var1.getBoundingBox(), var3, var4, (var0, var1x) -> lq.AAsLq_Type_l(getMc().world, var0, var1x));
+         com.larpclient.GroundSample var5 = com.larpclient.GroundSample.sample(var1.getBoundingBox(), var3, var4, (var0, var1x) -> LandQuery.AAsLq_Type_l(getMc().world, var0, var1x));
          this.KAsVoid(SharedRenderEffects.B, var1.getEntityPos(), (double)var1.getWidth(), (double)var1.getHeight(), var5);
       }
    }
 
    public void HAsVoid(ParticleEmitterEngine var1, Vec3d var2, double var3, double var5, Vec3d var7) {
       if (this.isEnabled()) {
-         this.KAsVoid(var1, var2, var3, var5, new com.larpclient.k(var2.add(0.0, var5 * 0.5, 0.0), var7, var2.add(0.0, 0.035, 0.0), new Vec3d(0.0, 1.0, 0.0)));
+         this.KAsVoid(var1, var2, var3, var5, new com.larpclient.GroundSample(var2.add(0.0, var5 * 0.5, 0.0), var7, var2.add(0.0, 0.035, 0.0), new Vec3d(0.0, 1.0, 0.0)));
       }
    }
 
-   public void KAsVoid(ParticleEmitterEngine var1, Vec3d var2, double var3, double var5, com.larpclient.k var7) {
+   public void KAsVoid(ParticleEmitterEngine var1, Vec3d var2, double var3, double var5, com.larpclient.GroundSample var7) {
       if (this.isEnabled()) {
          this.o = var7.normal();
          this.X.O = this.maximum.getValue().intValue();
          this.X.d = this.distance.getValue();
          Vec3d var8 = var7.point();
          this.X.K = 1;
-         this.X.B = x4.Type_o.BOX;
+         this.X.B = EffectRenderParams.Type_o.BOX;
          this.X.z = this.X.c = Math.max(0.08, var3 * 0.45);
          this.X.s = Math.min(0.4, var5 * 0.22);
          this.X.I = this.lAsInt();
          this.X.A = this.uAsInt();
          this.X.i = this.bloom.getValue();
          this.X.N = 0.0;
-         this.X.E = x4.Type_s.NONE;
+         this.X.E = EffectRenderParams.Type_s.NONE;
          this.X.h = var7.groundY();
          this.X.y = var7.ringNormal();
          this.X.G = this.X.Y = false;
@@ -236,17 +236,17 @@ public final class HitFX extends Module {
          boolean var16 = this.preset.pAsBoolean("Petal");
          boolean var17 = this.preset.pAsBoolean("Energy");
          boolean var18 = this.preset.pAsBoolean("Spark");
-         this.X.H = var17 ? x4.Type_i.HITFX : x4.Type_i.DEFAULT;
+         this.X.H = var17 ? EffectRenderParams.Type_i.HITFX : EffectRenderParams.Type_i.DEFAULT;
          if (this.particles.getValue() && this.preset.pAsBoolean("Bloom")) {
-            this.X.H = x4.Type_i.BLOOM;
-            this.X.B = x4.Type_o.POINT;
+            this.X.H = EffectRenderParams.Type_i.BLOOM;
+            this.X.B = EffectRenderParams.Type_o.POINT;
             this.X.q = ParticleEmitterEngine.Type_a.Glow;
             this.X.M = this.bloomCount.getValue().intValue();
             this.X.g = this.X.R = this.y.getValue() * 0.5;
             this.X.x = this.X.v = this.z.getValue();
             this.X.I = this.X.A = this.lAsInt();
             this.X.i = this.bloom.getValue();
-            this.X.j = x4.Type_g.ADDITIVE;
+            this.X.j = EffectRenderParams.Type_g.ADDITIVE;
             this.X.w = this.x.getValue() * 20.0;
             this.X.Q = 1.0;
             this.X.b = 0.0;
@@ -256,9 +256,9 @@ public final class HitFX extends Module {
             this.X.L = this.X.f = this.X.J = 0.0;
             this.X.G = true;
             this.X.Y = !this.themeColors.getValue() && this.bloomColorAnimation.getValue();
-            this.X.t = ay.Type_r.LINEAR;
+            this.X.t = FadeCurve.Type_r.LINEAR;
             this.X.l = this.bloomFadeSpeed.getValue();
-            this.X.o = ay.Type_z.CONSTANT;
+            this.X.o = FadeCurve.Type_z.CONSTANT;
             this.X.T = Math.toRadians(20.0);
             this.X.V = Math.toRadians(80.0);
             var1.pAsVoid(var2.add(0.0, var5 * 0.5 + 0.1, 0.0), this.X);
@@ -275,7 +275,7 @@ public final class HitFX extends Module {
                1.25,
                1.15,
                0.22,
-               x4.Type_g.ALPHA
+               EffectRenderParams.Type_g.ALPHA
             );
          } else if (this.particles.getValue()) {
             this.tAsVoid(
@@ -290,7 +290,7 @@ public final class HitFX extends Module {
                0.35,
                0.05,
                0.35,
-               x4.Type_g.ADDITIVE
+               EffectRenderParams.Type_g.ADDITIVE
             );
             this.tAsVoid(
                var1,
@@ -304,7 +304,7 @@ public final class HitFX extends Module {
                var15 ? 4.2 : 3.2,
                0.8,
                0.08,
-               x4.Type_g.ADDITIVE
+               EffectRenderParams.Type_g.ADDITIVE
             );
             this.tAsVoid(
                var1,
@@ -328,7 +328,7 @@ public final class HitFX extends Module {
                var16 ? 0.65 : (var15 ? 1.8 : 1.1),
                var16 ? 0.15 : (var15 ? 1.5 : 0.45),
                var16 ? 0.35 : (var17 ? 0.4 : 0.1),
-               x4.Type_g.ALPHA
+               EffectRenderParams.Type_g.ALPHA
             );
          }
 
@@ -345,28 +345,28 @@ public final class HitFX extends Module {
                3.0,
                0.1,
                0.0,
-               x4.Type_g.ADDITIVE
+               EffectRenderParams.Type_g.ADDITIVE
             );
          }
 
          if (this.hitRings.getValue()) {
             this.X.G = this.X.Y = false;
-            this.X.E = x4.Type_s.NONE;
+            this.X.E = EffectRenderParams.Type_s.NONE;
             this.X.N = 0.0;
             this.X.l = 1.0;
             this.X.T = Double.NaN;
-            this.X.H = var17 ? x4.Type_i.HITFX : x4.Type_i.DEFAULT;
+            this.X.H = var17 ? EffectRenderParams.Type_i.HITFX : EffectRenderParams.Type_i.DEFAULT;
             this.X.I = this.lAsInt();
             this.X.A = this.uAsInt();
             this.X.i = this.bloom.getValue();
-            this.X.B = x4.Type_o.POINT;
+            this.X.B = EffectRenderParams.Type_o.POINT;
             this.X.q = ParticleEmitterEngine.Type_a.Ring;
             this.X.M = 1;
             this.X.x = this.X.v = this.ringFade.getValue();
             this.X.p = this.ringSize.getValue() * this.ringSpeed.getValue();
             this.X.n = this.ringThickness.getValue();
-            this.X.j = x4.Type_g.ADDITIVE;
-            this.X.t = ay.Type_r.QUICK_FADE;
+            this.X.j = EffectRenderParams.Type_g.ADDITIVE;
+            this.X.t = FadeCurve.Type_r.QUICK_FADE;
             var1.pAsVoid(var7.ring(), this.X);
             if (var15 || var17) {
                this.X.N = 0.075;
@@ -393,21 +393,21 @@ public final class HitFX extends Module {
       double var14,
       double var16,
       double var18,
-      x4.Type_g var20
+      EffectRenderParams.Type_g var20
    ) {
       int var21 = var3 != ParticleEmitterEngine.Type_a.Spark && var3 != ParticleEmitterEngine.Type_a.Streak ? 0 : 1;
       int var22 = var3 == ParticleEmitterEngine.Type_a.Glow ? 1 : 0;
-      this.X.E = var3 == ParticleEmitterEngine.Type_a.Shard ? x4.Type_s.BOUNCE : x4.Type_s.NONE;
+      this.X.E = var3 == ParticleEmitterEngine.Type_a.Shard ? EffectRenderParams.Type_s.BOUNCE : EffectRenderParams.Type_s.NONE;
       this.X.N = var22 == 0 && var21 == 0 ? 0.025 : 0.0;
-      this.X.B = var22 != 0 ? x4.Type_o.BOX : x4.Type_o.SPHERE;
+      this.X.B = var22 != 0 ? EffectRenderParams.Type_o.BOX : EffectRenderParams.Type_o.SPHERE;
       this.X.b = var3 == ParticleEmitterEngine.Type_a.Cash ? 0.65 : (var3 == ParticleEmitterEngine.Type_a.Petal ? 0.35 : 0.15);
-      this.X.I = var21 != 0 ? bg.xAsInt(this.lAsInt(), -1, 0.65) : bg.XAsInt(this.lAsInt(), var22 != 0 ? 0.52 : 0.92);
-      this.X.A = bg.XAsInt(this.uAsInt(), var22 != 0 ? 0.16 : 0.65);
+      this.X.I = var21 != 0 ? ColorUtil.xAsInt(this.lAsInt(), -1, 0.65) : ColorUtil.XAsInt(this.lAsInt(), var22 != 0 ? 0.52 : 0.92);
+      this.X.A = ColorUtil.XAsInt(this.uAsInt(), var22 != 0 ? 0.16 : 0.65);
       if (var3 == ParticleEmitterEngine.Type_a.Cash) {
          this.X.I = this.X.A = -1;
       }
 
-      this.X.i = this.bloom.getValue() && var20 == x4.Type_g.ADDITIVE;
+      this.X.i = this.bloom.getValue() && var20 == EffectRenderParams.Type_g.ADDITIVE;
       this.X.Q = var21 != 0 ? 0.65 : 1.0;
       double var23 = var3 != ParticleEmitterEngine.Type_a.Spark && var3 != ParticleEmitterEngine.Type_a.Streak ? 0.0 : var14 * 0.95;
       this.X.Z = this.o.x * var23;
@@ -427,8 +427,8 @@ public final class HitFX extends Module {
       this.X.V = var3 == ParticleEmitterEngine.Type_a.Cash
          ? 3.2
          : (var3 == ParticleEmitterEngine.Type_a.Petal ? 2.1 : (var3 == ParticleEmitterEngine.Type_a.Shard ? 5.0 : 3.0));
-      this.X.t = var22 != 0 ? ay.Type_r.QUICK_FADE : ay.Type_r.HOLD_FADE;
-      this.X.o = var22 != 0 ? ay.Type_z.POP : (var21 != 0 ? ay.Type_z.SHRINK : ay.Type_z.CONSTANT);
+      this.X.t = var22 != 0 ? FadeCurve.Type_r.QUICK_FADE : FadeCurve.Type_r.HOLD_FADE;
+      this.X.o = var22 != 0 ? FadeCurve.Type_z.POP : (var21 != 0 ? FadeCurve.Type_z.SHRINK : FadeCurve.Type_z.CONSTANT);
       var1.pAsVoid(var2, this.X);
    }
 

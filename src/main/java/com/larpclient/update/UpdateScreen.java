@@ -250,7 +250,7 @@ public final class UpdateScreen extends Screen {
 
          if (!var2.installable()) {
             var3.append(
-               "\n\nThis client can update itself on Windows and Linux when its JAR is directly in the instance'SkyChunkCache mods folder. Otherwise, use the official download page and replace the mod after Minecraft closes."
+               "\n\nThis client can update itself on Windows and Linux when its JAR is directly in the instance's mods folder. Otherwise, use the official download page and replace the mod after Minecraft closes."
             );
          } else {
             var3.append("\n\nUpdate downloads and verifies this exact signed release. It installs when you close Minecraft, and the approval lasts 24 hours.");

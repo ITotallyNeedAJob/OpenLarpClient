@@ -14,7 +14,7 @@ public final class ActivityReporter {
    private static ActivityReporter V;
    private final ActivityQueueStore w;
    private final CompletableFuture<JsonObject> C;
-   private m8 s;
+   private JsonStorage s;
    private long v;
    private long I;
    private long h = -1L;
@@ -50,7 +50,7 @@ public final class ActivityReporter {
       if (!this.E && this.C.isDone()) {
          long var2 = RAsLong();
          if (this.s == null) {
-            this.s = new m8(
+            this.s = new JsonStorage(
                (var1x, var2x) -> this.w
                      .<CompletableFuture<JsonObject>>PAsCompletableFuture(
                         () -> {

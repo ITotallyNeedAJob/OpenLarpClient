@@ -80,8 +80,8 @@ public final class JumpFX extends Module {
    private final ParticleEffectPreset.Type_o K = new ParticleEffectPreset.Type_o();
    private final ArrayList<Particle> c = new ArrayList<>();
    private JumpFX.Type_j H;
-   private final md d = new md();
-   private final com.larpclient.l B = new com.larpclient.l();
+   private final MediaDecoder d = new MediaDecoder();
+   private final com.larpclient.DropletTrail B = new com.larpclient.DropletTrail();
    private Object W;
    private Object N;
 
@@ -187,7 +187,7 @@ public final class JumpFX extends Module {
                this.circleDuration.getValue(),
                this.circleThroughWalls.getValue(),
                this.glowIntensity.getValue().floatValue(),
-               mb.RAsDouble()
+               MediaSession.RAsDouble()
             );
             JumpRingRenderer.TAsVoid(this.circleColour2.getValue());
          }
@@ -211,7 +211,7 @@ public final class JumpFX extends Module {
          && (var3 == null || !var3.isOperational());
    }
 
-   private md.Type_a qAsMd_Type_a() {
+   private MediaDecoder.Type_a qAsMd_Type_a() {
       ClientPlayerEntity var1 = this.getPlayer();
       if (this.W != getMc().world || this.N != var1) {
          this.SAsVoid();
@@ -219,7 +219,7 @@ public final class JumpFX extends Module {
          this.N = var1;
       }
 
-      return new md.Type_a(this.W, var1, var1.getEntityPos(), var1.isOnGround(), this.MAsBoolean());
+      return new MediaDecoder.Type_a(this.W, var1, var1.getEntityPos(), var1.isOnGround(), this.MAsBoolean());
    }
 
    public void OAsVoid() {
@@ -231,8 +231,8 @@ public final class JumpFX extends Module {
    public void FAsVoid() {
       if (this.isEnabled()) {
          if (this.isRuntimeActive() && this.isInGame()) {
-            this.B.gAsVoid(mb.dAsDouble());
-            this.K.nAsVoid(mb.dAsDouble(), this.circleDuration.getValue());
+            this.B.gAsVoid(MediaSession.dAsDouble());
+            this.K.nAsVoid(MediaSession.dAsDouble(), this.circleDuration.getValue());
             this.c.removeIf(var0 -> !var0.isAlive());
             this.qAsVoid(this.d.MAsMd_Type_u(this.qAsMd_Type_a()));
          } else {
@@ -241,13 +241,13 @@ public final class JumpFX extends Module {
       }
    }
 
-   private void qAsVoid(md.Type_u var1) {
-      if (md.vAsBoolean(this.trigger.getValue(), var1.event())) {
+   private void qAsVoid(MediaDecoder.Type_u var1) {
+      if (MediaDecoder.vAsBoolean(this.trigger.getValue(), var1.event())) {
          if (!this.AAsBoolean()) {
             if (!this.onlySprinting.getValue() || this.getPlayer().isSprinting()) {
                int var7 = ParticleEffectPreset.JAsInt(this.mode.getValue());
                if (var7 >= 0) {
-                  this.K.AAsVoid(new ParticleEffectPreset.Type_z(var1.source(), mb.dAsDouble(), ThreadLocalRandom.current().nextFloat()));
+                  this.K.AAsVoid(new ParticleEffectPreset.Type_z(var1.source(), MediaSession.dAsDouble(), ThreadLocalRandom.current().nextFloat()));
                } else {
                   ParticleEffect var3 = ParticleEffectPreset.iAsParticleEffect(this.mode.getValue());
                   if (var3 == null) {
@@ -267,8 +267,8 @@ public final class JumpFX extends Module {
                }
             }
          } else {
-            com.larpclient.l.Type_t var2 = this.XAsL_Type_t(
-               var1.source(), mb.dAsDouble(), this.mode.pAsBoolean("Terrain") ? this.uAsLc_Type_x(var1.source().y) : null
+            com.larpclient.DropletTrail.Type_t var2 = this.XAsL_Type_t(
+               var1.source(), MediaSession.dAsDouble(), this.mode.pAsBoolean("Terrain") ? this.uAsLc_Type_x(var1.source().y) : null
             );
             if (var2 != null) {
                this.B.NAsVoid(var2);
@@ -277,19 +277,19 @@ public final class JumpFX extends Module {
       }
    }
 
-   public com.larpclient.l.Type_t XAsL_Type_t(Vec3d var1, double var2, lc.Type_x var4) {
+   public com.larpclient.DropletTrail.Type_t XAsL_Type_t(Vec3d var1, double var2, LightmapAtlas.Type_x var4) {
       if (this.isEnabled()) {
          if (!this.AAsBoolean()) {
             return null;
          } else {
             boolean var5 = this.mode.pAsBoolean("Star of David");
-            List var6 = var5 ? com.larpclient.p.d : lc.GAsList(var1, this.maximumRadius.getValue(), var4);
+            List var6 = var5 ? com.larpclient.HexEdgeloop.d : LightmapAtlas.GAsList(var1, this.maximumRadius.getValue(), var4);
             if (var6.isEmpty()) {
                return null;
             } else {
-               int var7 = this.colorTheme.pAsBoolean("Theme") ? bd.w : (this.colorTheme.pAsBoolean("White") ? -1 : this.color.getValue());
-               int var8 = this.colorTheme.pAsBoolean("Theme") ? bd.Q : var7;
-               return new com.larpclient.l.Type_t(
+               int var7 = this.colorTheme.pAsBoolean("Theme") ? UiStyle.w : (this.colorTheme.pAsBoolean("White") ? -1 : this.color.getValue());
+               int var8 = this.colorTheme.pAsBoolean("Theme") ? UiStyle.Q : var7;
+               return new com.larpclient.DropletTrail.Type_t(
                   var1,
                   var2,
                   this.maximumRadius.getValue(),
@@ -301,7 +301,7 @@ public final class JumpFX extends Module {
                   this.opacity.getValue(),
                   this.glowIntensity.getValue(),
                   var6,
-                  var5 ? com.larpclient.l.Type_g.STAR_OF_DAVID : com.larpclient.l.Type_g.TERRAIN
+                  var5 ? com.larpclient.DropletTrail.Type_g.STAR_OF_DAVID : com.larpclient.DropletTrail.Type_g.TERRAIN
                );
             }
          }
@@ -310,7 +310,7 @@ public final class JumpFX extends Module {
       }
    }
 
-   private lc.Type_x uAsLc_Type_x(double var1) {
+   private LightmapAtlas.Type_x uAsLc_Type_x(double var1) {
       ClientWorld var3 = getMc().world;
       ShapeContext var4 = ShapeContext.of(this.getPlayer());
       return (var4xx, var5) -> {
@@ -357,18 +357,18 @@ public final class JumpFX extends Module {
             }
          }
 
-         var1.blend(x4.Type_g.ADDITIVE);
-         double var31 = mb.RAsDouble();
+         var1.blend(EffectRenderParams.Type_g.ADDITIVE);
+         double var31 = MediaSession.RAsDouble();
 
-         for (com.larpclient.l.Type_t var33 : this.B.zAsList()) {
+         for (com.larpclient.DropletTrail.Type_t var33 : this.B.zAsList()) {
             if (!var2 || !(var33.glow() <= 0.0)) {
                double var34 = Math.clamp((var31 - var33.born()) / var33.duration(), 0.0, 1.0);
-               int var9 = bg.xAsInt(var33.from(), var33.to(), var34);
-               int var10 = var33.style() == com.larpclient.l.Type_g.STAR_OF_DAVID ? 1 : 0;
-               double var11 = var10 != 0 ? com.larpclient.l.zAsDouble(var33, var31) : 1.0;
+               int var9 = ColorUtil.xAsInt(var33.from(), var33.to(), var34);
+               int var10 = var33.style() == com.larpclient.DropletTrail.Type_g.STAR_OF_DAVID ? 1 : 0;
+               double var11 = var10 != 0 ? com.larpclient.DropletTrail.zAsDouble(var33, var31) : 1.0;
 
-               for (lc.Type_w var14 : var33.edges()) {
-                  double var15 = (var10 != 0 ? com.larpclient.l.lAsDouble(var33, var31) : com.larpclient.l.AAsDouble(var33, var14.distance(), var31))
+               for (LightmapAtlas.Type_w var14 : var33.edges()) {
+                  double var15 = (var10 != 0 ? com.larpclient.DropletTrail.lAsDouble(var33, var31) : com.larpclient.DropletTrail.AAsDouble(var33, var14.distance(), var31))
                      * var33.opacity();
                   if (!(var15 < 0.003)) {
                      Vec3d var17 = var14.from();
@@ -380,10 +380,10 @@ public final class JumpFX extends Module {
                      double var27 = var18.y;
                      double var29 = var18.z;
                      if (var10 != 0) {
-                        var19 = com.larpclient.p.kAsDouble(var33.source().x, var19, var11);
-                        var23 = com.larpclient.p.kAsDouble(var33.source().z, var23, var11);
-                        var25 = com.larpclient.p.kAsDouble(var33.source().x, var25, var11);
-                        var29 = com.larpclient.p.kAsDouble(var33.source().z, var29, var11);
+                        var19 = com.larpclient.HexEdgeloop.kAsDouble(var33.source().x, var19, var11);
+                        var23 = com.larpclient.HexEdgeloop.kAsDouble(var33.source().z, var23, var11);
+                        var25 = com.larpclient.HexEdgeloop.kAsDouble(var33.source().x, var25, var11);
+                        var29 = com.larpclient.HexEdgeloop.kAsDouble(var33.source().z, var29, var11);
                         var21 = var27 = var33.source().y + 0.012;
                      }
 
@@ -393,13 +393,13 @@ public final class JumpFX extends Module {
             }
          }
 
-         var1.blend(x4.Type_g.ALPHA);
+         var1.blend(EffectRenderParams.Type_g.ALPHA);
       }
    }
 
    private static void fAsVoid(
       EffectGeometryRenderer var0,
-      com.larpclient.l.Type_t var1,
+      com.larpclient.DropletTrail.Type_t var1,
       boolean var2,
       int var3,
       double var4,
@@ -411,16 +411,16 @@ public final class JumpFX extends Module {
       double var16
    ) {
       if (var2) {
-         int var18 = bg.pAsInt(var3, var4 * var1.glow() * 0.2);
+         int var18 = ColorUtil.pAsInt(var3, var4 * var1.glow() * 0.2);
          var0.ZAsVoid(var6, var8, var10, var12, var14, var16, var1.thickness() * 2.0, var1.thickness() * 2.0, var18, var18);
       } else {
          for (int var22 = 0; var22 < 3 && var1.glow() > 0.0; var22++) {
             double var19 = var1.thickness() * (2.0 + (double)var22 * 1.5);
-            int var21 = bg.pAsInt(var3, var4 * var1.glow() * 0.065 / (double)(var22 + 1));
+            int var21 = ColorUtil.pAsInt(var3, var4 * var1.glow() * 0.065 / (double)(var22 + 1));
             var0.ZAsVoid(var6, var8, var10, var12, var14, var16, var19, var19, var21, var21);
          }
 
-         int var23 = bg.pAsInt(bg.xAsInt(var3, var3 & 0xFF000000 | 16777215, 0.4), var4);
+         int var23 = ColorUtil.pAsInt(ColorUtil.xAsInt(var3, var3 & 0xFF000000 | 16777215, 0.4), var4);
          var0.ZAsVoid(var6, var8, var10, var12, var14, var16, var1.thickness(), var1.thickness(), var23, var23);
       }
    }

@@ -22,14 +22,14 @@ public abstract class BipedEntityModelMixin {
       at = {@At("TAIL")}
    )
    private void larpclient$injectV(BipedEntityRenderState var1, CallbackInfo var2) {
-      if (var1 instanceof o6 var3) {
+      if (var1 instanceof OptionPanel var3) {
          float var4 = var3.larp$emoteWeight();
          if (!(var4 <= 0.0F)) {
-            rg.iAsVoid((BipedEntityModel<?>)(Object)this, var3.larp$emoteSample(), var4);
+            RefractionGeometry.iAsVoid((BipedEntityModel<?>)(Object)this, var3.larp$emoteSample(), var4);
             if ((Object)this instanceof PlayerEntityModel && var1 instanceof PlayerEntityRenderState var5) {
-               float[] var6 = rg.AAsFloatArray(var3.larp$emoteSample(), var4);
+               float[] var6 = RefractionGeometry.AAsFloatArray(var3.larp$emoteSample(), var4);
                if (var6 != null) {
-                  ((b2)(Object)this).larpApplyJoints(var6, var5);
+                  ((ArmReach)(Object)this).larpApplyJoints(var6, var5);
                }
             }
          }

@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 abstract class NodeRenderer extends Module {
-   private String ScreenScale = "Waiting";
+   private String y = "Waiting";
 
    NodeRenderer(String var1, String var2) {
       super(var1, var2, Category.PLAYER, -1);
@@ -29,7 +29,7 @@ abstract class NodeRenderer extends Module {
       } else {
          getMc();
          return this.isRuntimeActive()
-            && b_.tAsBoolean(this)
+            && ModuleImportBroker.tAsBoolean(this)
             && mc.getOverlay() == null
             && mc.player.networkHandler.isLoaded()
             && (this.allowsScreenInteractions() || mc.isWindowFocused())
@@ -40,9 +40,9 @@ abstract class NodeRenderer extends Module {
 
    void aimAt(Vec3d var1, float var2) {
       if (this.isEnabled()) {
-         float[] var3 = dq.QAsFloatArray(mc.player.getEyePos(), var1);
+         float[] var3 = ModuleDetector.QAsFloatArray(mc.player.getEyePos(), var1);
          double var4 = (double)Math.max(Math.abs(MathHelper.wrapDegrees(var3[0] - mc.player.getYaw())), Math.abs(var3[1] - mc.player.getPitch()));
-         dq.RAsVoid(this, dq.Type_s.PLACEMENT, var3[0], var3[1], var4 <= (double)var2 ? 1.0 : (double)var2 / var4);
+         ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.PLACEMENT, var3[0], var3[1], var4 <= (double)var2 ? 1.0 : (double)var2 / var4);
       }
    }
 
@@ -82,7 +82,7 @@ abstract class NodeRenderer extends Module {
 
    @Override
    public void onDisable() {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       MiningProgress.cAsVoid(this);
       this.SAsVoid("Waiting");
    }

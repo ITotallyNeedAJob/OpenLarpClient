@@ -24,7 +24,7 @@ public class InGameHudMixin {
       )}
    )
    private boolean larpclient$modifyExpressionValueV(boolean var1) {
-      return p5.oAsBoolean() || var1;
+      return ParticleEmitter.oAsBoolean() || var1;
    }
 
    @Inject(

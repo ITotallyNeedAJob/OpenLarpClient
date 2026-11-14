@@ -65,7 +65,7 @@ public record ImmediateMaterialState(
       return var8;
    }
 
-   public void drawFromBuffer(bk.Type_c var1) {
+   public void drawFromBuffer(BladeRendering.Type_c var1) {
       Framebuffer var2 = this.outputTarget.getFramebuffer();
       GpuTextureView var3 = RenderSystem.outputColorTextureOverride != null ? RenderSystem.outputColorTextureOverride : var2.getColorAttachmentView();
       GpuTextureView var4 = !var2.useDepthAttachment

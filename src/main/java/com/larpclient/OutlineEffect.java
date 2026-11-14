@@ -6,15 +6,15 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.ItemStack;
 
 public final class OutlineEffect {
-   private static final d4 h = new d4();
+   private static final SkyModeState h = new SkyModeState();
 
-   public static void cAsVoid(d4.Type_q var0, int var1, Predicate<ItemStack> var2) {
+   public static void cAsVoid(SkyModeState.Type_q var0, int var1, Predicate<ItemStack> var2) {
       final MinecraftClient var3 = MinecraftClient.getInstance();
       final ClientPlayerEntity var4 = var3.player;
       if (var4 == null) {
          h.SAsVoid(var0);
       } else {
-         h.qAsVoid(var0, new d4.Type_b() {
+         h.qAsVoid(var0, new SkyModeState.Type_b() {
             @Override
             public Object player() {
                return var4;
@@ -32,7 +32,7 @@ public final class OutlineEffect {
 
             @Override
             public boolean allowed() {
-               return this.current() && !var4.isSpectator() && var3.currentScreen == null && !p5.oAsBoolean();
+               return this.current() && !var4.isSpectator() && var3.currentScreen == null && !ParticleEmitter.oAsBoolean();
             }
 
             @Override
@@ -58,7 +58,7 @@ public final class OutlineEffect {
 
             @Override
             public boolean manualUse() {
-               return r6.pAsBoolean(var3.options.useKey);
+               return ModuleKeybindChecker.pAsBoolean(var3.options.useKey);
             }
 
             @Override
@@ -78,7 +78,7 @@ public final class OutlineEffect {
       }
    }
 
-   public static void cAsVoid(d4.Type_q var0) {
+   public static void cAsVoid(SkyModeState.Type_q var0) {
       h.SAsVoid(var0);
    }
 

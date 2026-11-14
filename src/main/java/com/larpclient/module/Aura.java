@@ -430,7 +430,7 @@ public final class Aura extends Module {
          ClientPlayerEntity var1 = mc.player;
          if (!this.mAsBoolean()) {
             this.IAsVoid("Hold released");
-         } else if (b_.tAsBoolean(this) && !var1.isSpectator() && var1.isAlive()) {
+         } else if (ModuleImportBroker.tAsBoolean(this) && !var1.isSpectator() && var1.isAlive()) {
             if (this.p > 0) {
                this.p--;
             }
@@ -964,15 +964,15 @@ public final class Aura extends Module {
    }
 
    private void qAsVoid(RotationAngles var1) {
-      if (mc.currentScreen == null && !r6.NAsBoolean("Freelook") && !r6.NAsBoolean("Freecam")) {
-         p5.jAsVoid(p5.Type_u.AURA);
+      if (mc.currentScreen == null && !ModuleKeybindChecker.NAsBoolean("Freelook") && !ModuleKeybindChecker.NAsBoolean("Freecam")) {
+         ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.AURA);
       }
 
-      dq.RAsVoid(this, dq.Type_s.AURA, var1.n, var1.m, 1.0);
+      ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.AURA, var1.n, var1.m, 1.0);
    }
 
    private void VAsVoid() {
-      p5.GAsVoid(p5.Type_u.AURA);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AURA);
    }
 
    private static RotationAngles xAsL6(ClientPlayerEntity var0) {
@@ -981,12 +981,12 @@ public final class Aura extends Module {
    }
 
    public boolean wAsBoolean() {
-      return this.isEnabled() ? this.isRuntimeActive() && this.K != null && b_.fAsBoolean(this) : false;
+      return this.isEnabled() ? this.isRuntimeActive() && this.K != null && ModuleImportBroker.fAsBoolean(this) : false;
    }
 
    public boolean DAsBoolean() {
       return this.isEnabled()
-         ? this.wAsBoolean() && this.movementReference.pAsBoolean("Camera") && this.moveFix.pAsBoolean("None") && p5.NAsP5_Type_u() == p5.Type_u.AURA
+         ? this.wAsBoolean() && this.movementReference.pAsBoolean("Camera") && this.moveFix.pAsBoolean("None") && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.AURA
          : false;
    }
 
@@ -1014,7 +1014,7 @@ public final class Aura extends Module {
             }
 
             PlayerInput var5 = new PlayerInput(var1.forward(), var1.backward(), var1.left(), var1.right(), var1.jump(), var1.sneak(), var4 != 0);
-            if (p5.NAsP5_Type_u() == p5.Type_u.AURA) {
+            if (ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.AURA) {
                double var6 = var2.K.getX() - var0.getX();
                double var8 = var2.K.getZ() - var0.getZ();
                double var10 = MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(var8, var6)) - 90.0);
@@ -1160,17 +1160,17 @@ public final class Aura extends Module {
 
    public static float FAsFloat() {
       MinecraftClient var0 = MinecraftClient.getInstance();
-      return gAsBoolean() ? p5.sAsFloatArray(p5.JAsFloat(), p5.mAsFloat(), var0.options.getPerspective().isFrontView())[0] : var0.player.getYaw();
+      return gAsBoolean() ? ParticleEmitter.sAsFloatArray(ParticleEmitter.JAsFloat(), ParticleEmitter.mAsFloat(), var0.options.getPerspective().isFrontView())[0] : var0.player.getYaw();
    }
 
    private static boolean gAsBoolean() {
-      p5.Type_u var0 = p5.NAsP5_Type_u();
-      return var0 == p5.Type_u.AURA || var0 == p5.Type_u.MACE;
+      ParticleEmitter.Type_u var0 = ParticleEmitter.NAsP5_Type_u();
+      return var0 == ParticleEmitter.Type_u.AURA || var0 == ParticleEmitter.Type_u.MACE;
    }
 
    public static float KAsFloat() {
       MinecraftClient var0 = MinecraftClient.getInstance();
-      return gAsBoolean() ? p5.sAsFloatArray(p5.JAsFloat(), p5.mAsFloat(), var0.options.getPerspective().isFrontView())[1] : var0.player.getPitch();
+      return gAsBoolean() ? ParticleEmitter.sAsFloatArray(ParticleEmitter.JAsFloat(), ParticleEmitter.mAsFloat(), var0.options.getPerspective().isFrontView())[1] : var0.player.getPitch();
    }
 
    public static Vec3d YAsVec3d() {
@@ -1190,7 +1190,7 @@ public final class Aura extends Module {
    }
 
    public double uAsDouble() {
-      return b_.MAsDouble(this.vAsDouble());
+      return ModuleImportBroker.MAsDouble(this.vAsDouble());
    }
 
    private double vAsDouble() {
@@ -1210,7 +1210,7 @@ public final class Aura extends Module {
    }
 
    public boolean qAsBoolean() {
-      return this.isEnabled() ? this.isRuntimeActive() && this.K != null && this.hitZone.getValue() && b_.jAsBoolean() && this.mAsBoolean() : false;
+      return this.isEnabled() ? this.isRuntimeActive() && this.K != null && this.hitZone.getValue() && ModuleImportBroker.jAsBoolean() && this.mAsBoolean() : false;
    }
 
    public float zoneWidth() {
@@ -1235,7 +1235,7 @@ public final class Aura extends Module {
 
    public String SAsString() {
       if (this.K != null && mc.player != null) {
-         String var1 = b_.MAsString(this.K, this.vAsDouble(), mc.player.getRotationVector());
+         String var1 = ModuleImportBroker.MAsString(this.K, this.vAsDouble(), mc.player.getRotationVector());
          return "range".equals(var1) ? "Outside reach" : (var1 == null ? "Valid attack ray" : "Inside reach: " + var1);
       } else {
          return "No lock";
@@ -1292,7 +1292,7 @@ public final class Aura extends Module {
                   var2.K.getId(),
                   var0.isOnGround(),
                   var0.isSprinting(),
-                  db.mAsBoolean(var0.isSprinting()),
+                  FallDamage.mAsBoolean(var0.isSprinting()),
                   Y,
                   var0.getYaw(),
                   var6.n,
@@ -1315,6 +1315,6 @@ public final class Aura extends Module {
    }
 
    public static PlayerInput DAsPlayerInput(PlayerInput var0) {
-      return pk.cAsPlayerInput(var0);
+      return ParticleKind.cAsPlayerInput(var0);
    }
 }

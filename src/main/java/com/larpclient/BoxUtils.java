@@ -16,7 +16,7 @@ public final class BoxUtils {
       if (var0.contains(var1)) {
          return new float[]{var3, var4};
       } else {
-         float[] var5 = dq.QAsFloatArray(var1, var2);
+         float[] var5 = ModuleDetector.QAsFloatArray(var1, var2);
          if (Math.hypot(var2.x - var1.x, var2.z - var1.z) < 1.0E-6) {
             var5[0] = var3;
          }
@@ -38,7 +38,7 @@ public final class BoxUtils {
             && var1.squaredDistanceTo(var4) <= 1.0
             && var0.getCenter().squaredDistanceTo(var3.getCenter()) <= 1.0) {
             Vec3d var12 = gAsVec3d(var3, sAsVec3d(var0, var2));
-            float[] var13 = dq.QAsFloatArray(var4, var12);
+            float[] var13 = ModuleDetector.QAsFloatArray(var4, var12);
             float var14 = MathHelper.wrapDegrees(var9[0] - var13[0]);
             float var15 = var9[1] - var13[1];
             if (Math.abs(var14) <= 60.0F && Math.abs(var15) <= 60.0F) {
@@ -47,7 +47,7 @@ public final class BoxUtils {
             }
          }
 
-         return dq.kAsFloatArray(var10, var11, var9[0], var9[1], var7);
+         return ModuleDetector.kAsFloatArray(var10, var11, var9[0], var9[1], var7);
       }
    }
 

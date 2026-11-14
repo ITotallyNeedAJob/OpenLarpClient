@@ -28,7 +28,7 @@ public final class ActiveProfileJournal {
    private boolean J;
    private String A = "";
    private JsonObject n;
-   private int SmoothInput = 3;
+   private int t = 3;
 
    public ActiveProfileJournal() {
    }

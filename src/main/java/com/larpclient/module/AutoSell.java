@@ -59,7 +59,7 @@ public final class AutoSell extends Module {
    private final TextSetting P = this.oAsE("Selection Error", "");
    private final List<TextSetting> l = new ArrayList<>();
    private final List<TextSetting> p = new ArrayList<>();
-   private final oe h = new oe();
+   private final OfferPanel h = new OfferPanel();
    private Object w;
    private Object z;
    private Object n;
@@ -346,7 +346,7 @@ public final class AutoSell extends Module {
                            this.F = -1;
                            this.kAsVoid("Server closed the menu after confirmation. Checking remaining eligible items.");
                            ClientLog.XAsVoid("AutoSell", "Native close settled after confirmation; sale revenue/outcome not measured");
-                           this.OAsVoid(oe.Type_r.IDLE, this.XAsInt());
+                           this.OAsVoid(OfferPanel.Type_r.IDLE, this.XAsInt());
                         } else {
                            this.RAsVoid("Sell menu closed with returned or changed inventory. Review the result before restarting.");
                         }
@@ -378,7 +378,7 @@ public final class AutoSell extends Module {
                               this.d = false;
                               this.u = 0;
                               if (this.YAsBoolean(var2)) {
-                                 this.OAsVoid(oe.Type_r.FILLING_ITEMS, 1);
+                                 this.OAsVoid(OfferPanel.Type_r.FILLING_ITEMS, 1);
                               }
                            } else if (this.h.wAsBoolean()) {
                               this.d = false;
@@ -387,7 +387,7 @@ public final class AutoSell extends Module {
                                  return;
                               }
 
-                              this.OAsVoid(oe.Type_r.IDLE, this.BAsInt(3));
+                              this.OAsVoid(OfferPanel.Type_r.IDLE, this.BAsInt(3));
                            }
                            break;
                         case FILLING_ITEMS:
@@ -395,7 +395,7 @@ public final class AutoSell extends Module {
                            break;
                         case POST_FILL_WAIT:
                            if (this.h.YAsBoolean()) {
-                              this.OAsVoid(oe.Type_r.CLICK_SELL, 0);
+                              this.OAsVoid(OfferPanel.Type_r.CLICK_SELL, 0);
                            }
                            break;
                         case CLICK_SELL:
@@ -418,10 +418,10 @@ public final class AutoSell extends Module {
                               this.o = Map.of();
                               this.kAsVoid("Server cleared the selected sell items.");
                               if (this.UAsBoolean()) {
-                                 this.OAsVoid(oe.Type_r.FILLING_ITEMS, this.BAsInt(1));
+                                 this.OAsVoid(OfferPanel.Type_r.FILLING_ITEMS, this.BAsInt(1));
                               } else {
                                  this.nAsVoid();
-                                 this.OAsVoid(oe.Type_r.IDLE, this.XAsInt());
+                                 this.OAsVoid(OfferPanel.Type_r.IDLE, this.XAsInt());
                               }
                            } else if (this.h.eAsInt() >= 100) {
                               this.RAsVoid("Sale was rejected, returned items, or did not finish. No duplicate confirmation was sent.");
@@ -431,12 +431,12 @@ public final class AutoSell extends Module {
                            if (this.h.YAsBoolean() && !var1.needsSelection()) {
                               if (var2 != null && this.UAsBoolean()) {
                                  if (this.YAsBoolean(var2)) {
-                                    this.OAsVoid(oe.Type_r.FILLING_ITEMS, 1);
+                                    this.OAsVoid(OfferPanel.Type_r.FILLING_ITEMS, 1);
                                  }
                               } else if (var2 == null && this.UAsBoolean()) {
-                                 this.OAsVoid(oe.Type_r.SEND_COMMAND, 0);
+                                 this.OAsVoid(OfferPanel.Type_r.SEND_COMMAND, 0);
                               } else {
-                                 this.OAsVoid(oe.Type_r.IDLE, this.XAsInt());
+                                 this.OAsVoid(OfferPanel.Type_r.IDLE, this.XAsInt());
                               }
                               break;
                            }
@@ -444,7 +444,7 @@ public final class AutoSell extends Module {
                            return;
                         case SEND_COMMAND:
                            if (!this.UAsBoolean()) {
-                              this.OAsVoid(oe.Type_r.IDLE, this.XAsInt());
+                              this.OAsVoid(OfferPanel.Type_r.IDLE, this.XAsInt());
                               return;
                            }
 
@@ -452,13 +452,13 @@ public final class AutoSell extends Module {
                               this.d = true;
                               mc.player.networkHandler.sendChatCommand("sell");
                               this.kAsVoid("Sent /sell command.");
-                              this.OAsVoid(oe.Type_r.WAIT_MENU_OPEN, this.BAsInt(this.S.getValue().intValue()));
+                              this.OAsVoid(OfferPanel.Type_r.WAIT_MENU_OPEN, this.BAsInt(this.S.getValue().intValue()));
                               break;
                            }
 
                            return;
                         default:
-                           this.OAsVoid(oe.Type_r.IDLE, this.XAsInt());
+                           this.OAsVoid(OfferPanel.Type_r.IDLE, this.XAsInt());
                      }
                   }
                }
@@ -519,7 +519,7 @@ public final class AutoSell extends Module {
                   return;
                }
 
-               this.OAsVoid(oe.Type_r.FILLING_ITEMS, this.BAsInt(1));
+               this.OAsVoid(OfferPanel.Type_r.FILLING_ITEMS, this.BAsInt(1));
             } else if (this.h.eAsInt() >= 100) {
                this.RAsVoid("Item transfer was rejected, the menu is full, or the server did not respond. No repeat click was sent.");
             }
@@ -536,7 +536,7 @@ public final class AutoSell extends Module {
                      this.r = var3.getStack().copy();
                      this.O = new AuctionSaleConfirmation.Type_g(var1.getRevision(), QAsMp_Type_e(this.r), this.r.getCount(), this.rAsMap(var1), this.PAsMap());
                      mc.interactionManager.clickSlot(var1.syncId, var2, 0, SlotActionType.QUICK_MOVE, mc.player);
-                     this.OAsVoid(oe.Type_r.FILLING_ITEMS, 1);
+                     this.OAsVoid(OfferPanel.Type_r.FILLING_ITEMS, 1);
                      return;
                   }
 
@@ -546,9 +546,9 @@ public final class AutoSell extends Module {
 
             if (this.o.isEmpty()) {
                this.nAsVoid();
-               this.OAsVoid(oe.Type_r.IDLE, this.XAsInt());
+               this.OAsVoid(OfferPanel.Type_r.IDLE, this.XAsInt());
             } else {
-               this.OAsVoid(oe.Type_r.POST_FILL_WAIT, this.BAsInt(1));
+               this.OAsVoid(OfferPanel.Type_r.POST_FILL_WAIT, this.BAsInt(1));
             }
          }
       }
@@ -606,7 +606,7 @@ public final class AutoSell extends Module {
          mc.interactionManager.clickSlot(var1.syncId, this.F, 0, SlotActionType.PICKUP, mc.player);
          this.Z++;
          this.kAsVoid("Sent one confirmation for the selected items.");
-         this.OAsVoid(oe.Type_r.POST_SELL_WAIT, this.BAsInt(1));
+         this.OAsVoid(OfferPanel.Type_r.POST_SELL_WAIT, this.BAsInt(1));
       }
    }
 
@@ -693,7 +693,7 @@ public final class AutoSell extends Module {
       if (mc.currentScreen instanceof GenericContainerScreen var1
          && mc.player.currentScreenHandler instanceof GenericContainerScreenHandler var2
          && var1.getScreenHandler() == var2
-         && oe.dAsBoolean(var1.getTitle().getString(), this.menuTitle.getValue())) {
+         && OfferPanel.dAsBoolean(var1.getTitle().getString(), this.menuTitle.getValue())) {
          return var2;
       }
 
@@ -712,16 +712,16 @@ public final class AutoSell extends Module {
       }
    }
 
-   private void OAsVoid(oe.Type_r var1, int var2) {
+   private void OAsVoid(OfferPanel.Type_r var1, int var2) {
       this.h.QAsVoid(var1, var2);
    }
 
    private int BAsInt(int var1) {
-      return oe.SAsInt(var1, this.G.getValue(), ThreadLocalRandom.current());
+      return OfferPanel.SAsInt(var1, this.G.getValue(), ThreadLocalRandom.current());
    }
 
    private int XAsInt() {
-      return oe.lAsInt(this.V.getValue().intValue(), this.x.getValue().intValue(), this.G.getValue(), ThreadLocalRandom.current());
+      return OfferPanel.lAsInt(this.V.getValue().intValue(), this.x.getValue().intValue(), this.G.getValue(), ThreadLocalRandom.current());
    }
 
    private void nAsVoid() {

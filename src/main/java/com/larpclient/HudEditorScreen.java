@@ -23,7 +23,7 @@ import net.minecraft.client.input.CharInput;
 import net.minecraft.client.input.KeyInput;
 
 public final class HudEditorScreen extends GuiPanel {
-   private static final List<String> TextLayout = List.of(
+   private static final List<String> j = List.of(
       "Free", "Top left", "Top center", "Top right", "Center left", "Center", "Center right", "Bottom left", "Bottom center", "Bottom right"
    );
    private final Screen D;
@@ -32,10 +32,10 @@ public final class HudEditorScreen extends GuiPanel {
    private WorkspaceSaveStatus.Type_d N = WorkspaceSaveStatus.Type_d.NONE;
    private final List<HudEditorScreen.Type_o> Y = new ArrayList<>();
    private final List<HudEditorScreen.Type_o> C = new ArrayList<>();
-   private final List<GuiWidget> ScreenScale = new ArrayList<>();
-   private final Set<GuiWidget> PetEffectRenderer = Collections.newSetFromMap(new IdentityHashMap<>());
-   private final w2 K = new w2(1.0);
-   private final Map<Setting<?>, Object> DropletTrail = new IdentityHashMap<>();
+   private final List<GuiWidget> y = new ArrayList<>();
+   private final Set<GuiWidget> a = Collections.newSetFromMap(new IdentityHashMap<>());
+   private final WeatherRenderer K = new WeatherRenderer(1.0);
+   private final Map<Setting<?>, Object> l = new IdentityHashMap<>();
    private TextInputWidget z;
    private HudEditorScreen.Type_o o;
    private HudEditorScreen.Type_o T;
@@ -62,7 +62,7 @@ public final class HudEditorScreen extends GuiPanel {
    private int M = -1;
    private int I = -1;
    private static boolean r;
-   private String HexEdgeloop = "";
+   private String p = "";
    private Object g;
 
    public HudEditorScreen(Screen var1) {
@@ -268,10 +268,10 @@ public final class HudEditorScreen extends GuiPanel {
                this.xAsVoid(this.x2, true);
                this.xAsVoid(this.y2, true);
                this.HAsVoid(var8);
-               this.align = new ModeSetting("Align", "Align within the full game viewport", yAsString(var8), TextLayout.toArray(String[]::new));
+               this.align = new ModeSetting("Align", "Align within the full game viewport", yAsString(var8), j.toArray(String[]::new));
                this.align.onChanged(var2x -> {
                   if (!this.L && !this.yAsBoolean(var8) && !var2x.equals("Free")) {
-                     int var3x = TextLayout.indexOf(var2x) - 1;
+                     int var3x = j.indexOf(var2x) - 1;
                      GuiWorkspace.B.put(var8.a, new GuiWorkspace.Type_g((double)(var3x % 3) * 0.5, (double)(var3x / 3) * 0.5));
                   }
                });
@@ -323,7 +323,7 @@ public final class HudEditorScreen extends GuiPanel {
       this.sAsVoid();
       this.O.eAsVoid(var1);
       this.UAsVoid(var1);
-      d7.Type_p var2 = HudRenderer.qAsOptional(HudRenderer.NAsList(), var1).orElse(var1.mAsD7_Type_p(this.width, this.height));
+      WidgetLayoutUtil.Type_p var2 = HudRenderer.qAsOptional(HudRenderer.NAsList(), var1).orElse(var1.mAsD7_Type_p(this.width, this.height));
       this.M = var2.x() + var2.width() + 14;
       this.I = var2.y();
       if (this.M + 260 > this.width - 12) {
@@ -404,8 +404,8 @@ public final class HudEditorScreen extends GuiPanel {
          lAsVoid(this.F, this.s.retry());
       }
 
-      d7.Type_p var9 = this.s.panel();
-      d7.Type_p var10 = this.s.body();
+      WidgetLayoutUtil.Type_p var9 = this.s.panel();
+      WidgetLayoutUtil.Type_p var10 = this.s.body();
 
       for (HudEditorScreen.Type_o var4 : this.C) {
          var4.Y = var9 != null;
@@ -457,7 +457,7 @@ public final class HudEditorScreen extends GuiPanel {
       }
    }
 
-   private static void lAsVoid(GuiWidget var0, d7.Type_p var1) {
+   private static void lAsVoid(GuiWidget var0, WidgetLayoutUtil.Type_p var1) {
       var0.bounds(var1.x(), var1.y(), var1.width());
       var0.F = var1.height();
    }
@@ -465,14 +465,14 @@ public final class HudEditorScreen extends GuiPanel {
    @Override
    protected boolean accepts(GuiWidget var1, double var2, double var4) {
       return this.y.contains(var1)
-         ? var1.contains(var2, var4) && this.s.controlContains(new d7.Type_p(var1.k, var1.x, var1.V, var1.F), var2, var4)
+         ? var1.contains(var2, var4) && this.s.controlContains(new WidgetLayoutUtil.Type_p(var1.k, var1.x, var1.V, var1.F), var2, var4)
          : var1.contains(var2, var4);
    }
 
    @Override
    protected void focusChanged(GuiWidget var1) {
       if (this.y.contains(var1) && this.s.body() != null) {
-         d7.Type_p var2 = this.s.body();
+         WidgetLayoutUtil.Type_p var2 = this.s.body();
          if (var1.x < var2.y()) {
             this.c = this.c - (var2.y() - var1.x);
          }
@@ -498,7 +498,7 @@ public final class HudEditorScreen extends GuiPanel {
                && var3 <= 2
                && Math.abs(var1.x() - (double)var2 * 0.5) < 0.001
                && Math.abs(var1.y() - (double)var3 * 0.5) < 0.001
-            ? TextLayout.get(var3 * 3 + var2 + 1)
+            ? j.get(var3 * 3 + var2 + 1)
             : "Free";
       }
    }
@@ -659,7 +659,7 @@ public final class HudEditorScreen extends GuiPanel {
                }
 
                if (this.s.canvasContains(click.x(), click.y())) {
-                  HudRenderer.Type_p var7 = d7.lAsObject(HudRenderer.NAsList(), var0 -> true, HudRenderer.Type_p::bounds, click.x(), click.y());
+                  HudRenderer.Type_p var7 = WidgetLayoutUtil.lAsObject(HudRenderer.NAsList(), var0 -> true, HudRenderer.Type_p::bounds, click.x(), click.y());
                   if (click.button() == 1) {
                      if (var7 == null) {
                         this.XAsVoid(WorkspaceSaveStatus.Type_d.WIDGETS);
@@ -928,7 +928,7 @@ public final class HudEditorScreen extends GuiPanel {
          this.uAsVoid();
          ClientPreferences var17 = this.NAsBo().yAsN7();
 
-         try (bd.Type_e var6 = bd.jAsBd_Type_e(var17.M, var17.G, var17.b, var17.pAsBd_Type_p())) {
+         try (UiStyle.Type_e var6 = UiStyle.jAsBd_Type_e(var17.M, var17.G, var17.b, var17.pAsBd_Type_p())) {
             context.createNewRootLayer();
             if (this.s.dock() != null) {
                dAsVoid(context, this.s.dock());
@@ -949,10 +949,10 @@ public final class HudEditorScreen extends GuiPanel {
                   int var11 = Math.min(this.width - 24, var9 + var10 + 28);
                   int var12 = (this.width - var11) / 2;
                   int var13 = this.s.dock().y() - 28;
-                  GuiDrawing.CAsVoid(context, var12, var13, var11, 21, 8, bd.MAsInt());
-                  TextDrawing.NAsVoid(context, var18, var12 + 9, var13 + 6, bd.u, TextDrawing.Type_s.MODULE);
+                  GuiDrawing.CAsVoid(context, var12, var13, var11, 21, 8, UiStyle.MAsInt());
+                  TextDrawing.NAsVoid(context, var18, var12 + 9, var13 + 6, UiStyle.u, TextDrawing.Type_s.MODULE);
                   if (var9 + var10 + 28 <= var11) {
-                     TextDrawing.NAsVoid(context, var21, var12 + var9 + 19, var13 + 7, bd.e, TextDrawing.Type_s.HELP);
+                     TextDrawing.NAsVoid(context, var21, var12 + var9 + 19, var13 + 7, UiStyle.e, TextDrawing.Type_s.HELP);
                   }
                }
             }
@@ -985,30 +985,30 @@ public final class HudEditorScreen extends GuiPanel {
       }
    }
 
-   private static void dAsVoid(DrawContext var0, d7.Type_p var1) {
+   private static void dAsVoid(DrawContext var0, WidgetLayoutUtil.Type_p var1) {
       GuiDrawing.uAsVoid(var0, var1.x(), var1.y(), var1.width(), var1.height(), 10);
-      GuiDrawing.OAsVoid(var0, var1.x(), var1.y(), var1.width(), var1.height(), 10, bd.MAsInt(), 0.75);
+      GuiDrawing.OAsVoid(var0, var1.x(), var1.y(), var1.width(), var1.height(), 10, UiStyle.MAsInt(), 0.75);
    }
 
    private void hAsVoid(DrawContext var1, int var2, int var3) {
-      d7.Type_p var4 = this.s.panel();
-      d7.Type_p var5 = this.s.body();
+      WidgetLayoutUtil.Type_p var4 = this.s.panel();
+      WidgetLayoutUtil.Type_p var5 = this.s.body();
       if (var4 != null) {
          if (!this.q) {
             this.K.aAsVoid(1.0);
          }
 
-         try (qg var6 = qg.nAsQg(this.K.yAsDouble())) {
+         try (QueueGroup var6 = QueueGroup.nAsQg(this.K.yAsDouble())) {
             dAsVoid(var1, var4);
             String var7 = this.N == WorkspaceSaveStatus.Type_d.WIDGETS
                ? "Widgets"
                : (this.N == WorkspaceSaveStatus.Type_d.OPTIONS ? "Editor options" : HudRenderer.XAsString(this.O.aAsLp_Type_m().a));
             if (this.N == WorkspaceSaveStatus.Type_d.STYLE || this.N == WorkspaceSaveStatus.Type_d.POSITION) {
-               GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier(GuiIcons.XAsString(this.O.aAsLp_Type_m().a)), var4.x() + 13, var4.y() + 15, 13, bd.e);
+               GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier(GuiIcons.XAsString(this.O.aAsLp_Type_m().a)), var4.x() + 13, var4.y() + 15, 13, UiStyle.e);
             }
 
             int var8 = var4.x() + (this.N != WorkspaceSaveStatus.Type_d.STYLE && this.N != WorkspaceSaveStatus.Type_d.POSITION ? 14 : 34);
-            TextDrawing.NAsVoid(var1, TextDrawing.HAsString(var7, var4.x() + var4.width() - var8 - 42), var8, var4.y() + 16, bd.u, TextDrawing.Type_s.MODULE);
+            TextDrawing.NAsVoid(var1, TextDrawing.HAsString(var7, var4.x() + var4.width() - var8 - 42), var8, var4.y() + 16, UiStyle.u, TextDrawing.Type_s.MODULE);
 
             for (HudEditorScreen.Type_o var10 : this.C) {
                var10.render(var1, var2, var3);
@@ -1028,7 +1028,7 @@ public final class HudEditorScreen extends GuiPanel {
                }
 
                if (this.N == WorkspaceSaveStatus.Type_d.WIDGETS && this.y.stream().noneMatch(this::rAsBoolean)) {
-                  TextDrawing.NAsVoid(var1, "No matching widgets", var5.x() + 6, var5.y() + 10, bd.e, TextDrawing.Type_s.BODY);
+                  TextDrawing.NAsVoid(var1, "No matching widgets", var5.x() + 6, var5.y() + 10, UiStyle.e, TextDrawing.Type_s.BODY);
                }
             } finally {
                var1.disableScissor();
@@ -1042,7 +1042,7 @@ public final class HudEditorScreen extends GuiPanel {
    private void XAsVoid(DrawContext var1, int var2, int var3) {
       List<HudRenderer.Type_p> var4 = HudRenderer.NAsList();
       HudRenderer.Type_p var5 = this.s.canvasContains((double)var2, (double)var3)
-         ? d7.lAsObject(var4, var0 -> true, HudRenderer.Type_p::bounds, (double)var2, (double)var3)
+         ? WidgetLayoutUtil.lAsObject(var4, var0 -> true, HudRenderer.Type_p::bounds, (double)var2, (double)var3)
          : null;
       if (var5 != null && var5.element() != this.O.aAsLp_Type_m()) {
          hAsVoid(var1, var5.bounds(), -2137614688);
@@ -1050,17 +1050,17 @@ public final class HudEditorScreen extends GuiPanel {
 
       HudRenderer.Type_m var6 = this.O.aAsLp_Type_m();
       HudRenderer.qAsOptional(var4, var6).ifPresent(var3x -> {
-         hAsVoid(var1, var3x, bg.XAsInt(bd.w, 0.85));
+         hAsVoid(var1, var3x, ColorUtil.XAsInt(UiStyle.w, 0.85));
          if (!this.yAsBoolean(var6)) {
-            d7.Type_p var4x = d7.XAsD7_Type_p(var3x, this.width, this.height);
+            WidgetLayoutUtil.Type_p var4x = WidgetLayoutUtil.XAsD7_Type_p(var3x, this.width, this.height);
             GuiDrawing.CAsVoid(var1, var4x.x() - 1, var4x.y() - 1, var4x.width() + 2, var4x.height() + 2, 3, -1072096999);
-            GuiDrawing.CAsVoid(var1, var4x.x() + 1, var4x.y() + 1, var4x.width() - 2, var4x.height() - 2, 2, bd.w);
+            GuiDrawing.CAsVoid(var1, var4x.x() + 1, var4x.y() + 1, var4x.width() - 2, var4x.height() - 2, 2, UiStyle.w);
          }
 
          if (this.O.gAsOz().eAsBoolean()) {
             String var8x = var6.PAsInt(this.width) + ", " + var6.ZAsInt(this.height);
             int var5x = TextDrawing.jAsInt(var8x, TextDrawing.Type_s.HELP) + 12;
-            int var6x = d7.LAsInt(var3x.x(), var5x, this.width);
+            int var6x = WidgetLayoutUtil.LAsInt(var3x.x(), var5x, this.width);
             int var7x = Math.max(2, var3x.y() - 20);
             GuiDrawing.CAsVoid(var1, var6x, var7x, var5x, 16, 5, -552003303);
             TextDrawing.NAsVoid(var1, var8x, var6x + 6, var7x + 4, -1381654, TextDrawing.Type_s.HELP);
@@ -1070,16 +1070,16 @@ public final class HudEditorScreen extends GuiPanel {
          int var7 = this.O.gAsOz().JAsInt();
          int var8 = this.O.gAsOz().fAsInt();
          if (var7 >= 0) {
-            GuiTextureDrawing.CAsVoid(var1, Math.min(this.width - 1, var7), 0, 1, this.height, bg.XAsInt(bd.w, 0.45));
+            GuiTextureDrawing.CAsVoid(var1, Math.min(this.width - 1, var7), 0, 1, this.height, ColorUtil.XAsInt(UiStyle.w, 0.45));
          }
 
          if (var8 >= 0) {
-            GuiTextureDrawing.CAsVoid(var1, 0, Math.min(this.height - 1, var8), this.width, 1, bg.XAsInt(bd.w, 0.45));
+            GuiTextureDrawing.CAsVoid(var1, 0, Math.min(this.height - 1, var8), this.width, 1, ColorUtil.XAsInt(UiStyle.w, 0.45));
          }
       }
    }
 
-   private static void hAsVoid(DrawContext var0, d7.Type_p var1, int var2) {
+   private static void hAsVoid(DrawContext var0, WidgetLayoutUtil.Type_p var1, int var2) {
       GuiTextureDrawing.pAsVoid(var0, var1.x() - 1, var1.y() - 1, var1.width() + 2, var1.height() + 2, var2);
    }
 
@@ -1088,7 +1088,7 @@ public final class HudEditorScreen extends GuiPanel {
       final String L;
       final Runnable r;
       final BooleanSupplier l;
-      final w2 J = new w2(0.0);
+      final WeatherRenderer J = new WeatherRenderer(0.0);
       boolean f;
       boolean P;
       boolean X;
@@ -1110,10 +1110,10 @@ public final class HudEditorScreen extends GuiPanel {
             }
 
             double var6 = this.J.bAsDouble(var5 != 0 ? 1.0 : 0.0, 160);
-            int var8 = this.X ? bd.m : (this.B ? bd.u : bd.W);
+            int var8 = this.X ? UiStyle.m : (this.B ? UiStyle.u : UiStyle.W);
             if (this.X || var4 || var6 > 0.001) {
                GuiDrawing.CAsVoid(
-                  var1, this.k, this.x, this.V, this.F, 7, this.X ? bg.xAsInt(bd.u, bd.e, var6 * 0.12) : bg.xAsInt(bd.m, bd.y, var4 ? 1.0 : var6)
+                  var1, this.k, this.x, this.V, this.F, 7, this.X ? ColorUtil.xAsInt(UiStyle.u, UiStyle.e, var6 * 0.12) : ColorUtil.xAsInt(UiStyle.m, UiStyle.y, var4 ? 1.0 : var6)
                );
             }
 
@@ -1154,10 +1154,10 @@ public final class HudEditorScreen extends GuiPanel {
       void TAsVoid(DrawContext var1) {
          if (this.f) {
             int var2 = TextDrawing.jAsInt(this.R, TextDrawing.Type_s.HELP) + 16;
-            int var3 = d7.LAsInt(this.k + (this.V - var2) / 2, var2, HudEditorScreen.this.width);
+            int var3 = WidgetLayoutUtil.LAsInt(this.k + (this.V - var2) / 2, var2, HudEditorScreen.this.width);
             int var4 = Math.max(0, this.x - 27);
-            GuiDrawing.CAsVoid(var1, var3, var4, var2, 20, 6, bd.V);
-            TextDrawing.NAsVoid(var1, this.R, var3 + 8, var4 + 6, bd.u, TextDrawing.Type_s.HELP);
+            GuiDrawing.CAsVoid(var1, var3, var4, var2, 20, 6, UiStyle.V);
+            TextDrawing.NAsVoid(var1, this.R, var3 + 8, var4 + 6, UiStyle.u, TextDrawing.Type_s.HELP);
          }
       }
 
@@ -1186,8 +1186,8 @@ public final class HudEditorScreen extends GuiPanel {
 
    private final class Type_p extends GuiWidget {
       final HudRenderer.Type_m T;
-      private final w2 MenuPopupProvider = new w2(0.0);
-      private final w2 E = new w2(0.0);
+      private final WeatherRenderer f = new WeatherRenderer(0.0);
+      private final WeatherRenderer E = new WeatherRenderer(0.0);
 
       Type_p(HudRenderer.Type_m var2) {
          this.T = var2;
@@ -1206,15 +1206,15 @@ public final class HudEditorScreen extends GuiPanel {
 
          double var6 = this.f.bAsDouble(!this.contains((double)var2, (double)var3) && !this.y ? 0.0 : 1.0, 160);
          if (var5 != 0 || var6 > 0.001) {
-            GuiDrawing.CAsVoid(var1, this.k, this.x, this.V, this.F, 7, bg.xAsInt(bd.m, bd.y, var5 != 0 ? 0.8 : var6 * 0.65));
+            GuiDrawing.CAsVoid(var1, this.k, this.x, this.V, this.F, 7, ColorUtil.xAsInt(UiStyle.m, UiStyle.y, var5 != 0 ? 0.8 : var6 * 0.65));
          }
 
-         GuiDrawing.CAsVoid(var1, this.k + 4, this.x + 6, 24, 24, 6, bd._Z);
-         GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier(GuiIcons.XAsString(this.T.a)), this.k + 10, this.x + 12, 12, var4 ? bd.u : bd.e);
+         GuiDrawing.CAsVoid(var1, this.k + 4, this.x + 6, 24, 24, 6, UiStyle._Z);
+         GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier(GuiIcons.XAsString(this.T.a)), this.k + 10, this.x + 12, 12, var4 ? UiStyle.u : UiStyle.e);
          TextDrawing.NAsVoid(
-            var1, TextDrawing.HAsString(HudRenderer.XAsString(this.T.a), this.V - 74), this.k + 36, this.x + 7, bd.u, TextDrawing.Type_s.MODULE
+            var1, TextDrawing.HAsString(HudRenderer.XAsString(this.T.a), this.V - 74), this.k + 36, this.x + 7, UiStyle.u, TextDrawing.Type_s.MODULE
          );
-         TextDrawing.NAsVoid(var1, var4 ? "Visible" : "Hidden", this.k + 36, this.x + 21, bd.e, TextDrawing.Type_s.HELP);
+         TextDrawing.NAsVoid(var1, var4 ? "Visible" : "Hidden", this.k + 36, this.x + 21, UiStyle.e, TextDrawing.Type_s.HELP);
          GuiDrawing.uAsVoid(var1, this.k + this.V - 30, this.x + 12, this.E.bAsDouble(var4 ? 1.0 : 0.0, 180));
          if (this.y && this.Q) {
             GuiDrawing.dAsVoid(var1, this.k, this.x, this.V, this.F, 7);

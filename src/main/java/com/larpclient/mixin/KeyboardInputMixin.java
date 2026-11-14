@@ -20,9 +20,9 @@ public abstract class KeyboardInputMixin extends Input {
       at = {@At("TAIL")}
    )
    private void larpclient$injectTick(CallbackInfo var1) {
-      if (p5.oAsBoolean()) {
+      if (ParticleEmitter.oAsBoolean()) {
          this.playerInput = Freecam.yAsPlayerInput(this.playerInput);
-         this.movementVector = ot.UAsVec2f(this.playerInput);
+         this.movementVector = OuterEffect.UAsVec2f(this.playerInput);
       }
    }
 }

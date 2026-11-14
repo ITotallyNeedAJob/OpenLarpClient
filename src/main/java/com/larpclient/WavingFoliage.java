@@ -18,7 +18,7 @@ public final class WavingFoliage extends Module {
 
    public WavingFoliage() {
       super("Waving Foliage", "Trees, grass, flowers and crops sway in wind and passing gusts", Category.RENDER, -1);
-      MenuPopupProvider = this;
+      f = this;
       this.trees.visibleWhen(() -> this.leaves.getValue());
       this.leaves.onChanged(var1 -> this.xAsVoid());
       this.trees.onChanged(var1 -> this.xAsVoid());

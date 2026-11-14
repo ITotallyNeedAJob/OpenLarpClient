@@ -5,28 +5,28 @@ import java.util.Map;
 import net.minecraft.util.math.Vec3d;
 
 public final class BodyTrailEngine {
-   static final int PriceDetector = 128;
-   static final int PetEffectRenderer = 16;
-   static final int ScreenScale = 8;
+   static final int m = 128;
+   static final int a = 16;
+   static final int y = 8;
    static final int n = 3;
-   static final int CropHelper = 382;
+   static final int u = 382;
    private final Map<Integer, BodyTrailEngine.Type_l> Z = new LinkedHashMap<>();
    private long S;
    private boolean J;
-   private x4.Type_g SkyChunkCache = x4.Type_g.ADDITIVE;
-   public BodyTrailEngine.Type_i DropletTrail = BodyTrailEngine.Type_i.AURA;
+   private EffectRenderParams.Type_g s = EffectRenderParams.Type_g.ADDITIVE;
+   public BodyTrailEngine.Type_i l = BodyTrailEngine.Type_i.AURA;
    public RibbonTrailEngine.Type_b R = RibbonTrailEngine.Type_b.TAPER_TAIL;
-   public ay.Type_r BloomUtility = ay.Type_r.LINEAR;
+   public FadeCurve.Type_r b = FadeCurve.Type_r.LINEAR;
    public double U = 1.2;
-   public double AuraModule = 0.12;
+   public double x = 0.12;
    public boolean v = true;
    public boolean O = true;
    public int w;
    public int c;
 
    public BodyTrailEngine() {
-      this.w = bd.w;
-      this.c = bd.Q;
+      this.w = UiStyle.w;
+      this.c = UiStyle.Q;
       ClientLog.GAsVoid("Trails", "Body trail engine initialized: {} sources, {} points per source", 16, 128);
    }
 
@@ -109,8 +109,8 @@ public final class BodyTrailEngine {
 
    public void ZAsVoid(Vec3d var1, float var2) {
       this.J = false;
-      this.s = this.l == BodyTrailEngine.Type_i.SILK ? x4.Type_g.ALPHA : x4.Type_g.ADDITIVE;
-      double var3 = mb.RAsDouble();
+      this.s = this.l == BodyTrailEngine.Type_i.SILK ? EffectRenderParams.Type_g.ALPHA : EffectRenderParams.Type_g.ADDITIVE;
+      double var3 = MediaSession.RAsDouble();
 
       for (BodyTrailEngine.Type_l var6 : this.Z.values()) {
          var6.W = false;
@@ -154,7 +154,7 @@ public final class BodyTrailEngine {
 
    public void EAsVoid(EffectGeometryRenderer var1, boolean var2) {
       if (!var2 || this.v) {
-         long var3 = op.RAsLong();
+         long var3 = OpenScreen.RAsLong();
          var1.blend(this.s);
 
          for (BodyTrailEngine.Type_l var6 : this.Z.values()) {
@@ -171,7 +171,7 @@ public final class BodyTrailEngine {
             }
          }
 
-         var1.blend(x4.Type_g.ADDITIVE);
+         var1.blend(EffectRenderParams.Type_g.ADDITIVE);
 
          for (BodyTrailEngine.Type_l var13 : this.Z.values()) {
             if (var13.W) {
@@ -179,14 +179,14 @@ public final class BodyTrailEngine {
                   Vec3d var8 = var13.I[var14];
                   int var9 = var13.V[var14];
                   double var10 = var13.m[var14];
-                  var1.cAsVoid(var8.x, var8.y, var8.z, var10, 0.0, bg.pAsInt(var9, 0.32), ParticleEmitterEngine.Type_a.Glow, 0.0, 0.0, 0.0);
+                  var1.cAsVoid(var8.x, var8.y, var8.z, var10, 0.0, ColorUtil.pAsInt(var9, 0.32), ParticleEmitterEngine.Type_a.Glow, 0.0, 0.0, 0.0);
                   var1.cAsVoid(
                      var8.x,
                      var8.y,
                      var8.z,
                      var10 * 0.32,
                      0.0,
-                     bg.xAsInt(var9, var9 & 0xFF000000 | 16777215, 0.7),
+                     ColorUtil.xAsInt(var9, var9 & 0xFF000000 | 16777215, 0.7),
                      ParticleEmitterEngine.Type_a.Glow,
                      0.0,
                      0.0,
@@ -196,8 +196,8 @@ public final class BodyTrailEngine {
             }
          }
 
-         var1.blend(x4.Type_g.ALPHA);
-         op.aAsVoid("Body Trails", var3);
+         var1.blend(EffectRenderParams.Type_g.ALPHA);
+         OpenScreen.aAsVoid("Body Trails", var3);
       }
    }
 
@@ -289,7 +289,7 @@ public final class BodyTrailEngine {
             double var15 = 1.0 - var9;
             double var17 = var11 * var5[var6] + Math.sin(var13 * 2.4 + (double)var6 * 2.1 - var3 * 1.6) * 0.09 * var11 * var15;
             double var19 = Math.cos(var13 * 1.8 + (double)var6 * 1.7 - var3 * 1.2) * 0.16 * var15;
-            int var21 = bg.xAsInt(this.aAsInt(var9), bg.xAsInt(this.w, this.c, 0.5), (double)var6 * 0.18);
+            int var21 = ColorUtil.xAsInt(this.aAsInt(var9), ColorUtil.xAsInt(this.w, this.c, 0.5), (double)var6 * 0.18);
             this.kAsVoid(var7, var1, var8, var17, var19, this.x * 1.15 * this.SAsDouble(var9), var21, 0.9 * this.b.fAsDouble(1.0 - var9), var2);
          }
       }
@@ -353,7 +353,7 @@ public final class BodyTrailEngine {
                var27 * 0.55 + Math.cos(var30) * 0.22 * var27 * var29,
                Math.sin(var30) * 0.3 * var29,
                this.x * 0.4 * this.SAsDouble(var26),
-               bg.xAsInt(this.aAsInt(var26), this.c, 0.3),
+               ColorUtil.xAsInt(this.aAsInt(var26), this.c, 0.3),
                0.8 * this.b.fAsDouble(1.0 - var26),
                var2
             );
@@ -411,7 +411,7 @@ public final class BodyTrailEngine {
             double var18 = var14 * 2.4 + (double)var25 * Math.PI - var3 * 2.4;
             double var20 = 0.46 * var12 * var16;
             double var22 = Math.max(var1.l[var9] * 0.8, 0.45) * var16;
-            int var24 = var25 == 0 ? this.aAsInt(var10) : bg.xAsInt(this.w, this.c, var10);
+            int var24 = var25 == 0 ? this.aAsInt(var10) : ColorUtil.xAsInt(this.w, this.c, var10);
             this.kAsVoid(
                var26,
                var1,
@@ -485,7 +485,7 @@ public final class BodyTrailEngine {
       Vec3d var14 = var2.N[var3];
       Vec3d var15 = var2.D[var3];
       Vec3d var16 = new Vec3d(var15.x + var14.x * var6, var15.y + var4, var15.z + var14.z * var6);
-      var1.bAsVoid(var16, Math.max(0.0, var8), bg.pAsInt(var10, Math.clamp(var11, 0.0, 1.0) * sAsDouble(var16, var13)));
+      var1.bAsVoid(var16, Math.max(0.0, var8), ColorUtil.pAsInt(var10, Math.clamp(var11, 0.0, 1.0) * sAsDouble(var16, var13)));
    }
 
    private void rAsVoid(BodyTrailEngine.Type_l var1, Vec3d var2, int var3, double var4, Vec3d var6) {
@@ -493,17 +493,17 @@ public final class BodyTrailEngine {
       if (!(var7 <= 0.0) && var1.G < var1.I.length) {
          int var9 = var1.G++;
          var1.I[var9] = var2;
-         var1.V[var9] = bg.pAsInt(var3, var7);
+         var1.V[var9] = ColorUtil.pAsInt(var3, var7);
          var1.m[var9] = var4;
       }
    }
 
    static double sAsDouble(Vec3d var0, Vec3d var1) {
-      return ay.RAsDouble((var0.distanceTo(var1) - 0.6) / 1.4);
+      return FadeCurve.RAsDouble((var0.distanceTo(var1) - 0.6) / 1.4);
    }
 
    private int aAsInt(double var1) {
-      return bg.xAsInt(this.c, this.w, var1);
+      return ColorUtil.xAsInt(this.c, this.w, var1);
    }
 
    private double SAsDouble(double var1) {
@@ -550,30 +550,30 @@ public final class BodyTrailEngine {
    }
 
    private static final class Type_l {
-      final Vec3d[] LineSegment = new Vec3d[128];
-      final double[] BloomUtility = new double[128];
+      final Vec3d[] e = new Vec3d[128];
+      final double[] b = new double[128];
       final double[] R = new double[128];
       final double[] T = new double[128];
-      final long[] SkyChunkCache = new long[128];
+      final long[] s = new long[128];
       int Q;
       int O;
       double x;
       final Vec3d[] D = new Vec3d[382];
       final Vec3d[] N = new Vec3d[382];
       final double[] r = new double[382];
-      final double[] DropletTrail = new double[382];
+      final double[] l = new double[382];
       final double[] J = new double[382];
       final double[] n = new double[382];
       int p;
       final RibbonCapacity.Type_f S = new RibbonCapacity.Type_f();
-      final RibbonCapacity.Type_v[] ChatPayParser = new RibbonCapacity.Type_v[8];
+      final RibbonCapacity.Type_v[] g = new RibbonCapacity.Type_v[8];
       final double[] F = new double[8];
       final boolean[] Y = new boolean[8];
       final boolean[] M = new boolean[8];
       int o;
       final Vec3d[] I = new Vec3d[2];
       final int[] V = new int[2];
-      final double[] PriceDetector = new double[2];
+      final double[] m = new double[2];
       int G;
       boolean W;
 

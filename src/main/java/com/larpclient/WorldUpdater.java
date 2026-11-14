@@ -8,7 +8,7 @@ import net.minecraft.util.math.Vec3d;
 
 public final class WorldUpdater {
    public static final double C = 4.0;
-   public static final double PriceDetector = 1.0;
+   public static final double m = 1.0;
    public static final double Q = 0.1;
 
    public static double BAsDouble(int var0) {

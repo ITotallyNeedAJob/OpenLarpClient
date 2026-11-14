@@ -1,7 +1,7 @@
 package com.larpclient;
 
 public final class ClickState {
-   private static final long PetEffectRenderer = 511L;
+   private static final long a = 511L;
    private static final long C = 68719476735L;
 
    public static boolean oAsBoolean(boolean var0, boolean var1, boolean var2, double var3, double var5, boolean var7, double var8) {
@@ -26,7 +26,7 @@ public final class ClickState {
    }
 
    public static boolean cAsBoolean(boolean var0, boolean var1, boolean var2, boolean var3, boolean var4, boolean var5, boolean var6) {
-      return mx.uAsBoolean(var0, var1, var2, var3, var4, var5, var6);
+      return MixinCompat.uAsBoolean(var0, var1, var2, var3, var4, var5, var6);
    }
 
    public static int yAsInt(int var0, int var1, double var2) {
@@ -40,9 +40,9 @@ public final class ClickState {
 
    public static final class Type_a {
       public static final long h = 1000L;
-      public static final long SahurDanceEngine = 4000L;
+      public static final long d = 4000L;
       public static final int S = 6;
-      private ClickState.Type_a.Type_u ChinaHatCodec = ClickState.Type_a.Type_u.IDLE;
+      private ClickState.Type_a.Type_u i = ClickState.Type_a.Type_u.IDLE;
       private long B;
       private long R;
       private int l;
@@ -208,7 +208,7 @@ public final class ClickState {
    }
 
    public static final class Type_s {
-      private long GroundSample = -1L;
+      private long k = -1L;
       private long X;
 
       public Type_s() {

@@ -341,10 +341,10 @@ public final class FakeSpawner extends Module {
       RealStackExemptions.yAsVoid();
       FakeSpawnerController.ZAsMa().YAsVoid();
       ShopPurchaseController.AAsVoid(var1);
-      r2.RAsVoid();
+      ItemBlockCache.RAsVoid();
       VisualInventory.GAsVoid();
-      com.larpclient.o.eAsVoid();
-      al.tAsVoid();
+      com.larpclient.AuctionNotifier.eAsVoid();
+      TimerQueue.tAsVoid();
       DonutAuctionApi.ZAsA6().AAsVoid();
    }
 
@@ -353,8 +353,8 @@ public final class FakeSpawner extends Module {
       ShopPurchaseController.WAsVoid();
       FakeSpawnerController.ZAsMa().rAsVoid();
       VisualInventory.XAsVoid();
-      al.eAsVoid();
-      com.larpclient.o.IAsVoid();
+      TimerQueue.eAsVoid();
+      com.larpclient.AuctionNotifier.IAsVoid();
       ClientLog.GAsVoid("FakeSpawner", "Runtime released; saved piles retained for matching world/player restoration");
    }
 }

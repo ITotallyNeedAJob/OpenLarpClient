@@ -29,7 +29,7 @@ public abstract class GuiRendererMixin {
    )
    private RenderPipeline larpclient$wrapOperationV(SimpleGuiElementRenderState var1, Operation<RenderPipeline> var2) {
       RenderPipeline var3 = (RenderPipeline)var2.call(new Object[]{var1});
-      if (xt.rAsXt_Type_s() == null) {
+      if (XTexture.rAsXt_Type_s() == null) {
          return var3;
       } else {
          RenderPipeline var4 = RoundedShapePipeline.RAsRenderPipeline(var3);
@@ -45,15 +45,15 @@ public abstract class GuiRendererMixin {
       )}
    )
    private void larpclient$wrapOperationV(SimpleGuiElementRenderState var1, VertexConsumer var2, Operation<Void> var3) {
-      xt.Type_s var4 = xt.rAsXt_Type_s();
+      XTexture.Type_s var4 = XTexture.rAsXt_Type_s();
       if (var4 == null) {
          var3.call(new Object[]{var1, var2});
       } else {
          RenderPipeline var5 = var1.pipeline();
-         xt.Type_d var6 = !RoundedShapePipeline.PAsBoolean(var5)
-            ? xt.Type_d.PLAIN
-            : (RoundedShapePipeline.RAsRenderPipeline(var5) != null ? xt.Type_d.SIZED : xt.Type_d.CORNERS);
-         xt.Type_m var7 = xt.IAsXt_Type_m(var2, var4, var5.getVertexFormatMode() == DrawMode.QUADS, var1.scissorArea(), var6);
+         XTexture.Type_d var6 = !RoundedShapePipeline.PAsBoolean(var5)
+            ? XTexture.Type_d.PLAIN
+            : (RoundedShapePipeline.RAsRenderPipeline(var5) != null ? XTexture.Type_d.SIZED : XTexture.Type_d.CORNERS);
+         XTexture.Type_m var7 = XTexture.IAsXt_Type_m(var2, var4, var5.getVertexFormatMode() == DrawMode.QUADS, var1.scissorArea(), var6);
 
          try {
             var3.call(new Object[]{var1, var7});
@@ -71,7 +71,7 @@ public abstract class GuiRendererMixin {
       )}
    )
    private ScreenRect larpclient$wrapOperationV2(SimpleGuiElementRenderState var1, Operation<ScreenRect> var2) {
-      xt.Type_s var3 = xt.rAsXt_Type_s();
+      XTexture.Type_s var3 = XTexture.rAsXt_Type_s();
       ScreenRect var4 = (ScreenRect)var2.call(new Object[]{var1});
       if (var3 != null && var4 != null) {
          Window var5 = MinecraftClient.getInstance().getWindow();

@@ -14,7 +14,7 @@ import net.minecraft.util.Arm;
 import net.minecraft.util.math.RotationAxis;
 
 public class Animations extends Module {
-   private final ModeSetting swing = this.addSetting(new ModeSetting("Swing", "Swing preset", "Module 6", dx.N) {
+   private final ModeSetting swing = this.addSetting(new ModeSetting("Swing", "Swing preset", "Module 6", DepthEffect.N) {
       @Override
       public String getDisplayName() {
          return "Mode";
@@ -40,10 +40,10 @@ public class Animations extends Module {
    private final NumberSetting K = this.aAsNumberSetting("Spin Speed", "Continuous spin speed", 3.6, 0.2, 12.0, 0.1);
    private final BooleanSetting A = this.JAsBooleanSetting("Slow", "Override local hand swing duration", false);
    private final NumberSetting i = this.aAsNumberSetting("Speed", "Swing duration in ticks", 12.0, 1.0, 50.0, 1.0);
-   private final dx.Type_r y = new dx.Type_r();
+   private final DepthEffect.Type_r y = new DepthEffect.Type_r();
    private Object Z;
    private Object H;
-   private final pq L = new pq();
+   private final PanelQuality L = new PanelQuality();
    private static Animations R;
    public static int d;
    private static final String[] b = new String[]{
@@ -168,12 +168,12 @@ public class Animations extends Module {
    public void sAsVoid(MatrixStack var1, Arm var2, float var3) {
       if (this.isEnabled()) {
          this.BAsVoid();
-         dx.kAsVoid(
+         DepthEffect.kAsVoid(
             var1,
             this.swing.getValue(),
             var2 == Arm.LEFT,
             var3,
-            new dx.Type_j(
+            new DepthEffect.Type_j(
                this.U.getValue().floatValue(),
                this.V.getValue().floatValue(),
                this.I.getValue().floatValue(),
@@ -192,7 +192,7 @@ public class Animations extends Module {
    public void xAsVoid(MatrixStack var1) {
       if (this.isEnabled() && this.isRuntimeActive() && this.w.getValue()) {
          this.BAsVoid();
-         float var2 = (float)Math.toDegrees(this.L.uAsDouble(mb.RAsDouble(), this.K.getValue() / 4.0) % (Math.PI * 2));
+         float var2 = (float)Math.toDegrees(this.L.uAsDouble(MediaSession.RAsDouble(), this.K.getValue() / 4.0) % (Math.PI * 2));
          String var3 = this.spinAxis.getValue();
 
          var1.multiply(switch (var3) {

@@ -25,8 +25,8 @@ public final class WTap extends Module {
    private final NumberSetting releaseDuration = this.addSetting(
       new NumberSetting("Release Duration", "Forward release in native input ticks", 1.0, 1.0, 3.0, 1.0)
    );
-   private final wq.Type_d d = new wq.Type_d();
-   private final wq.Type_s k = new wq.Type_s();
+   private final WidgetQueue.Type_d d = new WidgetQueue.Type_d();
+   private final WidgetQueue.Type_s k = new WidgetQueue.Type_s();
    private ClientPlayerEntity S;
    private Object M;
    private String c = "Waiting for a sprint attack";
@@ -42,14 +42,14 @@ public final class WTap extends Module {
          if (var2 != null && var0 == getMc().player) {
             var2.k.uAsVoid();
             if (var2.isRuntimeActive() && var0 == getMc().player && var0 instanceof ClientPlayerEntity var3) {
-               int var4 = !b_.pAsBoolean()
+               int var4 = !ModuleImportBroker.pAsBoolean()
                      && mc.options.attackKey.isPressed()
                      && mc.crosshairTarget instanceof EntityHitResult var5
                      && var5.getEntity() == var1
                   ? 1
                   : 0;
                boolean var7 = var2.LAsBoolean(var1);
-               boolean var8 = wq.LAsBoolean(
+               boolean var8 = WidgetQueue.LAsBoolean(
                   var4 != 0,
                   var2.gAsBoolean(var3),
                   var3.isSprinting(),
@@ -102,8 +102,8 @@ public final class WTap extends Module {
             } else {
                var2.c = "Releasing forward";
                var0.setSprinting(false);
-               PlayerInput var3 = wq.ZAsPlayerInput(var1);
-               var0.input.movementVector = wq.eAsVec2f(var3);
+               PlayerInput var3 = WidgetQueue.ZAsPlayerInput(var1);
+               var0.input.movementVector = WidgetQueue.eAsVec2f(var3);
                return var3;
             }
          } else {
@@ -134,10 +134,10 @@ public final class WTap extends Module {
    private boolean gAsBoolean(ClientPlayerEntity var1) {
       if (var1 != null
          && var1 == getMc().player
-         && r6.VAsBoolean()
-         && b_.PAsBoolean()
+         && ModuleKeybindChecker.VAsBoolean()
+         && ModuleImportBroker.PAsBoolean()
          && mc.isWindowFocused()
-         && p5.NAsP5_Type_u() == p5.Type_u.NONE
+         && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.NONE
          && !var1.isUsingItem()
          && !var1.isTouchingWater()
          && !var1.isInLava()
@@ -171,7 +171,7 @@ public final class WTap extends Module {
          || mc.player.isTeammate(var1)
          || this.playersOnly.getValue() && !(var1 instanceof PlayerEntity)
          || !mc.player.canSee(var1)
-         || b_.HAsDouble(var1) > mc.player.getEntityInteractionRange() + 1.0E-7) {
+         || ModuleImportBroker.HAsDouble(var1) > mc.player.getEntityInteractionRange() + 1.0E-7) {
          return false;
       }
 

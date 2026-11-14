@@ -27,17 +27,17 @@ import org.joml.Quaternionfc;
 import org.joml.Vector3f;
 
 public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
-   private static final double TextLayout = 0.55;
+   private static final double j = 0.55;
    private static final int V = 15728880;
    private static final int C = 256;
    private static final Comparator<WorldTextRenderer.Type_k> B = Comparator.<WorldTextRenderer.Type_k>comparingDouble(var0 -> var0.K).reversed();
-   private final WorldTextRenderer.Type_k[] AuraModule = new WorldTextRenderer.Type_k[256];
-   private final WorldTextRenderer.Type_k[] BoxUtils = new WorldTextRenderer.Type_k[256];
+   private final WorldTextRenderer.Type_k[] x = new WorldTextRenderer.Type_k[256];
+   private final WorldTextRenderer.Type_k[] c = new WorldTextRenderer.Type_k[256];
    private int R;
-   private static final double PriceDetector = 0.01890625;
+   private static final double m = 0.01890625;
    private final LinkedHashMap<String, WorldTextRenderer.Type_o> W = new LinkedHashMap<>(64, 0.75F, true);
    private final Matrix4f X = new Matrix4f();
-   private final Matrix4f SmoothInput = new Matrix4f();
+   private final Matrix4f t = new Matrix4f();
    private WorldTextRenderer.Type_c K;
    private int p;
    private int v;
@@ -46,12 +46,12 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
    private final Quaternionf z = new Quaternionf();
    private final Vector3f A = new Vector3f();
    private final TransformingVertexConsumer U = new TransformingVertexConsumer();
-   private final dv[] n = new dv[96];
-   private final double[] MenuPopupProvider = new double[96];
+   private final DynamicSky[] n = new DynamicSky[96];
+   private final double[] f = new double[96];
    private final RenderPipeline[][] P = new RenderPipeline[3][2];
    private EffectDrawBuffers L;
    private TextRenderer a;
-   private int SkyChunkCache = -1;
+   private int s = -1;
    private int T = -1;
    private int e;
    private boolean i;
@@ -60,7 +60,7 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
    public WorldTextRenderer() {
    }
 
-   public void TAsVoid(r_ var1, CameraRenderState var2) {
+   public void TAsVoid(SkyDomeState var1, CameraRenderState var2) {
       this.l = this.GAsInt(var1, var2);
    }
 
@@ -156,13 +156,13 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
                   this.H = (float)var10.height / 9.0F;
                   if (var4) {
                      this.X.translate(1.0F, 1.0F, -0.03F);
-                     this.U.o = this.p = bg.XAsInt(-15724520, (double)(var9.color() >>> 24) / 255.0 * 0.65 * var5);
+                     this.U.o = this.p = ColorUtil.XAsInt(-15724520, (double)(var9.color() >>> 24) / 255.0 * 0.65 * var5);
                      this.d = true;
                      var10.text.draw(this);
                      this.X.translate(-1.0F, -1.0F, 0.03F);
                   }
 
-                  this.U.o = this.p = bg.XAsInt(var9.color(), (double)(var9.color() >>> 24) / 255.0 * var5);
+                  this.U.o = this.p = ColorUtil.XAsInt(var9.color(), (double)(var9.color() >>> 24) / 255.0 * var5);
                   this.d = false;
                   var10.text.draw(this);
                }
@@ -206,17 +206,17 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
          }
       }
 
-      double var26 = a1.OAsDouble(var7) * (1.0 - a1.OAsDouble(var9));
+      double var26 = SmoothStepUtil.OAsDouble(var7) * (1.0 - SmoothStepUtil.OAsDouble(var9));
       if (var26 < 0.00392156862745098) {
          return false;
       } else {
          int var27 = this.p;
          if (!this.d && var2.accent() >>> 24 != 0) {
             double var24 = 0.5 - 0.5 * Math.cos(var5 * 2.4 - var2.time() * 1.2);
-            var27 = bg.xAsInt(var27, var2.accent() & 16777215 | var27 & 0xFF000000, var24 * 0.85);
+            var27 = ColorUtil.xAsInt(var27, var2.accent() & 16777215 | var27 & 0xFF000000, var24 * 0.85);
          }
 
-         this.U.o = bg.pAsInt(var27, var26);
+         this.U.o = ColorUtil.pAsInt(var27, var26);
          this.t.set(this.X).translate(var3 + (float)var11, var4 + (float)var13, 0.0F).rotateZ((float)var15).scale((float)var17).translate(-var3, -var4, 0.0F);
          return true;
       }
@@ -316,19 +316,19 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
       }
    }
 
-   public void jAsVoid(MatrixStack var1, CameraRenderState var2, r_ var3, d1 var4, boolean var5) {
+   public void jAsVoid(MatrixStack var1, CameraRenderState var2, SkyDomeState var3, SkyConfig var4, boolean var5) {
       if ((!this.i || this.T != BloomQuality.J) && (!var5 || var4.H && !(var4.A <= 0.0))) {
-         long var6 = op.RAsLong();
+         long var6 = OpenScreen.RAsLong();
 
          try {
             this.UAsVoid();
             int var8 = this.l;
-            if (var4.a == d1.Type_f.SOFT_OCCLUSION) {
+            if (var4.a == SkyConfig.Type_f.SOFT_OCCLUSION) {
                this.e = 2;
                this.oAsVoid(var1, var2, var3, var4, var5, var8, 0.18);
             }
 
-            this.e = var4.a == d1.Type_f.THROUGH_WALLS ? 1 : 0;
+            this.e = var4.a == SkyConfig.Type_f.THROUGH_WALLS ? 1 : 0;
             this.oAsVoid(var1, var2, var3, var4, var5, var8, 1.0);
          } catch (RuntimeException var121) {
             this.i = true;
@@ -341,18 +341,18 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
             ClientLog.lAsVoid("WorldText", "World text render failed; isolated until resource reload or re-enable", var121);
          } finally {
             this.U.U = null;
-            op.aAsVoid("WorldText", var6);
+            OpenScreen.aAsVoid("WorldText", var6);
          }
       }
    }
 
-   private int GAsInt(r_ var1, CameraRenderState var2) {
+   private int GAsInt(SkyDomeState var1, CameraRenderState var2) {
       int var3 = 0;
       double var4 = Math.sin(var1.O);
       double var6 = Math.cos(var1.O);
       Vec3d var8 = var2.pos;
 
-      for (dv var12 : var1.cAsDvArray()) {
+      for (DynamicSky var12 : var1.cAsDvArray()) {
          if (var12.T && !(var12.m < 0.00392156862745098)) {
             double var13 = var12.M + var12.B;
             double var15 = var12.N + var12.U;
@@ -375,32 +375,32 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
       return var3;
    }
 
-   private void oAsVoid(MatrixStack var1, CameraRenderState var2, r_ var3, d1 var4, boolean var5, int var6, double var7) {
+   private void oAsVoid(MatrixStack var1, CameraRenderState var2, SkyDomeState var3, SkyConfig var4, boolean var5, int var6, double var7) {
       double var9 = Math.sin(var3.O);
       double var11 = Math.cos(var3.O);
       Vec3d var13 = var2.pos;
       this.A.set(0.0F, 0.0F, -1.0F).rotate(var2.orientation);
 
       for (int var14 = 0; var14 < var6; var14++) {
-         dv var15 = this.n[var14];
+         DynamicSky var15 = this.n[var14];
          double var16 = Math.sqrt(this.f[var14]);
          if (!(var16 >= var4.b)) {
             double var18 = var15.m * var4.Y * var7;
             if (var4.N) {
                double var20 = Math.min(var4.I, var4.b - 0.1);
-               var18 *= 1.0 - a1.OAsDouble((var16 - var20) / (var4.b - var20));
+               var18 *= 1.0 - SmoothStepUtil.OAsDouble((var16 - var20) / (var4.b - var20));
             }
 
-            var18 *= a1.OAsDouble(var16 / 0.8);
+            var18 *= SmoothStepUtil.OAsDouble(var16 / 0.8);
             if (var5) {
                var18 *= var4.A;
             }
             int var38 = switch (var4.M) {
                case STATIC -> var4.x;
-               case GRADIENT -> bg.xAsInt(var4.x, var4.O, (Math.sin(var15.j) + 1.0) * 0.5);
-               case RAINBOW -> bg.HSBtoRGB((float)((var3.HAsDouble() * 0.035 + var15.j / (Math.PI * 2)) % 1.0), 0.45F, 1.0F);
+               case GRADIENT -> ColorUtil.xAsInt(var4.x, var4.O, (Math.sin(var15.j) + 1.0) * 0.5);
+               case RAINBOW -> ColorUtil.HSBtoRGB((float)((var3.HAsDouble() * 0.035 + var15.j / (Math.PI * 2)) % 1.0), 0.45F, 1.0F);
             };
-            var38 = bg.pAsInt(var38, var18);
+            var38 = ColorUtil.pAsInt(var38, var18);
             if (var38 >>> 24 >= 1) {
                WorldTextRenderer.Type_o var21 = this.LAsR9_Type_o(var15.V);
                double var22 = var15.M + var15.B;
@@ -427,13 +427,13 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
                         this.X.rotateY((float)var15.h).rotateX((float)var15.Y);
                   }
 
-                  double var34 = var4.p == d1.Type_q.STATIC ? 0.0 : var15.x;
+                  double var34 = var4.p == SkyConfig.Type_q.STATIC ? 0.0 : var15.x;
                   this.X.rotateZ((float)(var15.L + var34));
                   float var36 = (float)(0.01890625 * var4.C * (1.0 + var15.E * var4.P) * var15.F);
                   this.X.scale(var36, -var36, var36).translate(0.0F, -var21.centerY, 0.0F);
                   if (var4.h && !var5) {
                      this.X.translate(2.0F, 2.0F, -0.03F);
-                     this.U.o = bg.XAsInt(-15724520, (double)(var38 >>> 24) / 255.0 * 0.5);
+                     this.U.o = ColorUtil.XAsInt(-15724520, (double)(var38 >>> 24) / 255.0 * 0.5);
                      var21.text.draw(this);
                      this.X.translate(-2.0F, -2.0F, 0.03F);
                   }

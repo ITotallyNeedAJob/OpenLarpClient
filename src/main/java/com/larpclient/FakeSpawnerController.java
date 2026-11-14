@@ -97,16 +97,16 @@ import net.minecraft.world.chunk.WorldChunk;
 public final class FakeSpawnerController {
    private static final FakeSpawnerController T = new FakeSpawnerController();
    private static final int U = 45;
-   private static final String TextLayout = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ";
+   private static final String j = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ";
    private static final long r = 1800L;
-   private static final long PetEffectRenderer = 650L;
+   private static final long a = 650L;
    private static final int K = 64648;
    private static final int H = 16711680;
-   private static final double SmoothInput = 75.0;
-   private final Map<Long, Long> MenuPopupProvider = new HashMap<>();
-   private final Map<Long, Map<Item, Integer>> SahurDanceEngine = new HashMap<>();
+   private static final double t = 75.0;
+   private final Map<Long, Long> f = new HashMap<>();
+   private final Map<Long, Map<Item, Integer>> d = new HashMap<>();
    private final Map<Long, Integer> G = new ConcurrentHashMap<>();
-   private final Set<Long> BoxUtils = ConcurrentHashMap.newKeySet();
+   private final Set<Long> c = ConcurrentHashMap.newKeySet();
    private final Map<Long, FakeSpawnerController.Type_b> E = new HashMap<>();
    private final Map<Long, Deque<FakeSpawnerController.Type_l>> N = new HashMap<>();
    private final Map<Integer, ItemStack> C = new HashMap<>();
@@ -114,18 +114,18 @@ public final class FakeSpawnerController {
    private volatile Map<Long, MobSpawnerBlockEntity> v = new ConcurrentHashMap<>();
    private final Long2ObjectMap<List<MobSpawnerBlockEntity>> n = new Long2ObjectOpenHashMap();
    private final Map<Long, Long> Q = new HashMap<>();
-   private final Map<Long, Float> DropletTrail = new HashMap<>();
+   private final Map<Long, Float> l = new HashMap<>();
    private final Map<Long, Integer> Do = new HashMap<>();
    private int w;
    private final Set<Integer> D = new HashSet<>();
    private final Map<Integer, FakeSpawnerController.Type_c> L = new HashMap<>();
    private BlockPos k;
    private int z = -1;
-   private final Map<Long, Integer> BloomUtility = new HashMap<>();
-   private final Map<Long, Double> CropHelper = new HashMap<>();
-   private final Map<Long, Integer> ChinaHatCodec = new ConcurrentHashMap<>();
+   private final Map<Long, Integer> b = new HashMap<>();
+   private final Map<Long, Double> u = new HashMap<>();
+   private final Map<Long, Integer> i = new ConcurrentHashMap<>();
    private final Set<Long> B = new HashSet<>();
-   private final Map<Item, Double> SkyChunkCache = new HashMap<>();
+   private final Map<Item, Double> s = new HashMap<>();
    private final Set<Long> Dx = ConcurrentHashMap.newKeySet();
    private volatile World S;
    private ClientPlayerEntity g;
@@ -137,9 +137,9 @@ public final class FakeSpawnerController {
    private final Map<Long, Long> D6 = new ConcurrentHashMap<>();
    private final Map<Long, SpawnerEntityCatalog> q = new ConcurrentHashMap<>();
    private final Map<Long, FakeSpawnerController.Type_v> Y = new HashMap<>();
-   private final List<JsonElement> HexEdgeloop = new ArrayList<>();
+   private final List<JsonElement> p = new ArrayList<>();
    private String P;
-   private boolean ScreenScale = true;
+   private boolean y = true;
    private long m;
    private long O;
    private long W;
@@ -151,7 +151,7 @@ public final class FakeSpawnerController {
    private Hand Z;
    private int V = -1;
    private int J = -1;
-   private final Set<Long> LineSegment = ConcurrentHashMap.newKeySet();
+   private final Set<Long> e = ConcurrentHashMap.newKeySet();
    private long h;
 
    private static Path zAsPath() {
@@ -731,7 +731,7 @@ public final class FakeSpawnerController {
                return;
             }
 
-            r2.xAsVoid(var1);
+            ItemBlockCache.xAsVoid(var1);
             this.Dx.remove(var3);
          }
 
@@ -821,7 +821,7 @@ public final class FakeSpawnerController {
          FakeSpawnerController.Type_v var5 = this.Y.remove(var1.asLong());
          if (var5 != null) {
             this.p.add(var5.toJson());
-            this.VAsVoid("New placement at {} archives PetEffectRenderer superseded saved pile for recovery", var1);
+            this.VAsVoid("New placement at {} archives a superseded saved pile for recovery", var1);
          }
 
          this.q.put(var1.asLong(), this.LAsNa(var2.getItem()));
@@ -1113,7 +1113,7 @@ public final class FakeSpawnerController {
          if (var1.player.age >= (Integer)var3.getValue()) {
             this.i.remove(var3.getKey());
             this.rAsVoid(BlockPos.fromLong((Long)var3.getKey()));
-            this.eAsVoid("You cannot break spawners without PetEffectRenderer silk touch!");
+            this.eAsVoid("You cannot break spawners without a silk touch!");
          }
       }
 
@@ -1224,7 +1224,7 @@ public final class FakeSpawnerController {
 
    public void gAsVoid(BlockPos var1) {
       if (var1 != null && this.Dx.contains(var1.asLong())) {
-         r2.xAsVoid(var1);
+         ItemBlockCache.xAsVoid(var1);
       }
 
       if (var1 != null && this.c.contains(var1.asLong())) {
@@ -2028,7 +2028,7 @@ public final class FakeSpawnerController {
 
          for (int var5 = 0; var5 < 36; var5++) {
             ItemStack var6 = var2.player.getInventory().getStack(var5);
-            if (var6.isOf(var1) && !var6.contains(DataComponentTypes.CUSTOM_NAME) && !w0.dAsBoolean(var6) && var6.getCount() > var4) {
+            if (var6.isOf(var1) && !var6.contains(DataComponentTypes.CUSTOM_NAME) && !WaterOverlay.dAsBoolean(var6) && var6.getCount() > var4) {
                var3 = var5;
                var4 = var6.getCount();
             }
@@ -2340,7 +2340,7 @@ public final class FakeSpawnerController {
          }
 
          if (var3 > 0L) {
-            com.larpclient.o.qAsVoid(var3);
+            com.larpclient.AuctionNotifier.qAsVoid(var3);
          }
       }
    }

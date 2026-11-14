@@ -7,9 +7,9 @@ import org.joml.Matrix4f;
 public final class ModuleOption {
    private static final int Y = 64;
    private static final int h = 3;
-   public static final List<ModuleOption.Type_k> AuctionNotifier = yAsList();
+   public static final List<ModuleOption.Type_k> o = yAsList();
    private static final double[] S = new double[65];
-   private static final double[] ChinaHatCodec = new double[65];
+   private static final double[] i = new double[65];
 
    private static ModuleOption.Type_e bAsMo_Type_e(double var0, int var2, double var3) {
       double var5 = (double)var2 * Math.PI * 2.0 / 64.0;
@@ -57,8 +57,8 @@ public final class ModuleOption {
          | (int)((double)(var0 & 0xFF) * var1);
    }
 
-   public static void JAsVoid(o_ var0, Matrix4f var1, double var2, double var4, double var6, int var8, int var9, boolean var10) {
-      var0.blend(x4.Type_g.ALPHA);
+   public static void JAsVoid(RenderPipeline var0, Matrix4f var1, double var2, double var4, double var6, int var8, int var9, boolean var10) {
+      var0.blend(EffectRenderParams.Type_g.ALPHA);
 
       for (ModuleOption.Type_k var12 : o) {
          lAsVoid(var0, var1, var12.a, var12.brim, var2, var4, var6, var8, var9);
@@ -68,14 +68,14 @@ public final class ModuleOption {
       }
 
       if (var10) {
-         var0.blend(x4.Type_g.ADDITIVE);
-         WAsVoid(var0, var1, var2, var6, 0.014, bg.pAsInt(var9, 0.22));
-         WAsVoid(var0, var1, var2, var6, 0.004, bg.xAsInt(var9, var9 & 0xFF000000 | 16777215, 0.52));
-         var0.blend(x4.Type_g.ALPHA);
+         var0.blend(EffectRenderParams.Type_g.ADDITIVE);
+         WAsVoid(var0, var1, var2, var6, 0.014, ColorUtil.pAsInt(var9, 0.22));
+         WAsVoid(var0, var1, var2, var6, 0.004, ColorUtil.xAsInt(var9, var9 & 0xFF000000 | 16777215, 0.52));
+         var0.blend(EffectRenderParams.Type_g.ALPHA);
       }
    }
 
-   private static void WAsVoid(o_ var0, Matrix4f var1, double var2, double var4, double var6, int var8) {
+   private static void WAsVoid(RenderPipeline var0, Matrix4f var1, double var2, double var4, double var6, int var8) {
       float var9 = (float)(-0.503 - var4);
 
       for (int var10 = 0; var10 < 64; var10++) {
@@ -86,12 +86,12 @@ public final class ModuleOption {
       }
    }
 
-   private static void lAsVoid(o_ var0, Matrix4f var1, ModuleOption.Type_e var2, boolean var3, double var4, double var6, double var8, int var10, int var11) {
-      int var12 = var3 ? wAsInt(var11, 0.58) : wAsInt(bg.xAsInt(var10, var11, var2.radius), var2.light);
+   private static void lAsVoid(RenderPipeline var0, Matrix4f var1, ModuleOption.Type_e var2, boolean var3, double var4, double var6, double var8, int var10, int var11) {
+      int var12 = var3 ? wAsInt(var11, 0.58) : wAsInt(ColorUtil.xAsInt(var10, var11, var2.radius), var2.light);
       rAsVoid(var0, var1, var2, var4, var6, var8, var12);
    }
 
-   private static void rAsVoid(o_ var0, Matrix4f var1, ModuleOption.Type_e var2, double var3, double var5, double var7, int var9) {
+   private static void rAsVoid(RenderPipeline var0, Matrix4f var1, ModuleOption.Type_e var2, double var3, double var5, double var7, int var9) {
       var0.modelVertex(var1, (float)(var2.x * var3), (float)(-0.5 - var7 - var2.rise * var5), (float)(var2.z * var3), var9);
    }
 

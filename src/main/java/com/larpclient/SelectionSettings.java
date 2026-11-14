@@ -13,12 +13,12 @@ import java.util.Set;
 public final class SelectionSettings {
    public static final int v = 32;
    public static final String S = "Selection Version";
-   public static final String PetEffectRenderer = "Selection Error";
+   public static final String a = "Selection Error";
    public static final String U = "Item Mode";
    public static final String Z = "Protect Hotbar";
    public static final String J = "Protect Named Items";
-   public static final String ChinaHatCodec = "Protect Enchanted Items";
-   public static final String MenuPopupProvider = "Protect Filled Containers";
+   public static final String i = "Protect Enchanted Items";
+   public static final String f = "Protect Filled Containers";
    public static final List<String> F = List.of("Selected items", "All except excluded", "All inventory items");
 
    public static String CAsString(int var0) {

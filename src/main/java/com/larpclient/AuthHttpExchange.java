@@ -29,7 +29,7 @@ import java.util.concurrent.Flow.Subscription;
 import javax.net.ssl.SSLException;
 
 public final class AuthHttpExchange {
-   private static final HttpClient CropHelper = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(8L)).followRedirects(Redirect.NEVER).build();
+   private static final HttpClient u = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(8L)).followRedirects(Redirect.NEVER).build();
 
    private AuthHttpExchange() {
    }
@@ -59,7 +59,7 @@ public final class AuthHttpExchange {
             .POST(BodyPublishers.ofString(var1.toString(), StandardCharsets.UTF_8))
             .build();
          AuthHttpExchange.Type_l var7 = new AuthHttpExchange.Type_l();
-         CompletableFuture var8 = CropHelper.sendAsync(var6, var1x -> var7);
+         CompletableFuture var8 = u.sendAsync(var6, var1x -> var7);
 
          try {
             long var9 = var3.toNanos() - (System.nanoTime() - var4);
@@ -153,7 +153,7 @@ public final class AuthHttpExchange {
 
    private static final class Type_l implements BodySubscriber<String> {
       private final CompletableFuture<String> D = new CompletableFuture<>();
-      private final ByteArrayOutputStream LineSegment = new ByteArrayOutputStream();
+      private final ByteArrayOutputStream e = new ByteArrayOutputStream();
       private volatile Subscription k;
       private volatile boolean v;
 

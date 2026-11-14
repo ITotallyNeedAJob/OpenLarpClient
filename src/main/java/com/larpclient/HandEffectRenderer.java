@@ -25,7 +25,7 @@ import net.minecraft.util.math.MathHelper;
 import org.lwjgl.system.MemoryStack;
 
 public final class HandEffectRenderer {
-   private static final RenderPipeline MenuPopupProvider = mAsRenderPipeline("echo_hand", false);
+   private static final RenderPipeline f = mAsRenderPipeline("echo_hand", false);
    private static final RenderPipeline S = mAsRenderPipeline("echo_hand", true);
    private static final RenderPipeline v = mAsRenderPipeline("hand_flame", false);
    private static final RenderPipeline G = mAsRenderPipeline("hand_flame", true);
@@ -34,7 +34,7 @@ public final class HandEffectRenderer {
    private static SimpleFramebuffer t;
    private static SimpleFramebuffer F;
    private static GpuBuffer w;
-   private static int AuctionNotifier = -1;
+   private static int o = -1;
    private static boolean V;
    private static boolean m;
    private static Object i;
@@ -88,15 +88,15 @@ public final class HandEffectRenderer {
    public static void hAsVoid() {
       if (!TAsBoolean()) {
          KAsVoid();
-      } else if (ChinaHatCodec != null && (ChinaHatCodec != MinecraftClient.getInstance().world || z != MinecraftClient.getInstance().player)) {
+      } else if (i != null && (i != MinecraftClient.getInstance().world || z != MinecraftClient.getInstance().player)) {
          KAsVoid();
       }
    }
 
    public static boolean fAsBoolean() {
-      if (AuctionNotifier != BloomQuality.J) {
+      if (o != BloomQuality.J) {
          KAsVoid();
-         AuctionNotifier = BloomQuality.J;
+         o = BloomQuality.J;
          V = false;
       }
 
@@ -114,7 +114,7 @@ public final class HandEffectRenderer {
                int var3 = I != null
                      && I.textureWidth == var2.textureWidth
                      && I.textureHeight == var2.textureHeight
-                     && ChinaHatCodec == var0.world
+                     && i == var0.world
                      && z == var0.player
                      && var1.mode.getValue().equals(b)
                      && !(FAsDouble(var0.player.getX(), var0.player.getY(), var0.player.getZ(), u, W, p) > 256.0)
@@ -123,21 +123,21 @@ public final class HandEffectRenderer {
                if (var3 != 0) {
                   KAsVoid();
                   mAsVoid(var2.textureWidth, var2.textureHeight);
-                  ChinaHatCodec = var0.world;
+                  i = var0.world;
                   z = var0.player;
-                  BloomUtility = var1.mode.getValue();
+                  b = var1.mode.getValue();
                }
 
-               CropHelper = var0.player.getX();
+               u = var0.player.getX();
                W = var0.player.getY();
-               HexEdgeloop = var0.player.getZ();
+               p = var0.player.getZ();
                if (!var0.isPaused()) {
                   E.MAsVoid(var0.player.getYaw(), var0.player.getPitch(), var1.oAsBoolean() ? 1.0F : var1.R.getValue().floatValue());
                }
 
                BloomQuality.aAsVoid(WorldLabelLayout.u, var2, I);
                I.copyDepthFrom(var2);
-               PriceDetector = true;
+               m = true;
                return true;
             } else {
                KAsVoid();
@@ -152,17 +152,17 @@ public final class HandEffectRenderer {
 
    public static void cAsVoid() {
       if (m) {
-         PriceDetector = false;
+         m = false;
 
          try {
             EchoHand var0 = EchoHand.OAsEchoHand();
             Framebuffer var1 = MinecraftClient.getInstance().getFramebuffer();
             BloomQuality.aAsVoid(WorldLabelLayout.u, var1, d);
-            SahurDanceEngine.copyDepthFrom(var1);
+            d.copyDepthFrom(var1);
             if (!MinecraftClient.getInstance().isPaused()) {
                GAsVoid(var0.oAsBoolean() ? v : f, F, var0, 0.0F);
                SimpleFramebuffer var2 = t;
-               SmoothInput = F;
+               t = F;
                F = var2;
             }
 
@@ -174,7 +174,7 @@ public final class HandEffectRenderer {
    }
 
    public static void lAsVoid() {
-      PriceDetector = false;
+      m = false;
       KAsVoid();
    }
 
@@ -185,12 +185,12 @@ public final class HandEffectRenderer {
          WorldLabelLayout.DAsVoid(v);
          WorldLabelLayout.DAsVoid(G);
          I = new SimpleFramebuffer("Larp EchoHand before", var0, var1, true);
-         SahurDanceEngine = new SimpleFramebuffer("Larp EchoHand after", var0, var1, true);
-         SmoothInput = new SimpleFramebuffer("Larp EchoHand history", var0, var1, false);
+         d = new SimpleFramebuffer("Larp EchoHand after", var0, var1, true);
+         t = new SimpleFramebuffer("Larp EchoHand history", var0, var1, false);
          F = new SimpleFramebuffer("Larp EchoHand next", var0, var1, false);
          w = RenderSystem.getDevice().createBuffer(() -> "Larp EchoHand material", 136, 96L);
          CommandEncoder var2 = RenderSystem.getDevice().createCommandEncoder();
-         var2.clearColorTexture(SmoothInput.getColorAttachment(), 0);
+         var2.clearColorTexture(t.getColorAttachment(), 0);
          var2.clearColorTexture(F.getColorAttachment(), 0);
          ClientLog.GAsVoid("EchoHand", "History initialized {}x{}; four targets, both hands/items", var0, var1);
       } catch (RuntimeException var31) {
@@ -209,7 +209,7 @@ public final class HandEffectRenderer {
             .putFloat((float)I.textureHeight)
             .putFloat((var2.oAsBoolean() ? var2.k : var2.a).getValue().floatValue())
             .putFloat(var2.K.getValue().floatValue());
-         var6.putFloat(var2.E.getValue().floatValue()).putFloat(var2.R.getValue().floatValue()).putFloat(var3).putFloat((float)mb.RAsDouble());
+         var6.putFloat(var2.E.getValue().floatValue()).putFloat(var2.R.getValue().floatValue()).putFloat(var3).putFloat((float)MediaSession.RAsDouble());
          var6.putFloat(E.z).putFloat(E.h).putFloat(var2.outsideOnly.getValue() ? 1.0F : 0.0F).putFloat(0.0F);
          int var7 = var2.LAsInt();
          var6.putFloat((float)(var7 >> 16 & 0xFF) / 255.0F)
@@ -244,11 +244,11 @@ public final class HandEffectRenderer {
          var12.setPipeline(var0);
          var12.setUniform("EchoParameters", w.slice());
          GpuSampler var13 = RenderSystem.getSamplerCache().get(FilterMode.LINEAR);
-         var12.bindTexture("Sampler0", SahurDanceEngine.getColorAttachmentView(), var13);
+         var12.bindTexture("Sampler0", d.getColorAttachmentView(), var13);
          var12.bindTexture("Sampler1", I.getColorAttachmentView(), var13);
-         var12.bindTexture("Sampler2", SmoothInput.getColorAttachmentView(), var13);
+         var12.bindTexture("Sampler2", t.getColorAttachmentView(), var13);
          GpuSampler var14 = RenderSystem.getSamplerCache().get(FilterMode.NEAREST);
-         var12.bindTexture("Sampler3", SahurDanceEngine.getDepthAttachmentView(), var14);
+         var12.bindTexture("Sampler3", d.getDepthAttachmentView(), var14);
          var12.bindTexture("Sampler4", I.getDepthAttachmentView(), var14);
          var12.draw(0, 3);
       } catch (Throwable var11) {
@@ -277,15 +277,15 @@ public final class HandEffectRenderer {
    public static void KAsVoid() {
       SimpleFramebuffer[] var0 = new SimpleFramebuffer[]{I, d, t, F};
       F = null;
-      SmoothInput = null;
-      SahurDanceEngine = null;
+      t = null;
+      d = null;
       I = null;
       GpuBuffer var1 = w;
       w = null;
-      PriceDetector = false;
+      m = false;
       z = null;
-      ChinaHatCodec = null;
-      BloomUtility = null;
+      i = null;
+      b = null;
       E.DAsVoid();
       RuntimeException var2 = null;
 

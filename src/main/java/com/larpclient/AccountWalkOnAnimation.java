@@ -11,32 +11,32 @@ import net.minecraft.entity.player.PlayerSkinType;
 import net.minecraft.entity.player.SkinTextures;
 
 public final class AccountWalkOnAnimation {
-   private final w9 f;
+   private final WindEffect f;
    private final AccountCosmeticsRenderer r = new AccountCosmeticsRenderer();
    private CosmeticPlayerModel d;
    private CosmeticPlayerModel q;
    private PlayerCapeModel C;
    private int w = -1;
    private int K = -1;
-   private w9.Type_c s;
+   private WindEffect.Type_c s;
    private double D;
 
-   public AccountWalkOnAnimation(w9 var1) {
+   public AccountWalkOnAnimation(WindEffect var1) {
       this.f = var1;
    }
 
-   public void lAsVoid(DrawContext var1, RootMenuLayout var2, nc var3, AccountSkinPreview var4, int var5, int var6, boolean var7, boolean var8) {
+   public void lAsVoid(DrawContext var1, RootMenuLayout var2, NetClient var3, AccountSkinPreview var4, int var5, int var6, boolean var7, boolean var8) {
       MinecraftClient var9 = MinecraftClient.getInstance();
       ChinaHat.Type_a var10 = AccountCosmeticsRenderer.AAsChinaHat_Type_a();
       Wings.Type_n var11 = AccountCosmeticsRenderer.oAsWings_Type_n();
-      w9.Type_i var12 = w9.WAsW9_Type_i(var2, AccountCosmeticsRenderer.jAsDouble(var10, var11));
+      WindEffect.Type_i var12 = WindEffect.WAsW9_Type_i(var2, AccountCosmeticsRenderer.jAsDouble(var10, var11));
       int var13 = var12.visible() && var9.getOverlay() == null && var9.isWindowFocused() ? 1 : 0;
-      w9.Type_m var14 = this.f.pAsW9_Type_m(System.nanoTime(), var13 != 0, var7, var8, var3.wAsBoolean(), var12, var2.width(), var5, var6);
+      WindEffect.Type_m var14 = this.f.pAsW9_Type_m(System.nanoTime(), var13 != 0, var7, var8, var3.wAsBoolean(), var12, var2.width(), var5, var6);
       this.D = var14.nameOpacity();
       if (var14.stage() != this.s) {
-         if (var14.stage() == w9.Type_c.WALKING && this.s == w9.Type_c.HIDDEN) {
+         if (var14.stage() == WindEffect.Type_c.WALKING && this.s == WindEffect.Type_c.HIDDEN) {
             ClientLog.GAsVoid("Menu", "Account walk-on started after menu reveal; native left-facing stride");
-         } else if (var14.stage() == w9.Type_c.IDLE && this.s == w9.Type_c.TURNING) {
+         } else if (var14.stage() == WindEffect.Type_c.IDLE && this.s == WindEffect.Type_c.TURNING) {
             ClientLog.GAsVoid("Menu", "Account walk-on settled; native idle and pointer tracking active");
          }
 
@@ -44,7 +44,7 @@ public final class AccountWalkOnAnimation {
          ClientLog.XAsVoid("Menu", "Account preview: {}; vanilla gait, visible-time walk-on and pointer turn", this.s);
       }
 
-      if (var12.visible() && var14.stage() != w9.Type_c.HIDDEN) {
+      if (var12.visible() && var14.stage() != WindEffect.Type_c.HIDDEN) {
          MenuLayout.Type_c var15 = var12.model();
          int var16 = Math.round(var12.centerX() + (float)var14.xOffset());
          int var17 = Math.max(var12.renderWidth(), (int)Math.ceil(2.0 * AccountCosmeticsRenderer.DAsDouble(var10, var11) * (double)var12.scale()));
@@ -57,7 +57,7 @@ public final class AccountWalkOnAnimation {
                SkinTextures var19 = AccountCosmeticsRenderer.DAsSkinTextures(var9.getGameProfile().id(), var4.FAsSkinTextures());
                CosmeticPlayerModel var20 = var19.model() == PlayerSkinType.SLIM ? this.q : this.d;
                var20.jAsVoid(var14.pose());
-               la var21 = AccountCosmeticsRenderer.pAsLa();
+               LimbData var21 = AccountCosmeticsRenderer.pAsLa();
                if (var21 != null && !KorbloxLegRenderer.DAsBoolean()) {
                   var21 = null;
                }
@@ -127,7 +127,7 @@ public final class AccountWalkOnAnimation {
          var0.getMatrices().scale(1.0F, 0.13F);
 
          for (int var6 = 8; var6 >= 1; var6--) {
-            GuiTextureDrawing.RAsVoid(var0, 0, 0, Math.max(1, Math.round(var3 * (float)var6 / 8.0F)), bg.pAsInt(110663832, var4));
+            GuiTextureDrawing.RAsVoid(var0, 0, 0, Math.max(1, Math.round(var3 * (float)var6 / 8.0F)), ColorUtil.pAsInt(110663832, var4));
          }
       } finally {
          var0.getMatrices().popMatrix();

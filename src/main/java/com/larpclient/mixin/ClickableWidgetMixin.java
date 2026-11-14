@@ -25,7 +25,7 @@ public abstract class ClickableWidgetMixin {
    private void larpclient$modifyArgsIIFV(Args var1) {
       Screen var2 = MinecraftClient.getInstance().currentScreen;
       if (var2 instanceof MenuPopupProvider var3 && var3.larpDrawingMenuPopup()) {
-         aq.Type_x var4 = MenuPopupProvider.bAsAq_Type_x(var2);
+         PopupScale.Type_x var4 = MenuPopupProvider.bAsAq_Type_x(var2);
          var1.set(0, (int)Math.round(var4.screenX((double)((Integer)var1.get(0)).intValue(), (double)var2.width / 2.0)));
          var1.set(1, (int)Math.round(var4.screenY((double)((Integer)var1.get(1)).intValue(), (double)var2.height / 2.0)));
       }

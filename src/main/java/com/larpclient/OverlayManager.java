@@ -1,13 +1,13 @@
 package com.larpclient;
 
 public final class OverlayManager {
-   public static final o2 W = new OverlayManager();
+   public static final OverlayManager W = new OverlayManager();
    public static final int h = 900;
    public static final int v = 750;
    public static final int A = 75;
    public static final int I = 2000;
-   public static final int ChinaHatCodec = 400;
-   public static final int BoxUtils = 500;
+   public static final int i = 400;
+   public static final int c = 500;
    private long V = -1L;
    private long N = -1L;
 

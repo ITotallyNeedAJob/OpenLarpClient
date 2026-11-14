@@ -81,20 +81,20 @@ public final class EntityHaloEffect {
                   var2.outlineBloom.getValue() ? BloomFramebuffers.Type_b.MASK_AND_BLUR : BloomFramebuffers.Type_b.MASK
                );
                if (var3 != 0) {
-                  long var8 = op.RAsLong();
+                  long var8 = OpenScreen.RAsLong();
                   WAsVoid();
                   CosmeticSubmissionHandler.AAsVoid(var1, var0, J, CosmeticSubmissionHandler.Type_n.MASK, -1, 1.0, true);
                   J.CAsVoid();
                   fAsVoid(var4, var5);
-                  op.aAsVoid("SelfVisuals outline mask", var8);
-                  var8 = op.RAsLong();
+                  OpenScreen.aAsVoid("SelfVisuals outline mask", var8);
+                  var8 = OpenScreen.RAsLong();
                   pAsVoid(
                      var2.outlineColor.getValue(),
                      var2.outlineThickness.getValue().floatValue(),
                      var2.outlineOpacity.getValue().floatValue(),
                      var2.outlineBloom.getValue() ? 0.2F : 0.0F
                   );
-                  op.aAsVoid("SelfVisuals outline composite", var8);
+                  OpenScreen.aAsVoid("SelfVisuals outline composite", var8);
                }
             } catch (RuntimeException var131) {
                z = true;

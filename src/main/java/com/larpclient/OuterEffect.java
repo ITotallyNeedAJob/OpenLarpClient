@@ -6,7 +6,7 @@ import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 
 public final class OuterEffect {
-   private PlayerInput SahurDanceEngine = PlayerInput.DEFAULT;
+   private PlayerInput d = PlayerInput.DEFAULT;
    private int C;
    private double S = 1.0;
 

@@ -79,7 +79,7 @@ public class EndCrystalEntityRendererMixin {
       at = {@At("TAIL")}
    )
    private void larpclient$injectFV(EndCrystalEntity var1, EndCrystalEntityRenderState var2, float var3, CallbackInfo var4) {
-      ((wj)var2).larpCrystalId(var1.getId());
+      ((WidgetJob)var2).larpCrystalId(var1.getId());
       CrystalChams var5 = CrystalChams.hAsCrystalChams();
       Boolean var6 = var5 == null ? null : var5.xAsBoolean2();
       if (var6 != null) {

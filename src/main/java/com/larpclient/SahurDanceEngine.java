@@ -12,18 +12,18 @@ public final class SahurDanceEngine {
    public static final double G = 2.16;
    public static final double Y = 1.12;
    public static final double r = 6.640000000000001;
-   public static final double PriceDetector = 7.5;
-   public static final double MenuPopupProvider = 0.42;
-   public static final double ScreenScale = 0.84;
-   private static final double AuctionNotifier = 0.028;
-   private static final double DropletTrail = -0.062;
+   public static final double m = 7.5;
+   public static final double f = 0.42;
+   public static final double y = 0.84;
+   private static final double o = 0.028;
+   private static final double l = -0.062;
    private static final double N = -0.105;
    private static final Vec3d z = new Vec3d(0.028, -0.105, -0.062);
    private static final Vec3d[] I = new Vec3d[]{new Vec3d(-0.031, 0.08, -0.067), new Vec3d(0.088, 0.08, -0.067)};
    private static final Vec3d[] S = new Vec3d[]{new Vec3d(-0.038, 0.002, -0.068), new Vec3d(0.096, 0.002, -0.068)};
-   private static final Vec3d[] AuraModule = new Vec3d[]{new Vec3d(-0.027, -0.077, -0.05), new Vec3d(0.077, -0.077, -0.05)};
-   private static final Vec3d[] ChinaHatCodec = new Vec3d[]{new Vec3d(0.001, -0.105, -0.062), new Vec3d(0.055, -0.105, -0.062)};
-   private static final Vec3d[] GroundSample = new Vec3d[]{new Vec3d(-0.001, -0.194, -0.067), new Vec3d(0.057, -0.194, -0.067)};
+   private static final Vec3d[] x = new Vec3d[]{new Vec3d(-0.027, -0.077, -0.05), new Vec3d(0.077, -0.077, -0.05)};
+   private static final Vec3d[] i = new Vec3d[]{new Vec3d(0.001, -0.105, -0.062), new Vec3d(0.055, -0.105, -0.062)};
+   private static final Vec3d[] k = new Vec3d[]{new Vec3d(-0.001, -0.194, -0.067), new Vec3d(0.057, -0.194, -0.067)};
    private static final Vec3d[] B = new Vec3d[]{new Vec3d(-0.003, -0.28, -0.068), new Vec3d(0.057, -0.28, -0.068)};
    private static final double[] F = new double[]{1.0, 1.0, 1.0, -1.0, -1.0, -1.0, 1.0};
    private static final double[] U = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0};
@@ -34,7 +34,7 @@ public final class SahurDanceEngine {
    private final float[] Q;
    private final double c;
    private final Matrix4f W = new Matrix4f();
-   private final Matrix4f SmoothInput = new Matrix4f();
+   private final Matrix4f t = new Matrix4f();
    private final SahurDanceEngine.Type_x[] w = new SahurDanceEngine.Type_x[]{new SahurDanceEngine.Type_x(), new SahurDanceEngine.Type_x()};
    private final SahurDanceEngine.Type_x[] V = new SahurDanceEngine.Type_x[]{new SahurDanceEngine.Type_x(), new SahurDanceEngine.Type_x()};
    private final Vector3f R = new Vector3f();
@@ -49,7 +49,7 @@ public final class SahurDanceEngine {
    }
 
    private static double sAsDouble(double var0) {
-      return az.mAsDouble(var0);
+      return WalkPose.mAsDouble(var0);
    }
 
    private static double xAsDouble(double var0, double var2, double var4) {
@@ -101,7 +101,7 @@ public final class SahurDanceEngine {
       return new Vec3d((double)var2.x, (double)var2.y, (double)var2.z);
    }
 
-   public SahurDanceEngine.Type_g NAsD_Type_g(az var1, double var2, Vec3d var4) {
+   public SahurDanceEngine.Type_g NAsD_Type_g(WalkPose var1, double var2, Vec3d var4) {
       SahurDanceEngine.Type_v var5 = xAsD_Type_v(var2);
       this.W
          .identity()
@@ -182,18 +182,18 @@ public final class SahurDanceEngine {
       return IAsVec3d(var0, var1).add(var2);
    }
 
-   public static az.Type_x lAsAz_Type_x(az var0, int var1, double var2) {
+   public static WalkPose.Type_x lAsAz_Type_x(WalkPose var0, int var1, double var2) {
       double var4 = sAsDouble((var2 - 0.22) / 0.48);
       double var6 = var4 * Math.PI / 2.0;
-      double var8 = az.mAsDouble(var1, var0.k) / 16.0 * 0.9375;
-      double var10 = (24.0 - az.A[var1][1]) / 16.0 * 0.9375;
+      double var8 = WalkPose.mAsDouble(var1, var0.k) / 16.0 * 0.9375;
+      double var10 = (24.0 - WalkPose.A[var1][1]) / 16.0 * 0.9375;
       double var12 = var10 * Math.sin(var6);
       double var14 = Math.cos(var0.M);
       double var16 = Math.sin(var0.M);
       Vec3d var18 = var0.X.add(var8 * var14 - var12 * var16, var10 * Math.cos(var6) + 0.27 * var4, var8 * var16 + var12 * var14);
       double var19 = sAsDouble((var2 - 6.790000000000001) / 0.65);
       double var21 = sAsDouble((7.5 - var2) / 0.65);
-      return new az.Type_x(var18, -var6, 0.0, 0.0, 1.0, var21, var19, var4 >= 1.0);
+      return new WalkPose.Type_x(var18, -var6, 0.0, 0.0, 1.0, var21, var19, var4 >= 1.0);
    }
 
    public static record Type_g(
@@ -207,10 +207,10 @@ public final class SahurDanceEngine {
    }
 
    private static final class Type_x {
-      final Matrix4f TextLayout = new Matrix4f();
+      final Matrix4f j = new Matrix4f();
       final Matrix4f T = new Matrix4f();
-      final Matrix4f ScreenScale = new Matrix4f();
-      Vec3d AuctionNotifier = Vec3d.ZERO;
+      final Matrix4f y = new Matrix4f();
+      Vec3d o = Vec3d.ZERO;
 
       private Type_x() {
       }

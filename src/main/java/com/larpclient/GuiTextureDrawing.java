@@ -12,7 +12,7 @@ public final class GuiTextureDrawing {
 
    public static void CAsVoid(DrawContext var0, int var1, int var2, int var3, int var4, int var5) {
       if (var3 > 0 && var4 > 0) {
-         var0.fill(var1, var2, var1 + var3, var2 + var4, qg.iAsInt(var5));
+         var0.fill(var1, var2, var1 + var3, var2 + var4, QueueGroup.iAsInt(var5));
       }
    }
 
@@ -28,7 +28,7 @@ public final class GuiTextureDrawing {
             var0.getMatrices().rotate((float)Math.atan2((double)var8, (double)var7));
             var0.getMatrices().translate(-var5 / 2.0F, -var5 / 2.0F);
             var0.getMatrices().scale(var9 + var5, var5);
-            var0.fill(0, 0, 1, 1, qg.iAsInt(var6));
+            var0.fill(0, 0, 1, 1, QueueGroup.iAsInt(var6));
          } finally {
             var0.getMatrices().popMatrix();
          }
@@ -53,7 +53,7 @@ public final class GuiTextureDrawing {
                   var6.translate((float)var1, var11).scale((float)var3, 1.0F / var8);
                }
 
-               var0.fill(0, 0, 1, 1, qg.iAsInt(var5));
+               var0.fill(0, 0, 1, 1, QueueGroup.iAsInt(var5));
             } finally {
                var6.popMatrix();
             }
@@ -75,7 +75,7 @@ public final class GuiTextureDrawing {
    }
 
    public static void mAsVoid(DrawContext var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-      var0.fillGradient(var1, var2, var1 + var3, var2 + var4, qg.iAsInt(var5), qg.iAsInt(var6));
+      var0.fillGradient(var1, var2, var1 + var3, var2 + var4, QueueGroup.iAsInt(var5), QueueGroup.iAsInt(var6));
    }
 
    public static void RAsVoid(DrawContext var0, int var1, int var2, int var3, int var4) {
@@ -99,7 +99,7 @@ public final class GuiTextureDrawing {
 
    public static void OAsVoid(DrawContext var0, int var1, int var2, int var3, int var4) {
       GuiDrawing.bAsVoid(var0, var1, var2, var3, var4);
-      GuiDrawing.OAsVoid(var0, var1, var2, var3, var4, bd.l, bd.M, 0.8);
+      GuiDrawing.OAsVoid(var0, var1, var2, var3, var4, UiStyle.l, UiStyle.M, 0.8);
    }
 
    public static boolean ZAsBoolean(double var0, double var2, int var4, int var5, int var6, int var7) {

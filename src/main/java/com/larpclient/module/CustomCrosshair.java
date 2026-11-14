@@ -170,14 +170,14 @@ public final class CustomCrosshair extends Module {
       if (!var0.has("Theme Color") && var0.has("Color")) {
          try {
             int var1 = (int)((long)var0.get("Color").getAsDouble());
-            var0.addProperty("Theme Color", var1 == -1381654 || var1 == bd.w);
+            var0.addProperty("Theme Color", var1 == -1381654 || var1 == UiStyle.w);
          } catch (RuntimeException var2) {
          }
       }
    }
 
    private int gAsInt() {
-      return this.themeColor.getValue() ? bd.w | 0xFF000000 : this.color.getValue();
+      return this.themeColor.getValue() ? UiStyle.w | 0xFF000000 : this.color.getValue();
    }
 
    public int yAsInt() {
@@ -284,7 +284,7 @@ public final class CustomCrosshair extends Module {
          int var11 = this.qAsInt(var9);
          HudRenderer.xAsVoid(
             var12,
-            new d7.Type_p(
+            new WidgetLayoutUtil.Type_p(
                var12.PAsInt(var5.getWindow().getScaledWidth()) + (int)Math.floor(((double)var12.v / 2.0 - (double)var11) * var12.vAsDouble()),
                var12.ZAsInt(var5.getWindow().getScaledHeight()) + (int)Math.floor(((double)var12.y / 2.0 - (double)var11) * var12.vAsDouble()),
                (int)Math.ceil((double)(2 * var11) * var12.vAsDouble()),

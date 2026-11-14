@@ -3,14 +3,14 @@ package com.larpclient;
 import net.minecraft.util.math.Vec3d;
 
 public final class BurstEffect {
-   public static final double AuctionNotifier = 1.5;
+   public static final double o = 1.5;
    public static final double Q = 1.2;
    public static final double G = 2.4;
    public static final double U = 1.22;
-   public static final double ChatPayParser = 0.25;
+   public static final double g = 0.25;
    public static final double w = 0.42;
    public static final double J = 0.08;
-   public static final double CropHelper = 0.98;
+   public static final double u = 0.98;
    public static final int M = 6;
    public static final double C = 0.3;
 

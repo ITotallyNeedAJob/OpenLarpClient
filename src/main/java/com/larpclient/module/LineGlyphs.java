@@ -63,7 +63,7 @@ public final class LineGlyphs extends Module {
          this.c = getMc().world;
          this.G = this.getPlayer();
          this.I = var1;
-         double var2 = mb.dAsDouble();
+         double var2 = MediaSession.dAsDouble();
          this.x.removeIf(var2xx -> var2xx.TAsBoolean(var2));
          int var4 = this.count.getValue().intValue();
 
@@ -124,7 +124,7 @@ public final class LineGlyphs extends Module {
             .get(var2 - 1)
             .lerp(
                var3,
-               Math.clamp(1.0 - (double)((float)var1.Y - mb.LAsFloat() * (float)(this.slowSpeed.getValue() ? 1 : 2)) / Math.max(1.0, (double)var1.b), 0.0, 1.0)
+               Math.clamp(1.0 - (double)((float)var1.Y - MediaSession.LAsFloat() * (float)(this.slowSpeed.getValue() ? 1 : 2)) / Math.max(1.0, (double)var1.b), 0.0, 1.0)
             )
          : var3;
    }
@@ -144,12 +144,12 @@ public final class LineGlyphs extends Module {
                int var18 = this.vAsInt(var8 + var15 * 180, var4, var11 * (0.25 + ((double)var15 - 1.0) / (double)var10.L.size() / 1.75));
                int var19 = this.vAsInt(var8 + (var15 + 1) * 180, var4, var11 * (0.25 + (double)var15 / (double)var10.L.size() / 1.75));
                if (!var6) {
-                  var7.aAsVoid(var16, var17, var13 * 3.0, bg.pAsInt(var18, 0.35), bg.pAsInt(var19, 0.35));
+                  var7.aAsVoid(var16, var17, var13 * 3.0, ColorUtil.pAsInt(var18, 0.35), ColorUtil.pAsInt(var19, 0.35));
                }
 
                var7.aAsVoid(var16, var17, var13, var18, var19);
-               int var20 = bg.xAsInt(var18, var18 & 0xFF000000 | 16777215, 0.28);
-               int var21 = bg.xAsInt(var19, var19 & 0xFF000000 | 16777215, var15 == var10.L.size() - 1 ? 0.6 : 0.35);
+               int var20 = ColorUtil.xAsInt(var18, var18 & 0xFF000000 | 16777215, 0.28);
+               int var21 = ColorUtil.xAsInt(var19, var19 & 0xFF000000 | 16777215, var15 == var10.L.size() - 1 ? 0.6 : 0.35);
                var7.aAsVoid(var16, var17, var13 * 0.42, var20, var21);
             }
 
@@ -160,9 +160,9 @@ public final class LineGlyphs extends Module {
 
    private int vAsInt(int var1, double var2, double var4) {
       int var6 = this.color.pAsBoolean("Rainbow")
-         ? bg.HSBtoRGB((float)((var2 * 0.1 + (double)var1 / 360.0) % 1.0), 1.0F, 1.0F)
-         : (this.color.pAsBoolean("Single") ? bd.w : bg.xAsInt(bd.w, bd.Q, 0.5 + 0.5 * Math.sin(var2 * 2.0 + (double)var1 * 0.02)));
-      return bg.XAsInt(var6, var4);
+         ? ColorUtil.HSBtoRGB((float)((var2 * 0.1 + (double)var1 / 360.0) % 1.0), 1.0F, 1.0F)
+         : (this.color.pAsBoolean("Single") ? UiStyle.w : ColorUtil.xAsInt(UiStyle.w, UiStyle.Q, 0.5 + 0.5 * Math.sin(var2 * 2.0 + (double)var1 * 0.02)));
+      return ColorUtil.XAsInt(var6, var4);
    }
 
    private static final class Type_x {

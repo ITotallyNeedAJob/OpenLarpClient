@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin({ItemStack.class})
-public abstract class ItemStackMixin implements Sha256Digest.Type_c, w0.Type_l {
+public abstract class ItemStackMixin implements Sha256Digest.Type_c, WaterOverlay.Type_l {
    @Unique
    private boolean R;
    @Unique
@@ -70,7 +70,7 @@ public abstract class ItemStackMixin implements Sha256Digest.Type_c, w0.Type_l {
    )
    private void larpclient$injectHandler(CallbackInfoReturnable<ItemStack> var1) {
       Sha256Digest.RAsVoid((ItemStack)var1.getReturnValue(), this.R);
-      w0.HAsVoid((ItemStack)var1.getReturnValue(), this.y);
+      WaterOverlay.HAsVoid((ItemStack)var1.getReturnValue(), this.y);
       if (this.E) {
          Sha256Digest.fAsItemStack((ItemStack)var1.getReturnValue());
       }
@@ -112,7 +112,7 @@ public abstract class ItemStackMixin implements Sha256Digest.Type_c, w0.Type_l {
       if (var6.DAsBoolean(var5)) {
          ArrayList var7 = new ArrayList();
          var7.add(var6.RAsText(var5));
-         var7.addAll(var6.SAsList(var5, !rj.NAsBoolean(), var3 != null && var3.isAdvanced()));
+         var7.addAll(var6.SAsList(var5, !RifleJoint.NAsBoolean(), var3 != null && var3.isAdvanced()));
          var4.setReturnValue(var7);
       } else if (var6.lAsBoolean(var5)) {
          var4.setReturnValue(var6.BAsList(var5, false));
@@ -127,7 +127,7 @@ public abstract class ItemStackMixin implements Sha256Digest.Type_c, w0.Type_l {
    private void larpclient$injectHandler2(TooltipContext var1, PlayerEntity var2, TooltipType var3, CallbackInfoReturnable<List<Text>> var4) {
       ItemStack var5 = (ItemStack)(Object)this;
       FakeSpawnerController var6 = FakeSpawnerController.ZAsMa();
-      if (var6.XAsBoolean() && !AuctionMenuText.nAsBoolean(var5) && !rj.NAsBoolean()) {
+      if (var6.XAsBoolean() && !AuctionMenuText.nAsBoolean(var5) && !RifleJoint.NAsBoolean()) {
          long var7 = AuctionMenuText.WAsBoolean(var5)
             ? AuctionMenuText.yAsLong()
             : (!SpawnerEntityCatalog.oAsBoolean(var5.getItem()) && !var5.contains(DataComponentTypes.CONTAINER) ? 0L : var6.QAsLong(var5));

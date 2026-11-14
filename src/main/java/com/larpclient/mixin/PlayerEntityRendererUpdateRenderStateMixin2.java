@@ -28,7 +28,7 @@ public abstract class PlayerEntityRendererUpdateRenderStateMixin2 {
       try {
          Emotes.gAsVoid(var1, var2, var3);
       } catch (RuntimeException var6) {
-         ((o6)var2).larp$setEmoteWeight(0.0F);
+         ((OptionPanel)var2).larp$setEmoteWeight(0.0F);
          ClientLog.hAsVoid("Emotes", "Emote sampling failed; native pose kept", var6);
       }
    }
@@ -38,14 +38,14 @@ public abstract class PlayerEntityRendererUpdateRenderStateMixin2 {
       at = {@At("RETURN")}
    )
    private void larpclient$injectFFV(PlayerEntityRenderState var1, MatrixStack var2, float var3, float var4, CallbackInfo var5) {
-      o6 var6 = (o6)var1;
+      OptionPanel var6 = (OptionPanel)var1;
       if (var6.larp$emoteWeight() > 0.0F) {
-         rg.IAsVoid(var2, var6.larp$emoteSample(), var6.larp$emoteWeight());
+         RefractionGeometry.IAsVoid(var2, var6.larp$emoteSample(), var6.larp$emoteWeight());
       }
    }
 
    @Mixin({PlayerEntityRenderState.class})
-   public abstract static class PlayerEntityRenderStateMixin implements o6 {
+   public abstract static class PlayerEntityRenderStateMixin implements OptionPanel {
       @Unique
       private final float[] W = new float[EmotecraftJsonReader.O];
       @Unique

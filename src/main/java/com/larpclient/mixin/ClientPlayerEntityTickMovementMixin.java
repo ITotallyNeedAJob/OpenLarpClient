@@ -40,9 +40,9 @@ public class ClientPlayerEntityTickMovementMixin {
       var2.input.playerInput = GrimSpeed.xAsPlayerInput(var2, var2.input.playerInput);
       var2.input.playerInput = WTap.JAsPlayerInput(var2, var2.input.playerInput);
       var2.input.playerInput = Mace.TAsPlayerInput(var2, var2.input.playerInput);
-      var2.input.playerInput = qm.eAsPlayerInput(var2, var2.input.playerInput);
+      var2.input.playerInput = QueueManager.eAsPlayerInput(var2, var2.input.playerInput);
       if (Mace.uAsBoolean() || Aura.rAsBoolean()) {
-         var2.input.playerInput = pk.cAsPlayerInput(var2.input.playerInput);
+         var2.input.playerInput = ParticleKind.cAsPlayerInput(var2.input.playerInput);
       }
 
       Aura.bAsVoid(var2, "input-final");
@@ -83,7 +83,7 @@ public class ClientPlayerEntityTickMovementMixin {
       cancellable = true
    )
    private void larpclient$injectHandler(Vec2f var1, CallbackInfoReturnable<Vec2f> var2) {
-      var2.setReturnValue(qm.hAsVec2f((Vec2f)var2.getReturnValue()));
+      var2.setReturnValue(QueueManager.hAsVec2f((Vec2f)var2.getReturnValue()));
    }
 
    @Inject(
@@ -94,7 +94,7 @@ public class ClientPlayerEntityTickMovementMixin {
       )}
    )
    private void larpclient$injectTick3(CallbackInfo var1) {
-      b_.wAsVoid();
-      b_.aAsVoid();
+      ModuleImportBroker.wAsVoid();
+      ModuleImportBroker.aAsVoid();
    }
 }

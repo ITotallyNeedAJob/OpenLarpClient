@@ -28,28 +28,28 @@ import org.joml.Vector2f;
 
 public final class ModuleSearchPanel extends GuiPanel {
    static final int P = 8;
-   static final int DropletTrail = 6;
+   static final int l = 6;
    static final int H = 20;
-   static final int ScreenScale = 14;
+   static final int y = 14;
    static final int X = 36;
    static final int v = 46;
    static final int Y = 20;
-   static final int HexEdgeloop = 18;
-   static final int SkyChunkCache = 90;
+   static final int p = 18;
+   static final int s = 90;
    static final int E = 122;
    static final int J = 160;
    private static final int Z = -401337324;
    private static final int z = -16119286;
    private final Screen I;
-   private final List<ModuleSearchPanel.Type_z> AuctionNotifier = new ArrayList<>();
-   private final w2 q = new w2(0.0);
+   private final List<ModuleSearchPanel.Type_z> o = new ArrayList<>();
+   private final WeatherRenderer q = new WeatherRenderer(0.0);
    private final Matrix3x2f r = new Matrix3x2f();
    private ScreenScale S;
    private TextInputWidget A;
    private ModuleSearchPanel.Type_w U;
    private ModuleSearchPanel.Type_w k;
    private ModuleSearchPanel.Type_x w;
-   private String PriceDetector = "";
+   private String m = "";
    private String K = "";
    private int N;
    private int a;
@@ -127,7 +127,7 @@ public final class ModuleSearchPanel extends GuiPanel {
    }
 
    private ScreenScale NAsY() {
-      return com.larpclient.y.from(this.client.getWindow(), LarpClient.CAsLarpClient().fAsBo().yAsN7().JD);
+      return com.larpclient.ScreenScale.from(this.client.getWindow(), LarpClient.CAsLarpClient().fAsBo().yAsN7().JD);
    }
 
    private int YAsInt() {
@@ -309,11 +309,11 @@ public final class ModuleSearchPanel extends GuiPanel {
    }
 
    public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
-      long var5 = op.RAsLong();
+      long var5 = OpenScreen.RAsLong();
       this.WAsVoid();
       ClientPreferences var7 = LarpClient.CAsLarpClient().fAsBo().yAsN7();
       double var8 = this.q.bAsDouble(this.L ? 0.0 : 1.0, var7.n);
-      this.r.set(this.S.transform()).mul(xb.mAsMatrix3x2f(var7.A, var8, (double)this.S.width() / 2.0, (double)this.S.height() / 2.0));
+      this.r.set(this.S.transform()).mul(XBlurEffect.mAsMatrix3x2f(var7.A, var8, (double)this.S.width() / 2.0, (double)this.S.height() / 2.0));
       if (var7.A.equals("Slide")) {
          this.r.translate(0.0F, (float)((1.0 - var8) * 8.0));
       }
@@ -324,7 +324,7 @@ public final class ModuleSearchPanel extends GuiPanel {
       context.getMatrices().pushMatrix();
       context.getMatrices().mul(this.r);
 
-      try (qg var11 = qg.nAsQg(var8)) {
+      try (QueueGroup var11 = QueueGroup.nAsQg(var8)) {
          int var12 = ZAsD2().b;
          this.A.render(context, mouseX, mouseY);
          this.U.render(context, mouseX, mouseY);
@@ -350,7 +350,7 @@ public final class ModuleSearchPanel extends GuiPanel {
          context.getMatrices().popMatrix();
       }
 
-      op.aAsVoid("Legacy ClickGUI", var5);
+      OpenScreen.aAsVoid("Legacy ClickGUI", var5);
    }
 
    private int VAsInt() {
@@ -358,17 +358,17 @@ public final class ModuleSearchPanel extends GuiPanel {
    }
 
    private void bAsVoid(DrawContext var1, String var2, int var3) {
-      String var4 = var2 != null && !var2.isBlank() ? var2 : "Left click toggles · Right click opens settings · Middle click stars · Drag PetEffectRenderer title to move it";
+      String var4 = var2 != null && !var2.isBlank() ? var2 : "Left click toggles · Right click opens settings · Middle click stars · Drag a title to move it";
       var4 = TextDrawing.HAsString(var4, this.S.width() - 40);
       int var5 = TextDrawing.UAsInt(var4);
       int var6 = this.VAsInt();
-      TextDrawing.UAsVoid(var1, var4, (this.S.width() - var5) / 2, var6 - 13, bd.e);
+      TextDrawing.UAsVoid(var1, var4, (this.S.width() - var5) / 2, var6 - 13, UiStyle.e);
       TextDrawing.Type_x var7 = TextDrawing.Type_x.SEMIBOLD;
       int var8 = this.N;
       int var9 = this.a;
       GuiTextureDrawing.AAsVoid(var1, (float)(var8 - 1), (float)(var6 - 1), (float)(var9 + 2), 20.0F, 10.0F, var3 | 0xFF000000);
       GuiTextureDrawing.AAsVoid(var1, (float)var8, (float)var6, (float)var9, 18.0F, 9.0F, -268106488);
-      TextDrawing.TAsVoid(var1, this.K, var8 + 11, var6 + 5, mi.readableAccent(var3, -16448248), var7);
+      TextDrawing.TAsVoid(var1, this.K, var8 + 11, var6 + 5, MouseInput.readableAccent(var3, -16448248), var7);
       TextDrawing.TAsVoid(var1, " = menu", var8 + 11 + TextDrawing.mAsInt(this.K, var7), var6 + 5, -1, var7);
    }
 
@@ -542,7 +542,7 @@ public final class ModuleSearchPanel extends GuiPanel {
 
    private final class Type_j {
       final Module C;
-      final List<GuiWidget> ScreenScale = new ArrayList<>();
+      final List<GuiWidget> y = new ArrayList<>();
       final Map<GuiWidget, BooleanSupplier> Y = new IdentityHashMap<>();
       final Set<String> V = new HashSet<>();
       boolean M;
@@ -600,7 +600,7 @@ public final class ModuleSearchPanel extends GuiPanel {
       }
 
       void EAsVoid() {
-         if (this.M && this.C instanceof nk var1 && !Objects.equals(this.A, var1.style().getValue())) {
+         if (this.M && this.C instanceof Notification var1 && !Objects.equals(this.A, var1.style().getValue())) {
             this.rAsVoid();
          }
       }
@@ -612,7 +612,7 @@ public final class ModuleSearchPanel extends GuiPanel {
 
          this.y.clear();
          this.Y.clear();
-         this.A = this.C instanceof nk var1 ? var1.style().getValue() : null;
+         this.A = this.C instanceof Notification var1 ? var1.style().getValue() : null;
          List var8 = ControlSettings.FAsList(this.C);
          Iterator var9 = var8.iterator();
 
@@ -621,10 +621,10 @@ public final class ModuleSearchPanel extends GuiPanel {
             BooleanSupplier var4;
             do {
                if (!var9.hasNext()) {
-                  if (!(this.C instanceof nk)) {
+                  if (!(this.C instanceof Notification)) {
                      KeybindSetting var10 = new KeybindSetting(
                         this.C instanceof HUD ? "Toggle HUD" : "Bind",
-                        "Press PetEffectRenderer key, or PetEffectRenderer middle or side mouse button. Escape/Delete clears the binding",
+                        "Press a key, or a middle or side mouse button. Escape/Delete clears the binding",
                         this.C.getKeyBind()
                      );
                      var10.onChanged(this.C::setKeyBind);
@@ -710,7 +710,7 @@ public final class ModuleSearchPanel extends GuiPanel {
                TextDrawing.zAsString(this.t.toUpperCase(Locale.ROOT), this.V - 4, TextDrawing.Type_s.EYEBROW),
                this.k + 2,
                this.x + 2,
-               bd.W,
+               UiStyle.W,
                TextDrawing.Type_s.EYEBROW
             );
          }
@@ -742,11 +742,11 @@ public final class ModuleSearchPanel extends GuiPanel {
             }
 
             if (var5 != 0) {
-               GuiTextureDrawing.pAsVoid(var1, this.k, this.x, this.V, this.F, bd.u);
+               GuiTextureDrawing.pAsVoid(var1, this.k, this.x, this.V, this.F, UiStyle.u);
             }
 
             String var6 = TextDrawing.HAsString(this.W.get(), this.V - 8);
-            TextDrawing.UAsVoid(var1, var6, this.k + (this.V - TextDrawing.UAsInt(var6)) / 2, this.x + (this.F - 8) / 2, !var4 && !this.a ? bd.e : -1);
+            TextDrawing.UAsVoid(var1, var6, this.k + (this.V - TextDrawing.UAsInt(var6)) / 2, this.x + (this.F - 8) / 2, !var4 && !this.a ? UiStyle.e : -1);
          }
       }
 
@@ -774,10 +774,10 @@ public final class ModuleSearchPanel extends GuiPanel {
 
    private static final class Type_x extends GuiWidget {
       private static final String C = "Legacy";
-      private static final int SkyChunkCache = 18;
+      private static final int s = 18;
       private static final int q = 10;
       private final Runnable G;
-      private final w2 HexEdgeloop = new w2(1.0);
+      private final WeatherRenderer p = new WeatherRenderer(1.0);
 
       Type_x(Runnable var1) {
          this.G = var1;
@@ -797,14 +797,14 @@ public final class ModuleSearchPanel extends GuiPanel {
          );
          GuiTextureDrawing.AAsVoid(var1, (float)this.k, (float)this.x, (float)this.V, (float)this.F, (float)(this.F / 2), -268106488);
          if (this.y && this.Q) {
-            GuiTextureDrawing.pAsVoid(var1, this.k, this.x, this.V, this.F, bd.u);
+            GuiTextureDrawing.pAsVoid(var1, this.k, this.x, this.V, this.F, UiStyle.u);
          }
 
-         TextDrawing.TAsVoid(var1, "Legacy", this.k + 11, this.x + 5, var4 ? -1 : bd.e, TextDrawing.Type_x.SEMIBOLD);
+         TextDrawing.TAsVoid(var1, "Legacy", this.k + 11, this.x + 5, var4 ? -1 : UiStyle.e, TextDrawing.Type_x.SEMIBOLD);
          int var7 = this.k + this.V - 8 - 18;
          int var8 = this.x + (this.F - 10) / 2;
          int var9 = ModuleSearchPanel.ZAsD2().b | 0xFF000000;
-         GuiTextureDrawing.AAsVoid(var1, (float)var7, (float)var8, 18.0F, 10.0F, 5.0F, bg.xAsInt(-13420994, var9, var5));
+         GuiTextureDrawing.AAsVoid(var1, (float)var7, (float)var8, 18.0F, 10.0F, 5.0F, ColorUtil.xAsInt(-13420994, var9, var5));
          int var10 = var7 + 5 + (int)Math.round(8.0 * var5);
          GuiTextureDrawing.RAsVoid(var1, var10, var8 + 5, 3, -1);
       }
@@ -833,17 +833,17 @@ public final class ModuleSearchPanel extends GuiPanel {
       final GuiCategory e;
       final Map<Module, ModuleSearchPanel.Type_j> n = new IdentityHashMap<>();
       final List<ModuleSearchPanel.Type_j> Q = new ArrayList<>();
-      final w2 z = new w2(-1.0);
-      final w2 F = new w2(0.0);
-      final w2 MenuPopupProvider = new w2(0.0);
+      final WeatherRenderer z = new WeatherRenderer(-1.0);
+      final WeatherRenderer F = new WeatherRenderer(0.0);
+      final WeatherRenderer f = new WeatherRenderer(0.0);
       final int I;
       int a;
       int X;
-      int ScreenScale = 90;
+      int y = 90;
       int w;
       int S;
       int Y;
-      boolean TextLayout = true;
+      boolean j = true;
 
       Type_z(GuiCategory var2) {
          this.e = var2;
@@ -969,18 +969,18 @@ public final class ModuleSearchPanel extends GuiPanel {
                }
 
                if (var30 > 0.01) {
-                  GuiTextureDrawing.CAsVoid(var1, this.a, var29 + (int)Math.round(this.F.yAsDouble()), this.y, 14, bg.pAsInt(419430399, var30));
+                  GuiTextureDrawing.CAsVoid(var1, this.a, var29 + (int)Math.round(this.F.yAsDouble()), this.y, 14, ColorUtil.pAsInt(419430399, var30));
                }
 
                for (ModuleSearchPanel.Type_j var34 : this.Q) {
                   int var36 = var34.r + 14 + (var34.M ? var34.rAsInt() : 0);
                   if (var36 >= this.MAsInt() && var34.r <= this.S) {
                      boolean var16 = var34.C.isEnabled();
-                     int var17 = var16 ? mi.controlInk(var4 | 0xFF000000) : -1;
+                     int var17 = var16 ? MouseInput.controlInk(var4 | 0xFF000000) : -1;
                      String var18 = TextDrawing.HAsString(var34.C.getDisplayName(), this.y - 14);
                      TextDrawing.UAsVoid(var1, var18, this.a + (this.y - TextDrawing.UAsInt(var18)) / 2, var34.r + 3, var17);
                      if (var12.yAsBoolean(var34.C.getName()) && this.e != GuiCategory.FAVORITES) {
-                        GuiTextureDrawing.CAsVoid(var1, this.a + 3, var34.r + 5, 3, 3, var16 ? var17 : bg.XAsInt(var4, 0.9));
+                        GuiTextureDrawing.CAsVoid(var1, this.a + 3, var34.r + 5, 3, 3, var16 ? var17 : ColorUtil.XAsInt(var4, 0.9));
                      }
 
                      if (var34.M) {
@@ -1005,7 +1005,7 @@ public final class ModuleSearchPanel extends GuiPanel {
                int var33 = Math.max(12, var311 * var311 / this.Y);
                int var35 = var311 - var33;
                int var37 = this.MAsInt() + (int)Math.round((double)var35 * ((double)this.w / (double)(this.Y - var311)));
-               GuiTextureDrawing.CAsVoid(var1, this.a + this.y - 2, var37, 2, var33, bg.XAsInt(var4, 0.8));
+               GuiTextureDrawing.CAsVoid(var1, this.a + this.y - 2, var37, 2, var33, ColorUtil.XAsInt(var4, 0.8));
             }
          }
       }

@@ -26,9 +26,9 @@ import org.joml.Vector3f;
 public final class EmotePropRenderer {
    private static final String Y = "models/emotes/";
    private static final float z = 0.86F;
-   private static final float MenuPopupProvider = 2.25F;
-   private static final float SmoothInput = 0.05F;
-   private static final int DropletTrail = 9;
+   private static final float f = 2.25F;
+   private static final float t = 0.05F;
+   private static final int l = 9;
    private static final RenderPipeline L = RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_TEX_COLOR_SNIPPET})
       .withLocation(AAsIdentifier("emote_prop"))
       .withFragmentShader(AAsIdentifier("particle/sprite"))
@@ -38,7 +38,7 @@ public final class EmotePropRenderer {
       .withoutBlend()
       .withCull(true)
       .build();
-   private static final Map<String, EmotePropRenderer.Type_w> ChatPayParser = new HashMap<>();
+   private static final Map<String, EmotePropRenderer.Type_w> g = new HashMap<>();
    private static final Map<String, RenderLayer> V = new HashMap<>();
    private static EmotePropRenderer.Type_z N;
 
@@ -54,7 +54,7 @@ public final class EmotePropRenderer {
    }
 
    private static EmotePropRenderer.Type_w mAsBs_Type_w(String var0) {
-      EmotePropRenderer.Type_w var1 = ChatPayParser.get(var0);
+      EmotePropRenderer.Type_w var1 = g.get(var0);
       if (var1 != null && var1.V == (long)BloomQuality.J) {
          return var1;
       } else {
@@ -67,7 +67,7 @@ public final class EmotePropRenderer {
                var2.getResourceOrThrow(var3);
                PropMeshReader.Type_a var5 = PropMeshReader.dAsNj_Type_a(var4);
                if (var5.parts().size() != 2) {
-                  throw new IOException("Prop needs PetEffectRenderer body and PetEffectRenderer wheel part");
+                  throw new IOException("Prop needs a body and a wheel part");
                }
 
                WorldLabelLayout.DAsVoid(L);
@@ -75,7 +75,7 @@ public final class EmotePropRenderer {
                   var0, var1x -> RenderLayer.of("larp_emote_prop_" + var1x, RenderSetup.builder(L).texture("Sampler0", var3).build())
                );
                var1 = new EmotePropRenderer.Type_w(var5, var6, (long)BloomQuality.J);
-               ChatPayParser.put(var0, var1);
+               g.put(var0, var1);
                ClientLog.GAsVoid("Emotes", "Prop {} ready: {} triangles, resource generation {}", var0, var5.triangles(), var1.V);
                var7 = var1;
             }
@@ -155,9 +155,9 @@ public final class EmotePropRenderer {
                var2.ground.z,
                1.1 * (double)var2.puff,
                0.5 + 0.4 * (double)var2.puff,
-               bg.XAsInt(-1446155, (double)var2.puffAlpha)
+               ColorUtil.XAsInt(-1446155, (double)var2.puffAlpha)
             );
-            var0.bAsVoid(var2.ground.x, var2.ground.y + 0.03, var2.ground.z, 0.6 * (double)var2.puff, 0.35, bg.XAsInt(-1, (double)var2.puffAlpha * 0.7));
+            var0.bAsVoid(var2.ground.x, var2.ground.y + 0.03, var2.ground.z, 0.6 * (double)var2.puff, 0.35, ColorUtil.XAsInt(-1, (double)var2.puffAlpha * 0.7));
          }
 
          if (!(var2.scale < 0.001F)) {
@@ -168,7 +168,7 @@ public final class EmotePropRenderer {
             List var3 = var2.prop.Z.parts();
             var0.oAsVoid(var2.prop.y, var2.bodyOrigin, var2.bodyRotation, var2.scale, ((PropMeshReader.Type_h)var3.get(0)).vertices(), var2.prop.S[0]);
             var0.oAsVoid(var2.prop.y, var2.ground, var2.carRotation, var2.scale, ((PropMeshReader.Type_h)var3.get(1)).vertices(), var2.prop.S[1]);
-            op.FAsVoid("Emote prop triangles", (long)var2.prop.Z.triangles());
+            OpenScreen.FAsVoid("Emote prop triangles", (long)var2.prop.Z.triangles());
          }
       }
    }
@@ -178,7 +178,7 @@ public final class EmotePropRenderer {
       float var3 = 0.86F * var1.scale;
       float var4 = 2.25F * var1.scale;
       float var5 = 0.05F * var1.scale;
-      int var6 = bg.XAsInt(-16777216, (double)var1.shadow);
+      int var6 = ColorUtil.XAsInt(-16777216, (double)var1.shadow);
       float[][] var8 = new float[][]{{-var3, var5 - var4}, {var3, var5 - var4}, {var3, var5 + var4}, {-var3, var5 + var4}};
       float[][] var9 = new float[][]{
          {-var3 - var2, var5 - var4 - var2}, {var3 + var2, var5 - var4 - var2}, {var3 + var2, var5 + var4 + var2}, {-var3 - var2, var5 + var4 + var2}

@@ -22,7 +22,7 @@ final class InterfaceSettingsPanel extends SettingsPanel {
    private boolean y;
    private boolean p;
    private final List<InterfaceSettingsPanel.Type_x> A = new ArrayList<>();
-   private final w2 MenuPopupProvider = new w2(0.0);
+   private final WeatherRenderer f = new WeatherRenderer(0.0);
    private HudRenderer.Type_m U;
    private final Map<ActionButton, HudRenderer.Type_m> G = new LinkedHashMap<>();
    private NumberSetting x;
@@ -123,7 +123,7 @@ final class InterfaceSettingsPanel extends SettingsPanel {
 
                   UpdateRuntime.open(this.i);
                });
-               this.kAsVoid("Press Update on PetEffectRenderer new release and it installs when you close Minecraft. No launcher setup is needed.");
+               this.kAsVoid("Press Update on a new release and it installs when you close Minecraft. No launcher setup is needed.");
                this.kAsVoid("On macOS, or when the client JAR is not directly in your mods folder, use the official downloads page.");
                break;
             default:
@@ -138,7 +138,7 @@ final class InterfaceSettingsPanel extends SettingsPanel {
    }
 
    private void GAsVoid(String var1, String var2, GuiWidget... var3) {
-      q5 var4 = new q5(var1, var2);
+      WidgetLabel var4 = new WidgetLabel(var1, var2);
       this.AAsVoid(var4);
 
       for (GuiWidget var8 : var3) {
@@ -151,23 +151,23 @@ final class InterfaceSettingsPanel extends SettingsPanel {
    private void IAsVoid() {
       ClientPreferences var1 = LarpClient.CAsLarpClient().fAsBo().yAsN7();
       this.GAsVoid("Main color", "Choose the main GUI theme.", new ThemePreviewWidget(() -> var1.M, var2x -> this.KAsVoid(() -> var1.M = var2x)));
-      ColorSetting var2 = new ColorSetting("Primary", "Primary theme color", bd.w);
-      var2.onChanged(var0 -> bd.w = var0);
-      ColorSetting var3 = new ColorSetting("Secondary", "Secondary theme color", bd.Q);
-      var3.onChanged(var0 -> bd.Q = var0);
+      ColorSetting var2 = new ColorSetting("Primary", "Primary theme color", UiStyle.w);
+      var2.onChanged(var0 -> UiStyle.w = var0);
+      ColorSetting var3 = new ColorSetting("Secondary", "Secondary theme color", UiStyle.Q);
+      var3.onChanged(var0 -> UiStyle.Q = var0);
       ActionButton var4 = new ActionButton("Reset palette", () -> {
-         bd.w = -1381654;
-         bd.Q = -6250336;
+         UiStyle.w = -1381654;
+         UiStyle.Q = -6250336;
          this.build();
       });
       var4.u = true;
       BooleanSetting var5 = new BooleanSetting("Animation gradient", "Animate the GUI accent between primary and secondary", var1.b);
       var5.onChanged(var2x -> this.KAsVoid(() -> var1.b = var2x));
-      this.GAsVoid("Accent color", "Accent colors of the GUI.", new qj(var1x -> {
-         bd.w = var1x;
+      this.GAsVoid("Accent color", "Accent colors of the GUI.", new QueueJob(var1x -> {
+         UiStyle.w = var1x;
          var2.setValue(Integer.valueOf(var1x));
       }), new SettingWidget(var2), new SettingWidget(var3), new SettingWidget(var5), var4);
-      ModeSetting var6 = new ModeSetting("Open", "How the GUI appears", var1.A, xb.L.toArray(String[]::new));
+      ModeSetting var6 = new ModeSetting("Open", "How the GUI appears", var1.A, XBlurEffect.L.toArray(String[]::new));
       var6.onChanged(var2x -> this.KAsVoid(() -> var1.A = var2x));
       ModeSetting var7 = new ModeSetting(
          "Close",
@@ -192,7 +192,7 @@ final class InterfaceSettingsPanel extends SettingsPanel {
       var11.onChanged(var2x -> this.KAsVoid(() -> var1.JE = var2x / 100.0));
       NumberSetting var12 = new NumberSetting(
          "Blur",
-         "Blur behind the glass while in PetEffectRenderer world: 0 is none, 2 the usual strength, 4 the heaviest. Needs Blur quality on in the Performance module",
+         "Blur behind the glass while in a world: 0 is none, 2 the usual strength, 4 the heaviest. Needs Blur quality on in the Performance module",
          (double)var1.o,
          0.0,
          4.0,
@@ -203,14 +203,14 @@ final class InterfaceSettingsPanel extends SettingsPanel {
          "Blur area", "Blur only behind the window, or the whole world while the GUI is open", var1.s, ClientPreferences.P.toArray(String[]::new)
       );
       var13.onChanged(var2x -> this.KAsVoid(() -> var1.s = var2x));
-      this.GAsVoid("Backdrop", "Shown behind the GUI.", new SettingWidget(var10), new SettingWidget(var11), new SettingWidget(var12), new q_(var13));
+      this.GAsVoid("Backdrop", "Shown behind the GUI.", new SettingWidget(var10), new SettingWidget(var11), new SettingWidget(var12), new ModeSettingWidget(var13));
       ModeSetting var14 = new ModeSetting(
-         "Cards", "Module cards: Filled, an Outline only, or Flat without PetEffectRenderer contour", var1.r, ClientPreferences.K.toArray(String[]::new)
+         "Cards", "Module cards: Filled, an Outline only, or Flat without a contour", var1.r, ClientPreferences.K.toArray(String[]::new)
       );
       var14.onChanged(var2x -> this.KAsVoid(() -> var1.r = var2x));
       ModeSetting var15 = new ModeSetting(
          "Enabled cards",
-         "How an enabled module stands out: PetEffectRenderer Glow with an accent wash, only the Tint, an accent Text title, or None",
+         "How an enabled module stands out: a Glow with an accent wash, only the Tint, an accent Text title, or None",
          var1.T,
          ClientPreferences.h.toArray(String[]::new)
       );
@@ -225,9 +225,9 @@ final class InterfaceSettingsPanel extends SettingsPanel {
       var18.onChanged(var2x -> this.KAsVoid(() -> var1.X = var2x / 100.0));
       BooleanSetting var19 = new BooleanSetting("Accent glow", "A soft accent glow breathing around the window", var1.B);
       var19.onChanged(var2x -> this.KAsVoid(() -> var1.B = var2x));
-      BooleanSetting var20 = new BooleanSetting("Ripple", "A ripple spreads from the pointer when you click PetEffectRenderer module card", var1.z);
+      BooleanSetting var20 = new BooleanSetting("Ripple", "A ripple spreads from the pointer when you click a module card", var1.z);
       var20.onChanged(var2x -> this.KAsVoid(() -> var1.z = var2x));
-      BooleanSetting var21 = new BooleanSetting("Hover lift", "Module cards rise PetEffectRenderer little under the pointer", var1.I);
+      BooleanSetting var21 = new BooleanSetting("Hover lift", "Module cards rise a little under the pointer", var1.I);
       var21.onChanged(var2x -> this.KAsVoid(() -> var1.I = var2x));
       this.GAsVoid(
          "Style",
@@ -249,7 +249,7 @@ final class InterfaceSettingsPanel extends SettingsPanel {
       LarpClient var24 = LarpClient.CAsLarpClient();
       KeybindSetting var25 = new KeybindSetting(
          "ClickUI keybind",
-         "Open or close ClickUI with PetEffectRenderer key or PetEffectRenderer middle or side mouse button. Escape/Delete clears the binding; right click restores Right Shift.",
+         "Open or close ClickUI with a key or a middle or side mouse button. Escape/Delete clears the binding; right click restores Right Shift.",
          344
       );
       var25.lAsVoid(var24.kAsInt());
@@ -269,7 +269,7 @@ final class InterfaceSettingsPanel extends SettingsPanel {
       this.GAsVoid("Main menu", "Client title screen outside worlds.", new SettingWidget(var28));
       BooleanSetting var29 = new BooleanSetting(
          "Legacy layout",
-         "Floating category panels: left click toggles PetEffectRenderer module, right click drops down its settings. Applies the next time you open the GUI",
+         "Floating category panels: left click toggles a module, right click drops down its settings. Applies the next time you open the GUI",
          var1.y.R
       );
       var29.onChanged(var2x -> {
@@ -547,6 +547,6 @@ final class InterfaceSettingsPanel extends SettingsPanel {
       }
    }
 
-   private static record Type_x(q5 panel, List<GuiWidget> controls) {
+   private static record Type_x(WidgetLabel panel, List<GuiWidget> controls) {
    }
 }

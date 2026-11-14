@@ -21,14 +21,14 @@ import net.minecraft.world.RaycastContext.FluidHandling;
 import net.minecraft.world.RaycastContext.ShapeType;
 
 public final class MiningProgress {
-   private static nd y;
+   private static NodeRenderer y;
    private static BlockPos W;
    private static Object S;
    private static Object Y;
-   private static int LineSegment = -1;
+   private static int e = -1;
    private static int U = -1;
    private static int o;
-   private static ItemStack BloomUtility = ItemStack.EMPTY;
+   private static ItemStack b = ItemStack.EMPTY;
    private static boolean z;
 
    public static boolean VAsBoolean(BlockPos var0) {
@@ -49,9 +49,9 @@ public final class MiningProgress {
       return BAsBlockHitResult(null, var0, var1);
    }
 
-   static BlockHitResult BAsBlockHitResult(nd var0, BlockPos var1, double var2) {
+   static BlockHitResult BAsBlockHitResult(NodeRenderer var0, BlockPos var1, double var2) {
       MinecraftClient var4 = MinecraftClient.getInstance();
-      if (!b_.tAsBoolean(var0)) {
+      if (!ModuleImportBroker.tAsBoolean(var0)) {
          return null;
       } else {
          Vec3d var5 = var4.player.getEyePos();
@@ -111,7 +111,7 @@ public final class MiningProgress {
       return var5.getType() == Type.BLOCK && var5.getBlockPos().equals(var0) ? var5 : null;
    }
 
-   static boolean UAsBoolean(nd var0, BlockPos var1, double var2, boolean var4, float var5, boolean var6, BooleanSupplier var7) {
+   static boolean UAsBoolean(NodeRenderer var0, BlockPos var1, double var2, boolean var4, float var5, boolean var6, BooleanSupplier var7) {
       if (var0.fAsBoolean() && VAsBoolean(var1)) {
          MinecraftClient var8 = MinecraftClient.getInstance();
          BlockPos var9 = var1.toImmutable();
@@ -130,26 +130,26 @@ public final class MiningProgress {
             cAsVoid(var0);
             return false;
          } else {
-            if (var4 && b_.nAsBoolean(var0)) {
+            if (var4 && ModuleImportBroker.nAsBoolean(var0)) {
                var0.aimAt(var15.getPos(), var5);
             }
 
-            b_.UAsVoid(var0, () -> {
+            ModuleImportBroker.UAsVoid(var0, () -> {
                if (var14.getAsBoolean()) {
                   BlockHitResult var9x = var4 ? NAsBlockHitResult(var9, var2) : null;
                   if (!var4 || var9x != null) {
-                     if (ScreenScale != null && ScreenScale != var0) {
+                     if (y != null && y != var0) {
                         cAsVoid(y);
                      }
 
-                     if (ScreenScale != null && var8.player.getInventory().getSelectedSlot() != U) {
+                     if (y != null && var8.player.getInventory().getSelectedSlot() != U) {
                         cAsVoid(var0);
                      } else {
-                        if (ScreenScale == null) {
-                           ScreenScale = var0;
+                        if (y == null) {
+                           y = var0;
                            S = var8.world;
                            Y = var8.player;
-                           LineSegment = var8.player.getInventory().getSelectedSlot();
+                           e = var8.player.getInventory().getSelectedSlot();
                         }
 
                         if (!var9.equals(W)) {
@@ -159,14 +159,14 @@ public final class MiningProgress {
 
                            W = var9;
                            U = var6 ? DAsInt(var13) : var8.player.getInventory().getSelectedSlot();
-                           BloomUtility = var8.player.getInventory().getStack(U);
+                           b = var8.player.getInventory().getStack(U);
                         }
 
                         if (var6) {
                            var8.player.getInventory().setSelectedSlot(U);
                         }
 
-                        AuctionNotifier = var8.player.age;
+                        o = var8.player.age;
                         Direction var10x = var9x == null ? Direction.UP : var9x.getSide();
                         if (var8.interactionManager.updateBlockBreakingProgress(var9, var10x)) {
                            var8.world.spawnBlockBreakingParticle(var9, var10x);
@@ -210,17 +210,17 @@ public final class MiningProgress {
    public static boolean ZAsBoolean() {
       MinecraftClient var0 = MinecraftClient.getInstance();
       return !z
-         && ScreenScale != null
-         && ScreenScale.fAsBoolean()
+         && y != null
+         && y.fAsBoolean()
          && var0.world == S
          && var0.player == Y
-         && var0.player.age - AuctionNotifier <= 1
+         && var0.player.age - o <= 1
          && VAsBoolean(W)
          && var0.player.getInventory().getSelectedSlot() == U;
    }
 
    public static void cAsVoid(Module var0) {
-      if (ScreenScale == var0) {
+      if (y == var0) {
          MinecraftClient var1 = MinecraftClient.getInstance();
 
          try {
@@ -231,7 +231,7 @@ public final class MiningProgress {
                }
 
                if (!var1.options.attackKey.isPressed()
-                  && U != LineSegment
+                  && U != e
                   && var1.player.getInventory().getSelectedSlot() == U
                   && var1.player.getInventory().getStack(U) == b) {
                   var1.player.getInventory().setSelectedSlot(e);
@@ -239,13 +239,13 @@ public final class MiningProgress {
             }
          } finally {
             z = false;
-            ScreenScale = null;
+            y = null;
             W = null;
             S = null;
             Y = null;
-            LineSegment = -1;
+            e = -1;
             U = -1;
-            BloomUtility = ItemStack.EMPTY;
+            b = ItemStack.EMPTY;
          }
       }
    }

@@ -17,9 +17,9 @@ final class TransformingVertexConsumer implements VertexConsumer {
 
    public VertexConsumer vertex(Matrix4fc matrix, float x, float y, float z) {
       return this.vertex(
-         matrix.m00() * AuraModule + matrix.m10() * ScreenScale + matrix.m20() * z + matrix.m30(),
-         matrix.m01() * AuraModule + matrix.m11() * ScreenScale + matrix.m21() * z + matrix.m31(),
-         matrix.m02() * AuraModule + matrix.m12() * ScreenScale + matrix.m22() * z + matrix.m32()
+         matrix.m00() * x + matrix.m10() * y + matrix.m20() * z + matrix.m30(),
+         matrix.m01() * x + matrix.m11() * y + matrix.m21() * z + matrix.m31(),
+         matrix.m02() * x + matrix.m12() * y + matrix.m22() * z + matrix.m32()
       );
    }
 

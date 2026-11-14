@@ -6,7 +6,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 
 public final class ServerBrandMatcher {
-   private static final List<String> GroundSample = List.of("paper", "purpur", "folia", "pufferfish", "leaves", "gale", "leaf");
+   private static final List<String> k = List.of("paper", "purpur", "folia", "pufferfish", "leaves", "gale", "leaf");
 
    public static boolean cAsBoolean(String var0) {
       if (var0 == null) {

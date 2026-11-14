@@ -47,7 +47,7 @@ public final class Wings extends Module {
    public static final int p = 32;
    private List<Wings.Type_h> G = List.of();
    private List<Wings.Type_v> P = List.of();
-   private final IdentityHashMap<Object, ro.Type_j> L = new IdentityHashMap<>();
+   private final IdentityHashMap<Object, RodAttempt.Type_j> L = new IdentityHashMap<>();
    private ClientWorld I;
    private ClientWorld T;
    private DragonWingRenderer.Type_q u;
@@ -92,8 +92,8 @@ public final class Wings extends Module {
             return new Wings.Type_n(
                false,
                this.size.getValue().floatValue(),
-               this.customColors.getValue() ? this.color1.getValue() : bd.w,
-               this.customColors.getValue() ? this.color2.getValue() : bd.Q,
+               this.customColors.getValue() ? this.color1.getValue() : UiStyle.w,
+               this.customColors.getValue() ? this.color2.getValue() : UiStyle.Q,
                0
             );
          }
@@ -103,11 +103,11 @@ public final class Wings extends Module {
    }
 
    public static int OAsInt(int var0, int var1, double var2) {
-      return bg.xAsInt(var0, var1, (Math.sin(var2 * 2.0) + 1.0) / 2.0);
+      return ColorUtil.xAsInt(var0, var1, (Math.sin(var2 * 2.0) + 1.0) / 2.0);
    }
 
    public static int DAsInt(int var0, int var1, double var2) {
-      return bg.xAsInt(var0, var1, (Math.sin(var2 * 2.0 + 2.1) + 1.0) / 2.0);
+      return ColorUtil.xAsInt(var0, var1, (Math.sin(var2 * 2.0 + 2.1) + 1.0) / 2.0);
    }
 
    @Override
@@ -148,10 +148,10 @@ public final class Wings extends Module {
             float var7 = this.size.getValue().floatValue();
             boolean var8 = this.eAsBoolean();
             int var9 = this.dragonColor.getValue();
-            int var10 = this.customColors.getValue() ? this.color1.getValue() : bd.w;
-            int var11 = this.customColors.getValue() ? this.color2.getValue() : bd.Q;
-            int var12 = OAsInt(var10, var11, mb.RAsDouble());
-            int var13 = DAsInt(var10, var11, mb.RAsDouble());
+            int var10 = this.customColors.getValue() ? this.color1.getValue() : UiStyle.w;
+            int var11 = this.customColors.getValue() ? this.color2.getValue() : UiStyle.Q;
+            int var12 = OAsInt(var10, var11, MediaSession.RAsDouble());
+            int var13 = DAsInt(var10, var11, MediaSession.RAsDouble());
 
             for (AbstractClientPlayerEntity var15 : mc.world.getPlayers()) {
                if (var15 == mc.player) {
@@ -181,7 +181,7 @@ public final class Wings extends Module {
                   float var17 = (float)var15.age + var1;
                   float var18 = var15.limbAnimator.getAmplitude(var1);
                   Vec3d var19 = var15.getLerpedPos(var1);
-                  ro.Type_j var20 = this.L.computeIfAbsent(var15, var0 -> new ro.Type_j());
+                  RodAttempt.Type_j var20 = this.L.computeIfAbsent(var15, var0 -> new RodAttempt.Type_j());
                   var20.cAsVoid(var17, var15.isInSneakingPose(), var18, var15.isGliding(), FAsBoolean(var15), var19);
                   var5.add(var15);
                   if (var8) {
@@ -211,18 +211,18 @@ public final class Wings extends Module {
                      float var33 = var22 == null
                         ? var20.YAsFloat()
                         : DragonWingRenderer.IAsFloat(var20.YAsFloat(), var15.isGliding(), (float)var15.getGlidingTicks() + var1);
-                     ro.Type_h var25 = ro.rAsRo_Type_h(var20.eAsFloat(), var33, (float)var15.getGlidingTicks() + var1, var15.getPitch(var1));
-                     ro.Type_v var26 = ro.vAsRo_Type_v(var17, var20.aAsFloat(), var20.eAsFloat(), var33);
+                     RodAttempt.Type_h var25 = RodAttempt.rAsRo_Type_h(var20.eAsFloat(), var33, (float)var15.getGlidingTicks() + var1, var15.getPitch(var1));
+                     RodAttempt.Type_v var26 = RodAttempt.vAsRo_Type_v(var17, var20.aAsFloat(), var20.eAsFloat(), var33);
                      Vec3d var27 = var22 == null ? var19 : mc.gameRenderer.getCamera().getCameraPos();
                      Matrix4f var28 = var22 == null
-                        ? ro.lAsMatrix4f(var25, var30, var17, var20.aAsFloat(), var7, -1)
-                        : new Matrix4f(var22.getPositionMatrix()).mul(ro.RAsMatrix4f(var25, var17, var20.aAsFloat(), var7, -1, var23 != 0));
+                        ? RodAttempt.lAsMatrix4f(var25, var30, var17, var20.aAsFloat(), var7, -1)
+                        : new Matrix4f(var22.getPositionMatrix()).mul(RodAttempt.RAsMatrix4f(var25, var17, var20.aAsFloat(), var7, -1, var23 != 0));
                      Matrix4f var29 = var22 == null
-                        ? ro.lAsMatrix4f(var25, var30, var17, var20.aAsFloat(), var7, 1)
-                        : new Matrix4f(var22.getPositionMatrix()).mul(ro.RAsMatrix4f(var25, var17, var20.aAsFloat(), var7, 1, var23 != 0));
+                        ? RodAttempt.lAsMatrix4f(var25, var30, var17, var20.aAsFloat(), var7, 1)
+                        : new Matrix4f(var22.getPositionMatrix()).mul(RodAttempt.RAsMatrix4f(var25, var17, var20.aAsFloat(), var7, 1, var23 != 0));
                      var3.add(
                         new Wings.Type_h(
-                           ro.gAsRo_Type_r(var27, var28, -1, var26, var12, var13, var7), ro.gAsRo_Type_r(var27, var29, 1, var26, var12, var13, var7)
+                           RodAttempt.gAsRo_Type_r(var27, var28, -1, var26, var12, var13, var7), RodAttempt.gAsRo_Type_r(var27, var29, 1, var26, var12, var13, var7)
                         )
                      );
                   }
@@ -253,7 +253,7 @@ public final class Wings extends Module {
             ClientLog.GAsVoid("Wings", "Ender Dragon wing parts ready from the vanilla layer definition; texture={}", DragonWingRenderer.C);
          }
 
-         long var3 = op.RAsLong();
+         long var3 = OpenScreen.RAsLong();
          byte var5 = 0;
 
          for (Wings.Type_v var7 : this.P) {
@@ -278,7 +278,7 @@ public final class Wings extends Module {
             }
          }
 
-         op.aAsVoid("Wings Ender Dragon attachment and submission", var3);
+         OpenScreen.aAsVoid("Wings Ender Dragon attachment and submission", var3);
          return var5 != 0;
       } else {
          return false;
@@ -287,10 +287,10 @@ public final class Wings extends Module {
 
    public void dAsVoid(EffectGeometryRenderer var1, EffectDrawBuffers var2) {
       if (this.isEnabled() && this.isOperational() && this.I == mc.world) {
-         for (ro.Type_x var6 : ro.Type_x.values()) {
+         for (RodAttempt.Type_x var6 : RodAttempt.Type_x.values()) {
             for (Wings.Type_h var8 : this.G) {
-               ro.vAsVoid(var1, var8.left, var6);
-               ro.vAsVoid(var1, var8.right, var6);
+               RodAttempt.vAsVoid(var1, var8.left, var6);
+               RodAttempt.vAsVoid(var1, var8.right, var6);
             }
 
             var2.CAsVoid();
@@ -299,21 +299,21 @@ public final class Wings extends Module {
    }
 
    public boolean kAsBoolean() {
-      return this.isEnabled() ? this.isOperational() && this.I == mc.world && this.G.stream().anyMatch(var0 -> ro.UAsBoolean(var0.left)) : false;
+      return this.isEnabled() ? this.isOperational() && this.I == mc.world && this.G.stream().anyMatch(var0 -> RodAttempt.UAsBoolean(var0.left)) : false;
    }
 
    public void GAsVoid(EffectGeometryRenderer var1, EffectDrawBuffers var2) {
       if (this.isEnabled() && this.kAsBoolean()) {
          for (Wings.Type_h var4 : this.G) {
-            ro.MAsVoid(var1, var4.left);
-            ro.MAsVoid(var1, var4.right);
+            RodAttempt.MAsVoid(var1, var4.left);
+            RodAttempt.MAsVoid(var1, var4.right);
          }
 
          var2.CAsVoid();
       }
    }
 
-   private static record Type_h(ro.Type_r left, ro.Type_r right) {
+   private static record Type_h(RodAttempt.Type_r left, RodAttempt.Type_r right) {
    }
 
    public static record Type_n(boolean dragon, float size, int first, int second, int dragonColor) {

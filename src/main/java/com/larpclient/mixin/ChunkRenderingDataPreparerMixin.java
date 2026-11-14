@@ -48,7 +48,7 @@ public abstract class ChunkRenderingDataPreparerMixin {
       at = {@At("HEAD")}
    )
    private void larpclient$injectV(CallbackInfo var1) {
-      boolean var2 = p5.oAsBoolean();
+      boolean var2 = ParticleEmitter.oAsBoolean();
       if (var2 != this.Q) {
          this.method_52817();
       }
@@ -91,7 +91,7 @@ public abstract class ChunkRenderingDataPreparerMixin {
       LongOpenHashSet var4 = this.E;
       if (var4 != null && this.field_45623 != null && this.I != null) {
          HeightLimitView var5 = this.field_45623.getWorld();
-         pj.MAsVoid(var4, this.I, this.field_45623.getViewDistance(), var5.getBottomSectionCoord(), var5.getTopSectionCoord(), var2xx -> {
+         ParticleJoint.MAsVoid(var4, this.I, this.field_45623.getViewDistance(), var5.getBottomSectionCoord(), var5.getTopSectionCoord(), var2xx -> {
             BuiltChunk var4x = this.field_45623.getRenderedChunk(ChunkSectionPos.from(var2xx).getMinPos());
             if (var4x != null) {
                var2.add(ChunkInfoInvoker.larpCreateNode(var4x, null, 0));

@@ -9,7 +9,7 @@ import com.larpclient.module.NumberSetting;
 public final class WetGround extends Module {
    private static WetGround F;
    public final ModeSetting style = this.addSetting(
-      new ModeSetting("Style", "Patches of puddles or PetEffectRenderer reflective sheet across exposed ground", "Puddles", "Puddles", "Flooded")
+      new ModeSetting("Style", "Patches of puddles or a reflective sheet across exposed ground", "Puddles", "Puddles", "Flooded")
    );
    public final NumberSetting puddles = this.addSetting(new NumberSetting("Puddles", "Coverage of exposed ground, percent", 45.0, 0.0, 100.0, 5.0));
    public final NumberSetting wetness = this.addSetting(

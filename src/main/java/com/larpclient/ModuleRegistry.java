@@ -11,7 +11,7 @@ public record ModuleRegistry(TimedLyricsParser timed, List<String> plain, String
       this.retryAfterSeconds = retryAfterSeconds;
    }
 
-   public static mr unavailable(String var0, long var1) {
+   public static ModuleRegistry unavailable(String var0, long var1) {
       return new ModuleRegistry(null, List.of(), var0, var1);
    }
 }

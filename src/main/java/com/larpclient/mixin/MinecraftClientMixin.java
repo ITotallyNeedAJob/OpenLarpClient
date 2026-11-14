@@ -30,7 +30,7 @@ public abstract class MinecraftClientMixin {
    private void larpclient$injectV(Screen var1, CallbackInfo var2) {
       Screen var3 = ((MinecraftClient)(Object)this).currentScreen;
       if (var3 != var1) {
-         wz var4 = MenuPopupProvider.pAsWz(var3);
+         WidgetPopup var4 = MenuPopupProvider.pAsWz(var3);
          if (var4 != null) {
             var4.OAsVoid();
          }

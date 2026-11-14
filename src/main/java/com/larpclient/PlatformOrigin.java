@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
 public final class PlatformOrigin {
-   private static final ExecutorService SmoothInput = new ThreadPoolExecutor(2, 4, 30L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(64), var0 -> {
+   private static final ExecutorService t = new ThreadPoolExecutor(2, 4, 30L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(64), var0 -> {
       Thread var1 = new Thread(var0, "Larp-platform");
       var1.setDaemon(true);
       return var1;
@@ -181,7 +181,7 @@ public final class PlatformOrigin {
    }
 
    private static final class Type_j implements BodySubscriber<String> {
-      private final CompletableFuture<String> MenuPopupProvider = new CompletableFuture<>();
+      private final CompletableFuture<String> f = new CompletableFuture<>();
       private final ByteArrayOutputStream K = new ByteArrayOutputStream();
       private final int V;
       private Subscription d;

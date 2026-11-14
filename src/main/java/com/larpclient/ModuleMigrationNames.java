@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 public final class ModuleMigrationNames {
-   private static final List<String> BloomUtility = List.of(
+   private static final List<String> b = List.of(
       "NameProtect",
       "AntiAFK",
       "Aimbot",
@@ -45,7 +45,7 @@ public final class ModuleMigrationNames {
       "Zone Bloom",
       "Zone Motion"
    );
-   private static final List<String> PetEffectRenderer = List.of("Bitcoin", "Solana", "Ethereum", "Litecoin");
+   private static final List<String> a = List.of("Bitcoin", "Solana", "Ethereum", "Litecoin");
    private static final Map<String, Double> V = Map.ofEntries(
       Map.entry("Item Scale", 0.4),
       Map.entry("Hand X", 0.0),
@@ -89,14 +89,14 @@ public final class ModuleMigrationNames {
       "Highlight Glow"
    );
    public static boolean r;
-   private static final String[] BoxUtils = new String[]{
+   private static final String[] c = new String[]{
       "Staff Heads", "Staff Heads", "Staff List", "enabled", "Staff List", "Player Heads", "HUD", "keybind", "enabled", "settings", "settings"
    };
 
    public static JsonObject oAsJsonObject(JsonObject var0) {
       JsonObject var1 = var0.deepCopy();
       JsonObject var2 = var1.has("modules") ? var1.getAsJsonObject("modules") : var1;
-      BloomUtility.forEach(var2::remove);
+      b.forEach(var2::remove);
 
       for (String var6 : new String[]{"Base Finder", "SusChunkFinder"}) {
          if (var2.has(var6) && var2.get(var6).isJsonObject()) {
@@ -341,7 +341,7 @@ public final class ModuleMigrationNames {
             JsonElement var17 = var2.get(var6);
             if (var17 instanceof JsonPrimitive) {
                JsonPrimitive var7 = (JsonPrimitive)var17;
-               if (var7.isString() && PetEffectRenderer.contains(var7.getAsString())) {
+               if (var7.isString() && a.contains(var7.getAsString())) {
                   if (var6.equals(var10 != 0 ? "Realistic Pet" : "Pet")) {
                      var11 = var7.getAsString();
                   }

@@ -1,7 +1,7 @@
 package com.larpclient;
 
 public interface XShader {
-   default b4 atmosphere() {
+   default BlockErase atmosphere() {
       return LarpClient.CAsLarpClient().fAsBo().yAsN7().Jf;
    }
 

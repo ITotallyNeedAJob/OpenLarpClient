@@ -18,9 +18,9 @@ public final class EntityMaterialRenderer {
          );
       }
 
-      AuraModule = mb.RAsDouble();
-      if (w3.QAsBoolean()) {
-         Vector4fc var2 = w3.VAsVector4fc();
+      x = MediaSession.RAsDouble();
+      if (WebRenderer.QAsBoolean()) {
+         Vector4fc var2 = WebRenderer.VAsVector4fc();
          K = 0xFF000000
             | Math.clamp((long)Math.round(var2.x() * 255.0F), 0, 255) << 16
             | Math.clamp((long)Math.round(var2.y() * 255.0F), 0, 255) << 8
@@ -57,7 +57,7 @@ public final class EntityMaterialRenderer {
    }
 
    public static double qAsDouble(SelfVisuals var0) {
-      return AuraModule * P.flow % (Math.PI * 2);
+      return x * P.flow % (Math.PI * 2);
    }
 
    public static int IAsInt() {

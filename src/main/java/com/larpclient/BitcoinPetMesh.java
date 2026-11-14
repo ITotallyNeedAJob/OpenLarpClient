@@ -117,14 +117,14 @@ public final class BitcoinPetMesh {
    public static void rAsVoid(EffectGeometryRenderer var0, BitcoinPetMesh.Type_w var1, Matrix4f var2) {
       if (NAsBoolean()) {
          var0.SAsVoid(var1.type(), var2, V.vertices(), V.colors());
-         op.FAsVoid(var1.profile(), (long)V.triangles());
+         OpenScreen.FAsVoid(var1.profile(), (long)V.triangles());
       }
    }
 
    public static void uAsVoid(EffectGeometryRenderer var0, BitcoinPetMesh.Type_w var1, Vec3d var2, Quaternionfc var3, float var4) {
       if (NAsBoolean()) {
          var0.oAsVoid(var1.type(), var2, var3, var4, V.vertices(), V.colors());
-         op.FAsVoid(var1.profile(), (long)V.triangles());
+         OpenScreen.FAsVoid(var1.profile(), (long)V.triangles());
       }
    }
 

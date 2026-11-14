@@ -6,20 +6,20 @@ import net.minecraft.client.gui.screen.Screen;
 public interface MenuPopupProvider {
    void larpOpenMenuPopup();
 
-   wz larpMenuPopup();
+   WidgetPopup larpMenuPopup();
 
    boolean larpDrawingMenuPopup();
 
-   static wz pAsWz(Screen var0) {
+   static WidgetPopup pAsWz(Screen var0) {
       return var0 instanceof MenuPopupProvider var1 ? var1.larpMenuPopup() : null;
    }
 
-   static aq.Type_x bAsAq_Type_x(Screen var0) {
+   static PopupScale.Type_x bAsAq_Type_x(Screen var0) {
       if (MinecraftClient.getInstance().world != null) {
-         return aq.Type_x.REST;
+         return PopupScale.Type_x.REST;
       } else {
-         wz var1 = pAsWz(var0);
-         return var1 == null ? aq.Type_x.REST : var1.AAsAq_Type_x();
+         WidgetPopup var1 = pAsWz(var0);
+         return var1 == null ? PopupScale.Type_x.REST : var1.AAsAq_Type_x();
       }
    }
 

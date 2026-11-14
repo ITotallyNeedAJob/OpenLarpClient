@@ -13,8 +13,8 @@ public final class TextInputWidget extends GuiWidget {
    private final String D;
    private final int f;
    private boolean X;
-   private final w2 AuctionNotifier = new w2(0.0);
-   private final dn n = new dn();
+   private final WeatherRenderer o = new WeatherRenderer(0.0);
+   private final TextReveal n = new TextReveal();
    private final Consumer<String> w;
    private Runnable I;
    private Function<String, List<String>> d;
@@ -23,7 +23,7 @@ public final class TextInputWidget extends GuiWidget {
    private int E;
    private boolean H;
    private boolean S;
-   public String BloomUtility = "";
+   public String b = "";
    public int P = -1;
 
    public TextInputWidget OAsQq() {
@@ -130,19 +130,19 @@ public final class TextInputWidget extends GuiWidget {
       int var8 = this.x + (this.F - 9) / 2;
       int var9 = this.b.isEmpty() ? 6 : 26;
       if (!this.b.isEmpty()) {
-         GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier(this.b), this.k + 9, this.x + (this.F - 12) / 2, 12, bg.xAsInt(bd.W, bd.u, var4 * 0.6));
+         GuiIcons.aAsVoid(var1, GuiIcons.PAsIdentifier(this.b), this.k + 9, this.x + (this.F - 12) / 2, 12, ColorUtil.xAsInt(UiStyle.W, UiStyle.u, var4 * 0.6));
       }
 
       var1.enableScissor(this.k + var9, this.x + 2, this.k + this.V - 6, this.x + this.F - 2);
 
       try {
          if (this.W.isEmpty()) {
-            TextDrawing.UAsVoid(var1, TextDrawing.HAsString(this.D, this.V - var9 - 6), this.k + var9, var8, bd.W);
+            TextDrawing.UAsVoid(var1, TextDrawing.HAsString(this.D, this.V - var9 - 6), this.k + var9, var8, UiStyle.W);
          } else {
             int var10 = TextDrawing.UAsInt(var7);
             int var11 = this.k + var9 - Math.max(0, var10 + (this.y ? TextDrawing.UAsInt("_") : 0) - (this.V - var9 - 6));
             if (!this.n.BAsBoolean()) {
-               TextDrawing.UAsVoid(var1, var7, var11, var8, bd.u);
+               TextDrawing.UAsVoid(var1, var7, var11, var8, UiStyle.u);
             } else {
                int var12 = 0;
 
@@ -155,7 +155,7 @@ public final class TextInputWidget extends GuiWidget {
                      var1.getMatrices().translate(0.0F, (float)this.n.WAsDouble(var12));
 
                      try {
-                        TextDrawing.UAsVoid(var1, var14, var15, var8, this.n.gAsInt(bd.u, var12));
+                        TextDrawing.UAsVoid(var1, var14, var15, var8, this.n.gAsInt(UiStyle.u, var12));
                      } finally {
                         var1.getMatrices().popMatrix();
                      }
@@ -169,17 +169,17 @@ public final class TextInputWidget extends GuiWidget {
                String var24 = this.dAsString();
                if (!var24.isEmpty()) {
                   if (var24.regionMatches(true, 0, this.W, 0, this.W.length())) {
-                     TextDrawing.UAsVoid(var1, var24.substring(this.W.length()), var11 + var10, var8, bg.pAsInt(bd.e, 0.65));
+                     TextDrawing.UAsVoid(var1, var24.substring(this.W.length()), var11 + var10, var8, ColorUtil.pAsInt(UiStyle.e, 0.65));
                   } else {
                      String var25 = "Tab: " + var24;
                      int var26 = TextDrawing.jAsInt(var25, TextDrawing.Type_s.HELP);
                      if (var10 + var26 + 18 <= this.V) {
-                        TextDrawing.NAsVoid(var1, var25, this.k + this.V - var26 - 6, var8, bd.e, TextDrawing.Type_s.HELP);
+                        TextDrawing.NAsVoid(var1, var25, this.k + this.V - var26 - 6, var8, UiStyle.e, TextDrawing.Type_s.HELP);
                      }
                   }
                }
 
-               GuiTextureDrawing.CAsVoid(var1, var11 + var10, var8, 1, 9, bd.u);
+               GuiTextureDrawing.CAsVoid(var1, var11 + var10, var8, 1, 9, UiStyle.u);
             }
          }
       } finally {

@@ -11,16 +11,16 @@ import org.joml.Vector3d;
 
 public final class RenderVariant {
    public static final int M = 32;
-   public static final double SahurDanceEngine = 0.01890625;
+   public static final double d = 0.01890625;
    private final ArrayDeque<RenderVariant.Type_r> S = new ArrayDeque<>();
    private final Quaterniond F = new Quaterniond();
-   private final Vector3d MenuPopupProvider = new Vector3d();
-   private final Vector3d ChinaHatCodec = new Vector3d();
+   private final Vector3d f = new Vector3d();
+   private final Vector3d i = new Vector3d();
    private String v = "";
    private RenderVariant.Type_x s;
-   private int SmoothInput = 16;
+   private int t = 16;
    private int z;
-   private int ChatPayParser = -1;
+   private int g = -1;
    private boolean R;
    private double h;
    private double C;
@@ -29,7 +29,7 @@ public final class RenderVariant {
    private double n;
    private double w = 8.0;
    private RenderVariant.Type_x U;
-   private double ScreenScale = 8.0;
+   private double y = 8.0;
 
    public RenderVariant() {
    }
@@ -113,7 +113,7 @@ public final class RenderVariant {
          if (var23.n >= var20) {
             var22.remove();
          } else {
-            double var24 = a1.OAsDouble(var23.n / var20);
+            double var24 = SmoothStepUtil.OAsDouble(var23.n / var20);
             RenderVariant.Type_x var26 = var23.O;
             double var27 = var26.opacity * (1.0 - var24);
             if (var27 >= 0.00392156862745098) {
@@ -142,7 +142,7 @@ public final class RenderVariant {
          this.h = Math.min(1.0, this.h + var16 / 0.28);
          this.C += var16;
          RenderVariant.Type_x var34 = new RenderVariant.Type_x(
-            this.v, this.U.x, this.U.y, this.U.z, this.U.scale, a1.OAsDouble(this.h), this.U.qx, this.U.qy, this.U.qz, this.U.qw, this.C, 0.0
+            this.v, this.U.x, this.U.y, this.U.z, this.U.scale, SmoothStepUtil.OAsDouble(this.h), this.U.qx, this.U.qy, this.U.qz, this.U.qw, this.C, 0.0
          );
          this.s = var34;
          if (var34.opacity >= 0.00392156862745098) {

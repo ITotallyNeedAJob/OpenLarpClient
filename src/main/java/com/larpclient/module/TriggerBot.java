@@ -16,7 +16,7 @@ public class TriggerBot extends Module {
    private final NumberSetting delay = this.addSetting(new NumberSetting("Delay", "Attack delay (ticks)", 0.0, 0.0, 10.0, 1.0));
    private final BooleanSetting playersOnly = this.addSetting(new BooleanSetting("Players Only", "Only attack players", false));
    private final BooleanSetting smartDelay = this.addSetting(new BooleanSetting("Smart Delay", "Wait for attack cooldown", true));
-   private final pa U = new pa();
+   private final Debounce U = new Debounce();
    private Entity c;
    private String I = "Waiting for a target";
    private long z;
@@ -40,7 +40,7 @@ public class TriggerBot extends Module {
    private void uAsVoid(String var1) {
       this.c = null;
       this.U.KAsVoid();
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       this.VAsVoid(var1);
    }
 
@@ -57,18 +57,18 @@ public class TriggerBot extends Module {
          if (!this.aAsBoolean(var1)) {
             this.uAsVoid("Waiting for a target");
          } else {
-            String var2 = b_.MAsString(var1, mc.player.getEntityInteractionRange(), mc.player.getRotationVector());
+            String var2 = ModuleImportBroker.MAsString(var1, mc.player.getEntityInteractionRange(), mc.player.getRotationVector());
             if (var2 != null) {
                this.uAsVoid("Waiting: " + var2);
             } else {
                this.c = var1;
                if (!this.U.bAsBoolean(var1, mc.world.getTime(), this.delay.getValue().intValue())) {
                   this.VAsVoid("Waiting for delay");
-               } else if (this.smartDelay.getValue() && !b_.VAsBoolean()) {
+               } else if (this.smartDelay.getValue() && !ModuleImportBroker.VAsBoolean()) {
                   this.VAsVoid("Waiting for attack cooldown");
                } else {
                   this.VAsVoid("Ready");
-                  b_.tAsVoid(
+                  ModuleImportBroker.tAsVoid(
                      this,
                      var1,
                      mc.player.getEntityInteractionRange(),
@@ -89,7 +89,7 @@ public class TriggerBot extends Module {
 
    private boolean JAsBoolean() {
       return this.isInGame()
-         && b_.jAsBoolean()
+         && ModuleImportBroker.jAsBoolean()
          && mc.isWindowFocused()
          && mc.getOverlay() == null
          && !mc.player.isUsingItem()
@@ -123,7 +123,7 @@ public class TriggerBot extends Module {
 
       for (Entity var10 : var5) {
          if (var10 != var0 && var10.canHit() && !var10.isSpectator() && !var10.isRemoved() && var10.getRootVehicle() != var0.getRootVehicle()) {
-            Optional var11 = o5.iAsOptional(var1, var2, var10.getBoundingBox(), var3);
+            Optional var11 = OptifineBridge.iAsOptional(var1, var2, var10.getBoundingBox(), var3);
             if (!var11.isEmpty()) {
                double var12 = var1.squaredDistanceTo((Vec3d)var11.get());
                if (var12 < var7) {

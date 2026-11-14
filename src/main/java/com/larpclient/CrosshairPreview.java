@@ -121,7 +121,7 @@ public final class CrosshairPreview {
                var3.height(),
                var3.width(),
                var3.height(),
-               qg.iAsInt(var5 | 16777215)
+               QueueGroup.iAsInt(var5 | 16777215)
             );
          } finally {
             var0.getMatrices().popMatrix();
@@ -138,11 +138,11 @@ public final class CrosshairPreview {
    private static void TAsVoid(DrawContext var0, Identifier var1, CrosshairPreview.Type_y var2, int var3, boolean var4) {
       if (var4) {
          var0.drawTexture(
-            RenderPipelines.GUI_TEXTURED, var1, 0, 0, 0.0F, (float)var2.n, var2.Z, var2.n, var2.Z, var2.n, var2.Z, var2.n * 2, qg.iAsInt(var3 & 0xFF000000)
+            RenderPipelines.GUI_TEXTURED, var1, 0, 0, 0.0F, (float)var2.n, var2.Z, var2.n, var2.Z, var2.n, var2.Z, var2.n * 2, QueueGroup.iAsInt(var3 & 0xFF000000)
          );
       }
 
-      var0.drawTexture(RenderPipelines.GUI_TEXTURED, var1, 0, 0, 0.0F, 0.0F, var2.Z, var2.n, var2.Z, var2.n, var2.Z, var2.n * 2, qg.iAsInt(var3));
+      var0.drawTexture(RenderPipelines.GUI_TEXTURED, var1, 0, 0, 0.0F, 0.0F, var2.Z, var2.n, var2.Z, var2.n, var2.Z, var2.n * 2, QueueGroup.iAsInt(var3));
    }
 
    private static final class Type_y extends ReloadableTexture {

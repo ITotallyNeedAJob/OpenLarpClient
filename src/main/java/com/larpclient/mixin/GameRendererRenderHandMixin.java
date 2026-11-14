@@ -20,6 +20,6 @@ public abstract class GameRendererRenderHandMixin {
       )}
    )
    private boolean larpclient$modifyExpressionValueV(boolean var1) {
-      return p5.oAsBoolean() ? Freecam.oAsBoolean() : var1;
+      return ParticleEmitter.oAsBoolean() ? Freecam.oAsBoolean() : var1;
    }
 }

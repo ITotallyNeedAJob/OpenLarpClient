@@ -145,13 +145,13 @@ public final class GrimSpeed extends Module {
    }
 
    private boolean yAsBoolean() {
-      if (!this.isInGame() || !r6.VAsBoolean()) {
+      if (!this.isInGame() || !ModuleKeybindChecker.VAsBoolean()) {
          this.B = "Movement unavailable";
          return false;
       } else if (TargetStrafe.HAsBoolean()) {
          this.B = "Pause: Target Strafe is orbiting";
          return false;
-      } else if (r6.NAsBoolean("Speed")) {
+      } else if (ModuleKeybindChecker.NAsBoolean("Speed")) {
          this.B = "Pause: Speed is enabled";
          return false;
       } else {

@@ -33,10 +33,10 @@ public final class AccountCosmeticsRenderer {
    static final float H = 0.15F;
    static final float v = 1.4F;
    static final float W = 0.15F;
-   private final ro.Type_j r = new ro.Type_j();
+   private final RodAttempt.Type_j r = new RodAttempt.Type_j();
    private DragonWingRenderer.Type_q J;
    private String I = "";
-   private static int BoxUtils = -1;
+   private static int c = -1;
    private static final ChinaHatFireRenderer S = new ChinaHatFireRenderer(0L);
 
    public AccountCosmeticsRenderer() {
@@ -57,7 +57,7 @@ public final class AccountCosmeticsRenderer {
       return var0 != null && var0.AAsBoolean();
    }
 
-   static la pAsLa() {
+   static LimbData pAsLa() {
       HeadlessKorblox var0 = HeadlessKorblox.lAsHeadlessKorblox();
       return var0 == null ? null : var0.uAsLa();
    }
@@ -81,7 +81,7 @@ public final class AccountCosmeticsRenderer {
    }
 
    static SkinTextures DAsSkinTextures(UUID var0, SkinTextures var1) {
-      SkinTextures var2 = ml.HAsSkinTextures(var0, var1);
+      SkinTextures var2 = ModuleList.HAsSkinTextures(var0, var1);
       SkinChanger var3 = SkinChanger.pAsSkinChanger();
       if (var3 != null) {
          var2 = var3.zAsSkinTextures(var2);
@@ -91,7 +91,7 @@ public final class AccountCosmeticsRenderer {
       return var4 == null ? var2 : var4.VAsSkinTextures(var2);
    }
 
-   static void DAsVoid(PlayerEntityRenderState var0, w9.Type_w var1) {
+   static void DAsVoid(PlayerEntityRenderState var0, WindEffect.Type_w var1) {
       float var2 = var1.walkSpeed() / 4.0F;
       var0.field_53537 = Math.clamp(var2 * 300.0F, 0.0F, 150.0F);
       var0.field_53538 = 0.0F;
@@ -104,12 +104,12 @@ public final class AccountCosmeticsRenderer {
       return var0.cape() != null && MinecraftClient.getInstance().options.isPlayerModelPartEnabled(PlayerModelPart.CAPE) ? var0.cape().texturePath() : null;
    }
 
-   AccountCosmeticsRenderer.Type_b OAsB1_Type_b(Identifier var1, ChinaHat.Type_a var2, Wings.Type_n var3, w9.Type_w var4, PlayerCapeModel var5) {
+   AccountCosmeticsRenderer.Type_b OAsB1_Type_b(Identifier var1, ChinaHat.Type_a var2, Wings.Type_n var3, WindEffect.Type_w var4, PlayerCapeModel var5) {
       return this.OAsB1_Type_b(var1, var2, var3, false, null, var4, var5);
    }
 
    AccountCosmeticsRenderer.Type_b OAsB1_Type_b(
-      Identifier var1, ChinaHat.Type_a var2, Wings.Type_n var3, boolean var4, la var5, w9.Type_w var6, PlayerCapeModel var7
+      Identifier var1, ChinaHat.Type_a var2, Wings.Type_n var3, boolean var4, LimbData var5, WindEffect.Type_w var6, PlayerCapeModel var7
    ) {
       if (var7 == null) {
          var1 = null;
@@ -161,7 +161,7 @@ public final class AccountCosmeticsRenderer {
    public static void TAsVoid(PlayerSkinGuiElementRenderState var0, Matrix4fc var1, MatrixStack var2, Immediate var3) {
       if (var0.playerModel() instanceof CosmeticPlayerModel var4 && var4.HAsB1_Type_b() != null) {
          int var13 = BloomQuality.J;
-         if (BoxUtils != var13) {
+         if (c != var13) {
             AccountCosmeticsRenderer.Type_b var6 = var4.HAsB1_Type_b();
 
             try {
@@ -171,7 +171,7 @@ public final class AccountCosmeticsRenderer {
                   var3.draw();
                }
 
-               la var7 = var6.korblox();
+               LimbData var7 = var6.korblox();
                if (var7 != null) {
                   if (var7.right()) {
                      KorbloxLegRenderer.xAsVoid(var2, var3, var4.tAsModelPart(), var7, 15728880, OverlayTexture.DEFAULT_UV, false);
@@ -200,7 +200,7 @@ public final class AccountCosmeticsRenderer {
                var15.peek().getPositionMatrix().set(var1);
                var14.PAsVoid(var3, var15);
             } catch (RuntimeException var121) {
-               BoxUtils = var13;
+               c = var13;
                ClientLog.lAsVoid("Menu", "Account model cosmetics submission failed; body only until resource reload", var121);
             }
          }
@@ -213,7 +213,7 @@ public final class AccountCosmeticsRenderer {
          MatrixStack var5 = new MatrixStack();
          var5.peek().getPositionMatrix().set(var2);
          var1.XAsModelPart().applyTransform(var5);
-         var0.blend(x4.Type_g.ALPHA);
+         var0.blend(EffectRenderParams.Type_g.ALPHA);
          HornsMeshRenderer.Type_s var6 = var4.horns() != null ? HornsMeshRenderer.RAsM5_Type_s() : null;
          if (var6 != null) {
             float var7 = (float)var4.radius();
@@ -244,9 +244,9 @@ public final class AccountCosmeticsRenderer {
                }
             }
          } else if (var4.kippah()) {
-            xh.YAsVoid(var0, var5.peek().getPositionMatrix(), var4.radius(), var4.height(), var4.offset(), var4.top(), var4.rim(), var4.outline());
+            XHaloEffect.YAsVoid(var0, var5.peek().getPositionMatrix(), var4.radius(), var4.height(), var4.offset(), var4.top(), var4.rim(), var4.outline());
          } else {
-            mo.JAsVoid(var0, var5.peek().getPositionMatrix(), var4.radius(), var4.height(), var4.offset(), var4.top(), var4.rim(), var4.outline());
+            ModuleOption.JAsVoid(var0, var5.peek().getPositionMatrix(), var4.radius(), var4.height(), var4.offset(), var4.top(), var4.rim(), var4.outline());
          }
       }
 
@@ -261,20 +261,20 @@ public final class AccountCosmeticsRenderer {
       MatrixStack var5 = new MatrixStack();
       var5.peek().getPositionMatrix().set(var2);
       var1.vAsModelPart().applyTransform(var5);
-      ro.Type_h var6 = ro.rAsRo_Type_h(0.0F, 0.0F, 0.0F, 0.0F);
-      ro.Type_v var7 = ro.vAsRo_Type_v(var3.age(), var3.walking(), 0.0F, 0.0F);
-      ro.Type_r[] var8 = new ro.Type_r[2];
+      RodAttempt.Type_h var6 = RodAttempt.rAsRo_Type_h(0.0F, 0.0F, 0.0F, 0.0F);
+      RodAttempt.Type_v var7 = RodAttempt.vAsRo_Type_v(var3.age(), var3.walking(), 0.0F, 0.0F);
+      RodAttempt.Type_r[] var8 = new RodAttempt.Type_r[2];
       int var9 = -1;
 
       for (int var10 = 0; var9 <= 1; var10++) {
-         Matrix4f var11 = new Matrix4f(var5.peek().getPositionMatrix()).mul(ro.RAsMatrix4f(var6, var3.age(), var3.walking(), var4.size(), var9, false));
-         var8[var10] = ro.gAsRo_Type_r(Vec3d.ZERO, var11, var9, var7, var3.primary(), var3.secondary(), var4.size());
+         Matrix4f var11 = new Matrix4f(var5.peek().getPositionMatrix()).mul(RodAttempt.RAsMatrix4f(var6, var3.age(), var3.walking(), var4.size(), var9, false));
+         var8[var10] = RodAttempt.gAsRo_Type_r(Vec3d.ZERO, var11, var9, var7, var3.primary(), var3.secondary(), var4.size());
          var9 += 2;
       }
 
-      for (ro.Type_x var12 : ro.Type_x.values()) {
-         for (ro.Type_r var16 : var8) {
-            ro.vAsVoid(var0, var16, var12);
+      for (RodAttempt.Type_x var12 : RodAttempt.Type_x.values()) {
+         for (RodAttempt.Type_r var16 : var8) {
+            RodAttempt.vAsVoid(var0, var16, var12);
          }
       }
    }
@@ -291,28 +291,28 @@ public final class AccountCosmeticsRenderer {
       float age,
       float walking,
       boolean headless,
-      la korblox
+      LimbData korblox
    ) {
    }
 
-   static final class Type_d implements o_ {
+   static final class Type_d implements RenderPipeline {
       private final List<AccountCosmeticsRenderer.Type_d.Type_x> E = new ArrayList<>();
-      private final List<AccountCosmeticsRenderer.Type_d.Type_z> GroundSample = new ArrayList<>();
+      private final List<AccountCosmeticsRenderer.Type_d.Type_z> k = new ArrayList<>();
       private AccountCosmeticsRenderer.Type_d.Type_f K;
       private final Vector3f z = new Vector3f();
-      private x4.Type_g PetEffectRenderer = x4.Type_g.ALPHA;
-      private x4.Type_g s;
+      private EffectRenderParams.Type_g a = EffectRenderParams.Type_g.ALPHA;
+      private EffectRenderParams.Type_g s;
       private boolean L;
       private boolean b;
-      private float[] DropletTrail = new float[768];
-      private int[] SmoothInput = new int[256];
+      private float[] l = new float[768];
+      private int[] t = new int[256];
       private int c;
 
       Type_d() {
       }
 
       @Override
-      public void blend(x4.Type_g var1) {
+      public void blend(EffectRenderParams.Type_g var1) {
          this.a = var1;
       }
 
@@ -470,7 +470,7 @@ public final class AccountCosmeticsRenderer {
       private static record Type_f(Matrix4f head, double scale, ChinaHat.Type_y look, ChinaHatFireRenderer fire) {
       }
 
-      private static record Type_x(x4.Type_g blend, boolean solid, float[] points, int[] colors) {
+      private static record Type_x(EffectRenderParams.Type_g blend, boolean solid, float[] points, int[] colors) {
       }
 
       private static record Type_z(int coin, Matrix4f transform) {

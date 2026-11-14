@@ -22,7 +22,7 @@ import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
 public final class NativeLibraryLoader {
-   static final Path SahurDanceEngine = Path.of(System.getProperty("user.home"), ".config", "larp-client");
+   static final Path d = Path.of(System.getProperty("user.home"), ".config", "larp-client");
    private static String r;
 
    private NativeLibraryLoader() {
@@ -148,7 +148,7 @@ public final class NativeLibraryLoader {
 
                Object var6 = var1.getFunction("CFGetTypeID").invoke(NativeLong.class, new Object[]{var5});
                if (!var6.equals(var1.getFunction("CFStringGetTypeID").invoke(NativeLong.class, new Object[0]))) {
-                  throw new IOException("IOPlatformUUID is not PetEffectRenderer string");
+                  throw new IOException("IOPlatformUUID is not a string");
                }
 
                Memory var7 = new Memory(64L);

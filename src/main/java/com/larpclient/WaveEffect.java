@@ -8,9 +8,9 @@ import net.minecraft.util.math.Vec3d;
 public final class WaveEffect {
    public static final long S = 1500L;
    public static final long z = 150L;
-   public static final double SmoothInput = 0.5;
+   public static final double t = 0.5;
    public static final double K = 1.3;
-   public static final double AuctionNotifier = 0.05;
+   public static final double o = 0.05;
 
    public static boolean wAsBoolean(double var0, double var2, double var4, double var6) {
       return Double.isFinite(var0) && Double.isFinite(var2) && var0 >= 0.0 && var2 >= 0.0 && var0 <= var4 && var2 <= var6;
@@ -69,7 +69,7 @@ public final class WaveEffect {
       if (!var2.contains(var0) && !var2.raycast(var0, var0.add(var1.multiply(var3 + 1.0))).isPresent()) {
          Vec3d var5 = JAsVec3d(var0, var1, var2, var3).subtract(var0);
          return new float[]{
-            (float)l_.iAsDouble(Math.toDegrees(Math.atan2(var5.z, var5.x)) - 90.0),
+            (float)AngleMath.iAsDouble(Math.toDegrees(Math.atan2(var5.z, var5.x)) - 90.0),
             (float)Math.clamp(-Math.toDegrees(Math.atan2(var5.y, Math.hypot(var5.x, var5.z))), -90.0, 90.0)
          };
       } else {
@@ -78,7 +78,7 @@ public final class WaveEffect {
    }
 
    public static double oAsDouble(float var0, float var1, float[] var2) {
-      return var2 == null ? 0.0 : Math.hypot(l_.iAsDouble((double)(var2[0] - var0)), (double)(var2[1] - var1));
+      return var2 == null ? 0.0 : Math.hypot(AngleMath.iAsDouble((double)(var2[0] - var0)), (double)(var2[1] - var1));
    }
 
    public static double KAsDouble(double var0, boolean var2, boolean var3) {
@@ -150,7 +150,7 @@ public final class WaveEffect {
                double var23 = var13 * var15 * var21;
                double var25 = -Math.expm1(-12.0 * var21);
                double var27 = (double)((float)var17 * 0.15F);
-               double var29 = l_.iAsDouble(var5);
+               double var29 = AngleMath.iAsDouble(var5);
                if (this.y * var29 < 0.0) {
                   var29 = 0.0;
                }

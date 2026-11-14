@@ -40,7 +40,7 @@ public class WorldRendererRenderMixin {
       boolean var10,
       CallbackInfo var11
    ) {
-      w3.wAsVoid(var4, var5, var6, var9);
+      WebRenderer.wAsVoid(var4, var5, var6, var9);
       if (!C) {
          C = true;
          ClientLog.XAsVoid("Render", "1.21.11 native world matrices and fog captured");

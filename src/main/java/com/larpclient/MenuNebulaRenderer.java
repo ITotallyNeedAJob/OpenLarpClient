@@ -44,21 +44,21 @@ public final class MenuNebulaRenderer {
       .withDepthWrite(false)
       .withCull(false)
       .build();
-   private static final long SmoothInput = System.nanoTime();
+   private static final long t = System.nanoTime();
    private static final double[][] S = new double[140][4];
    private static SimpleFramebuffer l;
    private static GpuBuffer w;
-   private static int ChatPayParser = -1;
+   private static int g = -1;
    private static boolean E;
    private static long G;
    private static float i;
    private static float n;
-   private static final Map<b4, Boolean> u;
+   private static final Map<BlockErase, Boolean> u;
    private static int P;
-   private static b4 J;
-   private static b4 z;
-   private static final w2 V;
-   private static final rp r;
+   private static BlockErase J;
+   private static BlockErase z;
+   private static final WeatherRenderer V;
+   private static final RibbonPipeline r;
 
    private MenuNebulaRenderer() {
    }
@@ -71,9 +71,9 @@ public final class MenuNebulaRenderer {
       if (var1 > 0 && var2 > 0) {
          MinecraftClient var6 = MinecraftClient.getInstance();
          double var7 = var5 ? (double)(System.nanoTime() - t) / 1.0E9 : 0.0;
-         if (ChatPayParser != BloomQuality.J) {
+         if (g != BloomQuality.J) {
             yAsVoid();
-            ChatPayParser = BloomQuality.J;
+            g = BloomQuality.J;
             E = false;
          }
 
@@ -86,10 +86,10 @@ public final class MenuNebulaRenderer {
                double var13 = Math.min(1.0, 900.0 / (double)Math.max(1, var11));
                int var15 = Math.max(1, (int)Math.round((double)var11 * var13));
                int var16 = Math.max(1, (int)Math.round((double)var12 * var13));
-               if (DropletTrail == null || DropletTrail.textureWidth != var15 || DropletTrail.textureHeight != var16) {
+               if (l == null || l.textureWidth != var15 || l.textureHeight != var16) {
                   yAsVoid();
                   WorldLabelLayout.DAsVoid(X);
-                  DropletTrail = new SimpleFramebuffer("Larp website nebula", var15, var16, false);
+                  l = new SimpleFramebuffer("Larp website nebula", var15, var16, false);
                   w = RenderSystem.getDevice().createBuffer(() -> "Larp menu parameters", 136, 32L);
                }
 
@@ -98,11 +98,11 @@ public final class MenuNebulaRenderer {
                   float var19 = var5 ? (float)(var6.mouse.getX() / (double)Math.max(1, var10.getWidth()) - 0.5) : 0.0F;
                   float var20 = var5 ? (float)(0.5 - var6.mouse.getY() / (double)Math.max(1, var10.getHeight())) : 0.0F;
                   if (var5) {
-                     ChinaHatCodec = ChinaHatCodec + (var19 - i) * 0.025F;
+                     i = i + (var19 - i) * 0.025F;
                      n = n + (var20 - n) * 0.025F;
                   } else {
                      n = 0.0F;
-                     ChinaHatCodec = 0.0F;
+                     i = 0.0F;
                   }
 
                   CommandEncoder var21 = RenderSystem.getDevice().createCommandEncoder();
@@ -130,7 +130,7 @@ public final class MenuNebulaRenderer {
                      var22.close();
                   }
 
-                  RenderPass var35 = var21.createRenderPass(() -> "Larp menu nebula", DropletTrail.getColorAttachmentView(), OptionalInt.empty());
+                  RenderPass var35 = var21.createRenderPass(() -> "Larp menu nebula", l.getColorAttachmentView(), OptionalInt.empty());
 
                   try {
                      var35.setPipeline(X);
@@ -159,7 +159,7 @@ public final class MenuNebulaRenderer {
                   .addSimpleElement(
                      new TexturedQuadGuiElementRenderState(
                         RenderPipelines.GUI_TEXTURED,
-                        TextureSetup.of(DropletTrail.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR)),
+                        TextureSetup.of(l.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR)),
                         new Matrix3x2f(var0.getMatrices()),
                         0,
                         0,
@@ -169,7 +169,7 @@ public final class MenuNebulaRenderer {
                         1.0F,
                         1.0F,
                         0.0F,
-                        bg.XAsInt(-1, var3),
+                        ColorUtil.XAsInt(-1, var3),
                         null
                      )
                   );
@@ -182,7 +182,7 @@ public final class MenuNebulaRenderer {
          }
 
          if (var9 == 0) {
-            GuiTextureDrawing.mAsVoid(var0, 0, 0, var1, var2, bg.XAsInt(-16116958, var3), bg.XAsInt(-16118252, var3));
+            GuiTextureDrawing.mAsVoid(var0, 0, 0, var1, var2, ColorUtil.XAsInt(-16116958, var3), ColorUtil.XAsInt(-16118252, var3));
          }
 
          double var30 = (double)Math.max(1, var6.getWindow().getScaleFactor());
@@ -192,7 +192,7 @@ public final class MenuNebulaRenderer {
             double[] var14 = S[var32];
             double var33 = (0.2 + (1.0 + Math.sin(var7 * 0.6 + var14[3])) * 0.18) * 0.26;
             int var34 = Math.max(1, (int)Math.round(var14[2] * 2.0 / var30));
-            GuiTextureDrawing.CAsVoid(var0, (int)(var14[0] * (double)var1), (int)(var14[1] * (double)var2), var34, var34, bg.XAsInt(-4201985, var33 * var3));
+            GuiTextureDrawing.CAsVoid(var0, (int)(var14[0] * (double)var1), (int)(var14[1] * (double)var2), var34, var34, ColorUtil.XAsInt(-4201985, var33 * var3));
          }
       }
    }
@@ -205,7 +205,7 @@ public final class MenuNebulaRenderer {
       return r.mAsDouble();
    }
 
-   public static void eAsVoid(DrawContext var0, int var1, int var2, b4 var3, boolean var4, boolean var5) {
+   public static void eAsVoid(DrawContext var0, int var1, int var2, BlockErase var3, boolean var4, boolean var5) {
       if (!(MinecraftClient.getInstance().currentScreen instanceof MenuAtmospherePanel)) {
          MenuLogoAssets.gAsVoid(var0, var1, var2);
          if (var4) {
@@ -242,9 +242,9 @@ public final class MenuNebulaRenderer {
       }
    }
 
-   public static void MAsVoid(DrawContext var0, b4 var1, int var2, int var3, int var4, int var5, double var6, boolean var8) {
+   public static void MAsVoid(DrawContext var0, BlockErase var1, int var2, int var3, int var4, int var5, double var6, boolean var8) {
       if (var4 > 0 && var5 > 0 && !(var6 <= 0.0)) {
-         if (var1 == b4.NEBULA) {
+         if (var1 == BlockErase.NEBULA) {
             var0.getMatrices().pushMatrix();
 
             try {
@@ -261,11 +261,11 @@ public final class MenuNebulaRenderer {
          } else {
             if (P != BloomQuality.J) {
                P = BloomQuality.J;
-               CropHelper.clear();
+               u.clear();
             }
 
             Identifier var9 = Identifier.of("larp-client", "textures/menu/" + var1.x + ".png");
-            boolean var10 = CropHelper.computeIfAbsent(var1, var2x -> {
+            boolean var10 = u.computeIfAbsent(var1, var2x -> {
                try {
                   Resource var3x = (Resource)MinecraftClient.getInstance().getResourceManager().getResource(var9).orElseThrow();
 
@@ -300,7 +300,7 @@ public final class MenuNebulaRenderer {
                }
             });
             if (!var10) {
-               MAsVoid(var0, b4.NEBULA, var2, var3, var4, var5, var6, var8);
+               MAsVoid(var0, BlockErase.NEBULA, var2, var3, var4, var5, var6, var8);
                return;
             } else {
                try {
@@ -318,12 +318,12 @@ public final class MenuNebulaRenderer {
                      var11.height(),
                      1672,
                      941,
-                     bg.XAsInt(-1, var6)
+                     ColorUtil.XAsInt(-1, var6)
                   );
                } catch (RuntimeException var141) {
-                  CropHelper.put(var1, false);
+                  u.put(var1, false);
                   ClientLog.lAsVoid("Menu", "Wallpaper unavailable; using nebula fallback until reload", var141);
-                  MAsVoid(var0, b4.NEBULA, var2, var3, var4, var5, var6, var8);
+                  MAsVoid(var0, BlockErase.NEBULA, var2, var3, var4, var5, var6, var8);
                }
 
                return;
@@ -334,9 +334,9 @@ public final class MenuNebulaRenderer {
 
    public static void yAsVoid() {
       MenuLogoAssets.ZAsVoid();
-      if (DropletTrail != null) {
-         DropletTrail.delete();
-         DropletTrail = null;
+      if (l != null) {
+         l.delete();
+         l = null;
       }
 
       if (w != null) {
@@ -357,9 +357,9 @@ public final class MenuNebulaRenderer {
          var4[3] = var0.nextDouble() * Math.PI * 2.0;
       }
 
-      CropHelper = new EnumMap<>(b4.class);
+      u = new EnumMap<>(BlockErase.class);
       P = -1;
-      V = new w2(1.0);
-      r = new rp();
+      V = new WeatherRenderer(1.0);
+      r = new RibbonPipeline();
    }
 }

@@ -23,7 +23,7 @@ public class AbstractClientPlayerEntityMixin {
    )
    private void larpclient$injectHandler(CallbackInfoReturnable<SkinTextures> var1) {
       UUID var2 = ((AbstractClientPlayerEntity)(Object)this).getUuid();
-      SkinTextures var3 = ml.HAsSkinTextures(var2, (SkinTextures)var1.getReturnValue());
+      SkinTextures var3 = ModuleList.HAsSkinTextures(var2, (SkinTextures)var1.getReturnValue());
       SkinChanger var4 = SkinChanger.pAsSkinChanger();
       if (var4 != null) {
          var3 = var4.aAsSkinTextures(var2, var3);

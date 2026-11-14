@@ -7,20 +7,20 @@ import net.minecraft.util.math.Vec3d;
 
 public final class RibbonTrailEngine {
    private static final int I = 128;
-   private static final int ScreenScale = 32;
+   private static final int y = 32;
    private final Map<Integer, RibbonTrailEngine.Type_y> D = new LinkedHashMap<>();
    private long M;
    public RibbonTrailEngine.Type_b N = RibbonTrailEngine.Type_b.TAPER_TAIL;
-   public ay.Type_r CropHelper = ay.Type_r.LINEAR;
-   public x4.Type_g SahurDanceEngine = x4.Type_g.ALPHA;
-   public double ChinaHatCodec = 1.2;
-   public double BoxUtils = 0.12;
+   public FadeCurve.Type_r u = FadeCurve.Type_r.LINEAR;
+   public EffectRenderParams.Type_g d = EffectRenderParams.Type_g.ALPHA;
+   public double i = 1.2;
+   public double c = 0.12;
    public boolean A = true;
    public boolean h = true;
    public boolean x;
    private boolean G;
-   public int ChatPayParser = bd.w;
-   public int z = bd.Q;
+   public int g = UiStyle.w;
+   public int z = UiStyle.Q;
 
    public RibbonTrailEngine() {
       ClientLog.GAsVoid("Trails", "Ribbon engine initialized: 32 sources, 128 points per source");
@@ -115,7 +115,7 @@ public final class RibbonTrailEngine {
 
    public void TAsVoid(Vec3d var1, float var2) {
       this.G = false;
-      double var3 = mb.RAsDouble();
+      double var3 = MediaSession.RAsDouble();
 
       for (RibbonTrailEngine.Type_y var6 : this.D.values()) {
          var6.P.rAsVoid();
@@ -127,7 +127,7 @@ public final class RibbonTrailEngine {
          int var13 = var7 == null ? this.z : var7.to();
          boolean var14 = var7 == null ? this.h : var7.smoothing();
          RibbonTrailEngine.Type_b var15 = var7 == null ? this.N : var7.widthCurve();
-         ay.Type_r var16 = var7 == null ? this.u : var7.alphaCurve();
+         FadeCurve.Type_r var16 = var7 == null ? this.u : var7.alphaCurve();
          var6.o = var7 == null ? this.d : var7.blend();
          var6.f = var7 == null ? this.A : var7.glow();
          var6.h = this.x;
@@ -187,20 +187,20 @@ public final class RibbonTrailEngine {
    }
 
    private void gAsVoid(
-      RibbonCapacity.Type_v var1, Vec3d var2, double var3, int var5, int var6, ay.Type_r var7, RibbonTrailEngine.Type_b var8, double var9, double var11
+      RibbonCapacity.Type_v var1, Vec3d var2, double var3, int var5, int var6, FadeCurve.Type_r var7, RibbonTrailEngine.Type_b var8, double var9, double var11
    ) {
-      int var13 = bg.pAsInt(bg.xAsInt(var6, var5, var3), var7.fAsDouble(1.0 - var3));
+      int var13 = ColorUtil.pAsInt(ColorUtil.xAsInt(var6, var5, var3), var7.fAsDouble(1.0 - var3));
       double var14 = var9 * this.cAsDouble(var3, var8);
       if (this.x) {
          var14 *= (1.0 + 0.075 * Math.sin(var2.x * 7.0 + var2.y * 3.0 + var2.z * 5.0 - var11 * 1.7)) * (1.0 + 0.3 * var3);
-         var13 = bg.pAsInt(var13, var3 * var3);
+         var13 = ColorUtil.pAsInt(var13, var3 * var3);
       }
 
       var1.bAsVoid(var2, var14, var13);
    }
 
    public void RAsVoid(EffectGeometryRenderer var1, float var2, boolean var3) {
-      long var4 = op.RAsLong();
+      long var4 = OpenScreen.RAsLong();
 
       for (RibbonTrailEngine.Type_y var7 : this.D.values()) {
          if (var7.x && (!var3 || var7.f)) {
@@ -209,8 +209,8 @@ public final class RibbonTrailEngine {
          }
       }
 
-      var1.blend(x4.Type_g.ALPHA);
-      op.aAsVoid("Trails", var4);
+      var1.blend(EffectRenderParams.Type_g.ALPHA);
+      OpenScreen.aAsVoid("Trails", var4);
    }
 
    private double cAsDouble(double var1, RibbonTrailEngine.Type_b var3) {
@@ -239,9 +239,9 @@ public final class RibbonTrailEngine {
       int to,
       boolean glow,
       boolean smoothing,
-      x4.Type_g blend,
+      EffectRenderParams.Type_g blend,
       RibbonTrailEngine.Type_b widthCurve,
-      ay.Type_r alphaCurve
+      FadeCurve.Type_r alphaCurve
    ) {
       public Type_f(
          double lifetime,
@@ -250,9 +250,9 @@ public final class RibbonTrailEngine {
          int to,
          boolean glow,
          boolean smoothing,
-         x4.Type_g blend,
+         EffectRenderParams.Type_g blend,
          RibbonTrailEngine.Type_b widthCurve,
-         ay.Type_r alphaCurve
+         FadeCurve.Type_r alphaCurve
       ) {
          if (Double.isFinite(lifetime) && !(lifetime <= 0.0) && Double.isFinite(width) && !(width <= 0.0)) {
             Objects.requireNonNull(blend);
@@ -281,7 +281,7 @@ public final class RibbonTrailEngine {
       RibbonTrailEngine.Type_f w;
       final RibbonCapacity.Type_v P = new RibbonCapacity.Type_v(512);
       final RibbonCapacity.Type_f I = new RibbonCapacity.Type_f();
-      x4.Type_g o;
+      EffectRenderParams.Type_g o;
       boolean f;
       boolean h;
       boolean x;

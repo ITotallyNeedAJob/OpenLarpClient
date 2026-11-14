@@ -100,7 +100,7 @@ public final class SystemAccountProtection implements AccountVault.Protection {
    }
 
    // $VF: Could not verify finally blocks. A semaphore variable has been added to preserve control flow.
-   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with PetEffectRenderer copy of the class file (if you have the rights to distribute it!)
+   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with a copy of the class file (if you have the rights to distribute it!)
    private static byte[] mac(String var0, byte[] var1) throws AccountVault.Failure {
       NativeLibrary var2 = NativeLibrary.getInstance("/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation");
       NativeLibrary var3 = NativeLibrary.getInstance("/System/Library/Frameworks/Security.framework/Security");
@@ -193,7 +193,7 @@ public final class SystemAccountProtection implements AccountVault.Protection {
    }
 
    // $VF: Could not verify finally blocks. A semaphore variable has been added to preserve control flow.
-   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with PetEffectRenderer copy of the class file (if you have the rights to distribute it!)
+   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with a copy of the class file (if you have the rights to distribute it!)
    private static byte[] linux(String var0, byte[] var1) throws AccountVault.Failure {
       NativeLibrary var2 = NativeLibrary.getInstance("secret-1");
       NativeLibrary var3 = NativeLibrary.getInstance("gio-2.0");

@@ -5,9 +5,9 @@ import java.util.Arrays;
 public final class ModuleSearch {
    public static final float S = 0.9F;
    public static final float H = 4.8F;
-   public static final float ChatPayParser = 12.0F;
-   public static final int SmoothInput = 64;
-   private static final float[][] HexEdgeloop = new float[][]{
+   public static final float g = 12.0F;
+   public static final int t = 64;
+   private static final float[][] p = new float[][]{
       {0.9F, 0.64F}, {1.4F, 0.57F}, {2.06F, 0.51F}, {2.73F, 0.46F}, {3.39F, 0.39F}, {3.97F, 0.3F}, {4.39F, 0.18F}
    };
    private static final float[] q = new float[]{1.0F, 0.86F, 0.95F, 1.08F, 0.9F, 0.97F};
@@ -35,15 +35,15 @@ public final class ModuleSearch {
       int var1 = q.length;
       int[] var2 = null;
 
-      for (int var3 = 0; var3 < HexEdgeloop.length; var3++) {
+      for (int var3 = 0; var3 < p.length; var3++) {
          float var4 = p[var3][0];
          float var5 = p[var3][1];
          float var6 = xAsFloat(var4);
          float var7 = cAsFloat(var6, true);
          float var8 = cAsFloat(var6, false);
          float var9 = p[Math.max(0, var3 - 1)][1];
-         float var10 = var3 + 1 < HexEdgeloop.length ? p[var3 + 1][1] : 0.0F;
-         float var11 = (var3 + 1 < HexEdgeloop.length ? p[var3 + 1][0] : 4.8F) - p[Math.max(0, var3 - 1)][0];
+         float var10 = var3 + 1 < p.length ? p[var3 + 1][1] : 0.0F;
+         float var11 = (var3 + 1 < p.length ? p[var3 + 1][0] : 4.8F) - p[Math.max(0, var3 - 1)][0];
          float var12 = (var9 - var10) / var11;
          int[] var13 = new int[var1 + 1];
 
@@ -227,9 +227,9 @@ public final class ModuleSearch {
 
    private static final class Type_n {
       private float[] M = new float[384];
-      private float[] BoxUtils = new float[384];
-      private float[] PetEffectRenderer = new float[256];
-      private float[] GroundSample = new float[128];
+      private float[] c = new float[384];
+      private float[] a = new float[256];
+      private float[] k = new float[128];
       private float[] z = new float[128];
       private int[] H = new int[512];
       private int f;

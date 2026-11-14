@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin({EndCrystalEntityRenderState.class})
-public class EndCrystalEntityRenderStateMixin implements wj {
+public class EndCrystalEntityRenderStateMixin implements WidgetJob {
    @Unique
    private int v = Integer.MIN_VALUE;
 

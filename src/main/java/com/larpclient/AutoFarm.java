@@ -7,12 +7,12 @@ import net.minecraft.block.CropBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public final class AutoFarm extends nd {
+public final class AutoFarm extends NodeRenderer {
    private final BooleanSetting Q = this.QAsBooleanSetting("Legit", "Look at reachable crops and harvest through the real crosshair", false);
-   private final NumberSetting GroundSample = this.HAsNumberSetting("Range", "Harvest radius measured from your eyes", 4.0, 1.0, 6.0, 1.0);
+   private final NumberSetting k = this.HAsNumberSetting("Range", "Harvest radius measured from your eyes", 4.0, 1.0, 6.0, 1.0);
 
    public AutoFarm() {
-      super("Auto Farm", "Harvest mature crops around you while walking through PetEffectRenderer farm");
+      super("Auto Farm", "Harvest mature crops around you while walking through a farm");
    }
 
    private boolean sAsBoolean(BlockPos var1) {

@@ -8,12 +8,12 @@ import java.util.Map.Entry;
 
 public final class BlockChangeEvidence {
    public static final int I = 2048;
-   public static final int AuctionNotifier = 2048;
+   public static final int o = 2048;
    public static final int N = 64;
    public static final long B = 600L;
-   private final LinkedHashMap<Long, BlockChangeEvidence.Type_t> MenuPopupProvider = new LinkedHashMap<>();
+   private final LinkedHashMap<Long, BlockChangeEvidence.Type_t> f = new LinkedHashMap<>();
    private final ArrayDeque<BlockChangeEvidence.Type_i> J = new ArrayDeque<>();
-   private long ChatPayParser = Long.MIN_VALUE;
+   private long g = Long.MIN_VALUE;
    private int W;
    private long G;
    private long R;

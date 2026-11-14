@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin({PlayerEntityModel.class})
-public abstract class PlayerEntityModelMixin implements b2 {
+public abstract class PlayerEntityModelMixin implements ArmReach {
    @Unique
    private PlayerJointTransforms l;
 

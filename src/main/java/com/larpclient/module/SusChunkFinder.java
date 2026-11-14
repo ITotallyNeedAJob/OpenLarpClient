@@ -5,7 +5,7 @@ import com.larpclient.FindingZoneBounds;
 import com.larpclient.GrowthClueSummary;
 import com.larpclient.ThemeSettings;
 import com.larpclient.FinderSummary;
-import com.larpclient.u;
+import com.larpclient.CropHelper;
 import com.larpclient.WidgetLayer;
 import com.larpclient.XClipEffect;
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public final class SusChunkFinder extends sf {
    private GrowthClueSummary D = GrowthClueSummary.EMPTY;
    private List<FindingZoneBounds.Type_c> U = List.of();
    private final Set<Long> w = new HashSet<>();
-   private com.larpclient.s P;
+   private com.larpclient.SkyChunkCache P;
    private int Q;
    private WorldChunk f;
 
@@ -97,7 +97,7 @@ public final class SusChunkFinder extends sf {
          || var0.isOf(Blocks.LARGE_AMETHYST_BUD);
    }
 
-   private boolean TAsBoolean(u.Type_o var1) {
+   private boolean TAsBoolean(CropHelper.Type_o var1) {
       return switch (var1) {
          case KELP -> this.kelp.getValue();
          case BAMBOO -> this.bamboo.getValue();
@@ -109,7 +109,7 @@ public final class SusChunkFinder extends sf {
 
    @Override
    protected boolean candidate(BlockState var1) {
-      return pAsBoolean(var1) || u.gAsBoolean(var1);
+      return pAsBoolean(var1) || CropHelper.gAsBoolean(var1);
    }
 
    @Override
@@ -184,21 +184,21 @@ public final class SusChunkFinder extends sf {
    protected void scanBlock(WorldChunk var1, BlockState var2, int var3, int var4, int var5) {
       if (var4 >= this.minimumY() && var4 <= this.maximumY()) {
          this.count(var2, var4);
-         if (u.gAsBoolean(var2) || this.amethystLight.getValue() && this.D.light() < 16) {
+         if (CropHelper.gAsBoolean(var2) || this.amethystLight.getValue() && this.D.light() < 16) {
             BlockPos var6 = new BlockPos(var1.getPos().getStartX() + var3, var4, var1.getPos().getStartZ() + var5);
             if (this.amethystLight.getValue()
                && this.D.light() < 16
                && this.P != null
                && (
-                  u.DAsBoolean(var2, this.P.OAsInt(var6.getX(), var4, var6.getZ()), var6, this::nAsBlockState)
-                     || xc.qAsBoolean(var6, var1x -> this.P.OAsInt(var1x.getX(), var1x.getY(), var1x.getZ()), this::nAsBlockState)
+                  CropHelper.DAsBoolean(var2, this.P.OAsInt(var6.getX(), var4, var6.getZ()), var6, this::nAsBlockState)
+                     || XClipEffect.qAsBoolean(var6, var1x -> this.P.OAsInt(var1x.getX(), var1x.getY(), var1x.getZ()), this::nAsBlockState)
                )) {
                this.D = this.D.plus(new GrowthClueSummary(1, 0, 0, 0, 0, 0));
                this.Q = var4;
             }
 
-            if (u.gAsBoolean(var2)) {
-               u.Type_o var7 = u.IAsU_Type_o(var2, var6, this::nAsBlockState);
+            if (CropHelper.gAsBoolean(var2)) {
+               CropHelper.Type_o var7 = CropHelper.IAsU_Type_o(var2, var6, this::nAsBlockState);
                if (var7 != null && this.TAsBoolean(var7)) {
                   this.D = this.D.plus(switch (var7) {
                      case KELP -> new GrowthClueSummary(0, 1, 0, 0, 0, 0);
@@ -215,13 +215,13 @@ public final class SusChunkFinder extends sf {
    }
 
    @Override
-   protected wl.Type_v evidence() {
-      wl.Type_v var1 = super.evidence();
-      return new wl.Type_v(var1.mature(), var1.buds(), 0, this.Q == Integer.MIN_VALUE ? var1.sampleY() : this.Q, ae.EMPTY, this.D, List.of());
+   protected WidgetLayer.Type_v evidence() {
+      WidgetLayer.Type_v var1 = super.evidence();
+      return new WidgetLayer.Type_v(var1.mature(), var1.buds(), 0, this.Q == Integer.MIN_VALUE ? var1.sampleY() : this.Q, FinderSummary.EMPTY, this.D, List.of());
    }
 
    @Override
-   protected boolean qualifies(wl.Type_v var1) {
+   protected boolean qualifies(WidgetLayer.Type_v var1) {
       return var1.matureAmethyst(this.minMatureClusters.getValue().intValue(), this.minMaturePercent.getValue().intValue())
          || var1.sus().score() >= this.sensitivity();
    }
@@ -237,7 +237,7 @@ public final class SusChunkFinder extends sf {
 
    @Override
    protected void afterScan() {
-      Map<Long, wl.Type_v> var1 = this.FAsWl().EAsMap();
+      Map<Long, WidgetLayer.Type_v> var1 = this.FAsWl().EAsMap();
       HashSet var2 = new HashSet();
       var1.forEach((var2xx, var3x) -> {
          if (var3x.sus().score() > 0 || this.qualifies(var3x)) {
@@ -251,7 +251,7 @@ public final class SusChunkFinder extends sf {
          byte var7 = 0;
 
          for (long var9 : var5.members()) {
-            wl.Type_v var11 = var1.get(var9);
+            WidgetLayer.Type_v var11 = var1.get(var9);
             var6 = var6.plus(var11.sus());
             var7 |= (byte)(this.qualifies(var11) ? 1 : 0);
          }
@@ -276,7 +276,7 @@ public final class SusChunkFinder extends sf {
    }
 
    @Override
-   protected void drawEvidence(ChunkPos var1, wl.Type_v var2, ThemeSettings var3, int var4) {
+   protected void drawEvidence(ChunkPos var1, WidgetLayer.Type_v var2, ThemeSettings var3, int var4) {
       if (this.smartMode.getValue() && this.centroidMarker.getValue()) {
          for (FindingZoneBounds.Type_c var6 : this.U) {
             if (var6.members().contains(var1.toLong())) {
@@ -291,7 +291,7 @@ public final class SusChunkFinder extends sf {
    }
 
    @Override
-   protected String describe(wl.Type_v var1) {
+   protected String describe(WidgetLayer.Type_v var1) {
       return var1.sus().score() > 0 ? var1.sus().describe() : var1.mature() + " mature, " + var1.buds() + " buds (" + var1.maturePercent() + "% mature)";
    }
 

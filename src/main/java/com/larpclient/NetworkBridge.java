@@ -3,14 +3,14 @@ package com.larpclient;
 import java.util.List;
 import java.util.random.RandomGenerator;
 
-public final class NetworkBridge implements n8 {
-   private List<String> GroundSample = List.of();
-   private String BloomUtility = "";
-   private String ChinaHatCodec = "";
-   private mr p;
+public final class NetworkBridge implements RandomStringGenerator {
+   private List<String> k = List.of();
+   private String b = "";
+   private String i = "";
+   private ModuleRegistry p;
    private MediaSessionMetadata Q;
    private String A = "";
-   private int TextLayout = -1;
+   private int j = -1;
    private double t;
    private double s;
    private double v = 4.0;
@@ -21,7 +21,7 @@ public final class NetworkBridge implements n8 {
 
    public boolean CAsBoolean(LyricsController.Type_r var1, long var2) {
       MediaSessionMetadata var4 = var1.playback();
-      mr var5 = var1.lyrics();
+      ModuleRegistry var5 = var1.lyrics();
       int var6 = var4 != null && var2 - var4.observedAt() > 4000000000L ? 1 : 0;
       if (var4 != this.Q) {
          this.Q = var4;

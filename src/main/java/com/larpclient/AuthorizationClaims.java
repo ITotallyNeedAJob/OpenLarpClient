@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public final class AuthorizationClaims {
-   public static final long BloomUtility = 600L;
+   public static final long b = 600L;
 
    private AuthorizationClaims() {
    }

@@ -12,11 +12,11 @@ public final class MotionBlur {
    }
 
    public static void RAsVoid(PlayerLikeEntity var0, PlayerEntityRenderState var1) {
-      mc var2 = (mc)var1;
+      MediaControls var2 = (MediaControls)var1;
       var2.larp$roblox(0, null);
       HeadlessKorblox var3 = HeadlessKorblox.lAsHeadlessKorblox();
       int var4 = var3 == null ? 0 : var3.MAsInt(var0);
-      la var5 = var3 == null ? null : var3.kAsLa(var0);
+      LimbData var5 = var3 == null ? null : var3.kAsLa(var0);
       if (var5 != null && !KorbloxLegRenderer.DAsBoolean()) {
          var5 = null;
       }
@@ -34,7 +34,7 @@ public final class MotionBlur {
       var0.wearingSkullProfile = null;
    }
 
-   public static boolean gAsBoolean(PlayerEntityModel var0, boolean var1, int var2, la var3) {
+   public static boolean gAsBoolean(PlayerEntityModel var0, boolean var1, int var2, LimbData var3) {
       int var4 = var1 && var2 != 0 && var0.head.visible ? 1 : 0;
       if (var4 != 0) {
          var0.head.visible = false;
@@ -54,6 +54,6 @@ public final class MotionBlur {
    }
 
    public static void OAsVoid(PlayerEntityRenderState var0) {
-      ((mc)var0).larp$roblox(0, null);
+      ((MediaControls)var0).larp$roblox(0, null);
    }
 }

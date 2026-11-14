@@ -29,8 +29,8 @@ public final class NoJumpDelay extends Module {
             MinecraftClient var3 = getMc();
             if (var0 == var3.player
                && var3.player != null
-               && r6.VAsBoolean()
-               && p5.NAsP5_Type_u() == p5.Type_u.NONE
+               && ModuleKeybindChecker.VAsBoolean()
+               && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.NONE
                && var3.currentScreen == null
                && var3.isWindowFocused()
                && !var0.hasVehicle()

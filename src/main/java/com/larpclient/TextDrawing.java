@@ -12,8 +12,8 @@ import net.minecraft.util.Identifier;
 
 public final class TextDrawing {
    private static int r;
-   private static final ap K = new ap();
-   private static final Style[] CropHelper = Arrays.stream(TextDrawing.Type_x.values())
+   private static final FontCache K = new FontCache();
+   private static final Style[] u = Arrays.stream(TextDrawing.Type_x.values())
       .map(
          var0 -> var0 == TextDrawing.Type_x.MINECRAFT
                ? Style.EMPTY
@@ -137,7 +137,7 @@ public final class TextDrawing {
    }
 
    public static void oAsVoid(DrawContext var0, String var1, int var2, int var3, int var4, TextDrawing.Type_x var5) {
-      var4 = qg.iAsInt(var4);
+      var4 = QueueGroup.iAsInt(var4);
       if (var4 >>> 24 >= 4 && !ClickGuiTextRenderer.kAsBoolean(var0, var1, var2, var3, var4, var5)) {
          var0.drawText(MinecraftClient.getInstance().textRenderer, ZAsText(var1, var5), var2, var3, var4, false);
       }

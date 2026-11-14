@@ -33,7 +33,7 @@ public class ClientPlayerInteractionManagerAttackEntityMixin5 {
       cancellable = true
    )
    private void larpclient$injectV(PlayerEntity var1, Entity var2, CallbackInfo var3) {
-      if (!b_.YAsBoolean(var2)) {
+      if (!ModuleImportBroker.YAsBoolean(var2)) {
          var3.cancel();
       }
    }
@@ -44,7 +44,7 @@ public class ClientPlayerInteractionManagerAttackEntityMixin5 {
       cancellable = true
    )
    private void larpclient$injectHandler(CallbackInfoReturnable<ActionResult> var1) {
-      if (Aura.WAsBoolean() || !b_.JAsBoolean()) {
+      if (Aura.WAsBoolean() || !ModuleImportBroker.JAsBoolean()) {
          var1.setReturnValue(ActionResult.PASS);
       }
    }
@@ -55,7 +55,7 @@ public class ClientPlayerInteractionManagerAttackEntityMixin5 {
       cancellable = true
    )
    private void larpclient$injectV(CallbackInfo var1) {
-      if (!b_.JAsBoolean()) {
+      if (!ModuleImportBroker.JAsBoolean()) {
          var1.cancel();
       }
    }
@@ -66,7 +66,7 @@ public class ClientPlayerInteractionManagerAttackEntityMixin5 {
       cancellable = true
    )
    private void larpclient$injectZ(BlockPos var1, Direction var2, CallbackInfoReturnable<Boolean> var3) {
-      if (p5.oAsBoolean()) {
+      if (ParticleEmitter.oAsBoolean()) {
          var3.setReturnValue(false);
       } else if (AutoTool.UAsBoolean(var1)) {
          this.method_2911();

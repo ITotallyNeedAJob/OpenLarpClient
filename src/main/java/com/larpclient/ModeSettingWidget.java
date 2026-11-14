@@ -20,21 +20,21 @@ public final class ModeSettingWidget extends GuiWidget {
          boolean var7 = this.j.pAsBoolean(var6);
          int var8 = this.k + var5 * var4;
          int var9 = Math.max(1, var4 - 3);
-         int var10 = var7 ? mi.readableAccent(bd.tAsInt(var8), bd.M | 0xFF000000) : bd._Z | 0xFF000000;
-         int var11 = bd.hAsBoolean() ? 7 : 5;
+         int var10 = var7 ? MouseInput.readableAccent(UiStyle.tAsInt(var8), UiStyle.M | 0xFF000000) : UiStyle._Z | 0xFF000000;
+         int var11 = UiStyle.hAsBoolean() ? 7 : 5;
          if (var7) {
-            GuiDrawing.HAsVoid(var1, (float)var8, (float)this.x, (float)var9, (float)this.F, (float)var11, 5.0F, bg.XAsInt(var10, 0.22));
+            GuiDrawing.HAsVoid(var1, (float)var8, (float)this.x, (float)var9, (float)this.F, (float)var11, 5.0F, ColorUtil.XAsInt(var10, 0.22));
          }
 
          GuiDrawing.CAsVoid(var1, var8, this.x, var9, this.F, var11, var10);
-         GuiDrawing.wAsVoid(var1, var8, this.x, var9, this.F, var11, var7 ? var10 : bd.A);
+         GuiDrawing.wAsVoid(var1, var8, this.x, var9, this.F, var11, var7 ? var10 : UiStyle.A);
          TextDrawing.NAsVoid(
-            var1, TextDrawing.zAsString(var6, var4 - 9, TextDrawing.Type_s.HELP), var8 + 4, this.x + 6, mi.controlInk(var10), TextDrawing.Type_s.HELP
+            var1, TextDrawing.zAsString(var6, var4 - 9, TextDrawing.Type_s.HELP), var8 + 4, this.x + 6, MouseInput.controlInk(var10), TextDrawing.Type_s.HELP
          );
       }
 
       if (this.y && this.Q) {
-         GuiDrawing.dAsVoid(var1, this.k, this.x, this.V, this.F, bd.hAsBoolean() ? 7 : 5);
+         GuiDrawing.dAsVoid(var1, this.k, this.x, this.V, this.F, UiStyle.hAsBoolean() ? 7 : 5);
       }
    }
 

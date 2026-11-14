@@ -18,7 +18,7 @@ public final class ChunkLightCapture {
 
    public static void CAsVoid() {
       if (!l) {
-         DropletTrail = true;
+         l = true;
          ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((AfterClientWorldChange)(var0, var1) -> HAsS(var1));
          ClientChunkEvents.CHUNK_UNLOAD.register((Unload)(var0, var1) -> {
             if (var0 == B) {

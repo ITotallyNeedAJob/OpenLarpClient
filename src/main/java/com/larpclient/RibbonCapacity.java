@@ -81,7 +81,7 @@ public final class RibbonCapacity {
       final double[] D;
       final int[] O;
       int B;
-      double ChinaHatCodec = Double.POSITIVE_INFINITY;
+      double i = Double.POSITIVE_INFINITY;
 
       public Type_v(int var1) {
          this.W = new Vec3d[var1];
@@ -128,9 +128,9 @@ public final class RibbonCapacity {
                      break;
                   }
 
-                  double var8 = ay.RAsDouble(var5 / var10);
+                  double var8 = FadeCurve.RAsDouble(var5 / var10);
                   this.D[var7] = this.D[var7] * var8;
-                  this.O[var7] = bg.pAsInt(this.O[var7], var8);
+                  this.O[var7] = ColorUtil.pAsInt(this.O[var7], var8);
                }
             }
          }

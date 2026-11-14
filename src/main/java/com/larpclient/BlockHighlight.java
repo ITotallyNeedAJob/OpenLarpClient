@@ -3,10 +3,10 @@ package com.larpclient;
 public final class BlockHighlight {
    public static final String I = "Larp Client";
    public static final int z = 512;
-   public static final int SkyChunkCache = 96;
+   public static final int s = 96;
    public static final int B = 256;
-   public static final int PetEffectRenderer = 1152;
-   public static final int PriceDetector = PetEffectRenderer + 256;
+   public static final int a = 1152;
+   public static final int m = a + 256;
 
    private BlockHighlight() {
    }

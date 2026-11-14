@@ -22,7 +22,7 @@ public final class ParticleEmitterEngine {
    private boolean T;
    private static final Comparator<ParticleEmitterEngine.Type_m> S = Comparator.<ParticleEmitterEngine.Type_m>comparingDouble(var0 -> var0.A).reversed();
    public int B = 2048;
-   public double BoxUtils = 64.0;
+   public double c = 64.0;
 
    public ParticleEmitterEngine() {
       for (int var1 = 0; var1 < 2048; var1++) {
@@ -83,7 +83,7 @@ public final class ParticleEmitterEngine {
       return var1 + this.K.nextDouble() * (var3 - var1);
    }
 
-   public void pAsVoid(Vec3d var1, x4 var2) {
+   public void pAsVoid(Vec3d var1, EffectRenderParams var2) {
       int var3 = Math.clamp((long)this.B, 0, 2048);
       int var4 = var2.O < 2048 ? this.iAsInt(var2.K) : 0;
       int var5 = Math.clamp((long)var2.O, 0, 2048);
@@ -134,7 +134,7 @@ public final class ParticleEmitterEngine {
          var12.u = -Math.max(0.0, var2.N);
          var12.T = Math.max(0.05, this.CAsDouble(var2.x, var2.v));
          var12.j = Math.max(0.001, this.CAsDouble(var2.g, var2.R));
-         if (var2.E != x4.Type_s.NONE && Double.isFinite(var2.h)) {
+         if (var2.E != EffectRenderParams.Type_s.NONE && Double.isFinite(var2.h)) {
             var12.w = var12.r = Math.max(var12.w, var2.h + var12.j * 1.2 + 0.002);
          }
 
@@ -167,7 +167,7 @@ public final class ParticleEmitterEngine {
          var12.H = var2.t;
          var12.m = var2.o;
          var12.y = var2.j;
-         var12.b = var2.q == ParticleEmitterEngine.Type_a.Cash ? var2.I : bg.xAsInt(var2.I, var2.A, this.K.nextDouble() * 0.35);
+         var12.b = var2.q == ParticleEmitterEngine.Type_a.Cash ? var2.I : ColorUtil.xAsInt(var2.I, var2.A, this.K.nextDouble() * 0.35);
          var12.d = var2.A;
          var12.J = var2.i;
          if (var12.J) {
@@ -201,7 +201,7 @@ public final class ParticleEmitterEngine {
    }
 
    public void tAsVoid(Vec3d var1, ParticleEmitterEngine.Type_a var2, int var3, double var4, double var6, int var8, int var9, boolean var10, double var11) {
-      x4 var13 = new x4();
+      EffectRenderParams var13 = new EffectRenderParams();
       var13.q = var2;
       var13.M = var3;
       var13.g = var13.R = var4;
@@ -221,7 +221,7 @@ public final class ParticleEmitterEngine {
       this.eAsVoid(var1, null);
    }
 
-   public void eAsVoid(double var1, lq.Type_a var3) {
+   public void eAsVoid(double var1, LandQuery.Type_a var3) {
       if (Double.isFinite(var1) && !(var1 < 0.0)) {
          int var4 = 0;
 
@@ -262,7 +262,7 @@ public final class ParticleEmitterEngine {
                      WAsVoid(var5, var1);
                   }
 
-                  if (var3 != null && var5.P != x4.Type_s.NONE) {
+                  if (var3 != null && var5.P != EffectRenderParams.Type_s.NONE) {
                      tAsVoid(var5, var3);
                   }
                }
@@ -275,13 +275,13 @@ public final class ParticleEmitterEngine {
       }
    }
 
-   private static void tAsVoid(ParticleEmitterEngine.Type_y var0, lq.Type_a var1) {
+   private static void tAsVoid(ParticleEmitterEngine.Type_y var0, LandQuery.Type_a var1) {
       Vec3d var2 = new Vec3d(var0.Q, var0.r, var0.W);
       Vec3d var3 = new Vec3d(var0.Z, var0.w, var0.x);
       if (!(var2.squaredDistanceTo(var3) < 1.0E-12)) {
          double var4 = var0.l == ParticleEmitterEngine.Type_a.Shard ? var0.j * 1.2 : 0.015;
-         op.FAsVoid("Particle surface queries", 1L);
-         lq.Type_l var6 = var1.HAsLq_Type_l(var2.add(0.0, -var4, 0.0), var3.add(0.0, -var4, 0.0));
+         OpenScreen.FAsVoid("Particle surface queries", 1L);
+         LandQuery.Type_l var6 = var1.HAsLq_Type_l(var2.add(0.0, -var4, 0.0), var3.add(0.0, -var4, 0.0));
          if (var6 != null) {
             Vec3d var7 = var6.normal();
             var0.Z = var6.point().x + var7.x * 0.002;
@@ -289,7 +289,7 @@ public final class ParticleEmitterEngine {
             var0.x = var6.point().z + var7.z * 0.002;
             double var8 = var0.Y * var7.x + var0.q * var7.y + var0.A * var7.z;
             if (!(var8 >= 0.0)) {
-               int var10 = var7.y > 0.5 && (var0.P == x4.Type_s.SETTLE || -var8 < 0.55) ? 1 : 0;
+               int var10 = var7.y > 0.5 && (var0.P == EffectRenderParams.Type_s.SETTLE || -var8 < 0.55) ? 1 : 0;
                if (var10 != 0) {
                   var0.n = true;
                   var0.Y = var0.q = var0.A = 0.0;
@@ -298,10 +298,10 @@ public final class ParticleEmitterEngine {
                   var0.f = var0.f + var0.u * var0.F;
                   var0.B = var0.L = var0.F = 0.0;
                   if (var0.l == ParticleEmitterEngine.Type_a.Shard) {
-                     var0.w = var6.point().y + bz.TAsDouble(var0.j, var0.I, var0.f) + 0.002;
+                     var0.w = var6.point().y + SkyBlend.TAsDouble(var0.j, var0.I, var0.f) + 0.002;
                   }
                } else {
-                  double var11 = var0.P == x4.Type_s.BOUNCE ? 0.38 : 0.08;
+                  double var11 = var0.P == EffectRenderParams.Type_s.BOUNCE ? 0.38 : 0.08;
                   var0.Y = (var0.Y - (1.0 + var11) * var8 * var7.x) * 0.72;
                   var0.q = (var0.q - (1.0 + var11) * var8 * var7.y) * 0.72;
                   var0.A = (var0.A - (1.0 + var11) * var8 * var7.z) * 0.72;
@@ -354,7 +354,7 @@ public final class ParticleEmitterEngine {
 
    public static int cAsInt(double var0, int var2) {
       long var3 = ((long)(var0 * 1000.0) / 12L + (long)var2 * 14L) % 360L;
-      return bg.HSBtoRGB((float)var3 / 360.0F, 0.7F, 1.0F);
+      return ColorUtil.HSBtoRGB((float)var3 / 360.0F, 0.7F, 1.0F);
    }
 
    public void fAsVoid(Vec3d var1, float var2, Frustum var3) {
@@ -362,11 +362,11 @@ public final class ParticleEmitterEngine {
    }
 
    public void nAsVoid(Vec3d var1, float var2, Frustum var3, double var4, double var6) {
-      long var8 = op.RAsLong();
+      long var8 = OpenScreen.RAsLong();
       this.w = this.q = 0;
       this.T = false;
       if (var6 <= 0.0) {
-         op.aAsVoid("Particles prepare", var8);
+         OpenScreen.aAsVoid("Particles prepare", var8);
       } else {
          byte var10 = 0;
 
@@ -383,7 +383,7 @@ public final class ParticleEmitterEngine {
                if (!(var21 * var21 + var23 * var23 + var25 * var25 > var12.D * var12.D)) {
                   double var27 = Math.clamp(var13 / var12.T, 0.0, 1.0);
                   double var29 = var12.j * var12.m.vAsDouble(var27);
-                  int var31 = var12.K ? cAsInt(mb.RAsDouble(), var12.O) : bg.xAsInt(var12.b, var12.d, var27);
+                  int var31 = var12.K ? cAsInt(MediaSession.RAsDouble(), var12.O) : ColorUtil.xAsInt(var12.b, var12.d, var27);
                   double var32 = var12.N == 1.0 ? var12.H.fAsDouble(var27) : Math.pow(var12.H.fAsDouble(var27), var12.N);
                   if (var6 < 1.0) {
                      var32 *= var6;
@@ -391,10 +391,10 @@ public final class ParticleEmitterEngine {
 
                   if (var4 < 1.0) {
                      double var34 = var12.D * var12.D;
-                     var32 *= ay.RAsDouble((var34 - var21 * var21 - var23 * var23 - var25 * var25) / Math.max(0.001, var34 * (1.0 - var4 * var4)));
+                     var32 *= FadeCurve.RAsDouble((var34 - var21 * var21 - var23 * var23 - var25 * var25) / Math.max(0.001, var34 * (1.0 - var4 * var4)));
                   }
 
-                  int var40 = var12.C ? var31 & 16777215 | Math.clamp(Math.round((double)(var31 >>> 24) * var32), 0, 255) << 24 : bg.pAsInt(var31, var32);
+                  int var40 = var12.C ? var31 & 16777215 | Math.clamp(Math.round((double)(var31 >>> 24) * var32), 0, 255) << 24 : ColorUtil.pAsInt(var31, var32);
                   if (var40 >>> 24 != 0) {
                      double var35 = var12.l == ParticleEmitterEngine.Type_a.Ring ? var12.v * (1.0 - Math.pow(1.0 - var27, 3.0)) : var29;
                      double var37 = var12.l == ParticleEmitterEngine.Type_a.Ring ? var35 + Math.abs(var12.k) : Math.abs(var29) * 5.0;
@@ -423,7 +423,7 @@ public final class ParticleEmitterEngine {
                         var39.o = var12.g;
                         var39.Y = var12.l == ParticleEmitterEngine.Type_a.Smoke || var12.l == ParticleEmitterEngine.Type_a.Glow;
                         var39.A = var21 * var21 + var23 * var23 + var25 * var25;
-                        var10 = (byte)(var10 | (var39.w != x4.Type_g.ADDITIVE ? 1 : 0));
+                        var10 = (byte)(var10 | (var39.w != EffectRenderParams.Type_g.ADDITIVE ? 1 : 0));
                         this.X[this.w++] = var39;
                         if (var39.b) {
                            this.q++;
@@ -440,19 +440,19 @@ public final class ParticleEmitterEngine {
             Arrays.sort(this.X, 0, this.w, S);
          }
 
-         op.FAsVoid("Particles prepared", (long)this.w);
-         op.aAsVoid("Particles prepare", var8);
+         OpenScreen.FAsVoid("Particles prepared", (long)this.w);
+         OpenScreen.aAsVoid("Particles prepare", var8);
       }
    }
 
    public void MAsVoid(EffectGeometryRenderer var1, Vec3d var2, float var3, boolean var4) {
-      long var5 = op.RAsLong();
+      long var5 = OpenScreen.RAsLong();
       ParticleEmitterEngine.Type_m var7 = null;
 
       for (int var8 = 0; var8 < this.w; var8++) {
          ParticleEmitterEngine.Type_m var9 = this.X[var8];
          if (!var4 || var9.b) {
-            if (var7 != null && (var9.w != x4.Type_g.ADDITIVE || var7.w != x4.Type_g.ADDITIVE) && !jAsBoolean(var7, var9)) {
+            if (var7 != null && (var9.w != EffectRenderParams.Type_g.ADDITIVE || var7.w != EffectRenderParams.Type_g.ADDITIVE) && !jAsBoolean(var7, var9)) {
                var1.CAsVoid();
             }
 
@@ -473,8 +473,8 @@ public final class ParticleEmitterEngine {
       }
 
       var1.QAsVoid(false);
-      var1.blend(x4.Type_g.ALPHA);
-      op.aAsVoid("Particles", var5);
+      var1.blend(EffectRenderParams.Type_g.ALPHA);
+      OpenScreen.aAsVoid("Particles", var5);
    }
 
    private static boolean jAsBoolean(ParticleEmitterEngine.Type_m var0, ParticleEmitterEngine.Type_m var1) {
@@ -527,8 +527,8 @@ public final class ParticleEmitterEngine {
       boolean b;
       boolean Y;
       ParticleEmitterEngine.Type_a e;
-      x4.Type_i o;
-      x4.Type_g w;
+      EffectRenderParams.Type_i o;
+      EffectRenderParams.Type_g w;
 
       private Type_m() {
       }
@@ -573,7 +573,7 @@ public final class ParticleEmitterEngine {
       double i;
       double U;
       double R;
-      x4.Type_s P;
+      EffectRenderParams.Type_s P;
       boolean n;
       int b;
       int d;
@@ -584,10 +584,10 @@ public final class ParticleEmitterEngine {
       boolean K;
       double N;
       ParticleEmitterEngine.Type_a l;
-      x4.Type_i g;
-      ay.Type_r H;
-      ay.Type_z m;
-      x4.Type_g y;
+      EffectRenderParams.Type_i g;
+      FadeCurve.Type_r H;
+      FadeCurve.Type_z m;
+      EffectRenderParams.Type_g y;
 
       private Type_y() {
       }

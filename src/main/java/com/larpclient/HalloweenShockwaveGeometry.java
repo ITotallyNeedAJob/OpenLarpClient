@@ -8,8 +8,8 @@ import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
 public final class HalloweenShockwaveGeometry {
-   public static final double SkyChunkCache = 2.2;
-   public static final double HexEdgeloop = 0.18;
+   public static final double s = 2.2;
+   public static final double p = 0.18;
    public static final double A = 0.56;
    public static final double Y = 0.78;
    public static final double C = 2.2;
@@ -17,7 +17,7 @@ public final class HalloweenShockwaveGeometry {
    public static final double D = 1.9042969F;
 
    private static double uAsDouble(double var0) {
-      return ay.RAsDouble(var0);
+      return FadeCurve.RAsDouble(var0);
    }
 
    public static double cAsDouble(double var0) {
@@ -55,8 +55,8 @@ public final class HalloweenShockwaveGeometry {
             double var9 = (var3 - 0.78) / 0.7;
             double var11 = 0.28 + 2.32 * uAsDouble(var9);
             double var13 = 0.1 + 0.07 * (1.0 - var9);
-            int var15 = bg.XAsInt(-3046331, 0.95 * Math.pow(1.0 - var9, 1.4) * var5.n);
-            int var16 = bg.XAsInt(var15, 0.0);
+            int var15 = ColorUtil.XAsInt(-3046331, 0.95 * Math.pow(1.0 - var9, 1.4) * var5.n);
+            int var16 = ColorUtil.XAsInt(var15, 0.0);
             int var17 = var5.EAsInt();
 
             for (int var18 = 0; var18 < 2; var18++) {
@@ -94,8 +94,8 @@ public final class HalloweenShockwaveGeometry {
          .scale(2.2F);
    }
 
-   public static az.Type_x[] wAsAz_xArray(az var0, double var1) {
-      az.Type_x[] var3 = new az.Type_x[6];
+   public static WalkPose.Type_x[] wAsAz_xArray(WalkPose var0, double var1) {
+      WalkPose.Type_x[] var3 = new WalkPose.Type_x[6];
       double var4 = mAsDouble(var1);
       double var6 = 1.0 + 0.3 * (1.0 - var4);
       double var8 = JAsDouble(var1);
@@ -103,10 +103,10 @@ public final class HalloweenShockwaveGeometry {
       Vec3d var11 = new Vec3d(var6, var4, var6);
 
       for (int var12 = 0; var12 < var3.length; var12++) {
-         double var13 = az.mAsDouble(var12, var0.k) / 16.0 * 0.9375;
-         double var15 = (24.0 - az.A[var12][1]) / 16.0 * 0.9375;
+         double var13 = WalkPose.mAsDouble(var12, var0.k) / 16.0 * 0.9375;
+         double var15 = (24.0 - WalkPose.A[var12][1]) / 16.0 * 0.9375;
          Vec3d var17 = TAsVec3d(new Vec3d(var13 * var6, 0.035 + var15 * var4, 0.0), var0.X, var0.M);
-         var3[var12] = new az.Type_x(var17, 0.0, 0.0, 0.0, 1.0, var8, 0.0, var1 >= 0.78, var10, var11);
+         var3[var12] = new WalkPose.Type_x(var17, 0.0, 0.0, 0.0, 1.0, var8, 0.0, var1 >= 0.78, var10, var11);
       }
 
       return var3;
@@ -116,19 +116,19 @@ public final class HalloweenShockwaveGeometry {
       EffectGeometryRenderer var0, MatrixStack var1, EffectDrawBuffers var2, HalloweenShockwaveGeometry.Type_k var3, Vec3d var4, boolean var5
    ) {
       PumpkinRenderer.gAsVoid(var1, var2, var3, var4, var5);
-      var0.blend(x4.Type_g.ALPHA);
+      var0.blend(EffectRenderParams.Type_g.ALPHA);
       double var6 = var5 ? 0.3 : 1.0;
 
       for (HalloweenShockwaveGeometry.Type_m var9 : var3.wave) {
-         int var10 = bg.pAsInt(var9.inner, var6);
-         int var11 = bg.pAsInt(var9.outer, var6);
+         int var10 = ColorUtil.pAsInt(var9.inner, var6);
+         int var11 = ColorUtil.pAsInt(var9.outer, var6);
          var0.vertex(var9.a.x, var9.a.y, var9.a.z, var10);
          var0.vertex(var9.b.x, var9.b.y, var9.b.z, var10);
          var0.vertex(var9.c.x, var9.c.y, var9.c.z, var11);
          var0.vertex(var9.d.x, var9.d.y, var9.d.z, var11);
       }
 
-      op.FAsVoid("Halloween shockwave vertices", (long)var3.vertices());
+      OpenScreen.FAsVoid("Halloween shockwave vertices", (long)var3.vertices());
    }
 
    private HalloweenShockwaveGeometry() {

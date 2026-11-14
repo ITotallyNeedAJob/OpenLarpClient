@@ -112,7 +112,7 @@ public final class Mace extends Module {
          true
       )
    );
-   private final pg S = new pg(this);
+   private final ParticleGeometry S = new ParticleGeometry(this);
    private final r f = new r();
    private final c N = new c();
    private final t g = new t();
@@ -245,9 +245,9 @@ public final class Mace extends Module {
       if (this.isEnabled() && this.isRuntimeActive() && var1 == getMc().player && var2 instanceof LivingEntity var3) {
          boolean var4 = MaceItem.shouldDealAdditionalDamage(var1);
          if (this.lAsBoolean(var1, var2)) {
-            int var7 = pk.JAsInt(var1);
+            int var7 = ParticleKind.JAsInt(var1);
             if (this.S.uAsBoolean(var1, var7)) {
-               pk.wAsVoid(var3);
+               ParticleKind.wAsVoid(var3);
                this.T = var3;
                this.n = var1.age;
                this.p = this.y.pAsBoolean("Same Tick");
@@ -257,7 +257,7 @@ public final class Mace extends Module {
                );
             }
          } else if (this.autoSwap.getValue()
-            && (!pk.PAsBoolean(var3, var1) || pk.NAsBoolean(var3))
+            && (!ParticleKind.PAsBoolean(var3, var1) || ParticleKind.NAsBoolean(var3))
             && (var4 || this.breachSwap.getValue() && !this.FAsBoolean("Breach Swap"))) {
             int var5 = this.CAsInt(var1, var3, var4);
             if (var5 >= 0
@@ -296,10 +296,10 @@ public final class Mace extends Module {
             && !this.y.pAsBoolean("Off")
             && var1 == getMc().player
             && var2 instanceof PlayerEntity var3
-            && !b_.pAsBoolean()
+            && !ModuleImportBroker.pAsBoolean()
             && MaceItem.shouldDealAdditionalDamage(var1)) {
             ActionOwnership.Type_s var4 = ActionOwnership.iAsO3_Type_s(
-               this.y.getValue(), pk.PAsBoolean(var3, var1), pk.NAsBoolean(var3), pk.JAsInt(var1) >= 0, this.fAsInt(var1, var3) >= 0
+               this.y.getValue(), ParticleKind.PAsBoolean(var3, var1), ParticleKind.NAsBoolean(var3), ParticleKind.JAsInt(var1) >= 0, this.fAsInt(var1, var3) >= 0
             );
             return var4 == ActionOwnership.Type_s.SAME_TICK || var4 == ActionOwnership.Type_s.NEXT_TICK;
          }
@@ -319,7 +319,7 @@ public final class Mace extends Module {
    private boolean KAsBoolean(MinecraftClient var1, ClientPlayerEntity var2, LivingEntity var3, String var4) {
       int var5 = this.fAsInt(var2, var3);
       if (var5 >= 0 && this.S.uAsBoolean(var2, var5)) {
-         boolean var6 = b_.DAsBoolean(this, var3, () -> {
+         boolean var6 = ModuleImportBroker.DAsBoolean(this, var3, () -> {
             var1.interactionManager.attackEntity(var2, var3);
             var2.swingHand(Hand.MAIN_HAND);
          });
@@ -361,13 +361,13 @@ public final class Mace extends Module {
 
    private static float EAsFloat(ClientPlayerEntity var0, ItemStack var1, LivingEntity var2) {
       return ActionOwnership.AAsFloat(
-         pk.CAsDouble(var0.getMainHandStack()),
-         pk.jAsFloat(var0),
+         ParticleKind.CAsDouble(var0.getMainHandStack()),
+         ParticleKind.jAsFloat(var0),
          var0.fallDistance,
          var1.isOf(Items.MACE),
          MaceItem.shouldDealAdditionalDamage(var0),
          vAsInt(var1, Enchantments.DENSITY),
-         pk.CAsBoolean(var0, var2),
+         ParticleKind.CAsBoolean(var0, var2),
          vAsInt(var1, Enchantments.SHARPNESS),
          (float)var2.getArmor(),
          (float)var2.getAttributeValue(EntityAttributes.ARMOR_TOUGHNESS),
@@ -407,17 +407,17 @@ public final class Mace extends Module {
                this.tAsVoid();
             }
 
-            if (pk.FAsBoolean(var2, p5.Type_u.MACE) && pg.yAsBoolean(this)) {
+            if (ParticleKind.FAsBoolean(var2, ParticleEmitter.Type_u.MACE) && ParticleGeometry.yAsBoolean(this)) {
                ClientPlayerEntity var4 = var2.player;
-               EntityHitResult var5 = pk.CAsEntityHitResult(var2);
+               EntityHitResult var5 = ParticleKind.CAsEntityHitResult(var2);
                LivingEntity var6 = this.eAsLivingEntity(var4, var5, var3);
                int var7 = var6 == null && var3 == null ? 0 : 1;
                String var8 = ActionOwnership.WAsString(
-                  pk.BAsBoolean(var4),
-                  pk.BAsBoolean(var2),
-                  pk.IAsBoolean(var2),
-                  var3 == null && dq.YAsBoolean(),
-                  pk.hAsBoolean(var2, var4),
+                  ParticleKind.BAsBoolean(var4),
+                  ParticleKind.BAsBoolean(var2),
+                  ParticleKind.IAsBoolean(var2),
+                  var3 == null && ModuleDetector.YAsBoolean(),
+                  ParticleKind.hAsBoolean(var2, var4),
                   var4.getVelocity().y < 0.0,
                   MaceItem.shouldDealAdditionalDamage(var4),
                   var4.fallDistance,
@@ -434,7 +434,7 @@ public final class Mace extends Module {
                }
 
                if (var3 != null && (!this.e || this.E)) {
-                  if (!pk.BAsBoolean(var4)) {
+                  if (!ParticleKind.BAsBoolean(var4)) {
                      this.CAsVoid(var2, var3);
                   }
                } else {
@@ -453,7 +453,7 @@ public final class Mace extends Module {
       } else if (!this.smashAssist.getValue() && var4 != var3) {
          return null;
       } else {
-         return pk.FAsBoolean(var1, var4) && (var4 instanceof PlayerEntity || this.mobs.getValue()) ? var4 : null;
+         return ParticleKind.FAsBoolean(var1, var4) && (var4 instanceof PlayerEntity || this.mobs.getValue()) ? var4 : null;
       }
    }
 
@@ -466,7 +466,7 @@ public final class Mace extends Module {
             var1,
             IAsString(var2.fallDistance),
             IAsString(var2.getVelocity().y),
-            var3 == null ? "" : ", Silent Aim target " + xAsString(var3) + " at " + IAsString(o5.lAsDouble(var2.getEyePos(), var3.getBoundingBox()))
+            var3 == null ? "" : ", Silent Aim target " + xAsString(var3) + " at " + IAsString(OptifineBridge.lAsDouble(var2.getEyePos(), var3.getBoundingBox()))
          );
       }
    }
@@ -474,10 +474,10 @@ public final class Mace extends Module {
    private void hAsVoid(MinecraftClient var1, ClientPlayerEntity var2, EntityHitResult var3, LivingEntity var4, LivingEntity var5, boolean var6) {
       this.B = "";
       ActionOwnership.Type_s var7 = ActionOwnership.iAsO3_Type_s(
-         this.y.getValue(), pk.PAsBoolean(var4, var2), pk.NAsBoolean(var4), pk.JAsInt(var2) >= 0, this.fAsInt(var2, var4) >= 0
+         this.y.getValue(), ParticleKind.PAsBoolean(var4, var2), ParticleKind.NAsBoolean(var4), ParticleKind.JAsInt(var2) >= 0, this.fAsInt(var2, var4) >= 0
       );
       if ((var7 != ActionOwnership.Type_s.NEXT_TICK || !PAsBoolean(var2, var4)) && var7 != ActionOwnership.Type_s.BREAK_ONLY) {
-         if (var7 == ActionOwnership.Type_s.NONE && pk.PAsBoolean(var4, var2) && !pk.NAsBoolean(var4)) {
+         if (var7 == ActionOwnership.Type_s.NONE && ParticleKind.PAsBoolean(var4, var2) && !ParticleKind.NAsBoolean(var4)) {
             this.pAsVoid("raised shield and no axe in the hotbar", var2, var5);
          } else if (this.jAsBoolean(var2, var4)) {
             this.z = true;
@@ -485,7 +485,7 @@ public final class Mace extends Module {
             this.h = var1.world;
             this.l = var2.age;
             var2.setSprinting(false);
-            pk.uAsVoid(var1, Math.max(pk.kAsInt(var1), 1));
+            ParticleKind.uAsVoid(var1, Math.max(ParticleKind.kAsInt(var1), 1));
             this.s = "Delaying smash";
             if (!var6) {
                ClientLog.XAsVoid("Mace", "Delaying smash while the predicted next step remains in reach");
@@ -495,9 +495,9 @@ public final class Mace extends Module {
          } else {
             int var8 = this.fAsInt(var2, var4);
             if (var8 == var2.getInventory().getSelectedSlot() || this.S.uAsBoolean(var2, var8)) {
-               if (pk.MAsBoolean(var1, var3)) {
+               if (ParticleKind.MAsBoolean(var1, var3)) {
                   this.dAsVoid(var2, var4);
-                  pk.DAsVoid(var1);
+                  ParticleKind.DAsVoid(var1);
                   ClientLog.GAsVoid(
                      "Mace",
                      "Smash sent on {}: fall {}, speed {}, silent={}",
@@ -517,14 +517,14 @@ public final class Mace extends Module {
    }
 
    private void SAsVoid(MinecraftClient var1, ClientPlayerEntity var2, LivingEntity var3, ActionOwnership.Type_s var4) {
-      int var5 = pk.JAsInt(var2);
+      int var5 = ParticleKind.JAsInt(var2);
       int var6 = this.fAsInt(var2, var3);
       if (this.S.uAsBoolean(var2, var5)) {
          int var7 = var4 == ActionOwnership.Type_s.SAME_TICK ? 1 : 0;
-         boolean var8 = b_.WAsBoolean(this, var3, () -> {
+         boolean var8 = ModuleImportBroker.WAsBoolean(this, var3, () -> {
             var1.interactionManager.attackEntity(var2, var3);
             var2.swingHand(Hand.MAIN_HAND);
-            pk.wAsVoid(var3);
+            ParticleKind.wAsVoid(var3);
             if (var7 != 0 && this.S.uAsBoolean(var2, var6)) {
                var1.interactionManager.attackEntity(var2, var3);
                var2.swingHand(Hand.MAIN_HAND);
@@ -534,7 +534,7 @@ public final class Mace extends Module {
             this.S.vAsVoid(var1, true);
             ClientLog.GAsVoid("Mace", "Stun Slam refused: this tick's attack belongs to another owner");
          } else {
-            pk.DAsVoid(var1);
+            ParticleKind.DAsVoid(var1);
             if (var7 != 0) {
                this.dAsVoid(var2, var3);
                this.s = "Stun Slam";
@@ -565,17 +565,17 @@ public final class Mace extends Module {
       LivingEntity var3 = this.T;
       if (var2 != null && var2.age == this.n + 1) {
          this.T = null;
-         EntityHitResult var4 = pk.CAsEntityHitResult(var1);
+         EntityHitResult var4 = ParticleKind.CAsEntityHitResult(var1);
          if (var4 != null && var4.getEntity() == var3 && MaceItem.shouldDealAdditionalDamage(var2) && !var2.isOnGround()) {
             int var5 = this.fAsInt(var2, var3);
             if (var5 >= 0 && this.S.uAsBoolean(var2, var5)) {
-               boolean var6 = b_.WAsBoolean(this, var3, () -> {
+               boolean var6 = ModuleImportBroker.WAsBoolean(this, var3, () -> {
                   var1.interactionManager.attackEntity(var2, var3);
                   var2.swingHand(Hand.MAIN_HAND);
                });
                if (var6) {
                   this.dAsVoid(var2, var3);
-                  pk.DAsVoid(var1);
+                  ParticleKind.DAsVoid(var1);
                   ClientLog.GAsVoid("Mace", "Stun Slam smash on {} one tick after the axe: fall {}", xAsString(var3), IAsString(var2.fallDistance));
                } else {
                   ClientLog.GAsVoid("Mace", "Next Tick smash on {} refused: this tick's attack belongs to another owner", xAsString(var3));
@@ -637,7 +637,7 @@ public final class Mace extends Module {
 
    private LivingEntity YAsLivingEntity(MinecraftClient var1) {
       ClientPlayerEntity var2 = var1.player;
-      if (var2 != null && var1.world != null && (!this.e || this.E) && !var2.isOnGround() && !(var2.getVelocity().y >= 0.0) && p5.fAsBoolean(p5.Type_u.MACE)) {
+      if (var2 != null && var1.world != null && (!this.e || this.E) && !var2.isOnGround() && !(var2.getVelocity().y >= 0.0) && ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.MACE)) {
          if (this.Z != null && this.nAsBoolean(var2, this.Z, this.CAsDouble(var2, this.Z))) {
             return this.Z;
          } else {
@@ -648,7 +648,7 @@ public final class Mace extends Module {
             for (Entity var10 : var1.world
                .getOtherEntities(var2, var2.getBoundingBox().expand(Math.max(this.aimRange.getValue(), 16.0)), var0 -> var0 instanceof LivingEntity)) {
                LivingEntity var11 = (LivingEntity)var10;
-               double var12 = o5.lAsDouble(var3, var11.getBoundingBox());
+               double var12 = OptifineBridge.lAsDouble(var3, var11.getBoundingBox());
                if (var12 < var7 && this.nAsBoolean(var2, var11, this.CAsDouble(var2, var11))) {
                   var6 = var11;
                   var7 = var12;
@@ -694,11 +694,11 @@ public final class Mace extends Module {
 
    private boolean nAsBoolean(ClientPlayerEntity var1, LivingEntity var2, double var3) {
       Vec3d var5 = var1.getEyePos();
-      return pk.FAsBoolean(var1, var2)
+      return ParticleKind.FAsBoolean(var1, var2)
          && (var2 instanceof PlayerEntity || this.mobs.getValue())
-         && o5.lAsDouble(var5, var2.getBoundingBox()) <= var3
+         && OptifineBridge.lAsDouble(var5, var2.getBoundingBox()) <= var3
          && this.aAsBoolean(var1, var2)
-         && pk.WAsBoolean(var1, var5, eAsVec3d(var1, var2));
+         && ParticleKind.WAsBoolean(var1, var5, eAsVec3d(var1, var2));
    }
 
    private static Vec3d eAsVec3d(ClientPlayerEntity var0, LivingEntity var1) {
@@ -707,7 +707,7 @@ public final class Mace extends Module {
       Box var4 = var2.contract(Math.min(0.1, var2.getLengthX() * 0.25), Math.min(0.1, var2.getLengthY() * 0.25), Math.min(0.1, var2.getLengthZ() * 0.25));
       Vec3d var5 = new Vec3d(Math.clamp(var3.x, var4.minX, var4.maxX), Math.clamp(var3.y, var4.minY, var4.maxY), Math.clamp(var3.z, var4.minZ, var4.maxZ));
       Vec3d var6 = new Vec3d(var2.getCenter().x, var2.minY + var2.getLengthY() * 0.6, var2.getCenter().z);
-      return b_.nAsOptional(var1, var0.getEntityInteractionRange(), var6, com.larpclient.c.sAsVec3d(var2, var5)).orElse(var6);
+      return ModuleImportBroker.nAsOptional(var1, var0.getEntityInteractionRange(), var6, com.larpclient.BoxUtils.sAsVec3d(var2, var5)).orElse(var6);
    }
 
    private h nAsH() {
@@ -724,7 +724,7 @@ public final class Mace extends Module {
 
    private void CAsVoid(MinecraftClient var1, LivingEntity var2) {
       ClientPlayerEntity var3 = var1.player;
-      if (!b_.nAsBoolean(this)) {
+      if (!ModuleImportBroker.nAsBoolean(this)) {
          this.tAsVoid();
       } else {
          h var4 = this.nAsH();
@@ -743,30 +743,30 @@ public final class Mace extends Module {
                "Mace",
                "Silent Aim target {} at {} blocks, falling {} blocks/tick, rotation={}",
                xAsString(var2),
-               IAsString(o5.lAsDouble(var3.getEyePos(), var5)),
+               IAsString(OptifineBridge.lAsDouble(var3.getEyePos(), var5)),
                IAsString(-var3.getVelocity().y),
                this.rotation.getValue()
             );
          }
 
          this.Z = var2;
-         p5.jAsVoid(p5.Type_u.MACE);
-         if (p5.NAsP5_Type_u() != p5.Type_u.MACE) {
+         ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.MACE);
+         if (ParticleEmitter.NAsP5_Type_u() != ParticleEmitter.Type_u.MACE) {
             this.Z = null;
          } else {
             RotationAngles var6 = new RotationAngles(var3.getYaw(), var3.getPitch());
             double var7 = var3.getEntityInteractionRange();
-            int var9 = o5.lAsDouble(var3.getEyePos(), var5) <= var7 ? 1 : 0;
+            int var9 = OptifineBridge.lAsDouble(var3.getEyePos(), var5) <= var7 ? 1 : 0;
             ClientPlayerEntityAccessor var10 = (ClientPlayerEntityAccessor)var3;
             boolean var11 = com.larpclient.module.y.BAsBoolean(
                var3, var5.expand((double)var2.getTargetingMargin()), var10.larpYRotLast(), var10.larpXRotLast(), var7 + 1.0, false
             );
             RotationAngles var12 = this.I.rotate(var6, lk.XAsL6(eAsVec3d(var3, var2)), var2, var9 != 0, var11);
-            float[] var13 = com.larpclient.t.JAsFloatArray(var6.n, var6.m, var12.n, var12.m, this.turnSpeed.getValue());
+            float[] var13 = com.larpclient.SmoothInput.JAsFloatArray(var6.n, var6.m, var12.n, var12.m, this.turnSpeed.getValue());
             var12 = new RotationAngles(var13[0], var13[1]);
             var12 = this.I == this.k ? this.k.vAsL6(var6, var12) : lk.UAsL6(var6, var12);
-            dq.RAsVoid(this, dq.Type_s.MACE, var12.n, var12.m, 1.0);
-            if (!dq.CAsBoolean(dq.Type_s.MACE)) {
+            ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.MACE, var12.n, var12.m, 1.0);
+            if (!ModuleDetector.CAsBoolean(ModuleDetector.Type_s.MACE)) {
                ClientLog.XAsVoid("Mace", "Silent Aim yielded to a higher rotation owner");
                this.tAsVoid();
             } else if (!this.z) {
@@ -782,7 +782,7 @@ public final class Mace extends Module {
       }
 
       this.Z = null;
-      p5.GAsVoid(p5.Type_u.MACE);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.MACE);
    }
 
    public float UAsFloat(float var1, float var2) {
@@ -795,7 +795,7 @@ public final class Mace extends Module {
 
    public boolean rAsBoolean() {
       return this.isEnabled()
-         ? this.isRuntimeActive() && this.silentAim.getValue() && this.Z != null && this.Z.isAlive() && !this.Z.isRemoved() && b_.fAsBoolean(this)
+         ? this.isRuntimeActive() && this.silentAim.getValue() && this.Z != null && this.Z.isAlive() && !this.Z.isRemoved() && ModuleImportBroker.fAsBoolean(this)
          : false;
    }
 
@@ -838,7 +838,7 @@ public final class Mace extends Module {
          ? ActionOwnership.wAsBoolean(
             PAsBoolean(var1, var2),
             this.smashTiming.pAsBoolean("Delayed"),
-            pk.jAsFloat(var1),
+            ParticleKind.jAsFloat(var1),
             var1.getAttackCooldownProgress(1.5F),
             var2.hurtTime,
             var1.isSprinting()
@@ -857,7 +857,7 @@ public final class Mace extends Module {
          var1.getEntityPos().subtract(var1.lastX, var1.lastY, var1.lastZ),
          var1.getTargetingMargin(),
          var0.getRotationVec(1.0F),
-         (var1x, var2x) -> pk.WAsBoolean(var0, var1x, var2x)
+         (var1x, var2x) -> ParticleKind.WAsBoolean(var0, var1x, var2x)
       );
    }
 
@@ -869,7 +869,7 @@ public final class Mace extends Module {
             if (var1.player == null) {
                return false;
             } else {
-               return p5.NAsP5_Type_u() == p5.Type_u.MACE
+               return ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.MACE
                   ? true
                   : var1.player == var0.R
                      && var1.world == var0.h
@@ -888,13 +888,13 @@ public final class Mace extends Module {
    public static PlayerInput TAsPlayerInput(ClientPlayerEntity var0, PlayerInput var1) {
       if (t != null && t.isEnabled()) {
          Mace var2 = t;
-         if (var2 != null && var2.isRuntimeActive() && var0 != null && var0 == getMc().player && p5.NAsP5_Type_u() == p5.Type_u.MACE) {
+         if (var2 != null && var2.isRuntimeActive() && var0 != null && var0 == getMc().player && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.MACE) {
             if (var0.isSprinting()) {
                var0.setSprinting(false);
                ClientLog.XAsVoid("Mace", "Silent Aim lock released sprint");
             }
 
-            return pk.cAsPlayerInput(var1);
+            return ParticleKind.cAsPlayerInput(var1);
          } else {
             return var1;
          }

@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public final class DiscordRpcManager implements AutoCloseable {
-   public static final String CropHelper = "1491537245591572480";
+   public static final String u = "1491537245591572480";
    private static final long Y = TimeUnit.SECONDS.toNanos(10L);
    private final Object w = new Object();
    private final List<String> S;

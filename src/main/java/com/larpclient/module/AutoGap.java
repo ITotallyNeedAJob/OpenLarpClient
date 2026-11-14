@@ -23,8 +23,8 @@ public class AutoGap extends Module {
             var1 = this.tAsInt(Items.GOLDEN_APPLE);
          }
 
-         o9.cAsVoid(
-            d4.Type_q.GOLDEN_APPLE,
+         OutlineEffect.cAsVoid(
+            SkyModeState.Type_q.GOLDEN_APPLE,
             var1,
             var1x -> this.goldenApple.getValue() && var1x.isOf(Items.GOLDEN_APPLE) || this.enchanted.getValue() && var1x.isOf(Items.ENCHANTED_GOLDEN_APPLE)
          );
@@ -35,7 +35,7 @@ public class AutoGap extends Module {
 
    @Override
    public void onDisable() {
-      o9.cAsVoid(d4.Type_q.GOLDEN_APPLE);
+      OutlineEffect.cAsVoid(SkyModeState.Type_q.GOLDEN_APPLE);
    }
 
    private int tAsInt(Item var1) {

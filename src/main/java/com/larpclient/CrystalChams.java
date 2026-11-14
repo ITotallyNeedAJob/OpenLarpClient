@@ -84,16 +84,16 @@ public final class CrystalChams extends Module {
    }
 
    public int CAsInt(int var1) {
-      double var2 = mb.RAsDouble();
+      double var2 = MediaSession.RAsDouble();
       String var5 = this.colorMode.getValue();
 
       int var4 = switch (var5) {
          case "Custom" -> this.color.getValue();
          case "Original" -> -1;
-         case "Rainbow" -> bg.HSBtoRGB((float)((var2 * 0.12 + (double)var1 * 0.13) % 1.0), 0.7F, 1.0F);
-         default -> bg.xAsInt(bd.w, bd.Q, 0.5 + 0.5 * Math.sin(var2 + (double)var1 * 0.1));
+         case "Rainbow" -> ColorUtil.HSBtoRGB((float)((var2 * 0.12 + (double)var1 * 0.13) % 1.0), 0.7F, 1.0F);
+         default -> ColorUtil.xAsInt(UiStyle.w, UiStyle.Q, 0.5 + 0.5 * Math.sin(var2 + (double)var1 * 0.1));
       };
-      return bg.XAsInt(var4, this.opacity.getValue() / 100.0);
+      return ColorUtil.XAsInt(var4, this.opacity.getValue() / 100.0);
    }
 
    @Override
@@ -115,7 +115,7 @@ public final class CrystalChams extends Module {
          return false;
       } else {
          CrystalChams.Type_m var2 = this.W;
-         return SharedRenderEffects.RAsBoolean() && this.yAsBoolean() && var2 != null && var1 instanceof wj var3
+         return SharedRenderEffects.RAsBoolean() && this.yAsBoolean() && var2 != null && var1 instanceof WidgetJob var3
             ? var2.crystals.stream().anyMatch(var1x -> var1x.id == var3.larpCrystalId())
             : false;
       }
@@ -141,7 +141,7 @@ public final class CrystalChams extends Module {
                      Vec3d var11 = var5.getLerpedPos(var1);
                      Vec3d var12 = var11.add(0.0, 1.2 + var9, 0.0);
                      int var13 = this.colorMode.pAsBoolean("Original")
-                        ? bg.XAsInt(-3707905, this.opacity.getValue() / 100.0)
+                        ? ColorUtil.XAsInt(-3707905, this.opacity.getValue() / 100.0)
                         : this.CAsInt((int)(var11.x * 7.0 + var11.z * 13.0));
                      var2.add(
                         new CrystalChams.Type_j(
@@ -173,13 +173,13 @@ public final class CrystalChams extends Module {
          if (var3 != null && (!var2 || var3.glow)) {
             for (CrystalChams.Type_j var5 : var3.crystals) {
                int var7;
-               br var8;
+               BrushStroke var8;
                label106: {
                   int var6 = var5.tint;
-                  var7 = bg.xAsInt(var6, bg.XAsInt(-1, (double)(var6 >>> 24) / 255.0), 0.35);
-                  var8 = new br(var1, var5.center, new Quaternionf(), var3.scale, var2);
+                  var7 = ColorUtil.xAsInt(var6, ColorUtil.XAsInt(-1, (double)(var6 >>> 24) / 255.0), 0.35);
+                  var8 = new BrushStroke(var1, var5.center, new Quaternionf(), var3.scale, var2);
                   if (!var2 && var5.base) {
-                     br var9 = new br(var1, var5.foot, new Quaternionf(), 1.0, false);
+                     BrushStroke var9 = new BrushStroke(var1, var5.foot, new Quaternionf(), 1.0, false);
                      var9.SAsVoid(0.0, 0.125, 0.0, 0.375, 0.125, 0.375, -14278098);
                      var9.KAsVoid(0.27, 0.012, new Quaternionf(), var6);
                   }
@@ -187,20 +187,20 @@ public final class CrystalChams extends Module {
                   String var18 = var3.model;
                   int var16;
                   int var17;
-                  br var15;
+                  BrushStroke var15;
                   switch (var18) {
                      case "Gem":
                         var8.rAsVoid(0.13, 0.24, 0.07, -var5.angle * 1.7, var7);
                         if (!var2) {
-                           var8.rAsVoid(0.36, 0.6, 0.22, var5.angle, bg.pAsInt(var6, 0.85));
+                           var8.rAsVoid(0.36, 0.6, 0.22, var5.angle, ColorUtil.pAsInt(var6, 0.85));
                         }
                         break label106;
                      case "Orb":
                         double var24 = 0.85 + 0.15 * Math.sin((double)var5.age * 0.25);
                         var8.LAsVoid(0.0, 0.0, 0.0, 0.15 * var24, 0.15 * var24, 0.15 * var24, var7);
                         if (!var2) {
-                           var8.LAsVoid(0.0, 0.0, 0.0, 0.42, 0.42, 0.42, bg.pAsInt(var6, 0.7));
-                           var8.KAsVoid(0.48, 0.03, new Quaternionf().rotationY((float)var5.angle).rotateX(0.35F), bg.xAsInt(var6, -1459895, 0.4));
+                           var8.LAsVoid(0.0, 0.0, 0.0, 0.42, 0.42, 0.42, ColorUtil.pAsInt(var6, 0.7));
+                           var8.KAsVoid(0.48, 0.03, new Quaternionf().rotationY((float)var5.angle).rotateX(0.35F), ColorUtil.xAsInt(var6, -1459895, 0.4));
                         }
                         break label106;
                      default:
@@ -208,16 +208,16 @@ public final class CrystalChams extends Module {
                         Quaternionf var12x = new Quaternionf().rotationY((float)var5.angle).rotateAxis((float) (Math.PI / 3), var11, 0.0F, var11);
                         Quaternionf var13 = new Quaternionf(var12x)
                            .mul(new Quaternionf().setAngleAxis((float) (Math.PI / 3), var11, 0.0F, var11).rotateY((float)var5.angle * 1.4F));
-                        br var14 = new br(var1, var5.center, var13, var3.scale, var2);
+                        BrushStroke var14 = new BrushStroke(var1, var5.center, var13, var3.scale, var2);
                         var14.SAsVoid(0.0, 0.0, 0.0, 0.126, 0.126, 0.126, var7);
                         if (var2) {
                            break label106;
                         }
 
-                        var14.SAsVoid(0.0, 0.0, 0.0, 0.225, 0.225, 0.225, bg.pAsInt(var6, 0.55));
-                        var15 = new br(var1, var5.center, var12x, var3.scale, false);
-                        var15.SAsVoid(0.0, 0.0, 0.0, 0.3, 0.3, 0.3, bg.pAsInt(var6, 0.5));
-                        var16 = bg.xAsInt(var6, -1459895, 0.55);
+                        var14.SAsVoid(0.0, 0.0, 0.0, 0.225, 0.225, 0.225, ColorUtil.pAsInt(var6, 0.55));
+                        var15 = new BrushStroke(var1, var5.center, var12x, var3.scale, false);
+                        var15.SAsVoid(0.0, 0.0, 0.0, 0.3, 0.3, 0.3, ColorUtil.pAsInt(var6, 0.5));
+                        var16 = ColorUtil.xAsInt(var6, -1459895, 0.55);
                         var17 = 0;
                   }
 
@@ -243,7 +243,7 @@ public final class CrystalChams extends Module {
                         0.62 + (double)var23 * 0.1,
                         0.008,
                         new Quaternionf().rotationY((float)(var5.angle * (var23 == 0 ? 1.6 : -1.2) + (double)var23)).rotateX(0.5F + (float)var23 * 0.6F),
-                        bg.pAsInt(var7, 0.9)
+                        ColorUtil.pAsInt(var7, 0.9)
                      );
                   }
                }

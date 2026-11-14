@@ -26,17 +26,17 @@ public final class VisualInventory {
    private static Object z;
    private static int[] B;
    private static int P;
-   private static int SmoothInput = -1;
+   private static int t = -1;
    private static boolean F;
    private static ScreenHandler c;
    private static ScreenHandler G;
    private static final Map<Slot, VisualInventory.Type_m> V = new IdentityHashMap<>();
-   private static final Map<Slot, CreativeSlot> AuraModule = new IdentityHashMap<>();
+   private static final Map<Slot, CreativeSlot> x = new IdentityHashMap<>();
    private static final SimpleInventory E = new SimpleInventory(1);
-   private static boolean HexEdgeloop = true;
+   private static boolean p = true;
    private static Object A;
    private static long h;
-   private static int BloomUtility = -1;
+   private static int b = -1;
 
    public VisualInventory() {
    }
@@ -46,7 +46,7 @@ public final class VisualInventory {
    }
 
    public static void vAsVoid() {
-      HexEdgeloop = true;
+      p = true;
    }
 
    public static long jAsLong() {
@@ -58,14 +58,14 @@ public final class VisualInventory {
       z = null;
       B = null;
       G = null;
-      BoxUtils = null;
+      c = null;
       V.clear();
-      AuraModule.clear();
-      BloomUtility = -1;
-      SmoothInput = -1;
+      x.clear();
+      b = -1;
+      t = -1;
       F = false;
       X = new InventorySlotSnapshot();
-      HexEdgeloop = true;
+      p = true;
    }
 
    public static boolean jAsBoolean() {
@@ -74,7 +74,7 @@ public final class VisualInventory {
    }
 
    public static void GAsVoid() {
-      HexEdgeloop = true;
+      p = true;
       wAsVoid();
    }
 
@@ -85,26 +85,26 @@ public final class VisualInventory {
          B = null;
       } else {
          if (var0.player.currentScreenHandler.getCursorStack().isEmpty()) {
-            BloomUtility = -1;
+            b = -1;
          }
 
          if (z != var0.player) {
             z = var0.player;
             X = new InventorySlotSnapshot();
             B = null;
-            SmoothInput = var0.player.getInventory().getSelectedSlot();
+            t = var0.player.getInventory().getSelectedSlot();
             P = t;
             F = false;
-            HexEdgeloop = true;
+            p = true;
             ClientLog.XAsVoid("FakeSpawner", "Visual inventory initialized; ordinary slot positions retained");
          }
 
          if (A != var0.player.currentScreenHandler) {
             A = var0.player.currentScreenHandler;
-            HexEdgeloop = true;
+            p = true;
          }
 
-         if ((HexEdgeloop || B == null) && (B == null || !DAsBoolean())) {
+         if ((p || B == null) && (B == null || !DAsBoolean())) {
             long var1 = 0L;
             long var3 = 0L;
 
@@ -122,7 +122,7 @@ public final class VisualInventory {
                }
             }
 
-            HexEdgeloop = false;
+            p = false;
             int[] var6 = X.zAsIntArray(var1, var3);
             if (var6 != B) {
                B = var6;
@@ -159,7 +159,7 @@ public final class VisualInventory {
             F = false;
          }
 
-         SmoothInput = var0;
+         t = var0;
          if (F && B != null && P >= 0 && P < 9 && B[P] < 0) {
             return P;
          } else {
@@ -231,10 +231,10 @@ public final class VisualInventory {
             }
          }
 
-         if (BoxUtils != var0) {
+         if (c != var0) {
             V.clear();
-            AuraModule.clear();
-            BoxUtils = var0;
+            x.clear();
+            c = var0;
          }
 
          VisualInventory.Type_m var8 = V.get(var1);
@@ -250,11 +250,11 @@ public final class VisualInventory {
    }
 
    private static Slot qAsSlot(Slot var0, Slot var1) {
-      CreativeSlot var2 = AuraModule.get(var0);
+      CreativeSlot var2 = x.get(var0);
       if (var2 == null || var2.slot != var1) {
          var2 = new CreativeSlot(var1, var0.getIndex(), var0.x, var0.y);
          var2.id = var0.id;
-         AuraModule.put(var0, var2);
+         x.put(var0, var2);
       }
 
       return var2;
@@ -262,7 +262,7 @@ public final class VisualInventory {
 
    private static void dAsVoid(ScreenHandler var0) {
       if (G != var0) {
-         AuraModule.clear();
+         x.clear();
          G = var0;
       }
    }
@@ -375,7 +375,7 @@ public final class VisualInventory {
    public static void ZAsVoid(Slot var0) {
       if (!DAsBoolean() && var0 instanceof VisualInventory.Type_m var1 && var1.l != null) {
          if (MinecraftClient.getInstance().player.currentScreenHandler.getCursorStack().isEmpty() && var1.hasStack()) {
-            BloomUtility = var1.l.getIndex();
+            b = var1.l.getIndex();
          }
 
          X.KAsVoid(var1.D, var1.l.getIndex());
@@ -473,7 +473,7 @@ public final class VisualInventory {
                F = false;
                if (var2 < 9) {
                   var1.player.getInventory().setSelectedSlot(var2);
-                  SmoothInput = var2;
+                  t = var2;
                   P = var0;
                } else if (var1.interactionManager != null
                   && var1.player.currentScreenHandler == var1.player.playerScreenHandler
@@ -493,7 +493,7 @@ public final class VisualInventory {
                         X.NAsVoid(var2, var6);
                         vAsVoid();
                         var1.player.getInventory().setSelectedSlot(var6);
-                        SmoothInput = var6;
+                        t = var6;
                         P = var0;
                         return;
                      }
@@ -503,7 +503,7 @@ public final class VisualInventory {
                      X.NAsVoid(var2, var0);
                      X.KAsVoid(var0, var0);
                      var1.player.getInventory().setSelectedSlot(var0);
-                     SmoothInput = var0;
+                     t = var0;
                      P = var0;
                      GAsVoid();
                   }
@@ -524,7 +524,7 @@ public final class VisualInventory {
                      }
 
                      var1.player.getInventory().setSelectedSlot(var3);
-                     SmoothInput = var3;
+                     t = var3;
                      P = var0;
                      F = true;
                      return;
@@ -549,7 +549,7 @@ public final class VisualInventory {
                }
 
                var1.player.getInventory().setSelectedSlot(var4);
-               SmoothInput = var4;
+               t = var4;
                P = var0;
                F = true;
             }

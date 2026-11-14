@@ -5,8 +5,8 @@ import net.minecraft.util.math.Vec3d;
 
 public final class WorldGeometry {
    public static final int V = 128;
-   private final ParticleEmitterEngine GroundSample = new ParticleEmitterEngine();
-   private final x4 W = new x4();
+   private final ParticleEmitterEngine k = new ParticleEmitterEngine();
+   private final EffectRenderParams W = new EffectRenderParams();
 
    public WorldGeometry() {
       this.k.B = 128;
@@ -14,14 +14,14 @@ public final class WorldGeometry {
    }
 
    public void VAsVoid(Vec3d var1, Vec3d var2, CinematicQuality var3) {
-      this.k.B = Math.min(128, x9.jAsInt(128));
+      this.k.B = Math.min(128, BloomQualityHelper.jAsInt(128));
       this.W.M = var3 == CinematicQuality.SUBTLE ? 3 : 5;
       this.W.q = ParticleEmitterEngine.Type_a.Streak;
-      this.W.j = x4.Type_g.ALPHA;
-      this.W.t = ay.Type_r.SMOOTH;
-      this.W.o = ay.Type_z.SHRINK;
-      this.W.I = bg.XAsInt(-7026494, 0.75 * var3.n);
-      this.W.A = bg.XAsInt(-15260879, 0.05);
+      this.W.j = EffectRenderParams.Type_g.ALPHA;
+      this.W.t = FadeCurve.Type_r.SMOOTH;
+      this.W.o = FadeCurve.Type_z.SHRINK;
+      this.W.I = ColorUtil.XAsInt(-7026494, 0.75 * var3.n);
+      this.W.A = ColorUtil.XAsInt(-15260879, 0.05);
       this.W.x = var3.l * 0.7;
       this.W.v = var3.l;
       this.W.g = 0.025;
@@ -43,8 +43,8 @@ public final class WorldGeometry {
       this.k.pAsVoid(var1, this.W);
       this.W.M = 2;
       this.W.q = ParticleEmitterEngine.Type_a.Spark;
-      this.W.I = bg.XAsInt(-3046331, 0.7 * var3.n);
-      this.W.A = bg.XAsInt(-6540233, 0.1);
+      this.W.I = ColorUtil.XAsInt(-3046331, 0.7 * var3.n);
+      this.W.A = ColorUtil.XAsInt(-6540233, 0.1);
       this.W.g = 0.018;
       this.W.R = 0.03;
       this.W.x = 0.14;
@@ -53,8 +53,8 @@ public final class WorldGeometry {
       this.k.pAsVoid(var1, this.W);
       this.W.M = 1;
       this.W.q = ParticleEmitterEngine.Type_a.Ring;
-      this.W.I = bg.XAsInt(-7026494, 0.2 * var3.n);
-      this.W.A = bg.XAsInt(-7026494, 0.0);
+      this.W.I = ColorUtil.XAsInt(-7026494, 0.2 * var3.n);
+      this.W.A = ColorUtil.XAsInt(-7026494, 0.0);
       this.W.x = this.W.v = var3.l * 0.8;
       this.W.g = this.W.R = 0.08;
       this.W.p = 0.32;
@@ -67,7 +67,7 @@ public final class WorldGeometry {
    }
 
    public void EAsVoid() {
-      int var1 = x9.jAsInt(128);
+      int var1 = BloomQualityHelper.jAsInt(128);
       if (this.k.UAsInt() > var1) {
          this.k.JAsVoid();
       }
@@ -77,7 +77,7 @@ public final class WorldGeometry {
    }
 
    public void RAsVoid(float var1, CameraRenderState var2) {
-      this.k.fAsVoid(var2.pos, var1, w3.BAsFrustum());
+      this.k.fAsVoid(var2.pos, var1, WebRenderer.BAsFrustum());
    }
 
    public void oAsVoid(EffectGeometryRenderer var1, boolean var2) {

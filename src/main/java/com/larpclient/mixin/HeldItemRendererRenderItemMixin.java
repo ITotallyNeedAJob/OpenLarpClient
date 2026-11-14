@@ -101,7 +101,7 @@ public class HeldItemRendererRenderItemMixin {
          ? CosmeticSubmissionHandler.sAsOrderedRenderCommandQueue(var3)
          : var3;
       if (var9.isFirstPerson() && var7 == MinecraftClient.getInstance().player) {
-         li.AAsVoid(this.S, var9 == ItemDisplayContext.FIRST_PERSON_LEFT_HAND, var2, var1);
+         LayerIndex.AAsVoid(this.S, var9 == ItemDisplayContext.FIRST_PERSON_LEFT_HAND, var2, var1);
       }
 
       if (var9.isFirstPerson() && var7 == MinecraftClient.getInstance().player) {
@@ -211,7 +211,7 @@ public class HeldItemRendererRenderItemMixin {
       at = {@At("HEAD")}
    )
    private void larpclient$injectIV(float var1, MatrixStack var2, OrderedRenderCommandQueue var3, ClientPlayerEntity var4, int var5, CallbackInfo var6) {
-      li.kAsVoid();
+      LayerIndex.kAsVoid();
    }
 
    @WrapOperation(
@@ -228,7 +228,7 @@ public class HeldItemRendererRenderItemMixin {
    ) {
       Y(var2, false);
       var7.call(new Object[]{var1, var2, var3, var4, var5, var6});
-      li.WAsVoid(Hand.MAIN_HAND, false, var2, ((PlayerEntityModel)var1.getModel()).rightArm);
+      LayerIndex.WAsVoid(Hand.MAIN_HAND, false, var2, ((PlayerEntityModel)var1.getModel()).rightArm);
    }
 
    @WrapOperation(
@@ -245,7 +245,7 @@ public class HeldItemRendererRenderItemMixin {
    ) {
       Y(var2, true);
       var7.call(new Object[]{var1, var2, var3, var4, var5, var6});
-      li.WAsVoid(Hand.MAIN_HAND, true, var2, ((PlayerEntityModel)var1.getModel()).leftArm);
+      LayerIndex.WAsVoid(Hand.MAIN_HAND, true, var2, ((PlayerEntityModel)var1.getModel()).leftArm);
    }
 
    @Unique

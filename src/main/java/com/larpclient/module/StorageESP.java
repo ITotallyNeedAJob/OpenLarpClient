@@ -372,12 +372,12 @@ public class StorageESP extends Module {
 
    private void TAsVoid(DrawContext var1, RenderTickCounter var2) {
       if (this.labels.getValue() && this.isRuntimeActive() && this.isInGame() && this.X == mc.world && !mc.options.hudHidden) {
-         long var3 = op.RAsLong();
+         long var3 = OpenScreen.RAsLong();
 
          try {
             Camera var5 = mc.gameRenderer.getCamera();
             Vec3d var6 = var5.getCameraPos();
-            Matrix4f var7 = w3.pAsMatrix4f(new Matrix4f());
+            Matrix4f var7 = WebRenderer.pAsMatrix4f(new Matrix4f());
             Vector3f var8 = var5.getRotation().transform(new Vector3f(0.0F, 1.0F, 0.0F));
             int var9 = mc.getWindow().getScaledWidth();
             int var10 = mc.getWindow().getScaledHeight();
@@ -416,7 +416,7 @@ public class StorageESP extends Module {
 
                      var14.add(var19);
                      Vec3d var43 = new Vec3d((var23.minX + var23.maxX) / 2.0, var23.maxY + 0.25, (var23.minZ + var23.maxZ) / 2.0);
-                     d5.Type_e var44 = d5.vAsD5_Type_e(var43, var6, var7, var8, var9, var10, false);
+                     ProjectionUtil.Type_e var44 = ProjectionUtil.vAsD5_Type_e(var43, var6, var7, var8, var9, var10, false);
                      if (var44 != null) {
                         int var26 = this.wAsInt(var18, var20);
                         double var27 = (double)(var26 >>> 24) / 255.0;
@@ -457,7 +457,7 @@ public class StorageESP extends Module {
          } catch (RuntimeException var401) {
             ClientLog.hAsVoid("ESP", "Storage name tags failed", var401);
          } finally {
-            op.aAsVoid("StorageESP labels", var3);
+            OpenScreen.aAsVoid("StorageESP labels", var3);
          }
       }
    }
@@ -467,7 +467,7 @@ public class StorageESP extends Module {
 
       try {
          var1.getMatrices().translate(var2.x(), var2.y()).scale(var3).translate((float)(-var2.width()) / 2.0F, -16.0F);
-         GuiTextureDrawing.CAsVoid(var1, 0, 0, var2.width(), 16, bg.pAsInt(-435154666, var2.alpha()));
+         GuiTextureDrawing.CAsVoid(var1, 0, 0, var2.width(), 16, ColorUtil.pAsInt(-435154666, var2.alpha()));
          GuiTextureDrawing.CAsVoid(var1, 0, 0, 2, 16, var2.color());
          int var4 = 7;
          if (!var2.icon().isEmpty()) {
@@ -481,9 +481,9 @@ public class StorageESP extends Module {
             var4 += 16;
          }
 
-         TextDrawing.oAsVoid(var1, var2.name(), var4, 4, bg.pAsInt(-854792, var2.alpha()), TextDrawing.Type_x.MEDIUM);
+         TextDrawing.oAsVoid(var1, var2.name(), var4, 4, ColorUtil.pAsInt(-854792, var2.alpha()), TextDrawing.Type_x.MEDIUM);
          var4 += TextDrawing.qAsInt(var2.name(), TextDrawing.Type_x.MEDIUM) + 6;
-         TextDrawing.CAsVoid(var1, var2.detail(), var4, 4, bg.pAsInt(-6511697, var2.alpha()));
+         TextDrawing.CAsVoid(var1, var2.detail(), var4, 4, ColorUtil.pAsInt(-6511697, var2.alpha()));
       } finally {
          var1.getMatrices().popMatrix();
       }

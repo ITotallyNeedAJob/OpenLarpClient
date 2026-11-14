@@ -49,11 +49,11 @@ public final class ParticleEmitter {
 
             if (T.cAsBoolean(var0, var1.player, var1.world)) {
                G = var1.player.getYaw();
-               ScreenScale = var1.player.getPitch();
-               AuctionNotifier = var1.options.getPerspective();
-               if (DAsBoolean(var0) && AuctionNotifier.isFrontView()) {
+               y = var1.player.getPitch();
+               o = var1.options.getPerspective();
+               if (DAsBoolean(var0) && o.isFrontView()) {
                   G += 180.0F;
-                  ScreenScale = -y;
+                  y = -y;
                }
 
                R = v = var0 == ParticleEmitter.Type_u.FREECAM
@@ -107,10 +107,10 @@ public final class ParticleEmitter {
       }
 
       r = null;
-      AuctionNotifier = null;
+      o = null;
       T.XAsBoolean(T.s);
       R = v = Vec3d.ZERO;
-      ScreenScale = 0.0F;
+      y = 0.0F;
       G = 0.0F;
    }
 
@@ -208,12 +208,12 @@ public final class ParticleEmitter {
 
    private static void BAsVoid() {
       Perspective var0 = MinecraftClient.getInstance().options.getPerspective();
-      if (AuctionNotifier != null && AuctionNotifier.isFrontView() != var0.isFrontView()) {
+      if (o != null && o.isFrontView() != var0.isFrontView()) {
          G = G + (var0.isFrontView() ? 180.0F : -180.0F);
-         ScreenScale = -y;
+         y = -y;
       }
 
-      AuctionNotifier = var0;
+      o = var0;
    }
 
    public static boolean oAsBoolean() {
@@ -223,7 +223,7 @@ public final class ParticleEmitter {
    public static void kAsVoid(double var0, double var2) {
       G += (float)var0 * 0.15F;
       float var4 = oAsBoolean() ? 90.0F : 89.0F;
-      ScreenScale = MathHelper.clamp(ScreenScale + (float)var2 * 0.15F, -var4, var4);
+      y = MathHelper.clamp(y + (float)var2 * 0.15F, -var4, var4);
    }
 
    public static float JAsFloat() {
@@ -246,7 +246,7 @@ public final class ParticleEmitter {
       MinecraftClient var5 = MinecraftClient.getInstance();
       R = v;
       if (oAsBoolean() && var5.currentScreen == null && var5.isWindowFocused()) {
-         v = v.add(ot.fAsVec3d(G, Freecam.xAsPlayerInput(), var0, var2, var4));
+         v = v.add(OuterEffect.fAsVec3d(G, Freecam.xAsPlayerInput(), var0, var2, var4));
       }
    }
 
@@ -313,7 +313,7 @@ public final class ParticleEmitter {
    }
 
    public static final class Type_x {
-      private ParticleEmitter.Type_u SkyChunkCache = ParticleEmitter.Type_u.NONE;
+      private ParticleEmitter.Type_u s = ParticleEmitter.Type_u.NONE;
       private Object u;
       private Object T;
 

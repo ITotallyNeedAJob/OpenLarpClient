@@ -51,7 +51,7 @@ public final class Pets extends Module {
    private Object p;
    private Vec3d J;
    private Vec3d T = Vec3d.ZERO;
-   private float TextLayout = Float.NaN;
+   private float j = Float.NaN;
    private float K;
    private float Z;
    private double F;
@@ -60,14 +60,14 @@ public final class Pets extends Module {
    private double c;
    private double D;
    private double n;
-   private double LineSegment = 6.5;
+   private double e = 6.5;
    private double W;
    private double x;
    private double S;
    private int h;
    private boolean B;
    private String v;
-   private final ArrayDeque<Pets.Type_v> MenuPopupProvider = new ArrayDeque<>();
+   private final ArrayDeque<Pets.Type_v> f = new ArrayDeque<>();
    private final ArrayDeque<Pets.Type_g> V = new ArrayDeque<>();
    private Pets.Type_g s;
    private long C;
@@ -78,7 +78,7 @@ public final class Pets extends Module {
 
    public Pets() {
       super("Pets", "A local companion with reactive motion and speech bubbles", Category.RENDER, -1);
-      ScreenScale = this;
+      y = this;
       this.pet.visibleWhen(() -> !this.realism.getValue());
       this.size.visibleWhen(() -> !this.realism.getValue());
       this.realisticPet.visibleWhen(() -> this.realism.getValue());
@@ -154,7 +154,7 @@ public final class Pets extends Module {
       this.V.clear();
       this.s = null;
       this.g = 0L;
-      this.S = mb.RAsDouble();
+      this.S = MediaSession.RAsDouble();
       this.v = null;
       this.F = this.b = this.M = this.c = this.n = this.W = this.x = 0.0;
       this.D = 1.0;
@@ -204,11 +204,11 @@ public final class Pets extends Module {
                this.U = var3.world;
                this.p = var3.player;
                this.v = var5 + ":" + var4;
-               this.S = mb.RAsDouble();
+               this.S = MediaSession.RAsDouble();
             }
 
-            double var7 = Math.clamp(mb.RAsDouble() - this.S, 0.0, 0.1);
-            this.S = mb.RAsDouble();
+            double var7 = Math.clamp(MediaSession.RAsDouble() - this.S, 0.0, 0.1);
+            this.S = MediaSession.RAsDouble();
             this.x += var7;
             double var9 = qAsDouble(var5, var4 ? this.realisticSize.getValue() : this.size.getValue());
             Vec3d var11 = var3.player.getCameraPosVec(var1);
@@ -297,7 +297,7 @@ public final class Pets extends Module {
                double var34;
                if (var6) {
                   var32 = -1;
-                  var33 = bd.w;
+                  var33 = UiStyle.w;
                   var34 = this.sparkleTrail.getValue() ? 0.5 : 0.0;
                } else if (var4) {
                   int var37 = switch (var5) {
@@ -311,7 +311,7 @@ public final class Pets extends Module {
                   String var53 = this.colorMode.getValue();
 
                   var33 = switch (var53) {
-                     case "Theme" -> bd.w;
+                     case "Theme" -> UiStyle.w;
                      case "Custom" -> this.customColor.getValue();
                      default -> var37;
                   };
@@ -346,9 +346,9 @@ public final class Pets extends Module {
                   .raycast(new RaycastContext(var22, var22.add(0.0, -4.5, 0.0), ShapeType.COLLIDER, FluidHandling.ANY, var3.player));
                Vec3d var53 = var51.getType() == Type.BLOCK ? var51.getPos().add(0.0, 0.012, 0.0) : null;
                double var55 = var53 == null ? 0.0 : Math.pow(Math.max(0.0, 1.0 - (var22.y - var53.y) / 4.5), 2.0) * 0.4;
-               Matrix4f var41 = new Matrix4f(w3.CAsMatrix4fc()).mul(w3.VAsMatrix4fc());
+               Matrix4f var41 = new Matrix4f(WebRenderer.CAsMatrix4fc()).mul(WebRenderer.VAsMatrix4fc());
                Vector3f var42 = new Quaternionf(var2.orientation).transform(new Vector3f(0.0F, 1.0F, 0.0F));
-               d5.Type_e var43 = d5.vAsD5_Type_e(
+               ProjectionUtil.Type_e var43 = ProjectionUtil.vAsD5_Type_e(
                   var22.add(0.0, 0.32 * var9, 0.0), var2.pos, var41, var42, var3.getWindow().getScaledWidth(), var3.getWindow().getScaledHeight(), false
                );
                if (var43 != null) {
@@ -407,7 +407,7 @@ public final class Pets extends Module {
          Pets.Type_w var3 = this.z;
          if (var3 != null && (!var2 || !(var3.glowStrength <= 0.0))) {
             if (!var2 && var3.shadow != null) {
-               var1.oAsVoid(var3.shadow, 0.18 * var3.scale, 0.16 * var3.scale, bg.XAsInt(-16777216, var3.shadowAlpha));
+               var1.oAsVoid(var3.shadow, 0.18 * var3.scale, 0.16 * var3.scale, ColorUtil.XAsInt(-16777216, var3.shadowAlpha));
             }
 
             PetEffectRenderer.jAsVoid(var1, var3, var2);
@@ -420,7 +420,7 @@ public final class Pets extends Module {
                   var5.point.z,
                   0.035 * var3.scale * var6 * var5.scale,
                   var3.time,
-                  bg.XAsInt(var3.glow, var6 * var6 * var3.glowStrength)
+                  ColorUtil.XAsInt(var3.glow, var6 * var6 * var3.glowStrength)
                );
             }
          }
@@ -432,7 +432,7 @@ public final class Pets extends Module {
          int var6 = switch (var3) {
             case WARNING -> -996986;
             case DANGER -> -1415819;
-            default -> bd.w;
+            default -> UiStyle.w;
          };
          if (this.isRuntimeActive()
             && SharedRenderEffects.RAsBoolean()
@@ -500,16 +500,16 @@ public final class Pets extends Module {
                   var1.getMatrices().translate(var2.label.x(), var2.label.y());
                   var1.getMatrices().scale((float)var11, (float)var11);
                   var1.getMatrices().translate(-var2.label.x(), -var2.label.y());
-                  GuiTextureDrawing.AAsVoid(var1, (float)var16, (float)var17, (float)var15, 34.0F, 7.0F, bg.pAsInt(-185207568, var7));
+                  GuiTextureDrawing.AAsVoid(var1, (float)var16, (float)var17, (float)var15, 34.0F, 7.0F, ColorUtil.pAsInt(-185207568, var7));
                   int var18 = Math.clamp((long)Math.round(var2.label.x()), var16 + 10, var16 + var15 - 10);
 
                   for (int var19 = 0; var19 < 6; var19++) {
-                     var1.fill(var18 - 5 + var19, var17 + 34 + var19, var18 + 5 - var19, var17 + 35 + var19, bg.pAsInt(-185207568, var7));
+                     var1.fill(var18 - 5 + var19, var17 + 34 + var19, var18 + 5 - var19, var17 + 35 + var19, ColorUtil.pAsInt(-185207568, var7));
                   }
 
-                  GuiTextureDrawing.AAsVoid(var1, (float)(var16 + 8), (float)(var17 + 9), 3.0F, 3.0F, 1.0F, bg.pAsInt(this.s.color, var7));
-                  TextDrawing.oAsVoid(var1, var13, var16 + 16, var17 + 5, bg.pAsInt(-14539990, var7), TextDrawing.Type_x.MEDIUM);
-                  TextDrawing.CAsVoid(var1, var14, var16 + 8, var17 + 19, bg.pAsInt(-11381667, var7));
+                  GuiTextureDrawing.AAsVoid(var1, (float)(var16 + 8), (float)(var17 + 9), 3.0F, 3.0F, 1.0F, ColorUtil.pAsInt(this.s.color, var7));
+                  TextDrawing.oAsVoid(var1, var13, var16 + 16, var17 + 5, ColorUtil.pAsInt(-14539990, var7), TextDrawing.Type_x.MEDIUM);
+                  TextDrawing.CAsVoid(var1, var14, var16 + 8, var17 + 19, ColorUtil.pAsInt(-11381667, var7));
                } finally {
                   var1.getMatrices().popMatrix();
                }
@@ -559,22 +559,22 @@ public final class Pets extends Module {
                default -> -5054483;
             };
          } else {
-            var1 = this.mainCompanionColor.getValue().equals(this.mainCompanionColor.getDefaultValue()) ? bd.w : this.mainCompanionColor.getValue();
+            var1 = this.mainCompanionColor.getValue().equals(this.mainCompanionColor.getDefaultValue()) ? UiStyle.w : this.mainCompanionColor.getValue();
          }
 
          String var4 = this.companionSurfaceFinish.getValue();
 
          return switch (var4) {
-            case "Gold" -> bg.xAsInt(var1, -12168, 0.4);
-            case "Obsidian" -> bg.xAsInt(var1, -15724259, 0.65);
-            case "Crystal" -> bg.xAsInt(var1, -1639937, 0.25);
-            case "Silk" -> bg.xAsInt(var1, -1122056, 0.18);
+            case "Gold" -> ColorUtil.xAsInt(var1, -12168, 0.4);
+            case "Obsidian" -> ColorUtil.xAsInt(var1, -15724259, 0.65);
+            case "Crystal" -> ColorUtil.xAsInt(var1, -1639937, 0.25);
+            case "Silk" -> ColorUtil.xAsInt(var1, -1122056, 0.18);
             default -> var1;
          };
       }
 
       int eAsInt() {
-         return this.companionGlowColor.getValue().equals(this.companionGlowColor.getDefaultValue()) ? bd.w : this.companionGlowColor.getValue();
+         return this.companionGlowColor.getValue().equals(this.companionGlowColor.getDefaultValue()) ? UiStyle.w : this.companionGlowColor.getValue();
       }
    }
 
@@ -601,7 +601,7 @@ public final class Pets extends Module {
       Vec3d shadow,
       double shadowAlpha,
       List<Pets.Type_v> sparks,
-      d5.Type_e label
+      ProjectionUtil.Type_e label
    ) {
    }
 }

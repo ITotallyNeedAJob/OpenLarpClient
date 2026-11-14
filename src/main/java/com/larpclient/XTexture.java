@@ -6,7 +6,7 @@ import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.render.VertexConsumer;
 
 public final class XTexture {
-   public static final ScreenRect SkyChunkCache = new ScreenRect(0, 0, 1, 1);
+   public static final ScreenRect s = new ScreenRect(0, 0, 1, 1);
    private static final double V = -10000.0;
    private static XTexture.Type_s Q;
    private static Object a;
@@ -15,7 +15,7 @@ public final class XTexture {
    private static int q;
    private static int h = -1;
    private static final double[] n = new double[4];
-   private static final double[] ScreenScale = new double[4];
+   private static final double[] y = new double[4];
    private static boolean c;
    private static boolean r;
    private static Object e;
@@ -32,18 +32,18 @@ public final class XTexture {
    }
 
    public static void LAsVoid(Object var0, XTexture.Type_s var1) {
-      if (BoxUtils && PetEffectRenderer != null) {
+      if (c && a != null) {
          System.arraycopy(n, 0, y, 0, 4);
-         LineSegment = a;
+         e = a;
          r = true;
       }
 
-      BoxUtils = false;
+      c = false;
       if (var0 != e) {
          r = false;
       }
 
-      PetEffectRenderer = var1 == null ? null : var0;
+      a = var1 == null ? null : var0;
       Q = var1;
    }
 
@@ -66,36 +66,36 @@ public final class XTexture {
 
    public static void cAsVoid(double var0, double var2, double var4) {
       G = Math.max(0.01, var0);
-      ChinaHatCodec = var2;
+      i = var2;
       R = var4;
    }
 
    public static double[] vAsDoubleArray2(Object var0) {
-      return r && var0 == LineSegment ? (double[])ScreenScale.clone() : null;
+      return r && var0 == e ? (double[])y.clone() : null;
    }
 
    public static XTexture.Type_s JAsXt_Type_s(Object var0) {
-      return var0 != null && var0 == PetEffectRenderer ? Q : null;
+      return var0 != null && var0 == a ? Q : null;
    }
 
    public static void ZAsVoid(int var0, XTexture.Type_s var1, boolean var2) {
       h = var1 == null ? -1 : var0;
-      TextLayout = var1;
+      j = var1;
       E = var2;
    }
 
    public static XTexture.Type_s rAsXt_Type_s() {
-      return h >= 0 ? TextLayout : null;
+      return h >= 0 ? j : null;
    }
 
    private static void rAsVoid(float var0, float var1) {
       if (E && h >= 0 && h <= 1) {
-         double var2 = ChinaHatCodec + ((double)var0 - i) / G;
+         double var2 = i + ((double)var0 - i) / G;
          double var4 = R + ((double)var1 - R) / G;
          if (!c) {
             n[0] = n[2] = var2;
             n[1] = n[3] = var4;
-            BoxUtils = true;
+            c = true;
          } else {
             n[0] = Math.min(n[0], var2);
             n[1] = Math.min(n[1], var4);
@@ -244,19 +244,19 @@ public final class XTexture {
 
    public static final class Type_m implements VertexConsumer {
       private static final float N = 12.0F;
-      private static final int AuctionNotifier = 1;
-      private static final int ChatPayParser = 2;
-      private static final int DropletTrail = 4;
-      private static final int BloomUtility = 8;
+      private static final int o = 1;
+      private static final int g = 2;
+      private static final int l = 4;
+      private static final int b = 8;
       private static final int n = 16;
-      private static final int SmoothInput = 32;
+      private static final int t = 32;
       private VertexConsumer j;
       private XTexture.Type_s W;
       private ScreenRect s;
       private boolean x;
       private boolean Y;
       private boolean S;
-      private int ChinaHatCodec = -1;
+      private int i = -1;
       private int r;
       private int p;
       private int a;
@@ -265,9 +265,9 @@ public final class XTexture {
       private final float[] J = new float[4];
       private final float[] X = new float[4];
       private final float[] Z = new float[4];
-      private final int[] CropHelper = new int[4];
+      private final int[] u = new int[4];
       private final int[] U = new int[4];
-      private final int[] GroundSample = new int[4];
+      private final int[] k = new int[4];
       private final int[] w = new int[4];
       private final int[] v = new int[4];
       private float h;

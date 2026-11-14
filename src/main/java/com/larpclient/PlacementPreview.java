@@ -20,11 +20,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShapes;
 
 public final class PlacementPreview {
-   private static final dz TextLayout = dz.build(VoxelShapes.fullCube());
+   private static final SkyZone j = SkyZone.build(VoxelShapes.fullCube());
    private final Module x;
-   private final BooleanSetting highlight = new BooleanSetting("Highlight", "Show the next placement with PetEffectRenderer soft block outline", true);
+   private final BooleanSetting highlight = new BooleanSetting("Highlight", "Show the next placement with a soft block outline", true);
    private final ModeSetting highlightColorMode = new ModeSetting(
-      "Highlight Color Mode", "Follow your theme or choose PetEffectRenderer custom color", "Theme", "Theme", "Custom"
+      "Highlight Color Mode", "Follow your theme or choose a custom color", "Theme", "Theme", "Custom"
    );
    private final ColorSetting highlightColor;
    private final NumberSetting C;
@@ -35,7 +35,7 @@ public final class PlacementPreview {
    private final NumberSetting s;
    private final NumberSetting b;
    private final List<Setting<?>> I;
-   private final w4 B;
+   private final WeaponTrail B;
    private final RenderStateDataKey<PlacementPreview.Type_f> A;
    private BlockPos l;
    private Object a;
@@ -51,7 +51,7 @@ public final class PlacementPreview {
    }
 
    public PlacementPreview(Module var1, Consumer<Setting<?>> var2, double var3, double var5) {
-      this.highlightColor = new ColorSetting("Highlight Color", "Custom placement highlight color", bd.w);
+      this.highlightColor = new ColorSetting("Highlight Color", "Custom placement highlight color", UiStyle.w);
       this.C = hAsNumberSetting("Highlight Opacity", "Outline visibility", 0.85, 0.1, 1.0, 0.05);
       this.highlightThickness = new NumberSetting("Highlight Thickness", "Outline width in blocks", 0.015, 0.005, 0.04, 0.005) {
          @Override
@@ -62,7 +62,7 @@ public final class PlacementPreview {
       this.highlightFill = new BooleanSetting("Highlight Fill", "Subtle tint inside the placement box", true);
       this.g = hAsNumberSetting("Highlight Fill Opacity", "Keep the scene visible through the fill", 0.08, 0.01, 0.3, 0.01);
       this.d = hAsNumberSetting("Highlight Glow", "Soft edge halo and shared quality-controlled bloom", 0.65, 0.0, 1.5, 0.05);
-      this.B = new w4();
+      this.B = new WeaponTrail();
       this.w = -1;
       this.x = var1;
       this.s = var3 < 0.0 ? null : kAsNumberSetting("Highlight Hold", "Seconds to retain the previous placement box", var3, 0.0, 3.0);
@@ -152,13 +152,13 @@ public final class PlacementPreview {
 
          this.M = var4;
          BlockPos var6 = BlockPlacementController.rAsBoolean(this.a, var3.world, this.O, var3.player, this.L, var3.player.age) ? this.l : null;
-         List var7 = this.B.ZAsList(var6, mb.RAsDouble(), this.s == null ? 0.06 : this.s.getValue(), this.b == null ? 0.18 : this.b.getValue());
+         List var7 = this.B.ZAsList(var6, MediaSession.RAsDouble(), this.s == null ? 0.06 : this.s.getValue(), this.b == null ? 0.18 : this.b.getValue());
          if (!var7.isEmpty()) {
             var2.setData(
                this.A,
                new PlacementPreview.Type_f(
                   var7,
-                  this.highlightColorMode.pAsBoolean("Theme") ? bd.w : this.highlightColor.getValue(),
+                  this.highlightColorMode.pAsBoolean("Theme") ? UiStyle.w : this.highlightColor.getValue(),
                   this.C.getValue(),
                   this.highlightThickness.getValue(),
                   this.highlightFill.getValue() ? this.g.getValue() : 0.0,
@@ -183,13 +183,13 @@ public final class PlacementPreview {
    public void gAsVoid(EffectGeometryRenderer var1, boolean var2, WorldRenderState var3) {
       PlacementPreview.Type_f var4 = this.aAsA3_Type_f(var3);
       if (this.x.isRuntimeActive() && this.highlight.getValue() && var4 != null && (!var2 || !(var4.glow <= 0.0))) {
-         long var5 = op.RAsLong();
+         long var5 = OpenScreen.RAsLong();
 
-         for (w4.Type_s var8 : var4.boxes) {
-            rh.lAsVoid(var1, var2, j, new Box(var8.pos()).expand(0.002), var8.alpha(), var4.color, var4.opacity, var4.width, var4.fillOpacity, var4.glow);
+         for (WeaponTrail.Type_s var8 : var4.boxes) {
+            RibbonHelper.lAsVoid(var1, var2, j, new Box(var8.pos()).expand(0.002), var8.alpha(), var4.color, var4.opacity, var4.width, var4.fillOpacity, var4.glow);
          }
 
-         op.aAsVoid(this.x.getName() + (var2 ? " highlight glow" : " highlight base"), var5);
+         OpenScreen.aAsVoid(this.x.getName() + (var2 ? " highlight glow" : " highlight base"), var5);
       }
    }
 
@@ -225,6 +225,6 @@ public final class PlacementPreview {
       PlacementPreview placementHighlight();
    }
 
-   private static record Type_f(List<w4.Type_s> boxes, int color, double opacity, double width, double fillOpacity, double glow) {
+   private static record Type_f(List<WeaponTrail.Type_s> boxes, int color, double opacity, double width, double fillOpacity, double glow) {
    }
 }

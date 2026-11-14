@@ -48,7 +48,7 @@ public abstract class sf extends Module {
    private final BooleanSetting alertSound = this.addSetting(new BooleanSetting("Alert Sound", "Play a local chime for each delivered discovery alert", false));
    private final ThemeSettings b = new ThemeSettings(var1x -> this.addSetting(var1x));
    private final ChunkScanBudget<WorldChunk> p = new ChunkScanBudget<>();
-   private final wl q = new wl();
+   private final WidgetLayer q = new WidgetLayer();
    private final ArrayDeque<sf.Type_t> z = new ArrayDeque<>();
    private List<Long> t = List.of();
    private final Map<Long, Long> S = new HashMap<>();
@@ -107,7 +107,7 @@ public abstract class sf extends Module {
 
       @Override
       public void finish(int var1, int var2) {
-         wl.Type_v var3 = sf.this.evidence();
+         WidgetLayer.Type_v var3 = sf.this.evidence();
          long var4 = ChunkPos.toLong(var1, var2);
          if (sf.this.q.PAsBoolean(var4, var3, sf.this.qualifies(var3), sf.this.n)) {
             sf.this.QAsVoid(var4, var3);
@@ -139,9 +139,9 @@ public abstract class sf extends Module {
 
    protected abstract boolean candidate(BlockState var1);
 
-   protected abstract boolean qualifies(wl.Type_v var1);
+   protected abstract boolean qualifies(WidgetLayer.Type_v var1);
 
-   protected abstract String describe(wl.Type_v var1);
+   protected abstract String describe(WidgetLayer.Type_v var1);
 
    protected abstract int tint();
 
@@ -168,7 +168,7 @@ public abstract class sf extends Module {
       return 0;
    }
 
-   protected final wl FAsWl() {
+   protected final WidgetLayer FAsWl() {
       return this.q;
    }
 
@@ -182,7 +182,7 @@ public abstract class sf extends Module {
       this.q.GAsVoid(var1);
    }
 
-   protected final void jAsVoid(long var1, wl.Type_v var3, boolean var4) {
+   protected final void jAsVoid(long var1, WidgetLayer.Type_v var3, boolean var4) {
       if (this.q.jAsBoolean(var1, var3, var4, this.n)) {
          this.QAsVoid(var1, var3);
       }
@@ -200,8 +200,8 @@ public abstract class sf extends Module {
    protected void clearEvidence() {
    }
 
-   protected wl.Type_v evidence() {
-      return new wl.Type_v(this.v, this.y, this.O, this.h);
+   protected WidgetLayer.Type_v evidence() {
+      return new WidgetLayer.Type_v(this.v, this.y, this.O, this.h);
    }
 
    public List<Setting<?>> detectionSettings() {
@@ -234,7 +234,7 @@ public abstract class sf extends Module {
       this.count(var1, var3);
    }
 
-   protected void drawEvidence(ChunkPos var1, wl.Type_v var2, ThemeSettings var3, int var4) {
+   protected void drawEvidence(ChunkPos var1, WidgetLayer.Type_v var2, ThemeSettings var3, int var4) {
    }
 
    protected final void OAsVoid(int var1) {
@@ -285,7 +285,7 @@ public abstract class sf extends Module {
       ClientLog.XAsVoid("BaseFinding", "{} released world scan state", this.getName());
    }
 
-   private void QAsVoid(long var1, wl.Type_v var3) {
+   private void QAsVoid(long var1, WidgetLayer.Type_v var3) {
       ChunkPos var4 = new ChunkPos(var1);
       ClientLog.XAsVoid("BaseFinding", "{} found chunk [{}, {}]: {}", this.getName(), var4.x, var4.z, this.describe(var3));
       if (this.notifications.getValue()) {
@@ -345,7 +345,7 @@ public abstract class sf extends Module {
 
    private void rAsVoid() {
       if (this.notifications.getValue()) {
-         Map<Long, wl.Type_v> var1 = this.q.CAsMap();
+         Map<Long, WidgetLayer.Type_v> var1 = this.q.CAsMap();
 
          while (!this.z.isEmpty()) {
             sf.Type_t var2 = this.z.removeFirst();
@@ -404,7 +404,7 @@ public abstract class sf extends Module {
    private void jAsVoid() {
       if (this.isRuntimeActive() && this.isInGame() && this.a == mc.world) {
          try {
-            Map<Long, wl.Type_v> var1 = this.q.CAsMap();
+            Map<Long, WidgetLayer.Type_v> var1 = this.q.CAsMap();
             double var2 = Math.clamp(this.markerY.getValue(), (double)this.a.getBottomY(), (double)(this.a.getTopYInclusive() - 1));
             double var4 = Math.sqrt(2.0) * (this.scanRadius.getValue() + 1.0) * 16.0;
             Vec3d var6 = mc.gameRenderer.getCamera().getCameraPos();
@@ -412,7 +412,7 @@ public abstract class sf extends Module {
             this.beginDraw();
 
             for (long var9 : this.t) {
-               wl.Type_v var11 = var1.get(var9);
+               WidgetLayer.Type_v var11 = var1.get(var9);
                ChunkPos var12 = new ChunkPos(var9);
                if (var11 != null && this.a.getChunkManager().getWorldChunk(var12.x, var12.z) != null) {
                   double var13 = Math.sqrt(this.sAsDouble(var9));

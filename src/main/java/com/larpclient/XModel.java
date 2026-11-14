@@ -122,7 +122,7 @@ public record XModel(int left, int top, int width, int height, int contentX, int
       }
    }
 
-   public xm moduleInspector(double var1) {
+   public XModel moduleInspector(double var1) {
       if (this.detachedInspector()) {
          return new XModel(
             this.inspectorX,
@@ -183,7 +183,7 @@ public record XModel(int left, int top, int width, int height, int contentX, int
       return var1 >= (double)this.contentX && var1 < (double)this.right && var3 >= (double)(this.top + 12) && var3 < (double)this.bottom;
    }
 
-   public xm offset(int var1, int var2) {
+   public XModel offset(int var1, int var2) {
       return new XModel(
          this.left + var1,
          this.top + var2,
@@ -199,7 +199,7 @@ public record XModel(int left, int top, int width, int height, int contentX, int
       );
    }
 
-   public static xm calculateModules(int var0, int var1, double var2) {
+   public static XModel calculateModules(int var0, int var1, double var2) {
       int var4 = Math.max(1, Math.max(Math.min(530, var0 - 16), Math.min(620, var0 - 268)));
       int var5 = Math.max(1, Math.min(408, var1 - 16));
       int var6 = var0 >= 766 ? Math.min(224, var0 - var4 - 28) : 0;
@@ -213,8 +213,8 @@ public record XModel(int left, int top, int width, int height, int contentX, int
       return new XModel(var8, var9, var4, var5, var11, var12, var9 + 50, var9 + var5 - 44, var13, var6 > 0, var6);
    }
 
-   public static xm calculate(int var0, int var1) {
-      xm var2 = calculateModules(var0, var1, 0.0);
+   public static XModel calculate(int var0, int var1) {
+      XModel var2 = calculateModules(var0, var1, 0.0);
       return new XModel(var2.left(), var2.top(), var2.width(), var2.height(), var2.contentX(), var2.right(), var2.bodyTop(), var2.bottom(), var2.contentX(), false);
    }
 }

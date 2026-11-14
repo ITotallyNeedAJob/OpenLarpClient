@@ -14,9 +14,9 @@ import net.minecraft.scoreboard.ScoreboardCriterion.RenderType;
 import net.minecraft.text.Text;
 
 public final class ScoreboardHealthResolver {
-   private static final Pattern AuraModule = Pattern.compile("\\bhp\\b");
+   private static final Pattern x = Pattern.compile("\\bhp\\b");
    private static final ScoreboardHealthResolver.Type_c K = new ScoreboardHealthResolver.Type_c();
-   private static final ScoreboardHealthResolver.Type_c ScreenScale = new ScoreboardHealthResolver.Type_c();
+   private static final ScoreboardHealthResolver.Type_c y = new ScoreboardHealthResolver.Type_c();
    private static boolean W;
 
    private ScoreboardHealthResolver() {

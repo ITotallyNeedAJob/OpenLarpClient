@@ -1,7 +1,7 @@
 package com.larpclient;
 
 public final class OutputBuffer {
-   public static final int LineSegment = 4;
+   public static final int e = 4;
 
    private static double CAsDouble(double var0, double var2) {
       return var0 != 0.0 && var2 != 0.0 && Math.signum(var0) == Math.signum(var2) ? 2.0 * var0 * var2 / (var0 + var2) : 0.0;

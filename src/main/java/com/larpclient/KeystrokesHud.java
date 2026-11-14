@@ -14,11 +14,11 @@ public final class KeystrokesHud {
    public static final int Q = 4;
    public static final int W = 13;
    public static final int T = 4;
-   public static final int ChatPayParser = 10;
-   public static final int TextLayout = 7;
-   public static final double AuraModule = 34.0;
+   public static final int g = 10;
+   public static final int j = 7;
+   public static final double x = 34.0;
    public static final double q = 12.0;
-   private static final Map<String, Float> SkyChunkCache = new HashMap<>();
+   private static final Map<String, Float> s = new HashMap<>();
    private static final KeystrokesHud.Type_z F = new KeystrokesHud.Type_z();
    private static final KeystrokesHud.Type_z J = new KeystrokesHud.Type_z();
    private static Object A;
@@ -74,7 +74,7 @@ public final class KeystrokesHud {
       double var8 = S == 0L ? 0.016666666666666666 : (double)(var6 - S) / 1.0E9;
       S = var6;
       if (A != var5.world) {
-         SkyChunkCache.clear();
+         s.clear();
          F.dAsVoid();
          J.dAsVoid();
          A = var5.world;
@@ -83,7 +83,7 @@ public final class KeystrokesHud {
       int var10 = uAsInt(var1);
       int var11 = QAsInt(var1);
       GuiTextureDrawing.AAsVoid(
-         var0, (float)var2, (float)var3, (float)var10, (float)var11, 8.0F, bg.XAsInt(-16119284, var1.keystrokesBGAlpha.getValue() / 255.0)
+         var0, (float)var2, (float)var3, (float)var10, (float)var11, 8.0F, ColorUtil.XAsInt(-16119284, var1.keystrokesBGAlpha.getValue() / 255.0)
       );
       MenuLogoLayout.yAsVoid(var0, var2, var3, var10, var11, 8);
       GameOptions var12 = var5.options;
@@ -108,7 +108,7 @@ public final class KeystrokesHud {
          kAsVoid(var0, var14, var15, 71, 13, var22);
          int var23 = Math.round(21.300001F);
          GuiTextureDrawing.AAsVoid(
-            var0, (float)(var14 + (71 - var23) / 2), (float)(var15 + 6 - 1), (float)var23, 2.0F, 1.0F, bg.xAsInt(-7697772, -1, (double)var22)
+            var0, (float)(var14 + (71 - var23) / 2), (float)(var15 + 6 - 1), (float)var23, 2.0F, 1.0F, ColorUtil.xAsInt(-7697772, -1, (double)var22)
          );
       }
    }
@@ -118,13 +118,13 @@ public final class KeystrokesHud {
    }
 
    private static float oAsFloat(String var0, boolean var1, double var2) {
-      float var4 = XAsFloat(SkyChunkCache.getOrDefault(var0, 0.0F), var1, var2);
-      SkyChunkCache.put(var0, var4);
+      float var4 = XAsFloat(s.getOrDefault(var0, 0.0F), var1, var2);
+      s.put(var0, var4);
       return var4;
    }
 
    private static void kAsVoid(DrawContext var0, int var1, int var2, int var3, int var4, float var5) {
-      GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, (float)var3, (float)var4, 4.0F, bg.XAsInt(-1, 0.055 * (double)(1.0F - var5)));
+      GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, (float)var3, (float)var4, 4.0F, ColorUtil.XAsInt(-1, 0.055 * (double)(1.0F - var5)));
       if (!(var5 <= 0.01F)) {
          RoundedShapePipeline.CAsVoid(
             var0,
@@ -134,30 +134,30 @@ public final class KeystrokesHud {
             (float)var4,
             4.0F,
             6.0F * var5,
-            bg.pAsInt(bd.w, 0.45 * (double)var5),
-            bg.pAsInt(bd.w, 0.45 * (double)var5)
+            ColorUtil.pAsInt(UiStyle.w, 0.45 * (double)var5),
+            ColorUtil.pAsInt(UiStyle.w, 0.45 * (double)var5)
          );
-         GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, (float)var3, (float)var4, 4.0F, bg.pAsInt(bd.w, 0.9 * (double)var5));
+         GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, (float)var3, (float)var4, 4.0F, ColorUtil.pAsInt(UiStyle.w, 0.9 * (double)var5));
       }
    }
 
    private static void rAsVoid(DrawContext var0, String var1, String var2, boolean var3, int var4, int var5, int var6, int var7, double var8) {
       float var10 = oAsFloat(var1, var3, var8);
       kAsVoid(var0, var4, var5, var6, var7, var10);
-      int var11 = bg.xAsInt(bd.e, -1, (double)var10);
+      int var11 = ColorUtil.xAsInt(UiStyle.e, -1, (double)var10);
       double var12 = (double)var4 + (double)var6 / 2.0;
       if (var2 == null) {
-         ww.fAsVoid(var0, var1, var12 - (double)ww.WAsInt(var1, 10.0) / 2.0, (double)var5 + (double)(var7 - 10) / 2.0, 10.0, var11);
+         WorldWidget.fAsVoid(var0, var1, var12 - (double)WorldWidget.WAsInt(var1, 10.0) / 2.0, (double)var5 + (double)(var7 - 10) / 2.0, 10.0, var11);
       } else {
          double var14 = (double)var5 + (double)(var7 - 10 - 7) / 2.0;
-         ww.fAsVoid(var0, var1, var12 - (double)ww.WAsInt(var1, 10.0) / 2.0, var14, 10.0, var11);
-         ww.fAsVoid(var0, var2, var12 - (double)ww.WAsInt(var2, 7.0) / 2.0, var14 + 10.0, 7.0, bg.xAsInt(-7697772, -1, (double)var10));
+         WorldWidget.fAsVoid(var0, var1, var12 - (double)WorldWidget.WAsInt(var1, 10.0) / 2.0, var14, 10.0, var11);
+         WorldWidget.fAsVoid(var0, var2, var12 - (double)WorldWidget.WAsInt(var2, 7.0) / 2.0, var14 + 10.0, 7.0, ColorUtil.xAsInt(-7697772, -1, (double)var10));
       }
    }
 
    public static final class Type_z {
       public static final long W = 1000000000L;
-      private final ArrayDeque<Long> PetEffectRenderer = new ArrayDeque<>();
+      private final ArrayDeque<Long> a = new ArrayDeque<>();
 
       public Type_z() {
       }

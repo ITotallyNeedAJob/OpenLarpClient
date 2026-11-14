@@ -109,7 +109,7 @@ public final class ClickPulse extends Module {
    }
 
    private int tAsInt() {
-      return this.themeColor.getValue() ? bd.w | 0xFF000000 : this.color.getValue();
+      return this.themeColor.getValue() ? UiStyle.w | 0xFF000000 : this.color.getValue();
    }
 
    private void fAsVoid(DrawContext var1, double var2, double var4) {

@@ -56,13 +56,13 @@ public final class HoverTotem extends Module {
          && mc.player.isAlive()
          && !mc.player.isSpectator()
          && !mc.player.isInCreativeMode()
-         && !p5.oAsBoolean()
+         && !ParticleEmitter.oAsBoolean()
          && mc.isWindowFocused()
          && mc.currentScreen instanceof HandledScreen var1
          && !AutoTotem.NAsBoolean()) {
          ClientPlayerEntityAccessor var11 = (ClientPlayerEntityAccessor)mc.player;
          PlayerInput var3 = var11.larpLastSentInput();
-         if (var3 != null && mx.uAsBoolean(var11.larpWasSprinting(), var3.forward(), var3.backward(), var3.left(), var3.right(), var3.jump(), var3.sneak())) {
+         if (var3 != null && MixinCompat.uAsBoolean(var11.larpWasSprinting(), var3.forward(), var3.backward(), var3.left(), var3.right(), var3.jump(), var3.sneak())) {
             ScreenHandler var4 = var1.getScreenHandler();
             if (var4 == mc.player.currentScreenHandler
                && var4.canUse(mc.player)
@@ -73,7 +73,7 @@ public final class HoverTotem extends Module {
                if (var6 != null && var6.isEnabled() && !var6.disablesDynamicDisplay() && var6.canTakeItems(mc.player)) {
                   int var7 = this.hotbarSlot.getValue().intValue();
                   int var8 = var6.inventory == mc.player.getInventory() ? var6.getIndex() : -1;
-                  mx.Type_a var9 = mx.rAsMx_Type_a(
+                  MixinCompat.Type_a var9 = MixinCompat.rAsMx_Type_a(
                      var6.id,
                      var6.getStack().isOf(Items.TOTEM_OF_UNDYING),
                      var8,

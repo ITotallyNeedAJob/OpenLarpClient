@@ -22,11 +22,12 @@ import net.minecraft.scoreboard.number.StyledNumberFormat;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import com.larpclient.ChatPayParser;
 
 public final class FakePay extends Module {
    private static volatile FakePay j;
    private volatile boolean g;
-   private final ab c = new ab();
+   private final FakeBalanceFormatter c = new FakeBalanceFormatter();
    private Object z;
    private boolean L;
    private boolean A;
@@ -70,7 +71,7 @@ public final class FakePay extends Module {
    }
 
    private boolean PAsBoolean(String var1) {
-      return com.larpclient.g.ZAsBoolean(this.g, var1, this::mAsVoid, FakePay::VAsVoid);
+      return com.larpclient.ChatPayParser.ZAsBoolean(this.g, var1, this::mAsVoid, FakePay::VAsVoid);
    }
 
    @Override
@@ -91,7 +92,7 @@ public final class FakePay extends Module {
       ClientLog.lAsVoid("FakePay", "Local simulation failed; payment remains blocked", var0);
    }
 
-   private void mAsVoid(com.larpclient.g.Type_t var1) {
+   private void mAsVoid(com.larpclient.ChatPayParser.Type_t var1) {
       MinecraftClient var2 = getMc();
       if (var2 != null && var2.world != null && var2.player != null) {
          if (!var1.valid()) {
@@ -105,7 +106,7 @@ public final class FakePay extends Module {
             if (this.spoofMoney.getValue() && this.deductPayments.getValue()) {
                this.jAsVoid(var2.world);
                if (!this.c.MAsBoolean(var1.amount())) {
-                  Text var4 = this.CAsText("Not enough fake money. Balance: $ " + com.larpclient.g.gAsString(this.c.gAsBigDecimal()));
+                  Text var4 = this.CAsText("Not enough fake money. Balance: $ " + com.larpclient.ChatPayParser.gAsString(this.c.gAsBigDecimal()));
                   if (var4 != null) {
                      var2.getMessageHandler().onGameMessage(var4, false);
                   }
@@ -132,14 +133,14 @@ public final class FakePay extends Module {
       }
    }
 
-   public static Text JAsText(com.larpclient.g.Type_t var0) {
+   public static Text JAsText(com.larpclient.ChatPayParser.Type_t var0) {
       if (!var0.valid()) {
          throw new IllegalArgumentException("Invalid simulated payment");
       } else {
          return Text.literal("You paid " + var0.player() + " ")
             .styled(var0x -> var0x.withColor(16777215))
             .append(Text.literal("$").styled(var0x -> var0x.withColor(64512)))
-            .append(Text.literal(" " + com.larpclient.g.gAsString(var0.amount())).styled(var0x -> var0x.withColor(16777215)));
+            .append(Text.literal(" " + com.larpclient.ChatPayParser.gAsString(var0.amount())).styled(var0x -> var0x.withColor(16777215)));
       }
    }
 
@@ -172,7 +173,7 @@ public final class FakePay extends Module {
    }
 
    private BigDecimal tAsBigDecimal() {
-      return BigDecimal.valueOf(this.balanceBillions.getValue()).scaleByPowerOfTen(9).add(BigDecimal.valueOf(this.fakeBalance.getValue())).min(ab.j);
+      return BigDecimal.valueOf(this.balanceBillions.getValue()).scaleByPowerOfTen(9).add(BigDecimal.valueOf(this.fakeBalance.getValue())).min(FakeBalanceFormatter.j);
    }
 
    public String TAsString() {
@@ -187,7 +188,7 @@ public final class FakePay extends Module {
 
    public String qAsString(String var1) {
       try {
-         BigDecimal var2 = ab.jAsBigDecimal(var1);
+         BigDecimal var2 = FakeBalanceFormatter.jAsBigDecimal(var1);
          BigDecimal var3 = BigDecimal.valueOf(1000000000L);
          this.fakeBalance.setClampedValue(var2.remainder(var3).doubleValue());
          this.balanceBillions.setClampedValue(var2.divideToIntegralValue(var3).doubleValue());
@@ -203,7 +204,7 @@ public final class FakePay extends Module {
          this.jAsVoid(var1.world);
       }
 
-      return "Balance: $ " + com.larpclient.g.gAsString(this.z == null ? this.tAsBigDecimal() : this.c.gAsBigDecimal());
+      return "Balance: $ " + com.larpclient.ChatPayParser.gAsString(this.z == null ? this.tAsBigDecimal() : this.c.gAsBigDecimal());
    }
 
    public Text CAsText(String var1) {
@@ -221,8 +222,8 @@ public final class FakePay extends Module {
          if (var4 != null && var4.g && var4.spoofMoney.getValue() && var5 != null && var5.world != null) {
             var4.jAsVoid(var5.world);
             MutableText var6 = var1 == null
-               ? ab.vAsMutableText(var0, var4.c.gAsBigDecimal(), var2, var3)
-               : (ab.sAsBoolean(var1, var2, var3) ? ab.KAsMutableText(var0, var4.c.gAsBigDecimal()) : var0);
+               ? FakeBalanceFormatter.vAsMutableText(var0, var4.c.gAsBigDecimal(), var2, var3)
+               : (FakeBalanceFormatter.sAsBoolean(var1, var2, var3) ? FakeBalanceFormatter.KAsMutableText(var0, var4.c.gAsBigDecimal()) : var0);
             if (var6 != var0 && !var4.L) {
                var4.L = true;
                ClientLog.GAsVoid("FakePay", "Money sidebar row matched; local display override active");
@@ -243,7 +244,7 @@ public final class FakePay extends Module {
          MinecraftClient var2 = getMc();
          if (var0 != null && var1 != null && var1.g && var1.spoofMoney.getValue() && var2 != null && var2.world != null) {
             var1.jAsVoid(var2.world);
-            Text var3 = ab.QAsText(var0, var1.c.gAsBigDecimal());
+            Text var3 = FakeBalanceFormatter.QAsText(var0, var1.c.gAsBigDecimal());
             if (var3 != var0 && !var1.A) {
                var1.A = true;
                ClientLog.GAsVoid("FakePay", "Tab footer money matched; shared local balance override active");
@@ -264,7 +265,7 @@ public final class FakePay extends Module {
          MinecraftClient var3 = getMc();
          if (var0 != null && var2 != null && var2.g && var2.spoofMoney.getValue() && var3 != null && var3.world != null) {
             var2.jAsVoid(var3.world);
-            Text var4 = ab.JAsText(var0, var2.c.gAsBigDecimal());
+            Text var4 = FakeBalanceFormatter.JAsText(var0, var2.c.gAsBigDecimal());
             if (var4 != var0 && (var1 ? !var2.t : !var2.U)) {
                if (var1) {
                   var2.t = true;
@@ -334,8 +335,8 @@ public final class FakePay extends Module {
    public static boolean tAsBoolean(Packet<?> var0) {
       FakePay var1 = j;
       if (var1 != null && var1.g) {
-         String var2 = l8.iAsString(var0);
-         return var2 == null ? false : com.larpclient.g.ZAsBoolean(true, var2, var1xx -> {
+         String var2 = ChatPacketReader.iAsString(var0);
+         return var2 == null ? false : com.larpclient.ChatPayParser.ZAsBoolean(true, var2, var1xx -> {
             MinecraftClient var2x = getMc();
             if (var2x != null) {
                ClientWorld var3 = var2x.world;

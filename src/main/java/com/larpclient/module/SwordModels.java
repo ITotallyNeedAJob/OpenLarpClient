@@ -35,8 +35,8 @@ public final class SwordModels extends Module {
    );
    private final BooleanSetting resetDefaults = this.addSetting(new BooleanSetting("Reset Defaults", "Restore all Sword Skins settings", false));
    private static SwordModels y;
-   private final bj[] b = new bj[]{new bj(), new bj()};
-   private final r8[] B = new r8[]{new r8(), new r8()};
+   private final KnifeState[] b = new KnifeState[]{new KnifeState(), new KnifeState()};
+   private final KnifeMeshRendererState[] B = new KnifeMeshRendererState[]{new KnifeMeshRendererState(), new KnifeMeshRendererState()};
    private final WatchInspectAnimation[] Q = new WatchInspectAnimation[]{new WatchInspectAnimation(), new WatchInspectAnimation()};
    private final ItemStack[] g = new ItemStack[]{ItemStack.EMPTY, ItemStack.EMPTY};
    private int O = -1;
@@ -83,11 +83,11 @@ public final class SwordModels extends Module {
       return KnifeType.bAsBc(this.model.getValue());
    }
 
-   public bj WAsBj(Hand var1) {
+   public KnifeState WAsBj(Hand var1) {
       return this.b[var1 == Hand.MAIN_HAND ? 0 : 1];
    }
 
-   public r8 NAsR8(Hand var1) {
+   public KnifeMeshRendererState NAsR8(Hand var1) {
       return this.B[var1 == Hand.MAIN_HAND ? 0 : 1];
    }
 
@@ -181,7 +181,7 @@ public final class SwordModels extends Module {
                && this.rAsBoolean(var4.getStackInHand(var5))
                && !var4.handSwinging
                && !var4.isUsingItem()
-               && this.WAsBj(var5).oAsBoolean(mb.RAsDouble(), this.inspectSpeed.getValue())
+               && this.WAsBj(var5).oAsBoolean(MediaSession.RAsDouble(), this.inspectSpeed.getValue())
                && this.fAsBc() == KnifeType.WATCH) {
                ClientLog.XAsVoid("SwordModels", "Watch inspect started in {} at speed {}", var5, this.inspectSpeed.getValue());
             }

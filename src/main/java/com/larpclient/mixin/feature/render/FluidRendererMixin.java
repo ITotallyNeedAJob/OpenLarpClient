@@ -21,7 +21,7 @@ public abstract class FluidRendererMixin {
    @WrapMethod(
       method = {"method_3347(Lnet/minecraft/class_1920;Lnet/minecraft/class_2338;Lnet/minecraft/class_4588;Lnet/minecraft/class_2680;Lnet/minecraft/class_3610;)V"}
    )
-   private void ChinaHatCodec(BlockRenderView var1, BlockPos var2, VertexConsumer var3, BlockState var4, FluidState var5, Operation<Void> var6) {
+   private void i(BlockRenderView var1, BlockPos var2, VertexConsumer var3, BlockState var4, FluidState var5, Operation<Void> var6) {
       TerrainMaterialClassifier.QAsVoid(var1, var2, var5);
 
       try {

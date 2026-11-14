@@ -332,7 +332,7 @@ public class XRay extends Module {
                      }
 
                      int var14 = this.oreColors.getValue()
-                        ? bg.pAsInt(var8.color(), ThemeSettings.RAsDouble(var12, var4))
+                        ? ColorUtil.pAsInt(var8.color(), ThemeSettings.RAsDouble(var12, var4))
                         : this.k.iAsInt(var8.color(), var12, var4, 1.0, var9.hashCode());
                      this.k.AAsVoid(new Box(var9).expand(0.003), this.overlayStyle.getValue(), var14);
                      if (this.labels.getValue() && var8.vein() > 0 && var3 < 32 && var14 >>> 24 != 0) {

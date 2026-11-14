@@ -7,7 +7,7 @@ public final class PopupScale {
    }
 
    public static double ZAsDouble(double var0, double var2, double var4, boolean var6) {
-      return var6 ? w2.Type_e.CUBIC_OUT.zAsDouble((var0 - var2) / var4) : 1.0;
+      return var6 ? WeatherRenderer.Type_e.CUBIC_OUT.zAsDouble((var0 - var2) / var4) : 1.0;
    }
 
    public static PopupScale.Type_x vAsAq_Type_x(double var0, double var2, double var4, boolean var6, boolean var7) {

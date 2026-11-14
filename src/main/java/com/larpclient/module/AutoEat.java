@@ -29,7 +29,7 @@ public class AutoEat extends Module {
             }
          }
 
-         o9.cAsVoid(d4.Type_q.FOOD, var1, var0 -> var0.get(DataComponentTypes.FOOD) != null);
+         OutlineEffect.cAsVoid(SkyModeState.Type_q.FOOD, var1, var0 -> var0.get(DataComponentTypes.FOOD) != null);
       } else {
          this.onDisable();
       }
@@ -37,6 +37,6 @@ public class AutoEat extends Module {
 
    @Override
    public void onDisable() {
-      o9.cAsVoid(d4.Type_q.FOOD);
+      OutlineEffect.cAsVoid(SkyModeState.Type_q.FOOD);
    }
 }

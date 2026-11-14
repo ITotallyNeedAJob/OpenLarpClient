@@ -14,17 +14,17 @@ import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 public final class ClientPreferences {
-   public b4 Jf = b4.NEBULA;
+   public BlockErase Jf = BlockErase.NEBULA;
    public boolean Z = true;
    public boolean S = true;
    public String J = "";
-   public String BoxUtils = "";
-   public boolean CropHelper = true;
-   public WorldTimePreset.Type_d MenuPopupProvider = WorldTimePreset.Type_d.SUMMER;
+   public String c = "";
+   public boolean u = true;
+   public WorldTimePreset.Type_d f = WorldTimePreset.Type_d.SUMMER;
    public WorldTimePreset.Type_b L = WorldTimePreset.Type_b.HIGH;
-   public double SmoothInput = 0.33;
+   public double t = 0.33;
    public boolean N = true;
-   public boolean DropletTrail = true;
+   public boolean l = true;
    public boolean M;
    public boolean b;
    public String A = "Fade";
@@ -33,16 +33,16 @@ public final class ClientPreferences {
    public int n = 280;
    public double G = 0.67;
    public static final double q = 0.5;
-   public static final double PriceDetector = 2.0;
+   public static final double m = 2.0;
    public double JD = 1.0;
    public static final List<String> Q = List.of("Aurora", "Nebula", "Waves", "Gradient", "Dim", "None");
    public String D = "None";
    public static final double W = 0.9;
    public double JE = 0.42;
-   public static final int AuraModule = 4;
-   public int AuctionNotifier = 2;
+   public static final int x = 4;
+   public int o = 2;
    public static final List<String> P = List.of("Window", "Everywhere");
-   public String SkyChunkCache = "Window";
+   public String s = "Window";
    public static final List<String> K = List.of("Filled", "Outline", "Flat");
    public static final List<String> h = List.of("Glow", "Tint", "Text", "None");
    public static final List<String> C = List.of("Pill", "Square", "Minimal");
@@ -50,7 +50,7 @@ public final class ClientPreferences {
    public static final double w = 2.0;
    public String r = "Filled";
    public String T = "Glow";
-   public String SahurDanceEngine = "Pill";
+   public String d = "Pill";
    public String R = "Pill";
    public double X = 1.0;
    public boolean B = true;
@@ -58,17 +58,17 @@ public final class ClientPreferences {
    public boolean I = true;
    private static final int U = 2;
    public boolean O = true;
-   public BloomQuality.Type_w PetEffectRenderer = BloomQuality.Type_w.Medium;
-   public String ChinaHatCodec = "World";
+   public BloomQuality.Type_w a = BloomQuality.Type_w.Medium;
+   public String i = "World";
    public AppearanceRestoreJournal v = new AppearanceRestoreJournal();
    public ActiveProfileJournal E = new ActiveProfileJournal();
-   public SettingShortcuts GroundSample = new SettingShortcuts();
-   public PanelLayoutCodec ScreenScale = new PanelLayoutCodec();
-   private final Set<String> LineSegment = new LinkedHashSet<>();
-   private final Set<String> HexEdgeloop = new LinkedHashSet<>();
+   public SettingShortcuts k = new SettingShortcuts();
+   public PanelLayoutCodec y = new PanelLayoutCodec();
+   private final Set<String> e = new LinkedHashSet<>();
+   private final Set<String> p = new LinkedHashSet<>();
    private final Set<String> JL = new LinkedHashSet<>();
    public boolean H;
-   private final Map<String, Long> ChatPayParser = new LinkedHashMap<>();
+   private final Map<String, Long> g = new LinkedHashMap<>();
    public static int j;
    private static final String[] ab = new String[]{
       "clickGuiAnimation",
@@ -119,8 +119,8 @@ public final class ClientPreferences {
    public ClientPreferences() {
    }
 
-   public bd.Type_p pAsBd_Type_p() {
-      return new bd.Type_p(this.r, this.T, this.d, this.R, this.X, this.B, this.z, this.I);
+   public UiStyle.Type_p pAsBd_Type_p() {
+      return new UiStyle.Type_p(this.r, this.T, this.d, this.R, this.X, this.B, this.z, this.I);
    }
 
    public boolean VAsBoolean(String var1) {
@@ -369,7 +369,7 @@ public final class ClientPreferences {
 
       try {
          String var55 = ProfileCodec.MAsString(var0, "clickGuiAnimation", 16);
-         if (xb.L.contains(var55)) {
+         if (XBlurEffect.L.contains(var55)) {
             var1.A = var55;
          }
       } catch (RuntimeException var34) {
@@ -506,7 +506,7 @@ public final class ClientPreferences {
       }
 
       try {
-         var1.Jf = b4.AAsB4(ProfileCodec.MAsString(var0, "background", 32));
+         var1.Jf = BlockErase.AAsB4(ProfileCodec.MAsString(var0, "background", 32));
       } catch (RuntimeException var17) {
       }
 

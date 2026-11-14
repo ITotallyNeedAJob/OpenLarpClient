@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 
 public final class NotificationCategory {
    private static final ArrayDeque<String> A = new ArrayDeque<>();
-   private static String AuctionNotifier = "";
+   private static String o = "";
    private static final Set<String> N = Set.of("Auth", "Config", "Render", "API", "Module", "Error", "Releases", "Reports", "Status");
-   private static final Pattern GroundSample = Pattern.compile(
+   private static final Pattern k = Pattern.compile(
       "(?i)LARP-[A-F0-9]{4}(?:-[A-F0-9]{4}){3}|LARP-[A-F0-9]{16}|\\b[a-f0-9]{64}\\b|\\bBearer\\s+\\S+|\\bmfa\\.[\\w-]+|\\b[\\w-]{20,}\\.[\\w-]{6}\\.[\\w-]{20,}\\b|(?:license[_ -]?key|access[_ -]?token|refresh[_ -]?token|install[_ -]?token|session[_ -]?token|token|password|client[_ -]?secret|authorization|auth\\.json|hwid)\\s*[\"']?\\s*[:=][^\\r\\n]*|-----BEGIN .*PRIVATE KEY-----[\\s\\S]*?-----END .*PRIVATE KEY-----"
    );
 
@@ -20,7 +20,7 @@ public final class NotificationCategory {
    }
 
    public static String BAsString(String var0) {
-      return var0 == null ? "" : GroundSample.matcher(var0).replaceAll("[redacted]").replaceAll("(?:[A-Za-z]:\\\\|/home/|/Users/)[^\\s\"']+", "[path]").replace('§', ' ');
+      return var0 == null ? "" : k.matcher(var0).replaceAll("[redacted]").replaceAll("(?:[A-Za-z]:\\\\|/home/|/Users/)[^\\s\"']+", "[path]").replace('§', ' ');
    }
 
    public static synchronized void CAsVoid(String var0, NotificationCategory.Type_o var1) {
@@ -31,7 +31,7 @@ public final class NotificationCategory {
       if (N.contains(var0)) {
          mAsVoid(var0, var1 + " event");
          if (var2 != null) {
-            AuctionNotifier = "[Larp/" + var0 + "] " + var2.getClass().getSimpleName();
+            o = "[Larp/" + var0 + "] " + var2.getClass().getSimpleName();
          }
       }
    }
@@ -78,7 +78,7 @@ public final class NotificationCategory {
             return var5;
          }
       } else {
-         throw new IllegalArgumentException("Enter PetEffectRenderer title (1–120 characters) and description (10–4000 characters).");
+         throw new IllegalArgumentException("Enter a title (1–120 characters) and description (10–4000 characters).");
       }
    }
 

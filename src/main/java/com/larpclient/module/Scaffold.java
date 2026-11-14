@@ -56,7 +56,7 @@ public final class Scaffold extends Module implements BlockPlacementController.T
    private final BooleanSetting pauseUsingItem = this.addSetting(new BooleanSetting("Pause Using Item", "Pause while eating or using an item", true));
    private final BooleanSetting pauseMining = this.addSetting(new BooleanSetting("Pause Mining", "Pause while the attack key is held", true));
    private final PlacementPreview G = new PlacementPreview(this, var1 -> this.addSetting(var1));
-   private final m1 U = new m1();
+   private final RotationAccumulator U = new RotationAccumulator();
    private Object J;
    private Object M;
    private BlockPos o;
@@ -75,7 +75,7 @@ public final class Scaffold extends Module implements BlockPlacementController.T
       this.keepHeight.onChanged(var1 -> {
          this.TAsVoid();
          if (this.isInGame()) {
-            this.X = ds.vAsInt(mc.player.getY());
+            this.X = DropletSurface.vAsInt(mc.player.getY());
          }
       });
       this.rotation.onChanged(var1 -> this.TAsVoid());
@@ -121,7 +121,7 @@ public final class Scaffold extends Module implements BlockPlacementController.T
       this.d = 0;
       this.J = mc.world;
       this.M = mc.player;
-      this.X = ds.vAsInt(mc.player.getY());
+      this.X = DropletSurface.vAsInt(mc.player.getY());
       this.E = "Ready";
       this.r = "";
       this.u = 0L;
@@ -150,7 +150,7 @@ public final class Scaffold extends Module implements BlockPlacementController.T
       this.U.aAsVoid();
       this.G.rAsVoid();
       BlockPlacementController.WAsVoid(this);
-      p5.GAsVoid(p5.Type_u.SCAFFOLD);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.SCAFFOLD);
    }
 
    private boolean pAsBoolean() {
@@ -183,9 +183,9 @@ public final class Scaffold extends Module implements BlockPlacementController.T
    }
 
    private boolean EAsBoolean() {
-      if (!this.pAsBoolean() || !b_.jAsBoolean() || b_.MAsBoolean()) {
+      if (!this.pAsBoolean() || !ModuleImportBroker.jAsBoolean() || ModuleImportBroker.MAsBoolean()) {
          return false;
-      } else if (!p5.fAsBoolean(p5.Type_u.SCAFFOLD)) {
+      } else if (!ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.SCAFFOLD)) {
          return false;
       } else {
          Fly var1 = Fly.bAsFly();
@@ -204,16 +204,16 @@ public final class Scaffold extends Module implements BlockPlacementController.T
 
    @Override
    public void aimPlacement(float var1, float var2) {
-      if (this.isEnabled() && this.EAsBoolean() && b_.nAsBoolean(this)) {
+      if (this.isEnabled() && this.EAsBoolean() && ModuleImportBroker.nAsBoolean(this)) {
          float[] var3 = this.rotation.pAsBoolean("Smooth")
             ? this.U.DAsFloatArray(mc.player.age, mc.player.getYaw(), mc.player.getPitch(), var1, var2, this.turnSpeed.getValue())
             : new float[]{var1, var2};
-         dq.RAsVoid(this, dq.Type_s.PLACEMENT, var3[0], var3[1], 1.0);
-         if (!dq.CAsBoolean(dq.Type_s.PLACEMENT)) {
+         ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.PLACEMENT, var3[0], var3[1], 1.0);
+         if (!ModuleDetector.CAsBoolean(ModuleDetector.Type_s.PLACEMENT)) {
             this.R = false;
-            p5.GAsVoid(p5.Type_u.SCAFFOLD);
+            ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.SCAFFOLD);
          } else {
-            p5.jAsVoid(p5.Type_u.SCAFFOLD);
+            ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.SCAFFOLD);
             this.R = true;
             this.P = mc.player.age;
          }
@@ -222,7 +222,7 @@ public final class Scaffold extends Module implements BlockPlacementController.T
 
    public float UAsFloat(float var1) {
       if (this.isEnabled()) {
-         if (this.isRuntimeActive() && p5.NAsP5_Type_u() == p5.Type_u.SCAFFOLD) {
+         if (this.isRuntimeActive() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.SCAFFOLD) {
             mc.player.setHeadYaw(mc.player.getYaw());
             return mc.player.getYaw();
          } else {
@@ -297,9 +297,9 @@ public final class Scaffold extends Module implements BlockPlacementController.T
    }
 
    private List<BlockPos> qAsList() {
-      Vec3d var1 = r6.JAsVec3d().multiply(this.lookAhead.getValue());
+      Vec3d var1 = ModuleKeybindChecker.JAsVec3d().multiply(this.lookAhead.getValue());
       Vec3d var2 = mc.player.getVelocity().multiply(1.0, 0.0, 1.0);
-      return ds.oAsList(mc.player.getEntityPos(), mc.player.getBoundingBox(), var1.add(var2), this.keepHeight.getValue() ? this.X : ds.vAsInt(mc.player.getY()));
+      return DropletSurface.oAsList(mc.player.getEntityPos(), mc.player.getBoundingBox(), var1.add(var2), this.keepHeight.getValue() ? this.X : DropletSurface.vAsInt(mc.player.getY()));
    }
 
    private void cAsVoid(String var1) {
@@ -321,7 +321,7 @@ public final class Scaffold extends Module implements BlockPlacementController.T
          this.cAsVoid("Paused: screen, movement, item use or another camera owns control");
       } else {
          if (!this.bAsBoolean()) {
-            p5.GAsVoid(p5.Type_u.SCAFFOLD);
+            ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.SCAFFOLD);
          }
 
          if (mc.player.age < this.d) {

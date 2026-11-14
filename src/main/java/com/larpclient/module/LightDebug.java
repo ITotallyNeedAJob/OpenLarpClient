@@ -29,7 +29,7 @@ public final class LightDebug extends Module {
    private final NumberSetting renderLimit = this.addSetting(
       new NumberSetting("Render Limit", "Nearest chunk light runs drawn per frame; all scan data is retained", 16384.0, 1024.0, 65536.0, 1024.0)
    );
-   private final Map<Long, List<bi.Type_p>> r = new HashMap<>();
+   private final Map<Long, List<LightLayerParser.Type_p>> r = new HashMap<>();
    private List<LightDebug.Type_s> u = List.of();
    private ClientWorld q;
    private ChunkPos U;
@@ -161,13 +161,13 @@ public final class LightDebug extends Module {
                for (var3 -= var5 - this.W; this.W < var5; this.W++) {
                   this.N.set(var4.getStartX() + (this.W & 15), this.a + (this.W >> 8), var4.getStartZ() + (this.W >> 4 & 15));
                   int var6 = this.q.getLightLevel(LightType.BLOCK, this.N);
-                  if (var6 > 0 && bi.tAsBoolean(var6, this.q.getLightLevel(LightType.SKY, this.N))) {
+                  if (var6 > 0 && LightLayerParser.tAsBoolean(var6, this.q.getLightLevel(LightType.SKY, this.N))) {
                      this.Q[this.W] = (byte)var6;
                   }
                }
 
                if (this.W == this.Q.length) {
-                  List var7 = bi.lAsList(this.Q, var4.x, var4.z, this.a);
+                  List var7 = LightLayerParser.lAsList(this.Q, var4.x, var4.z, this.a);
                   if (var7.isEmpty()) {
                      this.r.remove(var4.toLong());
                   } else {
@@ -198,7 +198,7 @@ public final class LightDebug extends Module {
       if (this.U == null) {
          this.u = List.of();
       } else {
-         this.u = this.r.entrySet().stream().sorted(Comparator.<Entry<Long, List<bi.Type_p>>>comparingDouble(var1 -> {
+         this.u = this.r.entrySet().stream().sorted(Comparator.<Entry<Long, List<LightLayerParser.Type_p>>>comparingDouble(var1 -> {
             ChunkPos var2 = new ChunkPos(var1.getKey());
             double var3 = (double)var2.x - (double)this.U.x;
             double var5 = (double)var2.z - (double)this.U.z;
@@ -216,12 +216,12 @@ public final class LightDebug extends Module {
             for (LightDebug.Type_s var4 : this.u) {
                ChunkPos var5 = new ChunkPos(var4.key());
                if (this.q.getChunkManager().getWorldChunk(var5.x, var5.z) != null) {
-                  for (bi.Type_p var7 : var4.runs()) {
+                  for (LightLayerParser.Type_p var7 : var4.runs()) {
                      if (var1++ >= var2) {
                         return;
                      }
 
-                     int var8 = bi.bAsInt(var7.light(), this.alpha.getValue().intValue());
+                     int var8 = LightLayerParser.bAsInt(var7.light(), this.alpha.getValue().intValue());
                      GizmoDrawing.box(
                            new Box(
                               (double)var7.x(),
@@ -248,6 +248,6 @@ public final class LightDebug extends Module {
       return this.u.size() + " lit chunks";
    }
 
-   private static record Type_s(long key, List<bi.Type_p> runs) {
+   private static record Type_s(long key, List<LightLayerParser.Type_p> runs) {
    }
 }

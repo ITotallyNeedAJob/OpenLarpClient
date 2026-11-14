@@ -27,8 +27,8 @@ public abstract class ItemEntityRendererMixin {
       at = {@At("TAIL")}
    )
    private void larpclient$injectFV(ItemEntity var1, ItemEntityRenderState var2, float var3, CallbackInfo var4) {
-      ((p1)var2).larp$setGrounded(var1.isOnGround());
-      ((p1)var2).larp$setFloating(!var1.isOnGround() && var1.isTouchingWater());
+      ((ParticleConfig)var2).larp$setGrounded(var1.isOnGround());
+      ((ParticleConfig)var2).larp$setFloating(!var1.isOnGround() && var1.isTouchingWater());
    }
 
    @Inject(
@@ -47,8 +47,8 @@ public abstract class ItemEntityRendererMixin {
          float var10 = ItemEntity.getRotation(var1.age, var1.uniqueOffset);
          var2.multiply(RotationAxis.POSITIVE_Y.rotation(-var10));
          var2.translate(0.0F, -var8 - var9, 0.0F);
-         p1 var11 = (p1)var1;
-         xo.Type_r var12 = xo.tAsXo_Type_r(
+         ParticleConfig var11 = (ParticleConfig)var1;
+         XOverlay.Type_r var12 = XOverlay.tAsXo_Type_r(
             var11.larp$isGrounded(), var11.larp$isFloating(), var6.wAsBoolean(), (double)var1.age, (double)var1.uniqueOffset, var7.minY, var7.minZ, var7.maxZ
          );
          var2.translate(0.0, var12.height(), 0.0);
@@ -64,7 +64,7 @@ public abstract class ItemEntityRendererMixin {
    }
 
    @Mixin({ItemEntityRenderState.class})
-   public abstract static class ItemEntityRenderStateMixin implements p1 {
+   public abstract static class ItemEntityRenderStateMixin implements ParticleConfig {
       @Unique
       private boolean b;
       @Unique

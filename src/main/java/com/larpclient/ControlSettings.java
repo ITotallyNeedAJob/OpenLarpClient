@@ -72,7 +72,7 @@ public final class ControlSettings {
    }
 
    public static List<ControlSettings.Type_h> FAsList(Module var0) {
-      if (var0 instanceof nk var6) {
+      if (var0 instanceof Notification var6) {
          ArrayList var7 = new ArrayList();
          var7.add(new ControlSettings.Type_h("Sky", List.of(var6.style())));
          if (var6.IAsModule() instanceof CustomSky var75) {

@@ -7,7 +7,7 @@ public final class WaterfallEffect {
    private long v = -1L;
    private long O = -1L;
    private long R = -1L;
-   private long ChinaHatCodec = -1L;
+   private long i = -1L;
 
    public WaterfallEffect() {
    }

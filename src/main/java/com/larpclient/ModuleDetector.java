@@ -13,16 +13,16 @@ public final class ModuleDetector {
    private static float F;
 
    public static void bAsVoid() {
-      MenuPopupProvider = null;
-      ScreenScale = null;
+      f = null;
+      y = null;
    }
 
    public static boolean CAsBoolean(ModuleDetector.Type_s var0) {
-      return MenuPopupProvider == var0;
+      return f == var0;
    }
 
    public static boolean YAsBoolean() {
-      return MenuPopupProvider != null;
+      return f != null;
    }
 
    public static boolean vAsBoolean(ModuleDetector.Type_s var0, ModuleDetector.Type_s var1) {
@@ -37,19 +37,19 @@ public final class ModuleDetector {
    }
 
    public static void gAsVoid(ModuleDetector.Type_s var0, float var1, float var2, double var3, float var5, float var6) {
-      if (var0 == MenuPopupProvider || vAsBoolean(var0, f)) {
-         MenuPopupProvider = var0;
-         ScreenScale = null;
+      if (var0 == f || vAsBoolean(var0, f)) {
+         f = var0;
+         y = null;
          float[] var7 = kAsFloatArray(var5, var6, var1, var2, var3);
-         SmoothInput = var7[0];
+         t = var7[0];
          F = var7[1];
       }
    }
 
    public static void RAsVoid(Module var0, ModuleDetector.Type_s var1, float var2, float var3, double var4) {
       yAsVoid(var1, var2, var3, var4);
-      if (MenuPopupProvider == var1) {
-         ScreenScale = var0;
+      if (f == var1) {
+         y = var0;
       }
    }
 
@@ -60,7 +60,7 @@ public final class ModuleDetector {
 
    public static void aAsVoid() {
       MinecraftClient var0 = MinecraftClient.getInstance();
-      if (MenuPopupProvider != null && b_.tAsBoolean(y) && (ScreenScale == null || ScreenScale.isRuntimeActive())) {
+      if (f != null && ModuleImportBroker.tAsBoolean(y) && (y == null || y.isRuntimeActive())) {
          var0.player.setYaw(t);
          var0.player.setPitch(F);
       }

@@ -136,14 +136,14 @@ public class ClientPlayNetworkHandlerOnCloseScreenMixin {
    )
    private static void larpclient$injectZZ(EntityPosition var0, Set<PositionFlag> var1, Entity var2, boolean var3, CallbackInfoReturnable<Boolean> var4) {
       if (var2 instanceof ClientPlayerEntity var5) {
-         db.tAsVoid();
+         FallDamage.tAsVoid();
          FakeLag.QAsVoid(var5);
          Speed.dAsVoid(var5);
          TargetStrafe.LAsVoid(var5);
          GrimSpeed.PAsVoid(var5);
          AimAssist.fAsVoid(var5);
          WTap.RAsVoid(var5);
-         ai.uAsVoid();
+         CometRenderer.uAsVoid();
          JumpFX var6 = JumpFX.JAsJumpFX();
          if (var6 != null) {
             var6.SAsVoid();
@@ -159,7 +159,7 @@ public class ClientPlayNetworkHandlerOnCloseScreenMixin {
       )}
    )
    private Optional<Vec3d> larpclient$redirectV(ExplosionS2CPacket var1) {
-      return var1.playerKnockback().map(var0 -> n5.eAsVec3d(var0, true));
+      return var1.playerKnockback().map(var0 -> KnockbackAdjuster.eAsVec3d(var0, true));
    }
 
    @Inject(

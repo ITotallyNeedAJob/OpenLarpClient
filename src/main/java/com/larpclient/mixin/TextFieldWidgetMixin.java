@@ -24,7 +24,7 @@ public abstract class TextFieldWidgetMixin {
    @Shadow
    private int field_60435;
    @Unique
-   private final dn TextLayout = new dn();
+   private final TextReveal j = new TextReveal();
    @Unique
    private int L;
 
@@ -70,7 +70,7 @@ public abstract class TextFieldWidgetMixin {
          var8.call(new Object[]{var1, var2, var3, var4, var5, var6, var7});
       } else {
          float[] var9 = new float[]{0.0F};
-         dn.Type_x var10 = new dn.Type_x(this.L);
+         TextReveal.Type_x var10 = new TextReveal.Type_x(this.L);
          TextFieldWidget var11 = (TextFieldWidget)(Object)this;
          var1.enableScissor(this.field_60435, var11.getY(), this.field_60435 + this.method_1859(), var11.getY() + var11.getHeight());
 

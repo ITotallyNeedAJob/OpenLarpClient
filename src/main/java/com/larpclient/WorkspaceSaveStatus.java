@@ -175,7 +175,7 @@ public final class WorkspaceSaveStatus {
       HudRenderer.Type_m var5 = this.aAsLp_Type_m();
       if (var5 != null && !this.p.test(var5)) {
          this.WAsVoid(
-            () -> var5.SAsVoid(d7.LAsInt(var5.PAsInt(var3) + var1, var5.vAsInt(), var3), d7.LAsInt(var5.ZAsInt(var4) + var2, var5.TAsInt(), var4), var3, var4)
+            () -> var5.SAsVoid(WidgetLayoutUtil.LAsInt(var5.PAsInt(var3) + var1, var5.vAsInt(), var3), WidgetLayoutUtil.LAsInt(var5.ZAsInt(var4) + var2, var5.TAsInt(), var4), var3, var4)
          );
       }
    }
@@ -233,8 +233,8 @@ public final class WorkspaceSaveStatus {
       }
    }
 
-   public static record Type_f(d7.Type_p dock, d7.Type_p panel, d7.Type_p body, d7.Type_p retry, List<d7.Type_p> tools, int width, int height) {
-      public Type_f(d7.Type_p dock, d7.Type_p panel, d7.Type_p body, d7.Type_p retry, List<d7.Type_p> tools, int width, int height) {
+   public static record Type_f(WidgetLayoutUtil.Type_p dock, WidgetLayoutUtil.Type_p panel, WidgetLayoutUtil.Type_p body, WidgetLayoutUtil.Type_p retry, List<WidgetLayoutUtil.Type_p> tools, int width, int height) {
+      public Type_f(WidgetLayoutUtil.Type_p dock, WidgetLayoutUtil.Type_p panel, WidgetLayoutUtil.Type_p body, WidgetLayoutUtil.Type_p retry, List<WidgetLayoutUtil.Type_p> tools, int width, int height) {
          tools = List.copyOf(tools);
          this.dock = dock;
          this.panel = panel;
@@ -253,7 +253,7 @@ public final class WorkspaceSaveStatus {
          } else {
             int var8 = Math.min(12, Math.max(0, var0 / 4));
             int var9 = Math.max(1, Math.min(340, var0 - var8 * 2));
-            d7.Type_p var10 = new d7.Type_p((var0 - var9) / 2, Math.max(0, var1 - var8 - 42), var9, Math.min(42, var1));
+            WidgetLayoutUtil.Type_p var10 = new WidgetLayoutUtil.Type_p((var0 - var9) / 2, Math.max(0, var1 - var8 - 42), var9, Math.min(42, var1));
             ArrayList var11 = new ArrayList();
             int var12 = Math.max(2, var9 - 172);
             int[] var13 = new int[]{var12 / 2 + 4, 28, 28, 28, var12 - var12 / 2 - 4, 56};
@@ -262,11 +262,11 @@ public final class WorkspaceSaveStatus {
 
             for (int var20 : var13) {
                int var21 = Math.max(1, (int)Math.floor((double)var20 * var14));
-               var11.add(new d7.Type_p(var16, var10.y() + 6, var21, Math.min(30, var10.height())));
+               var11.add(new WidgetLayoutUtil.Type_p(var16, var10.y() + 6, var21, Math.min(30, var10.height())));
                var16 += var21 + 4;
             }
 
-            d7.Type_p var26 = var7 ? new d7.Type_p((var0 - Math.min(208, var9)) / 2, Math.max(0, var10.y() - 29), Math.min(208, var9), 22) : null;
+            WidgetLayoutUtil.Type_p var26 = var7 ? new WidgetLayoutUtil.Type_p((var0 - Math.min(208, var9)) / 2, Math.max(0, var10.y() - 29), Math.min(208, var9), 22) : null;
             if (var2 == WorkspaceSaveStatus.Type_d.NONE) {
                return new WorkspaceSaveStatus.Type_f(var10, null, null, var26, var11, var0, var1);
             } else {
@@ -276,8 +276,8 @@ public final class WorkspaceSaveStatus {
                int var30 = Math.min(var28 + Math.min(Math.max(0, var3), 280) + 10, var29);
                int var22 = Math.clamp(var4 < 0 ? (long)var10.x() : (long)var4, var8, Math.max(var8, var0 - var8 - var27));
                int var23 = Math.clamp(var5 < 0 ? (long)(var10.y() - var30 - 12) : (long)var5, var8, Math.max(var8, var10.y() - (var7 ? 40 : 12) - var30));
-               d7.Type_p var24 = new d7.Type_p(var22, var23, var27, var30);
-               d7.Type_p var25 = new d7.Type_p(var22 + 10, var23 + Math.min(var28, var30), Math.max(1, var27 - 20), Math.max(0, var30 - var28 - 10));
+               WidgetLayoutUtil.Type_p var24 = new WidgetLayoutUtil.Type_p(var22, var23, var27, var30);
+               WidgetLayoutUtil.Type_p var25 = new WidgetLayoutUtil.Type_p(var22 + 10, var23 + Math.min(var28, var30), Math.max(1, var27 - 20), Math.max(0, var30 - var28 - 10));
                return new WorkspaceSaveStatus.Type_f(var10, var24, var25, var26, var11, var0, var1);
             }
          }
@@ -303,7 +303,7 @@ public final class WorkspaceSaveStatus {
             && (this.retry == null || !this.retry.contains(var1, var3, 0));
       }
 
-      public boolean controlContains(d7.Type_p var1, double var2, double var4) {
+      public boolean controlContains(WidgetLayoutUtil.Type_p var1, double var2, double var4) {
          return this.body != null && this.body.contains(var2, var4, 0) && var1.contains(var2, var4, 0);
       }
    }

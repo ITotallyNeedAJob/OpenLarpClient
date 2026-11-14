@@ -47,7 +47,7 @@ import org.joml.Vector3f;
 
 public final class HudRenderer {
    public static final String BUILD_WATERMARK = "Larp Cracked By Cig";
-   private static final Map<HudRenderer.Type_m, List<d7.Type_p>> X = new LinkedHashMap<>();
+   private static final Map<HudRenderer.Type_m, List<WidgetLayoutUtil.Type_p>> X = new LinkedHashMap<>();
    private static Object M;
    private static Object z;
    private static int d;
@@ -76,23 +76,23 @@ public final class HudRenderer {
       new HudRenderer.Type_m("keystrokes", 81, 98, 0.985, 0.93),
       new HudRenderer.Type_m("island", 300, 20, 0.5, 0.015)
    );
-   private static final w2 TextLayout = new w2(1.0);
-   private static final w2 T = new w2(0.0);
-   private static final w2 ChinaHatCodec = new w2(1.0);
+   private static final WeatherRenderer j = new WeatherRenderer(1.0);
+   private static final WeatherRenderer T = new WeatherRenderer(0.0);
+   private static final WeatherRenderer i = new WeatherRenderer(1.0);
    private static double W = 1.0;
    private static long U;
    private static final Identifier I = Identifier.ofVanilla("hud/heart/container");
-   private static final Identifier GroundSample = Identifier.ofVanilla("hud/heart/full");
+   private static final Identifier k = Identifier.ofVanilla("hud/heart/full");
    private static LivingEntity N;
-   private static final n1 SkyChunkCache = new n1();
+   private static final TaggedItemList s = new TaggedItemList();
    private static float b;
    private static long m;
    private static final GuiWorkspace.Type_z v = new GuiWorkspace.Type_z(1.0, false);
-   private static final EquipmentSlot[] BoxUtils = new EquipmentSlot[]{
+   private static final EquipmentSlot[] c = new EquipmentSlot[]{
       EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND
    };
-   private static final rb DropletTrail = new rb();
-   private static final oj Q = new oj();
+   private static final RingBuffer l = new RingBuffer();
+   private static final OfferList Q = new OfferList();
    private static List<ItemStack> G;
 
    public HudRenderer() {
@@ -102,9 +102,9 @@ public final class HudRenderer {
       MinecraftClient client = MinecraftClient.getInstance();
       if (client != null && client.textRenderer != null) {
          int textWidth = client.textRenderer.getWidth("Larp Cracked By Cig");
-         int AuraModule = Math.max(4, client.getWindow().getScaledWidth() - textWidth - 6);
-         int ScreenScale = Math.max(4, client.getWindow().getScaledHeight() - 9 - 5);
-         context.fill(AuraModule - 3, ScreenScale - 2, AuraModule + textWidth + 3, ScreenScale + 9 + 2, -1441787883);
+         int x = Math.max(4, client.getWindow().getScaledWidth() - textWidth - 6);
+         int y = Math.max(4, client.getWindow().getScaledHeight() - 9 - 5);
+         context.fill(x - 3, y - 2, x + textWidth + 3, y + 9 + 2, -1441787883);
          context.drawTextWithShadow(client.textRenderer, "Larp Cracked By Cig", x, y, -1);
       }
    }
@@ -123,7 +123,7 @@ public final class HudRenderer {
       X.clear();
       M = null;
       z = null;
-      ww.KAsVoid();
+      WorldWidget.KAsVoid();
    }
 
    public static void wAsVoid(DrawContext var0) {
@@ -132,13 +132,13 @@ public final class HudRenderer {
          M = var0;
          MinecraftClient var1 = MinecraftClient.getInstance();
          z = var1.world;
-         SahurDanceEngine = var0.getScaledWindowWidth();
-         PetEffectRenderer = var0.getScaledWindowHeight();
-         ScreenScale = GuiWorkspace.m;
+         d = var0.getScaledWindowWidth();
+         a = var0.getScaledWindowHeight();
+         y = GuiWorkspace.m;
       }
    }
 
-   public static void xAsVoid(HudRenderer.Type_m var0, d7.Type_p var1) {
+   public static void xAsVoid(HudRenderer.Type_m var0, WidgetLayoutUtil.Type_p var1) {
       if (var1.width() > 0 && var1.height() > 0) {
          X.computeIfAbsent(var0, var0x -> new ArrayList<>()).add(var1);
       }
@@ -147,15 +147,15 @@ public final class HudRenderer {
    public static List<HudRenderer.Type_p> pAsList() {
       MinecraftClient var0 = MinecraftClient.getInstance();
       if (z == var0.world
-         && ScreenScale == GuiWorkspace.m
+         && y == GuiWorkspace.m
          && var0.player != null
-         && SahurDanceEngine == var0.getWindow().getScaledWidth()
-         && PetEffectRenderer == var0.getWindow().getScaledHeight()
+         && d == var0.getWindow().getScaledWidth()
+         && a == var0.getWindow().getScaledHeight()
          && !var0.options.hudHidden) {
          ArrayList var1 = new ArrayList();
          X.forEach((var1xx, var2) -> {
             if (HAsBoolean(var1xx)) {
-               for (d7.Type_p var4 : var2) {
+               for (WidgetLayoutUtil.Type_p var4 : var2) {
                   var1.add(new HudRenderer.Type_p(var1xx, var4));
                }
             }
@@ -166,12 +166,12 @@ public final class HudRenderer {
       }
    }
 
-   public static Optional<d7.Type_p> qAsOptional(List<HudRenderer.Type_p> var0, HudRenderer.Type_m var1) {
+   public static Optional<WidgetLayoutUtil.Type_p> qAsOptional(List<HudRenderer.Type_p> var0, HudRenderer.Type_m var1) {
       return var0.stream()
          .filter(var1xx -> var1xx.element() == var1)
          .map(HudRenderer.Type_p::bounds)
          .reduce(
-            (var0x, var1x) -> new d7.Type_p(
+            (var0x, var1x) -> new WidgetLayoutUtil.Type_p(
                   Math.min(var0x.x(), var1x.x()),
                   Math.min(var0x.y(), var1x.y()),
                   Math.max(var0x.x() + var0x.width(), var1x.x() + var1x.width()) - Math.min(var0x.x(), var1x.x()),
@@ -240,7 +240,7 @@ public final class HudRenderer {
                      ? 1
                      : 0;
                }
-               case "cooldowns", "staffs" -> lj.AAsBoolean(var0.a, lj.cAsLj_Type_y(var0.a, false)) ? 1 : 0;
+               case "cooldowns", "staffs" -> LayerJob.AAsBoolean(var0.a, LayerJob.cAsLj_Type_y(var0.a, false)) ? 1 : 0;
                case "crosshair" -> var1.options.getPerspective().isFirstPerson() ? 1 : 0;
                case "island" -> IslandLyrics.tAsBoolean() ? 1 : 0;
                default -> 1;
@@ -386,11 +386,11 @@ public final class HudRenderer {
    public static void CAsVoid(MinecraftClient var0) {
       HUD var1 = HUD.EAsHUD();
       if (var0.world == null || var0.player == null || var1 == null || !var1.isOperational()) {
-         DropletTrail.fAsVoid();
+         l.fAsVoid();
       } else if (!var0.isPaused() && var0.world.getTickManager().shouldTick()) {
-         DropletTrail.cAsVoid(var0.world, var0.player, var0.player.getX(), var0.player.getZ(), (double)var0.world.getTickManager().getTickRate());
+         l.cAsVoid(var0.world, var0.player, var0.player.getX(), var0.player.getZ(), (double)var0.world.getTickManager().getTickRate());
       } else {
-         DropletTrail.SAsVoid();
+         l.SAsVoid();
       }
    }
 
@@ -416,7 +416,7 @@ public final class HudRenderer {
    }
 
    public static List<HudRenderer.Type_p> NAsList() {
-      return CropHelper == GuiWorkspace.m ? L : List.of();
+      return u == GuiWorkspace.m ? L : List.of();
    }
 
    public static void CAsVoid() {
@@ -428,7 +428,7 @@ public final class HudRenderer {
          wAsVoid(var0);
          wAsVoid(var0, false);
          L = pAsList();
-         CropHelper = GuiWorkspace.m;
+         u = GuiWorkspace.m;
       } else {
          tAsVoid(var0, var1, var2);
       }
@@ -442,7 +442,7 @@ public final class HudRenderer {
             L = List.of();
          }
 
-         long var6 = op.RAsLong();
+         long var6 = OpenScreen.RAsLong();
          HUD var8 = HUD.EAsHUD();
          int var9 = var4.getWindow().getScaledWidth();
          int var10 = var4.getWindow().getScaledHeight();
@@ -452,15 +452,15 @@ public final class HudRenderer {
             ClientLog.XAsVoid("HUD", var11 != 0 ? "Chat open; enabled overlays without content show samples" : "Chat closed; overlay samples removed");
          }
 
-         List<oj.Type_x> var12 = Q.KAsList(
-            nk.sAsList(LarpClient.CAsLarpClient().mAsF().NAsList(), LarpClient.CAsLarpClient().fAsBo().yAsN7()),
+         List<OfferList.Type_x> var12 = Q.KAsList(
+            Notification.sAsList(LarpClient.CAsLarpClient().mAsF().NAsList(), LarpClient.CAsLarpClient().fAsBo().yAsN7()),
             var4.textRenderer,
             TextDrawing.lAsInt(),
             BloomQuality.J,
-            ww::VAsInt
+            WorldWidget::VAsInt
          );
          if ((var1 || var11 != 0) && var12.isEmpty()) {
-            var12 = List.of(new oj.Type_x("Sprint", ww.VAsInt("Sprint")), new oj.Type_x("Fullbright", ww.VAsInt("Fullbright")));
+            var12 = List.of(new OfferList.Type_x("Sprint", WorldWidget.VAsInt("Sprint")), new OfferList.Type_x("Fullbright", WorldWidget.VAsInt("Fullbright")));
          }
 
          HudRenderer.Type_m var13 = QAsLp_Type_m("modules");
@@ -508,10 +508,10 @@ public final class HudRenderer {
          QAsLp_Type_m("armor").v = 6 + (var61 != 0 ? var58 : var62 * (var58 + var60) - var60);
          QAsLp_Type_m("armor").y = 6 + (var61 != 0 ? var62 * (var59 + var60) - var60 : var59);
          String var25 = var4.getCurrentFps() + " fps";
-         String var26 = var4.player == null ? "Player" : ml.cAsString(var4.player.getUuid(), var4.player.getName().getString());
-         var26 = ww.xAsString(var26, 130.0, 13.0);
+         String var26 = var4.player == null ? "Player" : ModuleList.cAsString(var4.player.getUuid(), var4.player.getName().getString());
+         var26 = WorldWidget.xAsString(var26, 130.0, 13.0);
          String var27 = !var4.isIntegratedServerRunning() && var4.getCurrentServerEntry() != null ? var4.getCurrentServerEntry().address : "singleplayer";
-         var27 = ww.xAsString(var27, 154.0, 13.0);
+         var27 = WorldWidget.xAsString(var27, 154.0, 13.0);
          String var28 = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
          QAsLp_Type_m("watermark").v = MenuLogoLayout.QAsInt(var26, var27, var25, var28);
          QAsLp_Type_m("watermark").y = 42;
@@ -523,7 +523,7 @@ public final class HudRenderer {
          HashMap var31 = new HashMap();
 
          for (String var33 : List.of("cooldowns", "staffs", "inventory", "radar")) {
-            lj.Type_y var34 = lj.cAsLj_Type_y(var33, var1);
+            LayerJob.Type_y var34 = LayerJob.cAsLj_Type_y(var33, var1);
             var31.put(var33, var34);
             QAsLp_Type_m(var33).v = var34.width();
             QAsLp_Type_m(var33).y = var34.height();
@@ -534,11 +534,11 @@ public final class HudRenderer {
             QAsLp_Type_m("keystrokes").y = KeystrokesHud.QAsInt(var8);
          }
 
-         ww.Type_j var65 = ww.lAsWw_Type_j(var1);
-         ww.Type_j var66 = ww.DAsWw_Type_j(var1);
+         WorldWidget.Type_j var65 = WorldWidget.lAsWw_Type_j(var1);
+         WorldWidget.Type_j var66 = WorldWidget.DAsWw_Type_j(var1);
          int var67 = var11 != 0 && (var4.player == null || var4.player.getStatusEffects().isEmpty()) ? 1 : 0;
          if (var67 != 0) {
-            var66 = ww.DAsWw_Type_j(true);
+            var66 = WorldWidget.DAsWw_Type_j(true);
          }
 
          QAsLp_Type_m("keybinds").v = var65.width();
@@ -555,26 +555,26 @@ public final class HudRenderer {
                if (!var35.hasNext()) {
                   if (var1) {
                      L = List.copyOf(var5);
-                     CropHelper = GuiWorkspace.m;
+                     u = GuiWorkspace.m;
                   }
 
                   if (!var1 && Boolean.getBoolean("larp.debug")) {
                      int var68 = var10 - 15;
 
-                     for (Entry var71 : op.gAsMap().entrySet()) {
+                     for (Entry var71 : OpenScreen.gAsMap().entrySet()) {
                         String var73 = (String)var71.getKey() + " " + var71.getValue();
-                        TextDrawing.CAsVoid(var0, var73, var9 - TextDrawing.nAsInt(var73) - 5, var68, bd.e);
+                        TextDrawing.CAsVoid(var0, var73, var9 - TextDrawing.nAsInt(var73) - 5, var68, UiStyle.e);
                         var68 -= 11;
                      }
 
-                     for (Entry var72 : op.pAsMap().entrySet()) {
-                        String var74 = String.format(Locale.ROOT, "%SkyChunkCache %.2f ms CPU", var72.getKey(), var72.getValue());
-                        TextDrawing.CAsVoid(var0, var74, var9 - TextDrawing.nAsInt(var74) - 5, var68, bd.e);
+                     for (Entry var72 : OpenScreen.pAsMap().entrySet()) {
+                        String var74 = String.format(Locale.ROOT, "%s %.2f ms CPU", var72.getKey(), var72.getValue());
+                        TextDrawing.CAsVoid(var0, var74, var9 - TextDrawing.nAsInt(var74) - 5, var68, UiStyle.e);
                         var68 -= 11;
                      }
                   }
 
-                  op.aAsVoid("HUD", var6);
+                  OpenScreen.aAsVoid("HUD", var6);
                   return;
                }
 
@@ -583,9 +583,9 @@ public final class HudRenderer {
                int var37 = var36.PAsInt(var9);
                int var38 = var36.ZAsInt(var10);
                var39 = HAsBoolean(var36);
-               if ((var1 ? d7.oAsBoolean(var39, var3, var2 == var36) : var39)
+               if ((var1 ? WidgetLayoutUtil.oAsBoolean(var39, var3, var2 == var36) : var39)
                   && (var1 || (!var36.a.equals("modules") || !var12.isEmpty()) && (!var36.a.equals("armor") || XAsBoolean(var19)))
-                  && (var1 || var11 != 0 || !var31.containsKey(var36.a) || lj.AAsBoolean(var36.a, (lj.Type_y)var31.get(var36.a)))
+                  && (var1 || var11 != 0 || !var31.containsKey(var36.a) || LayerJob.AAsBoolean(var36.a, (LayerJob.Type_y)var31.get(var36.a)))
                   && (var1 || var67 != 0 || !var36.a.equals("effects") || var4.player != null && !var4.player.getStatusEffects().isEmpty())) {
                   int var40 = var1 || var11 != 0 && !IslandLyrics.tAsBoolean() ? 1 : 0;
                   if (var1 || !var36.a.equals("island") || var40 != 0 || IslandLyrics.tAsBoolean()) {
@@ -600,7 +600,7 @@ public final class HudRenderer {
                               case "staffs":
                               case "inventory":
                               case "radar":
-                                 lj.XAsVoid(var0, var36.a, (lj.Type_y)var31.get(var36.a), var37, var38, var1);
+                                 LayerJob.XAsVoid(var0, var36.a, (LayerJob.Type_y)var31.get(var36.a), var37, var38, var1);
                                  break label1025;
                               case "island":
                                  IslandLyrics var78 = IslandLyrics.zAsIslandLyrics();
@@ -675,7 +675,7 @@ public final class HudRenderer {
                                     if (!var1) {
                                        xAsVoid(
                                           var36,
-                                          new d7.Type_p(
+                                          new WidgetLayoutUtil.Type_p(
                                              var37 + (int)Math.floor((double)(var90 - var37) * var36.vAsDouble()),
                                              var38 + (int)Math.floor((double)(var91 - var38) * var36.vAsDouble()),
                                              (int)Math.ceil((double)var51 * var36.vAsDouble()),
@@ -686,7 +686,7 @@ public final class HudRenderer {
                                  }
 
                                  if (var1 && var12.isEmpty()) {
-                                    TextDrawing.CAsVoid(var0, "No active modules", var37 + 4, var38 + 5, bd.e);
+                                    TextDrawing.CAsVoid(var0, "No active modules", var37 + 4, var38 + 5, UiStyle.e);
                                  }
                                  break label1025;
                               case "target":
@@ -699,30 +699,30 @@ public final class HudRenderer {
                                  break label1025;
                               case "keybinds":
                               case "effects":
-                                 ww.Type_j var76 = var36.a.equals("keybinds") ? var65 : var66;
+                                 WorldWidget.Type_j var76 = var36.a.equals("keybinds") ? var65 : var66;
                                  int var79 = var37 + var36.vAsInt() / 2 > var9 / 2 ? 1 : 0;
                                  if (var8 != null && var8.wAsBoolean() && !(var4.currentScreen instanceof ClickGuiScreen)) {
-                                    for (d7.Type_p var84 : ww.KAsList(var76, var37, var38, var79 != 0)) {
+                                    for (WidgetLayoutUtil.Type_p var84 : WorldWidget.KAsList(var76, var37, var38, var79 != 0)) {
                                        hAsVoid(var0, var84.x(), var84.y(), var84.width(), var84.height());
                                     }
                                  }
 
-                                 ww.XAsVoid(var0, var76, var37, var38, var79 != 0);
+                                 WorldWidget.XAsVoid(var0, var76, var37, var38, var79 != 0);
                                  if (var1) {
                                     break label1025;
                                  }
 
-                                 Iterator var82 = ww.KAsList(var76, var37, var38, var79 != 0).iterator();
+                                 Iterator var82 = WorldWidget.KAsList(var76, var37, var38, var79 != 0).iterator();
 
                                  while (true) {
                                     if (!var82.hasNext()) {
                                        break label1025;
                                     }
 
-                                    d7.Type_p var85 = (d7.Type_p)var82.next();
+                                    WidgetLayoutUtil.Type_p var85 = (WidgetLayoutUtil.Type_p)var82.next();
                                     xAsVoid(
                                        var36,
-                                       new d7.Type_p(
+                                       new WidgetLayoutUtil.Type_p(
                                           var37 + (int)Math.floor((double)(var85.x() - var37) * var36.vAsDouble()),
                                           var38 + (int)Math.floor((double)(var85.y() - var38) * var36.vAsDouble()),
                                           (int)Math.ceil((double)var85.width() * var36.vAsDouble()),
@@ -753,7 +753,7 @@ public final class HudRenderer {
                                        if (var45.isDamageable()) {
                                           int var49 = Math.max(0, var45.getMaxDamage() - var45.getDamage());
                                           double var50 = (double)var49 / (double)Math.max(1, var45.getMaxDamage());
-                                          int var52 = bg.xAsInt(-43434, -8790368, var50);
+                                          int var52 = ColorUtil.xAsInt(-43434, -8790368, var50);
                                           if (var8.armorBars.getValue()) {
                                              GuiTextureDrawing.CAsVoid(var0, var46 + 2, var47 + 23, var58 - 4, 2, 1879048192);
                                              GuiTextureDrawing.CAsVoid(var0, var46 + 2, var47 + 23, (int)Math.round((double)(var58 - 4) * var50), 2, var52);
@@ -763,8 +763,8 @@ public final class HudRenderer {
                                              String var53 = var8.armorDurability.pAsBoolean("Percent")
                                                 ? (int)Math.ceil(var50 * 100.0) + "%"
                                                 : Integer.toString(var49);
-                                             int var54 = var61 != 0 ? var46 + 28 : var46 + (var58 - ww.WAsInt(var53, 10.4)) / 2;
-                                             ww.fAsVoid(var0, var53, (double)var54, (double)(var47 + (var61 != 0 ? 7 : 28)), 10.4, var52);
+                                             int var54 = var61 != 0 ? var46 + 28 : var46 + (var58 - WorldWidget.WAsInt(var53, 10.4)) / 2;
+                                             WorldWidget.fAsVoid(var0, var53, (double)var54, (double)(var47 + (var61 != 0 ? 7 : 28)), 10.4, var52);
                                           }
                                        }
                                     }
@@ -789,7 +789,7 @@ public final class HudRenderer {
             }
 
             if (var1 && !var39) {
-               d7.Type_p var75 = var36.mAsD7_Type_p(var9, var10);
+               WidgetLayoutUtil.Type_p var75 = var36.mAsD7_Type_p(var9, var10);
                GuiTextureDrawing.CAsVoid(var0, var75.x(), var75.y(), var75.width(), var75.height(), 1882207290);
             }
          }
@@ -805,14 +805,14 @@ public final class HudRenderer {
 
    public static void UAsVoid() {
       N = null;
-      TextLayout.aAsVoid(1.0);
-      ChinaHatCodec.aAsVoid(1.0);
+      j.aAsVoid(1.0);
+      i.aAsVoid(1.0);
       W = 1.0;
       U = 0L;
       T.aAsVoid(0.0);
-      SkyChunkCache.eAsVoid();
-      PriceDetector = 0L;
-      BloomUtility = 0.0F;
+      s.eAsVoid();
+      m = 0L;
+      b = 0.0F;
    }
 
    public static void mAsVoid(DrawContext var0, int var1, int var2) {
@@ -820,7 +820,7 @@ public final class HudRenderer {
    }
 
    private static void iAsVoid(DrawContext var0, int var1, int var2) {
-      long var3 = op.RAsLong();
+      long var3 = OpenScreen.RAsLong();
 
       try {
          MinecraftClient var5 = MinecraftClient.getInstance();
@@ -833,39 +833,39 @@ public final class HudRenderer {
             N = var6;
             ClientLog.XAsVoid(
                "TargetHUD",
-               "Target {}: {} AuraModule {} blocks, portrait scale {} before HUD transform",
+               "Target {}: {} x {} blocks, portrait scale {} before HUD transform",
                var6.getType(),
                var6.getWidth(),
                var6.getHeight(),
                gAsFloat(var6.getWidth(), var6.getHeight())
             );
-            SkyChunkCache.eAsVoid();
-            BloomUtility = ScoreboardHealthResolver.UAsFloat(var6);
-            PriceDetector = System.nanoTime();
+            s.eAsVoid();
+            b = ScoreboardHealthResolver.UAsFloat(var6);
+            m = System.nanoTime();
             double var7 = ScoreboardHealthResolver.jAsDouble(var6);
-            TextLayout.aAsVoid(var7);
-            ChinaHatCodec.aAsVoid(var7);
+            j.aAsVoid(var7);
+            i.aAsVoid(var7);
             W = var7;
             U = 0L;
          }
 
          long var22 = System.nanoTime();
-         if (PriceDetector != 0L) {
-            SkyChunkCache.sAsVoid((double)(var22 - m) / 1.0E9);
+         if (m != 0L) {
+            s.sAsVoid((double)(var22 - m) / 1.0E9);
          }
 
-         PriceDetector = var22;
+         m = var22;
          float var9 = N == null ? 0.0F : ScoreboardHealthResolver.UAsFloat(N);
          if (N != null) {
-            SkyChunkCache.TAsVoid((double)(BloomUtility - var9), ThreadLocalRandom.current());
-            BloomUtility = var9;
+            s.TAsVoid((double)(b - var9), ThreadLocalRandom.current());
+            b = var9;
          }
 
          double var10 = T.bAsDouble(var6 == null ? 0.0 : 1.0, 200);
          if (N == null || var10 < 0.01) {
             if (var6 == null) {
                N = null;
-               SkyChunkCache.eAsVoid();
+               s.eAsVoid();
             }
 
             return;
@@ -873,15 +873,15 @@ public final class HudRenderer {
 
          HudRenderer.Type_m var12 = QAsLp_Type_m("target");
          double var13 = 0.92 + 0.08 * var10;
-         xAsVoid(var12, vAsD7_Type_p(var1, var2, var12.vAsDouble(), var13, new d7.Type_p(0, 0, 224, 72)));
+         xAsVoid(var12, vAsD7_Type_p(var1, var2, var12.vAsDouble(), var13, new WidgetLayoutUtil.Type_p(0, 0, 224, 72)));
          double var15 = (double)Math.clamp(var9 / Math.max(1.0F, N.getMaxHealth()), 0.0F, 1.0F);
-         double var17 = TextLayout.bAsDouble(var15, 220);
+         double var17 = j.bAsDouble(var15, 220);
          sAsVoid(
             var0,
             var1,
             var2,
             N,
-            ml.cAsString(N.getUuid(), N.getName().getString()),
+            ModuleList.cAsString(N.getUuid(), N.getName().getString()),
             Math.max(0.0F, var9),
             Math.max(1.0F, N.getMaxHealth()),
             Math.max(0.0F, N.getAbsorptionAmount()),
@@ -892,27 +892,27 @@ public final class HudRenderer {
             false
          );
       } finally {
-         op.aAsVoid("TargetHUD", var3);
+         OpenScreen.aAsVoid("TargetHUD", var3);
       }
    }
 
    private static double rAsDouble(double var0, double var2, long var4) {
       if (var0 < W) {
-         ChinaHatCodec.aAsVoid(Math.max(ChinaHatCodec.yAsDouble(), var2));
+         i.aAsVoid(Math.max(i.yAsDouble(), var2));
          U = var4 + 400000000L;
       }
 
       W = var0;
-      double var6 = var4 < U ? ChinaHatCodec.yAsDouble() : ChinaHatCodec.YAsDouble(var0, 450, w2.Type_e.QUAD_OUT);
+      double var6 = var4 < U ? i.yAsDouble() : i.YAsDouble(var0, 450, WeatherRenderer.Type_e.QUAD_OUT);
       return Math.max(var6, var2);
    }
 
-   public static d7.Type_p vAsD7_Type_p(int var0, int var1, double var2, double var4, d7.Type_p var6) {
+   public static WidgetLayoutUtil.Type_p vAsD7_Type_p(int var0, int var1, double var2, double var4, WidgetLayoutUtil.Type_p var6) {
       double var11 = (double)var0 + (112.0 + ((double)var6.x() - 112.0) * var4) * var2;
       double var13 = (double)var1 + (36.0 + ((double)var6.y() - 36.0) * var4) * var2;
       int var15 = (int)Math.floor(var11);
       int var16 = (int)Math.floor(var13);
-      return new d7.Type_p(
+      return new WidgetLayoutUtil.Type_p(
          var15, var16, (int)Math.ceil(var11 + (double)var6.width() * var4 * var2) - var15, (int)Math.ceil(var13 + (double)var6.height() * var4 * var2) - var16
       );
    }
@@ -927,7 +927,7 @@ public final class HudRenderer {
       float var6 = gAsFloat(var5.width, var5.height);
       if (var6 <= 0.0F) {
          ClientLog.hAsVoid("TargetHUD", "Invalid portrait dimensions; using an icon until target state recovers", null);
-         ww.aAsVoid(var0, "user", var1 + 10, var2 + 10, 30, -5592406);
+         WorldWidget.aAsVoid(var0, "user", var1 + 10, var2 + 10, 30, -5592406);
       } else {
          var5.shadowPieces.clear();
          var5.outlineColor = 0;
@@ -985,20 +985,20 @@ public final class HudRenderer {
             hAsVoid(var0, var1, var2, 224, 72);
          }
 
-         GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, 224.0F, 72.0F, 12.0F, bg.pAsInt(-603321844, var10));
-         if (!var16 && !SkyChunkCache.tAsList().isEmpty()) {
+         GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, 224.0F, 72.0F, 12.0F, ColorUtil.pAsInt(-603321844, var10));
+         if (!var16 && !s.tAsList().isEmpty()) {
             var0.enableScissor(var1, var2, var1 + 224, var2 + 72);
 
             try {
-               for (n1.Type_v var25 : SkyChunkCache.tAsList()) {
+               for (TaggedItemList.Type_v var25 : s.tAsList()) {
                   double var26 = Math.clamp(var25.T / var25.a, 0.0, 1.0);
                   double var28 = var10 * (1.0 - var26) * (var25.p ? 1.0 : 0.72);
                   int var30 = Math.max(1, (int)Math.round(var25.z * (1.0 - var26 * 0.35)));
                   int var31 = var1 + 36 + (int)Math.round(var25.U);
                   int var32 = var2 + 36 + (int)Math.round(var25.R);
-                  int var33 = var25.p ? bd.w : -419430401;
-                  GuiTextureDrawing.RAsVoid(var0, var31, var32, (int)Math.ceil((double)var30 * 1.125), bg.pAsInt(var33, var28 * 0.22));
-                  GuiTextureDrawing.RAsVoid(var0, var31, var32, Math.max(1, var30 / 2), bg.pAsInt(var33, var28));
+                  int var33 = var25.p ? UiStyle.w : -419430401;
+                  GuiTextureDrawing.RAsVoid(var0, var31, var32, (int)Math.ceil((double)var30 * 1.125), ColorUtil.pAsInt(var33, var28 * 0.22));
+                  GuiTextureDrawing.RAsVoid(var0, var31, var32, Math.max(1, var30 / 2), ColorUtil.pAsInt(var33, var28));
                }
             } finally {
                var0.disableScissor();
@@ -1010,12 +1010,12 @@ public final class HudRenderer {
             var0.getMatrices().pushMatrix();
             float var60 = (float)Math.sin((double)var56.hurtTime / 10.0 * Math.PI * 2.0) * 0.07F;
             var0.getMatrices().translate((float)(var1 + 36), (float)(var2 + 36)).rotate(var60).translate((float)(-var1 - 36), (float)(-var2 - 36));
-            PlayerSkinDrawer.draw(var0, var56.getSkin(), var1 + 11, var2 + 11, 50, bg.pAsInt(-65536 | 255 - var58 << 8 | 255 - var58, var10));
+            PlayerSkinDrawer.draw(var0, var56.getSkin(), var1 + 11, var2 + 11, 50, ColorUtil.pAsInt(-65536 | 255 - var58 << 8 | 255 - var58, var10));
             var0.getMatrices().popMatrix();
          } else if (var3 != null) {
             CAsVoid(var0, var1 + 11, var2 + 11, var3);
          } else {
-            ww.aAsVoid(var0, "user", var1 + 21, var2 + 21, 30, bg.pAsInt(-5592406, var10));
+            WorldWidget.aAsVoid(var0, "user", var1 + 21, var2 + 21, 30, ColorUtil.pAsInt(-5592406, var10));
          }
 
          int var57 = var18 != null && !var18.equipmentPos.pAsBoolean("Above") ? 0 : 1;
@@ -1029,28 +1029,28 @@ public final class HudRenderer {
          int var65 = var59 != 0 ? var64 + 5 + 6 : var64;
          int var66 = var59 != 0 ? var64 : var64 + 17 + 6;
          String var34 = String.format(Locale.ROOT, "%.1f", var5);
-         int var35 = var27 - ww.WAsInt(var34, 16.0);
-         ww.fAsVoid(var0, var34, (double)var35, (double)(var65 - 1), 16.0, bg.pAsInt(-1, var10));
+         int var35 = var27 - WorldWidget.WAsInt(var34, 16.0);
+         WorldWidget.fAsVoid(var0, var34, (double)var35, (double)(var65 - 1), 16.0, ColorUtil.pAsInt(-1, var10));
          int var36 = var35 - 13;
          int var37 = var65 + 3;
-         var0.drawGuiTexture(RenderPipelines.GUI_TEXTURED, I, var36, var37, 9, 9, bg.pAsInt(-1, var10));
-         var0.drawGuiTexture(RenderPipelines.GUI_TEXTURED, k, var36, var37, 9, 9, bg.pAsInt(-1, var10));
+         var0.drawGuiTexture(RenderPipelines.GUI_TEXTURED, I, var36, var37, 9, 9, ColorUtil.pAsInt(-1, var10));
+         var0.drawGuiTexture(RenderPipelines.GUI_TEXTURED, k, var36, var37, 9, 9, ColorUtil.pAsInt(-1, var10));
          int var38 = var36 - 6;
          if (var7 > 0.0F) {
             String var39 = String.format(Locale.ROOT, "+%.1f", var7);
-            int var40 = var36 - 4 - ww.WAsInt(var39, 11.0);
-            ww.fAsVoid(var0, var39, (double)var40, (double)(var65 + 3), 11.0, bg.pAsInt(-11443, var10));
+            int var40 = var36 - 4 - WorldWidget.WAsInt(var39, 11.0);
+            WorldWidget.fAsVoid(var0, var39, (double)var40, (double)(var65 + 3), 11.0, ColorUtil.pAsInt(-11443, var10));
             var38 = var40 - 6;
          }
 
-         String var67 = ww.xAsString(var4, (double)Math.max(0, var38 - var61), 13.0);
-         ww.fAsVoid(var0, var67, (double)var61, (double)(var65 + 1), 13.0, bg.pAsInt(-1, var10));
+         String var67 = WorldWidget.xAsString(var4, (double)Math.max(0, var38 - var61), 13.0);
+         WorldWidget.fAsVoid(var0, var67, (double)var61, (double)(var65 + 1), 13.0, ColorUtil.pAsInt(-1, var10));
          double var68 = (double)(var6 / (var6 + Math.max(0.0F, var7)));
-         GuiTextureDrawing.AAsVoid(var0, (float)var61, (float)var66, (float)var62, 5.0F, 2.0F, bg.pAsInt(788529151, var10));
+         GuiTextureDrawing.AAsVoid(var0, (float)var61, (float)var66, (float)var62, 5.0F, 2.0F, ColorUtil.pAsInt(788529151, var10));
          int var42 = (int)Math.round((double)var62 * Math.clamp(var12, 0.0, 1.0) * var68);
          int var43 = (int)Math.round((double)var62 * Math.clamp(var14, 0.0, 1.0) * var68);
          if (var43 > var42) {
-            GuiTextureDrawing.AAsVoid(var0, (float)var61, (float)var66, (float)var43, 5.0F, 2.0F, bg.pAsInt(-922746881, var10));
+            GuiTextureDrawing.AAsVoid(var0, (float)var61, (float)var66, (float)var43, 5.0F, 2.0F, ColorUtil.pAsInt(-922746881, var10));
          }
 
          if (var42 > 0) {
@@ -1061,29 +1061,29 @@ public final class HudRenderer {
                (float)var42,
                5.0F,
                2.0F,
-               bg.pAsInt(-3790808, var10),
-               bg.pAsInt(bg.xAsInt(-3790808, -38050, (double)var42 / (double)var62), var10)
+               ColorUtil.pAsInt(-3790808, var10),
+               ColorUtil.pAsInt(ColorUtil.xAsInt(-3790808, -38050, (double)var42 / (double)var62), var10)
             );
          }
 
          if (var7 > 0.0F) {
             int var44 = Math.min(var62 - var42, Math.round((float)var62 * var7 / (var6 + var7)));
             if (var44 > 0) {
-               GuiTextureDrawing.AAsVoid(var0, (float)(var61 + var42), (float)var66, (float)var44, 5.0F, 2.0F, bg.pAsInt(-11443, var10));
+               GuiTextureDrawing.AAsVoid(var0, (float)(var61 + var42), (float)var66, (float)var44, 5.0F, 2.0F, ColorUtil.pAsInt(-11443, var10));
             }
          }
 
          String var69 = String.format(Locale.ROOT, var8 >= 100.0 ? "%.0fm" : "%.1fm", var8);
-         int var45 = bg.pAsInt(-5592406, var10);
+         int var45 = ColorUtil.pAsInt(-5592406, var10);
          if (var3 instanceof AbstractClientPlayerEntity) {
             int var46 = var18 != null && var18.handsItems.pAsBoolean("Left") ? 1 : 0;
             int var47 = var46 != 0 ? var61 + 36 + 6 : var61;
             int var48 = var46 != 0 ? var61 : var61 + 72 + 6;
             RAsVoid(var0, var3, var47, var63, Arrays.copyOfRange(c, 0, 4), var10);
             RAsVoid(var0, var3, var48, var63, Arrays.copyOfRange(c, 4, 6), var10);
-            ww.fAsVoid(var0, var69, (double)(var27 - ww.WAsInt(var69, 11.0)), (double)(var63 + 4), 11.0, var45);
+            WorldWidget.fAsVoid(var0, var69, (double)(var27 - WorldWidget.WAsInt(var69, 11.0)), (double)(var63 + 4), 11.0, var45);
          } else {
-            ww.fAsVoid(var0, var69, (double)var61, (double)(var63 + 4), 11.0, var45);
+            WorldWidget.fAsVoid(var0, var69, (double)var61, (double)(var63 + 4), 11.0, var45);
          }
       } finally {
          var0.getMatrices().popMatrix();
@@ -1095,7 +1095,7 @@ public final class HudRenderer {
          ItemStack var8 = var1.getEquippedStack(var4[var7]);
          int var9 = var2 + var7 * 18;
          if (var8.isEmpty()) {
-            GuiTextureDrawing.AAsVoid(var0, (float)(var9 + 2), (float)(var3 + 2), 12.0F, 12.0F, 3.0F, bg.pAsInt(352321535, var5));
+            GuiTextureDrawing.AAsVoid(var0, (float)(var9 + 2), (float)(var3 + 2), 12.0F, 12.0F, 3.0F, ColorUtil.pAsInt(352321535, var5));
          } else {
             if (var5 > 0.5) {
                var0.drawItem(var8, var9, var3);
@@ -1103,7 +1103,7 @@ public final class HudRenderer {
 
             if (var8.isDamageable()) {
                double var10 = Math.clamp((double)(var8.getMaxDamage() - var8.getDamage()) / (double)Math.max(1, var8.getMaxDamage()), 0.0, 1.0);
-               GuiTextureDrawing.AAsVoid(var0, (float)var9, (float)(var3 + 17), 16.0F, 2.0F, 1.0F, bg.pAsInt(-938208236, var5));
+               GuiTextureDrawing.AAsVoid(var0, (float)var9, (float)(var3 + 17), 16.0F, 2.0F, 1.0F, ColorUtil.pAsInt(-938208236, var5));
                GuiTextureDrawing.AAsVoid(
                   var0,
                   (float)var9,
@@ -1111,7 +1111,7 @@ public final class HudRenderer {
                   (float)((int)Math.round(16.0 * var10)),
                   2.0F,
                   1.0F,
-                  bg.pAsInt(bg.xAsInt(-43434, -13710223, var10), var5)
+                  ColorUtil.pAsInt(ColorUtil.xAsInt(-43434, -13710223, var10), var5)
                );
             }
          }
@@ -1122,7 +1122,7 @@ public final class HudRenderer {
       public final String a;
       public int v;
       public int y;
-      private double SahurDanceEngine = 2.5;
+      private double d = 2.5;
       private final GuiWorkspace.Type_g z;
 
       Type_m(String var1, int var2, int var3, double var4, double var6) {
@@ -1156,24 +1156,24 @@ public final class HudRenderer {
          this.d = Math.max(0.1, Math.min(2.5, Math.min((double)Math.max(1, var1) / (double)this.v, (double)Math.max(1, var2) / (double)this.y)));
       }
 
-      public d7.Type_p mAsD7_Type_p(int var1, int var2) {
+      public WidgetLayoutUtil.Type_p mAsD7_Type_p(int var1, int var2) {
          if (this.a.equals("crosshair")) {
             int var3 = CustomCrosshair.JAsInt();
-            return new d7.Type_p(
+            return new WidgetLayoutUtil.Type_p(
                this.PAsInt(var1) + (int)Math.round(((double)this.v / 2.0 - (double)var3) * this.vAsDouble()),
                this.ZAsInt(var2) + (int)Math.round(((double)this.y / 2.0 - (double)var3) * this.vAsDouble()),
                (int)Math.ceil((double)(var3 * 2) * this.vAsDouble()),
                (int)Math.ceil((double)(var3 * 2) * this.vAsDouble())
             );
          } else {
-            return new d7.Type_p(
+            return new WidgetLayoutUtil.Type_p(
                this.PAsInt(var1), this.ZAsInt(var2), this.vAsInt(), this.a.equals("notifications") ? (int)Math.round(30.0 * this.vAsDouble()) : this.TAsInt()
             );
          }
       }
 
-      public d7.Type_p hAsD7_Type_p(int var1, int var2) {
-         return new d7.Type_p(this.PAsInt(var1), this.ZAsInt(var2), this.vAsInt(), this.TAsInt());
+      public WidgetLayoutUtil.Type_p hAsD7_Type_p(int var1, int var2) {
+         return new WidgetLayoutUtil.Type_p(this.PAsInt(var1), this.ZAsInt(var2), this.vAsInt(), this.TAsInt());
       }
 
       public void AAsVoid() {
@@ -1240,6 +1240,6 @@ public final class HudRenderer {
       }
    }
 
-   public static record Type_p(HudRenderer.Type_m element, d7.Type_p bounds) {
+   public static record Type_p(HudRenderer.Type_m element, WidgetLayoutUtil.Type_p bounds) {
    }
 }

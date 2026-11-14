@@ -44,13 +44,13 @@ public final class PlayerTrail extends Module {
    private final NumberSetting lifetime = this.addSetting(new NumberSetting("Lifetime", "Seconds", 1.2, 0.2, 5.0, 0.1));
    private final BooleanSetting bloom = this.addSetting(new BooleanSetting("Bloom", "Submit glow mask", true));
    private final BooleanSetting smoothing = this.addSetting(new BooleanSetting("Smoothing", "Smooth trail curves", true));
-   private final ColorSetting color = this.addSetting(new ColorSetting("Color", "Head color", bd.w));
-   private final ColorSetting gradient = this.addSetting(new ColorSetting("Gradient", "Tail color", bd.Q));
+   private final ColorSetting color = this.addSetting(new ColorSetting("Color", "Head color", UiStyle.w));
+   private final ColorSetting gradient = this.addSetting(new ColorSetting("Gradient", "Tail color", UiStyle.Q));
    private final BooleanSetting trailParticles = this.addSetting(
       new BooleanSetting("Trail Particles", "Style particles shed from the whole body while moving", true)
    );
    private final NumberSetting particleDensity = this.addSetting(new NumberSetting("Particle Density", "Particles per block travelled", 1.0, 0.25, 3.0, 0.05));
-   private final x4 T = new x4();
+   private final EffectRenderParams T = new EffectRenderParams();
 
    public PlayerTrail() {
       super("Player Trail", "Leave fading trails and player copies", Category.VISUALS, -1);
@@ -132,7 +132,7 @@ public final class PlayerTrail extends Module {
    public void onTick() {
       if (this.isInGame()) {
          if (this.style.pAsBoolean("Ghost Echo")) {
-            ok var8 = SharedRenderEffects.H;
+            OfferManager var8 = SharedRenderEffects.H;
             var8.n = this.snapshotInterval.getValue();
             var8.R = this.ghostLifetime.getValue();
             var8.t = this.maximumGhosts.getValue().intValue();
@@ -151,7 +151,7 @@ public final class PlayerTrail extends Module {
                : (this.style.pAsBoolean("Stardust") ? RibbonTrailEngine.Type_b.TAPER_TAIL : RibbonTrailEngine.Type_b.valueOf(this.widthCurve.getValue()));
             BodyTrailEngine var2 = SharedRenderEffects.Z;
             var2.l = this.EAsOu_Type_i();
-            var2.b = ay.Type_r.valueOf(this.alphaCurve.getValue());
+            var2.b = FadeCurve.Type_r.valueOf(this.alphaCurve.getValue());
             var2.R = var1;
             var2.x = this.width.getValue();
             var2.U = this.lifetime.getValue();
@@ -163,7 +163,7 @@ public final class PlayerTrail extends Module {
             var3.u = var2.b;
             var3.x = !this.style.pAsBoolean("Ribbon");
             var3.N = var1;
-            var3.d = this.style.pAsBoolean("Ribbon") ? x4.Type_g.ALPHA : x4.Type_g.ADDITIVE;
+            var3.d = this.style.pAsBoolean("Ribbon") ? EffectRenderParams.Type_g.ALPHA : EffectRenderParams.Type_g.ADDITIVE;
             var3.c = this.width.getValue();
             var3.i = this.lifetime.getValue();
             var3.A = this.bloom.getValue();
@@ -237,7 +237,7 @@ public final class PlayerTrail extends Module {
       double var15 = (var11 * var8 + var25_r2) * this.particleDensity.getValue() * var4;
       int var17 = (int)var15 + (var10.nextDouble() < var15 - (double)((int)var15) ? 1 : 0);
       if (var17 != 0) {
-         x4 var18 = this.T;
+         EffectRenderParams var18 = this.T;
          this.eAsVoid(var18, var2);
          var18.z = var18.c = (double)var1.getWidth() * 1.15;
          double var19 = this.style.pAsBoolean("Comet") ? 7.0 : (this.style.pAsBoolean("Stardust") ? 1.2 : 3.0);
@@ -253,18 +253,18 @@ public final class PlayerTrail extends Module {
       }
    }
 
-   private void eAsVoid(x4 var1, double var2) {
+   private void eAsVoid(EffectRenderParams var1, double var2) {
       int var4 = this.color.getValue();
       int var5 = this.gradient.getValue();
       var1.K = 3;
       var1.M = 1;
-      var1.B = x4.Type_o.CYLINDER;
+      var1.B = EffectRenderParams.Type_o.CYLINDER;
       var1.s = var2;
-      var1.j = x4.Type_g.ADDITIVE;
+      var1.j = EffectRenderParams.Type_g.ADDITIVE;
       var1.i = this.bloom.getValue();
       var1.O = (int)Math.round(140.0 + 260.0 * this.particleDensity.getValue());
-      var1.I = bg.pAsInt(var4, 0.9);
-      var1.A = bg.pAsInt(var5, 0.25);
+      var1.I = ColorUtil.pAsInt(var4, 0.9);
+      var1.A = ColorUtil.pAsInt(var5, 0.25);
       var1.J = 0.0;
       var1.Q = 1.0;
       var1.e = 0.0;
@@ -282,8 +282,8 @@ public final class PlayerTrail extends Module {
             var1.a = -0.35;
             var1.D = 1.6;
             var1.L = 0.4;
-            var1.t = ay.Type_r.FADE_IN_OUT;
-            var1.o = ay.Type_z.SHRINK;
+            var1.t = FadeCurve.Type_r.FADE_IN_OUT;
+            var1.o = FadeCurve.Type_z.SHRINK;
             break;
          case "Comet":
             var1.s = var2 * 0.5;
@@ -296,9 +296,9 @@ public final class PlayerTrail extends Module {
             var1.a = 0.7;
             var1.D = 1.8;
             var1.L = 0.1;
-            var1.t = ay.Type_r.QUICK_FADE;
-            var1.o = ay.Type_z.SHRINK;
-            var1.A = bg.pAsInt(bg.xAsInt(var4, var5, 0.6), 0.3);
+            var1.t = FadeCurve.Type_r.QUICK_FADE;
+            var1.o = FadeCurve.Type_z.SHRINK;
+            var1.A = ColorUtil.pAsInt(ColorUtil.xAsInt(var4, var5, 0.6), 0.3);
             break;
          case "Helix":
             var1.g = 0.02;
@@ -312,8 +312,8 @@ public final class PlayerTrail extends Module {
             var1.L = 0.15;
             var1.J = 3.2;
             var1.Q = 1.2;
-            var1.t = ay.Type_r.FADE_IN_OUT;
-            var1.o = ay.Type_z.POP;
+            var1.t = FadeCurve.Type_r.FADE_IN_OUT;
+            var1.o = FadeCurve.Type_z.POP;
             break;
          case "Stardust":
             var1.g = 0.016;
@@ -326,10 +326,10 @@ public final class PlayerTrail extends Module {
             var1.D = 2.5;
             var1.L = 0.15;
             var1.V = 1.2;
-            var1.t = ay.Type_r.HOLD_FADE;
-            var1.o = ay.Type_z.PULSE;
-            var1.I = bg.pAsInt(bg.xAsInt(var4, -1, 0.35), 0.95);
-            var1.A = bg.pAsInt(var5, 0.35);
+            var1.t = FadeCurve.Type_r.HOLD_FADE;
+            var1.o = FadeCurve.Type_z.PULSE;
+            var1.I = ColorUtil.pAsInt(ColorUtil.xAsInt(var4, -1, 0.35), 0.95);
+            var1.A = ColorUtil.pAsInt(var5, 0.35);
             break;
          default:
             var1.g = 0.02;
@@ -341,8 +341,8 @@ public final class PlayerTrail extends Module {
             var1.a = -0.04;
             var1.D = 2.0;
             var1.L = 0.25;
-            var1.t = ay.Type_r.FADE_IN_OUT;
-            var1.o = ay.Type_z.SHRINK;
+            var1.t = FadeCurve.Type_r.FADE_IN_OUT;
+            var1.o = FadeCurve.Type_z.SHRINK;
       }
    }
 

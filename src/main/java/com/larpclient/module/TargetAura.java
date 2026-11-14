@@ -41,12 +41,12 @@ public final class TargetAura extends Module {
    private final NumberSetting particlesPerSecond = this.addSetting(new NumberSetting("Particles Per Second", "Persistent aura emission", 18.0, 0.0, 60.0, 1.0));
    private final BooleanSetting bloom = this.addSetting(new BooleanSetting("Bloom", "Explicit glow pass", true));
    private final BooleanSetting themeColors = this.addSetting(new BooleanSetting("Theme Colors", "Follow current theme", true));
-   private final ColorSetting color = this.addSetting(new ColorSetting("Color", "Primary color", bd.w));
-   private final ColorSetting gradient = this.addSetting(new ColorSetting("Gradient", "Secondary color", bd.Q));
-   private final x4 g = new x4();
+   private final ColorSetting color = this.addSetting(new ColorSetting("Color", "Primary color", UiStyle.w));
+   private final ColorSetting gradient = this.addSetting(new ColorSetting("Gradient", "Secondary color", UiStyle.Q));
+   private final EffectRenderParams g = new EffectRenderParams();
    private double H;
    private int q;
-   private final pq K = new pq();
+   private final PanelQuality K = new PanelQuality();
    private final RibbonCapacity.Type_v[] e = new RibbonCapacity.Type_v[18];
    private double y;
    private final ArrayList<TargetAura.Type_t> F;
@@ -116,7 +116,7 @@ public final class TargetAura extends Module {
          int var2 = (int)this.H;
          this.H -= (double)var2;
          if (var2 != 0) {
-            x4 var3 = this.dAsX4(var2, (double)var1.getWidth(), (double)var1.getHeight());
+            EffectRenderParams var3 = this.dAsX4(var2, (double)var1.getWidth(), (double)var1.getHeight());
             SharedRenderEffects.B.pAsVoid(var1.getEntityPos().add(0.0, this.kAsDouble((double)var1.getHeight()), 0.0), var3);
          }
       }
@@ -130,15 +130,15 @@ public final class TargetAura extends Module {
       }
    }
 
-   public x4 dAsX4(int var1, double var2, double var4) {
+   public EffectRenderParams dAsX4(int var1, double var2, double var4) {
       this.g.K = 2;
       this.g.M = var1;
-      this.g.B = x4.Type_o.CYLINDER;
+      this.g.B = EffectRenderParams.Type_o.CYLINDER;
       boolean var6 = this.style.pAsBoolean("Star of David");
       this.g.z = this.g.c = (var2 * 0.75 + 0.35) * (var6 ? 2.6 : 2.0);
       this.g.s = var4 * (this.style.pAsBoolean("Halo") ? 0.08 : (var6 ? 0.1 : 0.8));
-      this.g.I = this.themeColors.getValue() ? bd.w : this.color.getValue();
-      this.g.A = this.themeColors.getValue() ? bd.Q : this.gradient.getValue();
+      this.g.I = this.themeColors.getValue() ? UiStyle.w : this.color.getValue();
+      this.g.A = this.themeColors.getValue() ? UiStyle.Q : this.gradient.getValue();
       this.g.x = 0.85;
       this.g.v = 1.4;
       this.g.g = 0.055;
@@ -151,7 +151,7 @@ public final class TargetAura extends Module {
       this.g.J = 1.5;
       this.g.i = this.bloom.getValue();
       this.g.q = ParticleEmitterEngine.Type_a.Glow;
-      this.g.j = x4.Type_g.ADDITIVE;
+      this.g.j = EffectRenderParams.Type_g.ADDITIVE;
       this.g.Q = 1.0;
       if (var6) {
          this.g.J = 0.6;
@@ -159,8 +159,8 @@ public final class TargetAura extends Module {
       }
 
       if (!this.style.pAsBoolean("Halo")) {
-         this.g.I = bg.pAsInt(this.g.I, 0.85);
-         this.g.A = bg.pAsInt(this.g.A, 0.65);
+         this.g.I = ColorUtil.pAsInt(this.g.I, 0.85);
+         this.g.A = ColorUtil.pAsInt(this.g.A, 0.65);
          this.g.R = 0.11;
          if (++this.q % 9 == 0) {
             this.g.q = ParticleEmitterEngine.Type_a.Spark;
@@ -171,7 +171,7 @@ public final class TargetAura extends Module {
             this.g.w = 0.75;
             this.g.Q = 0.35;
             this.g.L = 0.08;
-            this.g.I = bg.xAsInt(this.g.I, this.g.I & 0xFF000000 | 16777215, 0.35);
+            this.g.I = ColorUtil.xAsInt(this.g.I, this.g.I & 0xFF000000 | 16777215, 0.35);
          }
       }
 
@@ -191,7 +191,7 @@ public final class TargetAura extends Module {
 
          if (this.isRuntimeActive()) {
             LivingEntity var24 = ControlCategory.CAsLivingEntity(this.source.getValue());
-            double var25 = this.K.uAsDouble(mb.RAsDouble(), this.speed.getValue());
+            double var25 = this.K.uAsDouble(MediaSession.RAsDouble(), this.speed.getValue());
             if (var24 == null) {
                this.p = null;
                this.f = -1;
@@ -202,15 +202,15 @@ public final class TargetAura extends Module {
                this.T = this.bloom.getValue();
                double var6 = (double)var24.getWidth() * 0.75 + 0.35;
                double var8 = (double)var24.getHeight();
-               int var10 = this.themeColors.getValue() ? bd.w : this.color.getValue();
-               int var11 = this.themeColors.getValue() ? bd.Q : this.gradient.getValue();
+               int var10 = this.themeColors.getValue() ? UiStyle.w : this.color.getValue();
+               int var11 = this.themeColors.getValue() ? UiStyle.Q : this.gradient.getValue();
                if (!this.style.pAsBoolean("Orbit") && !this.style.pAsBoolean("Helix")) {
                   if (this.style.pAsBoolean("Energy")) {
                      this.uAsVoid(this.e[0], var26, var6, var8 * 0.48, var8, var25, var10, var11);
                      this.uAsVoid(this.e[1], var26, var6 * 0.92, var8 * 0.88, var8, -var25 * 0.83 + 2.1, var11, var10);
-                     this.DAsVoid(aAsVec3d(var26, var6, var8 * 0.48, var8, var25, mb.RAsDouble(), 1.0), this.width.getValue() * 2.1, var10);
-                     this.DAsVoid(aAsVec3d(var26, var6 * 0.92, var8 * 0.88, var8, -var25 * 0.83 + 2.1, mb.RAsDouble(), 1.0), this.width.getValue() * 2.1, var11);
-                     this.MAsVoid(var26.add(0.0, 0.055, 0.0), var6 * 1.1, this.width.getValue() * 2.5, bg.pAsInt(var10, 0.6));
+                     this.DAsVoid(aAsVec3d(var26, var6, var8 * 0.48, var8, var25, MediaSession.RAsDouble(), 1.0), this.width.getValue() * 2.1, var10);
+                     this.DAsVoid(aAsVec3d(var26, var6 * 0.92, var8 * 0.88, var8, -var25 * 0.83 + 2.1, MediaSession.RAsDouble(), 1.0), this.width.getValue() * 2.1, var11);
+                     this.MAsVoid(var26.add(0.0, 0.055, 0.0), var6 * 1.1, this.width.getValue() * 2.5, ColorUtil.pAsInt(var10, 0.6));
                   } else if (this.style.pAsBoolean("Atom")) {
                      this.OAsVoid(var26, var6, var8, var25, var10, var11);
                   } else if (this.style.pAsBoolean("Vortex")) {
@@ -221,13 +221,13 @@ public final class TargetAura extends Module {
                      this.bAsVoid(var26, var6, var8, var25, var10, var11);
                   } else {
                      Vec3d var12 = var26.add(0.0, var8 + 0.22 + Math.sin(var25 * 0.6) * 0.045, 0.0);
-                     this.MAsVoid(var12, var6 * 1.05, this.width.getValue() * 3.0, bg.pAsInt(var10, 0.95));
-                     this.MAsVoid(var12, var6 * 1.05, this.width.getValue() * 6.0, bg.pAsInt(var11, 0.25));
+                     this.MAsVoid(var12, var6 * 1.05, this.width.getValue() * 3.0, ColorUtil.pAsInt(var10, 0.95));
+                     this.MAsVoid(var12, var6 * 1.05, this.width.getValue() * 6.0, ColorUtil.pAsInt(var11, 0.25));
                      this.uAsVoid(this.e[0], var26, var6 * 1.05, var12.y - var26.y, var8 * 0.08, var25 * 0.65, var10, var11);
                      this.DAsVoid(
-                        aAsVec3d(var26, var6 * 1.05, var12.y - var26.y, var8 * 0.08, var25 * 0.65, mb.RAsDouble(), 1.0), this.width.getValue() * 1.8, var10
+                        aAsVec3d(var26, var6 * 1.05, var12.y - var26.y, var8 * 0.08, var25 * 0.65, MediaSession.RAsDouble(), 1.0), this.width.getValue() * 1.8, var10
                      );
-                     this.MAsVoid(var26.add(0.0, 0.055, 0.0), var6 * 1.05, this.width.getValue() * 2.0, bg.pAsInt(var11, 0.55));
+                     this.MAsVoid(var26.add(0.0, 0.055, 0.0), var6 * 1.05, this.width.getValue() * 2.0, ColorUtil.pAsInt(var11, 0.55));
                   }
                } else {
                   boolean var27 = this.style.pAsBoolean("Helix");
@@ -240,17 +240,17 @@ public final class TargetAura extends Module {
                         Vec3d var18 = mAsVec3d(var26, var6, var8, var25, var13, var16, var27);
                         double var19 = var27 ? Math.sin(Math.PI * var16) : bAsDouble(var16);
                         double var21 = this.width.getValue() * var19 * 3.4;
-                        int var23 = bg.pAsInt(bg.xAsInt(var11, var10, var16), 0.92 * (var27 ? Math.sin(Math.PI * var16) : Math.pow(var16, 0.65)));
+                        int var23 = ColorUtil.pAsInt(ColorUtil.xAsInt(var11, var10, var16), 0.92 * (var27 ? Math.sin(Math.PI * var16) : Math.pow(var16, 0.65)));
                         var14.bAsVoid(var18, var21, var23);
                      }
 
                      double var31 = var27 ? 0.5 + 0.44 * Math.sin(var25 * 0.33 + (double)var13 * Math.PI) : 1.0;
                      this.DAsVoid(
-                        mAsVec3d(var26, var6, var8, var25, var13, var31, var27), this.width.getValue() * (var27 ? 1.6 : 2.1), bg.xAsInt(var11, var10, var31)
+                        mAsVec3d(var26, var6, var8, var25, var13, var31, var27), this.width.getValue() * (var27 ? 1.6 : 2.1), ColorUtil.xAsInt(var11, var10, var31)
                      );
                   }
 
-                  this.MAsVoid(var26.add(0.0, 0.055, 0.0), var6 * 1.05, this.width.getValue() * 2.0, bg.pAsInt(var11, 0.55));
+                  this.MAsVoid(var26.add(0.0, 0.055, 0.0), var6 * 1.05, this.width.getValue() * 2.0, ColorUtil.pAsInt(var11, 0.55));
                }
 
                Vec3d var28 = MinecraftClient.getInstance().gameRenderer.getCamera().getCameraPos();
@@ -280,7 +280,7 @@ public final class TargetAura extends Module {
    }
 
    private void DAsVoid(Vec3d var1, double var2, int var4) {
-      this.j.add(new TargetAura.Type_z(var1, var2, bg.xAsInt(var4, var4 & 0xFF000000 | 16777215, 0.55)));
+      this.j.add(new TargetAura.Type_z(var1, var2, ColorUtil.xAsInt(var4, var4 & 0xFF000000 | 16777215, 0.55)));
    }
 
    public static Vec3d mAsVec3d(Vec3d var0, double var1, double var3, double var5, int var7, double var8, boolean var10) {
@@ -300,10 +300,10 @@ public final class TargetAura extends Module {
       for (int var15 = 0; var15 < 3; var15++) {
          double var16 = var6 * 0.18 + (double)var15 * Math.PI * 2.0 / 3.0;
          double var18 = var6 * (1.0 + (double)var15 * 0.17) + (double)var15 * 2.1;
-         int var20 = bg.xAsInt(var8, var9, (double)var15 / 2.0);
+         int var20 = ColorUtil.xAsInt(var8, var9, (double)var15 / 2.0);
 
          for (int var21 = 0; var21 <= 48; var21++) {
-            this.e[var15].bAsVoid(YAsVec3d(var10, var11, var4, var16, (double)var21 / 48.0 * Math.PI * 2.0), var13 * 1.3, bg.pAsInt(var20, 0.24));
+            this.e[var15].bAsVoid(YAsVec3d(var10, var11, var4, var16, (double)var21 / 48.0 * Math.PI * 2.0), var13 * 1.3, ColorUtil.pAsInt(var20, 0.24));
          }
 
          for (int var24 = 0; var24 <= 32; var24++) {
@@ -312,14 +312,14 @@ public final class TargetAura extends Module {
                .bAsVoid(
                   YAsVec3d(var10, var11, var4, var16, var18 - (1.0 - var22) * Math.PI * 1.1),
                   var13 * bAsDouble(var22) * 3.2,
-                  bg.pAsInt(bg.xAsInt(var9, var8, var22), 0.95 * Math.pow(var22, 0.65))
+                  ColorUtil.pAsInt(ColorUtil.xAsInt(var9, var8, var22), 0.95 * Math.pow(var22, 0.65))
                );
          }
 
          this.DAsVoid(YAsVec3d(var10, var11, var4, var16, var18), var13 * 2.0, var20);
       }
 
-      this.MAsVoid(var1.add(0.0, 0.055, 0.0), var2 * 1.05, var13 * 2.0, bg.pAsInt(var9, 0.5));
+      this.MAsVoid(var1.add(0.0, 0.055, 0.0), var2 * 1.05, var13 * 2.0, ColorUtil.pAsInt(var9, 0.5));
    }
 
    public static Vec3d YAsVec3d(Vec3d var0, double var1, double var3, double var5, double var7) {
@@ -345,15 +345,15 @@ public final class TargetAura extends Module {
                .bAsVoid(
                   lAsVec3d(var1, var2, var4, var6, var12, var16),
                   var10 * (1.6 + 1.6 * var16) * (1.0 + 0.7 * var20) * var18,
-                  bg.pAsInt(bg.xAsInt(var8, var9, var16), (0.38 + 0.57 * var20) * var18)
+                  ColorUtil.pAsInt(ColorUtil.xAsInt(var8, var9, var16), (0.38 + 0.57 * var20) * var18)
                );
          }
 
-         this.DAsVoid(lAsVec3d(var1, var2, var4, var6, var12, var13), var10 * 1.9 * tAsDouble(var13), bg.xAsInt(var8, var9, var13));
+         this.DAsVoid(lAsVec3d(var1, var2, var4, var6, var12, var13), var10 * 1.9 * tAsDouble(var13), ColorUtil.xAsInt(var8, var9, var13));
       }
 
-      this.MAsVoid(var1.add(0.0, 0.055, 0.0), var2 * 0.8, var10 * 2.0, bg.pAsInt(var8, 0.55));
-      this.MAsVoid(var1.add(0.0, var4 * 1.1, 0.0), var2 * 1.36, var10 * 1.6, bg.pAsInt(var9, 0.32));
+      this.MAsVoid(var1.add(0.0, 0.055, 0.0), var2 * 0.8, var10 * 2.0, ColorUtil.pAsInt(var8, 0.55));
+      this.MAsVoid(var1.add(0.0, var4 * 1.1, 0.0), var2 * 1.36, var10 * 1.6, ColorUtil.pAsInt(var9, 0.32));
    }
 
    public static Vec3d lAsVec3d(Vec3d var0, double var1, double var3, double var5, int var7, double var8) {
@@ -373,8 +373,8 @@ public final class TargetAura extends Module {
       double var16 = Math.sin(var12);
       double var18 = Math.abs(var16) * var4 * 0.32;
       double var20 = Math.min(1.0, var18 * 8.0);
-      this.MAsVoid(var1.add(0.0, var14, 0.0), var2 * 1.02, var10 * 2.6, bg.pAsInt(var8, 0.95));
-      this.MAsVoid(var1.add(0.0, var14, 0.0), var2 * 1.02, var10 * 7.0, bg.pAsInt(var9, 0.28));
+      this.MAsVoid(var1.add(0.0, var14, 0.0), var2 * 1.02, var10 * 2.6, ColorUtil.pAsInt(var8, 0.95));
+      this.MAsVoid(var1.add(0.0, var14, 0.0), var2 * 1.02, var10 * 7.0, ColorUtil.pAsInt(var9, 0.28));
 
       for (int var22 = 1; var22 <= 6 && var20 > 0.02; var22++) {
          double var23 = (double)var22 / 6.0;
@@ -382,7 +382,7 @@ public final class TargetAura extends Module {
             var1.add(0.0, var14 - Math.signum(var16) * var18 * var23, 0.0),
             var2 * (1.02 - 0.04 * var23),
             var10 * 1.6,
-            bg.pAsInt(bg.xAsInt(var8, var9, var23), 0.55 * Math.pow(1.0 - var23, 1.4) * var20)
+            ColorUtil.pAsInt(ColorUtil.xAsInt(var8, var9, var23), 0.55 * Math.pow(1.0 - var23, 1.4) * var20)
          );
       }
 
@@ -425,8 +425,8 @@ public final class TargetAura extends Module {
          );
       }
 
-      this.MAsVoid(var26, var16 * 1.12, var10 * 2.4, bg.pAsInt(var8, 0.85));
-      this.MAsVoid(var26, var16 * 1.24, var10 * 1.2, bg.pAsInt(var9, 0.45));
+      this.MAsVoid(var26, var16 * 1.12, var10 * 2.4, ColorUtil.pAsInt(var8, 0.85));
+      this.MAsVoid(var26, var16 * 1.24, var10 * 1.2, ColorUtil.pAsInt(var9, 0.45));
 
       for (int var30 = 1; var30 <= 4 && var24 > 0.02; var30++) {
          double var31 = (double)var30 / 4.0;
@@ -434,7 +434,7 @@ public final class TargetAura extends Module {
             var1.add(0.0, var20 - Math.signum(var14) * var22 * var31, 0.0),
             var16 * 1.12 * (1.0 - 0.04 * var31),
             var10 * 1.4,
-            bg.pAsInt(bg.xAsInt(var8, var9, var31), 0.4 * Math.pow(1.0 - var31, 1.4) * var24)
+            ColorUtil.pAsInt(ColorUtil.xAsInt(var8, var9, var31), 0.4 * Math.pow(1.0 - var31, 1.4) * var24)
          );
       }
    }
@@ -455,7 +455,7 @@ public final class TargetAura extends Module {
                double var28 = ((double)var22 + var26) / 3.0 - var20;
                double var30 = Math.exp(-vAsDouble(var28 - Math.rint(var28)) / 0.006);
                this.e[var14 + var18 * 3 + var22]
-                  .bAsVoid(var23.lerp(var24, var26), var16 * (2.6 + 1.6 * var30) * var12, bg.pAsInt(var19, (0.72 + 0.28 * var30) * var10));
+                  .bAsVoid(var23.lerp(var24, var26), var16 * (2.6 + 1.6 * var30) * var12, ColorUtil.pAsInt(var19, (0.72 + 0.28 * var30) * var10));
             }
          }
 
@@ -490,7 +490,7 @@ public final class TargetAura extends Module {
    }
 
    private static double bAsDouble(double var0) {
-      return (0.12 + 0.88 * Math.pow(var0, 0.8)) * ay.RAsDouble(var0 / 0.08);
+      return (0.12 + 0.88 * Math.pow(var0, 0.8)) * FadeCurve.RAsDouble(var0 / 0.08);
    }
 
    private static Vec3d aAsVec3d(Vec3d var0, double var1, double var3, double var5, double var7, double var9, double var11) {
@@ -502,8 +502,8 @@ public final class TargetAura extends Module {
 
    public void XAsVoid(EffectGeometryRenderer var1, float var2, boolean var3) {
       if (this.isEnabled() && this.C && (!var3 || this.T)) {
-         long var4 = op.RAsLong();
-         var1.blend(x4.Type_g.ADDITIVE);
+         long var4 = OpenScreen.RAsLong();
+         var1.blend(EffectRenderParams.Type_g.ADDITIVE);
 
          for (RibbonCapacity.Type_v var9 : this.e) {
             var1.hAsVoid(var9, true);
@@ -515,23 +515,23 @@ public final class TargetAura extends Module {
 
          for (TargetAura.Type_z var13 : this.j) {
             Vec3d var14 = var13.center();
-            var1.BAsVoid(var14.x, var14.y, var14.z, var13.size() * (var3 ? 1.8 : 2.6), 0.0, bg.pAsInt(var13.color(), var3 ? 0.35 : 0.18));
+            var1.BAsVoid(var14.x, var14.y, var14.z, var13.size() * (var3 ? 1.8 : 2.6), 0.0, ColorUtil.pAsInt(var13.color(), var3 ? 0.35 : 0.18));
             if (!var3) {
                var1.BAsVoid(var14.x, var14.y, var14.z, var13.size(), 0.0, var13.color());
             }
          }
 
-         var1.blend(x4.Type_g.ALPHA);
-         op.aAsVoid("TargetAura", var4);
+         var1.blend(EffectRenderParams.Type_g.ALPHA);
+         OpenScreen.aAsVoid("TargetAura", var4);
       }
    }
 
    private void uAsVoid(RibbonCapacity.Type_v var1, Vec3d var2, double var3, double var5, double var7, double var9, int var11, int var12) {
       for (int var13 = 0; var13 <= 32; var13++) {
          double var14 = (double)var13 / 32.0;
-         Vec3d var16 = aAsVec3d(var2, var3, var5, var7, var9, mb.RAsDouble(), var14);
+         Vec3d var16 = aAsVec3d(var2, var3, var5, var7, var9, MediaSession.RAsDouble(), var14);
          double var17 = this.width.getValue() * bAsDouble(var14) * 3.4;
-         int var19 = bg.pAsInt(bg.xAsInt(var12, var11, var14), Math.pow(var14, 0.65));
+         int var19 = ColorUtil.pAsInt(ColorUtil.xAsInt(var12, var11, var14), Math.pow(var14, 0.65));
          var1.bAsVoid(var16, var17, var19);
       }
    }

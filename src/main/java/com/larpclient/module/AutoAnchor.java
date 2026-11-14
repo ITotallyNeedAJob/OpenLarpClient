@@ -163,13 +163,13 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
 
    @Override
    public void aimPlacement(float var1, float var2) {
-      if (this.isEnabled() && p5.fAsBoolean(p5.Type_u.AUTOANCHOR)) {
-         dq.yAsVoid(dq.Type_s.PLACEMENT, var1, var2, 1.0);
-         if (dq.CAsBoolean(dq.Type_s.PLACEMENT)) {
+      if (this.isEnabled() && ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.AUTOANCHOR)) {
+         ModuleDetector.yAsVoid(ModuleDetector.Type_s.PLACEMENT, var1, var2, 1.0);
+         if (ModuleDetector.CAsBoolean(ModuleDetector.Type_s.PLACEMENT)) {
             this.V = mc.player;
             this.A = mc.world;
             this.a = mc.player.age;
-            p5.jAsVoid(p5.Type_u.AUTOANCHOR);
+            ParticleEmitter.jAsVoid(ParticleEmitter.Type_u.AUTOANCHOR);
          } else {
             this.dAsVoid();
          }
@@ -178,7 +178,7 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
 
    private void dAsVoid() {
       this.V = this.A = null;
-      p5.GAsVoid(p5.Type_u.AUTOANCHOR);
+      ParticleEmitter.GAsVoid(ParticleEmitter.Type_u.AUTOANCHOR);
    }
 
    public boolean LAsBoolean() {
@@ -196,7 +196,7 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
 
    public float IAsFloat(float var1) {
       if (this.isEnabled()) {
-         if (this.isRuntimeActive() && p5.NAsP5_Type_u() == p5.Type_u.AUTOANCHOR && dq.CAsBoolean(dq.Type_s.PLACEMENT)) {
+         if (this.isRuntimeActive() && ParticleEmitter.NAsP5_Type_u() == ParticleEmitter.Type_u.AUTOANCHOR && ModuleDetector.CAsBoolean(ModuleDetector.Type_s.PLACEMENT)) {
             mc.player.setHeadYaw(mc.player.getYaw());
             return mc.player.getYaw();
          } else {
@@ -308,7 +308,7 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
    }
 
    private String dAsString() {
-      if (!b_.jAsBoolean() || !mc.isWindowFocused()) {
+      if (!ModuleImportBroker.jAsBoolean() || !mc.isWindowFocused()) {
          return "Paused: screen, focus or detached camera";
       } else if (this.r.getValue() && mc.player.isUsingItem()) {
          return "Paused while using an item";
@@ -317,7 +317,7 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
       } else if (this.sAsBoolean(mc.player.getBlockPos())) {
          return "Anchors set spawn here, so they cannot explode";
       } else {
-         return this.rotation.pAsBoolean("Visible") && !p5.fAsBoolean(p5.Type_u.AUTOANCHOR) ? "Paused for another camera owner" : null;
+         return this.rotation.pAsBoolean("Visible") && !ParticleEmitter.fAsBoolean(ParticleEmitter.Type_u.AUTOANCHOR) ? "Paused for another camera owner" : null;
       }
    }
 
@@ -461,7 +461,7 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
    }
 
    private boolean DAsBoolean(double var1) {
-      return !this.l.getValue() || nf.uAsBoolean(var1, this.z.getValue(), (double)(mc.player.getHealth() + mc.player.getAbsorptionAmount()));
+      return !this.l.getValue() || NebulaSky.uAsBoolean(var1, this.z.getValue(), (double)(mc.player.getHealth() + mc.player.getAbsorptionAmount()));
    }
 
    private AutoAnchor.Type_u IAsAutoAnchor_Type_u(BlockPos var1, BlockPos var2, List<LivingEntity> var3, double var4, double var6) {
@@ -469,7 +469,7 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
       double var9 = 0.0;
 
       for (LivingEntity var12 : var3) {
-         double var13 = (double)my.CAsFloat(var12, var1, var2);
+         double var13 = (double)MusicSync.CAsFloat(var12, var1, var2);
          if (var13 > var9) {
             var9 = var13;
             var8 = var12;
@@ -487,8 +487,8 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
                   || BlockPlacementController.jAsBoolean(var1.shield()) && (!this.dAsBoolean(var1.shield()) || !this.LAsBoolean(var1.anchor(), var1.shield()))
                ? null
                : var1.shield();
-            float var5 = my.LAsFloat(mc.player, var1.anchor(), var4);
-            double var6 = (double)my.pAsFloat(mc.player, var1.anchor(), var5);
+            float var5 = MusicSync.LAsFloat(mc.player, var1.anchor(), var4);
+            double var6 = (double)MusicSync.pAsFloat(mc.player, var1.anchor(), var5);
             if (!this.DAsBoolean(var6)) {
                return null;
             } else {
@@ -535,7 +535,7 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
                         double var18 = 0.0;
 
                         for (LivingEntity var21 : var1) {
-                           var18 = Math.max(var18, (double)nf.DAsFloat(var21, nf.sAsFloat(var21.getEntityPos().distanceTo(Vec3d.ofCenter(var16)), 1.0, 5.0)));
+                           var18 = Math.max(var18, (double)NebulaSky.DAsFloat(var21, NebulaSky.sAsFloat(var21.getEntityPos().distanceTo(Vec3d.ofCenter(var16)), 1.0, 5.0)));
                         }
 
                         if (var18 >= this.i.getValue()) {
@@ -570,12 +570,12 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
             if (var19 != null) {
                var30 = Math.max(var30, var19.damage());
                if (!(var19.damage() < this.i.getValue()) && (var28 == null || !(var19.damage() <= var28.value()))) {
-                  float var35 = my.LAsFloat(mc.player, var33, null);
+                  float var35 = MusicSync.LAsFloat(mc.player, var33, null);
                   ArrayList var36 = new ArrayList();
                   if (this.P.getValue() && var35 > 0.0F && BlockPlacementController.qAsInt(this.MAsItem(), this.G.getValue()) != -1) {
-                     for (BlockPos var23 : my.fAsList(var33, mc.player.getEyePos())) {
+                     for (BlockPos var23 : MusicSync.fAsList(var33, mc.player.getEyePos())) {
                         if (BlockPlacementController.jAsBoolean(var23)) {
-                           float var24 = my.LAsFloat(mc.player, var33, var23);
+                           float var24 = MusicSync.LAsFloat(mc.player, var33, var23);
                            if (var24 < var35) {
                               var36.add(new AutoAnchor.Type_q(var23, var24));
                            }
@@ -589,7 +589,7 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
                   Boolean var37 = null;
 
                   for (AutoAnchor.Type_q var39 : (Iterable<AutoAnchor.Type_q>) (var36)) {
-                     double var25 = (double)my.pAsFloat(mc.player, var33, var39.exposure());
+                     double var25 = (double)MusicSync.pAsFloat(mc.player, var33, var39.exposure());
                      AutoAnchor.Type_u var27 = var39.pos() == null
                         ? new AutoAnchor.Type_u(var33, null, var19.target(), var19.damage(), var25, (double)var35)
                         : this.IAsAutoAnchor_Type_u(var33, var39.pos(), var1, var25, (double)var39.exposure());
@@ -653,12 +653,12 @@ public final class AutoAnchor extends Module implements PlacementPreview.Type_e,
       if (!var2) {
          return BlockPlacementController.HAsBlockHitResult(var1, Items.RESPAWN_ANCHOR, this.w.getValue(), var3, this.G.getValue()) != null;
       } else if (!var3) {
-         return b_.TAsBlockHitResult(var1, this.BAsDouble()) != null;
+         return ModuleImportBroker.TAsBlockHitResult(var1, this.BAsDouble()) != null;
       } else {
          Vec3d var4 = mc.player.getEyePos();
 
          for (Vec3d var6 : AutoCrystal.HAsList(var1, var4)) {
-            if (b_.eAsBlockHitResult(var1, this.BAsDouble(), var6.subtract(var4)) != null) {
+            if (ModuleImportBroker.eAsBlockHitResult(var1, this.BAsDouble(), var6.subtract(var4)) != null) {
                return true;
             }
          }

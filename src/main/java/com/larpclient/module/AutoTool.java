@@ -15,7 +15,7 @@ public final class AutoTool extends Module {
    private static AutoTool n;
    private final BooleanSetting switchBack = this.addSetting(new BooleanSetting("Switch Back", "Restore the previous slot after mining", true));
    private final BooleanSetting protectTools = this.addSetting(new BooleanSetting("Protect Tools", "Avoid tools with only one durability remaining", true));
-   private final qe.Type_q L = new qe.Type_q();
+   private final QueueEntry.Type_q L = new QueueEntry.Type_q();
    private Object l;
    private Object D;
    private int B = -1;
@@ -42,7 +42,7 @@ public final class AutoTool extends Module {
    }
 
    private boolean NAsBoolean() {
-      return b_.jAsBoolean()
+      return ModuleImportBroker.jAsBoolean()
          && !mc.player.isCreative()
          && !mc.player.isUsingItem()
          && mc.options.attackKey.isPressed()
@@ -80,7 +80,7 @@ public final class AutoTool extends Module {
    public static boolean UAsBoolean(BlockPos var0) {
       if (n != null && n.isEnabled()) {
          AutoTool var1 = n;
-         if (var1 != null && var1.isRuntimeActive() && !b_.EAsBoolean() && var1.NAsBoolean()) {
+         if (var1 != null && var1.isRuntimeActive() && !ModuleImportBroker.EAsBoolean() && var1.NAsBoolean()) {
             if (var1.l == getMc().world && var1.D == getMc().player) {
                if (!(mc.crosshairTarget instanceof BlockHitResult var2) || !var2.getBlockPos().equals(var0) || !mc.world.isChunkLoaded(var0)) {
                   return false;
@@ -95,7 +95,7 @@ public final class AutoTool extends Module {
                      ArrayList var5 = new ArrayList(9);
 
                      for (int var6 = 0; var6 < 9; var6++) {
-                        var5.add(qe.mAsQe_Type_b(var4.getStack(var6), var8, var1.protectTools.getValue()));
+                        var5.add(QueueEntry.mAsQe_Type_b(var4.getStack(var6), var8, var1.protectTools.getValue()));
                      }
 
                      int var9 = var4.getSelectedSlot();
@@ -103,7 +103,7 @@ public final class AutoTool extends Module {
                         var1.L.PAsVoid();
                      }
 
-                     int var7 = var1.L.kAsInt(var9, qe.lAsInt(var5, var9));
+                     int var7 = var1.L.kAsInt(var9, QueueEntry.lAsInt(var5, var9));
                      if (var7 != var9) {
                         var4.setSelectedSlot(var7);
                         var1.B = var7;

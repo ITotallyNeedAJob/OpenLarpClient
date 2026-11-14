@@ -24,15 +24,15 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 public final class BladeGeometry {
-   static final float GroundSample = (float)(Math.tan(Math.toRadians(35.0)) / (0.75 * Math.tan(Math.toRadians(34.0))));
-   static final float[][] ChatPayParser = new float[][]{
+   static final float k = (float)(Math.tan(Math.toRadians(35.0)) / (0.75 * Math.tan(Math.toRadians(34.0))));
+   static final float[][] g = new float[][]{
       {0.36F, 0.16F, 0.78F, 1.0F, 0.25F, 0.78F, 0.2F, 0.82F, 1.0F},
       {0.42F, 0.14F, 0.8F, 0.85F, 0.2F, 0.95F, 0.55F, 0.4F, 1.0F},
       {0.62F, 0.07F, 0.25F, 1.0F, 0.42F, 0.55F, 1.0F, 0.7F, 0.3F},
       {0.12F, 0.25F, 0.7F, 0.15F, 0.85F, 1.0F, 0.7F, 0.95F, 1.0F},
       {0.28F, 0.31F, 0.36F, 0.62F, 0.68F, 0.78F, 0.92F, 0.95F, 1.0F}
    };
-   private static final float[] ChinaHatCodec = new float[]{1.3F, 1.0F, 1.9F};
+   private static final float[] i = new float[]{1.3F, 1.0F, 1.9F};
    private static final float[] J = new float[]{0.011F, -0.017F, 0.007F};
    private static final float[] S = new float[]{-0.031F, -0.052F, -0.095F};
 
@@ -61,13 +61,13 @@ public final class BladeGeometry {
             if (var11.XAsBoolean()) {
                return GAsBoolean(var0, var1, var14, var15, var2, var3, var4, var5, var6, var7, var8, var9, var13);
             } else {
-               bj var16 = var9.WAsBj(var1);
+               KnifeState var16 = var9.WAsBj(var1);
                if (var0.isUsingItem() || !var10.isWindowFocused()) {
                   var16.sAsVoid();
                }
 
-               double var17 = mb.dAsDouble() + (double)Math.clamp(var5, 0.0F, 1.0F) * 0.05;
-               bj.Type_i var19 = var16.CAsBj_Type_i(var2, var11, var17, var3, var9.idleMotion.getValue());
+               double var17 = MediaSession.dAsDouble() + (double)Math.clamp(var5, 0.0F, 1.0F) * 0.05;
+               KnifeState.Type_i var19 = var16.CAsBj_Type_i(var2, var11, var17, var3, var9.idleMotion.getValue());
                Matrix4f[] var20 = var9.NAsR8(var1).yAsMatrix4fArray(var13, var11, var19, var15, var9.modelScale.getValue().floatValue(), var17);
                Vector3f var21 = new Vector3f(
                   (float)var15 * var9.handX.getValue().floatValue(), var9.handY.getValue().floatValue() + var19.v, var9.handZ.getValue().floatValue()
@@ -99,7 +99,7 @@ public final class BladeGeometry {
 
                      try {
                         var6.multiplyPositionMatrix(var20[var23 + 2]);
-                        li.dAsVoid(var1, var15 < 0, var6, var24.vertices(), var15);
+                        LayerIndex.dAsVoid(var1, var15 < 0, var6, var24.vertices(), var15);
                         if (var24.name().equals("blade")) {
                            WeaponTrailRenderer.lAsVoid(var1, var2, var24.vertices(), var15, var6, var3, var19.J == 3, var7);
                         }
@@ -171,21 +171,21 @@ public final class BladeGeometry {
 
          try {
             KnifeType var13 = var11.fAsBc();
-            wa var14 = var13 == KnifeType.LEDGER ? m_.lAsWa(var3, var5, var6, var11.modelScale.getValue().floatValue()) : m_.BAsWa(var3, var5, var6);
+            WalkAnimation var14 = var13 == KnifeType.LEDGER ? ModelTranslation.lAsWa(var3, var5, var6, var11.modelScale.getValue().floatValue()) : ModelTranslation.BAsWa(var3, var5, var6);
             Vector3f var15 = new Vector3f(
                (float)var3 * var11.handX.getValue().floatValue(), var11.handY.getValue().floatValue(), var11.handZ.getValue().floatValue()
             );
             nAsVoid(var8, var1, var3, var14.weapon().getTranslation(new Vector3f()).add(var15));
             var8.translate(var15.x, var15.y, var15.z);
             if (var13 == KnifeType.WATCH) {
-               bj var16 = var11.WAsBj(var1);
+               KnifeState var16 = var11.WAsBj(var1);
                if (!MinecraftClient.getInstance().isWindowFocused()) {
                   var16.sAsVoid();
                }
 
-               double var17 = mb.dAsDouble() + (double)Math.clamp(var7, 0.0F, 1.0F) * 0.05;
+               double var17 = MediaSession.dAsDouble() + (double)Math.clamp(var7, 0.0F, 1.0F) * 0.05;
                WatchInspectAnimation.Type_g var19 = var11.NAsQt(var1).sAsQt_Type_g(var16.CAsBj_Type_i(var4, var13, var17, var5, false), var17);
-               var14 = m_.YAsWa(var14, var3, var19.phase(), var19.weight());
+               var14 = ModelTranslation.YAsWa(var14, var3, var19.phase(), var19.weight());
             }
 
             if (!var0.isInvisible()) {
@@ -207,11 +207,11 @@ public final class BladeGeometry {
 
                try {
                   if (var36.name().equals("case")) {
-                     m_.jAsVoid(var8, var11.modelScale.getValue().floatValue());
+                     ModelTranslation.jAsVoid(var8, var11.modelScale.getValue().floatValue());
                   }
 
                   int var18 = var13 != KnifeType.LEDGER && !var36.name().equals("case") ? var3 : 1;
-                  li.dAsVoid(var1, var3 < 0, var8, var36.vertices(), var18);
+                  LayerIndex.dAsVoid(var1, var3 < 0, var8, var36.vertices(), var18);
                   var9.submitCustom(
                      var8, RenderLayers.entitySolid(KnifeAssets.nAsIdentifier(var13)), (var3x, var4x) -> FAsVoid(var36, var3x, var4x, var10, var18, false)
                   );
@@ -250,7 +250,7 @@ public final class BladeGeometry {
 
       try {
          int var9 = var0.getSkin().model() == PlayerSkinType.SLIM ? 1 : 0;
-         bu.JAsVoid(var5, var4, var3, var9 != 0);
+         BuildHelper.JAsVoid(var5, var4, var3, var9 != 0);
          Identifier var10 = var0.getSkin().body().texturePath();
          if (var2 == Arm.RIGHT) {
             var8.renderRightArm(var5, var6, var7, var10, var0.isModelPartVisible(PlayerModelPart.RIGHT_SLEEVE));
@@ -259,7 +259,7 @@ public final class BladeGeometry {
          }
 
          PlayerEntityModel var11 = (PlayerEntityModel)var8.getModel();
-         li.WAsVoid(var1, var3 < 0, var5, var2 == Arm.RIGHT ? var11.rightArm : var11.leftArm);
+         LayerIndex.WAsVoid(var1, var3 < 0, var5, var2 == Arm.RIGHT ? var11.rightArm : var11.leftArm);
          FlameParticles.PAsVoid(var2, var5, var6, true);
       } finally {
          var5.pop();

@@ -84,7 +84,7 @@ public abstract class ClientPlayNetworkHandlerOnItemPickupAnimationMixin {
          && var3.world != null
          && var1.getCollectorEntityId() == var3.player.getId()
          && var3.world.getEntityById(var1.getEntityId()) instanceof ItemEntity var4) {
-         r2.tAsVoid(var4);
+         ItemBlockCache.tAsVoid(var4);
          if (Sha256Digest.RAsBoolean(var4.getStack())) {
             RealStackExemptions.SAsVoid(var4.getStack(), var1.getStackAmount());
          }
@@ -102,13 +102,13 @@ public abstract class ClientPlayNetworkHandlerOnItemPickupAnimationMixin {
          if (var2.player != null) {
             for (int var3 = 0; var3 < var2.player.getInventory().size(); var3++) {
                ItemStack var4 = var2.player.getInventory().getStack(var3);
-               if (w0.dAsBoolean(var4)) {
+               if (WaterOverlay.dAsBoolean(var4)) {
                   this.Y.put(var3, var4.copy());
                }
             }
 
             ItemStack var5 = var2.player.currentScreenHandler.getCursorStack();
-            if (w0.dAsBoolean(var5)) {
+            if (WaterOverlay.dAsBoolean(var5)) {
                this.Y.put(-1, var5.copy());
             }
          }
@@ -124,7 +124,7 @@ public abstract class ClientPlayNetworkHandlerOnItemPickupAnimationMixin {
                ? var1.player.currentScreenHandler.getCursorStack()
                : var1.player.getInventory().getStack((Integer)var3.getKey());
             if (ItemStack.areItemsAndComponentsEqual(var4, (ItemStack)var3.getValue()) && var4.getCount() <= ((ItemStack)var3.getValue()).getCount()) {
-               w0.HAsVoid(var4, true);
+               WaterOverlay.HAsVoid(var4, true);
             }
          }
 

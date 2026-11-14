@@ -24,7 +24,7 @@ public final class LightmapTintEffect {
    public static RenderPipeline HAsRenderPipeline(RenderPipeline var0, int var1, float var2) {
       if (!(var2 <= 0.0F) && (var1 & 16777215) != 16777215 && R != BloomQuality.J) {
          try {
-            if (O != BloomQuality.J || GroundSample == null) {
+            if (O != BloomQuality.J || k == null) {
                jAsVoid();
                RenderPipeline var3 = WorldLabelLayout.GAsRenderPipeline_Builder(var0)
                   .withLocation(Identifier.of("larp-client", "lightmap_tint"))
@@ -33,8 +33,8 @@ public final class LightmapTintEffect {
                   .build();
                WorldLabelLayout.DAsVoid(var3);
                A = RenderSystem.getDevice().createBuffer(() -> "Larp complete lightmap tint", 136, 16L);
-               GroundSample = var3;
-               TextLayout = var0;
+               k = var3;
+               j = var0;
                O = BloomQuality.J;
                ClientLog.XAsVoid("WorldColor", "Native lightmap tint ready; sky, block, ambient and night vision");
             }
@@ -73,7 +73,7 @@ public final class LightmapTintEffect {
    }
 
    public static void LAsVoid(RenderPass var0, RenderPipeline var1) {
-      if (var1 == GroundSample && A != null) {
+      if (var1 == k && A != null) {
          try {
             var0.setUniform("LarpLightTint", A.slice());
          } catch (RuntimeException var4) {
@@ -99,8 +99,8 @@ public final class LightmapTintEffect {
    }
 
    public static void jAsVoid() {
-      TextLayout = null;
-      GroundSample = null;
+      j = null;
+      k = null;
       GpuBuffer var0 = A;
       A = null;
       if (var0 != null) {

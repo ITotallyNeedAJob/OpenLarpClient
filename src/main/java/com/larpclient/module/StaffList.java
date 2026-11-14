@@ -122,7 +122,7 @@ public final class StaffList extends Module {
          return true;
       } else {
          Team var2 = var0.getScoreboardTeam();
-         return var2 != null && lj.cAsBoolean(var2.getPrefix().getString()) || lj.cAsBoolean(aAsString(var0));
+         return var2 != null && LayerJob.cAsBoolean(var2.getPrefix().getString()) || LayerJob.cAsBoolean(aAsString(var0));
       }
    }
 
@@ -165,7 +165,7 @@ public final class StaffList extends Module {
          }
 
          var3.removeIf(String::isEmpty);
-         List var7 = var3.stream().limit(16L).map(var0 -> (lj.cAsBoolean(var0) ? "+" : "-") + "'" + var0 + "'").toList();
+         List var7 = var3.stream().limit(16L).map(var0 -> (LayerJob.cAsBoolean(var0) ? "+" : "-") + "'" + var0 + "'").toList();
          ClientLog.GAsVoid(
             "StaffList",
             "Detected {} staff ({} in Vanish) among {} players with {} Staff Names; rank labels seen ({} total, + counts as staff): {}",

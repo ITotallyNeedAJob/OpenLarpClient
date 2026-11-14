@@ -46,13 +46,13 @@ import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix4f;
 
 public final class CosmeticSubmissionHandler implements InvocationHandler {
-   private static final Map<CosmeticSubmissionHandler.Type_t, RenderLayer> MenuPopupProvider = new LinkedHashMap<>();
-   private static final Map<CosmeticSubmissionHandler.Type_p, RenderPipeline> BloomUtility = new HashMap<>();
-   private static final CosmeticSubmissionHandler AuraModule = new CosmeticSubmissionHandler();
+   private static final Map<CosmeticSubmissionHandler.Type_t, RenderLayer> f = new LinkedHashMap<>();
+   private static final Map<CosmeticSubmissionHandler.Type_p, RenderPipeline> b = new HashMap<>();
+   private static final CosmeticSubmissionHandler x = new CosmeticSubmissionHandler();
    private final OrderedRenderCommandQueue O = (OrderedRenderCommandQueue)Proxy.newProxyInstance(
       OrderedRenderCommandQueue.class.getClassLoader(), new Class[]{OrderedRenderCommandQueue.class}, this
    );
-   private final MatrixStack PriceDetector = new MatrixStack();
+   private final MatrixStack m = new MatrixStack();
    private final CameraRenderState v = new CameraRenderState();
    private EffectDrawBuffers H;
    private CosmeticSubmissionHandler.Type_n q;
@@ -82,13 +82,13 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
    }
 
    public static boolean bAsBoolean() {
-      return AuraModule.H != null || AuraModule.t;
+      return x.H != null || x.t;
    }
 
    public static Matrix4f dAsMatrix4f(EntityRenderState var0, MatrixStack var1) {
       Entry var2 = kAsMatrixStack_Entry(var0, var1, false);
-      if (var2 == null && !AuraModule.P) {
-         AuraModule.P = true;
+      if (var2 == null && !x.P) {
+         x.P = true;
          ClientLog.oAsVoid(
             "ChinaHat",
             "Native head attachment unavailable for this renderer; cone uses upright fallback and cap is skipped, retry after world/resource cleanup"
@@ -100,8 +100,8 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
 
    public static Entry JAsMatrixStack_Entry(EntityRenderState var0, MatrixStack var1) {
       Entry var2 = kAsMatrixStack_Entry(var0, var1, true);
-      if (var2 == null && !AuraModule.R) {
-         AuraModule.R = true;
+      if (var2 == null && !x.R) {
+         x.R = true;
          ClientLog.oAsVoid(
             "Wings",
             "Native body attachment unavailable for this renderer; Luminous uses its upright fallback and Ender Dragon is skipped, retry after world/resource cleanup"
@@ -139,16 +139,16 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
    }
 
    public static void XAsVoid() {
-      AuraModule.P = false;
-      AuraModule.R = false;
-      MenuPopupProvider.clear();
-      BloomUtility.clear();
+      x.P = false;
+      x.R = false;
+      f.clear();
+      b.clear();
    }
 
    public static void TAsVoid(ModelPart var0, MatrixStack var1, EffectDrawBuffers var2, Identifier var3, int var4, double var5, double var7, boolean var9) {
-      if (AuraModule.M != BloomQuality.J) {
+      if (x.M != BloomQuality.J) {
          XAsVoid();
-         AuraModule.M = BloomQuality.J;
+         x.M = BloomQuality.J;
       }
 
       CosmeticSubmissionHandler.Type_n var10 = var7 > 0.0
@@ -179,7 +179,7 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
       boolean var7,
       boolean var8
    ) {
-      AuraModule.fAsVoid(var0, var1, var2, var3, var4, var5, var7, var8);
+      x.fAsVoid(var0, var1, var2, var3, var4, var5, var7, var8);
    }
 
    private void fAsVoid(
@@ -409,7 +409,7 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
                for (java.util.Map.Entry var20 : var12.entrySet()) {
                   List var21 = List.copyOf((Collection)var20.getValue());
                   var0.submitCustom(var7, LAsRenderLayer((Identifier)var20.getKey(), var2, true), (var12x, var13) -> {
-                     CosmeticSubmissionHandler.Type_r var14x = new CosmeticSubmissionHandler.Type_r(var13, var2, bd.w, var17, var23, var24, var1);
+                     CosmeticSubmissionHandler.Type_r var14x = new CosmeticSubmissionHandler.Type_r(var13, var2, UiStyle.w, var17, var23, var24, var1);
 
                      for (BakedQuad var16 : (Iterable<BakedQuad>) (var21)) {
                         int var17x = var16.tintIndex();
@@ -439,10 +439,10 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
             double var10 = (double)var1.peek().getPositionMatrix().m31();
             double var12 = (double)var1.peek().getPositionMatrix().m30();
             var2.submitCustom(var1, LAsRenderLayer(var8.location(), var9, true), (var10xx, var11) -> {
-               long var12x = op.RAsLong();
+               long var12x = OpenScreen.RAsLong();
                MatrixStack var14 = new MatrixStack();
                var14.peek().copy(var10xx);
-               VertexConsumer var15 = new CosmeticSubmissionHandler.Type_r(var11, var9, bd.w, var7.hAsDouble(), var12, var10, var7);
+               VertexConsumer var15 = new CosmeticSubmissionHandler.Type_r(var11, var9, UiStyle.w, var7.hAsDouble(), var12, var10, var7);
                if (var6 != null) {
                   var15 = var6.getTextureSpecificVertexConsumer(var15);
                }
@@ -457,7 +457,7 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
                      var7.disable();
                   }
                } finally {
-                  op.aAsVoid("SelfVisuals", var12x);
+                  OpenScreen.aAsVoid("SelfVisuals", var12x);
                }
             });
             return true;
@@ -525,16 +525,16 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
 
    private static RenderLayer LAsRenderLayer(Identifier var0, CosmeticSubmissionHandler.Type_n var1, boolean var2) {
       CosmeticSubmissionHandler.Type_t var3 = new CosmeticSubmissionHandler.Type_t(var0, var1, var2);
-      RenderLayer var4 = MenuPopupProvider.get(var3);
+      RenderLayer var4 = f.get(var3);
       if (var4 != null) {
          return var4;
       } else {
-         if (MenuPopupProvider.size() >= 256) {
-            MenuPopupProvider.clear();
+         if (f.size() >= 256) {
+            f.clear();
          }
 
          CosmeticSubmissionHandler.Type_p var5 = new CosmeticSubmissionHandler.Type_p(var1, var2);
-         RenderPipeline var6 = BloomUtility.get(var5);
+         RenderPipeline var6 = b.get(var5);
          if (var6 == null) {
             Builder var7 = RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_TEX_COLOR_SNIPPET})
                .withLocation(Identifier.of("larp-client", "model_" + var1.name().toLowerCase(Locale.ROOT) + (var2 ? "_solid" : "_transparent")))
@@ -605,12 +605,12 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
 
             var6 = var7.build();
             WorldLabelLayout.DAsVoid(var6);
-            BloomUtility.put(var5, var6);
+            b.put(var5, var6);
             ClientLog.GAsVoid("Shader", "Player material initialized: {} shader=model/material", var1);
          }
 
          RenderLayer var8 = RenderLayer.of("larp_model_" + var1, RenderSetup.builder(var6).texture("Sampler0", var0).translucent().build());
-         MenuPopupProvider.put(var3, var8);
+         f.put(var3, var8);
          return var8;
       }
    }
@@ -669,7 +669,7 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
       private float T;
       private float M;
       private int s;
-      private int GroundSample = -1;
+      private int k = -1;
 
       Type_r(VertexConsumer var1, CosmeticSubmissionHandler.Type_n var2, int var3, double var4, double var6, double var8, SelfVisuals var10) {
          this.d = var1;
@@ -691,10 +691,10 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
          this.h = this.m && var10.direction.pAsBoolean("Horizontal");
          this.x = this.m ? var10.gradientScale.getValue() : 0.0;
          this.K = this.W
-            ? mb.RAsDouble() * var10.patternSpeed.getValue() % 1.0
+            ? MediaSession.RAsDouble() * var10.patternSpeed.getValue() % 1.0
             : (
                this.m && !var10.direction.pAsBoolean("Static")
-                  ? mb.RAsDouble() * var10.rainbowSpeed.getValue() * (double)(var10.direction.pAsBoolean("Upward") ? -1 : 1) % 1.0
+                  ? MediaSession.RAsDouble() * var10.rainbowSpeed.getValue() * (double)(var10.direction.pAsBoolean("Upward") ? -1 : 1) % 1.0
                   : 0.0
             );
          this.o = this.m
@@ -708,7 +708,7 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
          int var12 = this.m
             ? 0xFF000000 | (int)(var10.saturation.getValue() * 255.0) << 16 | (int)(var10.brightness.getValue() * 255.0) << 8
             : (this.P ? EntityMaterialRenderer.rAsInt(var10, 1.0) : (this.W ? var10.pAsInt() : var3));
-         this.c = bg.pAsInt(var12, var4);
+         this.c = ColorUtil.pAsInt(var12, var4);
       }
 
       public VertexConsumer vertex(float x, float y, float z) {
@@ -740,7 +740,7 @@ public final class CosmeticSubmissionHandler implements InvocationHandler {
 
          int var7 = this.k & 3;
          this.d.light(var2, this.P ? (var7 == 2 ? 3 : (var7 == 3 ? 2 : var7)) : (this.W ? this.Q : 0));
-         this.d.color(this.o ? this.c : bg.pAsInt(this.B == CosmeticSubmissionHandler.Type_n.ORIGINAL ? argb : bg.xAsInt(argb, this.H, 0.85), this.X));
+         this.d.color(this.o ? this.c : ColorUtil.pAsInt(this.B == CosmeticSubmissionHandler.Type_n.ORIGINAL ? argb : ColorUtil.xAsInt(argb, this.H, 0.85), this.X));
          return this;
       }
 

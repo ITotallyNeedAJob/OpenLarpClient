@@ -26,7 +26,7 @@ public abstract class ItemEntityRendererMixin {
    )
    private ItemStack larpclient$redirectFV(ItemEntity var1) {
       FakeSpawnerController var2 = FakeSpawnerController.ZAsMa();
-      r2.tAsVoid(var1);
+      ItemBlockCache.tAsVoid(var1);
       if (!var2.XAsBoolean()) {
          return var1.getStack();
       } else {

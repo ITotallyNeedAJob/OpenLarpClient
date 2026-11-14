@@ -19,7 +19,7 @@ public class EntitySpeed extends Module {
 
    @Override
    public void onTick() {
-      if (this.isInGame() && r6.VAsBoolean() && mc.player.hasVehicle()) {
+      if (this.isInGame() && ModuleKeybindChecker.VAsBoolean() && mc.player.hasVehicle()) {
          Entity var1 = mc.player.getVehicle();
          if (var1 != null) {
             float var2 = mc.player.getYaw();

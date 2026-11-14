@@ -3,7 +3,7 @@ package com.larpclient;
 import net.minecraft.util.math.Box;
 
 public record FinderSummary(int storage, int utilities, int crafted, int altered, int dedicated, int sampleY, String clue, Box bounds, int enderChests) {
-   public static final ae EMPTY = new FinderSummary(0, 0, 0, 0, 0, 0, "");
+   public static final FinderSummary EMPTY = new FinderSummary(0, 0, 0, 0, 0, 0, "");
 
    public FinderSummary(int var1, int var2, int var3, int var4, int var5, int var6, String var7, Box var8) {
       this(var1, var2, var3, var4, var5, var6, var7, var8, 0);

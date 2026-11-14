@@ -19,19 +19,19 @@ public final class NebulaSkyRenderer extends SkyShaderEffect {
    }
 
    @Override
-   protected void load(bl var1) throws IOException {
+   protected void load(BloomSettings var1) throws IOException {
       this.b = new ResourceTexture(I);
       this.b.reload(this.b.loadContents(MinecraftClient.getInstance().getResourceManager()));
    }
 
    @Override
-   protected void advance(bl var1) {
+   protected void advance(BloomSettings var1) {
       this.i = this.i + var1.a * (double)var1.U.nebulaAnimationSpeed();
       this.T = (this.T + var1.a * Math.toRadians((double)var1.U.nebulaRotationSpeed())) % (Math.PI * 2);
    }
 
    @Override
-   protected void write(bl var1, ByteBuffer var2) {
+   protected void write(BloomSettings var1, ByteBuffer var2) {
       CustomSky var3 = var1.U;
       ThemePreset var4 = var3.YAsNv();
       fAsVoid(var2, var4.zenith());

@@ -9,8 +9,8 @@ public final class PanelPosition {
       this.w = var1.nextDouble() * Math.PI * 2.0;
    }
 
-   public boolean QAsBoolean(dv var1, dv[] var2, d1 var3, RandomGenerator var4, double var5, boolean var7) {
-      double var8 = var3.D * (var3.p == d1.Type_q.DREAMY ? 1.2 : 1.0);
+   public boolean QAsBoolean(DynamicSky var1, DynamicSky[] var2, SkyConfig var3, RandomGenerator var4, double var5, boolean var7) {
+      double var8 = var3.D * (var3.p == SkyConfig.Type_q.DREAMY ? 1.2 : 1.0);
 
       for (int var10 = 0; var10 < 96; var10++) {
          double var11;
@@ -30,7 +30,7 @@ public final class PanelPosition {
          double var23 = var3.CAsDouble() + var4.nextDouble() * (var3.IAsDouble() - var3.CAsDouble());
          byte var25 = 1;
 
-         for (dv var29 : var2) {
+         for (DynamicSky var29 : var2) {
             if (var29 != var1 && var29.T) {
                double var30 = var19 - var29.M;
                double var32 = var23 - var29.A;

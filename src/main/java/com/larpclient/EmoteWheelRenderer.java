@@ -13,13 +13,13 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
 final class EmoteWheelRenderer {
-   static final int SahurDanceEngine = 96;
-   static final int SkyChunkCache = 38;
-   static final int PetEffectRenderer = 4;
+   static final int d = 96;
+   static final int s = 38;
+   static final int a = 4;
    private static final int T = -((int)Math.ceil(96.0 * Math.sqrt(0.5))) - 1;
-   private static final int AuctionNotifier = -97;
+   private static final int o = -97;
    private static final int K = -T * 2;
-   private static final int SmoothInput = 97 - (int)Math.floor(38.0 * Math.sqrt(0.5) - 2.0);
+   private static final int t = 97 - (int)Math.floor(38.0 * Math.sqrt(0.5) - 2.0);
    private static final Identifier U = Identifier.of("larp-client", "emote/wheel_wedge");
    private static EmoteWheelRenderer.Type_o A;
    private static TextureManager y;
@@ -41,7 +41,7 @@ final class EmoteWheelRenderer {
       if (var0 != y) {
          A = null;
          B = 0;
-         ScreenScale = var0;
+         y = var0;
       }
 
       int var1 = (int)Math.clamp(Math.ceil((double)MinecraftClient.getInstance().getWindow().getScaleFactor()), 1.0, 6.0);
@@ -83,9 +83,9 @@ final class EmoteWheelRenderer {
          try {
             var0.getMatrices().rotate((float)((double)var1 * Math.PI / 2.0));
             var0.getMatrices().translate(0.0F, (float)(-var2));
-            var0.drawTexture(RenderPipelines.GUI_TEXTURED, U, T, -97, 0.0F, 0.0F, K, t, var6.p, var6.j, var6.p, var6.j * 2, qg.iAsInt(var4));
+            var0.drawTexture(RenderPipelines.GUI_TEXTURED, U, T, -97, 0.0F, 0.0F, K, t, var6.p, var6.j, var6.p, var6.j * 2, QueueGroup.iAsInt(var4));
             if (var5 >>> 24 != 0) {
-               var0.drawTexture(RenderPipelines.GUI_TEXTURED, U, T, -97, 0.0F, (float)var6.j, K, t, var6.p, var6.j, var6.p, var6.j * 2, qg.iAsInt(var5));
+               var0.drawTexture(RenderPipelines.GUI_TEXTURED, U, T, -97, 0.0F, (float)var6.j, K, t, var6.p, var6.j, var6.p, var6.j * 2, QueueGroup.iAsInt(var5));
             }
          } finally {
             var0.getMatrices().popMatrix();

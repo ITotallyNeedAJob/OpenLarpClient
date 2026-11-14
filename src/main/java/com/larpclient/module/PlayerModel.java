@@ -34,7 +34,7 @@ public final class PlayerModel extends Module {
    private final Matrix4f u = new Matrix4f();
    private float Z;
    private boolean O;
-   private bw d;
+   private WaterBubble d;
 
    public PlayerModel() {
       super("Player Model", "Replace your rendered player with Tung Tung Tung Sahur", Category.VISUALS, -1);
@@ -82,7 +82,7 @@ public final class PlayerModel extends Module {
    private void FAsVoid() {
       SahurPetRenderer.bAsVoid();
       if (this.d == null || this.d.pAsAo_Type_u() != SahurPetRenderer.TAsAo_Type_u()) {
-         this.d = new bw(SahurPetRenderer.TAsAo_Type_u());
+         this.d = new WaterBubble(SahurPetRenderer.TAsAo_Type_u());
       }
 
       ClientLog.XAsVoid("PlayerModel", "Sahur ready: walk rig, {} triangles, scale={}", this.d.aAsAo_Type_u().triangles(), this.scale.getValue());
@@ -123,11 +123,11 @@ public final class PlayerModel extends Module {
                   this.c = mc.world;
                }
 
-               if ((!mc.options.getPerspective().isFirstPerson() || p5.oAsBoolean()) && this.P != null) {
+               if ((!mc.options.getPerspective().isFirstPerson() || ParticleEmitter.oAsBoolean()) && this.P != null) {
                   this.Z = this.scale.getValue().floatValue();
                   this.O = var3.isInSneakingPose();
                   this.d.xAsFloatArray(this.P.limbSwingAnimationProgress, this.P.limbSwingAmplitude);
-                  qy.cAsMatrix4f(
+                  QueueYield.cAsMatrix4f(
                      this.u,
                      SahurPetRenderer.TAsAo_Type_u(),
                      (float)(MathHelper.lerp((double)var1, var3.lastRenderX, var3.getX()) - var2.x),
@@ -177,8 +177,8 @@ public final class PlayerModel extends Module {
       if (this.isEnabled()) {
          if (this.FAsBoolean(var1) && this.b) {
             int var4 = var2 == Arm.RIGHT ? 1 : 0;
-            qy.JAsVoid(
-               var3, SahurPetRenderer.TAsAo_Type_u(), var4 != 0, this.d.NAsVector3f(var4 != 0, qy.gAsVector3f(var4 != 0)), this.Z, this.O, this.P.baseScale
+            QueueYield.JAsVoid(
+               var3, SahurPetRenderer.TAsAo_Type_u(), var4 != 0, this.d.NAsVector3f(var4 != 0, QueueYield.gAsVector3f(var4 != 0)), this.Z, this.O, this.P.baseScale
             );
             return true;
          } else {

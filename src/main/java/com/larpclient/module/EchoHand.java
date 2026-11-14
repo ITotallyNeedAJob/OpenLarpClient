@@ -83,8 +83,8 @@ public final class EchoHand extends Module {
          String var1 = this.flameColor.getValue();
 
          return switch (var1) {
-            case "Client" -> -436207616 | bd.w & 16777215;
-            case "Rainbow" -> -436207616 | Color.HSBtoRGB((float)(mb.RAsDouble() / 4.0 % 1.0), 0.72F, 1.0F) & 16777215;
+            case "Client" -> -436207616 | UiStyle.w & 16777215;
+            case "Rainbow" -> -436207616 | Color.HSBtoRGB((float)(MediaSession.RAsDouble() / 4.0 % 1.0), 0.72F, 1.0F) & 16777215;
             default -> this.flameColorValue.getValue();
          };
       }

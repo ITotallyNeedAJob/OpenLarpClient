@@ -11,7 +11,7 @@ public final class KnifeMeshRendererState {
    private int F;
    private int W;
    private float Q;
-   private double HexEdgeloop = Double.NaN;
+   private double p = Double.NaN;
    private double U = Double.NEGATIVE_INFINITY;
    private Matrix4f[] V;
    private Matrix4f[] j;
@@ -26,7 +26,7 @@ public final class KnifeMeshRendererState {
       this.U = Double.NEGATIVE_INFINITY;
    }
 
-   public Matrix4f[] yAsMatrix4fArray(KnifeMesh var1, KnifeType var2, bj.Type_i var3, int var4, float var5, double var6) {
+   public Matrix4f[] yAsMatrix4fArray(KnifeMesh var1, KnifeType var2, KnifeState.Type_i var3, int var4, float var5, double var6) {
       int var8 = this.Y == var1
             && this.F == var4
             && this.Q == var5
@@ -51,7 +51,7 @@ public final class KnifeMeshRendererState {
          this.U = var6;
       }
 
-      wa var15 = wa.sample(var1, var2, var3.J, var3.L, var4, var5);
+      WalkAnimation var15 = WalkAnimation.sample(var1, var2, var3.J, var3.L, var4, var5);
       this.V[0].set(var15.weapon());
       this.V[1].set(var15.arm());
       MatrixStack var10 = new MatrixStack();

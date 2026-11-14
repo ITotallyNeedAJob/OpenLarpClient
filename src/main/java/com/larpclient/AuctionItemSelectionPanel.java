@@ -28,7 +28,7 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
    private final LinkedHashSet<String> n;
    private final List<AuctionItemSelectionPanel.Type_n> W = new ArrayList<>();
    private final List<GuiWidget> P = new ArrayList<>();
-   private List<AuctionItemSelectionPanel.Type_n> AuraModule = List.of();
+   private List<AuctionItemSelectionPanel.Type_n> x = List.of();
    private TextInputWidget j;
    private ActionButton h;
    private ActionButton q;
@@ -37,8 +37,8 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
    private ActionButton Y;
    private ActionButton N;
    private ActionButton V;
-   private String BoxUtils = "";
-   private String GroundSample = "";
+   private String c = "";
+   private String k = "";
    private boolean S;
    private boolean d;
    private int f;
@@ -52,7 +52,7 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
    private int J;
    private Set<String> G = Set.of();
    private Map<String, Integer> T = Map.of();
-   private final w2 L = new w2(0.0);
+   private final WeatherRenderer L = new WeatherRenderer(0.0);
 
    public AuctionItemSelectionPanel(Screen var1, AutoSell var2, boolean var3) {
       super(var3 ? "Never sell" : "Choose sell items");
@@ -261,11 +261,11 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
       double var5 = this.L.bAsDouble(1.0, 200);
       GuiTextureDrawing.CAsVoid(context, 0, 0, this.width, this.height, -1609560044);
 
-      try (qg var7 = qg.nAsQg(var5)) {
-         GuiDrawing.OAsVoid(context, this.f, this.I, this.E, this.M, bd.l, bd.m, 0.6);
-         TextDrawing.NAsVoid(context, this.K ? "Never sell" : "Choose sell items", this.f + 12, this.I + 12, bd.u, TextDrawing.Type_s.TITLE);
+      try (QueueGroup var7 = QueueGroup.nAsQg(var5)) {
+         GuiDrawing.OAsVoid(context, this.f, this.I, this.E, this.M, UiStyle.l, UiStyle.m, 0.6);
+         TextDrawing.NAsVoid(context, this.K ? "Never sell" : "Choose sell items", this.f + 12, this.I + 12, UiStyle.u, TextDrawing.Type_s.TITLE);
          String var8 = this.n.size() + " / 32";
-         TextDrawing.UAsVoid(context, var8, this.f + this.E - 12 - TextDrawing.UAsInt(var8), this.I + 16, bd.e);
+         TextDrawing.UAsVoid(context, var8, this.f + this.E - 12 - TextDrawing.UAsInt(var8), this.I + 16, UiStyle.e);
 
          for (GuiWidget var10 : this.Q) {
             if (!this.P.contains(var10)) {
@@ -284,7 +284,7 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
          }
 
          if (this.x.isEmpty()) {
-            TextDrawing.UAsVoid(context, "No matching items", this.f + 16, this.C + 12, bd.e);
+            TextDrawing.UAsVoid(context, "No matching items", this.f + 16, this.C + 12, UiStyle.e);
          }
 
          int var19 = (this.x.size() + this.a - 1) / this.a * 34;
@@ -297,7 +297,7 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
             TextDrawing.zAsString(var21, this.E - 24, TextDrawing.Type_s.HELP),
             this.f + 12,
             this.I + this.M - 50,
-            this.k.isEmpty() ? bd.e : -24915,
+            this.k.isEmpty() ? UiStyle.e : -24915,
             TextDrawing.Type_s.HELP
          );
       }
@@ -347,7 +347,7 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
 
    private final class Type_u extends GuiWidget {
       private final AuctionItemSelectionPanel.Type_n L;
-      private final w2 X = new w2(0.0);
+      private final WeatherRenderer X = new WeatherRenderer(0.0);
 
       Type_u(AuctionItemSelectionPanel.Type_n var2) {
          this.L = var2;
@@ -357,21 +357,21 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
       public void render(DrawContext var1, int var2, int var3) {
          boolean var4 = AuctionItemSelectionPanel.this.n.contains(this.L.id);
          double var5 = this.X.bAsDouble(!this.contains((double)var2, (double)var3) && !this.y ? 0.0 : 1.0, 160);
-         GuiDrawing.CAsVoid(var1, this.k, this.x, this.V, this.F, bd.T, bg.xAsInt(var4 ? bd.y : bd._Z, bd.h, var5 * 0.6));
+         GuiDrawing.CAsVoid(var1, this.k, this.x, this.V, this.F, UiStyle.T, ColorUtil.xAsInt(var4 ? UiStyle.y : UiStyle._Z, UiStyle.h, var5 * 0.6));
          if (!this.L.icon.isEmpty()) {
             var1.drawItem(this.L.icon, this.k + 7, this.x + 7);
          }
 
-         TextDrawing.UAsVoid(var1, TextDrawing.HAsString(this.L.name, this.V - 54), this.k + 29, this.x + 5, bd.u);
+         TextDrawing.UAsVoid(var1, TextDrawing.HAsString(this.L.name, this.V - 54), this.k + 29, this.x + 5, UiStyle.u);
          TextDrawing.NAsVoid(
-            var1, TextDrawing.zAsString(this.L.id, this.V - 54, TextDrawing.Type_s.HELP), this.k + 29, this.x + 18, bd.e, TextDrawing.Type_s.HELP
+            var1, TextDrawing.zAsString(this.L.id, this.V - 54, TextDrawing.Type_s.HELP), this.k + 29, this.x + 18, UiStyle.e, TextDrawing.Type_s.HELP
          );
          if (var4) {
-            TextDrawing.UAsVoid(var1, "+", this.k + this.V - 15, this.x + 10, bd.tAsInt(this.k));
+            TextDrawing.UAsVoid(var1, "+", this.k + this.V - 15, this.x + 10, UiStyle.tAsInt(this.k));
          }
 
          if (this.y && this.Q) {
-            GuiDrawing.dAsVoid(var1, this.k, this.x, this.V, this.F, bd.T);
+            GuiDrawing.dAsVoid(var1, this.k, this.x, this.V, this.F, UiStyle.T);
          }
 
          if (this.contains((double)var2, (double)var3)) {

@@ -15,7 +15,7 @@ import net.minecraft.client.render.state.CameraRenderState;
 import net.minecraft.network.packet.s2c.play.EntityDamageS2CPacket;
 import net.minecraft.world.dimension.DimensionType.Skybox;
 
-public final class Halloween extends Module implements qn {
+public final class Halloween extends Module implements QueueNode {
    private static Halloween C;
    private final ModeSetting intensity = this.addSetting(
       new ModeSetting("Intensity", "A coordinated After Dark preset", "Balanced", "Subtle", "Balanced", "Cinematic")

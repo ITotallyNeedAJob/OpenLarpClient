@@ -44,8 +44,8 @@ public final class SkyShader extends Module {
    private final BooleanSetting themeColor = this.addSetting(new BooleanSetting("Theme Color", "Use the client accent", true));
    private final ColorSetting customColor = this.addSetting(new ColorSetting("Custom Color", "Sky tint", -1));
    private final NumberSetting l = this.iAsNumberSetting("Lightning Rate", "How often lightning strikes", 1.0, 0.25, 3.0, 0.05);
-   private final bl I = new bl();
-   private final HashMap<String, dt> Y = new HashMap<>();
+   private final BloomSettings I = new BloomSettings();
+   private final HashMap<String, DropletTrailRenderer> Y = new HashMap<>();
    private final HashSet<String> w = new HashSet<>();
    private int F = -1;
    private Object M;
@@ -97,7 +97,7 @@ public final class SkyShader extends Module {
    }
 
    public int ZAsInt() {
-      return this.themeColor.getValue() ? bd.w : this.customColor.getValue();
+      return this.themeColor.getValue() ? UiStyle.w : this.customColor.getValue();
    }
 
    public float TAsFloat() {
@@ -216,8 +216,8 @@ public final class SkyShader extends Module {
                   case "Core Nebula" -> "core_nebula";
                   default -> var2.toLowerCase(Locale.ROOT);
                };
-               dt var13 = this.Y.computeIfAbsent(var2, var2x -> new dt(var3, this));
-               double var14 = mb.RAsDouble();
+               DropletTrailRenderer var13 = this.Y.computeIfAbsent(var2, var2x -> new DropletTrailRenderer(var3, this));
+               double var14 = MediaSession.RAsDouble();
                this.I.a = Double.isNaN(this.a) ? 0.0 : Math.clamp(var14 - this.a, 0.0, 0.1);
                this.a = var14;
                this.I.L = var1;
@@ -239,7 +239,7 @@ public final class SkyShader extends Module {
    }
 
    private void eAsVoid() {
-      for (dt var2 : this.Y.values()) {
+      for (DropletTrailRenderer var2 : this.Y.values()) {
          var2.close();
       }
 

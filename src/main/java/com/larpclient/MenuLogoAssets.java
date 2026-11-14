@@ -17,7 +17,7 @@ import org.joml.Matrix3x2fc;
 public final class MenuLogoAssets {
    private static final Identifier r = Identifier.of("larp-client", "textures/gui/logo.png");
    private static final Identifier Y = Identifier.of("larp-client", "textures/gui/logo-halloween.png");
-   private static final BloomUtility GroundSample = new BloomUtility();
+   private static final BloomUtility k = new BloomUtility();
    private static int O = -1;
    private static boolean V;
    private static boolean N;
@@ -41,13 +41,13 @@ public final class MenuLogoAssets {
             ClientLog.oAsVoid("Menu", "Halloween logo missing; using the regular logo, retry after resource reload");
          }
 
-         CropHelper = null;
+         u = null;
          S = false;
       }
 
       Identifier var1 = Halloween.vAsBoolean() && N ? Y : r;
       if (!var1.equals(u)) {
-         CropHelper = var1;
+         u = var1;
          ClientLog.GAsVoid("Menu", "Menu logo: {}; standard backdrop and navigation retained", var1);
       }
 
@@ -61,8 +61,8 @@ public final class MenuLogoAssets {
          int var5 = var4.Z && var4.L != WorldTimePreset.Type_b.STATIC ? 1 : 0;
          Identifier var6 = oAsIdentifier();
          double var7 = var3.currentScreen instanceof ClientTitleScreen var9 ? var9.ZAsNc().BAsDouble() : 1.0;
-         GroundSample.nAsVoid(System.nanoTime(), var5 != 0, (Double)var3.options.getPanoramaSpeed().getValue());
-         var0.fill(0, 0, var1, var2, bg.xAsInt(-16777216, -16185079, var7));
+         k.nAsVoid(System.nanoTime(), var5 != 0, (Double)var3.options.getPanoramaSpeed().getValue());
+         var0.fill(0, 0, var1, var2, ColorUtil.xAsInt(-16777216, -16185079, var7));
          var0.createNewRootLayer();
          float var19 = (float)(1 / Math.max(1, var3.getWindow().getScaleFactor()));
 
@@ -76,14 +76,14 @@ public final class MenuLogoAssets {
                var15 = var0.scissorStack.peekLast().intersection(var15);
             }
 
-            var0.state.addSimpleElement(new MenuLogoAssets.Type_v(var13, var1, var2, var11 != 0, GroundSample.DAsDouble(), var19, var0.scissorStack.peekLast(), var15));
+            var0.state.addSimpleElement(new MenuLogoAssets.Type_v(var13, var1, var2, var11 != 0, k.DAsDouble(), var19, var0.scissorStack.peekLast(), var15));
          }
 
          if ((var6.equals(Y) || V) && var4.O) {
             var0.createNewRootLayer();
 
             for (int var21 = 0; var21 < 18; var21++) {
-               BloomUtility.Type_h var22 = GroundSample.zAsB_Type_h(var21, var1, var2);
+               BloomUtility.Type_h var22 = k.zAsB_Type_h(var21, var1, var2);
                if (!(var22.alpha() < 0.001)) {
                   int var23 = (int)Math.round(var22.size());
                   var0.getMatrices().pushMatrix();
@@ -105,7 +105,7 @@ public final class MenuLogoAssets {
                         64,
                         64,
                         64,
-                        bg.XAsInt(-1, var22.alpha() * var7)
+                        ColorUtil.XAsInt(-1, var22.alpha() * var7)
                      );
                   } finally {
                      var0.getMatrices().popMatrix();
@@ -123,7 +123,7 @@ public final class MenuLogoAssets {
 
    public static void ZAsVoid() {
       O = -1;
-      CropHelper = null;
+      u = null;
       S = false;
    }
 

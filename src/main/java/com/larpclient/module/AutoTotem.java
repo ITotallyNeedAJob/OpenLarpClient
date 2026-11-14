@@ -68,9 +68,9 @@ public final class AutoTotem extends Module {
    private final BooleanSetting inInventory = this.addSetting(
       new BooleanSetting("In Inventory", "Allow swaps in the survival inventory when the cursor is empty", true)
    );
-   private final at.Type_s K = new at.Type_s();
-   private final at.Type_a q = new at.Type_a();
-   private final at.Type_r v = new at.Type_r();
+   private final ClickState.Type_s K = new ClickState.Type_s();
+   private final ClickState.Type_a q = new ClickState.Type_a();
+   private final ClickState.Type_r v = new ClickState.Type_r();
    private ClientPlayerEntity k;
    private Object A;
    private Screen r;
@@ -135,7 +135,7 @@ public final class AutoTotem extends Module {
                && var2.world != null
                && var3.isAlive()
                && !var3.isSpectator()
-               && !p5.oAsBoolean()
+               && !ParticleEmitter.oAsBoolean()
                && var3.currentScreenHandler == var3.playerScreenHandler
                && var3.playerScreenHandler.getCursorStack().isEmpty()
                && (var2.currentScreen == null || var1.inInventory.getValue() && var2.currentScreen instanceof InventoryScreen)) {
@@ -144,7 +144,7 @@ public final class AutoTotem extends Module {
                } else if (var1.m == var3 && var1.G == var2.world && Util.getMeasuringTimeMs() - var1.e < 100L) {
                   return true;
                } else {
-                  boolean var4 = at.oAsBoolean(
+                  boolean var4 = ClickState.oAsBoolean(
                      var3.getOffHandStack().isOf(Items.TOTEM_OF_UNDYING),
                      var3.getOffHandStack().isEmpty(),
                      var1.mode.pAsBoolean("Always"),
@@ -165,7 +165,7 @@ public final class AutoTotem extends Module {
                      }
                   }
 
-                  return at.rAsAt_Type_e(
+                  return ClickState.rAsAt_Type_e(
                         var5, var7, var4, var1.swapMode.pAsBoolean("Hotbar"), var1.hotbarRefill.getValue(), var1.hotbarReserves.getValue().intValue()
                      )
                      != null;
@@ -192,7 +192,7 @@ public final class AutoTotem extends Module {
          && mc.interactionManager != null
          && mc.player.isAlive()
          && !mc.player.isSpectator()
-         && !p5.oAsBoolean()
+         && !ParticleEmitter.oAsBoolean()
          && mc.player.currentScreenHandler == mc.player.playerScreenHandler
          && mc.player.playerScreenHandler.getCursorStack().isEmpty()
          && this.EAsBoolean(mc.currentScreen)) {
@@ -209,7 +209,7 @@ public final class AutoTotem extends Module {
                this.K.SAsVoid();
             }
 
-            at.Type_e var5 = this.rAsAt_Type_e(var4);
+            ClickState.Type_e var5 = this.rAsAt_Type_e(var4);
             if (var5 == null) {
                this.K.SAsVoid();
             } else {
@@ -245,7 +245,7 @@ public final class AutoTotem extends Module {
       }
    }
 
-   private void dAsVoid(long var1, at.Type_e var3, boolean var4) {
+   private void dAsVoid(long var1, ClickState.Type_e var3, boolean var4) {
       Screen var5 = mc.currentScreen;
       if (var3.equips() && var3.source() < 9 && this.offhandKey.getValue() && var5 == null) {
          if (!mc.player.isUsingItem()) {
@@ -299,7 +299,7 @@ public final class AutoTotem extends Module {
                   return;
                }
 
-               at.Type_e var4 = this.rAsAt_Type_e(this.CAsBoolean());
+               ClickState.Type_e var4 = this.rAsAt_Type_e(this.CAsBoolean());
                if (var4 != null && this.eAsBoolean(var4)) {
                   PlayerScreenHandler var5 = mc.player.playerScreenHandler;
                   mc.interactionManager.clickSlot(var5.syncId, var4.menuSlot(), var4.button(), SlotActionType.SWAP, mc.player);
@@ -380,7 +380,7 @@ public final class AutoTotem extends Module {
                   return;
                }
 
-               if (var3 || !pk.hAsBoolean(mc, var4) || var4.handSwinging && var4.handSwingTicks < 0) {
+               if (var3 || !ParticleKind.hAsBoolean(mc, var4) || var4.handSwinging && var4.handSwingTicks < 0) {
                   return;
                }
 
@@ -422,7 +422,7 @@ public final class AutoTotem extends Module {
 
       if (this.v.iAsBoolean()
          && var3 != 0
-         && this.v.aAsAt_Type_r_Type_v() != at.Type_r.Type_v.SELECT
+         && this.v.aAsAt_Type_r_Type_v() != ClickState.Type_r.Type_v.SELECT
          && this.v.GAsBoolean(this.k.getInventory().getSelectedSlot())) {
          this.k.getInventory().setSelectedSlot(this.v.sAsInt());
          ClientLog.XAsVoid("AutoTotem", "Swap hands route stopped ({}); restored hotbar {}", var1, this.v.sAsInt() + 1);
@@ -471,16 +471,16 @@ public final class AutoTotem extends Module {
    private boolean EAsBoolean() {
       ClientPlayerEntityAccessor var1 = (ClientPlayerEntityAccessor)mc.player;
       PlayerInput var2 = var1.larpLastSentInput();
-      return var2 != null && at.cAsBoolean(var1.larpWasSprinting(), var2.forward(), var2.backward(), var2.left(), var2.right(), var2.jump(), var2.sneak());
+      return var2 != null && ClickState.cAsBoolean(var1.larpWasSprinting(), var2.forward(), var2.backward(), var2.left(), var2.right(), var2.jump(), var2.sneak());
    }
 
    private int hAsInt() {
-      return at.yAsInt(this.clickDelay.getValue().intValue(), this.clickDelayMax.getValue().intValue(), ThreadLocalRandom.current().nextDouble());
+      return ClickState.yAsInt(this.clickDelay.getValue().intValue(), this.clickDelayMax.getValue().intValue(), ThreadLocalRandom.current().nextDouble());
    }
 
    private boolean CAsBoolean() {
       ItemStack var1 = mc.player.getOffHandStack();
-      return at.oAsBoolean(
+      return ClickState.oAsBoolean(
          var1.isOf(Items.TOTEM_OF_UNDYING),
          var1.isEmpty(),
          this.mode.pAsBoolean("Always"),
@@ -491,7 +491,7 @@ public final class AutoTotem extends Module {
       );
    }
 
-   private at.Type_e rAsAt_Type_e(boolean var1) {
+   private ClickState.Type_e rAsAt_Type_e(boolean var1) {
       long var2 = 0L;
       int var4 = 0;
 
@@ -504,10 +504,10 @@ public final class AutoTotem extends Module {
          }
       }
 
-      return at.rAsAt_Type_e(var2, var4, var1, this.swapMode.pAsBoolean("Hotbar"), this.hotbarRefill.getValue(), this.hotbarReserves.getValue().intValue());
+      return ClickState.rAsAt_Type_e(var2, var4, var1, this.swapMode.pAsBoolean("Hotbar"), this.hotbarRefill.getValue(), this.hotbarReserves.getValue().intValue());
    }
 
-   private boolean eAsBoolean(at.Type_e var1) {
+   private boolean eAsBoolean(ClickState.Type_e var1) {
       Slot var2 = mc.player.playerScreenHandler.getSlot(var1.menuSlot());
       return var2.getStack().isOf(Items.TOTEM_OF_UNDYING)
          && var2.canTakeItems(mc.player)

@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.dimension.DimensionType.Skybox;
 
-public final class CelestialWeather extends Module implements qn {
+public final class CelestialWeather extends Module implements QueueNode {
    private static CelestialWeather A;
    public final ModeSetting style = this.addSetting(
       new ModeSetting("Style", "Local celestial atmosphere", "Meteor Shower", "Meteor Shower", "Stardust", "Astral Rain")
@@ -91,11 +91,11 @@ public final class CelestialWeather extends Module implements qn {
          this.p.getValue(),
          this.s.getValue(),
          this.f.getValue(),
-         this.themeColors.getValue() ? bd.w : this.color.getValue(),
-         this.themeColors.getValue() ? bd.Q : this.secondaryColor.getValue(),
+         this.themeColors.getValue() ? UiStyle.w : this.color.getValue(),
+         this.themeColors.getValue() ? UiStyle.Q : this.secondaryColor.getValue(),
          this.bloom.getValue(),
          this.surfaceImpacts.getValue(),
-         x9.jAsInt(256)
+         BloomQualityHelper.jAsInt(256)
       );
    }
 
@@ -139,7 +139,7 @@ public final class CelestialWeather extends Module implements qn {
                      this.C = var4 != 0;
                   }
 
-                  this.b.mAsVoid(var2, this.tAsQd_Type_i(), this.C, (var1xx, var2x) -> lq.AAsLq_Type_l(var1.world, var1xx, var2x));
+                  this.b.mAsVoid(var2, this.tAsQd_Type_i(), this.C, (var1xx, var2x) -> LandQuery.AAsLq_Type_l(var1.world, var1xx, var2x));
                }
             }
          } else {
@@ -154,7 +154,7 @@ public final class CelestialWeather extends Module implements qn {
          if (!this.isRuntimeActive()) {
             this.b.ZAsVoid();
          } else {
-            this.b.aAsVoid(var2.pos, this.x ? 1.0F : var1, w3.BAsFrustum());
+            this.b.aAsVoid(var2.pos, this.x ? 1.0F : var1, WebRenderer.BAsFrustum());
          }
       }
    }

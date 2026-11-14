@@ -13,13 +13,13 @@ public final class ModuleList {
    public ModuleList() {
    }
 
-   public static nq.Type_i dAsNq_Type_i(UUID var0) {
+   public static NotificationQueue.Type_i dAsNq_Type_i(UUID var0) {
       LARP var1 = LARP.BAsLARP();
-      return var1 != null && var1.isOperational() ? nq.EAsNq_Type_i(var0, MinecraftClient.getInstance().getSession().getUuidOrNull()) : null;
+      return var1 != null && var1.isOperational() ? NotificationQueue.EAsNq_Type_i(var0, MinecraftClient.getInstance().getSession().getUuidOrNull()) : null;
    }
 
    public static SkinTextures HAsSkinTextures(UUID var0, SkinTextures var1) {
-      nq.Type_i var2 = dAsNq_Type_i(var0);
+      NotificationQueue.Type_i var2 = dAsNq_Type_i(var0);
       return var2 == null
          ? var1
          : new SkinTextures(
@@ -46,7 +46,7 @@ public final class ModuleList {
          }
       }
 
-      nq.Type_i var4 = dAsNq_Type_i(var0);
+      NotificationQueue.Type_i var4 = dAsNq_Type_i(var0);
       return var4 == null ? "" : var4.name();
    }
 

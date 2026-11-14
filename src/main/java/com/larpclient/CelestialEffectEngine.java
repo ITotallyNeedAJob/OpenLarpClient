@@ -7,15 +7,15 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
 public final class CelestialEffectEngine {
-   public static final int MenuPopupProvider = 256;
+   public static final int f = 256;
    public static final int K = 32;
    public static final int V = 12;
    public static final int D = 1024;
    public static final int v = 4;
-   private static final double HexEdgeloop = 0.05;
+   private static final double p = 0.05;
    private final Random U;
    private final ParticleEmitterEngine M = new ParticleEmitterEngine();
-   private final x4 AuctionNotifier = new x4();
+   private final EffectRenderParams o = new EffectRenderParams();
    private final CelestialEffectEngine.Type_r[] X = new CelestialEffectEngine.Type_r[256];
    private final CelestialEffectEngine.Type_c[] r = new CelestialEffectEngine.Type_c[256];
    private int L;
@@ -69,7 +69,7 @@ public final class CelestialEffectEngine {
       this.l = false;
    }
 
-   public void mAsVoid(Vec3d var1, CelestialEffectEngine.Type_i var2, boolean var3, lq.Type_a var4) {
+   public void mAsVoid(Vec3d var1, CelestialEffectEngine.Type_i var2, boolean var3, LandQuery.Type_a var4) {
       if (this.C != null && (this.C.style != var2.style || this.N.squaredDistanceTo(var1) > 4096.0)) {
          this.ZAsVoid();
       }
@@ -162,9 +162,9 @@ public final class CelestialEffectEngine {
          }
       }
 
-      op.FAsVoid("Celestial active flights", (long)this.L);
-      op.FAsVoid("Celestial sprites", (long)this.M.UAsInt());
-      op.FAsVoid("Celestial terrain queries", (long)this.F);
+      OpenScreen.FAsVoid("Celestial active flights", (long)this.L);
+      OpenScreen.FAsVoid("Celestial sprites", (long)this.M.UAsInt());
+      OpenScreen.FAsVoid("Celestial terrain queries", (long)this.F);
    }
 
    private void sAsVoid(int var1) {
@@ -196,7 +196,7 @@ public final class CelestialEffectEngine {
          var8 = 16.0;
       }
 
-      var1.m = var1.S = b9.iAsVec3d(var7, var1.k ? Math.min(12.0, this.C.radius) : this.C.radius, var8, this.U);
+      var1.m = var1.S = BuyConfirm.iAsVec3d(var7, var1.k ? Math.min(12.0, this.C.radius) : this.C.radius, var8, this.U);
       var1.H = 0.0;
       var1.A = var2 != 0 ? 1.6 + this.U.nextDouble() * 1.8 : 2.3 + this.U.nextDouble() * 1.3;
       var1.r = this.C.size * (var2 != 0 ? 0.055 : 0.014) * (0.65 + this.U.nextDouble() * 0.7);
@@ -211,14 +211,14 @@ public final class CelestialEffectEngine {
    private void uAsVoid() {
       this.o.M = 1;
       this.o.I = this.C.primary;
-      this.o.A = bg.pAsInt(this.C.secondary, 0.55);
+      this.o.A = ColorUtil.pAsInt(this.C.secondary, 0.55);
       this.o.i = this.C.bloom;
       this.o.d = this.C.distance;
       this.o.Z = this.o.e = this.o.P = this.o.w = this.o.b = 0.0;
       this.o.a = this.o.D = this.o.L = this.o.J = this.o.V = 0.0;
       this.o.C = this.o.r = 0.0;
-      this.o.t = ay.Type_r.FADE_IN_OUT;
-      this.o.o = ay.Type_z.PULSE;
+      this.o.t = FadeCurve.Type_r.FADE_IN_OUT;
+      this.o.o = FadeCurve.Type_z.PULSE;
       this.o.q = ParticleEmitterEngine.Type_a.Glow;
    }
 
@@ -234,11 +234,11 @@ public final class CelestialEffectEngine {
       this.o.C = 0.35 + this.U.nextDouble() * 0.5;
       this.o.r = 0.4 + this.U.nextDouble();
       this.o.S = 4.0 + this.U.nextDouble() * 4.0;
-      this.o.I = bg.pAsInt(bg.xAsInt(this.C.primary, this.C.secondary, this.U.nextDouble()), 0.4 + this.U.nextDouble() * 0.5);
+      this.o.I = ColorUtil.pAsInt(ColorUtil.xAsInt(this.C.primary, this.C.secondary, this.U.nextDouble()), 0.4 + this.U.nextDouble() * 0.5);
       int var1 = this.U.nextDouble() < 0.22 ? 1 : 0;
       this.M
          .pAsVoid(
-            b9.iAsVec3d(this.N, var1 != 0 ? Math.min(3.0, this.C.radius * 0.16) : this.C.radius, var1 != 0 ? 4.0 : Math.min(20.0, this.C.radius), this.U),
+            BuyConfirm.iAsVec3d(this.N, var1 != 0 ? Math.min(3.0, this.C.radius * 0.16) : this.C.radius, var1 != 0 ? 4.0 : Math.min(20.0, this.C.radius), this.U),
             this.o
          );
    }
@@ -257,23 +257,23 @@ public final class CelestialEffectEngine {
       this.o.Z = var1.E.x * 0.65;
       this.o.e = var1.E.y * 0.65;
       this.o.P = var1.E.z * 0.65;
-      this.o.t = ay.Type_r.LINEAR;
-      this.o.o = ay.Type_z.SHRINK;
+      this.o.t = FadeCurve.Type_r.LINEAR;
+      this.o.o = FadeCurve.Type_z.SHRINK;
       this.M.pAsVoid(var1.m, this.o);
       this.g++;
    }
 
-   private void mAsVoid(lq.Type_l var1, double var2) {
+   private void mAsVoid(LandQuery.Type_l var1, double var2) {
       this.uAsVoid();
       this.o.q = ParticleEmitterEngine.Type_a.Ring;
       this.o.y = var1.normal();
       this.o.x = this.o.v = 0.42;
       this.o.p = Math.clamp(var2 * 7.0, 0.12, 0.45);
       this.o.n = 0.015;
-      this.o.t = ay.Type_r.HOLD_FADE;
-      this.o.o = ay.Type_z.CONSTANT;
-      this.o.I = bg.pAsInt(this.C.primary, 0.5);
-      this.o.A = bg.pAsInt(this.C.secondary, 0.1);
+      this.o.t = FadeCurve.Type_r.HOLD_FADE;
+      this.o.o = FadeCurve.Type_z.CONSTANT;
+      this.o.I = ColorUtil.pAsInt(this.C.primary, 0.5);
+      this.o.A = ColorUtil.pAsInt(this.C.secondary, 0.1);
       Vec3d var4 = var1.point().add(var1.normal().multiply(0.012));
       this.M.pAsVoid(var4, this.o);
       this.o.q = ParticleEmitterEngine.Type_a.Glow;
@@ -285,13 +285,13 @@ public final class CelestialEffectEngine {
       this.o.p = 1.0;
       this.o.e = 0.2;
       this.o.w = 0.35;
-      this.o.o = ay.Type_z.SHRINK;
+      this.o.o = FadeCurve.Type_z.SHRINK;
       this.M.pAsVoid(var4, this.o);
       this.I++;
    }
 
    public void aAsVoid(Vec3d var1, float var2, Frustum var3) {
-      long var4 = op.RAsLong();
+      long var4 = OpenScreen.RAsLong();
       this.O = var1;
       this.B = Math.clamp(var2, 0.0F, 1.0F);
       this.b = 0;
@@ -305,7 +305,7 @@ public final class CelestialEffectEngine {
             Vec3d var10 = var9.S.lerp(var9.m, (double)this.B);
             double var11 = Math.max(0.0, var9.H - 0.05 + (double)this.B * 0.05);
             double var13 = var10.distanceTo(var1);
-            double var15 = nAsDouble(var11, var9.A) * ay.RAsDouble((this.C.distance - var13) / Math.max(2.0, this.C.distance * 0.18)) * var6;
+            double var15 = nAsDouble(var11, var9.A) * FadeCurve.RAsDouble((this.C.distance - var13) / Math.max(2.0, this.C.distance * 0.18)) * var6;
             if (!(var15 < 0.005)) {
                int var17 = this.C.style == CelestialEffectEngine.Type_z.METEOR_SHOWER ? 1 : 0;
                Vec3d var18 = var17 != 0 && var9.P > 0 ? var9.o[var9.P - 1] : var10.subtract(var9.E.multiply(0.045 + var9.e * 0.025));
@@ -314,10 +314,10 @@ public final class CelestialEffectEngine {
                   CelestialEffectEngine.Type_c var21 = this.r[this.b++];
                   var21.y = var9.r;
                   var21.Q = var17 != 0;
-                  var21.G = bg.pAsInt(
-                     bg.xAsInt(this.C.primary, this.C.primary & 0xFF000000 | 16777215, var17 != 0 ? 0.55 : 0.18), var15 * (var17 != 0 ? 0.95 : 0.6)
+                  var21.G = ColorUtil.pAsInt(
+                     ColorUtil.xAsInt(this.C.primary, this.C.primary & 0xFF000000 | 16777215, var17 != 0 ? 0.55 : 0.18), var15 * (var17 != 0 ? 0.95 : 0.6)
                   );
-                  var21.J = bg.pAsInt(this.C.secondary, var15 * (var17 != 0 ? 0.6 : 0.3));
+                  var21.J = ColorUtil.pAsInt(this.C.secondary, var15 * (var17 != 0 ? 0.6 : 0.3));
                   if (var21.G >>> 24 == 0 && var21.J >>> 24 == 0) {
                      this.b--;
                   } else {
@@ -336,15 +336,15 @@ public final class CelestialEffectEngine {
          }
 
          this.l = this.C.bloom && (this.b > 0 || this.M.yAsBoolean());
-         op.FAsVoid("Celestial prepared flights", (long)this.b);
-         op.FAsVoid("Celestial ribbon segments", (long)this.KAsInt());
-         op.FAsVoid("Celestial culled flights", (long)(this.L - this.b));
-         op.aAsVoid("Celestial prepare", var4);
+         OpenScreen.FAsVoid("Celestial prepared flights", (long)this.b);
+         OpenScreen.FAsVoid("Celestial ribbon segments", (long)this.KAsInt());
+         OpenScreen.FAsVoid("Celestial culled flights", (long)(this.L - this.b));
+         OpenScreen.aAsVoid("Celestial prepare", var4);
       }
    }
 
    public static double nAsDouble(double var0, double var2) {
-      return ay.RAsDouble(var0 / 0.22) * ay.RAsDouble((var2 - var0) / 0.45);
+      return FadeCurve.RAsDouble(var0 / 0.22) * FadeCurve.RAsDouble((var2 - var0) / 0.45);
    }
 
    public boolean lAsBoolean() {
@@ -358,7 +358,7 @@ public final class CelestialEffectEngine {
    public void EAsVoid(EffectGeometryRenderer var1, boolean var2) {
       if (!var2 || this.l) {
          this.M.MAsVoid(var1, this.O, this.B, var2);
-         var1.blend(x4.Type_g.ADDITIVE);
+         var1.blend(EffectRenderParams.Type_g.ADDITIVE);
 
          for (int var3 = 0; var3 < this.b; var3++) {
             CelestialEffectEngine.Type_c var4 = this.r[var3];
@@ -370,9 +370,9 @@ public final class CelestialEffectEngine {
                double var10 = 1.0 - (double)var5 / (double)(var4.i - 1);
                double var12 = var4.y * (var4.Q ? 0.08 + 0.92 * var8 : 1.0);
                double var14 = var4.y * (var4.Q ? 0.08 + 0.92 * var10 : 0.2);
-               int var16 = bg.pAsInt(bg.xAsInt(var4.J, var4.G, var8), var8);
-               int var17 = bg.pAsInt(bg.xAsInt(var4.J, var4.G, var10), var10);
-               var1.ZAsVoid(var6.x, var6.y, var6.z, var7.x, var7.y, var7.z, var12 * 3.0, var14 * 3.0, bg.pAsInt(var16, 0.15), bg.pAsInt(var17, 0.15));
+               int var16 = ColorUtil.pAsInt(ColorUtil.xAsInt(var4.J, var4.G, var8), var8);
+               int var17 = ColorUtil.pAsInt(ColorUtil.xAsInt(var4.J, var4.G, var10), var10);
+               var1.ZAsVoid(var6.x, var6.y, var6.z, var7.x, var7.y, var7.z, var12 * 3.0, var14 * 3.0, ColorUtil.pAsInt(var16, 0.15), ColorUtil.pAsInt(var17, 0.15));
                var1.ZAsVoid(var6.x, var6.y, var6.z, var7.x, var7.y, var7.z, var12, var14, var16, var17);
                if (var4.Q) {
                   var1.ZAsVoid(
@@ -384,8 +384,8 @@ public final class CelestialEffectEngine {
                      var7.z,
                      var12 * 0.26,
                      var14 * 0.26,
-                     bg.xAsInt(var16, var16 & 0xFF000000 | 16777215, 0.75),
-                     bg.xAsInt(var17, var17 & 0xFF000000 | 16777215, 0.75)
+                     ColorUtil.xAsInt(var16, var16 & 0xFF000000 | 16777215, 0.75),
+                     ColorUtil.xAsInt(var17, var17 & 0xFF000000 | 16777215, 0.75)
                   );
                }
             }
@@ -396,7 +396,7 @@ public final class CelestialEffectEngine {
             }
          }
 
-         var1.blend(x4.Type_g.ALPHA);
+         var1.blend(EffectRenderParams.Type_g.ALPHA);
       }
    }
 
@@ -453,7 +453,7 @@ public final class CelestialEffectEngine {
    }
 
    private static final class Type_c {
-      final Vec3d[] CropHelper = new Vec3d[13];
+      final Vec3d[] u = new Vec3d[13];
       int i;
       int G;
       int J;
@@ -484,7 +484,7 @@ public final class CelestialEffectEngine {
       Vec3d m;
       Vec3d S;
       Vec3d E;
-      final Vec3d[] AuctionNotifier = new Vec3d[12];
+      final Vec3d[] o = new Vec3d[12];
       int P;
       double H;
       double A;
@@ -494,7 +494,7 @@ public final class CelestialEffectEngine {
       double t;
       boolean k;
       boolean I;
-      lq.Type_l D;
+      LandQuery.Type_l D;
 
       private Type_r() {
       }

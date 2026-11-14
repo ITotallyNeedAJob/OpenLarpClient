@@ -77,7 +77,7 @@ public final class NebulaGenerator {
    }
 
    public static double CAsDouble(Box var0, Vec3d var1, double var2, double var4) {
-      return o5.lAsDouble(var1.add(0.0, var2 - 0.012, 0.0), var0) - var4;
+      return OptifineBridge.lAsDouble(var1.add(0.0, var2 - 0.012, 0.0), var0) - var4;
    }
 
    private static void lAsVoid(Box var0, double var1, double var3, Vec3d var5, Vec3d var6, Vec3d var7, List<NebulaGenerator.Type_p> var8, List<NebulaGenerator.Type_d> var9) {

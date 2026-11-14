@@ -26,9 +26,9 @@ public class GameRendererRenderMixin {
       at = {@At("HEAD")}
    )
    private void larpclient$injectZV(RenderTickCounter var1, boolean var2, CallbackInfo var3) {
-      mb.qAsVoid(var1.getTickProgress(false));
+      MediaSession.qAsVoid(var1.getTickProgress(false));
       BloomQuality.AAsVoid();
-      op.sAsVoid();
+      OpenScreen.sAsVoid();
       BloomQuality.FAsVoid();
       SkyEffectManager.vAsVoid();
       SkyShader var4 = SkyShader.EAsSkyShader();
@@ -59,7 +59,7 @@ public class GameRendererRenderMixin {
       )}
    )
    private float larpclient$modifyExpressionValueV(float var1) {
-      w3.XAsVoid(var1);
+      WebRenderer.XAsVoid(var1);
       return var1;
    }
 
@@ -72,7 +72,7 @@ public class GameRendererRenderMixin {
       )}
    )
    private float larpclient$modifyExpressionValueV2(float var1) {
-      w3.HAsVoid(var1);
+      WebRenderer.HAsVoid(var1);
       return var1;
    }
 }

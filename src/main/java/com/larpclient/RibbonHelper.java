@@ -4,12 +4,12 @@ import net.minecraft.util.math.Box;
 
 public final class RibbonHelper {
    public static void lAsVoid(
-      EffectGeometryRenderer var0, boolean var1, dz var2, Box var3, double var4, int var6, double var7, double var9, double var11, double var13
+      EffectGeometryRenderer var0, boolean var1, SkyZone var2, Box var3, double var4, int var6, double var7, double var9, double var11, double var13
    ) {
-      var0.blend(x4.Type_g.ADDITIVE);
+      var0.blend(EffectRenderParams.Type_g.ADDITIVE);
       Box var15 = var3;
 
-      for (dz.Type_z var17 : var2.edges()) {
+      for (SkyZone.Type_z var17 : var2.edges()) {
          double var18 = XAsDouble(var17.ax(), var15.minX, var15.maxX);
          double var20 = XAsDouble(var17.ay(), var15.minY, var15.maxY);
          double var22 = XAsDouble(var17.az(), var15.minZ, var15.maxZ);
@@ -18,20 +18,20 @@ public final class RibbonHelper {
          double var28 = XAsDouble(var17.bz(), var15.minZ, var15.maxZ);
          double var30 = var4 * var7;
          if (var13 > 0.0) {
-            int var32 = bg.pAsInt(var6, var30 * var13 * (var1 ? 0.25 : 0.09));
+            int var32 = ColorUtil.pAsInt(var6, var30 * var13 * (var1 ? 0.25 : 0.09));
             var0.ZAsVoid(var18, var20, var22, var24, var26, var28, var9 * 3.0, var9 * 3.0, var32, var32);
             if (!var1) {
-               var0.ZAsVoid(var18, var20, var22, var24, var26, var28, var9 * 5.0, var9 * 5.0, bg.pAsInt(var32, 0.35), bg.pAsInt(var32, 0.35));
+               var0.ZAsVoid(var18, var20, var22, var24, var26, var28, var9 * 5.0, var9 * 5.0, ColorUtil.pAsInt(var32, 0.35), ColorUtil.pAsInt(var32, 0.35));
             }
          }
 
          if (!var1) {
-            int var35 = bg.pAsInt(var6, var30);
+            int var35 = ColorUtil.pAsInt(var6, var30);
             var0.ZAsVoid(var18, var20, var22, var24, var26, var28, var9, var9, var35, var35);
          }
       }
 
-      var0.blend(x4.Type_g.ALPHA);
+      var0.blend(EffectRenderParams.Type_g.ALPHA);
       if (!var1 && var11 > 0.0) {
          for (Box var34 : var2.boxes()) {
             gAsVoid(
@@ -44,14 +44,14 @@ public final class RibbonHelper {
                   XAsDouble(var34.maxY, var15.minY, var15.maxY),
                   XAsDouble(var34.maxZ, var15.minZ, var15.maxZ)
                ),
-               bg.pAsInt(var6, var4 * var11)
+               ColorUtil.pAsInt(var6, var4 * var11)
             );
          }
       }
    }
 
    private static double XAsDouble(double var0, double var2, double var4) {
-      return dz.map(var0, var2, var4);
+      return SkyZone.map(var0, var2, var4);
    }
 
    private static void gAsVoid(EffectGeometryRenderer var0, Box var1, int var2) {

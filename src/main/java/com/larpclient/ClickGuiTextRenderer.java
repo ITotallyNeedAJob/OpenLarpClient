@@ -53,12 +53,12 @@ public final class ClickGuiTextRenderer {
    private static final int O = 65544;
    private static final int C = 512;
    private static final int Z = 6;
-   private static final int LineSegment = 4;
+   private static final int e = 4;
    private static long L;
    private static final List<ByteBuffer> F = new ArrayList<>();
-   private static final Map<TextDrawing.Type_x, ClickGuiTextRenderer.Type_g> BloomUtility = new EnumMap<>(TextDrawing.Type_x.class);
+   private static final Map<TextDrawing.Type_x, ClickGuiTextRenderer.Type_g> b = new EnumMap<>(TextDrawing.Type_x.class);
    private static final Map<Long, ClickGuiTextRenderer.Type_l> K = new HashMap<>();
-   private static final Map<Long, Float> ScreenScale = new HashMap<>();
+   private static final Map<Long, Float> y = new HashMap<>();
    private static final Map<Long, Boolean> P = new HashMap<>();
    private static final List<GpuTexture> I = new ArrayList<>();
    private static final List<GpuTextureView> V = new ArrayList<>();
@@ -76,7 +76,7 @@ public final class ClickGuiTextRenderer {
    static boolean QAsBoolean(TextDrawing.Type_x var0, String var1) {
       if (var0.name().startsWith("CLICK_") && MinecraftClient.getInstance() != null) {
          if (XAsBoolean() && !var1.isEmpty() && var1.indexOf(167) < 0) {
-            ClickGuiTextRenderer.Type_g var2 = BloomUtility.get(var0);
+            ClickGuiTextRenderer.Type_g var2 = b.get(var0);
             if (var2 == null) {
                return false;
             } else {
@@ -101,7 +101,7 @@ public final class ClickGuiTextRenderer {
    }
 
    static int TAsInt(String var0, TextDrawing.Type_x var1) {
-      ClickGuiTextRenderer.Type_g var2 = BloomUtility.get(var1);
+      ClickGuiTextRenderer.Type_g var2 = b.get(var1);
       float var3 = 0.0F;
       int var4 = 0;
 
@@ -119,7 +119,7 @@ public final class ClickGuiTextRenderer {
          return false;
       } else {
          try {
-            return OAsBoolean(var0, var1, var2, var3, var4, BloomUtility.get(var5));
+            return OAsBoolean(var0, var1, var2, var3, var4, b.get(var5));
          } catch (RuntimeException var7) {
             nAsVoid("Exact-size ClickGUI text failed; native text until resource reload", var7);
             return false;
@@ -134,7 +134,7 @@ public final class ClickGuiTextRenderer {
 
       Matrix3x2fStack var6 = var0.getMatrices();
       float var7 = (float)MinecraftClient.getInstance().getWindow().getScaleFactor();
-      int var8 = var6.m01() == 0.0F && var6.m10() == 0.0F && var6.m00() > 0.0F && Math.abs(var6.m00() - var6.m11()) < 1.0E-4F && !xt.zAsBoolean() ? 1 : 0;
+      int var8 = var6.m01() == 0.0F && var6.m10() == 0.0F && var6.m00() > 0.0F && Math.abs(var6.m00() - var6.m11()) < 1.0E-4F && !XTexture.zAsBoolean() ? 1 : 0;
       float var9 = var8 != 0 ? var6.m00() : (float)Math.sqrt((double)Math.abs(var6.m00() * var6.m11() - var6.m01() * var6.m10()));
       float var10 = var9 * var7;
       int var11 = Math.max(64, var8 != 0 ? Math.round(var5.size * var10 * 4.0F) * 16 : Math.round(var5.size * var10) * 64);
@@ -280,7 +280,7 @@ public final class ClickGuiTextRenderer {
 
    private static float IAsFloat(ClickGuiTextRenderer.Type_g var0, int var1) {
       long var2 = (long)var0.index << 32 | (long)var1;
-      Float var4 = ScreenScale.get(var2);
+      Float var4 = y.get(var2);
       if (var4 != null) {
          return var4;
       } else {
@@ -308,7 +308,7 @@ public final class ClickGuiTextRenderer {
             var6.close();
          }
 
-         ScreenScale.put(var2, var5);
+         y.put(var2, var5);
          return var5;
       }
    }
@@ -463,7 +463,7 @@ public final class ClickGuiTextRenderer {
       if (q != BloomQuality.J) {
          uAsVoid();
          q = BloomQuality.J;
-         PetEffectRenderer = false;
+         a = false;
 
          try {
             DAsVoid();
@@ -472,7 +472,7 @@ public final class ClickGuiTextRenderer {
          }
       }
 
-      return !PetEffectRenderer && !BloomUtility.isEmpty();
+      return !a && !b.isEmpty();
    }
 
    private static void DAsVoid() throws IOException {
@@ -557,8 +557,8 @@ public final class ClickGuiTextRenderer {
             }
 
             JsonArray var27 = var8.getAsJsonArray("shift");
-            int var29 = BloomUtility.size();
-            BloomUtility.put(
+            int var29 = b.size();
+            b.put(
                var5,
                new ClickGuiTextRenderer.Type_g(
                   var29,
@@ -573,7 +573,7 @@ public final class ClickGuiTextRenderer {
       }
 
       ClientLog.GAsVoid(
-         "Font", "Exact-size ClickGUI text ready: {} faces from {} files, rasterized by FreeType at the on-screen pixel size", BloomUtility.size(), var24.size()
+         "Font", "Exact-size ClickGUI text ready: {} faces from {} files, rasterized by FreeType at the on-screen pixel size", b.size(), var24.size()
       );
    }
 
@@ -584,7 +584,7 @@ public final class ClickGuiTextRenderer {
    }
 
    private static void nAsVoid(String var0, Exception var1) {
-      PetEffectRenderer = true;
+      a = true;
       ClientLog.lAsVoid("Font", var0, var1);
       uAsVoid();
    }
@@ -601,7 +601,7 @@ public final class ClickGuiTextRenderer {
       V.clear();
       I.clear();
       K.clear();
-      ScreenScale.clear();
+      y.clear();
       P.clear();
       D.clear();
       M = 0;
@@ -609,13 +609,13 @@ public final class ClickGuiTextRenderer {
       J = 0;
       HashSet var4 = new HashSet();
 
-      for (ClickGuiTextRenderer.Type_g var2 : BloomUtility.values()) {
+      for (ClickGuiTextRenderer.Type_g var2 : b.values()) {
          if (var4.add(var2.face.address())) {
             FreeType.FT_Done_Face(var2.face);
          }
       }
 
-      BloomUtility.clear();
+      b.clear();
       if (L != 0L) {
          FreeType.FT_Done_FreeType(L);
          L = 0L;

@@ -230,7 +230,7 @@ public final class HitSounds extends Module {
          && var1.isAlive()
          && !var1.isRemoved()
          && (!this.onlyPlayers.getValue() && this.mobSounds.getValue() || var1 instanceof PlayerEntity)
-         && (!this.onlyCrit.getValue() || db.sAsBoolean(this.getPlayer(), var1))) {
+         && (!this.onlyCrit.getValue() || FallDamage.sAsBoolean(this.getPlayer(), var1))) {
          MinecraftClient var2 = getMc();
          this.wAsVoid();
          int var3 = var2.player.age;

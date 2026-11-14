@@ -6,8 +6,8 @@ import net.minecraft.util.math.Vec3d;
 
 public final class HalloweenCinders {
    private final ParticleEmitterEngine C = new ParticleEmitterEngine();
-   private final x4 ChatPayParser = new x4();
-   private final Random AuctionNotifier = new Random(184360998L);
+   private final EffectRenderParams g = new EffectRenderParams();
+   private final Random o = new Random(184360998L);
    private double a;
    private double y;
    private double h;
@@ -36,16 +36,16 @@ public final class HalloweenCinders {
          for (int var5 = 0; var5 < var4 && this.C.UAsInt() < this.C.B; var5++) {
             int var6 = this.o.nextInt(7) == 0 ? 1 : 0;
             this.g.q = var6 != 0 ? ParticleEmitterEngine.Type_a.Glow : ParticleEmitterEngine.Type_a.Shard;
-            this.g.j = x4.Type_g.ALPHA;
-            this.g.I = bg.XAsInt(var6 != 0 ? -3046331 : -6511188, (var6 != 0 ? 0.65 : 0.3) * var2.n);
-            this.g.A = bg.XAsInt(var6 != 0 ? -6540233 : -15260879, 0.08);
+            this.g.j = EffectRenderParams.Type_g.ALPHA;
+            this.g.I = ColorUtil.XAsInt(var6 != 0 ? -3046331 : -6511188, (var6 != 0 ? 0.65 : 0.3) * var2.n);
+            this.g.A = ColorUtil.XAsInt(var6 != 0 ? -6540233 : -15260879, 0.08);
             this.g.i = var6 != 0 && var2.dAsBoolean();
             this.g.x = 9.0;
             this.g.v = 12.0;
             this.g.g = var6 != 0 ? 0.013 : 0.014;
             this.g.R = var6 != 0 ? 0.029 : 0.04;
-            this.g.t = ay.Type_r.FADE_IN_OUT;
-            this.g.o = ay.Type_z.PULSE;
+            this.g.t = FadeCurve.Type_r.FADE_IN_OUT;
+            this.g.o = FadeCurve.Type_z.PULSE;
             this.g.a = 0.0;
             this.g.D = 0.15;
             this.g.w = 0.045;
@@ -59,15 +59,15 @@ public final class HalloweenCinders {
             this.g.r = 0.28;
             this.g.S = 6.5;
             this.g.d = var2.T * 1.45;
-            this.C.pAsVoid(b9.iAsVec3d(var1.add(0.0, 2.0, 0.0), var2.T, 8.0, this.o), this.g);
+            this.C.pAsVoid(BuyConfirm.iAsVec3d(var1.add(0.0, 2.0, 0.0), var2.T, 8.0, this.o), this.g);
          }
 
-         op.YAsVoid("Halloween cinders", (long)this.C.UAsInt());
+         OpenScreen.YAsVoid("Halloween cinders", (long)this.C.UAsInt());
       }
    }
 
    public void pAsVoid(float var1, CameraRenderState var2) {
-      this.C.nAsVoid(var2.pos, var1, w3.BAsFrustum(), 0.65, ay.RAsDouble(this.h + (this.y - this.h) * (double)var1));
+      this.C.nAsVoid(var2.pos, var1, WebRenderer.BAsFrustum(), 0.65, FadeCurve.RAsDouble(this.h + (this.y - this.h) * (double)var1));
    }
 
    public void cAsVoid(EffectGeometryRenderer var1, boolean var2) {

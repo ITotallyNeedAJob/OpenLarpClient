@@ -30,12 +30,12 @@ public final class BuildMetadata {
       }
 
       I = A.getProperty("larpVersion");
-      LineSegment = A.getProperty("minecraftVersion");
+      e = A.getProperty("minecraftVersion");
       O = A.getProperty("product");
       z = A.getProperty("edition");
       D = A.getProperty("loader");
       U = A.getProperty("channel");
       Z = A.getProperty("flavor");
-      ChatPayParser = A.getProperty("buildId");
+      g = A.getProperty("buildId");
    }
 }

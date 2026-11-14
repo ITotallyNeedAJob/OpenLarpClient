@@ -6,7 +6,7 @@ import java.util.Locale;
 public final class LungeController {
    public static final int U = 5;
    public static final int K = 4;
-   public static final int ChinaHatCodec = 1000;
+   public static final int i = 1000;
 
    public static int NAsInt(boolean var0) {
       return var0 ? 4 : 0;

@@ -36,13 +36,13 @@ public final class AuthException extends RuntimeException {
             : (
                var1.equals("DISCORD_LIMIT")
                   ? "You already have the most configs posted in Discord. Turn one off first, or use Share to just copy the code."
-                  : "The operation conflicts with PetEffectRenderer server limit or the item'SkyChunkCache current state."
+                  : "The operation conflicts with a server limit or the item's current state."
             );
             case 413 -> "The config or report is too large.";
             case 429 -> "Too many requests. Try again shortly.";
             case 503 -> "Larp authentication is temporarily unavailable.";
-            case 507 -> "Larp'SkyChunkCache storage is full. Try again later.";
-            default -> "Larp'SkyChunkCache service could not complete the request.";
+            case 507 -> "Larp's storage is full. Try again later.";
+            default -> "Larp's service could not complete the request.";
          };
       }
    }

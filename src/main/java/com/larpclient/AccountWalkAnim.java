@@ -33,7 +33,7 @@ public final class AccountWalkAnim {
       }
    }
 
-   public void MAsVoid(PlayerEntityRenderState var1, az var2, az.Type_x[] var3, Vec3d var4, MatrixStack var5, EffectDrawBuffers var6, int var7, boolean var8) {
+   public void MAsVoid(PlayerEntityRenderState var1, WalkPose var2, WalkPose.Type_x[] var3, Vec3d var4, MatrixStack var5, EffectDrawBuffers var6, int var7, boolean var8) {
       if (this.D == BloomQuality.J && this.x != null) {
          int var9 = var1.skinTextures.model() == PlayerSkinType.SLIM ? 1 : 0;
          PlayerEntityModel var10 = var9 != 0 ? this.q : this.x;
@@ -52,7 +52,7 @@ public final class AccountWalkAnim {
          ModelPart[] var17 = new ModelPart[]{var10.head, var10.body, var10.rightArm, var10.leftArm, var10.rightLeg, var10.leftLeg};
 
          for (int var18 = 0; var18 < var3.length; var18++) {
-            az.Type_x var13 = var3[var18];
+            WalkPose.Type_x var13 = var3[var18];
             if (!(var13.alpha() <= 0.001) && !(var13.scale() <= 0.001) && !(var13.dissolve() >= 1.0)) {
                var5.push();
 
@@ -69,7 +69,7 @@ public final class AccountWalkAnim {
       }
    }
 
-   public static void EAsVoid(MatrixStack var0, az.Type_x var1, double var2, int var4, boolean var5, Vec3d var6) {
+   public static void EAsVoid(MatrixStack var0, WalkPose.Type_x var1, double var2, int var4, boolean var5, Vec3d var6) {
       var0.translate(var1.position().x - var6.x, var1.position().y - var6.y, var1.position().z - var6.z);
       if (var1.orientation() != null) {
          var0.multiply(var1.orientation());
@@ -84,6 +84,6 @@ public final class AccountWalkAnim {
          var0.scale((float)((double)(-var7) * var1.stretch().x), (float)((double)(-var7) * var1.stretch().y), (float)((double)var7 * var1.stretch().z));
       }
 
-      var0.translate(-az.mAsDouble(var4, var5) / 16.0, -az.A[var4][1] / 16.0, 0.0);
+      var0.translate(-WalkPose.mAsDouble(var4, var5) / 16.0, -WalkPose.A[var4][1] / 16.0, 0.0);
    }
 }

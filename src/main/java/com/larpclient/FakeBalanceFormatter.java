@@ -12,18 +12,18 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextVisitFactory;
 
 public final class FakeBalanceFormatter {
-   public static final BigDecimal TextLayout = new BigDecimal("10000000000000");
+   public static final BigDecimal j = new BigDecimal("10000000000000");
    private static final Pattern J = Pattern.compile(
       "(?iu)^[^\\p{L}\\p{N}$]*?(?:money\\s*[:»|]?\\s*[$＄]?\\s*|[$＄]\\s*)([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kmbt]?)\\s*$"
    );
    private static final Pattern E = Pattern.compile("(?iu)^\\s*(?:money|balance|cash|[$＄])\\s*[:»|]?\\s*[$＄]?\\s*$");
    private static final Pattern K = Pattern.compile("(?iu)^\\s*([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kmbt]?)\\s*$");
    private static final Pattern P = Pattern.compile("(?i)(?:^|[^a-z])(money|balance|cash)(?:$|[^a-z])");
-   private static final Pattern MenuPopupProvider = Pattern.compile("^[\\p{Co} ]+([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kKmMbBtT]?) *$");
-   private static final Pattern ChinaHatCodec = Pattern.compile("^[\\p{Co} ]+$");
+   private static final Pattern f = Pattern.compile("^[\\p{Co} ]+([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kKmMbBtT]?) *$");
+   private static final Pattern i = Pattern.compile("^[\\p{Co} ]+$");
    private static final Pattern G = Pattern.compile("(?imu)^\\h*[$＄]\\h*([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kmbt]?)\\h*(?=$|[·•▪|⋅●])");
    private static final Pattern n = Pattern.compile("(?iu)^\\s*You\\h+have\\h+[$＄]\\h*([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kmbt]?)\\s*$");
-   private BigDecimal SmoothInput = BigDecimal.ZERO;
+   private BigDecimal t = BigDecimal.ZERO;
 
    public FakeBalanceFormatter() {
    }
@@ -57,7 +57,7 @@ public final class FakeBalanceFormatter {
 
    public static boolean sAsBoolean(Text var0, String var1, String var2) {
       String var3 = IAsAb_Type_p(var0).text();
-      return MAsBoolean(var0) || ChinaHatCodec.matcher(var3).matches() && (RAsBoolean(var1, var2) || vAsBoolean(var0));
+      return MAsBoolean(var0) || i.matcher(var3).matches() && (RAsBoolean(var1, var2) || vAsBoolean(var0));
    }
 
    private static boolean RAsBoolean(String var0, String var1) {
@@ -71,7 +71,7 @@ public final class FakeBalanceFormatter {
       } else {
          ChatPayParser.Type_t var2 = ChatPayParser.qAsG_Type_t("pay Local " + var1);
          if (!var2.valid()) {
-            throw new IllegalArgumentException("Enter an amount from 0 to 10T, LineSegment.g. 10T, 1B or 61.4.");
+            throw new IllegalArgumentException("Enter an amount from 0 to 10T, e.g. 10T, 1B or 61.4.");
          } else if (var2.amount().compareTo(j) > 0) {
             throw new IllegalArgumentException("Fake balance must be between 0 and 10T.");
          } else {
@@ -132,7 +132,7 @@ public final class FakeBalanceFormatter {
          if (var6 && K.matcher(var5.text()).matches()) {
             return KAsMutableText(var0, var1);
          } else {
-            Matcher var7 = MenuPopupProvider.matcher(var5.text());
+            Matcher var7 = f.matcher(var5.text());
             if (!var7.matches()) {
                return var0;
             } else {

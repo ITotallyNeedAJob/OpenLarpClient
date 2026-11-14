@@ -13,37 +13,37 @@ import org.joml.Matrix4f;
 
 public final class ChinaHatFireRenderer {
    public static final int U = 288;
-   static final double PetEffectRenderer = 120.0;
-   static final double AuraModule = 90.0;
+   static final double a = 120.0;
+   static final double x = 90.0;
    public static final float Q = 0.24F;
-   static final double SkyChunkCache = 0.6;
+   static final double s = 0.6;
    static final double R = 0.25;
    static final double L = 0.36;
    static final double F = 0.16;
-   static final double GroundSample = 0.85;
+   static final double k = 0.85;
    static final double H = 0.95;
    static final double r = 0.3;
    static final double n = 1.9;
-   static final double ChatPayParser = 2.5;
+   static final double g = 2.5;
    static final double C = 0.19;
    static final double S = 0.11;
    static final double I = 0.09;
-   static final double SahurDanceEngine = 0.05;
-   static final double ScreenScale = 0.09;
+   static final double d = 0.05;
+   static final double y = 0.09;
    public static final double P = 1.8;
    public static final double T = 1.4;
-   static final double SmoothInput = 0.5;
+   static final double t = 0.5;
    private final double[] X = new double[288];
-   private final double[] LineSegment = new double[288];
+   private final double[] e = new double[288];
    private final double[] V = new double[288];
-   private final double[] BoxUtils = new double[288];
+   private final double[] c = new double[288];
    private final double[] D = new double[288];
    private final double[] z = new double[288];
    private final float[] Y = new float[288];
    private final float[] B = new float[288];
    private final float[] N = new float[288];
    private final float[] h = new float[288];
-   private final float[] PriceDetector = new float[288];
+   private final float[] m = new float[288];
    private final float[] W = new float[288];
    private final boolean[] Z = new boolean[288];
    private final SplittableRandom v;
@@ -187,8 +187,8 @@ public final class ChinaHatFireRenderer {
    }
 
    public void RAsVoid(ChinaHatFireRenderer.Type_v var1, int var2, int var3, double var4) {
-      int var6 = bg.xAsInt(var2, -13631488, 0.3);
-      int var7 = bg.xAsInt(var3, -1, 0.35);
+      int var6 = ColorUtil.xAsInt(var2, -13631488, 0.3);
+      int var7 = ColorUtil.xAsInt(var3, -1, 0.35);
 
       for (int var8 = 0; var8 < 2; var8++) {
          for (int var9 = 0; var9 < this.J; var9++) {
@@ -200,11 +200,11 @@ public final class ChinaHatFireRenderer {
                if (this.Z[var9]) {
                   var12 = 1.0 - 0.55 * var10;
                   var14 = FAsDouble(var10, 0.18) * (1.0 - var10) * 0.9;
-                  var16 = bg.xAsInt(var7, var3, var10);
+                  var16 = ColorUtil.xAsInt(var7, var3, var10);
                } else {
                   var12 = var10 < 0.15 ? 0.55 + 0.45 * var10 / 0.15 : 1.0 - 0.6 * (var10 - 0.15) / 0.85;
                   var14 = FAsDouble(var10, 0.22) * (1.0 - var10) * 0.62;
-                  var16 = var10 < 0.4 ? bg.xAsInt(var3, var2, var10 / 0.4) : bg.xAsInt(var2, var6, (var10 - 0.4) / 0.6);
+                  var16 = var10 < 0.4 ? ColorUtil.xAsInt(var3, var2, var10 / 0.4) : ColorUtil.xAsInt(var2, var6, (var10 - 0.4) / 0.6);
                }
 
                int var17 = (int)Math.round(Math.clamp(var14 * var4, 0.0, 1.0) * 255.0);

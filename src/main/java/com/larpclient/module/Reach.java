@@ -22,8 +22,8 @@ public class Reach extends Module {
       new BooleanSetting("OnlySword", "Only while holding a supported weapon (includes axes, trident and mace)", false)
    );
    private static Reach i;
-   private final rf k = new rf();
-   private final rf t = new rf();
+   private final RefractionFilter k = new RefractionFilter();
+   private final RefractionFilter t = new RefractionFilter();
    private Reach.Type_u R;
 
    @Override
@@ -87,7 +87,7 @@ public class Reach extends Module {
 
             for (Entity var6 : mc.world.getEntities()) {
                if (var6 != mc.player && var6.isAlive() && var6.canHit()) {
-                  var3 = Math.min(var3, b_.HAsDouble(var6) + 0.5);
+                  var3 = Math.min(var3, ModuleImportBroker.HAsDouble(var6) + 0.5);
                }
             }
 
@@ -160,13 +160,13 @@ public class Reach extends Module {
    }
 
    public boolean NAsBoolean(Entity var1) {
-      return b_.nAsBoolean(var1, this.bAsDouble());
+      return ModuleImportBroker.nAsBoolean(var1, this.bAsDouble());
    }
 
    private static final class Type_u {
       final MinecraftServer K;
-      final rf Y = new rf();
-      final rf l = new rf();
+      final RefractionFilter Y = new RefractionFilter();
+      final RefractionFilter l = new RefractionFilter();
       volatile boolean z = true;
 
       Type_u(MinecraftServer var1) {

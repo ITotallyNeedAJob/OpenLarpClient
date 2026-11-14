@@ -14,14 +14,14 @@ public final class MenuLogoLayout {
    public static final int U = 17;
    public static final int L = 172;
    public static final int P = 72;
-   public static final int AuctionNotifier = 42;
+   public static final int o = 42;
    public static final int w = 6;
    public static final int r = 30;
-   private static final int PetEffectRenderer = 9;
-   private static final int GroundSample = 12;
-   private static final int LineSegment = 14;
+   private static final int a = 9;
+   private static final int k = 12;
+   private static final int e = 14;
    private static final int R = 16;
-   private static final int PriceDetector = 11;
+   private static final int m = 11;
    private static final double H = 22.0;
    private static final double M = 4.0;
    private static final double A = 6.0;
@@ -38,7 +38,7 @@ public final class MenuLogoLayout {
    }
 
    public static int mAsInt() {
-      return bd.w;
+      return UiStyle.w;
    }
 
    public static void aAsVoid(DrawContext var0, String var1, int var2, int var3, int var4, boolean var5) {
@@ -46,8 +46,8 @@ public final class MenuLogoLayout {
       int var7 = var3 - var6;
       GuiTextureDrawing.CAsVoid(var0, var7, var4, var6, 17, zAsInt());
       yAsVoid(var0, var7, var4, var6, 17, 0);
-      GuiTextureDrawing.mAsVoid(var0, var5 ? var3 - 2 : var7, var4, 2, 17, bd.w, bg.xAsInt(bd.w, -1, 0.45));
-      ww.aAsVoid(var0, var1, (double)(var7 + (var5 ? 5 : 7)), (double)(var4 + 3), bd.w);
+      GuiTextureDrawing.mAsVoid(var0, var5 ? var3 - 2 : var7, var4, 2, 17, UiStyle.w, ColorUtil.xAsInt(UiStyle.w, -1, 0.45));
+      WorldWidget.aAsVoid(var0, var1, (double)(var7 + (var5 ? 5 : 7)), (double)(var4 + 3), UiStyle.w);
    }
 
    private static List<MenuLogoLayout.Type_z> OAsList(String var0, String var1, String var2, String var3) {
@@ -119,7 +119,7 @@ public final class MenuLogoLayout {
             if (var20.kind() == MenuLogoLayout.Type_b.TIME) {
                YAsVoid(var0, var20.label(), var17, var18, var10);
             } else {
-               ww.fAsVoid(var0, var20.label(), (double)var17, (double)var18, 13.0, -1);
+               WorldWidget.fAsVoid(var0, var20.label(), (double)var17, (double)var18, 13.0, -1);
             }
 
             var17 = var21 + var20.width() + 14;
@@ -133,20 +133,20 @@ public final class MenuLogoLayout {
 
       for (int var7 = 0; var7 < 3; var7++) {
          int var8 = 4 + (int)Math.round(10.0 * (0.5 + 0.5 * Math.sin(var3 * var5[var7] + var6[var7])));
-         RoundedShapePipeline.nAsVoid(var0, (float)(var1 + var7 * 4), (float)(var2 + 14 - var8), 3.0F, (float)var8, 1.0F, bd.w);
+         RoundedShapePipeline.nAsVoid(var0, (float)(var1 + var7 * 4), (float)(var2 + 14 - var8), 3.0F, (float)var8, 1.0F, UiStyle.w);
       }
    }
 
    private static void YAsVoid(DrawContext var0, String var1, int var2, int var3, double var4) {
       int var6 = var1.indexOf(58);
       if (var6 < 0) {
-         ww.fAsVoid(var0, var1, (double)var2, (double)var3, 13.0, -1);
+         WorldWidget.fAsVoid(var0, var1, (double)var2, (double)var3, 13.0, -1);
       } else {
          String var7 = var1.substring(0, var6 + 1);
          double var8 = 0.55 + 0.45 * Math.cos(var4 * Math.PI * 2.0);
-         ww.fAsVoid(var0, var1.substring(0, var6), (double)var2, (double)var3, 13.0, -1);
-         ww.fAsVoid(var0, ":", (double)(var2 + ww.WAsInt(var1.substring(0, var6), 13.0)), (double)var3, 13.0, bg.pAsInt(-1, var8));
-         ww.fAsVoid(var0, var1.substring(var6 + 1), (double)(var2 + ww.WAsInt(var7, 13.0)), (double)var3, 13.0, -1);
+         WorldWidget.fAsVoid(var0, var1.substring(0, var6), (double)var2, (double)var3, 13.0, -1);
+         WorldWidget.fAsVoid(var0, ":", (double)(var2 + WorldWidget.WAsInt(var1.substring(0, var6), 13.0)), (double)var3, 13.0, ColorUtil.pAsInt(-1, var8));
+         WorldWidget.fAsVoid(var0, var1.substring(var6 + 1), (double)(var2 + WorldWidget.WAsInt(var7, 13.0)), (double)var3, 13.0, -1);
       }
    }
 
@@ -168,7 +168,7 @@ public final class MenuLogoLayout {
             if (!(var14 + var16 <= (double)var18) && !(var14 - var16 >= (double)var19)) {
                int var20 = (int)Math.round(var14 - var16);
                int var21 = Math.max(1, (int)Math.round(var16));
-               int var22 = bg.pAsInt(251658239, var6);
+               int var22 = ColorUtil.pAsInt(251658239, var6);
                var0.enableScissor(var18, var2, var19, var2 + var4);
 
                try {
@@ -183,25 +183,25 @@ public final class MenuLogoLayout {
    }
 
    public static int OAsInt(String var0) {
-      return 12 + ww.WAsInt("XYZ " + var0, 15.0);
+      return 12 + WorldWidget.WAsInt("XYZ " + var0, 15.0);
    }
 
    public static void YAsVoid(DrawContext var0, int var1, int var2, int var3, String var4) {
       GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, (float)var3, 27.0F, 6.0F, zAsInt());
       yAsVoid(var0, var1, var2, var3, 27, 6);
-      ww.fAsVoid(var0, "XYZ", (double)(var1 + 6), (double)(var2 + 6), 15.0, bd.w);
-      ww.fAsVoid(var0, " " + var4, (double)(var1 + 6 + ww.WAsInt("XYZ", 15.0)), (double)(var2 + 6), 15.0, -1);
+      WorldWidget.fAsVoid(var0, "XYZ", (double)(var1 + 6), (double)(var2 + 6), 15.0, UiStyle.w);
+      WorldWidget.fAsVoid(var0, " " + var4, (double)(var1 + 6 + WorldWidget.WAsInt("XYZ", 15.0)), (double)(var2 + 6), 15.0, -1);
    }
 
    public static String FAsString(double var0) {
       return String.format(Locale.ROOT, "%.2f bps", var0);
    }
 
-   public static void zAsVoid(DrawContext var0, int var1, int var2, rb var3, boolean var4) {
+   public static void zAsVoid(DrawContext var0, int var1, int var2, RingBuffer var3, boolean var4) {
       HUD var5 = HUD.EAsHUD();
       int var6 = var5 == null ? zAsInt() : var5.speedHeader.getValue();
       int var7 = var5 == null ? -1374744817 : var5.speedBackground.getValue();
-      int var8 = var5 == null ? bd.w : var5.speedLine.getValue();
+      int var8 = var5 == null ? UiStyle.w : var5.speedLine.getValue();
       var0.enableScissor(var1, var2 + 32, var1 + 172, var2 + 72);
       GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, 172.0F, 72.0F, 12.0F, var7);
       var0.disableScissor();
@@ -210,11 +210,11 @@ public final class MenuLogoLayout {
       var0.disableScissor();
       yAsVoid(var0, var1, var2, 172, 72, 12);
       RoundedShapePipeline.nAsVoid(var0, (float)(var1 + 2), (float)(var2 + 32), 168.0F, 1.0F, 0.5F, 184549375);
-      ww.fAsVoid(var0, "Speed", (double)(var1 + 12), FontPreset.vAsDouble((double)var2, 32.0, 13.0), 13.0, SAsInt(var6));
-      ww.aAsVoid(var0, "gauge", var1 + 172 - 26, var2 + 9, 14, bd.w);
-      ww.fAsVoid(var0, FAsString(var4 ? 4.3 : var3.IAsDouble()), (double)(var1 + 12), (double)(var2 + 38), 12.8, SAsInt(var7));
-      GuiTextureDrawing.CAsVoid(var0, var1 + 10, var2 + 50, 152, 1, bg.pAsInt(var8, 0.15));
-      GuiTextureDrawing.CAsVoid(var0, var1 + 86, var2 + 36, 1, 28, bg.pAsInt(var8, 0.15));
+      WorldWidget.fAsVoid(var0, "Speed", (double)(var1 + 12), FontPreset.vAsDouble((double)var2, 32.0, 13.0), 13.0, SAsInt(var6));
+      WorldWidget.aAsVoid(var0, "gauge", var1 + 172 - 26, var2 + 9, 14, UiStyle.w);
+      WorldWidget.fAsVoid(var0, FAsString(var4 ? 4.3 : var3.IAsDouble()), (double)(var1 + 12), (double)(var2 + 38), 12.8, SAsInt(var7));
+      GuiTextureDrawing.CAsVoid(var0, var1 + 10, var2 + 50, 152, 1, ColorUtil.pAsInt(var8, 0.15));
+      GuiTextureDrawing.CAsVoid(var0, var1 + 86, var2 + 36, 1, 28, ColorUtil.pAsInt(var8, 0.15));
       int var9 = var4 ? 40 : Math.min(40, var3.xAsInt());
       float var10 = (float)(var1 + 10);
       float var11 = yAsFloat(var2, KAsDouble(var3, var4, 0, var9));
@@ -228,7 +228,7 @@ public final class MenuLogoLayout {
          for (int var21 = 1; var21 <= 4; var21++) {
             double var22 = (double)var21 / 4.0;
             float var24 = (float)(var1 + 10) + (float)(((double)var12 + var22) * 152.0 / (double)(var9 - 1));
-            float var25 = yAsFloat(var2, o8.SAsDouble(var13, var15, var17, var19, var22));
+            float var25 = yAsFloat(var2, OutputBuffer.SAsDouble(var13, var15, var17, var19, var22));
             var0.getMatrices().pushMatrix();
             var0.getMatrices().translate(var10, var11).rotate((float)Math.atan2((double)(var25 - var11), (double)(var24 - var10)));
             RoundedShapePipeline.nAsVoid(
@@ -245,7 +245,7 @@ public final class MenuLogoLayout {
       }
    }
 
-   private static double KAsDouble(rb var0, boolean var1, int var2, int var3) {
+   private static double KAsDouble(RingBuffer var0, boolean var1, int var2, int var3) {
       return var1 ? (Math.sin((double)var2 * 0.18) + 1.0) * 2.2 : (var3 == 0 ? 0.0 : var0.mAsDouble(var0.xAsInt() - var3 + var2));
    }
 
@@ -270,7 +270,7 @@ public final class MenuLogoLayout {
 
    private static record Type_z(String label, MenuLogoLayout.Type_b kind) {
       int width() {
-         int var1 = ww.WAsInt(this.label, 13.0);
+         int var1 = WorldWidget.WAsInt(this.label, 13.0);
 
          return switch (this.kind) {
             case USER -> 22 + var1;

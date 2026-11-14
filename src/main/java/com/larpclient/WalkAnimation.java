@@ -6,7 +6,7 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public record WalkAnimation(Matrix4f weapon, Matrix4f arm) {
-   public static wa sample(KnifeMesh var0, KnifeType var1, int var2, float var3, int var4, float var5) {
+   public static WalkAnimation sample(KnifeMesh var0, KnifeType var1, int var2, float var3, int var4, float var5) {
       MatrixStack var6 = new MatrixStack();
       var0.root().transform(var6, var2, var3, var4);
       float var7 = var0.scale() * var5;
@@ -19,8 +19,8 @@ public record WalkAnimation(Matrix4f weapon, Matrix4f arm) {
          var0.armFit().translate(var8, var2, var3, var4);
       }
 
-      Quaternionf var9 = bu.LAsQuaternionf(var0);
-      Vector3f var10 = bu.EAsVector3f(var0, var1, var9, var5);
+      Quaternionf var9 = BuildHelper.LAsQuaternionf(var0);
+      Vector3f var10 = BuildHelper.EAsVector3f(var0, var1, var9, var5);
       var8.multiply(new Quaternionf(var9.x, (float)var4 * var9.y, (float)var4 * var9.z, var9.w));
       var8.translate((float)var4 * var10.x, var10.y, var10.z);
       return new WalkAnimation(new Matrix4f(var6.peek().getPositionMatrix()), new Matrix4f(var8.peek().getPositionMatrix()));

@@ -47,7 +47,7 @@ public final class AnchorTap extends Module {
    public static boolean YAsBoolean() {
       if (N != null && N.isEnabled()) {
          AnchorTap var0 = N;
-         if (var0 != null && var0.isRuntimeActive() && b_.jAsBoolean()) {
+         if (var0 != null && var0.isRuntimeActive() && ModuleImportBroker.jAsBoolean()) {
             boolean var10000;
             if (var0.D != AnchorTap.Type_z.IDLE) {
                var10000 = true;
@@ -88,7 +88,7 @@ public final class AnchorTap extends Module {
    @Override
    public void onTick() {
       BlockPlacementController.WAsVoid(this);
-      if (b_.jAsBoolean() && mc.isWindowFocused()) {
+      if (ModuleImportBroker.jAsBoolean() && mc.isWindowFocused()) {
          boolean var1 = mc.options.useKey.isPressed();
          if (var1
             && !this.e

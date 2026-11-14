@@ -7,9 +7,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 
 public final class ParticleGeometry {
-   private static pg B;
+   private static ParticleGeometry B;
    private final Module P;
-   private final xd T = new xd();
+   private final XDisplay T = new XDisplay();
    private ClientPlayerEntity S;
    private Object x;
 
@@ -74,7 +74,7 @@ public final class ParticleGeometry {
             if (B == this) {
                B = null;
             }
-         } else if (var1.currentScreen == null && !pk.BAsBoolean(this.S)) {
+         } else if (var1.currentScreen == null && !ParticleKind.BAsBoolean(this.S)) {
             this.vAsVoid(var1, var2);
          }
       }

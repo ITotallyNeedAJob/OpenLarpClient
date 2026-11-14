@@ -46,7 +46,7 @@ public final class AutoDrain extends Module {
    private final BooleanSetting ignoreMyWater = this.addSetting(
       new BooleanSetting("Ignore My Water", "Leave water you emptied yourself in the last two minutes", true)
    );
-   private final pg f = new pg(this);
+   private final ParticleGeometry f = new ParticleGeometry(this);
    private final Map<BlockPos, int[]> Z = new HashMap<>();
    private final Map<BlockPos, Long> r = new HashMap<>();
    private ClientPlayerEntity l;
@@ -140,7 +140,7 @@ public final class AutoDrain extends Module {
    }
 
    private void mAsVoid() {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       this.t = false;
       this.Y = null;
       this.I = null;
@@ -151,8 +151,8 @@ public final class AutoDrain extends Module {
    }
 
    private boolean uAsBoolean() {
-      p5.Type_u var1 = p5.NAsP5_Type_u();
-      return !b_.jAsBoolean() || mc.currentScreen != null || var1 != p5.Type_u.NONE;
+      ParticleEmitter.Type_u var1 = ParticleEmitter.NAsP5_Type_u();
+      return !ModuleImportBroker.jAsBoolean() || mc.currentScreen != null || var1 != ParticleEmitter.Type_u.NONE;
    }
 
    @Override
@@ -194,9 +194,9 @@ public final class AutoDrain extends Module {
                      }
 
                      this.b = "Draining";
-                     float[] var3 = dq.QAsFloatArray(this.l.getEyePos(), this.I);
-                     dq.RAsVoid(this, dq.Type_s.AUTODRAIN, var3[0], var3[1], 1.0);
-                     b_.UAsVoid(this, this::bAsVoid, this::WAsBoolean);
+                     float[] var3 = ModuleDetector.QAsFloatArray(this.l.getEyePos(), this.I);
+                     ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.AUTODRAIN, var3[0], var3[1], 1.0);
+                     ModuleImportBroker.UAsVoid(this, this::bAsVoid, this::WAsBoolean);
                   }
                }
             }
@@ -279,7 +279,7 @@ public final class AutoDrain extends Module {
 
    private boolean RAsBoolean() {
       int var1 = BlockPlacementController.qAsInt(Items.BUCKET, true);
-      return var1 == -2 || var1 >= 0 && (var1 == this.l.getInventory().getSelectedSlot() || pg.yAsBoolean(this));
+      return var1 == -2 || var1 >= 0 && (var1 == this.l.getInventory().getSelectedSlot() || ParticleGeometry.yAsBoolean(this));
    }
 
    private Hand oAsHand() {
@@ -330,7 +330,7 @@ public final class AutoDrain extends Module {
             ((ClientPlayerInteractionManagerAccessor)mc.interactionManager).larpSyncCarriedItem();
          }
 
-         dq.RAsVoid(this, dq.Type_s.AUTODRAIN, this.L, this.k, 1.0);
+         ModuleDetector.RAsVoid(this, ModuleDetector.Type_s.AUTODRAIN, this.L, this.k, 1.0);
          ClientLog.XAsVoid("AutoDrain", "Run ended after {} scoops: {}", this.S, var1);
          this.t = false;
          this.Y = null;

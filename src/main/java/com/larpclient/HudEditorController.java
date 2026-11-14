@@ -16,12 +16,12 @@ public final class HudEditorController {
    private final Runnable p;
    private HudRenderer.Type_m s;
    private HudRenderer.Type_m w;
-   private d7.Type_z D;
-   private d7.Type_q O;
+   private WidgetLayoutUtil.Type_z D;
+   private WidgetLayoutUtil.Type_q O;
    private GuiWorkspace.Type_g m;
    private GuiWorkspace.Type_z e;
-   private d7.Type_p V;
-   private int ScreenScale = -1;
+   private WidgetLayoutUtil.Type_p V;
+   private int y = -1;
    private int v = -1;
    private long R = GuiWorkspace.m;
    private boolean c;
@@ -31,7 +31,7 @@ public final class HudEditorController {
    private String W = "";
    private boolean u;
    private final HudWidgetSettings X = new HudWidgetSettings(() -> this.c = true, this::DAsVoid);
-   private final d_ BloomUtility = new d_();
+   private final SmoothValueTracker b = new SmoothValueTracker();
    private double Z;
    private double d;
    private boolean P;
@@ -115,7 +115,7 @@ public final class HudEditorController {
                      .stream()
                      .filter(var1x -> !this.B.test(var1x))
                      .anyMatch(
-                        var7x -> HudRenderer.qAsOptional(var8, var7x).map(var6xx -> d7.XAsD7_Type_p(var6xx, var5, var6).contains(var1, var3, 0)).orElse(false)
+                        var7x -> HudRenderer.qAsOptional(var8, var7x).map(var6xx -> WidgetLayoutUtil.XAsD7_Type_p(var6xx, var5, var6).contains(var1, var3, 0)).orElse(false)
                      );
          }
       } else {
@@ -161,14 +161,14 @@ public final class HudEditorController {
             return false;
          } else {
             List<HudRenderer.Type_p> var10 = var8.stream().filter(var1x -> this.r || !var1x.element().EAsBoolean()).toList();
-            Optional<d7.Type_p> var11 = HudRenderer.qAsOptional(var10, this.s);
+            Optional<WidgetLayoutUtil.Type_p> var11 = HudRenderer.qAsOptional(var10, this.s);
             HudRenderer.Type_m var12 = this.u && var5 == 0
                ? HudRenderer.S
                   .stream()
                   .filter(var1x -> !this.B.test(var1x))
                   .filter(
                      var7xx -> HudRenderer.qAsOptional(var10, var7xx)
-                           .map(var6xxx -> d7.XAsD7_Type_p(var6xxx, var6, var7).contains(var1, var3, 0))
+                           .map(var6xxx -> WidgetLayoutUtil.XAsD7_Type_p(var6xxx, var6, var7).contains(var1, var3, 0))
                            .orElse(false)
                   )
                   .reduce((var0, var1x) -> var1x)
@@ -179,17 +179,17 @@ public final class HudEditorController {
                var11 = HudRenderer.qAsOptional(var10, this.s);
             }
 
-            if (var5 == 0 && this.s != null && !this.B.test(this.s) && var11.isPresent() && d7.XAsD7_Type_p(var11.get(), var6, var7).contains(var1, var3, 0)) {
+            if (var5 == 0 && this.s != null && !this.B.test(this.s) && var11.isPresent() && WidgetLayoutUtil.XAsD7_Type_p(var11.get(), var6, var7).contains(var1, var3, 0)) {
                this.NAsVoid(this.s);
                this.F = this.s.PAsInt(var6);
                this.S = this.s.ZAsInt(var7);
-               d7.Type_p var16 = var11.get();
-               this.O = new d7.Type_q(var16, var1, var3, this.s.vAsDouble());
+               WidgetLayoutUtil.Type_p var16 = var11.get();
+               this.O = new WidgetLayoutUtil.Type_q(var16, var1, var3, this.s.vAsDouble());
                this.L = (double)(var16.x() - this.s.PAsInt(var6)) / this.s.vAsDouble();
                this.z = (double)(var16.y() - this.s.ZAsInt(var7)) / this.s.vAsDouble();
                return true;
             } else {
-               HudRenderer.Type_p var13 = d7.lAsObject(var10, var0 -> true, HudRenderer.Type_p::bounds, var1, var3);
+               HudRenderer.Type_p var13 = WidgetLayoutUtil.lAsObject(var10, var0 -> true, HudRenderer.Type_p::bounds, var1, var3);
                if (var13 == null) {
                   this.s = null;
                   if (this.u && var5 == 1) {
@@ -208,7 +208,7 @@ public final class HudEditorController {
                      }
 
                      int var14 = this.W.isEmpty() ? 60 : 80;
-                     this.V = new d7.Type_p(d7.LAsInt((int)var1, 142, var6), d7.LAsInt((int)var3, var14, var7), Math.min(142, var6), Math.min(var14, var7));
+                     this.V = new WidgetLayoutUtil.Type_p(WidgetLayoutUtil.LAsInt((int)var1, 142, var6), WidgetLayoutUtil.LAsInt((int)var3, var14, var7), Math.min(142, var6), Math.min(var14, var7));
                   } else {
                      if (this.B.test(this.s)) {
                         return true;
@@ -217,7 +217,7 @@ public final class HudEditorController {
                      this.NAsVoid(this.s);
                      this.F = this.s.PAsInt(var6);
                      this.S = this.s.ZAsInt(var7);
-                     this.D = new d7.Type_z(var1 - (double)this.s.PAsInt(var6), var3 - (double)this.s.ZAsInt(var7));
+                     this.D = new WidgetLayoutUtil.Type_z(var1 - (double)this.s.PAsInt(var6), var3 - (double)this.s.ZAsInt(var7));
                      this.b.oAsVoid((double)this.s.PAsInt(var6), (double)this.s.ZAsInt(var7));
                      this.Z = var1;
                      this.d = var3;
@@ -248,7 +248,7 @@ public final class HudEditorController {
          return true;
       } else if (this.eAsBoolean() && var5 == 0) {
          if (this.O != null) {
-            this.w.iAsVoid(this.u ? d_.YAsDouble(this.O, var1, var3) : this.O.scale(var1, var3));
+            this.w.iAsVoid(this.u ? SmoothValueTracker.YAsDouble(this.O, var1, var3) : this.O.scale(var1, var3));
             this.w
                .SAsVoid(
                   (int)Math.round((double)this.O.bounds().x() - this.L * this.w.vAsDouble()),
@@ -264,7 +264,7 @@ public final class HudEditorController {
                return true;
             }
 
-            d7.Type_d var10 = this.D
+            WidgetLayoutUtil.Type_d var10 = this.D
                .move(var1, var3, this.w.hAsD7_Type_p(var6, var7), var6, var7, GuiWorkspace.c.snapping(), GuiWorkspace.c.grid(), var8, this.y, this.v);
             int var11 = var10.x();
             int var12 = var10.y();
@@ -386,9 +386,9 @@ public final class HudEditorController {
    public void mAsVoid(DrawContext var1, int var2, int var3, int var4, int var5, boolean var6) {
       if (this.u && this.w != null && this.D != null) {
          long var7 = System.nanoTime();
-         d7.Type_d var9 = this.D
+         WidgetLayoutUtil.Type_d var9 = this.D
             .move(this.Z, this.d, this.w.hAsD7_Type_p(var4, var5), var4, var5, GuiWorkspace.c.snapping(), GuiWorkspace.c.grid(), this.P, this.y, this.v);
-         d7.Type_d var10 = this.b
+         WidgetLayoutUtil.Type_d var10 = this.b
             .LAsD7_Type_d((double)var9.x(), (double)var9.y(), MinecraftClient.getInstance().isShiftPressed(), (double)(var7 - this.q) / 1.0E9);
          this.q = var7;
          this.w.SAsVoid(var10.x(), var10.y(), var4, var5);
@@ -397,23 +397,23 @@ public final class HudEditorController {
       }
 
       List<HudRenderer.Type_p> var12 = HudRenderer.pAsList();
-      Optional<d7.Type_p> var8 = HudRenderer.qAsOptional(var12, this.s);
+      Optional<WidgetLayoutUtil.Type_p> var8 = HudRenderer.qAsOptional(var12, this.s);
       if (this.s != null && var8.isEmpty() && !this.eAsBoolean()) {
          this.s = null;
          this.V = null;
       }
 
-      HudRenderer.Type_p var13 = var6 ? null : d7.lAsObject(var12, var0 -> true, HudRenderer.Type_p::bounds, (double)var2, (double)var3);
+      HudRenderer.Type_p var13 = var6 ? null : WidgetLayoutUtil.lAsObject(var12, var0 -> true, HudRenderer.Type_p::bounds, (double)var2, (double)var3);
       if (var13 != null && var13.element() != this.s) {
          gAsVoid(var1, var13.bounds(), 1620481696);
       }
 
       if (var8.isPresent()) {
-         d7.Type_p var14 = var8.get();
-         gAsVoid(var1, var14, bg.XAsInt(bd.w, 0.8));
+         WidgetLayoutUtil.Type_p var14 = var8.get();
+         gAsVoid(var1, var14, ColorUtil.XAsInt(UiStyle.w, 0.8));
          if (!this.B.test(this.s)) {
-            d7.Type_p var11 = d7.XAsD7_Type_p(var14, var4, var5);
-            GuiTextureDrawing.AAsVoid(var1, (float)var11.x(), (float)var11.y(), (float)var11.width(), (float)var11.height(), 2.0F, bd.w);
+            WidgetLayoutUtil.Type_p var11 = WidgetLayoutUtil.XAsD7_Type_p(var14, var4, var5);
+            GuiTextureDrawing.AAsVoid(var1, (float)var11.x(), (float)var11.y(), (float)var11.width(), (float)var11.height(), 2.0F, UiStyle.w);
          }
       }
 
@@ -427,19 +427,19 @@ public final class HudEditorController {
                GuiTextureDrawing.CAsVoid(var1, 0, var16, var4, 1, var16 % 200 == 0 ? 721420287 : 385875967);
             }
 
-            Optional<d7.Type_p> var17 = HudRenderer.qAsOptional(var12, this.w);
+            Optional<WidgetLayoutUtil.Type_p> var17 = HudRenderer.qAsOptional(var12, this.w);
             if (var17.isPresent()) {
-               GuiTextureDrawing.CAsVoid(var1, var17.get().x() + var17.get().width() / 2, 0, 1, var5, bg.XAsInt(bd.w, 0.6));
-               GuiTextureDrawing.CAsVoid(var1, 0, var17.get().y() + var17.get().height() / 2, var4, 1, bg.XAsInt(bd.w, 0.6));
+               GuiTextureDrawing.CAsVoid(var1, var17.get().x() + var17.get().width() / 2, 0, 1, var5, ColorUtil.XAsInt(UiStyle.w, 0.6));
+               GuiTextureDrawing.CAsVoid(var1, 0, var17.get().y() + var17.get().height() / 2, var4, 1, ColorUtil.XAsInt(UiStyle.w, 0.6));
             }
          }
 
          if (this.y >= 0) {
-            GuiTextureDrawing.CAsVoid(var1, Math.min(var4 - 1, this.y), 0, 1, var5, bg.XAsInt(bd.w, 0.3));
+            GuiTextureDrawing.CAsVoid(var1, Math.min(var4 - 1, this.y), 0, 1, var5, ColorUtil.XAsInt(UiStyle.w, 0.3));
          }
 
          if (this.v >= 0) {
-            GuiTextureDrawing.CAsVoid(var1, 0, Math.min(var5 - 1, this.v), var4, 1, bg.XAsInt(bd.w, 0.3));
+            GuiTextureDrawing.CAsVoid(var1, 0, Math.min(var5 - 1, this.v), var4, 1, ColorUtil.XAsInt(UiStyle.w, 0.3));
          }
       }
 
@@ -449,7 +449,7 @@ public final class HudEditorController {
                HudRenderer.qAsOptional(var12, var20)
                   .ifPresent(
                      var5xx -> {
-                        d7.Type_p var6x = d7.XAsD7_Type_p(var5xx, var4, var5);
+                        WidgetLayoutUtil.Type_p var6x = WidgetLayoutUtil.XAsD7_Type_p(var5xx, var4, var5);
                         GuiTextureDrawing.AAsVoid(
                            var1,
                            (float)var6x.x(),
@@ -457,7 +457,7 @@ public final class HudEditorController {
                            (float)var6x.width(),
                            (float)var6x.height(),
                            2.0F,
-                           bg.XAsInt(bd.w, var6x.contains((double)var2, (double)var3, 0) ? 0.6 : 0.35)
+                           ColorUtil.XAsInt(UiStyle.w, var6x.contains((double)var2, (double)var3, 0) ? 0.6 : 0.35)
                         );
                         GuiTextureDrawing.CAsVoid(var1, var6x.x() + 2, var6x.y() + var6x.height() - 2, var6x.width() - 4, 1, -1073741825);
                         GuiTextureDrawing.CAsVoid(var1, var6x.x() + var6x.width() - 2, var6x.y() + 2, 1, var6x.height() - 4, -1073741825);
@@ -484,14 +484,14 @@ public final class HudEditorController {
                this.V.x() + 7,
                this.V.y() + var21 * 20 + 4,
                12,
-               bd.w
+               UiStyle.w
             );
-            ww.fAsVoid(var1, var19[var21], (double)(this.V.x() + 25), (double)(this.V.y() + var21 * 20 + 6), 11.0, -1);
+            WorldWidget.fAsVoid(var1, var19[var21], (double)(this.V.x() + 25), (double)(this.V.y() + var21 * 20 + 6), 11.0, -1);
          }
       }
    }
 
-   private static void gAsVoid(DrawContext var0, d7.Type_p var1, int var2) {
+   private static void gAsVoid(DrawContext var0, WidgetLayoutUtil.Type_p var1, int var2) {
       GuiTextureDrawing.pAsVoid(var0, var1.x() - 1, var1.y() - 1, var1.width() + 2, var1.height() + 2, var2);
    }
 }

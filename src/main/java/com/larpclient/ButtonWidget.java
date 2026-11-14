@@ -4,8 +4,8 @@ import com.larpclient.module.HandChams;
 import net.minecraft.client.MinecraftClient;
 
 public final class ButtonWidget {
-   private static final ChamsOutlineEffect MenuPopupProvider = new ChamsOutlineEffect("HandChams");
-   private static bp.Type_e Z;
+   private static final ChamsOutlineEffect f = new ChamsOutlineEffect("HandChams");
+   private static BridgeRenderer.Type_e Z;
    private static Object o;
    private static Object w;
 
@@ -28,14 +28,14 @@ public final class ButtonWidget {
          return false;
       } else {
          MinecraftClient var0 = MinecraftClient.getInstance();
-         if (AuctionNotifier != var0.world || w != var0.player) {
+         if (o != var0.world || w != var0.player) {
             lAsVoid();
          }
 
-         AuctionNotifier = var0.world;
+         o = var0.world;
          w = var0.player;
          Z = HandChams.eAsHandChams().t.NAsBp_Type_e(false);
-         if (MenuPopupProvider.HAsBoolean()) {
+         if (f.HAsBoolean()) {
             return true;
          } else {
             Z = null;
@@ -46,10 +46,10 @@ public final class ButtonWidget {
 
    public static void kAsVoid() {
       if (Z != null) {
-         if (rAsBoolean() && AuctionNotifier == MinecraftClient.getInstance().world && w == MinecraftClient.getInstance().player) {
-            bp.Type_e var0 = Z;
+         if (rAsBoolean() && o == MinecraftClient.getInstance().world && w == MinecraftClient.getInstance().player) {
+            BridgeRenderer.Type_e var0 = Z;
             Z = null;
-            MenuPopupProvider.oAsVoid(var0);
+            f.oAsVoid(var0);
          } else {
             lAsVoid();
          }
@@ -57,7 +57,7 @@ public final class ButtonWidget {
    }
 
    public static void yAsVoid() {
-      if (!rAsBoolean() || AuctionNotifier != null && (AuctionNotifier != MinecraftClient.getInstance().world || w != MinecraftClient.getInstance().player)) {
+      if (!rAsBoolean() || o != null && (o != MinecraftClient.getInstance().world || w != MinecraftClient.getInstance().player)) {
          lAsVoid();
       }
    }
@@ -65,8 +65,8 @@ public final class ButtonWidget {
    public static void lAsVoid() {
       Z = null;
       w = null;
-      AuctionNotifier = null;
-      MenuPopupProvider.close();
+      o = null;
+      f.close();
    }
 
    private ButtonWidget() {

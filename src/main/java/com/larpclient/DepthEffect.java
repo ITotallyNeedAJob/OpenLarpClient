@@ -239,7 +239,7 @@ public final class DepthEffect {
    }
 
    public static final class Type_r {
-      private boolean SmoothInput = true;
+      private boolean t = true;
       private int h;
       private int F;
 

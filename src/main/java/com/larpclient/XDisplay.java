@@ -1,7 +1,7 @@
 package com.larpclient;
 
 public final class XDisplay {
-   private int MenuPopupProvider = -1;
+   private int f = -1;
    private int V = -1;
 
    public XDisplay() {

@@ -23,7 +23,7 @@ import net.minecraft.world.RaycastContext.ShapeType;
 import org.joml.Quaternionf;
 
 public final class CryptoPets extends Module {
-   public static final int PetEffectRenderer = 12;
+   public static final int a = 12;
    private static CryptoPets Z;
    private final Map<BitcoinPetMesh.Type_w, BooleanSetting> I = new LinkedHashMap<>();
    private final NumberSetting count = this.addSetting(new NumberSetting("Count", "How many coins circle you", 4.0, 1.0, 12.0, 1.0));
@@ -34,16 +34,16 @@ public final class CryptoPets extends Module {
    private final BooleanSetting inFirstPerson = this.addSetting(new BooleanSetting("In first person", "Show the coins in first person", true));
    private Object L;
    private Object B;
-   private final double[] DropletTrail = new double[12];
+   private final double[] l = new double[12];
    private final double[] J = new double[12];
    private double U;
-   private double HexEdgeloop = 1.0;
+   private double p = 1.0;
    private double n;
    private double w;
    private double s;
    private boolean r;
    private boolean A;
-   private final ArrayDeque<CryptoPets.Type_b> ChinaHatCodec = new ArrayDeque<>();
+   private final ArrayDeque<CryptoPets.Type_b> i = new ArrayDeque<>();
    private final Random h = new Random(1129470288L);
    private CryptoPets.Type_f m;
 
@@ -89,7 +89,7 @@ public final class CryptoPets extends Module {
       this.r = this.A = false;
       Arrays.fill(this.l, 0.0);
       Arrays.fill(this.J, 0.0);
-      this.w = mb.RAsDouble();
+      this.w = MediaSession.RAsDouble();
       this.h.setSeed(1129470288L);
    }
 
@@ -114,8 +114,8 @@ public final class CryptoPets extends Module {
                this.B = var3.player;
             }
 
-            double var4 = Math.clamp(mb.RAsDouble() - this.w, 0.0, 0.1);
-            this.w = mb.RAsDouble();
+            double var4 = Math.clamp(MediaSession.RAsDouble() - this.w, 0.0, 0.1);
+            this.w = MediaSession.RAsDouble();
             this.n += var4;
             List var6 = this.zAsList();
             int var7 = var6.isEmpty() ? 0 : this.count.getValue().intValue();
@@ -205,7 +205,7 @@ public final class CryptoPets extends Module {
             for (CryptoPets.Type_e var5 : var3.coins) {
                if (!var2) {
                   if (var5.shadow != null) {
-                     var1.oAsVoid(var5.shadow, 0.18 * var5.scale, 0.16 * var5.scale, bg.XAsInt(-16777216, var5.shadowAlpha));
+                     var1.oAsVoid(var5.shadow, 0.18 * var5.scale, 0.16 * var5.scale, ColorUtil.XAsInt(-16777216, var5.shadowAlpha));
                   }
 
                   BitcoinPetMesh.uAsVoid(var1, var5.kind, var5.center, var5.rotation, (float)var5.scale);
@@ -220,7 +220,7 @@ public final class CryptoPets extends Module {
                   var9.point.z,
                   0.035 * this.size.getValue() * var6 * var9.scale,
                   var3.time,
-                  bg.XAsInt(var9.color, var6 * var6 * var3.glowStrength)
+                  ColorUtil.XAsInt(var9.color, var6 * var6 * var3.glowStrength)
                );
             }
          }

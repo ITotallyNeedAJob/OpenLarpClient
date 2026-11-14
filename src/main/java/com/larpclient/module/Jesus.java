@@ -56,7 +56,7 @@ public final class Jesus extends Module {
    }
 
    private boolean CAsBoolean() {
-      if (this.isInGame() && r6.VAsBoolean()) {
+      if (this.isInGame() && ModuleKeybindChecker.VAsBoolean()) {
          ClientPlayerEntity var1 = mc.player;
          if (!var1.isSpectator()
             && !var1.hasVehicle()

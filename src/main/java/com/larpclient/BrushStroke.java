@@ -11,9 +11,9 @@ final class BrushStroke {
    private final double C;
    private final boolean i;
    private String V = "Matte";
-   private Vec3d PetEffectRenderer = new Vec3d(0.0, 0.3, 1.0).normalize();
+   private Vec3d a = new Vec3d(0.0, 0.3, 1.0).normalize();
 
-   br wAsBr(String var1, Vec3d var2) {
+   BrushStroke wAsBr(String var1, Vec3d var2) {
       this.V = var1;
       this.a = var2;
       return this;
@@ -40,7 +40,7 @@ final class BrushStroke {
    void MAsVoid(Vec3d var1, Vec3d var2, Vec3d var3, Vec3d var4, int var5) {
       Vec3d var6 = var2.subtract(var1).crossProduct(var3.subtract(var1)).normalize();
       double var7 = this.i ? 1.0 : 0.68 + 0.32 * Math.max(0.0, var6.dotProduct(new Vec3d(-0.35, 0.8, 0.45).normalize()));
-      int var9 = bg.xAsInt(var5, var5 & 0xFF000000, 1.0 - var7);
+      int var9 = ColorUtil.xAsInt(var5, var5 & 0xFF000000, 1.0 - var7);
       Vector3f var10 = this.O.transform(new Vector3f((float)var6.x, (float)var6.y, (float)var6.z));
       Vec3d var11 = new Vec3d((double)var10.x, (double)var10.y, (double)var10.z);
       double var12 = Math.abs(var11.dotProduct(this.a));
@@ -48,26 +48,26 @@ final class BrushStroke {
          String var14 = this.V;
          switch (var14) {
             case "Glass":
-               var9 = bg.pAsInt(bg.xAsInt(var9, -1, 0.18 * Math.pow(1.0 - var12, 3.0)), 0.32 + 0.68 * Math.pow(1.0 - var12, 2.0));
+               var9 = ColorUtil.pAsInt(ColorUtil.xAsInt(var9, -1, 0.18 * Math.pow(1.0 - var12, 3.0)), 0.32 + 0.68 * Math.pow(1.0 - var12, 2.0));
                break;
             case "Crystal":
-               var9 = bg.xAsInt(var9, bg.XAsInt(-1, (double)(var9 >>> 24) / 255.0), 0.35 * Math.pow(1.0 - var12, 4.0));
+               var9 = ColorUtil.xAsInt(var9, ColorUtil.XAsInt(-1, (double)(var9 >>> 24) / 255.0), 0.35 * Math.pow(1.0 - var12, 4.0));
                break;
             case "Gold":
-               var9 = bg.xAsInt(
+               var9 = ColorUtil.xAsInt(
                   var9,
-                  bg.XAsInt(-4683, (double)(var9 >>> 24) / 255.0),
+                  ColorUtil.XAsInt(-4683, (double)(var9 >>> 24) / 255.0),
                   0.65 * Math.pow(Math.max(0.0, var11.dotProduct(new Vec3d(-0.35, 0.8, 0.45).normalize())), 16.0)
                );
                break;
             case "Obsidian":
-               var9 = bg.xAsInt(var9, bg.XAsInt(-7301451, (double)(var9 >>> 24) / 255.0), 0.3 * Math.pow(var12, 28.0));
+               var9 = ColorUtil.xAsInt(var9, ColorUtil.XAsInt(-7301451, (double)(var9 >>> 24) / 255.0), 0.3 * Math.pow(var12, 28.0));
                break;
             case "Silk":
-               var9 = bg.xAsInt(var9, bg.XAsInt(-5893, (double)(var9 >>> 24) / 255.0), 0.3 * Math.pow(1.0 - var12, 2.0));
+               var9 = ColorUtil.xAsInt(var9, ColorUtil.XAsInt(-5893, (double)(var9 >>> 24) / 255.0), 0.3 * Math.pow(1.0 - var12, 2.0));
                break;
             case "Energy":
-               var9 = bg.xAsInt(var5, bg.XAsInt(-1, (double)(var5 >>> 24) / 255.0), 0.16 + 0.2 * Math.pow(1.0 - var12, 2.0));
+               var9 = ColorUtil.xAsInt(var5, ColorUtil.XAsInt(-1, (double)(var5 >>> 24) / 255.0), 0.16 + 0.2 * Math.pow(1.0 - var12, 2.0));
          }
       }
 

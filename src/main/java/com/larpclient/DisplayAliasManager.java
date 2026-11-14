@@ -23,8 +23,8 @@ public final class DisplayAliasManager {
    private static Map<String, String> P = Map.of();
    private static Object B;
    private static long V;
-   private static final ReferenceQueue<StringVisitable> MenuPopupProvider = new ReferenceQueue<>();
-   private static final Set<DisplayAliasManager.Type_t> DropletTrail = new HashSet<>();
+   private static final ReferenceQueue<StringVisitable> f = new ReferenceQueue<>();
+   private static final Set<DisplayAliasManager.Type_t> l = new HashSet<>();
 
    public DisplayAliasManager() {
    }
@@ -36,8 +36,8 @@ public final class DisplayAliasManager {
    public static void kAsVoid() {
       MinecraftClient var0 = MinecraftClient.getInstance();
       HashMap var1 = new HashMap();
-      if (var0.world != null && ml.jAsBoolean()) {
-         String var2 = ml.QAsString(var0.getSession().getUuidOrNull());
+      if (var0.world != null && ModuleList.jAsBoolean()) {
+         String var2 = ModuleList.QAsString(var0.getSession().getUuidOrNull());
          CAsVoid(var1, var0.getSession().getUsername(), var2);
          if (var0.player != null) {
             CAsVoid(var1, var0.player.getGameProfile().name(), var2);
@@ -46,8 +46,8 @@ public final class DisplayAliasManager {
 
       tAsVoid(var0.world, var1);
 
-      for (Reference var3 = MenuPopupProvider.poll(); var3 != null; var3 = MenuPopupProvider.poll()) {
-         DropletTrail.remove(var3);
+      for (Reference var3 = f.poll(); var3 != null; var3 = f.poll()) {
+         l.remove(var3);
       }
    }
 
@@ -56,7 +56,7 @@ public final class DisplayAliasManager {
          B = var0;
          P = Map.copyOf(var1);
          V++;
-         DropletTrail.clear();
+         l.clear();
          ClientLog.XAsVoid("Appearance", "Display aliases refreshed: {} participants; chat will reflow", P.size());
       }
    }
@@ -72,16 +72,16 @@ public final class DisplayAliasManager {
    }
 
    public static StringVisitable BAsStringVisitable(StringVisitable var0) {
-      return !P.isEmpty() && ml.jAsBoolean() && MinecraftClient.getInstance().world != null ? dAsStringVisitable(var0) : var0;
+      return !P.isEmpty() && ModuleList.jAsBoolean() && MinecraftClient.getInstance().world != null ? dAsStringVisitable(var0) : var0;
    }
 
    static StringVisitable dAsStringVisitable(StringVisitable var0) {
-      if (DropletTrail.contains(new DisplayAliasManager.Type_t(var0, null))) {
+      if (l.contains(new DisplayAliasManager.Type_t(var0, null))) {
          return var0;
       } else {
          Text var1 = cAsText(var0, P);
          if (var1 != var0) {
-            DropletTrail.add(new DisplayAliasManager.Type_t(var1, f));
+            l.add(new DisplayAliasManager.Type_t(var1, f));
          }
 
          return var1;
@@ -89,13 +89,13 @@ public final class DisplayAliasManager {
    }
 
    public static Text pAsText(UUID var0, String var1, Text var2) {
-      String var3 = ml.QAsString(var0);
+      String var3 = ModuleList.QAsString(var0);
       if (var3.isEmpty()) {
          return var2;
       } else {
          Text var4 = cAsText(var2, Map.of(var1.toLowerCase(Locale.ROOT), var3));
          if (var4 != var2) {
-            DropletTrail.add(new DisplayAliasManager.Type_t(var4, f));
+            l.add(new DisplayAliasManager.Type_t(var4, f));
          }
 
          return var4;

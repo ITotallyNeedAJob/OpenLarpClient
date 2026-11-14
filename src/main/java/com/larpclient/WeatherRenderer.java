@@ -8,7 +8,7 @@ public final class WeatherRenderer {
    private double Y;
    private double Z;
    private long a;
-   private double ChinaHatCodec = 1.0;
+   private double i = 1.0;
    private WeatherRenderer.Type_e H = WeatherRenderer.Type_e.CUBIC_OUT;
 
    public WeatherRenderer(double var1) {

@@ -53,11 +53,11 @@ public class LarpClient implements ClientModInitializer {
    private KeyBinding z;
    private final ShortcutTracker<Module> Y = new ShortcutTracker<>(349);
    private final ShortcutTracker<SettingShortcuts.Type_x> w = new ShortcutTracker<>(349);
-   private boolean LineSegment = false;
+   private boolean e = false;
    private boolean R = false;
    private volatile boolean U;
-   public static final Category TextLayout = Category.create(Identifier.of("larp-client", "main"));
-   public static final Category BloomUtility = Category.create(Identifier.of("larp-client", "editing"));
+   public static final Category j = Category.create(Identifier.of("larp-client", "main"));
+   public static final Category b = Category.create(Identifier.of("larp-client", "editing"));
 
    public LarpClient() {
    }

@@ -85,12 +85,12 @@ public final class ThemeSettings {
       int var9 = switch (var10) {
          case "Category" -> var1;
          case "Custom" -> this.customColor.getValue();
-         case "Distance" -> bd.NAsInt(Math.clamp(var2 / var4, 0.0, 1.0));
-         case "Health" -> bg.xAsInt(-1017711, -7347266, var6);
-         case "Rainbow" -> bg.HSBtoRGB((float)(System.currentTimeMillis() % 6000L) / 6000.0F + (float)var8 * 0.037F, 0.45F, 1.0F);
-         default -> bd.NAsInt(0.25);
+         case "Distance" -> UiStyle.NAsInt(Math.clamp(var2 / var4, 0.0, 1.0));
+         case "Health" -> ColorUtil.xAsInt(-1017711, -7347266, var6);
+         case "Rainbow" -> ColorUtil.HSBtoRGB((float)(System.currentTimeMillis() % 6000L) / 6000.0F + (float)var8 * 0.037F, 0.45F, 1.0F);
+         default -> UiStyle.NAsInt(0.25);
       };
-      return bg.pAsInt(var9, RAsDouble(var2, var4));
+      return ColorUtil.pAsInt(var9, RAsDouble(var2, var4));
    }
 
    public static double RAsDouble(double var0, double var2) {
@@ -143,7 +143,7 @@ public final class ThemeSettings {
                }
             }
          } else {
-            int var14 = var2.equals("Filled") ? bg.pAsInt(var3, this.fillOpacity.getValue()) : 0;
+            int var14 = var2.equals("Filled") ? ColorUtil.pAsInt(var3, this.fillOpacity.getValue()) : 0;
             this.ZAsVoid(GizmoDrawing.box(var1, DrawStyle.filledAndStroked(var3, this.lineWidth(), var14)));
          }
       }
@@ -151,9 +151,9 @@ public final class ThemeSettings {
 
    public void uAsVoid(Box var1, double var2, int var4) {
       Vec3d var5 = new Vec3d(var1.minX - 0.08, var1.minY, var1.minZ);
-      this.ZAsVoid(GizmoDrawing.line(var5, var5.add(0.0, var1.getLengthY(), 0.0), bg.pAsInt(bd.A, (double)(var4 >>> 24) / 255.0), this.lineWidth() + 1.0F));
-      int var6 = bg.xAsInt(-1017711, -7347266, var2);
-      this.IAsVoid(var5, var5.add(0.0, var1.getLengthY() * Math.clamp(var2, 0.0, 1.0), 0.0), bg.XAsInt(var6, (double)(var4 >>> 24) / 255.0));
+      this.ZAsVoid(GizmoDrawing.line(var5, var5.add(0.0, var1.getLengthY(), 0.0), ColorUtil.pAsInt(UiStyle.A, (double)(var4 >>> 24) / 255.0), this.lineWidth() + 1.0F));
+      int var6 = ColorUtil.xAsInt(-1017711, -7347266, var2);
+      this.IAsVoid(var5, var5.add(0.0, var1.getLengthY() * Math.clamp(var2, 0.0, 1.0), 0.0), ColorUtil.XAsInt(var6, (double)(var4 >>> 24) / 255.0));
    }
 
    public void NAsVoid(Vec3d var1, String var2, int var3) {

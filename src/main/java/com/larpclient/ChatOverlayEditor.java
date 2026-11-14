@@ -7,11 +7,11 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.Hand;
 
 public final class ChatOverlayEditor {
-   private static final long ChatPayParser = 750000000L;
+   private static final long g = 750000000L;
    private final BooleanSupplier A;
    private Hand O;
    private Hand K;
-   private li.Type_w E;
+   private LayerIndex.Type_w E;
    private double Z;
    private double Q;
    private double o;
@@ -59,7 +59,7 @@ public final class ChatOverlayEditor {
    }
 
    private static boolean GAsBoolean(Hand var0, double var1, double var3) {
-      li.Type_w var5 = li.YAsLi_Type_w(var0);
+      LayerIndex.Type_w var5 = LayerIndex.YAsLi_Type_w(var0);
       return var5 != null && var5.contains(var1, var3);
    }
 
@@ -73,7 +73,7 @@ public final class ChatOverlayEditor {
             this.vAsVoid();
             return false;
          } else if (var5 == 0) {
-            this.E = li.YAsLi_Type_w(var7);
+            this.E = LayerIndex.YAsLi_Type_w(var7);
             this.O = this.K = var7;
             this.Z = var1;
             this.Q = var3;
@@ -194,16 +194,16 @@ public final class ChatOverlayEditor {
          }
 
          Hand var6 = !var4 && !this.SAsBoolean() ? this.QAsHand((double)var2, (double)var3) : null;
-         ow.gAsVoid(this.O, var6);
+         WindowState.gAsVoid(this.O, var6);
 
          for (Hand var10 : Hand.values()) {
-            li.Type_w var11 = li.YAsLi_Type_w(var10);
+            LayerIndex.Type_w var11 = LayerIndex.YAsLi_Type_w(var10);
             if (var11 != null && (var10 == this.O || var10 == var6)) {
                String var12 = BAsString(var10) + " " + String.format(Locale.ROOT, "%.2fx", var5.RAsDouble(var10));
                int var13 = var11.y() > 16 ? var11.y() - 13 : var11.y() + var11.height() + 3;
-               ww.fAsVoid(var1, var12, (double)Math.max(2, var11.x()), (double)var13, 10.0, var10 == this.O ? -1 : -1325400065);
+               WorldWidget.fAsVoid(var1, var12, (double)Math.max(2, var11.x()), (double)var13, 10.0, var10 == this.O ? -1 : -1325400065);
                if (var10 == this.O && !this.SAsBoolean()) {
-                  ww.fAsVoid(
+                  WorldWidget.fAsVoid(
                      var1,
                      "Drag to move, scroll to resize, right-click to reset",
                      (double)Math.max(2, var11.x()),

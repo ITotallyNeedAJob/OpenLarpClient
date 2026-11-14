@@ -29,7 +29,7 @@ public class EntityMixin {
          GrimSpeed.PAsVoid(var2);
          AimAssist.fAsVoid(var2);
          WTap.RAsVoid(var2);
-         ai.uAsVoid();
+         CometRenderer.uAsVoid();
       }
    }
 }

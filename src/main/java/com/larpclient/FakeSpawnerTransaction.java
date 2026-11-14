@@ -11,10 +11,10 @@ public final class FakeSpawnerTransaction {
    private static ScreenHandler p;
    private static Object r;
    private static Object Z;
-   private static List<FakeSpawnerTransaction.Type_z> ScreenScale = List.of();
-   private static List<ItemStack> GroundSample = List.of();
+   private static List<FakeSpawnerTransaction.Type_z> y = List.of();
+   private static List<ItemStack> k = List.of();
    private static ItemStack X = ItemStack.EMPTY;
-   private static ItemStack DropletTrail = ItemStack.EMPTY;
+   private static ItemStack l = ItemStack.EMPTY;
    private static Runnable x;
    private static Runnable E;
    private static String e;
@@ -26,7 +26,7 @@ public final class FakeSpawnerTransaction {
    }
 
    public static boolean aAsBoolean() {
-      return HexEdgeloop != null;
+      return p != null;
    }
 
    public static boolean SAsBoolean() {
@@ -88,18 +88,18 @@ public final class FakeSpawnerTransaction {
          && var6.interactionManager != null
          && var6.player.currentScreenHandler == var0
          && var0.getCursorStack().isEmpty()) {
-         HexEdgeloop = var0;
+         p = var0;
          r = var6.player;
          Z = var6.world;
-         ScreenScale = List.copyOf(var2);
+         y = List.copyOf(var2);
          G = 0;
          C = 0;
-         AuraModule = var4;
+         x = var4;
          E = var5;
-         LineSegment = var1;
-         DropletTrail = var3.copy();
+         e = var1;
+         l = var3.copy();
          VAsVoid();
-         ClientLog.XAsVoid("FakeSpawner", "Transaction started: {} clicks={} container={}", var1, var2.size(), HexEdgeloop.syncId);
+         ClientLog.XAsVoid("FakeSpawner", "Transaction started: {} clicks={} container={}", var1, var2.size(), p.syncId);
          return true;
       } else {
          return false;
@@ -107,8 +107,8 @@ public final class FakeSpawnerTransaction {
    }
 
    private static void VAsVoid() {
-      GroundSample = HexEdgeloop.slots.stream().map(var0 -> var0.getStack().copy()).toList();
-      X = HexEdgeloop.getCursorStack().copy();
+      k = p.slots.stream().map(var0 -> var0.getStack().copy()).toList();
+      X = p.getCursorStack().copy();
    }
 
    static boolean mAsBoolean(ScreenHandler var0, List<ItemStack> var1, ItemStack var2) {
@@ -138,12 +138,12 @@ public final class FakeSpawnerTransaction {
          MinecraftClient var0 = MinecraftClient.getInstance();
          if (var0.player == r
             && var0.world == Z
-            && var0.player.currentScreenHandler == HexEdgeloop
+            && var0.player.currentScreenHandler == p
             && var0.player.isAlive()
             && FakeSpawnerController.ZAsMa().XAsBoolean()) {
             if (++G <= 200 && mAsBoolean(p, k, X)) {
-               if (C == ScreenScale.size()) {
-                  if (!ItemStack.areEqual(HexEdgeloop.getCursorStack(), l)) {
+               if (C == y.size()) {
+                  if (!ItemStack.areEqual(p.getCursorStack(), l)) {
                      uAsVoid("unexpected cursor at completion");
                   } else {
                      Runnable var6 = x;
@@ -156,12 +156,12 @@ public final class FakeSpawnerTransaction {
                      VisualInventory.vAsVoid();
                   }
                } else {
-                  for (int var1 = 0; var1 < 4 && C < ScreenScale.size(); var1++) {
-                     FakeSpawnerTransaction.Type_z var2 = ScreenScale.get(C++);
+                  for (int var1 = 0; var1 < 4 && C < y.size(); var1++) {
+                     FakeSpawnerTransaction.Type_z var2 = y.get(C++);
                      n = true;
 
                      try {
-                        var0.interactionManager.clickSlot(HexEdgeloop.syncId, var2.slot, var2.button, var2.type, var0.player);
+                        var0.interactionManager.clickSlot(p.syncId, var2.slot, var2.button, var2.type, var0.player);
                      } finally {
                         n = false;
                      }
@@ -183,8 +183,8 @@ public final class FakeSpawnerTransaction {
       if (aAsBoolean()) {
          MinecraftClient var1 = MinecraftClient.getInstance();
          Runnable var2 = E;
-         int var3 = var1.player == r && var1.world == Z && var1.player.currentScreenHandler == HexEdgeloop ? 1 : 0;
-         ClientLog.XAsVoid("FakeSpawner", "Transaction cancelled: {} step={}/{} reason={}; native cursor recovery={}", e, C, ScreenScale.size(), var0, var3 != 0);
+         int var3 = var1.player == r && var1.world == Z && var1.player.currentScreenHandler == p ? 1 : 0;
+         ClientLog.XAsVoid("FakeSpawner", "Transaction cancelled: {} step={}/{} reason={}; native cursor recovery={}", e, C, y.size(), var0, var3 != 0);
          jAsVoid();
          if (var3 != 0) {
             var1.player.closeHandledScreen();
@@ -199,15 +199,15 @@ public final class FakeSpawnerTransaction {
    }
 
    private static void jAsVoid() {
-      HexEdgeloop = null;
+      p = null;
       Z = null;
       r = null;
-      ScreenScale = List.of();
-      GroundSample = List.of();
-      X = DropletTrail = ItemStack.EMPTY;
+      y = List.of();
+      k = List.of();
+      X = l = ItemStack.EMPTY;
       E = null;
-      AuraModule = null;
-      LineSegment = null;
+      x = null;
+      e = null;
       G = 0;
       C = 0;
    }

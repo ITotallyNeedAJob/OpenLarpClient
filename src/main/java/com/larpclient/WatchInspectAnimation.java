@@ -1,8 +1,8 @@
 package com.larpclient;
 
 public final class WatchInspectAnimation {
-   public static final double CropHelper = 0.14;
-   private static final WatchInspectAnimation.Type_g SahurDanceEngine = new WatchInspectAnimation.Type_g(0.0F, 0.0F);
+   public static final double u = 0.14;
+   private static final WatchInspectAnimation.Type_g d = new WatchInspectAnimation.Type_g(0.0F, 0.0F);
    private float p;
    private float Y;
    private float k;
@@ -16,11 +16,11 @@ public final class WatchInspectAnimation {
       this.B = Double.NaN;
    }
 
-   public WatchInspectAnimation.Type_g sAsQt_Type_g(bj.Type_i var1, double var2) {
+   public WatchInspectAnimation.Type_g sAsQt_Type_g(KnifeState.Type_i var1, double var2) {
       if (var1.J == 2) {
          this.B = Double.NaN;
          this.p = var1.L;
-         this.Y = m_.eAsFloat(this.p);
+         this.Y = ModelTranslation.eAsFloat(this.p);
          return new WatchInspectAnimation.Type_g(this.p, this.Y);
       } else {
          if (var1.q && this.Y > 0.0F) {

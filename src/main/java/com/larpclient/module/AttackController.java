@@ -18,7 +18,7 @@ import net.minecraft.util.math.MathHelper;
 
 public final class AttackController {
    private final Module W;
-   private final pg i;
+   private final ParticleGeometry i;
    private int H;
    private boolean x;
    private long Z;
@@ -29,7 +29,7 @@ public final class AttackController {
 
    public AttackController(Module var1) {
       this.W = var1;
-      this.i = new pg(var1);
+      this.i = new ParticleGeometry(var1);
    }
 
    public void wAsVoid(MinecraftClient var1) {
@@ -108,7 +108,7 @@ public final class AttackController {
                      }
 
                      return false;
-                  } else if (!db.mAsBoolean(var1.isSprinting())) {
+                  } else if (!FallDamage.mAsBoolean(var1.isSprinting())) {
                      if (!this.x) {
                         ClientLog.XAsVoid("Aura", "Attack deferred: waiting for vanilla sprint report; localSprint=" + var1.isSprinting());
                      }
@@ -117,7 +117,7 @@ public final class AttackController {
                      return false;
                   } else {
                      this.x = false;
-                     boolean var7 = b_.WAsBoolean(this.W, var3, () -> {
+                     boolean var7 = ModuleImportBroker.WAsBoolean(this.W, var3, () -> {
                         if (var2.beforeAttack() != null) {
                            var2.beforeAttack().run();
                         }
@@ -154,10 +154,10 @@ public final class AttackController {
 
    private void CAsVoid(ClientPlayerEntity var1, LivingEntity var2, boolean var3) {
       MinecraftClient var4 = MinecraftClient.getInstance();
-      if (var3 && !this.i.FAsBoolean() && var2 instanceof PlayerEntity var5 && pk.PAsBoolean(var5, var1) && !pk.NAsBoolean(var5)) {
-         int var6 = pk.JAsInt(var1);
+      if (var3 && !this.i.FAsBoolean() && var2 instanceof PlayerEntity var5 && ParticleKind.PAsBoolean(var5, var1) && !ParticleKind.NAsBoolean(var5)) {
+         int var6 = ParticleKind.JAsInt(var1);
          if (var6 >= 0 && this.i.uAsBoolean(var1, var6)) {
-            pk.wAsVoid(var5);
+            ParticleKind.wAsVoid(var5);
             ClientLog.XAsVoid("Aura", "Shield Breaker: hit " + var5.getId() + " with hotbar slot " + (var6 + 1));
          }
       }

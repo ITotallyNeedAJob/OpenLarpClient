@@ -52,7 +52,7 @@ final class UpdateStore {
          safeAncestors(this.directory);
          Path var2 = this.directory.resolve(var1);
          if (Files.exists(var2, LinkOption.NOFOLLOW_LINKS) && !attributes(var2).isRegularFile()) {
-            throw new IOException("Update state is not PetEffectRenderer regular file");
+            throw new IOException("Update state is not a regular file");
          } else {
             return var2;
          }

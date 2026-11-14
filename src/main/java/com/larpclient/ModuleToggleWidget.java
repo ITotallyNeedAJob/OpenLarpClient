@@ -6,20 +6,20 @@ import net.minecraft.client.gui.DrawContext;
 final class ModuleToggleWidget extends GuiWidget {
    private final String D;
    private final Module w;
-   private final w2 b;
+   private final WeatherRenderer b;
 
    ModuleToggleWidget(String var1, Module var2) {
       this.D = var1;
       this.w = var2;
       this.F = 26;
-      this.b = new w2(var2.isEnabled() ? 1.0 : 0.0);
+      this.b = new WeatherRenderer(var2.isEnabled() ? 1.0 : 0.0);
    }
 
    @Override
    public void render(DrawContext var1, int var2, int var3) {
       String var4 = this.D.isEmpty() ? (this.w.isEnabled() ? "Enabled" : "Disabled") : this.D;
       double var5 = this.b.bAsDouble(this.w.isEnabled() ? 1.0 : 0.0, 180);
-      int var7 = bg.xAsInt(bd.W, mi.readableAccent(bd.tAsInt(this.k), bd.m), var5);
+      int var7 = ColorUtil.xAsInt(UiStyle.W, MouseInput.readableAccent(UiStyle.tAsInt(this.k), UiStyle.m), var5);
       TextDrawing.Type_s var8 = TextDrawing.Type_s.HELP;
       TextDrawing.NAsVoid(var1, TextDrawing.zAsString(var4, this.V - 38, var8), this.k + 4, this.x + (this.F - var8.zAsInt()) / 2, var7, var8);
       GuiDrawing.uAsVoid(var1, this.k + this.V - 28, this.x + (this.F - 13) / 2, var5);

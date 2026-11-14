@@ -11,18 +11,18 @@ import net.minecraft.util.math.Vec3d;
 
 public final class OfferManager {
    private final ArrayDeque<OfferManager.Type_o> U = new ArrayDeque<>();
-   private double ChinaHatCodec = -100.0;
+   private double i = -100.0;
    private Vec3d W;
    private boolean d;
-   private List<OfferManager.Type_r> DropletTrail = List.of();
+   private List<OfferManager.Type_r> l = List.of();
    private boolean X;
    public double n = 1.2;
    public double R = 2.4;
-   public double PriceDetector = 0.45;
-   public int SmoothInput = 6;
+   public double m = 0.45;
+   public int t = 6;
    public int Y = -8798209;
    public boolean E = true;
-   public String HexEdgeloop = "Original";
+   public String p = "Original";
    public String h = "Smooth";
 
    public OfferManager() {
@@ -47,8 +47,8 @@ public final class OfferManager {
          double var8 = var5.y - var1.y;
          double var10 = var5.z - var1.z;
          if (!(var6 * var6 + var8 * var8 + var10 * var10 > 2304.0)) {
-            double var12 = Math.clamp((mb.RAsDouble() - var4.born) / var4.lifetime, 0.0, 1.0);
-            double var14 = this.m * (this.h.equals("Linear") ? 1.0 - var12 : ay.RAsDouble(1.0 - var12));
+            double var12 = Math.clamp((MediaSession.RAsDouble() - var4.born) / var4.lifetime, 0.0, 1.0);
+            double var14 = this.m * (this.h.equals("Linear") ? 1.0 - var12 : FadeCurve.RAsDouble(1.0 - var12));
             if (!(var14 <= 0.0)) {
                String var17 = this.p;
 
@@ -58,7 +58,7 @@ public final class OfferManager {
                   case "Hologram" -> CosmeticSubmissionHandler.Type_n.HOLOGRAM;
                   default -> CosmeticSubmissionHandler.Type_n.TINT;
                };
-               var2.add(new OfferManager.Type_r(var5, var16, this.p.equals("Theme Tint") ? bd.w : this.Y, var14, this.E));
+               var2.add(new OfferManager.Type_r(var5, var16, this.p.equals("Theme Tint") ? UiStyle.w : this.Y, var14, this.E));
                this.X = this.X | this.E;
             }
          }
@@ -72,7 +72,7 @@ public final class OfferManager {
          this.U.removeFirst();
       }
 
-      this.U.removeIf(var0 -> mb.dAsDouble() - var0.born >= var0.lifetime);
+      this.U.removeIf(var0 -> MediaSession.dAsDouble() - var0.born >= var0.lifetime);
       MinecraftClient var1 = MinecraftClient.getInstance();
       if (var1.player == null || !var1.player.isAlive()) {
          this.rAsVoid();
@@ -86,7 +86,7 @@ public final class OfferManager {
    private void aAsVoid() {
       MinecraftClient var1 = MinecraftClient.getInstance();
       if (var1.player != null && var1.player.isAlive()) {
-         double var2 = mb.dAsDouble();
+         double var2 = MediaSession.dAsDouble();
          Vec3d var4 = var1.player.getEntityPos();
          if (!(var2 - this.i < this.n) && (this.W == null || !(this.W.squaredDistanceTo(var4) < 0.04))) {
             if (this.W == null) {
@@ -131,7 +131,7 @@ public final class OfferManager {
    }
 
    public void BAsVoid(MatrixStack var1, EffectDrawBuffers var2, boolean var3) {
-      long var4 = op.RAsLong();
+      long var4 = OpenScreen.RAsLong();
 
       for (OfferManager.Type_r var7 : this.l) {
          if (!var3 || var7.bloom) {
@@ -139,7 +139,7 @@ public final class OfferManager {
          }
       }
 
-      op.aAsVoid("GhostEcho", var4);
+      OpenScreen.aAsVoid("GhostEcho", var4);
    }
 
    private static record Type_o(EntityRenderState state, double born, double lifetime) {

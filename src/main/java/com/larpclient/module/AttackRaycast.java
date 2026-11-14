@@ -29,7 +29,7 @@ public final class AttackRaycast {
    private static double R;
    private static double J;
    private static boolean O;
-   private static ng.Type_e G;
+   private static NebulaGenerator.Type_e G;
    private static int v;
    private static Vec3d F;
 
@@ -52,14 +52,14 @@ public final class AttackRaycast {
                   var1,
                   GAsVec3d(var4, var5 + var1.fOV() * (double)var8 / (double)var7, var1.uAsDouble()),
                   GAsVec3d(var4, var5 + var1.fOV() * (double)(var8 + 1) / (double)var7, var1.uAsDouble()),
-                  bg.xAsInt(bd.w, -1, 0.3),
+                  ColorUtil.xAsInt(UiStyle.w, -1, 0.3),
                   var1.indicatorWidth()
                );
             }
 
             if (var1.fOV() < 360.0) {
-               pAsVoid(var1, var4, GAsVec3d(var4, var5, var1.uAsDouble()), bg.xAsInt(bd.w, -1, 0.3), var1.indicatorWidth());
-               pAsVoid(var1, var4, GAsVec3d(var4, var5 + var1.fOV(), var1.uAsDouble()), bg.xAsInt(bd.w, -1, 0.3), var1.indicatorWidth());
+               pAsVoid(var1, var4, GAsVec3d(var4, var5, var1.uAsDouble()), ColorUtil.xAsInt(UiStyle.w, -1, 0.3), var1.indicatorWidth());
+               pAsVoid(var1, var4, GAsVec3d(var4, var5 + var1.fOV(), var1.uAsDouble()), ColorUtil.xAsInt(UiStyle.w, -1, 0.3), var1.indicatorWidth());
             }
          }
       }
@@ -72,9 +72,9 @@ public final class AttackRaycast {
          xAsVoid(var0, var1);
          String var2 = var0.SAsString();
          int var3 = var2.equals("Valid attack ray")
-            ? bg.xAsInt(bd.w, -8327246, 0.35)
-            : (var2.equals("Outside reach") ? bg.xAsInt(bd.w, -1277295, 0.55) : bg.xAsInt(bd.w, -12672, 0.5));
-         v = v == 0 ? var3 : bg.xAsInt(v, var3, 1.0 - Math.exp(-mb.YAsDouble() * 9.0));
+            ? ColorUtil.xAsInt(UiStyle.w, -8327246, 0.35)
+            : (var2.equals("Outside reach") ? ColorUtil.xAsInt(UiStyle.w, -1277295, 0.55) : ColorUtil.xAsInt(UiStyle.w, -12672, 0.5));
+         v = v == 0 ? var3 : ColorUtil.xAsInt(v, var3, 1.0 - Math.exp(-MediaSession.YAsDouble() * 9.0));
       } else {
          G = null;
          A = null;
@@ -92,7 +92,7 @@ public final class AttackRaycast {
          HashMap<Long, List<Box>> var10 = new HashMap<>();
          double var11 = var2.getY();
          ShapeContext var13 = ShapeContext.of(var1.player);
-         ng.Type_u var14 = (var5, var7) -> {
+         NebulaGenerator.Type_u var14 = (var5, var7) -> {
             int var9 = (int)Math.floor(var5);
             int var10x = (int)Math.floor(var7);
             long var11x = BlockPos.asLong(var9, 0, var10x);
@@ -110,9 +110,9 @@ public final class AttackRaycast {
 
                return var7x;
             });
-            return ng.XAsNg_Type_n(var13x, var5, var7, var11);
+            return NebulaGenerator.XAsNg_Type_n(var13x, var5, var7, var11);
          };
-         G = ng.HAsNg_Type_e(var3, var4, var6, var14, var0.zoneFill());
+         G = NebulaGenerator.HAsNg_Type_e(var3, var4, var6, var14, var0.zoneFill());
          if (A != var1.world || D != var2.getId()) {
             v = 0;
          }
@@ -139,10 +139,10 @@ public final class AttackRaycast {
       if (G != null && var2 != null && (!var1 || var2.zoneBloom())) {
          double var3 = var2.zoneOpacity() * (var1 ? 0.65 : 1.0);
          double var5 = (double)var2.zoneWidth() * 0.035;
-         double var7 = var2.zoneMotion() ? mb.RAsDouble() : 0.0;
-         var0.blend(x4.Type_g.ADDITIVE);
+         double var7 = var2.zoneMotion() ? MediaSession.RAsDouble() : 0.0;
+         var0.blend(EffectRenderParams.Type_g.ADDITIVE);
 
-         for (ng.Type_p var10 : G.outline()) {
+         for (NebulaGenerator.Type_p var10 : G.outline()) {
             Vec3d var11 = var10.from();
             Vec3d var12 = var10.to();
             int var13 = bAsInt(var11, var7, var3, var2.zoneMotion());
@@ -158,7 +158,7 @@ public final class AttackRaycast {
                double var16 = Double.POSITIVE_INFINITY;
                Vec3d var18 = null;
 
-               for (ng.Type_p var20 : G.outline()) {
+               for (NebulaGenerator.Type_p var20 : G.outline()) {
                   Vec3d var21 = var20.from();
                   Vec3d var22 = var20.to();
                   double var23 = var21.x - F.x;
@@ -180,20 +180,20 @@ public final class AttackRaycast {
                }
 
                if (var18 != null && var16 < 0.08) {
-                  int var49 = bg.pAsInt(bg.xAsInt(v, -1, 0.65), var3);
+                  int var49 = ColorUtil.pAsInt(ColorUtil.xAsInt(v, -1, 0.65), var3);
                   var0.cAsVoid(
-                     var18.x, var18.y + 0.018, var18.z, var5 * 1.6, var7 * 0.6, bg.pAsInt(var49, 0.45), ParticleEmitterEngine.Type_a.Glow, 0.0, 0.0, 0.0
+                     var18.x, var18.y + 0.018, var18.z, var5 * 1.6, var7 * 0.6, ColorUtil.pAsInt(var49, 0.45), ParticleEmitterEngine.Type_a.Glow, 0.0, 0.0, 0.0
                   );
                   var0.BAsVoid(var18.x, var18.y + 0.018, var18.z, var5 * 0.6, var7 * 0.6, var49);
                }
             }
          }
 
-         var0.blend(x4.Type_g.ALPHA);
+         var0.blend(EffectRenderParams.Type_g.ALPHA);
          if (!var1) {
-            int var43 = bg.pAsInt(v, var3 * 0.065);
+            int var43 = ColorUtil.pAsInt(v, var3 * 0.065);
 
-            for (ng.Type_d var46 : G.fill()) {
+            for (NebulaGenerator.Type_d var46 : G.fill()) {
                cAsVoid(var0, var46.a(), var43);
                cAsVoid(var0, var46.b(), var43);
                cAsVoid(var0, var46.c(), var43);
@@ -210,7 +210,7 @@ public final class AttackRaycast {
    private static int bAsInt(Vec3d var0, double var1, double var3, boolean var5) {
       double var6 = Math.atan2(var0.z - F.z, var0.x - F.x);
       double var8 = var5 ? Math.pow(0.5 + 0.5 * Math.cos(var6 * 3.0 - var1 * 1.65), 12.0) : 0.0;
-      return bg.pAsInt(bg.xAsInt(v, -1, 0.15 + var8 * 0.55), var3 * (0.65 + var8 * 0.35));
+      return ColorUtil.pAsInt(ColorUtil.xAsInt(v, -1, 0.15 + var8 * 0.55), var3 * (0.65 + var8 * 0.35));
    }
 
    private static void pAsVoid(Aura var0, Vec3d var1, Vec3d var2, int var3, float var4) {

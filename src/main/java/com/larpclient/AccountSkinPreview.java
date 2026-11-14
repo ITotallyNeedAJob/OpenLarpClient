@@ -9,12 +9,12 @@ import net.minecraft.client.util.DefaultSkinHelper;
 import net.minecraft.entity.player.SkinTextures;
 
 public final class AccountSkinPreview {
-   private static final long BoxUtils = 10000000000L;
+   private static final long c = 10000000000L;
    private Supplier<SkinTextures> h;
    private GameProfile T;
    private int U = -1;
    private SkinTextures G;
-   private long DropletTrail = -1L;
+   private long l = -1L;
 
    public AccountSkinPreview() {
    }
@@ -59,6 +59,6 @@ public final class AccountSkinPreview {
    }
 
    public void fAsVoid(DrawContext var1, int var2, int var3, int var4) {
-      PlayerSkinDrawer.draw(var1, this.FAsSkinTextures(), var2, var3, var4, qg.iAsInt(-1));
+      PlayerSkinDrawer.draw(var1, this.FAsSkinTextures(), var2, var3, var4, QueueGroup.iAsInt(-1));
    }
 }

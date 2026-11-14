@@ -21,7 +21,7 @@ public final class RealisticWater extends Module {
 
    public RealisticWater() {
       super("Realistic Water", "Rolling waves, reflections, refraction, depth color and shoreline foam", Category.RENDER, -1);
-      GroundSample = this;
+      k = this;
       this.volumetric.onChanged(var0 -> {
          VolumetricWaterEngine.YAsVoid();
          WetReflectionEffect.TAsVoid();
@@ -50,7 +50,7 @@ public final class RealisticWater extends Module {
    }
 
    public static boolean wAsBoolean() {
-      if (GroundSample != null && GroundSample.isEnabled()) {
+      if (k != null && k.isEnabled()) {
          RealisticWater var0 = k;
          return var0 != null && var0.isRuntimeActive() && var0.underwater.getValue() && WetReflectionEffect.gAsBoolean();
       } else {

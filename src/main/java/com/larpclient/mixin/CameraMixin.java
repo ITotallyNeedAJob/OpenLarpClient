@@ -62,7 +62,7 @@ public abstract class CameraMixin {
       )}
    )
    private void larpclient$injectZZFV(CallbackInfo var1) {
-      if (!p5.TAsBoolean()) {
+      if (!ParticleEmitter.TAsBoolean()) {
          SmoothCamera var2 = SmoothCamera.XAsSmoothCamera();
          if (var2 != null) {
             Camera var3 = (Camera)(Object)this;
@@ -107,14 +107,14 @@ public abstract class CameraMixin {
    )
    private void larpclient$injectZZFV(World var1, Entity var2, boolean var3, boolean var4, float var5, CallbackInfo var6) {
       Entity var7 = ((Camera)(Object)this).getFocusedEntity();
-      if (p5.oAsBoolean()) {
-         Vec3d var17 = p5.dAsVec3d(((Camera)(Object)this).getLastTickProgress());
-         this.method_19325(p5.JAsFloat(), p5.mAsFloat());
+      if (ParticleEmitter.oAsBoolean()) {
+         Vec3d var17 = ParticleEmitter.dAsVec3d(((Camera)(Object)this).getLastTickProgress());
+         this.method_19325(ParticleEmitter.JAsFloat(), ParticleEmitter.mAsFloat());
          this.method_19327(var17.x, var17.y, var17.z);
-      } else if (p5.TAsBoolean() && var7 != null) {
+      } else if (ParticleEmitter.TAsBoolean() && var7 != null) {
          MinecraftClient var16 = MinecraftClient.getInstance();
-         float var18 = p5.JAsFloat();
-         float var19 = p5.mAsFloat();
+         float var18 = ParticleEmitter.JAsFloat();
+         float var19 = ParticleEmitter.mAsFloat();
          this.method_19325(var18, var19);
          Vec3d var20 = var7.getLerpedPos(var5).add(0.0, (double)var7.getStandingEyeHeight(), 0.0);
          SmoothCamera var21 = SmoothCamera.XAsSmoothCamera();

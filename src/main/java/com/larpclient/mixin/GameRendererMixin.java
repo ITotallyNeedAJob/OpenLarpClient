@@ -16,7 +16,7 @@ public abstract class GameRendererMixin {
    }
 
    // $VF: Could not verify finally blocks. A semaphore variable has been added to preserve control flow.
-   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with PetEffectRenderer copy of the class file (if you have the rights to distribute it!)
+   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with a copy of the class file (if you have the rights to distribute it!)
    @WrapOperation(
       method = {"method_3188(Lnet/minecraft/class_9779;)V"},
       at = {@At(
@@ -27,13 +27,13 @@ public abstract class GameRendererMixin {
    private void larpclient$wrapOperationV(GameRenderer var1, float var2, boolean var3, Matrix4f var4, Operation<Void> var5) {
       if (var1.isRenderingPanorama()) {
          HandEffectRenderer.KAsVoid();
-         b8.lAsVoid();
-         ow.eAsVoid();
+         ButtonWidget.lAsVoid();
+         WindowState.eAsVoid();
       }
 
-      boolean var6 = !var1.isRenderingPanorama() && b8.xAsBoolean();
+      boolean var6 = !var1.isRenderingPanorama() && ButtonWidget.xAsBoolean();
       boolean var7 = !var1.isRenderingPanorama() && HandEffectRenderer.fAsBoolean();
-      boolean var8 = !var1.isRenderingPanorama() && ow.FAsBoolean();
+      boolean var8 = !var1.isRenderingPanorama() && WindowState.FAsBoolean();
       boolean var9 = false;
       boolean var12 = false /* VF: Semaphore variable */;
 
@@ -46,9 +46,9 @@ public abstract class GameRendererMixin {
          if (var12) {
             if (var6) {
                if (var9) {
-                  b8.kAsVoid();
+                  ButtonWidget.kAsVoid();
                } else {
-                  b8.lAsVoid();
+                  ButtonWidget.lAsVoid();
                }
             }
 
@@ -62,16 +62,16 @@ public abstract class GameRendererMixin {
 
             if (var8) {
                if (var9) {
-                  ow.qAsVoid();
+                  WindowState.qAsVoid();
                } else {
-                  ow.eAsVoid();
+                  WindowState.eAsVoid();
                }
             }
          }
       }
 
       if (var6) {
-         b8.kAsVoid();
+         ButtonWidget.kAsVoid();
       }
 
       if (var7) {
@@ -79,7 +79,7 @@ public abstract class GameRendererMixin {
       }
 
       if (var8) {
-         ow.qAsVoid();
+         WindowState.qAsVoid();
       }
    }
 }

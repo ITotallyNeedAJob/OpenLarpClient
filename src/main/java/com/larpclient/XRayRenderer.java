@@ -10,11 +10,11 @@ import java.util.function.Predicate;
 
 public final class XRayRenderer {
    public static final int v = 512;
-   public static final int AuraModule = 256;
+   public static final int x = 256;
    public static final double H = 2.5;
    private final HashMap<Integer, XRayRenderer.Type_s> U = new HashMap<>();
    private final HashMap<Integer, XRayRenderer.Type_q> G = new HashMap<>();
-   private final ArrayList<XRayRenderer.Type_e> ChinaHatCodec = new ArrayList<>();
+   private final ArrayList<XRayRenderer.Type_e> i = new ArrayList<>();
    private final Random r;
 
    public XRayRenderer(long var1) {

@@ -75,7 +75,7 @@ public final class ElytraHelper extends Module {
 
    @Override
    public void onDisable() {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       this.DAsVoid();
       this.f = null;
       this.p = null;
@@ -91,7 +91,7 @@ public final class ElytraHelper extends Module {
 
    private void aAsVoid() {
       if (this.m && this.c != null && this.c.isPressed() == this.J) {
-         this.c.setPressed(r6.pAsBoolean(this.c));
+         this.c.setPressed(ModuleKeybindChecker.pAsBoolean(this.c));
       }
 
       this.m = false;
@@ -102,8 +102,8 @@ public final class ElytraHelper extends Module {
       return this.isInGame()
          && mc.player == this.f
          && mc.world == this.p
-         && r6.VAsBoolean()
-         && b_.jAsBoolean()
+         && ModuleKeybindChecker.VAsBoolean()
+         && ModuleImportBroker.jAsBoolean()
          && !mc.player.getAbilities().flying
          && !mc.player.hasVehicle()
          && !mc.player.isTouchingWater()
@@ -121,13 +121,13 @@ public final class ElytraHelper extends Module {
    @Override
    public void onTick() {
       if (!this.nAsBoolean()) {
-         b_.KAsVoid(this);
+         ModuleImportBroker.KAsVoid(this);
          this.DAsVoid();
       } else {
          long var1 = System.nanoTime();
          if (this.e != 0) {
             if (mc.player.age > this.u) {
-               b_.KAsVoid(this);
+               ModuleImportBroker.KAsVoid(this);
                this.DAsVoid();
                ClientLog.XAsVoid("ElytraHelper", "Takeoff timed out; released jump input");
             } else if (this.e == 1) {
@@ -136,7 +136,7 @@ public final class ElytraHelper extends Module {
                   return;
                }
 
-               b_.UAsVoid(this, () -> {
+               ModuleImportBroker.UAsVoid(this, () -> {
                   if (this.e == 1 && this.nAsBoolean() && !mc.player.isOnGround()) {
                      mAsVoid();
                      this.mAsVoid(true);
@@ -231,12 +231,12 @@ public final class ElytraHelper extends Module {
    }
 
    static void RAsVoid(Module var0, BooleanSupplier var1, Runnable var2) {
-      b_.UAsVoid(var0, () -> DAsVoid(var2), var1);
+      ModuleImportBroker.UAsVoid(var0, () -> DAsVoid(var2), var1);
    }
 
    static void DAsVoid(Runnable var0) {
       MinecraftClient var1 = getMc();
-      if (b_.jAsBoolean() && !var1.player.isUsingItem()) {
+      if (ModuleImportBroker.jAsBoolean() && !var1.player.isUsingItem()) {
          PlayerInventory var2 = var1.player.getInventory();
          int var3 = -1;
 

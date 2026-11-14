@@ -8,8 +8,8 @@ import java.util.function.LongPredicate;
 
 public final class WidgetLayer {
    private final Map<Long, WidgetLayer.Type_v> q = new HashMap<>();
-   private final Map<Long, WidgetLayer.Type_v> DropletTrail = new HashMap<>();
-   private final Map<Long, Long> SmoothInput = new HashMap<>();
+   private final Map<Long, WidgetLayer.Type_v> l = new HashMap<>();
+   private final Map<Long, Long> t = new HashMap<>();
    private final LinkedHashMap<Long, Long> C = new LinkedHashMap<>();
    public static final int w = 1024;
    private static final long S = 1200L;
@@ -104,8 +104,8 @@ public final class WidgetLayer {
    public static record Type_g(int x, int y, int z, boolean trial, String name) {
    }
 
-   public static record Type_v(int mature, int buds, int spawners, int sampleY, ae base, GrowthClueSummary sus, List<WidgetLayer.Type_g> hits) {
-      public Type_v(int mature, int buds, int spawners, int sampleY, ae base, GrowthClueSummary sus, List<WidgetLayer.Type_g> hits) {
+   public static record Type_v(int mature, int buds, int spawners, int sampleY, FinderSummary base, GrowthClueSummary sus, List<WidgetLayer.Type_g> hits) {
+      public Type_v(int mature, int buds, int spawners, int sampleY, FinderSummary base, GrowthClueSummary sus, List<WidgetLayer.Type_g> hits) {
          hits = List.copyOf(hits);
          this.mature = mature;
          this.buds = buds;
@@ -116,12 +116,12 @@ public final class WidgetLayer {
          this.hits = hits;
       }
 
-      public Type_v(int var1, int var2, int var3, int var4, ae var5) {
+      public Type_v(int var1, int var2, int var3, int var4, FinderSummary var5) {
          this(var1, var2, var3, var4, var5, GrowthClueSummary.EMPTY, List.of());
       }
 
       public Type_v(int var1, int var2, int var3, int var4) {
-         this(var1, var2, var3, var4, ae.EMPTY);
+         this(var1, var2, var3, var4, FinderSummary.EMPTY);
       }
 
       public boolean matureAmethyst(int var1, int var2) {

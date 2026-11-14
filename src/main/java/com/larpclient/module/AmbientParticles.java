@@ -25,7 +25,7 @@ public final class AmbientParticles extends Module {
    public final ColorSetting tailColor = this.addSetting(new ColorSetting("Tail Color", "Custom comet tails and sparkle fade", -6794006));
    public final NumberSetting J = this.DAsNumberSetting("Opacity", "Ambient effect strength", 0.7, 0.1, 1.0, 0.05);
    public final BooleanSetting bloom = this.addSetting(new BooleanSetting("Bloom", "Shared world glow", true));
-   private final b9 V = new b9();
+   private final BuyConfirm V = new BuyConfirm();
 
    private NumberSetting DAsNumberSetting(String var1, String var2, double var3, double var5, double var7, double var9) {
       return this.addSetting(new NumberSetting(var1, var2, var3, var5, var7, var9));
@@ -48,8 +48,8 @@ public final class AmbientParticles extends Module {
       this.style.onChanged(var1 -> this.pAsVoid());
    }
 
-   public b9.Type_d qAsB9_Type_d() {
-      return new b9.Type_d(
+   public BuyConfirm.Type_d qAsB9_Type_d() {
+      return new BuyConfirm.Type_d(
          !this.style.pAsBoolean("Comets"),
          !this.style.pAsBoolean("Sparkles"),
          this.H.getValue(),
@@ -61,8 +61,8 @@ public final class AmbientParticles extends Module {
          this.Q.getValue().intValue(),
          this.O.getValue(),
          this.T.getValue(),
-         this.themeColors.getValue() ? bd.w : this.color.getValue(),
-         this.themeColors.getValue() ? bd.Q : this.tailColor.getValue(),
+         this.themeColors.getValue() ? UiStyle.w : this.color.getValue(),
+         this.themeColors.getValue() ? UiStyle.Q : this.tailColor.getValue(),
          this.J.getValue(),
          this.bloom.getValue(),
          this.E.getValue(),
@@ -76,7 +76,7 @@ public final class AmbientParticles extends Module {
       return Z;
    }
 
-   public b9 OAsB9() {
+   public BuyConfirm OAsB9() {
       return this.V;
    }
 

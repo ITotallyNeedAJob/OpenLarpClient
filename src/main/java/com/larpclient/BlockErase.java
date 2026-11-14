@@ -13,8 +13,8 @@ public enum BlockErase {
       this.O = var4;
    }
 
-   public static b4 AAsB4(String var0) {
-      for (b4 var4 : values()) {
+   public static BlockErase AAsB4(String var0) {
+      for (BlockErase var4 : values()) {
          if (var4.x.equals(var0)) {
             return var4;
          }

@@ -19,21 +19,21 @@ import net.minecraft.world.Heightmap.Type;
 public final class SnowGround extends Module {
    private static SnowGround l;
    public final NumberSetting I = this.fAsNumberSetting("Coverage", "Snow coverage on exposed ground and roofs, percent", 100.0, 0.0, 100.0, 5.0);
-   public final NumberSetting TextLayout = this.fAsNumberSetting("Depth", "Soft drift relief and snow along upper edges, percent", 75.0, 0.0, 100.0, 5.0);
+   public final NumberSetting j = this.fAsNumberSetting("Depth", "Soft drift relief and snow along upper edges, percent", 75.0, 0.0, 100.0, 5.0);
    public final NumberSetting G = this.fAsNumberSetting("Sparkle", "Small sunlit ice crystals, percent", 30.0, 0.0, 100.0, 5.0);
    public final BooleanSetting snowfall = this.addSetting(new BooleanSetting("Snowfall", "Falling snow even in clear server weather", true));
    public final NumberSetting R = this.fAsNumberSetting("Density", "Falling snow density, percent", 85.0, 0.0, 100.0, 5.0);
    public final NumberSetting S = this.fAsNumberSetting("Wind", "Sideways drift and rolling gusts, percent", 35.0, 0.0, 100.0, 5.0);
-   public final NumberSetting AuctionNotifier = this.fAsNumberSetting("Radius", "Snowfall radius around the camera in blocks", 24.0, 12.0, 40.0, 2.0);
+   public final NumberSetting o = this.fAsNumberSetting("Radius", "Snowfall radius around the camera in blocks", 24.0, 12.0, 40.0, 2.0);
    public final ModeSetting quality = this.addSetting(new ModeSetting("Quality", "Snow detail and bounded flake count", "High", "Low", "Medium", "High"));
-   public final BooleanSetting footsteps = this.addSetting(new BooleanSetting("Footsteps", "Clear powder beneath you and leave PetEffectRenderer soft walking trail", true));
+   public final BooleanSetting footsteps = this.addSetting(new BooleanSetting("Footsteps", "Clear powder beneath you and leave a soft walking trail", true));
    public final NumberSetting Y = this.fAsNumberSetting("Trail Time", "Seconds before walking trails fill back in", 12.0, 2.0, 30.0, 1.0);
-   private final wd X = new wd();
-   private Vec3d ChinaHatCodec = Vec3d.ZERO;
+   private final WorldDisplay X = new WorldDisplay();
+   private Vec3d i = Vec3d.ZERO;
    private final SnowOptions T = new SnowOptions();
    private Object z;
    private Object g;
-   private int SmoothInput = -1;
+   private int t = -1;
    private int F = -1;
 
    private NumberSetting fAsNumberSetting(String var1, String var2, double var3, double var5, double var7, double var9) {
@@ -42,7 +42,7 @@ public final class SnowGround extends Module {
 
    public SnowGround() {
       super("Snow Ground", "Deep powder, wind-shaped snow drifts and dense falling snow", Category.RENDER, -1);
-      DropletTrail = this;
+      l = this;
       this.R.visibleWhen(this.snowfall::getValue);
       this.S.visibleWhen(this.snowfall::getValue);
       this.o.visibleWhen(this.snowfall::getValue);
@@ -57,7 +57,7 @@ public final class SnowGround extends Module {
    }
 
    public static boolean hAsBoolean() {
-      return DropletTrail != null && DropletTrail.isEnabled() ? DropletTrail != null && DropletTrail.isRuntimeActive() : false;
+      return l != null && l.isEnabled() ? l != null && l.isRuntimeActive() : false;
    }
 
    public static SnowGround vAsSnowGround() {
@@ -73,7 +73,7 @@ public final class SnowGround extends Module {
    }
 
    public static boolean rAsBoolean() {
-      if (DropletTrail != null && DropletTrail.isEnabled()) {
+      if (l != null && l.isEnabled()) {
          SnowGround var0 = l;
          return var0 != null
             && hAsBoolean()
@@ -98,7 +98,7 @@ public final class SnowGround extends Module {
       this.z = this.g = null;
    }
 
-   public wd WAsWd() {
+   public WorldDisplay WAsWd() {
       return this.X;
    }
 
@@ -117,7 +117,7 @@ public final class SnowGround extends Module {
    }
 
    public static boolean FAsBoolean() {
-      return DropletTrail != null && DropletTrail.isEnabled() ? rAsBoolean() && DropletTrail.T.cAsInt() > 0 : false;
+      return l != null && l.isEnabled() ? rAsBoolean() && l.T.cAsInt() > 0 : false;
    }
 
    @Override
@@ -183,7 +183,7 @@ public final class SnowGround extends Module {
                         && !mc.player.isSpectator()
                         && !mc.player.isTouchingWater()
                         && !mc.player.getAbilities().flying,
-                     mb.dAsDouble(),
+                     MediaSession.dAsDouble(),
                      this.Y.getValue()
                   );
             }

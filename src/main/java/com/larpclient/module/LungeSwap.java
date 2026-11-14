@@ -217,7 +217,7 @@ public final class LungeSwap extends Module {
          && mc.player.isAlive()
          && !mc.player.isSpectator()
          && mc.currentScreen == null
-         && pk.eAsBoolean(mc);
+         && ParticleKind.eAsBoolean(mc);
    }
 
    @Override
@@ -486,7 +486,7 @@ public final class LungeSwap extends Module {
                }
             } else {
                this.i = "Lunging";
-               b_.UAsVoid(this, this::EAsVoid, () -> this.mAsString() == null && this.x == LungeSwap.Type_f.WAITING);
+               ModuleImportBroker.UAsVoid(this, this::EAsVoid, () -> this.mAsString() == null && this.x == LungeSwap.Type_f.WAITING);
             }
          }
       }
@@ -495,11 +495,11 @@ public final class LungeSwap extends Module {
    private String mAsString() {
       if (!this.isRuntimeActive() || !this.HAsBoolean()) {
          return "the game";
-      } else if (!pg.yAsBoolean(this)) {
+      } else if (!ParticleGeometry.yAsBoolean(this)) {
          return "the hotbar";
-      } else if (!pk.hAsBoolean(mc, mc.player)) {
+      } else if (!ParticleKind.hAsBoolean(mc, mc.player)) {
          return "free hands";
-      } else if (this.BAsBoolean() && pk.kAsInt(mc) > 0) {
+      } else if (this.BAsBoolean() && ParticleKind.kAsInt(mc) > 0) {
          return "the miss delay";
       } else if (this.PAsString() != null) {
          return "the Lunge conditions";
@@ -564,12 +564,12 @@ public final class LungeSwap extends Module {
                this.i = "Waiting for " + var3;
                if (++this.j > 10) {
                   ClientLog.GAsVoid("LungeSwap", "Charged jab lapsed, held by {}", var3);
-                  b_.KAsVoid(this);
+                  ModuleImportBroker.KAsVoid(this);
                   this.NAsVoid();
                   this.i = "Lunge blocked by " + var3;
                }
             } else {
-               b_.UAsVoid(this, () -> {
+               ModuleImportBroker.UAsVoid(this, () -> {
                   if (this.x == LungeSwap.Type_f.CHARGING && this.mAsString() == null) {
                      this.vAsVoid(true);
                   }
@@ -578,7 +578,7 @@ public final class LungeSwap extends Module {
          }
       } else {
          ClientLog.GAsVoid("LungeSwap", "Charge interrupted after {} ticks: slot {} selected", this.S, var1.getInventory().getSelectedSlot() + 1);
-         b_.KAsVoid(this);
+         ModuleImportBroker.KAsVoid(this);
          this.vAsVoid();
          this.i = "Swap interrupted";
       }
@@ -642,7 +642,7 @@ public final class LungeSwap extends Module {
    }
 
    private void uAsVoid(boolean var1) {
-      b_.KAsVoid(this);
+      ModuleImportBroker.KAsVoid(this);
       if (this.x != LungeSwap.Type_f.IDLE) {
          ClientLog.GAsVoid("LungeSwap", "Cancelled at {}; restore={}, status {}", this.x, var1, this.i);
       }

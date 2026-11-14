@@ -28,7 +28,7 @@ import org.joml.Matrix3x2fc;
 public final class HudSdfAtlas {
    public static final Identifier r = HAsIdentifier("textures/gui/hud_sdf.png");
    public static final Identifier F = HAsIdentifier("textures/gui/hud_sdf.json");
-   public static final float DropletTrail = 0.72727275F;
+   public static final float l = 0.72727275F;
    private static final int M = 8704;
    private static boolean k;
    private static boolean z;
@@ -43,7 +43,7 @@ public final class HudSdfAtlas {
    }
 
    public static void FAsVoid() {
-      if (GroundSample && !z && !G) {
+      if (k && !z && !G) {
          try {
             WorldLabelLayout.DAsVoid(HudSdfAtlas.Type_t.J);
             if (MinecraftClient.getInstance().getResourceManager().getResource(r).isEmpty()) {
@@ -76,7 +76,7 @@ public final class HudSdfAtlas {
    }
 
    private static HudSdfAtlas.Type_l PAsOa_Type_l() {
-      GroundSample = true;
+      k = true;
       return z && FontPreset.wAsV_Type_x() == TextDrawing.Type_x.MEDIUM ? L : null;
    }
 
@@ -135,7 +135,7 @@ public final class HudSdfAtlas {
    }
 
    public static void DAsVoid(DrawContext var0, String var1, double var2, double var4, double var6, int var8) {
-      var8 = qg.iAsInt(var8);
+      var8 = QueueGroup.iAsInt(var8);
       final int var8f = var8;
       if (var8 >>> 24 >= 4 && !var1.isEmpty()) {
          HudSdfAtlas.Type_l var9 = PAsOa_Type_l();
@@ -205,7 +205,7 @@ public final class HudSdfAtlas {
       if (var10 == null) {
          return false;
       } else {
-         var8 = qg.iAsInt(var8);
+         var8 = QueueGroup.iAsInt(var8);
          if (var8 >>> 24 < 4) {
             return true;
          } else {

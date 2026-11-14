@@ -7,12 +7,12 @@ import java.util.Locale;
 
 final class BulletTracer {
    private final ProfileSettingsPanel E;
-   String GroundSample = "";
+   String k = "";
    int y;
    int F;
    long c;
    boolean n;
-   List<JsonObject> HexEdgeloop = List.of();
+   List<JsonObject> p = List.of();
    JsonObject s;
 
    BulletTracer(ProfileSettingsPanel var1) {

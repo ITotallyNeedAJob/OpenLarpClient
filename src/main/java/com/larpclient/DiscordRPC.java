@@ -5,9 +5,9 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 public final class DiscordRPC {
-   public static final double LineSegment = 3.6;
+   public static final double e = 3.6;
    public static final double L = 1.56;
-   public static final double MenuPopupProvider = 1.28;
+   public static final double f = 1.28;
    public static final double z = 1.12;
    public static final Vec3d w = new Vec3d(-0.031, 0.08, -0.067);
    public static final Vec3d I = new Vec3d(-0.02649, -0.064244, -0.046604);
@@ -36,7 +36,7 @@ public final class DiscordRPC {
       for (int var3 = 0; var3 < this.n.length; var3++) {
          double var4 = (double)this.R[var3 * 5 + 1];
          this.n[var3] = var2.arm()[var3] ? 1.0F : 0.0F;
-         this.l[var3] = (float)Math.max((double)this.n[var3], az.mAsDouble((var4 + 0.17) / 0.1));
+         this.l[var3] = (float)Math.max((double)this.n[var3], WalkPose.mAsDouble((var4 + 0.17) / 0.1));
       }
 
       double var10 = -1.5;
@@ -76,31 +76,31 @@ public final class DiscordRPC {
 
    public double HAsDouble(double var1) {
       if (var1 < 1.28) {
-         return -2.65 * az.mAsDouble((var1 - 0.36) / 0.7600000000000001);
+         return -2.65 * WalkPose.mAsDouble((var1 - 0.36) / 0.7600000000000001);
       } else if (var1 < 1.56) {
          double var3 = Math.clamp((var1 - 1.28) / 0.28, 0.0, 1.0);
          return -2.65 + (this.d + 2.65) * var3 * var3;
       } else if (var1 < 1.6800000000000002) {
-         return this.d + 0.13 * az.mAsDouble((var1 - 1.56) / 0.12);
+         return this.d + 0.13 * WalkPose.mAsDouble((var1 - 1.56) / 0.12);
       } else {
          return var1 < 2.12
-            ? this.d + 0.13 - 0.27 * az.mAsDouble((var1 - 1.56 - 0.12) / 0.44000000000000006)
-            : (this.d - 0.14) * (1.0 - az.mAsDouble((var1 - 2.35) / 0.8));
+            ? this.d + 0.13 - 0.27 * WalkPose.mAsDouble((var1 - 1.56 - 0.12) / 0.44000000000000006)
+            : (this.d - 0.14) * (1.0 - WalkPose.mAsDouble((var1 - 2.35) / 0.8));
       }
    }
 
    private static double LAsDouble(double var0) {
-      return 0.7 * Math.sin(Math.PI * az.mAsDouble((var0 - 0.36) / 0.7600000000000001));
+      return 0.7 * Math.sin(Math.PI * WalkPose.mAsDouble((var0 - 0.36) / 0.7600000000000001));
    }
 
    public static double xAsDouble(double var0) {
-      double var2 = -0.055 * az.mAsDouble((var0 - 0.36) / 0.7600000000000001);
+      double var2 = -0.055 * WalkPose.mAsDouble((var0 - 0.36) / 0.7600000000000001);
       if (var0 < 1.28) {
          return var2;
       } else if (var0 < 1.56) {
-         return -0.055 + 0.235 * az.mAsDouble((var0 - 1.28) / 0.28);
+         return -0.055 + 0.235 * WalkPose.mAsDouble((var0 - 1.28) / 0.28);
       } else {
-         return var0 < 2.12 ? 0.18 - 0.12 * az.mAsDouble((var0 - 1.56) / 0.56) : 0.06 * (1.0 - az.mAsDouble((var0 - 2.35) / 0.8));
+         return var0 < 2.12 ? 0.18 - 0.12 * WalkPose.mAsDouble((var0 - 1.56) / 0.56) : 0.06 * (1.0 - WalkPose.mAsDouble((var0 - 2.35) / 0.8));
       }
    }
 
@@ -112,22 +112,22 @@ public final class DiscordRPC {
       return new Vec3d((double)this.C.x, (double)this.C.y, (double)this.C.z);
    }
 
-   private Vec3d gAsVec3d(az var1, Vec3d var2) {
+   private Vec3d gAsVec3d(WalkPose var1, Vec3d var2) {
       Vec3d var3 = var2.add(0.0, (double)(-this.Q.minimumY()), 0.0).multiply(this.S).add(this.T);
       double var4 = Math.cos(var1.M);
       double var6 = Math.sin(var1.M);
       return var1.X.add(var3.x * var4 - var3.z * var6, var3.y, var3.x * var6 + var3.z * var4);
    }
 
-   public Vec3d OAsVec3d(az var1, double var2) {
+   public Vec3d OAsVec3d(WalkPose var1, double var2) {
       return this.gAsVec3d(var1, this.rAsVec3d(F, var2));
    }
 
-   public Vec3d bAsVec3d(az var1, double var2) {
+   public Vec3d bAsVec3d(WalkPose var1, double var2) {
       return this.gAsVec3d(var1, this.rAsVec3d(I, var2));
    }
 
-   public DiscordRPC.Type_z oAsDj_Type_z(az var1, double var2, Vec3d var4) {
+   public DiscordRPC.Type_z oAsDj_Type_z(WalkPose var1, double var2, Vec3d var4) {
       this.SAsVoid(this.HAsDouble(var2), xAsDouble(var2), LAsDouble(var2));
       float[] var5 = this.Q.vertices();
 
@@ -164,22 +164,22 @@ public final class DiscordRPC {
          var20[var21] = this.OAsVec3d(var1, Math.max(1.28, var2 - 0.13 + (double)var21 * 0.13 / (double)(var20.length - 1)));
       }
 
-      double var22 = az.mAsDouble(var2 / 0.42) * az.mAsDouble((4.6 - var2) / 1.15);
+      double var22 = WalkPose.mAsDouble(var2 / 0.42) * WalkPose.mAsDouble((4.6 - var2) / 1.15);
       return new DiscordRPC.Type_z(this.R, this.Q.colors(), var19, var22, var18, this.bAsVec3d(var1, var2), this.OAsVec3d(var1, var2), var20);
    }
 
-   public static az.Type_x AAsAz_Type_x(az var0, int var1, double var2) {
-      double var4 = az.mAsDouble((var2 - 1.56) / 0.28);
+   public static WalkPose.Type_x AAsAz_Type_x(WalkPose var0, int var1, double var2) {
+      double var4 = WalkPose.mAsDouble((var2 - 1.56) / 0.28);
       double var6 = var4 * Math.PI / 2.0;
-      double var8 = az.mAsDouble(var1, var0.k) / 16.0 * 0.9375;
-      double var10 = (24.0 - az.A[var1][1]) / 16.0 * 0.9375;
+      double var8 = WalkPose.mAsDouble(var1, var0.k) / 16.0 * 0.9375;
+      double var10 = (24.0 - WalkPose.A[var1][1]) / 16.0 * 0.9375;
       double var12 = var10 * Math.sin(var6);
       double var14 = Math.cos(var0.M);
       double var16 = Math.sin(var0.M);
       Vec3d var18 = var0.X.add(var8 * var14 - var12 * var16, var10 * Math.cos(var6) + 0.27 * var4, var8 * var16 + var12 * var14);
-      double var19 = az.mAsDouble((3.65 - var2) / 0.9);
-      double var21 = az.mAsDouble((var2 - 2.6) / 1.05);
-      return new az.Type_x(var18, -var6, 0.0, 0.0, 1.0, var19, var21, var4 >= 1.0);
+      double var19 = WalkPose.mAsDouble((3.65 - var2) / 0.9);
+      double var21 = WalkPose.mAsDouble((var2 - 2.6) / 1.05);
+      return new WalkPose.Type_x(var18, -var6, 0.0, 0.0, 1.0, var19, var21, var4 >= 1.0);
    }
 
    public static record Type_z(float[] vertices, int[] colors, Matrix4f transform, double opacity, Vec3d feet, Vec3d grip, Vec3d tip, Vec3d[] trail) {

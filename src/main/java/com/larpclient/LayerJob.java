@@ -26,12 +26,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 public final class LayerJob {
-   private static final List<String> LineSegment = List.of(
+   private static final List<String> e = List.of(
       "helper", "admin", "owner", "founder", "manager", "curator", "developer", "staff", "куратор", "админ", "хелпер", "помощн", "стаж", "владел", "разраб"
    );
    private static final String N = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡʏᴢ";
-   private static final String PriceDetector = "abcdefghijklmnopqrstuvwyz";
-   private static final Pattern HexEdgeloop = Pattern.compile("§.?");
+   private static final String m = "abcdefghijklmnopqrstuvwyz";
+   private static final Pattern p = Pattern.compile("§.?");
    private static final Pattern Z = Pattern.compile("[^\\p{L}]+");
    private static final Map<String, Boolean> I = new ConcurrentHashMap<>();
 
@@ -46,12 +46,12 @@ public final class LayerJob {
             I.clear();
          }
 
-         return I.computeIfAbsent(var0, lj::SAsBoolean);
+         return I.computeIfAbsent(var0, LayerJob::SAsBoolean);
       }
    }
 
    private static boolean SAsBoolean(String var0) {
-      String var1 = Normalizer.normalize(HexEdgeloop.matcher(var0).replaceAll(""), Form.NFKC).toLowerCase(Locale.ROOT);
+      String var1 = Normalizer.normalize(p.matcher(var0).replaceAll(""), Form.NFKC).toLowerCase(Locale.ROOT);
       StringBuilder var2 = new StringBuilder(var1.length());
 
       for (int var3 = 0; var3 < var1.length(); var3++) {
@@ -60,7 +60,7 @@ public final class LayerJob {
       }
 
       String var8 = var2.toString();
-      if (LineSegment.stream().anyMatch(var8::contains)) {
+      if (e.stream().anyMatch(var8::contains)) {
          return true;
       } else {
          for (String var7 : Z.split(var8)) {
@@ -149,7 +149,7 @@ public final class LayerJob {
       int var4 = 168;
 
       for (LayerJob.Type_r var6 : var2) {
-         var4 = Math.max(var4, Math.min(300, ww.WAsInt(var6.label(), 13.0) + ww.WAsInt(var6.value(), 13.0) + 64));
+         var4 = Math.max(var4, Math.min(300, WorldWidget.WAsInt(var6.label(), 13.0) + WorldWidget.WAsInt(var6.value(), 13.0) + 64));
       }
 
       return new LayerJob.Type_y(var0, var1, var4, 48 + var2.size() * var3, List.copyOf(var2));
@@ -177,8 +177,8 @@ public final class LayerJob {
       MenuLogoLayout.yAsVoid(var0, var1, var2, var3, var4, 12);
       if (var7) {
          RoundedShapePipeline.nAsVoid(var0, (float)(var1 + 2), (float)(var2 + 32), (float)(var3 - 4), 1.0F, 0.5F, 675036230);
-         ww.fAsVoid(var0, var5, (double)(var1 + 12), (double)(var2 + 10), 13.0, -1250068);
-         ww.aAsVoid(var0, var6, var1 + var3 - 26, var2 + 9, 14, bd.w);
+         WorldWidget.fAsVoid(var0, var5, (double)(var1 + 12), (double)(var2 + 10), 13.0, -1250068);
+         WorldWidget.aAsVoid(var0, var6, var1 + var3 - 26, var2 + 9, 14, UiStyle.w);
       }
    }
 
@@ -208,9 +208,9 @@ public final class LayerJob {
             break;
          case "radar":
             CAsVoid(var0, var3, var4, 84, 84, "", "", false);
-            GuiTextureDrawing.CAsVoid(var0, var3 + 42, var4 + 14, 1, 56, bg.XAsInt(bd.w, 0.23));
-            GuiTextureDrawing.CAsVoid(var0, var3 + 14, var4 + 42, 56, 1, bg.XAsInt(bd.w, 0.23));
-            GuiTextureDrawing.RAsVoid(var0, var3 + 42, var4 + 42, 2, bd.w);
+            GuiTextureDrawing.CAsVoid(var0, var3 + 42, var4 + 14, 1, 56, ColorUtil.XAsInt(UiStyle.w, 0.23));
+            GuiTextureDrawing.CAsVoid(var0, var3 + 14, var4 + 42, 56, 1, ColorUtil.XAsInt(UiStyle.w, 0.23));
+            GuiTextureDrawing.RAsVoid(var0, var3 + 42, var4 + 42, 2, UiStyle.w);
             double var18 = var7 == null ? 47.0 : var7.radarRange.getValue();
             if (var6.player != null && var6.world != null) {
                MCFriend var21 = LarpClient.CAsLarpClient().mAsF().EAsModule(MCFriend.class);
@@ -252,19 +252,19 @@ public final class LayerJob {
                   var14 += 21;
                }
 
-               int var15 = var13.value().isEmpty() ? 0 : ww.WAsInt(var13.value(), 13.0) + 8;
-               ww.fAsVoid(
+               int var15 = var13.value().isEmpty() ? 0 : WorldWidget.WAsInt(var13.value(), 13.0) + 8;
+               WorldWidget.fAsVoid(
                   var0,
-                  ww.xAsString(var13.label(), (double)(var3 + var2.width() - 12 - var15 - var14), 13.0),
+                  WorldWidget.xAsString(var13.label(), (double)(var3 + var2.width() - 12 - var15 - var14), 13.0),
                   (double)var14,
                   FontPreset.vAsDouble((double)var11, (double)var10, 13.0),
                   13.0,
                   var13.value().isEmpty() ? var13.tint() : -1250068
                );
-               ww.fAsVoid(
+               WorldWidget.fAsVoid(
                   var0,
                   var13.value(),
-                  (double)(var3 + var2.width() - 12 - ww.WAsInt(var13.value(), 13.0)),
+                  (double)(var3 + var2.width() - 12 - WorldWidget.WAsInt(var13.value(), 13.0)),
                   FontPreset.vAsDouble((double)var11, (double)var10, 13.0),
                   13.0,
                   var13.tint()
@@ -275,7 +275,7 @@ public final class LayerJob {
    }
 
    private static final class Type_o {
-      static final Set<Item> TextLayout = Set.of(Items.ENDER_PEARL, Items.CHORUS_FRUIT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE, Items.SHIELD);
+      static final Set<Item> j = Set.of(Items.ENDER_PEARL, Items.CHORUS_FRUIT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE, Items.SHIELD);
 
       private Type_o() {
       }

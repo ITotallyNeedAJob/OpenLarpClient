@@ -14,8 +14,8 @@ import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
 public final class LayerIndex {
-   private static final long PriceDetector = 250000000L;
-   private static final LayerIndex.Type_p[] AuraModule = new LayerIndex.Type_p[]{new LayerIndex.Type_p(), new LayerIndex.Type_p()};
+   private static final long m = 250000000L;
+   private static final LayerIndex.Type_p[] x = new LayerIndex.Type_p[]{new LayerIndex.Type_p(), new LayerIndex.Type_p()};
    private static float s;
    private static float d;
    private static int X;
@@ -32,11 +32,11 @@ public final class LayerIndex {
       if (nAsBoolean()) {
          MinecraftClient var0 = MinecraftClient.getInstance();
          Window var1 = var0.getWindow();
-         float var2 = w3.CAsFloat();
+         float var2 = WebRenderer.CAsFloat();
          if (!(var2 <= 0.0F) && var1.getFramebufferHeight() > 0) {
             float var3 = (float)Math.tan(Math.toRadians((double)var2) / 2.0);
-            SahurDanceEngine = 1.0F / var3;
-            SkyChunkCache = SahurDanceEngine * (float)var1.getFramebufferHeight() / (float)var1.getFramebufferWidth();
+            d = 1.0F / var3;
+            s = d * (float)var1.getFramebufferHeight() / (float)var1.getFramebufferWidth();
             X = var1.getScaledWidth();
             E = var1.getScaledHeight();
             Z++;
@@ -45,7 +45,7 @@ public final class LayerIndex {
    }
 
    public static void AAsVoid(Hand var0, boolean var1, MatrixStack var2, ItemRenderState var3) {
-      if (nAsBoolean() && SahurDanceEngine != 0.0F) {
+      if (nAsBoolean() && d != 0.0F) {
          Matrix4f var4 = new Matrix4f(RenderSystem.getModelViewStack()).mul(var2.peek().getPositionMatrix());
          LayerIndex.Type_p var5 = wAsLi_Type_p(var0, var1);
          Vector3f var6 = new Vector3f();
@@ -54,7 +54,7 @@ public final class LayerIndex {
    }
 
    public static void WAsVoid(Hand var0, boolean var1, MatrixStack var2, ModelPart var3) {
-      if (nAsBoolean() && SahurDanceEngine != 0.0F) {
+      if (nAsBoolean() && d != 0.0F) {
          Matrix4f var4 = new Matrix4f(RenderSystem.getModelViewStack());
          LayerIndex.Type_p var5 = wAsLi_Type_p(var0, var1);
          MatrixStack var6 = new MatrixStack();
@@ -65,7 +65,7 @@ public final class LayerIndex {
    }
 
    public static void dAsVoid(Hand var0, boolean var1, MatrixStack var2, float[] var3, int var4) {
-      if (nAsBoolean() && SahurDanceEngine != 0.0F) {
+      if (nAsBoolean() && d != 0.0F) {
          Matrix4f var5 = new Matrix4f(RenderSystem.getModelViewStack()).mul(var2.peek().getPositionMatrix());
          LayerIndex.Type_p var6 = wAsLi_Type_p(var0, var1);
          Vector3f var7 = new Vector3f();
@@ -89,8 +89,8 @@ public final class LayerIndex {
             var5,
             Math.max(1, (int)Math.ceil(var1.Y) - var4),
             Math.max(1, (int)Math.ceil(var1.s) - var5),
-            2.0 * var2 / (double)(SkyChunkCache * (float)X),
-            2.0 * var2 / (double)(SahurDanceEngine * (float)E)
+            2.0 * var2 / (double)(s * (float)X),
+            2.0 * var2 / (double)(d * (float)E)
          );
       } else {
          return null;
@@ -111,7 +111,7 @@ public final class LayerIndex {
    }
 
    private static final class Type_p {
-      long AuctionNotifier = -1L;
+      long o = -1L;
       long v;
       boolean U;
       int d;

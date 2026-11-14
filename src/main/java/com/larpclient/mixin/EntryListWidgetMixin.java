@@ -24,7 +24,7 @@ public abstract class EntryListWidgetMixin {
    private void larpclient$injectV(DrawContext var1, CallbackInfo var2) {
       if (MinecraftClient.getInstance().world == null && ClientTitleScreen.QAsBoolean()) {
          EntryListWidget var3 = (EntryListWidget)(Object)this;
-         GuiTextureDrawing.CAsVoid(var1, var3.getX(), var3.getY(), var3.getWidth(), var3.getHeight(), bd.X);
+         GuiTextureDrawing.CAsVoid(var1, var3.getX(), var3.getY(), var3.getWidth(), var3.getHeight(), UiStyle.X);
          var2.cancel();
       }
    }
@@ -37,7 +37,7 @@ public abstract class EntryListWidgetMixin {
    private void larpclient$injectV2(DrawContext var1, CallbackInfo var2) {
       if (MinecraftClient.getInstance().world == null && ClientTitleScreen.QAsBoolean()) {
          EntryListWidget var3 = (EntryListWidget)(Object)this;
-         int var4 = bd.A;
+         int var4 = UiStyle.A;
          GuiTextureDrawing.CAsVoid(var1, var3.getX(), var3.getY() - 1, var3.getWidth(), 1, var4);
          GuiTextureDrawing.CAsVoid(var1, var3.getX(), var3.getBottom(), var3.getWidth(), 1, var4);
          var2.cancel();

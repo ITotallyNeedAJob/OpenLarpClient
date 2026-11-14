@@ -34,7 +34,7 @@ public final class SpawnerFinder extends sf {
    private final BooleanSetting spawnerTracers = this.addSetting(
       new BooleanSetting("Spawner Tracers", "Lines from the camera to exact spawner positions", false)
    );
-   private final List<wl.Type_g> Z = new ArrayList<>();
+   private final List<WidgetLayer.Type_g> Z = new ArrayList<>();
    private int m;
    private int L;
    private int W;
@@ -108,26 +108,26 @@ public final class SpawnerFinder extends sf {
                ClientLog.hAsVoid("BaseFinding", "Spawner mob label unavailable; retaining generic name and exact position", var141);
             }
 
-            this.Z.add(new wl.Type_g(var3, var4, var5, var7, var8));
+            this.Z.add(new WidgetLayer.Type_g(var3, var4, var5, var7, var8));
          }
       }
    }
 
    @Override
-   protected wl.Type_v evidence() {
-      wl.Type_v var1 = super.evidence();
-      return new wl.Type_v(0, 0, var1.spawners(), var1.sampleY(), ae.EMPTY, GrowthClueSummary.EMPTY, this.Z);
+   protected WidgetLayer.Type_v evidence() {
+      WidgetLayer.Type_v var1 = super.evidence();
+      return new WidgetLayer.Type_v(0, 0, var1.spawners(), var1.sampleY(), FinderSummary.EMPTY, GrowthClueSummary.EMPTY, this.Z);
    }
 
    @Override
-   protected boolean qualifies(wl.Type_v var1) {
+   protected boolean qualifies(WidgetLayer.Type_v var1) {
       return var1.spawners() > 0;
    }
 
    @Override
-   protected String describe(wl.Type_v var1) {
+   protected String describe(WidgetLayer.Type_v var1) {
       if (!var1.hits().isEmpty()) {
-         wl.Type_g var2 = var1.hits().getFirst();
+         WidgetLayer.Type_g var2 = var1.hits().getFirst();
          return var2.name() + " · " + var1.spawners() + " blocks · Y:" + var2.y();
       } else {
          return var1.spawners() + " spawner blocks; first at Y:" + var1.sampleY();
@@ -140,8 +140,8 @@ public final class SpawnerFinder extends sf {
    }
 
    @Override
-   protected void drawEvidence(ChunkPos var1, wl.Type_v var2, ThemeSettings var3, int var4) {
-      for (wl.Type_g var6 : var2.hits()) {
+   protected void drawEvidence(ChunkPos var1, WidgetLayer.Type_v var2, ThemeSettings var3, int var4) {
+      for (WidgetLayer.Type_g var6 : var2.hits()) {
          if (this.m >= 256) {
             break;
          }

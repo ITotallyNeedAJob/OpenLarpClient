@@ -21,7 +21,7 @@ public final class ModuleKeybindChecker {
 
    public static boolean VAsBoolean() {
       MinecraftClient var0 = MinecraftClient.getInstance();
-      return var0.world != null && var0.player != null && var0.player.isAlive() && !p5.oAsBoolean();
+      return var0.world != null && var0.player != null && var0.player.isAlive() && !ParticleEmitter.oAsBoolean();
    }
 
    public static boolean hAsBoolean() {
@@ -46,7 +46,7 @@ public final class ModuleKeybindChecker {
       MinecraftClient var0 = MinecraftClient.getInstance();
       double var1 = (double)((var0.options.forwardKey.isPressed() ? 1 : 0) - (var0.options.backKey.isPressed() ? 1 : 0));
       double var3 = (double)((var0.options.leftKey.isPressed() ? 1 : 0) - (var0.options.rightKey.isPressed() ? 1 : 0));
-      float var5 = qm.hAsBoolean() ? p5.jAsFloat() : var0.player.getYaw();
+      float var5 = QueueManager.hAsBoolean() ? ParticleEmitter.jAsFloat() : var0.player.getYaw();
       double var6 = Math.toRadians((double)var5);
       return new Vec3d(-Math.sin(var6) * var1 + Math.cos(var6) * var3, 0.0, Math.cos(var6) * var1 + Math.sin(var6) * var3).normalize();
    }

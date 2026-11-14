@@ -28,7 +28,7 @@ public final class BoatFly extends Module {
       new BooleanSetting("Anti Kick", "Dip slightly every 2 seconds in open air so a vanilla server does not kick you for floating", true)
    );
    private AbstractBoatEntity J;
-   private da t;
+   private DropAnimation t;
    private double N;
    private long a;
    private int O;
@@ -122,7 +122,7 @@ public final class BoatFly extends Module {
       if (var1 != this.J) {
          this.LAsVoid(this.J == null ? null : "Changed boats");
          this.J = var1;
-         this.t = new da();
+         this.t = new DropAnimation();
          this.N = var1.getY();
          ClientLog.XAsVoid("BoatFly", "Flying {} at {}", var1.getName().getString(), var1.getBlockPos().toShortString());
       }
@@ -131,9 +131,9 @@ public final class BoatFly extends Module {
       this.t.kAsVoid(var1.getY() - this.N, var1.groundCollision || !this.vAsBoolean(var1));
       this.N = var1.getY();
       GameOptions var2 = mc.options;
-      int var3 = mc.currentScreen == null && r6.VAsBoolean() ? 1 : 0;
-      Vec3d var4 = var3 != 0 ? r6.JAsVec3d() : Vec3d.ZERO;
-      int var5 = var3 == 0 ? 0 : (var2.jumpKey.isPressed() ? 1 : 0) - (r6.pAsBoolean(var2.sprintKey) ? 1 : 0);
+      int var3 = mc.currentScreen == null && ModuleKeybindChecker.VAsBoolean() ? 1 : 0;
+      Vec3d var4 = var3 != 0 ? ModuleKeybindChecker.JAsVec3d() : Vec3d.ZERO;
+      int var5 = var3 == 0 ? 0 : (var2.jumpKey.isPressed() ? 1 : 0) - (ModuleKeybindChecker.pAsBoolean(var2.sprintKey) ? 1 : 0);
       int var6 = this.t.JAsInt();
       Vec3d var7 = this.t
          .TAsVec3d(

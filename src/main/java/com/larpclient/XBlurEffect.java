@@ -18,7 +18,7 @@ public final class XBlurEffect {
          var8.translate((float)var3, (float)var5);
          switch (var0) {
             case "Pop":
-               var8.translate(0.0F, (1.0F - var7) * 13.0F).scale(0.9F + 0.1F * (float)w2.Type_e.BACK_OUT.zAsDouble((double)var7));
+               var8.translate(0.0F, (1.0F - var7) * 13.0F).scale(0.9F + 0.1F * (float)WeatherRenderer.Type_e.BACK_OUT.zAsDouble((double)var7));
                break;
             case "Zoom":
                var8.scale(0.55F + 0.45F * var7);
@@ -49,10 +49,10 @@ public final class XBlurEffect {
    }
 
    private static float iAsFloat(float var0) {
-      return (float)w2.Type_e.CUBIC_OUT.zAsDouble((double)Math.min(1.0F, var0 / 0.4F));
+      return (float)WeatherRenderer.Type_e.CUBIC_OUT.zAsDouble((double)Math.min(1.0F, var0 / 0.4F));
    }
 
    private static float yAsFloat(float var0) {
-      return (float)w2.Type_e.CUBIC_OUT.zAsDouble((double)Math.max(0.0F, (var0 - 0.35F) / 0.65F));
+      return (float)WeatherRenderer.Type_e.CUBIC_OUT.zAsDouble((double)Math.max(0.0F, (var0 - 0.35F) / 0.65F));
    }
 }

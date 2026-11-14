@@ -1,10 +1,10 @@
 package com.larpclient;
 
 public final class InventorySlotSnapshot {
-   private final int[] HexEdgeloop = new int[36];
+   private final int[] p = new int[36];
    private final boolean[] D = new boolean[36];
    private long X = -1L;
-   private long SahurDanceEngine = -1L;
+   private long d = -1L;
    private long n;
    private int[] I;
 

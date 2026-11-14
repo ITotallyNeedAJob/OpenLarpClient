@@ -5,17 +5,17 @@ import java.util.Arrays;
 import net.minecraft.util.math.Vec3d;
 
 public final class WorldDisplay {
-   public static final int SmoothInput = 48;
+   public static final int t = 48;
    public static final int W = 800;
-   private final Vec3d[] PriceDetector = new Vec3d[47];
-   private final double[] AuctionNotifier = new double[47];
+   private final Vec3d[] m = new Vec3d[47];
+   private final double[] o = new double[47];
    private int i;
    private int X;
    private int L = -1;
    private Vec3d H;
    private Vec3d g;
    private Vec3d w;
-   private double DropletTrail = Double.NaN;
+   private double l = Double.NaN;
 
    public WorldDisplay() {
    }
