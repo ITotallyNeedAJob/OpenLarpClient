@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.p5;
+import com.larpclient.ParticleEmitter;
 import com.larpclient.module.Freecam;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

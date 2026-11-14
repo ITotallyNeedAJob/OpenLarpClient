@@ -1,8 +1,8 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.la;
-import com.larpclient.ms;
+import com.larpclient.LimbData;
+import com.larpclient.ModuleSearch;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.PlayerLikeEntity;
 import net.minecraft.entity.player.PlayerEntity;

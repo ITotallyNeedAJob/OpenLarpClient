@@ -3,7 +3,7 @@ package com.larpclient.module;
 import com.larpclient.ClientLog;
 import com.larpclient.LarpClient;
 import com.larpclient.NotificationHud;
-import com.larpclient.lj;
+import com.larpclient.LayerJob;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

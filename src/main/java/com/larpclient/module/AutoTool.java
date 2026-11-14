@@ -1,8 +1,8 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.b_;
-import com.larpclient.qe;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.QueueEntry;
 import java.util.ArrayList;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;

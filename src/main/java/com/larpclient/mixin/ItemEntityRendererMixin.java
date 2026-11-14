@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
-import com.larpclient.p1;
-import com.larpclient.xo;
+import com.larpclient.ParticleConfig;
+import com.larpclient.XOverlay;
 import com.larpclient.module.ItemPhysic;
 import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.ItemEntityRenderer;

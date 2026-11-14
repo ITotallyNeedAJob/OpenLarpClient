@@ -1,7 +1,7 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.r6;
+import com.larpclient.ModuleKeybindChecker;
 import java.util.Set;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EntityShapeContext;

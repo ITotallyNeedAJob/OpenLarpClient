@@ -1,8 +1,8 @@
 package com.larpclient.mixin;
 
-import com.larpclient.mc;
-import com.larpclient.mj;
-import com.larpclient.xk;
+import com.larpclient.MediaControls;
+import com.larpclient.MotionBlur;
+import com.larpclient.XKeybind;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;

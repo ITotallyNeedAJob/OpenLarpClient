@@ -1,8 +1,8 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.p5;
-import com.larpclient.w2;
+import com.larpclient.ParticleEmitter;
+import com.larpclient.WeatherRenderer;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Locale;

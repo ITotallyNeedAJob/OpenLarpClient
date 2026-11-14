@@ -2,10 +2,10 @@ package com.larpclient.mixin;
 
 import com.larpclient.ClientLog;
 import com.larpclient.PlayerCosmeticsFeature;
-import com.larpclient.la;
-import com.larpclient.mc;
-import com.larpclient.mj;
-import com.larpclient.xk;
+import com.larpclient.LimbData;
+import com.larpclient.MediaControls;
+import com.larpclient.MotionBlur;
+import com.larpclient.XKeybind;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;

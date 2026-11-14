@@ -1,7 +1,7 @@
 package com.larpclient.mixin.feature.entity;
 
 import com.larpclient.CrystalChams;
-import com.larpclient.wj;
+import com.larpclient.WidgetJob;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;

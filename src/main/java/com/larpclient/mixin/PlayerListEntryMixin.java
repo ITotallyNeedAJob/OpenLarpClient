@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.ml;
+import com.larpclient.ModuleList;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.entity.player.SkinTextures;
 import org.spongepowered.asm.mixin.Mixin;

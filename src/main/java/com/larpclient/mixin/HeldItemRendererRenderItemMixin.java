@@ -3,7 +3,7 @@ package com.larpclient.mixin;
 import com.larpclient.BladeGeometry;
 import com.larpclient.CosmeticSubmissionHandler;
 import com.larpclient.WeaponTrailRenderer;
-import com.larpclient.li;
+import com.larpclient.LayerIndex;
 import com.larpclient.module.Animations;
 import com.larpclient.module.ViewModel;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

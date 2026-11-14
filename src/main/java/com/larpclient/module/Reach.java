@@ -1,7 +1,7 @@
 package com.larpclient.module;
 
-import com.larpclient.b_;
-import com.larpclient.rf;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.RefractionFilter;
 import java.util.Set;
 import java.util.UUID;
 import net.minecraft.client.network.ClientPlayerEntity;

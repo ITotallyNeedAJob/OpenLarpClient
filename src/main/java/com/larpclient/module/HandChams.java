@@ -1,8 +1,8 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.b8;
-import com.larpclient.bp;
+import com.larpclient.ButtonWidget;
+import com.larpclient.BridgeRenderer;
 
 public final class HandChams extends Module {
    private static HandChams d;

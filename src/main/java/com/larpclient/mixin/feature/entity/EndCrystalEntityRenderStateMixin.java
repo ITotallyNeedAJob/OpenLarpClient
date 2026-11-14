@@ -1,6 +1,6 @@
 package com.larpclient.mixin.feature.entity;
 
-import com.larpclient.wj;
+import com.larpclient.WidgetJob;
 import net.minecraft.client.render.entity.state.EndCrystalEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

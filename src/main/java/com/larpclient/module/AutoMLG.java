@@ -2,10 +2,10 @@ package com.larpclient.module;
 
 import com.larpclient.BlockPlacementController;
 import com.larpclient.ClientLog;
-import com.larpclient.b_;
-import com.larpclient.dq;
-import com.larpclient.p5;
-import com.larpclient.pg;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.ModuleDetector;
+import com.larpclient.ParticleEmitter;
+import com.larpclient.ParticleGeometry;
 import com.larpclient.mixin.ClientPlayerInteractionManagerAccessor;
 import com.larpclient.mixin.MinecraftClientAccessor;
 import java.util.Locale;

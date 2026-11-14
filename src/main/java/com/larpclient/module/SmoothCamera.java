@@ -1,7 +1,7 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.p5;
+import com.larpclient.ParticleEmitter;
 import java.util.Locale;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.Perspective;

@@ -2,7 +2,7 @@ package com.larpclient.mixin;
 
 import com.larpclient.ClickGuiScreen;
 import com.larpclient.MenuPopupProvider;
-import com.larpclient.wz;
+import com.larpclient.WidgetPopup;
 import com.larpclient.module.WorldMenu;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;

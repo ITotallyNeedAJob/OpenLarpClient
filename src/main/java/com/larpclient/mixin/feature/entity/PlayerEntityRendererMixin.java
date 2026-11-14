@@ -1,6 +1,6 @@
 package com.larpclient.mixin.feature.entity;
 
-import com.larpclient.b2;
+import com.larpclient.ArmReach;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;

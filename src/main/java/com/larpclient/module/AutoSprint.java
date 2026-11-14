@@ -2,7 +2,7 @@ package com.larpclient.module;
 
 import com.larpclient.AutoTunnel;
 import com.larpclient.ClientLog;
-import com.larpclient.r6;
+import com.larpclient.ModuleKeybindChecker;
 import java.util.Set;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.PlayerInput;

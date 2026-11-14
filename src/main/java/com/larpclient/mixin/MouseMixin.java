@@ -1,9 +1,9 @@
 package com.larpclient.mixin;
 
-import com.larpclient.aj;
-import com.larpclient.aq;
+import com.larpclient.ContainerScaleSupplier;
+import com.larpclient.PopupScale;
 import com.larpclient.MenuPopupProvider;
-import com.larpclient.xt;
+import com.larpclient.XTexture;
 import com.larpclient.module.GUIAnimation;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;

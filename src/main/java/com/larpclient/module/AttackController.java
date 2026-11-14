@@ -1,10 +1,10 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.b_;
-import com.larpclient.db;
-import com.larpclient.pg;
-import com.larpclient.pk;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.FallDamage;
+import com.larpclient.ParticleGeometry;
+import com.larpclient.ParticleKind;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;

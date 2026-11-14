@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.pk;
+import com.larpclient.ParticleKind;
 import com.larpclient.module.AutoDrain;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;

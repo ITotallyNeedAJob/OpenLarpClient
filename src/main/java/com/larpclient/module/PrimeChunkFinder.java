@@ -3,7 +3,7 @@ package com.larpclient.module;
 import com.larpclient.ClientLog;
 import com.larpclient.NotificationHud;
 import com.larpclient.ThemeSettings;
-import com.larpclient.we;
+import com.larpclient.WetEffect;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.BitSet;

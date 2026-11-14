@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.dn;
+import com.larpclient.TextReveal;
 import com.larpclient.module.GUIAnimation;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

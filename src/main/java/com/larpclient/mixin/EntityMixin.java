@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.ai;
+import com.larpclient.CometRenderer;
 import com.larpclient.module.AimAssist;
 import com.larpclient.module.GrimSpeed;
 import com.larpclient.module.Speed;

@@ -1,7 +1,7 @@
 package com.larpclient.mixin.compat;
 
 import com.larpclient.FakeSpawnerController;
-import com.larpclient.w3;
+import com.larpclient.WebRenderer;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;

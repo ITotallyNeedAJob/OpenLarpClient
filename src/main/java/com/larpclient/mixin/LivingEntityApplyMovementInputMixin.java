@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
-import com.larpclient.n5;
-import com.larpclient.p5;
+import com.larpclient.KnockbackAdjuster;
+import com.larpclient.ParticleEmitter;
 import com.larpclient.module.Aura;
 import com.larpclient.module.AutoAnchor;
 import com.larpclient.module.AutoCrystal;

@@ -1,8 +1,8 @@
 package com.larpclient.module;
 
 import com.larpclient.ActionOwnership;
-import com.larpclient.bd;
-import com.larpclient.bg;
+import com.larpclient.UiStyle;
+import com.larpclient.ColorUtil;
 import java.util.Optional;
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;

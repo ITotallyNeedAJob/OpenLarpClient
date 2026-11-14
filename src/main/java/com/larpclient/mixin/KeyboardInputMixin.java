@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
-import com.larpclient.ot;
-import com.larpclient.p5;
+import com.larpclient.OuterEffect;
+import com.larpclient.ParticleEmitter;
 import com.larpclient.module.Freecam;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.input.KeyboardInput;

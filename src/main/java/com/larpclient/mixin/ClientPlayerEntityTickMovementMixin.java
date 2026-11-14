@@ -1,9 +1,9 @@
 package com.larpclient.mixin;
 
 import com.larpclient.LarpClient;
-import com.larpclient.b_;
-import com.larpclient.pk;
-import com.larpclient.qm;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.ParticleKind;
+import com.larpclient.QueueManager;
 import com.larpclient.module.Aura;
 import com.larpclient.module.AutoSprint;
 import com.larpclient.module.GrimSpeed;

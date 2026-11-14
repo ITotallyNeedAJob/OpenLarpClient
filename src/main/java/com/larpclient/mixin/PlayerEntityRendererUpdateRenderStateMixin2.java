@@ -2,8 +2,8 @@ package com.larpclient.mixin;
 
 import com.larpclient.ClientLog;
 import com.larpclient.EmotecraftJsonReader;
-import com.larpclient.o6;
-import com.larpclient.rg;
+import com.larpclient.OptionPanel;
+import com.larpclient.RefractionGeometry;
 import com.larpclient.module.Emotes;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;

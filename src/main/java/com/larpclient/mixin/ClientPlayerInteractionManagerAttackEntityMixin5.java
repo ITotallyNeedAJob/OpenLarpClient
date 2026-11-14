@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
-import com.larpclient.b_;
-import com.larpclient.p5;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.ParticleEmitter;
 import com.larpclient.module.Aura;
 import com.larpclient.module.AutoTool;
 import net.minecraft.client.network.ClientPlayerInteractionManager;

@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.ml;
+import com.larpclient.ModuleList;
 import com.larpclient.module.Capes;
 import com.larpclient.module.SkinChanger;
 import java.util.UUID;

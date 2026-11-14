@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.xa;
+import com.larpclient.XRayEffect;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.textures.FilterMode;
 import com.mojang.blaze3d.textures.GpuTexture;

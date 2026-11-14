@@ -3,7 +3,7 @@ package com.larpclient.module;
 import com.larpclient.ClientLog;
 import com.larpclient.KeybindNames;
 import com.larpclient.LarpClient;
-import com.larpclient.mg;
+import com.larpclient.MovementTrace;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;

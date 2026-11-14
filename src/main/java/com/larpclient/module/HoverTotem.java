@@ -2,8 +2,8 @@ package com.larpclient.module;
 
 import com.larpclient.ClientLog;
 import com.larpclient.VisualInventory;
-import com.larpclient.mx;
-import com.larpclient.p5;
+import com.larpclient.MixinCompat;
+import com.larpclient.ParticleEmitter;
 import com.larpclient.mixin.ClientPlayerEntityAccessor;
 import com.larpclient.mixin.HandledScreenAccessor;
 import java.util.Set;

@@ -1,9 +1,9 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.b_;
-import com.larpclient.o5;
-import com.larpclient.pa;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.OptifineBridge;
+import com.larpclient.Debounce;
 import java.util.Optional;
 import java.util.Set;
 import net.minecraft.entity.Entity;

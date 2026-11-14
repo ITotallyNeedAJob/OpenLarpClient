@@ -3,8 +3,8 @@ package com.larpclient.module;
 import com.larpclient.ClientLog;
 import com.larpclient.KeybindNames;
 import com.larpclient.SessionManager;
-import com.larpclient.p5;
-import com.larpclient.r6;
+import com.larpclient.ParticleEmitter;
+import com.larpclient.ModuleKeybindChecker;
 import java.util.Set;
 import net.minecraft.client.MinecraftClient;
 

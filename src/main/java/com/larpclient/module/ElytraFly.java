@@ -1,6 +1,6 @@
 package com.larpclient.module;
 
-import com.larpclient.r6;
+import com.larpclient.ModuleKeybindChecker;
 import java.util.Set;
 import net.minecraft.util.math.Vec3d;
 

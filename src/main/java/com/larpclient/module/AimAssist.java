@@ -2,10 +2,10 @@ package com.larpclient.module;
 
 import com.larpclient.ClientLog;
 import com.larpclient.LarpClient;
-import com.larpclient.dq;
-import com.larpclient.l_;
-import com.larpclient.p5;
-import com.larpclient.w7;
+import com.larpclient.ModuleDetector;
+import com.larpclient.AngleMath;
+import com.larpclient.ParticleEmitter;
+import com.larpclient.WaveEffect;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;

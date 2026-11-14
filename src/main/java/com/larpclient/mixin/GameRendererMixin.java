@@ -1,8 +1,8 @@
 package com.larpclient.mixin;
 
 import com.larpclient.HandEffectRenderer;
-import com.larpclient.b8;
-import com.larpclient.ow;
+import com.larpclient.ButtonWidget;
+import com.larpclient.WindowState;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.render.GameRenderer;

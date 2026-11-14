@@ -2,7 +2,7 @@ package com.larpclient.module;
 
 import com.larpclient.ClientLog;
 import com.larpclient.ThemeSettings;
-import com.larpclient.bg;
+import com.larpclient.ColorUtil;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
 import com.larpclient.ClientLog;
-import com.larpclient.w3;
+import com.larpclient.WebRenderer;
 import com.mojang.blaze3d.buffers.GpuBufferSlice;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.RenderTickCounter;

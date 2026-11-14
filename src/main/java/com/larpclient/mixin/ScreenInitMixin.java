@@ -1,10 +1,10 @@
 package com.larpclient.mixin;
 
-import com.larpclient.aj;
-import com.larpclient.aq;
+import com.larpclient.ContainerScaleSupplier;
+import com.larpclient.PopupScale;
 import com.larpclient.MenuPopupProvider;
-import com.larpclient.wz;
-import com.larpclient.xt;
+import com.larpclient.WidgetPopup;
+import com.larpclient.XTexture;
 import com.larpclient.module.GUIAnimation;
 import com.larpclient.module.Module3DUI;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;

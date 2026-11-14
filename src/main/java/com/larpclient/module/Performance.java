@@ -5,7 +5,7 @@ import com.larpclient.ClientLog;
 import com.larpclient.LarpClient;
 import com.larpclient.ProfileManager;
 import com.larpclient.SoftParticlePipeline;
-import com.larpclient.x9;
+import com.larpclient.BloomQualityHelper;
 import java.util.List;
 import net.minecraft.client.render.ChunkBuilderMode;
 

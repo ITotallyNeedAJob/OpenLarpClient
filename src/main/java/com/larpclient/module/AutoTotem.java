@@ -1,9 +1,9 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.at;
-import com.larpclient.p5;
-import com.larpclient.pk;
+import com.larpclient.ClickState;
+import com.larpclient.ParticleEmitter;
+import com.larpclient.ParticleKind;
 import com.larpclient.mixin.ClientPlayerEntityAccessor;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;

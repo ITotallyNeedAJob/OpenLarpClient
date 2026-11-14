@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
-import com.larpclient.p5;
-import com.larpclient.pj;
+import com.larpclient.ParticleEmitter;
+import com.larpclient.ParticleJoint;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicReferenceArray;

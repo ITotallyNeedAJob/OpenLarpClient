@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.b_;
+import com.larpclient.ModuleImportBroker;
 import com.larpclient.module.AutoClicker;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

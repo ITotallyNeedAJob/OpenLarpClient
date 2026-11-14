@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.aq;
+import com.larpclient.PopupScale;
 import com.larpclient.MenuPopupProvider;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;

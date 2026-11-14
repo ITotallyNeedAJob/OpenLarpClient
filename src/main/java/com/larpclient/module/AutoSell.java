@@ -5,7 +5,7 @@ import com.larpclient.AuctionSaleConfirmation;
 import com.larpclient.ClientLog;
 import com.larpclient.LarpClient;
 import com.larpclient.SelectionSettings;
-import com.larpclient.oe;
+import com.larpclient.OfferPanel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;

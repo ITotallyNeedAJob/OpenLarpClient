@@ -1,9 +1,9 @@
 package com.larpclient.mixin;
 
 import com.larpclient.ActivityReporter;
-import com.larpclient.ai;
-import com.larpclient.db;
-import com.larpclient.n5;
+import com.larpclient.CometRenderer;
+import com.larpclient.FallDamage;
+import com.larpclient.KnockbackAdjuster;
 import com.larpclient.module.AimAssist;
 import com.larpclient.module.AutoCart;
 import com.larpclient.module.AutoCrystal;

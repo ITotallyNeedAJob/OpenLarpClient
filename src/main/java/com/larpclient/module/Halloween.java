@@ -7,7 +7,7 @@ import com.larpclient.HalloweenWorldEffects;
 import com.larpclient.SharedRenderEffects;
 import com.larpclient.SkyEffectManager;
 import com.larpclient.WeaponTrailRenderer;
-import com.larpclient.qn;
+import com.larpclient.QueueNode;
 import java.util.List;
 import net.minecraft.block.enums.CameraSubmersionType;
 import net.minecraft.client.MinecraftClient;

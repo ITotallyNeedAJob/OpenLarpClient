@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.dy;
+import com.larpclient.DynamicLoader;
 import com.larpclient.module.CustomSky;
 import com.larpclient.module.SkyShader;
 import net.minecraft.client.render.Camera;

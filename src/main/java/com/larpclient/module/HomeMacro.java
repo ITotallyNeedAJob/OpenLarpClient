@@ -1,7 +1,7 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.oe;
+import com.larpclient.OfferPanel;
 import java.util.List;
 import java.util.Set;
 import net.minecraft.text.Text;

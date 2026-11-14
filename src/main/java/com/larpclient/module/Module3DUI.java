@@ -1,9 +1,9 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.p5;
-import com.larpclient.w2;
-import com.larpclient.xt;
+import com.larpclient.ParticleEmitter;
+import com.larpclient.WeatherRenderer;
+import com.larpclient.XTexture;
 import com.larpclient.mixin.HandledScreenHooksAccessor;
 import java.util.Locale;
 import net.minecraft.client.MinecraftClient;

@@ -1,7 +1,7 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.db;
+import com.larpclient.FallDamage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

@@ -1,7 +1,7 @@
 package com.larpclient.module;
 
-import com.larpclient.d4;
-import com.larpclient.o9;
+import com.larpclient.SkyModeState;
+import com.larpclient.OutlineEffect;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.ItemStack;

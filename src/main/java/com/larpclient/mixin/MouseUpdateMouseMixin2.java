@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.w7;
+import com.larpclient.WaveEffect;
 import com.larpclient.module.AimAssist;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;

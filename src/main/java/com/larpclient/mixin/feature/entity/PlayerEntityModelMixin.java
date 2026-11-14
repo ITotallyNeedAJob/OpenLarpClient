@@ -2,7 +2,7 @@ package com.larpclient.mixin.feature.entity;
 
 import com.larpclient.PlayerJointTransforms;
 import com.larpclient.WalkStyle;
-import com.larpclient.b2;
+import com.larpclient.ArmReach;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;

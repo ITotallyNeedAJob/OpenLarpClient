@@ -3,7 +3,7 @@ package com.larpclient.module;
 import com.larpclient.ClientLog;
 import com.larpclient.HudRenderer;
 import com.larpclient.RoundedShapePipeline;
-import com.larpclient.bd;
+import com.larpclient.UiStyle;
 import java.util.ArrayDeque;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.MinecraftClient;

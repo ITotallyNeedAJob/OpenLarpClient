@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.db;
+import com.larpclient.FallDamage;
 import com.larpclient.module.Backtrack;
 import com.larpclient.module.FakeLag;
 import com.larpclient.module.FakePay;

@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.p5;
+import com.larpclient.ParticleEmitter;
 import com.larpclient.module.CustomCrosshair;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.gui.DrawContext;

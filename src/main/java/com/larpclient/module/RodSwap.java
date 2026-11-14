@@ -2,12 +2,12 @@ package com.larpclient.module;
 
 import com.larpclient.ClientLog;
 import com.larpclient.RodAttemptState;
-import com.larpclient.b_;
-import com.larpclient.dq;
-import com.larpclient.m3;
-import com.larpclient.o5;
-import com.larpclient.pg;
-import com.larpclient.pk;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.ModuleDetector;
+import com.larpclient.VectorOffsetUtil;
+import com.larpclient.OptifineBridge;
+import com.larpclient.ParticleGeometry;
+import com.larpclient.ParticleKind;
 import com.larpclient.mixin.ClientPlayerInteractionManagerAccessor;
 import com.larpclient.mixin.MinecraftClientAccessor;
 import java.util.List;

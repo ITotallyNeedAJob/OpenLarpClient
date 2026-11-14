@@ -1,7 +1,7 @@
 package com.larpclient.module;
 
-import com.larpclient.b_;
-import com.larpclient.r6;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.ModuleKeybindChecker;
 import java.util.Set;
 import net.minecraft.client.network.ClientPlayerEntity;
 

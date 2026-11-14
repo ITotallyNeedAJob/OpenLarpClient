@@ -2,8 +2,8 @@ package com.larpclient.module;
 
 import com.larpclient.BlockPlacementController;
 import com.larpclient.PlacementPreview;
-import com.larpclient.dq;
-import com.larpclient.p5;
+import com.larpclient.ModuleDetector;
+import com.larpclient.ParticleEmitter;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;

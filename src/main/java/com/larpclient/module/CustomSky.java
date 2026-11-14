@@ -2,7 +2,7 @@ package com.larpclient.module;
 
 import com.larpclient.SkyEffectManager;
 import com.larpclient.ThemePreset;
-import com.larpclient.mb;
+import com.larpclient.MediaSession;
 import java.util.List;
 import net.minecraft.block.enums.CameraSubmersionType;
 import net.minecraft.client.MinecraftClient;

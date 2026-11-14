@@ -1,8 +1,8 @@
 package com.larpclient.module;
 
 import com.larpclient.HandEffectRenderer;
-import com.larpclient.bd;
-import com.larpclient.mb;
+import com.larpclient.UiStyle;
+import com.larpclient.MediaSession;
 import java.awt.Color;
 import java.util.List;
 import java.util.Locale;

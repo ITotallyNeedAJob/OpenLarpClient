@@ -2,8 +2,8 @@ package com.larpclient.module;
 
 import com.larpclient.ClientLog;
 import com.larpclient.KeybindNames;
-import com.larpclient.b_;
-import com.larpclient.r6;
+import com.larpclient.ModuleImportBroker;
+import com.larpclient.ModuleKeybindChecker;
 import java.util.Set;
 import java.util.function.BooleanSupplier;
 import net.minecraft.client.MinecraftClient;

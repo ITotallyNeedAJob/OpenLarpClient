@@ -5,7 +5,7 @@ import com.larpclient.ClientLog;
 import com.larpclient.FindingZoneBounds;
 import com.larpclient.NotificationHud;
 import com.larpclient.ThemeSettings;
-import com.larpclient.wl;
+import com.larpclient.WidgetLayer;
 import java.util.ArrayDeque;
 import java.util.Comparator;
 import java.util.HashMap;

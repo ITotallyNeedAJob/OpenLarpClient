@@ -1,8 +1,8 @@
 package com.larpclient.mixin;
 
-import com.larpclient.b2;
-import com.larpclient.o6;
-import com.larpclient.rg;
+import com.larpclient.ArmReach;
+import com.larpclient.OptionPanel;
+import com.larpclient.RefractionGeometry;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.entity.state.BipedEntityRenderState;

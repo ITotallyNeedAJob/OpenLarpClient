@@ -1,7 +1,7 @@
 package com.larpclient.mixin.compat;
 
 import com.larpclient.FakeSpawnerController;
-import com.larpclient.r2;
+import com.larpclient.ItemBlockCache;
 import net.minecraft.client.render.entity.ItemEntityRenderer;
 import net.minecraft.client.render.entity.state.ItemEntityRenderState;
 import net.minecraft.entity.ItemEntity;

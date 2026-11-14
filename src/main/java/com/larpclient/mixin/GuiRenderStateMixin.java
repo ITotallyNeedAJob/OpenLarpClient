@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
 import com.larpclient.ClientLog;
-import com.larpclient.xt;
+import com.larpclient.XTexture;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import java.util.Arrays;

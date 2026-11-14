@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.p5;
+import com.larpclient.ParticleEmitter;
 import com.larpclient.module.Freecam;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;

@@ -1,6 +1,6 @@
 package com.larpclient.mixin;
 
-import com.larpclient.p5;
+import com.larpclient.ParticleEmitter;
 import com.larpclient.module.Freelook;
 import com.larpclient.module.GUIAnimation;
 import com.larpclient.module.Module3DUI;

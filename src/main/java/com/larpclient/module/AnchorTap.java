@@ -2,7 +2,7 @@ package com.larpclient.module;
 
 import com.larpclient.BlockPlacementController;
 import com.larpclient.ClientLog;
-import com.larpclient.b_;
+import com.larpclient.ModuleImportBroker;
 import java.util.Set;
 import java.util.function.BooleanSupplier;
 import net.minecraft.block.BlockState;

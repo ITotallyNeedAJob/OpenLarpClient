@@ -2,7 +2,7 @@ package com.larpclient.mixin;
 
 import com.larpclient.ClientTitleScreen;
 import com.larpclient.GuiTextureDrawing;
-import com.larpclient.bd;
+import com.larpclient.UiStyle;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.EntryListWidget;

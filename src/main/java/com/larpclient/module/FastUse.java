@@ -1,7 +1,7 @@
 package com.larpclient.module;
 
 import com.larpclient.ClientLog;
-import com.larpclient.b_;
+import com.larpclient.ModuleImportBroker;
 import java.util.Set;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.BlockItem;
