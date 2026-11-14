@@ -1,12 +1,12 @@
 package com.larpclient;
 
 public final class qg implements AutoCloseable {
-   private static final ThreadLocal<Double> t = ThreadLocal.withInitial(() -> 1.0);
-   private final double U = t.get();
+   private static final ThreadLocal<Double> SmoothInput = ThreadLocal.withInitial(() -> 1.0);
+   private final double U = SmoothInput.get();
    private boolean s;
 
    private qg(double var1) {
-      t.set(this.U * Math.clamp(var1, 0.0, 1.0));
+      SmoothInput.set(this.U * Math.clamp(var1, 0.0, 1.0));
    }
 
    public static qg nAsQg(double var0) {
@@ -14,13 +14,13 @@ public final class qg implements AutoCloseable {
    }
 
    public static int iAsInt(int var0) {
-      return bg.pAsInt(var0, t.get());
+      return bg.pAsInt(var0, SmoothInput.get());
    }
 
    @Override
    public void close() {
       if (!this.s) {
-         t.set(this.U);
+         SmoothInput.set(this.U);
          this.s = true;
       }
    }

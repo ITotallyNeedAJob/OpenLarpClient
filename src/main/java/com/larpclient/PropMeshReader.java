@@ -11,16 +11,16 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
 public final class PropMeshReader {
-   public static final int o = 1280331057;
+   public static final int AuctionNotifier = 1280331057;
    public static final int T = 262144;
-   public static final int s = 16384;
+   public static final int SkyChunkCache = 16384;
    public static final int B = 16384;
-   private static final int t = 4;
+   private static final int SmoothInput = 4;
    private static final int K = 8;
-   private static final int k = 32;
-   private static final float x = 8.0F;
+   private static final int GroundSample = 32;
+   private static final float AuraModule = 8.0F;
    private static final float C = (float)Math.cos(Math.toRadians(40.0));
-   private static final float[] u = HAsFloatArray(0.35F, 0.85F, -0.4F);
+   private static final float[] CropHelper = HAsFloatArray(0.35F, 0.85F, -0.4F);
 
    public static PropMeshReader.Type_a dAsNj_Type_a(InputStream var0) throws IOException {
       if (var0 == null) {
@@ -132,7 +132,7 @@ public final class PropMeshReader {
          }
 
          if (var3 != 0 && var4[0] != 0.0F) {
-            throw new IOException("A mirrored prop part must start at x = 0");
+            throw new IOException("A mirrored prop part must start at AuraModule = 0");
          } else {
             int var21 = var0.readUnsignedShort();
             if (var21 >= 3 && var21 <= 16384) {

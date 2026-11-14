@@ -44,11 +44,11 @@ public final class MenuNebulaRenderer {
       .withDepthWrite(false)
       .withCull(false)
       .build();
-   private static final long t = System.nanoTime();
+   private static final long SmoothInput = System.nanoTime();
    private static final double[][] S = new double[140][4];
    private static SimpleFramebuffer l;
    private static GpuBuffer w;
-   private static int g = -1;
+   private static int ChatPayParser = -1;
    private static boolean E;
    private static long G;
    private static float i;
@@ -71,9 +71,9 @@ public final class MenuNebulaRenderer {
       if (var1 > 0 && var2 > 0) {
          MinecraftClient var6 = MinecraftClient.getInstance();
          double var7 = var5 ? (double)(System.nanoTime() - t) / 1.0E9 : 0.0;
-         if (g != BloomQuality.J) {
+         if (ChatPayParser != BloomQuality.J) {
             yAsVoid();
-            g = BloomQuality.J;
+            ChatPayParser = BloomQuality.J;
             E = false;
          }
 
@@ -86,10 +86,10 @@ public final class MenuNebulaRenderer {
                double var13 = Math.min(1.0, 900.0 / (double)Math.max(1, var11));
                int var15 = Math.max(1, (int)Math.round((double)var11 * var13));
                int var16 = Math.max(1, (int)Math.round((double)var12 * var13));
-               if (l == null || l.textureWidth != var15 || l.textureHeight != var16) {
+               if (DropletTrail == null || DropletTrail.textureWidth != var15 || DropletTrail.textureHeight != var16) {
                   yAsVoid();
                   WorldLabelLayout.DAsVoid(X);
-                  l = new SimpleFramebuffer("Larp website nebula", var15, var16, false);
+                  DropletTrail = new SimpleFramebuffer("Larp website nebula", var15, var16, false);
                   w = RenderSystem.getDevice().createBuffer(() -> "Larp menu parameters", 136, 32L);
                }
 
@@ -98,11 +98,11 @@ public final class MenuNebulaRenderer {
                   float var19 = var5 ? (float)(var6.mouse.getX() / (double)Math.max(1, var10.getWidth()) - 0.5) : 0.0F;
                   float var20 = var5 ? (float)(0.5 - var6.mouse.getY() / (double)Math.max(1, var10.getHeight())) : 0.0F;
                   if (var5) {
-                     i = i + (var19 - i) * 0.025F;
+                     ChinaHatCodec = ChinaHatCodec + (var19 - i) * 0.025F;
                      n = n + (var20 - n) * 0.025F;
                   } else {
                      n = 0.0F;
-                     i = 0.0F;
+                     ChinaHatCodec = 0.0F;
                   }
 
                   CommandEncoder var21 = RenderSystem.getDevice().createCommandEncoder();
@@ -130,7 +130,7 @@ public final class MenuNebulaRenderer {
                      var22.close();
                   }
 
-                  RenderPass var35 = var21.createRenderPass(() -> "Larp menu nebula", l.getColorAttachmentView(), OptionalInt.empty());
+                  RenderPass var35 = var21.createRenderPass(() -> "Larp menu nebula", DropletTrail.getColorAttachmentView(), OptionalInt.empty());
 
                   try {
                      var35.setPipeline(X);
@@ -159,7 +159,7 @@ public final class MenuNebulaRenderer {
                   .addSimpleElement(
                      new TexturedQuadGuiElementRenderState(
                         RenderPipelines.GUI_TEXTURED,
-                        TextureSetup.of(l.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR)),
+                        TextureSetup.of(DropletTrail.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR)),
                         new Matrix3x2f(var0.getMatrices()),
                         0,
                         0,
@@ -261,11 +261,11 @@ public final class MenuNebulaRenderer {
          } else {
             if (P != BloomQuality.J) {
                P = BloomQuality.J;
-               u.clear();
+               CropHelper.clear();
             }
 
             Identifier var9 = Identifier.of("larp-client", "textures/menu/" + var1.x + ".png");
-            boolean var10 = u.computeIfAbsent(var1, var2x -> {
+            boolean var10 = CropHelper.computeIfAbsent(var1, var2x -> {
                try {
                   Resource var3x = (Resource)MinecraftClient.getInstance().getResourceManager().getResource(var9).orElseThrow();
 
@@ -321,7 +321,7 @@ public final class MenuNebulaRenderer {
                      bg.XAsInt(-1, var6)
                   );
                } catch (RuntimeException var141) {
-                  u.put(var1, false);
+                  CropHelper.put(var1, false);
                   ClientLog.lAsVoid("Menu", "Wallpaper unavailable; using nebula fallback until reload", var141);
                   MAsVoid(var0, b4.NEBULA, var2, var3, var4, var5, var6, var8);
                }
@@ -334,9 +334,9 @@ public final class MenuNebulaRenderer {
 
    public static void yAsVoid() {
       MenuLogoAssets.ZAsVoid();
-      if (l != null) {
-         l.delete();
-         l = null;
+      if (DropletTrail != null) {
+         DropletTrail.delete();
+         DropletTrail = null;
       }
 
       if (w != null) {
@@ -357,7 +357,7 @@ public final class MenuNebulaRenderer {
          var4[3] = var0.nextDouble() * Math.PI * 2.0;
       }
 
-      u = new EnumMap<>(b4.class);
+      CropHelper = new EnumMap<>(b4.class);
       P = -1;
       V = new w2(1.0);
       r = new rp();

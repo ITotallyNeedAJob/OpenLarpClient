@@ -1,10 +1,10 @@
 package com.larpclient;
 
 public final class w9 {
-   public static final double a = 0.12;
-   public static final double d = 0.48;
-   private static final double f = 3.8;
-   private static final double s = 0.14;
+   public static final double PetEffectRenderer = 0.12;
+   public static final double SahurDanceEngine = 0.48;
+   private static final double MenuPopupProvider = 3.8;
+   private static final double SkyChunkCache = 0.14;
    private static final double S = 0.22;
    private final w9.Type_f w;
    private long T = -1L;
@@ -16,7 +16,7 @@ public final class w9 {
    private double q;
    private double N;
    static final double G = 2.101;
-   static final double o = 0.15963829787234074;
+   static final double AuctionNotifier = 0.15963829787234074;
 
    public w9() {
       this(new w9.Type_f());

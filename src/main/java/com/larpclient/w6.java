@@ -7,7 +7,7 @@ public final class w6 {
    private long v = -1L;
    private long O = -1L;
    private long R = -1L;
-   private long i = -1L;
+   private long ChinaHatCodec = -1L;
 
    public w6() {
    }

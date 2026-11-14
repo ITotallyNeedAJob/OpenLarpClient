@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
 import com.larpclient.ClickGuiScreen;
-import com.larpclient.f;
+import com.larpclient.MenuPopupProvider;
 import com.larpclient.wz;
 import com.larpclient.module.WorldMenu;
 import net.minecraft.client.MinecraftClient;
@@ -30,7 +30,7 @@ public abstract class MinecraftClientMixin {
    private void larpclient$injectV(Screen var1, CallbackInfo var2) {
       Screen var3 = ((MinecraftClient)(Object)this).currentScreen;
       if (var3 != var1) {
-         wz var4 = f.pAsWz(var3);
+         wz var4 = MenuPopupProvider.pAsWz(var3);
          if (var4 != null) {
             var4.OAsVoid();
          }

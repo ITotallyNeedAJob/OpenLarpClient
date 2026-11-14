@@ -6,14 +6,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 
 public final class dy extends SkyShaderEffect {
-   private static int o = -15260879;
+   private static int AuctionNotifier = -15260879;
 
    public dy() {
       super("larp/after_dark");
    }
 
    public static void EAsVoid(int var0) {
-      o = var0;
+      AuctionNotifier = var0;
    }
 
    @Override

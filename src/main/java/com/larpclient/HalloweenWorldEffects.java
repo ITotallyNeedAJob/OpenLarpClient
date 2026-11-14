@@ -17,7 +17,7 @@ public final class HalloweenWorldEffects {
    private Vec3d F;
    private int B = -1;
    private int u;
-   private int f = -1;
+   private int MenuPopupProvider = -1;
    private boolean K;
    private boolean O;
 

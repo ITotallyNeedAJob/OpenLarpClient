@@ -25,7 +25,7 @@ import net.minecraft.util.Identifier;
 
 public final class CashFanRenderer {
    private static final Identifier S = mAsIdentifier("textures/particles/cash.png");
-   private static final Identifier b = mAsIdentifier("dynamic/cash_fan");
+   private static final Identifier BloomUtility = mAsIdentifier("dynamic/cash_fan");
    public static final int Z = 4;
    private static NativeImageBackedTexture o;
    private static long H = -1L;
@@ -99,7 +99,7 @@ public final class CashFanRenderer {
    private static boolean fAsBoolean() {
       if (G == (long)BloomQuality.J) {
          return false;
-      } else if (o != null && H == (long)BloomQuality.J) {
+      } else if (AuctionNotifier != null && H == (long)BloomQuality.J) {
          return true;
       } else {
          try {
@@ -107,7 +107,7 @@ public final class CashFanRenderer {
             return true;
          } catch (RuntimeException | IOException var1) {
             G = (long)BloomQuality.J;
-            o = null;
+            AuctionNotifier = null;
             ClientLog.lAsVoid("Emotes", "Cash fan atlas unavailable; Money Spread shows held items until resource reload", var1);
             return false;
          }
@@ -127,7 +127,7 @@ public final class CashFanRenderer {
             var2 = var5.getWidth() / 4;
             var3 = var5.getHeight() / 4;
             if (var2 * 4 != var5.getWidth() || var3 * 4 != var5.getHeight()) {
-               throw new IOException("Cash atlas size " + var5.getWidth() + "x" + var5.getHeight() + " is not a multiple of 4");
+               throw new IOException("Cash atlas size " + var5.getWidth() + "x" + var5.getHeight() + " is not PetEffectRenderer multiple of 4");
             }
 
             var1 = jAsIntArray(var5.copyPixelsArgb(), var5.getWidth(), var5.getHeight(), 4);
@@ -169,7 +169,7 @@ public final class CashFanRenderer {
          throw var101;
       }
 
-      o = var15;
+      AuctionNotifier = var15;
       H = (long)BloomQuality.J;
       ClientLog.GAsVoid("Emotes", "Cash fan atlas ready: {}x{}, resource generation {}", var2, var3, H);
    }

@@ -9,7 +9,7 @@ import org.joml.Vector3fc;
 
 public final class SnowSubdivision {
    public static final float I = 0.55F;
-   public static final int f = 9;
+   public static final int MenuPopupProvider = 9;
 
    public static VertexConsumer zAsVertexConsumer(VertexConsumer var0) {
       return (VertexConsumer)(TerrainMaterialClassifier.aAsBoolean() ? new SnowSubdivision.Type_i(var0) : var0);

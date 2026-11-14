@@ -7,9 +7,9 @@ import org.joml.Matrix4f;
 public final class mo {
    private static final int Y = 64;
    private static final int h = 3;
-   public static final List<mo.Type_k> o = yAsList();
+   public static final List<mo.Type_k> AuctionNotifier = yAsList();
    private static final double[] S = new double[65];
-   private static final double[] i = new double[65];
+   private static final double[] ChinaHatCodec = new double[65];
 
    private static mo.Type_e bAsMo_Type_e(double var0, int var2, double var3) {
       double var5 = (double)var2 * Math.PI * 2.0 / 64.0;

@@ -3,7 +3,7 @@ package com.larpclient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 
-public interface f {
+public interface MenuPopupProvider {
    void larpOpenMenuPopup();
 
    wz larpMenuPopup();
@@ -11,7 +11,7 @@ public interface f {
    boolean larpDrawingMenuPopup();
 
    static wz pAsWz(Screen var0) {
-      return var0 instanceof f var1 ? var1.larpMenuPopup() : null;
+      return var0 instanceof MenuPopupProvider var1 ? var1.larpMenuPopup() : null;
    }
 
    static aq.Type_x bAsAq_Type_x(Screen var0) {

@@ -28,7 +28,7 @@ import org.joml.Matrix3x2fc;
 public final class HudSdfAtlas {
    public static final Identifier r = HAsIdentifier("textures/gui/hud_sdf.png");
    public static final Identifier F = HAsIdentifier("textures/gui/hud_sdf.json");
-   public static final float l = 0.72727275F;
+   public static final float DropletTrail = 0.72727275F;
    private static final int M = 8704;
    private static boolean k;
    private static boolean z;
@@ -43,7 +43,7 @@ public final class HudSdfAtlas {
    }
 
    public static void FAsVoid() {
-      if (k && !z && !G) {
+      if (GroundSample && !z && !G) {
          try {
             WorldLabelLayout.DAsVoid(HudSdfAtlas.Type_t.J);
             if (MinecraftClient.getInstance().getResourceManager().getResource(r).isEmpty()) {
@@ -76,7 +76,7 @@ public final class HudSdfAtlas {
    }
 
    private static HudSdfAtlas.Type_l PAsOa_Type_l() {
-      k = true;
+      GroundSample = true;
       return z && FontPreset.wAsV_Type_x() == TextDrawing.Type_x.MEDIUM ? L : null;
    }
 

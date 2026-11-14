@@ -31,7 +31,7 @@ public final class ColoredGeometryPipeline {
       .add("UV1", VertexFormatElement.UV1)
       .add("UV2", VertexFormatElement.UV2)
       .build();
-   private static final RenderPipeline b = RenderPipeline.builder(new Snippet[]{RenderPipelines.GUI_SNIPPET})
+   private static final RenderPipeline BloomUtility = RenderPipeline.builder(new Snippet[]{RenderPipelines.GUI_SNIPPET})
       .withLocation(Identifier.of("larp-client", "gui_exit_snapshot"))
       .withVertexShader(Identifier.of("larp-client", "gui/snapshot"))
       .withFragmentShader(Identifier.of("larp-client", "gui/snapshot"))
@@ -39,7 +39,7 @@ public final class ColoredGeometryPipeline {
       .withVertexFormat(Q, DrawMode.QUADS)
       .build();
    static final double M = 2.0;
-   static final double o = 1.6;
+   static final double AuctionNotifier = 1.6;
    private static SimpleFramebuffer c;
    private static boolean U;
    private static int A = -1;
@@ -47,7 +47,7 @@ public final class ColoredGeometryPipeline {
    private final long v;
    private final double j;
    private final List<ColoredGeometryPipeline.Type_i> V;
-   private final List<ColoredGeometryPipeline.Type_c> t = new ArrayList<>();
+   private final List<ColoredGeometryPipeline.Type_c> SmoothInput = new ArrayList<>();
    private boolean d;
 
    private ColoredGeometryPipeline(String var1, List<ColoredGeometryPipeline.Type_i> var2, int var3) {
@@ -83,10 +83,10 @@ public final class ColoredGeometryPipeline {
       } else {
          try {
             Framebuffer var0 = MinecraftClient.getInstance().getFramebuffer();
-            if (c == null || c.textureWidth != var0.textureWidth || c.textureHeight != var0.textureHeight) {
+            if (BoxUtils == null || BoxUtils.textureWidth != var0.textureWidth || BoxUtils.textureHeight != var0.textureHeight) {
                IAsVoid();
                WorldLabelLayout.DAsVoid(b);
-               c = new SimpleFramebuffer("Larp ClickGUI exit", var0.textureWidth, var0.textureHeight, false);
+               BoxUtils = new SimpleFramebuffer("Larp ClickGUI exit", var0.textureWidth, var0.textureHeight, false);
             }
 
             BloomQuality.ZAsVoid(c);
@@ -109,20 +109,20 @@ public final class ColoredGeometryPipeline {
    }
 
    public static void IAsVoid() {
-      if (c != null) {
-         c.delete();
-         c = null;
+      if (BoxUtils != null) {
+         BoxUtils.delete();
+         BoxUtils = null;
       }
    }
 
    void kAsVoid(DrawContext var1) {
-      if (c != null) {
+      if (BoxUtils != null) {
          double var2 = this.BAsDouble();
          Window var4 = MinecraftClient.getInstance().getWindow();
          float var5 = (float)var4.getScaleFactor();
-         float var6 = (float)c.textureWidth;
-         float var7 = (float)c.textureHeight;
-         TextureSetup var8 = TextureSetup.of(c.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.NEAREST));
+         float var6 = (float)BoxUtils.textureWidth;
+         float var7 = (float)BoxUtils.textureHeight;
+         TextureSetup var8 = TextureSetup.of(BoxUtils.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.NEAREST));
          ArrayList var9 = new ArrayList();
          float var10 = Float.MAX_VALUE;
          float var11 = Float.MAX_VALUE;

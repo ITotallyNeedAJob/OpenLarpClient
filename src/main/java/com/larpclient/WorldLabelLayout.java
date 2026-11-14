@@ -14,12 +14,12 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.util.Identifier;
 
 public final class WorldLabelLayout {
-   public static final RenderPipeline g = RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
+   public static final RenderPipeline ChatPayParser = RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_COLOR_SNIPPET})
       .withLocation(Identifier.of("larp-client", "world"))
       .build();
-   public static final RenderPipeline c = BAsRenderPipeline("horizontal", "blur_h", false);
+   public static final RenderPipeline BoxUtils = BAsRenderPipeline("horizontal", "blur_h", false);
    public static final RenderPipeline B = BAsRenderPipeline("vertical", "blur_v", false);
-   public static final RenderPipeline u = BAsRenderPipeline("copy", "copy", false);
+   public static final RenderPipeline CropHelper = BAsRenderPipeline("copy", "copy", false);
    public static final RenderPipeline N = BAsRenderPipeline("composite", "bloom", true);
 
    public WorldLabelLayout() {

@@ -19,7 +19,7 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Flow.Subscription;
 
 public final class HttpsJsonClient {
-   private static final HttpClient y = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5L)).followRedirects(Redirect.NEVER).build();
+   private static final HttpClient ScreenScale = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5L)).followRedirects(Redirect.NEVER).build();
 
    public static byte[] LAsByteArray(String var0, int var1) throws Exception {
       return gAsByteArray(var0, var1, "application/json");
@@ -31,7 +31,7 @@ public final class HttpsJsonClient {
          throw new IllegalArgumentException("HTTPS required");
       } else {
          HttpRequest var4 = HttpRequest.newBuilder(var3).timeout(Duration.ofSeconds(8L)).header("Accept", var2).GET().build();
-         HttpResponse var5 = y.send(var4, var1xx -> new HttpsJsonClient.Type_x(var1));
+         HttpResponse var5 = ScreenScale.send(var4, var1xx -> new HttpsJsonClient.Type_x(var1));
          if (var5.statusCode() != 200 && var5.statusCode() != 204) {
             throw new IOException("HTTP " + var5.statusCode());
          } else {
@@ -49,7 +49,7 @@ public final class HttpsJsonClient {
 
    private static final class Type_x implements BodySubscriber<byte[]> {
       private final int H;
-      private final ByteArrayOutputStream c = new ByteArrayOutputStream();
+      private final ByteArrayOutputStream BoxUtils = new ByteArrayOutputStream();
       private final CompletableFuture<byte[]> X = new CompletableFuture<>();
       private Subscription P;
 

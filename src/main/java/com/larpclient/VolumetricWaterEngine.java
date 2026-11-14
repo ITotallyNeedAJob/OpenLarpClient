@@ -21,32 +21,32 @@ public final class VolumetricWaterEngine {
    public static final int h = 4096;
    private static final int z = 16384;
    private static final int U = 48;
-   private static final int s = 8192;
-   private static final double a = 0.1;
+   private static final int SkyChunkCache = 8192;
+   private static final double PetEffectRenderer = 0.1;
    private static final double M = 0.064;
    private static final double Y = 0.18;
-   private static final double[] e = new double[4096];
+   private static final double[] LineSegment = new double[4096];
    private static final double[] O = new double[4096];
    private static final double[] v = new double[4096];
-   private static final double[] k = new double[4096];
+   private static final double[] GroundSample = new double[4096];
    private static final double[] K = new double[4096];
    private static final double[] F = new double[4096];
-   private static final double[] b = new double[4096];
-   private static final double[] o = new double[4096];
+   private static final double[] BloomUtility = new double[4096];
+   private static final double[] AuctionNotifier = new double[4096];
    private static final double[] P = new double[4096];
    private static final double[] w = new double[4096];
-   private static final double[] t = new double[4096];
+   private static final double[] SmoothInput = new double[4096];
    private static final double[] q = new double[4096];
    private static final double[] Q = new double[4096];
-   private static final double[] y = new double[4096];
+   private static final double[] ScreenScale = new double[4096];
    private static final double[] J = new double[4096];
-   private static final int[] x = new int[16384];
-   private static final int[] d = new int[4096];
+   private static final int[] AuraModule = new int[16384];
+   private static final int[] SahurDanceEngine = new int[4096];
    private static final int[] L = new int[4096];
    private static final int[] B = new int[4096];
    private static final int[] H = new int[4096];
    private static final Set<Long> X = ConcurrentHashMap.newKeySet();
-   private static final Map<Long, List<Box>> i = new HashMap<>();
+   private static final Map<Long, List<Box>> ChinaHatCodec = new HashMap<>();
    private static final Map<Long, Long> S = new HashMap<>();
    private static ClientWorld Z;
    private static int I;
@@ -169,7 +169,7 @@ public final class VolumetricWaterEngine {
          if (I + 1000 > 4096) {
             if (!f) {
                ClientLog.GAsVoid("TerrainMaterials", "Volumetric water capacity reached ({} droplets); further pours retain native water", 4096);
-               f = true;
+               MenuPopupProvider = true;
             }
          } else {
             for (int var2 = 0; var2 < 10; var2++) {
@@ -204,7 +204,7 @@ public final class VolumetricWaterEngine {
             System.arraycopy(e, 0, k, 0, I);
             System.arraycopy(O, 0, K, 0, I);
             System.arraycopy(v, 0, F, 0, I);
-            i.clear();
+            ChinaHatCodec.clear();
 
             for (int var1 = 0; var1 < 2; var1++) {
                QAsVoid(var0, 0.025);
@@ -341,9 +341,9 @@ public final class VolumetricWaterEngine {
          for (int var11 = -1; var11 <= 1; var11++) {
             for (int var12 = -1; var12 <= 1; var12++) {
                BlockPos var13 = new BlockPos(var7 + var12, var8 + var11, var9 + var10);
-               List var14 = i.get(var13.asLong());
+               List var14 = ChinaHatCodec.get(var13.asLong());
                if (var14 == null) {
-                  if (i.size() >= 8192 || !Z.isChunkLoaded(var13)) {
+                  if (ChinaHatCodec.size() >= 8192 || !Z.isChunkLoaded(var13)) {
                      e[var0] = var1;
                      O[var0] = var3;
                      v[var0] = var5;
@@ -352,7 +352,7 @@ public final class VolumetricWaterEngine {
                   }
 
                   var14 = Z.getBlockState(var13).getCollisionShape(Z, var13).getBoundingBoxes();
-                  i.put(var13.asLong(), var14);
+                  ChinaHatCodec.put(var13.asLong(), var14);
                }
 
                for (Box var16 : (Iterable<Box>) (var14)) {
@@ -445,9 +445,9 @@ public final class VolumetricWaterEngine {
       int var0 = !X.isEmpty() ? 1 : 0;
       I = 0;
       n = 0L;
-      f = false;
+      MenuPopupProvider = false;
       X.clear();
-      i.clear();
+      ChinaHatCodec.clear();
       S.clear();
       Z = null;
       if (var0 != 0) {

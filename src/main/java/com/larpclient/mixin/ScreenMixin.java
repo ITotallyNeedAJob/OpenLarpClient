@@ -8,7 +8,7 @@ import com.larpclient.GuiTextureDrawing;
 import com.larpclient.LarpClient;
 import com.larpclient.MenuNebulaRenderer;
 import com.larpclient.bd;
-import com.larpclient.f;
+import com.larpclient.MenuPopupProvider;
 import com.larpclient.xs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -40,7 +40,7 @@ public abstract class ScreenMixin {
    )
    private void larpclient$redirectIIFV(Screen var1, DrawContext var2, int var3, int var4, float var5) {
       boolean var6 = var1 instanceof LevelLoadingScreen;
-      if ((MinecraftClient.getInstance().world == null || var6) && !(var1 instanceof ChatScreen) && e(var1)) {
+      if ((MinecraftClient.getInstance().world == null || var6) && !(var1 instanceof ChatScreen) && LineSegment(var1)) {
          if (var6 && !this.A) {
             this.A = true;
             ClientLog.XAsVoid("Menu", "Terrain loading uses the shared custom menu background");
@@ -48,7 +48,7 @@ public abstract class ScreenMixin {
 
          boolean var10000;
          label78: {
-            if (var1 instanceof f var8 && var8.larpDrawingMenuPopup()) {
+            if (var1 instanceof MenuPopupProvider var8 && var8.larpDrawingMenuPopup()) {
                var10000 = true;
                break label78;
             }
@@ -59,7 +59,7 @@ public abstract class ScreenMixin {
          boolean var7 = var10000;
          if (var7) {
             var2.getMatrices().pushMatrix();
-            var2.getMatrices().mul(f.bAsAq_Type_x(var1).matrix((double)var1.width / 2.0, (double)var1.height / 2.0).invert());
+            var2.getMatrices().mul(MenuPopupProvider.bAsAq_Type_x(var1).matrix((double)var1.width / 2.0, (double)var1.height / 2.0).invert());
          }
 
          try {
@@ -82,7 +82,7 @@ public abstract class ScreenMixin {
    }
 
    @Unique
-   private static boolean e(Screen var0) {
+   private static boolean LineSegment(Screen var0) {
       return ClientTitleScreen.QAsBoolean() ? true : var0.getClass().getName().startsWith("com.larpclient.") && !(var0 instanceof ClickGuiScreen);
    }
 

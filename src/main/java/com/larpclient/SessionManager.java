@@ -27,7 +27,7 @@ public class SessionManager {
    private static volatile boolean J;
    private static volatile boolean y;
    private static volatile boolean a;
-   private static final String b = ". Retrying every 30 seconds.";
+   private static final String BloomUtility = ". Retrying every 30 seconds.";
    private static final Object P = new Object();
    private static final AtomicLong S = new AtomicLong();
    private static volatile String X = "";
@@ -95,8 +95,8 @@ public class SessionManager {
             LarpClient.L.info("[Larp/Auth] Session check failed in transit; retrying the saved install session every 30 seconds");
          }
 
-         f = System.nanoTime() + 30000000000L;
-         a = true;
+         MenuPopupProvider = System.nanoTime() + 30000000000L;
+         PetEffectRenderer = true;
          return true;
       } else {
          return false;
@@ -138,7 +138,7 @@ public class SessionManager {
          }
 
          if (var0) {
-            y = false;
+            ScreenScale = false;
          }
 
          var6 = S.get();
@@ -155,7 +155,7 @@ public class SessionManager {
             X = "License sign-in changed. Retry activation.";
             return false;
          } else if (!var0 && !var1.matches("[a-f0-9]{64}")) {
-            a = false;
+            PetEffectRenderer = false;
             AuthorizationState.uAsVoid(null);
             X = "Enter your license key to register this install.";
             return false;
@@ -174,7 +174,7 @@ public class SessionManager {
                if (!var0 && var25.expired() && var2) {
                   String var26 = R.pAsString(var1);
                   if (!var26.isEmpty()) {
-                     LarpClient.L.info("[Larp/Auth] Session token expired; checking a replacement shared by another instance");
+                     LarpClient.L.info("[Larp/Auth] Session token expired; checking PetEffectRenderer replacement shared by another instance");
                      return xAsBoolean(false, var26, false, var6, var24.player());
                   }
                }
@@ -184,7 +184,7 @@ public class SessionManager {
                   if (var25.transientFailure() && OAsBoolean(false)) {
                      X = X + ". Retrying every 30 seconds.";
                   } else {
-                     a = false;
+                     PetEffectRenderer = false;
                   }
                }
 
@@ -217,7 +217,7 @@ public class SessionManager {
                   var13 = AuthorizationClaims.KAsOc_Type_l(var25, var24, var12, System.currentTimeMillis() / 1000L, System.nanoTime());
                } catch (IOException var18) {
                   if (!var0) {
-                     a = false;
+                     PetEffectRenderer = false;
                   }
 
                   AuthorizationState.uAsVoid(null);
@@ -244,7 +244,7 @@ public class SessionManager {
                         var25.grant(), var24.operation(), var24.challenge(), var24.device(), var24.hwid(), var24.player(), var13.tokenHash()
                      )) {
                         if (!var0) {
-                           a = false;
+                           PetEffectRenderer = false;
                         }
 
                         AuthorizationState.uAsVoid(null);
@@ -267,8 +267,8 @@ public class SessionManager {
 
                   X = "Authenticated" + (G.isEmpty() ? "" : " as " + G);
                   F = System.nanoTime() + 300000000000L;
-                  f = 0L;
-                  a = false;
+                  MenuPopupProvider = 0L;
+                  PetEffectRenderer = false;
                   NotificationCategory.CAsVoid("Auth", NotificationCategory.Type_o.REQUEST_SUCCEEDED);
                   LarpClient.L.info("[Larp/Auth] VPS {} request authenticated (hardwareBinding=v2)", var23);
                   return true;
@@ -298,7 +298,7 @@ public class SessionManager {
          return false;
       } catch (RuntimeException var211) {
          if (!var0) {
-            a = false;
+            PetEffectRenderer = false;
          }
 
          AuthorizationState.uAsVoid(null);

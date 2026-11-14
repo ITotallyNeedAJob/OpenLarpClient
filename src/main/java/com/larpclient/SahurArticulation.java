@@ -47,7 +47,7 @@ final class SahurArticulation {
          }
 
          T = var0;
-         x = new SahurArticulation.Type_o(var1.mesh, var2);
+         AuraModule = new SahurArticulation.Type_o(var1.mesh, var2);
          return x;
       }
    }
@@ -55,7 +55,7 @@ final class SahurArticulation {
    static SahurArticulation.Type_b mAsAu_Type_b(SahurMeshReader.Type_u var0) {
       if (var0 != i) {
          B = wAsAu_Type_b(var0, true, false);
-         i = var0;
+         ChinaHatCodec = var0;
       }
 
       return B;
@@ -63,7 +63,7 @@ final class SahurArticulation {
 
    static SahurArticulation.Type_b eAsAu_Type_b(SahurMeshReader.Type_u var0) {
       if (var0 != D) {
-         o = wAsAu_Type_b(var0, true, true);
+         AuctionNotifier = wAsAu_Type_b(var0, true, true);
          D = var0;
       }
 

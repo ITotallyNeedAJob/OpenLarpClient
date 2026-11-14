@@ -7,10 +7,10 @@ import net.minecraft.util.math.BlockPos;
 public final class w4 {
    public static final int F = 4;
    public static final double N = 0.06;
-   public static final double o = 0.06;
+   public static final double AuctionNotifier = 0.06;
    public static final double W = 0.18;
    private final List<w4.Type_b> q = new ArrayList<>(4);
-   private double c = Double.NaN;
+   private double BoxUtils = Double.NaN;
 
    public w4() {
    }

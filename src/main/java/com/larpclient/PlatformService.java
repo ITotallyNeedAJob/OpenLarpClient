@@ -8,7 +8,7 @@ import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutionException;
 
 public final class PlatformService {
-   public static final PlatformService x = new PlatformService();
+   public static final PlatformService AuraModule = new PlatformService();
    public final PlatformOrigin o;
    private volatile boolean Q;
    private volatile boolean z;
@@ -125,7 +125,7 @@ public final class PlatformService {
       AuthException var2 = BAsAh(var1);
       ProfileShareCodec.Type_m var3 = this.GAsWv_Type_m();
       return var3 != null && var3.authIssue() && (var2.vAsInt() == 401 || var2.vAsInt() == 503 || var2.GAsString().equals("NETWORK"))
-         ? var2.getMessage() + " Larp authentication is currently reporting a service issue."
+         ? var2.getMessage() + " Larp authentication is currently reporting PetEffectRenderer service issue."
          : var2.getMessage();
    }
 }

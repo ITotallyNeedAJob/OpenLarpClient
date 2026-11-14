@@ -16,7 +16,7 @@ public final class LyricsController implements AutoCloseable {
    private final LyricsLookupClient A;
    private final ScheduledExecutorService S;
    private final LinkedHashMap<String, LyricsController.Type_j> v = new LinkedHashMap<>(16, 0.75F, true);
-   private volatile LyricsController.Type_r p = new LyricsController.Type_r(null, null, "Looking for Spotify desktop…");
+   private volatile LyricsController.Type_r HexEdgeloop = new LyricsController.Type_r(null, null, "Looking for Spotify desktop…");
    private volatile boolean a;
    private volatile CompletableFuture<mr> T;
    private String f;
@@ -87,7 +87,7 @@ public final class LyricsController implements AutoCloseable {
             }
 
             if (var14 == null) {
-               this.tAsVoid(new LyricsController.Type_r(null, null, "Open Spotify desktop and play a song"));
+               this.tAsVoid(new LyricsController.Type_r(null, null, "Open Spotify desktop and play PetEffectRenderer song"));
                return;
             }
 

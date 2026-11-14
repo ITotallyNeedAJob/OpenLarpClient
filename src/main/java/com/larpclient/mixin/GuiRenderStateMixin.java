@@ -29,7 +29,7 @@ public abstract class GuiRenderStateMixin implements xt.Type_e {
    @Unique
    private final xt.Type_s[] D = new xt.Type_s[4];
    @Unique
-   private final boolean[] y = new boolean[4];
+   private final boolean[] ScreenScale = new boolean[4];
    @Unique
    private int S;
    @Unique

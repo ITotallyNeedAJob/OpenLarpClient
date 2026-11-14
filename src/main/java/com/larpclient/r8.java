@@ -11,7 +11,7 @@ public final class r8 {
    private int F;
    private int W;
    private float Q;
-   private double p = Double.NaN;
+   private double HexEdgeloop = Double.NaN;
    private double U = Double.NEGATIVE_INFINITY;
    private Matrix4f[] V;
    private Matrix4f[] j;

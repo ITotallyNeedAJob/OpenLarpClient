@@ -28,7 +28,7 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
    private final LinkedHashSet<String> n;
    private final List<AuctionItemSelectionPanel.Type_n> W = new ArrayList<>();
    private final List<GuiWidget> P = new ArrayList<>();
-   private List<AuctionItemSelectionPanel.Type_n> x = List.of();
+   private List<AuctionItemSelectionPanel.Type_n> AuraModule = List.of();
    private TextInputWidget j;
    private ActionButton h;
    private ActionButton q;
@@ -37,8 +37,8 @@ public final class AuctionItemSelectionPanel extends GuiPanel {
    private ActionButton Y;
    private ActionButton N;
    private ActionButton V;
-   private String c = "";
-   private String k = "";
+   private String BoxUtils = "";
+   private String GroundSample = "";
    private boolean S;
    private boolean d;
    private int f;

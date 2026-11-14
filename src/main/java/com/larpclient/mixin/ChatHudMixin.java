@@ -22,7 +22,7 @@ public abstract class ChatHudMixin {
    @Final
    private List<Visible> field_2064;
    @Unique
-   private long o = -1L;
+   private long AuctionNotifier = -1L;
 
    public ChatHudMixin() {
    }

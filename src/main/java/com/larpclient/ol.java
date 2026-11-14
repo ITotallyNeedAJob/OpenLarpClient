@@ -2,10 +2,10 @@ package com.larpclient;
 
 public final class ol {
    public static final int B = 5;
-   public static final int s = 20;
-   public static final int g = 18;
-   public static final double x = 0.421875;
-   private static final int[][] e = new int[18][4];
+   public static final int SkyChunkCache = 20;
+   public static final int ChatPayParser = 18;
+   public static final double AuraModule = 0.421875;
+   private static final int[][] LineSegment = new int[18][4];
 
    private ol() {
    }

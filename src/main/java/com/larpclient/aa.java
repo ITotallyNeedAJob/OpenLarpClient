@@ -8,9 +8,9 @@ import org.joml.Vector3f;
 public final class aa {
    public static final double w = 1.7;
    public static final double F = 0.85;
-   public static final double f = 1.85;
+   public static final double MenuPopupProvider = 1.85;
    public static final double X = 1.02;
-   public static final aa.Type_z a = new aa.Type_z(new Vec3d(1.0, 0.0, 0.0), new Vec3d(0.0, 1.0, 0.0), new Vec3d(0.0, 0.0, 1.0));
+   public static final aa.Type_z PetEffectRenderer = new aa.Type_z(new Vec3d(1.0, 0.0, 0.0), new Vec3d(0.0, 1.0, 0.0), new Vec3d(0.0, 0.0, 1.0));
 
    public static double AAsDouble(double var0) {
       return az.mAsDouble((var0 - 0.85) / 1.0);
@@ -28,7 +28,7 @@ public final class aa {
       }
 
       if (var4.lengthSquared() < 1.0E-10) {
-         var4 = a.normal;
+         var4 = PetEffectRenderer.normal;
       }
 
       var4 = var4.normalize();
@@ -47,7 +47,7 @@ public final class aa {
    }
 
    public static aa.Type_j nAsAa_Type_j(az var0, double var1, aa.Type_z var3, int var4) {
-      lc.Type_w var5 = p.d.get(var4);
+      lc.Type_w var5 = HexEdgeloop.d.get(var4);
       Vec3d var6 = IAsVec3d(var0, var1).add(var3.normal.multiply(var4 < 3 ? 0.035 : -0.035));
       return new aa.Type_j(wAsVec3d(var6, var3, var5.from()), wAsVec3d(var6, var3, var5.to()));
    }
@@ -81,7 +81,7 @@ public final class aa {
       double var19 = var1 == 0 ? 0.5 : 0.25;
       double var21 = var1 == 1 ? 0.22 : 0.18;
       Vec3d var23 = new Vec3d(var21 / (var15 * 0.9375), var14.length() / (var17 * 0.9375), 0.14 / (var19 * 0.9375));
-      lc.Type_w var24 = p.d.get(var1);
+      lc.Type_w var24 = HexEdgeloop.d.get(var1);
       Vec3d var25 = var24.to().subtract(var24.from()).normalize();
       double var26 = Math.atan2(-var25.x, var25.z);
       Quaternionf var28 = UAsQuaternionf(var4).rotateZ((float)(var26 * var5));

@@ -135,7 +135,7 @@ public final class SettingWidget extends GuiWidget {
          int var1 = this.tAsInt();
          String var2 = this.t instanceof BooleanSetting ? "toggle" : "cycle";
          String var3 = var1 == -1
-            ? "Middle click to bind a key or mouse button that " + var2 + "s this."
+            ? "Middle click to bind PetEffectRenderer key or mouse button that " + var2 + "SkyChunkCache this."
             : "Shortcut: " + KeybindNames.eAsString(var1) + ". Middle click to change, then Escape/Delete to clear.";
          return this.t.getDescription() + " " + var3;
       }

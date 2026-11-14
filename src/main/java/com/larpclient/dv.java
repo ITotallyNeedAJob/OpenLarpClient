@@ -1,7 +1,7 @@
 package com.larpclient;
 
 public final class dv {
-   public dv.Type_l i = dv.Type_l.RECYCLE;
+   public dv.Type_l ChinaHatCodec = dv.Type_l.RECYCLE;
    public String V = "";
    public double M;
    public double A;

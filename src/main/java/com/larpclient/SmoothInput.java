@@ -2,11 +2,11 @@ package com.larpclient;
 
 import net.minecraft.util.math.MathHelper;
 
-public final class t {
+public final class SmoothInput {
    private long W = Long.MIN_VALUE;
    private int I;
 
-   public t() {
+   public SmoothInput() {
    }
 
    public static float[] JAsFloatArray(float var0, float var1, float var2, float var3, double var4) {

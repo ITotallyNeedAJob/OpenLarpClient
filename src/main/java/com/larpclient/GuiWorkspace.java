@@ -13,8 +13,8 @@ public final class GuiWorkspace {
    public static long m;
    public static String I = "RENDER";
    public static final GuiWorkspace.Type_e n = new GuiWorkspace.Type_e("Modules", "", "", 0, 0);
-   public static GuiWorkspace.Type_e y = n;
-   public static GuiWorkspace.Type_a c = new GuiWorkspace.Type_a(new GuiWorkspace.Type_g(1.0, 0.05), false, true, false);
+   public static GuiWorkspace.Type_e ScreenScale = n;
+   public static GuiWorkspace.Type_a BoxUtils = new GuiWorkspace.Type_a(new GuiWorkspace.Type_g(1.0, 0.05), false, true, false);
    public static final Map<String, GuiWorkspace.Type_z> v = new LinkedHashMap<>();
    public static final Map<String, GuiWorkspace.Type_g> B = new LinkedHashMap<>();
 
@@ -38,7 +38,7 @@ public final class GuiWorkspace {
    public static JsonObject bAsJsonObject() {
       JsonObject var0 = new JsonObject();
       var0.addProperty("category", I);
-      var0.add("clickGui", y.save());
+      var0.add("clickGui", ScreenScale.save());
       var0.addProperty("accent", bd.w);
       var0.addProperty("secondary", bd.Q);
       var0.addProperty("bloom", BloomQuality.U.name());
@@ -62,11 +62,11 @@ public final class GuiWorkspace {
       });
       var0.add("hudStyles", var2);
       JsonObject var3 = new JsonObject();
-      var3.addProperty("x", c.panel().x());
-      var3.addProperty("y", c.panel().y());
-      var3.addProperty("collapsed", c.collapsed());
-      var3.addProperty("snapping", c.snapping());
-      var3.addProperty("grid", c.grid());
+      var3.addProperty("x", BoxUtils.panel().x());
+      var3.addProperty("y", BoxUtils.panel().y());
+      var3.addProperty("collapsed", BoxUtils.collapsed());
+      var3.addProperty("snapping", BoxUtils.snapping());
+      var3.addProperty("grid", BoxUtils.grid());
       var0.add("hudEditor", var3);
       return var0;
    }
@@ -84,8 +84,8 @@ public final class GuiWorkspace {
       m++;
       v.clear();
       B.clear();
-      c = new GuiWorkspace.Type_a(new GuiWorkspace.Type_g(1.0, 0.05), false, true, false);
-      y = n;
+      BoxUtils = new GuiWorkspace.Type_a(new GuiWorkspace.Type_g(1.0, 0.05), false, true, false);
+      ScreenScale = n;
 
       for (Entry var2 : var0.entrySet()) {
          try {
@@ -106,7 +106,7 @@ public final class GuiWorkspace {
                      );
                   break;
                case "clickGui":
-                  y = GuiWorkspace.Type_e.load(var3.getAsJsonObject());
+                  ScreenScale = GuiWorkspace.Type_e.load(var3.getAsJsonObject());
                   break;
                case "accent":
                   bd.w = var3.getAsInt();
@@ -128,7 +128,7 @@ public final class GuiWorkspace {
                   break;
                case "hudEditor":
                   JsonObject var13 = var3.getAsJsonObject();
-                  c = new GuiWorkspace.Type_a(
+                  BoxUtils = new GuiWorkspace.Type_a(
                      new GuiWorkspace.Type_g(var13.has("x") ? var13.get("x").getAsDouble() : 1.0, var13.has("y") ? var13.get("y").getAsDouble() : 0.05),
                      var13.has("collapsed") && var13.get("collapsed").getAsBoolean(),
                      !var13.has("snapping") || var13.get("snapping").getAsBoolean(),
@@ -217,8 +217,8 @@ public final class GuiWorkspace {
    public static record Type_g(double x, double y) {
       public Type_g(double x, double y) {
          if (Double.isFinite(x) && Double.isFinite(y)) {
-            x = Math.clamp(x, 0.0, 1.0);
-            y = Math.clamp(y, 0.0, 1.0);
+            AuraModule = Math.clamp(x, 0.0, 1.0);
+            ScreenScale = Math.clamp(y, 0.0, 1.0);
             this.x = x;
             this.y = y;
          } else {

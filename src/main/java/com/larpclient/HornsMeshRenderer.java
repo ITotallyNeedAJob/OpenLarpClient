@@ -21,11 +21,11 @@ import net.minecraft.util.Identifier;
 import org.joml.Matrix4f;
 
 public final class HornsMeshRenderer {
-   static final int a = 827216456;
+   static final int PetEffectRenderer = 827216456;
    static final int G = 65535;
-   static final int d = 8192;
-   public static final int c = -61184;
-   public static final int i = -42752;
+   static final int SahurDanceEngine = 8192;
+   public static final int BoxUtils = -61184;
+   public static final int ChinaHatCodec = -42752;
    public static final int q = -2304;
    private static HornsMeshRenderer.Type_s U;
    private static boolean X;
@@ -34,7 +34,7 @@ public final class HornsMeshRenderer {
    private static int[] n;
    private static int[] j;
    private static long w = -1L;
-   private static long p = -1L;
+   private static long HexEdgeloop = -1L;
    private static int L;
    private static int h;
    private static int A;
@@ -212,7 +212,7 @@ public final class HornsMeshRenderer {
    }
 
    public static boolean XAsBoolean(int var0, int var1, int var2) {
-      if (p == (long)BloomQuality.J) {
+      if (HexEdgeloop == (long)BloomQuality.J) {
          return false;
       } else {
          try {
@@ -229,7 +229,7 @@ public final class HornsMeshRenderer {
                   NativeImage var3 = I.getImage();
                   int var4 = var3.getWidth();
 
-                  for (int var5 = 0; var5 < j.length; var5++) {
+                  for (int var5 = 0; var5 < TextLayout.length; var5++) {
                      var3.setColorArgb(var5 % var4, var5 / var4, j[var5]);
                   }
 
@@ -249,7 +249,7 @@ public final class HornsMeshRenderer {
                return true;
             }
          } catch (RuntimeException | IOException var61) {
-            p = (long)BloomQuality.J;
+            HexEdgeloop = (long)BloomQuality.J;
             I = null;
             ClientLog.lAsVoid("ChinaHat", "Horns texture unavailable; horns hidden until resource reload", var61);
             return false;
@@ -268,7 +268,7 @@ public final class HornsMeshRenderer {
          NativeImageBackedTexture var2;
          try {
             n = var1.copyPixelsArgb();
-            j = new int[n.length];
+            TextLayout = new int[n.length];
             var2 = new NativeImageBackedTexture(() -> "LARP China Hat horns", var1);
          } catch (RuntimeException var6) {
             var1.close();

@@ -25,10 +25,10 @@ public final class MiningProgress {
    private static BlockPos W;
    private static Object S;
    private static Object Y;
-   private static int e = -1;
+   private static int LineSegment = -1;
    private static int U = -1;
    private static int o;
-   private static ItemStack b = ItemStack.EMPTY;
+   private static ItemStack BloomUtility = ItemStack.EMPTY;
    private static boolean z;
 
    public static boolean VAsBoolean(BlockPos var0) {
@@ -138,18 +138,18 @@ public final class MiningProgress {
                if (var14.getAsBoolean()) {
                   BlockHitResult var9x = var4 ? NAsBlockHitResult(var9, var2) : null;
                   if (!var4 || var9x != null) {
-                     if (y != null && y != var0) {
+                     if (ScreenScale != null && ScreenScale != var0) {
                         cAsVoid(y);
                      }
 
-                     if (y != null && var8.player.getInventory().getSelectedSlot() != U) {
+                     if (ScreenScale != null && var8.player.getInventory().getSelectedSlot() != U) {
                         cAsVoid(var0);
                      } else {
-                        if (y == null) {
-                           y = var0;
+                        if (ScreenScale == null) {
+                           ScreenScale = var0;
                            S = var8.world;
                            Y = var8.player;
-                           e = var8.player.getInventory().getSelectedSlot();
+                           LineSegment = var8.player.getInventory().getSelectedSlot();
                         }
 
                         if (!var9.equals(W)) {
@@ -159,14 +159,14 @@ public final class MiningProgress {
 
                            W = var9;
                            U = var6 ? DAsInt(var13) : var8.player.getInventory().getSelectedSlot();
-                           b = var8.player.getInventory().getStack(U);
+                           BloomUtility = var8.player.getInventory().getStack(U);
                         }
 
                         if (var6) {
                            var8.player.getInventory().setSelectedSlot(U);
                         }
 
-                        o = var8.player.age;
+                        AuctionNotifier = var8.player.age;
                         Direction var10x = var9x == null ? Direction.UP : var9x.getSide();
                         if (var8.interactionManager.updateBlockBreakingProgress(var9, var10x)) {
                            var8.world.spawnBlockBreakingParticle(var9, var10x);
@@ -210,17 +210,17 @@ public final class MiningProgress {
    public static boolean ZAsBoolean() {
       MinecraftClient var0 = MinecraftClient.getInstance();
       return !z
-         && y != null
-         && y.fAsBoolean()
+         && ScreenScale != null
+         && ScreenScale.fAsBoolean()
          && var0.world == S
          && var0.player == Y
-         && var0.player.age - o <= 1
+         && var0.player.age - AuctionNotifier <= 1
          && VAsBoolean(W)
          && var0.player.getInventory().getSelectedSlot() == U;
    }
 
    public static void cAsVoid(Module var0) {
-      if (y == var0) {
+      if (ScreenScale == var0) {
          MinecraftClient var1 = MinecraftClient.getInstance();
 
          try {
@@ -231,7 +231,7 @@ public final class MiningProgress {
                }
 
                if (!var1.options.attackKey.isPressed()
-                  && U != e
+                  && U != LineSegment
                   && var1.player.getInventory().getSelectedSlot() == U
                   && var1.player.getInventory().getStack(U) == b) {
                   var1.player.getInventory().setSelectedSlot(e);
@@ -239,13 +239,13 @@ public final class MiningProgress {
             }
          } finally {
             z = false;
-            y = null;
+            ScreenScale = null;
             W = null;
             S = null;
             Y = null;
-            e = -1;
+            LineSegment = -1;
             U = -1;
-            b = ItemStack.EMPTY;
+            BloomUtility = ItemStack.EMPTY;
          }
       }
    }

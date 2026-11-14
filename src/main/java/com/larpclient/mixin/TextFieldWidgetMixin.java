@@ -24,7 +24,7 @@ public abstract class TextFieldWidgetMixin {
    @Shadow
    private int field_60435;
    @Unique
-   private final dn j = new dn();
+   private final dn TextLayout = new dn();
    @Unique
    private int L;
 

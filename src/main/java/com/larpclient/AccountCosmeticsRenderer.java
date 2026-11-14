@@ -36,7 +36,7 @@ public final class AccountCosmeticsRenderer {
    private final ro.Type_j r = new ro.Type_j();
    private DragonWingRenderer.Type_q J;
    private String I = "";
-   private static int c = -1;
+   private static int BoxUtils = -1;
    private static final ChinaHatFireRenderer S = new ChinaHatFireRenderer(0L);
 
    public AccountCosmeticsRenderer() {
@@ -161,7 +161,7 @@ public final class AccountCosmeticsRenderer {
    public static void TAsVoid(PlayerSkinGuiElementRenderState var0, Matrix4fc var1, MatrixStack var2, Immediate var3) {
       if (var0.playerModel() instanceof CosmeticPlayerModel var4 && var4.HAsB1_Type_b() != null) {
          int var13 = BloomQuality.J;
-         if (c != var13) {
+         if (BoxUtils != var13) {
             AccountCosmeticsRenderer.Type_b var6 = var4.HAsB1_Type_b();
 
             try {
@@ -200,7 +200,7 @@ public final class AccountCosmeticsRenderer {
                var15.peek().getPositionMatrix().set(var1);
                var14.PAsVoid(var3, var15);
             } catch (RuntimeException var121) {
-               c = var13;
+               BoxUtils = var13;
                ClientLog.lAsVoid("Menu", "Account model cosmetics submission failed; body only until resource reload", var121);
             }
          }
@@ -297,15 +297,15 @@ public final class AccountCosmeticsRenderer {
 
    static final class Type_d implements o_ {
       private final List<AccountCosmeticsRenderer.Type_d.Type_x> E = new ArrayList<>();
-      private final List<AccountCosmeticsRenderer.Type_d.Type_z> k = new ArrayList<>();
+      private final List<AccountCosmeticsRenderer.Type_d.Type_z> GroundSample = new ArrayList<>();
       private AccountCosmeticsRenderer.Type_d.Type_f K;
       private final Vector3f z = new Vector3f();
-      private x4.Type_g a = x4.Type_g.ALPHA;
+      private x4.Type_g PetEffectRenderer = x4.Type_g.ALPHA;
       private x4.Type_g s;
       private boolean L;
       private boolean b;
-      private float[] l = new float[768];
-      private int[] t = new int[256];
+      private float[] DropletTrail = new float[768];
+      private int[] SmoothInput = new int[256];
       private int c;
 
       Type_d() {

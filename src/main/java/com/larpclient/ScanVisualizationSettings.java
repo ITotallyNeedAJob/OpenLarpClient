@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import java.util.Set;
 
 public final class ScanVisualizationSettings {
-   private static final Set<String> o = Set.of(
+   private static final Set<String> AuctionNotifier = Set.of(
       "Text List",
       "Count",
       "Minimum Radius",

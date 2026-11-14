@@ -6,14 +6,14 @@ import net.minecraft.client.util.Window;
 import net.minecraft.util.Hand;
 
 public final class ow {
-   private static final ChamsOutlineEffect d = new ChamsOutlineEffect("ViewModel outline");
+   private static final ChamsOutlineEffect SahurDanceEngine = new ChamsOutlineEffect("ViewModel outline");
    private static Hand j;
    private static Hand o;
    private static boolean C;
 
    public static void gAsVoid(Hand var0, Hand var1) {
-      j = var0;
-      o = var1;
+      TextLayout = var0;
+      AuctionNotifier = var1;
    }
 
    private static boolean nAsBoolean() {
@@ -27,7 +27,7 @@ public final class ow {
          return false;
       } else {
          C = true;
-         return d.HAsBoolean();
+         return SahurDanceEngine.HAsBoolean();
       }
    }
 
@@ -44,7 +44,7 @@ public final class ow {
          for (Hand var9 : Hand.values()) {
             li.Type_w var10 = li.YAsLi_Type_w(var9);
             if (var10 != null) {
-               int var11 = var9 == j ? bg.XAsInt(bd.w, 0.95) : (var9 == o ? -922746881 : 1627389951);
+               int var11 = var9 == TextLayout ? bg.XAsInt(bd.w, 0.95) : (var9 == AuctionNotifier ? -922746881 : 1627389951);
                var5.add(
                   new ChamsOutlineEffect.Type_k(
                      (int)Math.floor((double)var10.x() * var1) - var4,
@@ -57,16 +57,16 @@ public final class ow {
             }
          }
 
-         d.tAsVoid(var5);
+         SahurDanceEngine.tAsVoid(var5);
       }
    }
 
    public static void eAsVoid() {
       if (C) {
          C = false;
-         o = null;
-         j = null;
-         d.close();
+         AuctionNotifier = null;
+         TextLayout = null;
+         SahurDanceEngine.close();
       }
    }
 

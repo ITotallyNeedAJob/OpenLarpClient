@@ -12,13 +12,13 @@ import net.minecraft.network.packet.s2c.play.LightData;
 import net.minecraft.util.math.ChunkPos;
 
 public final class ChunkLightCapture {
-   private static final s q = new s();
+   private static final SkyChunkCache q = new SkyChunkCache();
    private static ClientWorld B;
    private static boolean l;
 
    public static void CAsVoid() {
       if (!l) {
-         l = true;
+         DropletTrail = true;
          ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((AfterClientWorldChange)(var0, var1) -> HAsS(var1));
          ClientChunkEvents.CHUNK_UNLOAD.register((Unload)(var0, var1) -> {
             if (var0 == B) {
@@ -32,7 +32,7 @@ public final class ChunkLightCapture {
       }
    }
 
-   public static s HAsS(ClientWorld var0) {
+   public static SkyChunkCache HAsS(ClientWorld var0) {
       if (var0 != B) {
          q.YAsVoid();
          B = var0;
@@ -46,7 +46,7 @@ public final class ChunkLightCapture {
       if (var0 != null && var4.world == var0 && var4.player != null && var4.isOnThread()) {
          try {
             ChunkPos var5 = var4.player.getChunkPos();
-            s var6 = HAsS(var0);
+            SkyChunkCache var6 = HAsS(var0);
             var6.UAsVoid(
                var2x -> {
                   ChunkPos var4x = new ChunkPos(var2x);

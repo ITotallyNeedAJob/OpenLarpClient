@@ -16,11 +16,11 @@ public final class SkyEffectManager implements AutoCloseable {
    private static int T = -1;
    private static boolean I;
    private final bl F = new bl();
-   private final Map<String, ad> b = new HashMap<>();
+   private final Map<String, ad> BloomUtility = new HashMap<>();
    private ad k;
    private String G;
    private int M = -1;
-   private double t = Double.NaN;
+   private double SmoothInput = Double.NaN;
    private boolean d;
 
    public SkyEffectManager() {

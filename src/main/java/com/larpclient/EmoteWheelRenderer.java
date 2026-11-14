@@ -13,13 +13,13 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
 final class EmoteWheelRenderer {
-   static final int d = 96;
-   static final int s = 38;
-   static final int a = 4;
+   static final int SahurDanceEngine = 96;
+   static final int SkyChunkCache = 38;
+   static final int PetEffectRenderer = 4;
    private static final int T = -((int)Math.ceil(96.0 * Math.sqrt(0.5))) - 1;
-   private static final int o = -97;
+   private static final int AuctionNotifier = -97;
    private static final int K = -T * 2;
-   private static final int t = 97 - (int)Math.floor(38.0 * Math.sqrt(0.5) - 2.0);
+   private static final int SmoothInput = 97 - (int)Math.floor(38.0 * Math.sqrt(0.5) - 2.0);
    private static final Identifier U = Identifier.of("larp-client", "emote/wheel_wedge");
    private static EmoteWheelRenderer.Type_o A;
    private static TextureManager y;
@@ -41,7 +41,7 @@ final class EmoteWheelRenderer {
       if (var0 != y) {
          A = null;
          B = 0;
-         y = var0;
+         ScreenScale = var0;
       }
 
       int var1 = (int)Math.clamp(Math.ceil((double)MinecraftClient.getInstance().getWindow().getScaleFactor()), 1.0, 6.0);

@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 public final class ac {
    private ItemStack x;
-   private e.Type_c A;
+   private LineSegment.Type_c A;
    private Object W;
 
    public ac() {
@@ -17,7 +17,7 @@ public final class ac {
       this.W = null;
    }
 
-   public Object ZAsObject(ItemStack var1, e.Type_c var2) {
+   public Object ZAsObject(ItemStack var1, LineSegment.Type_c var2) {
       if (this.x == null || !ItemStack.areItemsAndComponentsEqual(this.x, var1) || !Objects.equals(this.A, var2)) {
          this.x = var1.copy();
          this.A = var2;

@@ -23,8 +23,8 @@ public final class DisplayAliasManager {
    private static Map<String, String> P = Map.of();
    private static Object B;
    private static long V;
-   private static final ReferenceQueue<StringVisitable> f = new ReferenceQueue<>();
-   private static final Set<DisplayAliasManager.Type_t> l = new HashSet<>();
+   private static final ReferenceQueue<StringVisitable> MenuPopupProvider = new ReferenceQueue<>();
+   private static final Set<DisplayAliasManager.Type_t> DropletTrail = new HashSet<>();
 
    public DisplayAliasManager() {
    }
@@ -46,8 +46,8 @@ public final class DisplayAliasManager {
 
       tAsVoid(var0.world, var1);
 
-      for (Reference var3 = f.poll(); var3 != null; var3 = f.poll()) {
-         l.remove(var3);
+      for (Reference var3 = MenuPopupProvider.poll(); var3 != null; var3 = MenuPopupProvider.poll()) {
+         DropletTrail.remove(var3);
       }
    }
 
@@ -56,7 +56,7 @@ public final class DisplayAliasManager {
          B = var0;
          P = Map.copyOf(var1);
          V++;
-         l.clear();
+         DropletTrail.clear();
          ClientLog.XAsVoid("Appearance", "Display aliases refreshed: {} participants; chat will reflow", P.size());
       }
    }
@@ -76,12 +76,12 @@ public final class DisplayAliasManager {
    }
 
    static StringVisitable dAsStringVisitable(StringVisitable var0) {
-      if (l.contains(new DisplayAliasManager.Type_t(var0, null))) {
+      if (DropletTrail.contains(new DisplayAliasManager.Type_t(var0, null))) {
          return var0;
       } else {
          Text var1 = cAsText(var0, P);
          if (var1 != var0) {
-            l.add(new DisplayAliasManager.Type_t(var1, f));
+            DropletTrail.add(new DisplayAliasManager.Type_t(var1, f));
          }
 
          return var1;
@@ -95,7 +95,7 @@ public final class DisplayAliasManager {
       } else {
          Text var4 = cAsText(var2, Map.of(var1.toLowerCase(Locale.ROOT), var3));
          if (var4 != var2) {
-            l.add(new DisplayAliasManager.Type_t(var4, f));
+            DropletTrail.add(new DisplayAliasManager.Type_t(var4, f));
          }
 
          return var4;

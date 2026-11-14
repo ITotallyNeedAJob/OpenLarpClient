@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.util.math.Vec3d;
 
-public final class p {
-   public static final List<lc.Type_w> d = dAsList();
+public final class HexEdgeloop {
+   public static final List<lc.Type_w> SahurDanceEngine = dAsList();
 
    private static List<lc.Type_w> dAsList() {
       Vec3d[] var0 = new Vec3d[6];
@@ -30,6 +30,6 @@ public final class p {
       return var0 + var2 * var4;
    }
 
-   private p() {
+   private HexEdgeloop() {
    }
 }

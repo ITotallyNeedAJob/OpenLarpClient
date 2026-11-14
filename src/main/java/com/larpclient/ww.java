@@ -23,10 +23,10 @@ import net.minecraft.util.Identifier;
 
 public final class ww {
    public static final int w = 32;
-   public static final int u = 12;
-   public static final int j = 13;
-   public static final int f = -267645934;
-   private static final Map<Module, Float> s = new IdentityHashMap<>();
+   public static final int CropHelper = 12;
+   public static final int TextLayout = 13;
+   public static final int MenuPopupProvider = -267645934;
+   private static final Map<Module, Float> SkyChunkCache = new IdentityHashMap<>();
    private static final Map<Identifier, Float> S = new HashMap<>();
    private static Object V;
    private static Object F;
@@ -38,12 +38,12 @@ public final class ww {
    }
 
    public static void KAsVoid() {
-      s.clear();
+      SkyChunkCache.clear();
       S.clear();
       Z.clear();
       F = null;
       V = null;
-      b = 0L;
+      BloomUtility = 0L;
       B = 0L;
    }
 
@@ -119,14 +119,14 @@ public final class ww {
       for (Module var7 : LarpClient.CAsLarpClient().mAsF().NAsList()) {
          HUD var8 = HUD.EAsHUD();
          int var9 = var7.getKeyBind() >= 0 && (var7.isEnabled() || var8 != null && var8.keybindDisplay.pAsBoolean("Always")) ? 1 : 0;
-         float var10 = var0 ? (float)(var9 != 0 ? 1 : 0) : vAsFloat(s.getOrDefault(var7, 0.0F), var9 != 0, var3);
+         float var10 = var0 ? (float)(var9 != 0 ? 1 : 0) : vAsFloat(SkyChunkCache.getOrDefault(var7, 0.0F), var9 != 0, var3);
          if (var10 < 0.05F && var9 == 0) {
             if (!var0) {
-               s.remove(var7);
+               SkyChunkCache.remove(var7);
             }
          } else {
             if (!var0) {
-               s.put(var7, var10);
+               SkyChunkCache.put(var7, var10);
             }
 
             if (!(var10 <= 0.05F)) {
@@ -150,7 +150,7 @@ public final class ww {
       long var1 = System.nanoTime();
       double var3 = YAsDouble(b, var1);
       if (!var0) {
-         b = var1;
+         BloomUtility = var1;
       }
 
       MinecraftClient var5 = MinecraftClient.getInstance();

@@ -10,11 +10,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 
-public final class x {
+public final class AuraModule {
    static final double r = 0.546;
    static final double J = 0.4;
-   static final double j = 1.5;
-   private static final float k = 6.0F;
+   static final double TextLayout = 1.5;
+   private static final float GroundSample = 6.0F;
    private static final int O = Integer.MIN_VALUE;
    private final com.larpclient.module.a w = new com.larpclient.module.a(com.larpclient.module.a.A);
    private final z I = new z();
@@ -24,10 +24,10 @@ public final class x {
    private float n;
    private boolean F;
    private boolean z;
-   private int t = -1;
+   private int SmoothInput = -1;
    private int C = Integer.MIN_VALUE;
 
-   public x() {
+   public AuraModule() {
       this.eAsVoid();
    }
 

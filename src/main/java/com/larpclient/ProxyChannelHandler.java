@@ -19,13 +19,13 @@ import java.util.concurrent.TimeUnit;
 
 public final class ProxyChannelHandler extends ChannelDuplexHandler {
    public static final String Y = "larp_proxy";
-   static final int f = 10;
+   static final int MenuPopupProvider = 10;
    static final int A = 8192;
    private final ProxyValidation.Type_y v;
    private InetSocketAddress g;
    private ChannelPromise r;
    private PendingWriteQueue q;
-   private ByteBuf j = Unpooled.EMPTY_BUFFER;
+   private ByteBuf TextLayout = Unpooled.EMPTY_BUFFER;
    private ScheduledFuture<?> L;
    private boolean z;
    private boolean x;
@@ -248,7 +248,7 @@ public final class ProxyChannelHandler extends ChannelDuplexHandler {
 
                   if (var7 == 407) {
                      throw new ProxyChannelHandler.Type_r(
-                        this.MAsString() + (var2.authenticated() ? "the proxy rejected the username or password" : "the proxy needs a username and password")
+                        this.MAsString() + (var2.authenticated() ? "the proxy rejected the username or password" : "the proxy needs PetEffectRenderer username and password")
                      );
                   }
 
@@ -287,7 +287,7 @@ public final class ProxyChannelHandler extends ChannelDuplexHandler {
                   this.MAsString()
                      + (
                         var8 == 255
-                           ? (var2.authenticated() ? "the proxy refused these login methods" : "the proxy needs a username and password")
+                           ? (var2.authenticated() ? "the proxy refused these login methods" : "the proxy needs PetEffectRenderer username and password")
                            : "the proxy chose an unsupported login method"
                      )
                );

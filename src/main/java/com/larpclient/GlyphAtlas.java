@@ -29,7 +29,7 @@ public final class GlyphAtlas {
          )
          .build()
    );
-   private static final RenderLayer b = RenderLayer.of(
+   private static final RenderLayer BloomUtility = RenderLayer.of(
       "larp_pearls",
       RenderSetup.builder(
             RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_TEX_COLOR_SNIPPET})
@@ -56,7 +56,7 @@ public final class GlyphAtlas {
    public GlyphAtlas(MatrixStack var1, EffectDrawBuffers var2, CameraRenderState var3) {
       if (M != BloomQuality.J) {
          WorldLabelLayout.DAsVoid(h.getRenderPipeline());
-         WorldLabelLayout.DAsVoid(b.getRenderPipeline());
+         WorldLabelLayout.DAsVoid(BloomUtility.getRenderPipeline());
          M = BloomQuality.J;
       }
 

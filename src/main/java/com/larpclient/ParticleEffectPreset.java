@@ -8,21 +8,21 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Vec3d;
 
 public final class ParticleEffectPreset {
-   public static final List<String> a = List.of(
+   public static final List<String> PetEffectRenderer = List.of(
       "Ripple", "Shockwave", "Rune", "Bloom", "Corona", "Vortex", "Spectrum", "Cloud", "End Rod", "Crit", "Flame", "Soul Flame", "Happy Villager"
    );
 
    public static int JAsInt(String var0) {
-      int var1 = a.indexOf(var0);
+      int var1 = PetEffectRenderer.indexOf(var0);
       return var1 >= 0 && var1 < 7 ? var1 : -1;
    }
 
    public static boolean hAsBoolean(String var0) {
-      return a.indexOf(var0) >= 7;
+      return PetEffectRenderer.indexOf(var0) >= 7;
    }
 
    public static boolean MAsBoolean(String var0) {
-      return a.contains(var0);
+      return PetEffectRenderer.contains(var0);
    }
 
    public static ParticleEffect iAsParticleEffect(String var0) {

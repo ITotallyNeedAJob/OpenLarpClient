@@ -36,7 +36,7 @@ import net.minecraft.world.RaycastContext.ShapeType;
 public final class pk {
    private static PlayerEntity y;
    private static Object i;
-   private static int m = -1;
+   private static int PriceDetector = -1;
    private static LivingEntity Z;
    private static int Q;
    private static final double w = Math.toRadians(10.0);
@@ -44,20 +44,20 @@ public final class pk {
    public static void OAsVoid(PlayerEntity var0) {
       MinecraftClient var1 = MinecraftClient.getInstance();
       if (var0 == var1.player) {
-         y = var0;
-         i = var1.world;
-         m = var0.age;
+         ScreenScale = var0;
+         ChinaHatCodec = var1.world;
+         PriceDetector = var0.age;
       }
    }
 
    public static boolean BAsBoolean(ClientPlayerEntity var0) {
-      return var0 != null && y == var0 && i == var0.getEntityWorld() && m == var0.age;
+      return var0 != null && ScreenScale == var0 && ChinaHatCodec == var0.getEntityWorld() && PriceDetector == var0.age;
    }
 
    public static void kAsVoid() {
-      y = null;
-      i = null;
-      m = -1;
+      ScreenScale = null;
+      ChinaHatCodec = null;
+      PriceDetector = -1;
       Z = null;
    }
 

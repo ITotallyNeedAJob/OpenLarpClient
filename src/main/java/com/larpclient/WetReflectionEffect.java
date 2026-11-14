@@ -42,9 +42,9 @@ import org.joml.Matrix4f;
 import org.lwjgl.system.MemoryStack;
 
 public final class WetReflectionEffect {
-   private static final IdentityHashMap<RenderPipeline, RenderPipeline> c = new IdentityHashMap<>();
+   private static final IdentityHashMap<RenderPipeline, RenderPipeline> BoxUtils = new IdentityHashMap<>();
    private static final IdentityHashMap<RenderPipeline, RenderPipeline> L = new IdentityHashMap<>();
-   private static final RenderPipeline k = ZAsRenderPipeline("wet_reflection");
+   private static final RenderPipeline GroundSample = ZAsRenderPipeline("wet_reflection");
    private static final RenderPipeline N = ZAsRenderPipeline("underwater");
    public static final int T = 1088;
    private static final WetReflectionEffect.Type_r w = new WetReflectionEffect.Type_r();
@@ -64,13 +64,13 @@ public final class WetReflectionEffect {
 
    public static void xAsVoid() {
       if (!p) {
-         p = true;
+         HexEdgeloop = true;
          r = FabricLoader.getInstance().isModLoaded("sodium") || FabricLoader.getInstance().isModLoaded("iris");
-         y = r && SodiumTerrainMaterialBridge.uAsBoolean();
+         ScreenScale = r && SodiumTerrainMaterialBridge.uAsBoolean();
          if (y) {
             ClientLog.GAsVoid(
                "TerrainMaterials",
-               "Sodium {} detected; Wet Ground and Snow Ground draw through a variant of Sodium's chunk program, other terrain materials keep Sodium output",
+               "Sodium {} detected; Wet Ground and Snow Ground draw through PetEffectRenderer variant of Sodium'SkyChunkCache chunk program, other terrain materials keep Sodium output",
                SodiumTerrainMaterialBridge.uAsString()
             );
          } else if (r) {
@@ -104,11 +104,11 @@ public final class WetReflectionEffect {
    }
 
    public static boolean gAsBoolean() {
-      return t && !NAsBoolean();
+      return SmoothInput && !NAsBoolean();
    }
 
    public static boolean zAsBoolean() {
-      return D || r && (!y || SodiumTerrainMaterialBridge.iAsBoolean() || SodiumTerrainMaterialBridge.qAsBoolean());
+      return D || r && (!ScreenScale || SodiumTerrainMaterialBridge.iAsBoolean() || SodiumTerrainMaterialBridge.qAsBoolean());
    }
 
    public static boolean fAsBoolean() {
@@ -116,11 +116,11 @@ public final class WetReflectionEffect {
    }
 
    static boolean RAsBoolean() {
-      return !D && (!r || y && !SodiumTerrainMaterialBridge.qAsBoolean() && !SodiumTerrainMaterialBridge.jAsBoolean());
+      return !D && (!r || ScreenScale && !SodiumTerrainMaterialBridge.qAsBoolean() && !SodiumTerrainMaterialBridge.jAsBoolean());
    }
 
    private static boolean DAsBoolean() {
-      return t && !zAsBoolean();
+      return SmoothInput && !zAsBoolean();
    }
 
    private static boolean VAsBoolean() {
@@ -128,7 +128,7 @@ public final class WetReflectionEffect {
    }
 
    static boolean iAsBoolean() {
-      return y && J != null && DAsBoolean() && (WAsBoolean(WetGround.KAsWetGround()) || WAsBoolean(SnowGround.vAsSnowGround()));
+      return ScreenScale && J != null && DAsBoolean() && (WAsBoolean(WetGround.KAsWetGround()) || WAsBoolean(SnowGround.vAsSnowGround()));
    }
 
    static int gAsInt() {
@@ -161,7 +161,7 @@ public final class WetReflectionEffect {
             0.55F
          );
       } else {
-         ClientLog.oAsVoid("SnowGround", "Sodium/Iris without a supported terrain hook; snow terrain keeps renderer output, snowfall still draws");
+         ClientLog.oAsVoid("SnowGround", "Sodium/Iris without PetEffectRenderer supported terrain hook; snow terrain keeps renderer output, snowfall still draws");
       }
    }
 
@@ -195,7 +195,7 @@ public final class WetReflectionEffect {
          QAsVoid();
          U = var1.world;
          O = mb.RAsDouble();
-         o = 0.0;
+         AuctionNotifier = 0.0;
          TerrainMaterialClassifier.hAsVoid();
       }
 
@@ -203,7 +203,7 @@ public final class WetReflectionEffect {
          QAsVoid();
          D = false;
          H = BloomQuality.J;
-         c.clear();
+         BoxUtils.clear();
          L.clear();
          SodiumTerrainMaterialBridge.hAsVoid();
          TAsVoid();
@@ -236,9 +236,9 @@ public final class WetReflectionEffect {
                SodiumTerrainMaterialBridge.EAsVoid(TerrainMaterialClassifier.gAsBoolean());
             }
 
-            t = true;
+            SmoothInput = true;
          } catch (RuntimeException var8) {
-            RAsVoid(y ? "sodium-prepare" : "prepare", var8);
+            RAsVoid(ScreenScale ? "sodium-prepare" : "prepare", var8);
          } finally {
             op.aAsVoid("TerrainMaterials", var2);
          }
@@ -251,7 +251,7 @@ public final class WetReflectionEffect {
       } else if (!D && bAsBoolean() && (var0 != RenderPipelines.TRANSLUCENT || WAsBoolean(RealisticWater.tAsRealisticWater()))) {
          return var0 != RenderPipelines.SOLID_TERRAIN && var0 != RenderPipelines.CUTOUT_TERRAIN && var0 != RenderPipelines.TRANSLUCENT
             ? var0
-            : c.computeIfAbsent(
+            : BoxUtils.computeIfAbsent(
                var0,
                var0x -> {
                   int var1 = var0x == RenderPipelines.TRANSLUCENT ? 1 : 0;
@@ -293,7 +293,7 @@ public final class WetReflectionEffect {
    }
 
    public static void EAsVoid(RenderPass var0, RenderPipeline var1) {
-      if (J != null && !D && c.containsValue(var1)) {
+      if (J != null && !D && BoxUtils.containsValue(var1)) {
          var0.setUniform("LarpMaterial", J.slice());
          if (var1.getShaderDefines().flags().contains("LARP_WATER") && w.Y != null) {
             var0.bindTexture("SceneColor", w.Y, RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
@@ -312,7 +312,7 @@ public final class WetReflectionEffect {
       boolean var7 = WAsBoolean(var2);
       boolean var8 = WAsBoolean(var3);
       double var9 = mb.RAsDouble();
-      o = o + Math.clamp(var9 - O, 0.0, 0.1) * (var6 ? var1.speed.getValue() : 1.0);
+      AuctionNotifier = AuctionNotifier + Math.clamp(var9 - O, 0.0, 0.1) * (var6 ? var1.speed.getValue() : 1.0);
       O = var9;
       float var11 = Math.clamp(var0.weatherRenderState.intensity, 0.0F, 1.0F);
       float var12 = var8 ? var3.puddles.getValue().floatValue() / 100.0F : 0.0F;
@@ -524,7 +524,7 @@ public final class WetReflectionEffect {
 
    public static void QAsVoid() {
       n = false;
-      t = false;
+      SmoothInput = false;
       if (J != null) {
          J.close();
          J = null;
@@ -539,7 +539,7 @@ public final class WetReflectionEffect {
       QAsVoid();
       Z = null;
       U = null;
-      o = 0.0;
+      AuctionNotifier = 0.0;
       O = mb.RAsDouble();
    }
 

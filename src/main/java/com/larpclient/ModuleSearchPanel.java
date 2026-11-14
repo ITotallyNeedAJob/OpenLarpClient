@@ -28,28 +28,28 @@ import org.joml.Vector2f;
 
 public final class ModuleSearchPanel extends GuiPanel {
    static final int P = 8;
-   static final int l = 6;
+   static final int DropletTrail = 6;
    static final int H = 20;
-   static final int y = 14;
+   static final int ScreenScale = 14;
    static final int X = 36;
    static final int v = 46;
    static final int Y = 20;
-   static final int p = 18;
-   static final int s = 90;
+   static final int HexEdgeloop = 18;
+   static final int SkyChunkCache = 90;
    static final int E = 122;
    static final int J = 160;
    private static final int Z = -401337324;
    private static final int z = -16119286;
    private final Screen I;
-   private final List<ModuleSearchPanel.Type_z> o = new ArrayList<>();
+   private final List<ModuleSearchPanel.Type_z> AuctionNotifier = new ArrayList<>();
    private final w2 q = new w2(0.0);
    private final Matrix3x2f r = new Matrix3x2f();
-   private y S;
+   private ScreenScale S;
    private TextInputWidget A;
    private ModuleSearchPanel.Type_w U;
    private ModuleSearchPanel.Type_w k;
    private ModuleSearchPanel.Type_x w;
-   private String m = "";
+   private String PriceDetector = "";
    private String K = "";
    private int N;
    private int a;
@@ -126,7 +126,7 @@ public final class ModuleSearchPanel extends GuiPanel {
       ClientLog.XAsVoid("GUI", "Legacy ClickGUI opened, {} panels, workspace {}x{}", this.o.size(), this.S.width(), this.S.height());
    }
 
-   private y NAsY() {
+   private ScreenScale NAsY() {
       return com.larpclient.y.from(this.client.getWindow(), LarpClient.CAsLarpClient().fAsBo().yAsN7().JD);
    }
 
@@ -252,7 +252,7 @@ public final class ModuleSearchPanel extends GuiPanel {
    }
 
    private void WAsVoid() {
-      y var1 = this.NAsY();
+      ScreenScale var1 = this.NAsY();
       if (!var1.equals(this.S) && this.O == null && this.t == null) {
          this.S = var1;
       }
@@ -358,7 +358,7 @@ public final class ModuleSearchPanel extends GuiPanel {
    }
 
    private void bAsVoid(DrawContext var1, String var2, int var3) {
-      String var4 = var2 != null && !var2.isBlank() ? var2 : "Left click toggles · Right click opens settings · Middle click stars · Drag a title to move it";
+      String var4 = var2 != null && !var2.isBlank() ? var2 : "Left click toggles · Right click opens settings · Middle click stars · Drag PetEffectRenderer title to move it";
       var4 = TextDrawing.HAsString(var4, this.S.width() - 40);
       int var5 = TextDrawing.UAsInt(var4);
       int var6 = this.VAsInt();
@@ -542,7 +542,7 @@ public final class ModuleSearchPanel extends GuiPanel {
 
    private final class Type_j {
       final Module C;
-      final List<GuiWidget> y = new ArrayList<>();
+      final List<GuiWidget> ScreenScale = new ArrayList<>();
       final Map<GuiWidget, BooleanSupplier> Y = new IdentityHashMap<>();
       final Set<String> V = new HashSet<>();
       boolean M;
@@ -624,7 +624,7 @@ public final class ModuleSearchPanel extends GuiPanel {
                   if (!(this.C instanceof nk)) {
                      KeybindSetting var10 = new KeybindSetting(
                         this.C instanceof HUD ? "Toggle HUD" : "Bind",
-                        "Press a key, or a middle or side mouse button. Escape/Delete clears the binding",
+                        "Press PetEffectRenderer key, or PetEffectRenderer middle or side mouse button. Escape/Delete clears the binding",
                         this.C.getKeyBind()
                      );
                      var10.onChanged(this.C::setKeyBind);
@@ -774,10 +774,10 @@ public final class ModuleSearchPanel extends GuiPanel {
 
    private static final class Type_x extends GuiWidget {
       private static final String C = "Legacy";
-      private static final int s = 18;
+      private static final int SkyChunkCache = 18;
       private static final int q = 10;
       private final Runnable G;
-      private final w2 p = new w2(1.0);
+      private final w2 HexEdgeloop = new w2(1.0);
 
       Type_x(Runnable var1) {
          this.G = var1;
@@ -835,15 +835,15 @@ public final class ModuleSearchPanel extends GuiPanel {
       final List<ModuleSearchPanel.Type_j> Q = new ArrayList<>();
       final w2 z = new w2(-1.0);
       final w2 F = new w2(0.0);
-      final w2 f = new w2(0.0);
+      final w2 MenuPopupProvider = new w2(0.0);
       final int I;
       int a;
       int X;
-      int y = 90;
+      int ScreenScale = 90;
       int w;
       int S;
       int Y;
-      boolean j = true;
+      boolean TextLayout = true;
 
       Type_z(GuiCategory var2) {
          this.e = var2;

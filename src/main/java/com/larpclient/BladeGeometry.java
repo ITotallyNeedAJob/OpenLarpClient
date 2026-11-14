@@ -24,15 +24,15 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 public final class BladeGeometry {
-   static final float k = (float)(Math.tan(Math.toRadians(35.0)) / (0.75 * Math.tan(Math.toRadians(34.0))));
-   static final float[][] g = new float[][]{
+   static final float GroundSample = (float)(Math.tan(Math.toRadians(35.0)) / (0.75 * Math.tan(Math.toRadians(34.0))));
+   static final float[][] ChatPayParser = new float[][]{
       {0.36F, 0.16F, 0.78F, 1.0F, 0.25F, 0.78F, 0.2F, 0.82F, 1.0F},
       {0.42F, 0.14F, 0.8F, 0.85F, 0.2F, 0.95F, 0.55F, 0.4F, 1.0F},
       {0.62F, 0.07F, 0.25F, 1.0F, 0.42F, 0.55F, 1.0F, 0.7F, 0.3F},
       {0.12F, 0.25F, 0.7F, 0.15F, 0.85F, 1.0F, 0.7F, 0.95F, 1.0F},
       {0.28F, 0.31F, 0.36F, 0.62F, 0.68F, 0.78F, 0.92F, 0.95F, 1.0F}
    };
-   private static final float[] i = new float[]{1.3F, 1.0F, 1.9F};
+   private static final float[] ChinaHatCodec = new float[]{1.3F, 1.0F, 1.9F};
    private static final float[] J = new float[]{0.011F, -0.017F, 0.007F};
    private static final float[] S = new float[]{-0.031F, -0.052F, -0.095F};
 

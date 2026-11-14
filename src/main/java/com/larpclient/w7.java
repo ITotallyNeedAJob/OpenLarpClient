@@ -8,9 +8,9 @@ import net.minecraft.util.math.Vec3d;
 public final class w7 {
    public static final long S = 1500L;
    public static final long z = 150L;
-   public static final double t = 0.5;
+   public static final double SmoothInput = 0.5;
    public static final double K = 1.3;
-   public static final double o = 0.05;
+   public static final double AuctionNotifier = 0.05;
 
    public static boolean wAsBoolean(double var0, double var2, double var4, double var6) {
       return Double.isFinite(var0) && Double.isFinite(var2) && var0 >= 0.0 && var2 >= 0.0 && var0 <= var4 && var2 <= var6;

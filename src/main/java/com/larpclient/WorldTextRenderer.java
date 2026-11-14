@@ -27,17 +27,17 @@ import org.joml.Quaternionfc;
 import org.joml.Vector3f;
 
 public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
-   private static final double j = 0.55;
+   private static final double TextLayout = 0.55;
    private static final int V = 15728880;
    private static final int C = 256;
    private static final Comparator<WorldTextRenderer.Type_k> B = Comparator.<WorldTextRenderer.Type_k>comparingDouble(var0 -> var0.K).reversed();
-   private final WorldTextRenderer.Type_k[] x = new WorldTextRenderer.Type_k[256];
-   private final WorldTextRenderer.Type_k[] c = new WorldTextRenderer.Type_k[256];
+   private final WorldTextRenderer.Type_k[] AuraModule = new WorldTextRenderer.Type_k[256];
+   private final WorldTextRenderer.Type_k[] BoxUtils = new WorldTextRenderer.Type_k[256];
    private int R;
-   private static final double m = 0.01890625;
+   private static final double PriceDetector = 0.01890625;
    private final LinkedHashMap<String, WorldTextRenderer.Type_o> W = new LinkedHashMap<>(64, 0.75F, true);
    private final Matrix4f X = new Matrix4f();
-   private final Matrix4f t = new Matrix4f();
+   private final Matrix4f SmoothInput = new Matrix4f();
    private WorldTextRenderer.Type_c K;
    private int p;
    private int v;
@@ -47,11 +47,11 @@ public final class WorldTextRenderer implements AutoCloseable, GlyphDrawer {
    private final Vector3f A = new Vector3f();
    private final TransformingVertexConsumer U = new TransformingVertexConsumer();
    private final dv[] n = new dv[96];
-   private final double[] f = new double[96];
+   private final double[] MenuPopupProvider = new double[96];
    private final RenderPipeline[][] P = new RenderPipeline[3][2];
    private EffectDrawBuffers L;
    private TextRenderer a;
-   private int s = -1;
+   private int SkyChunkCache = -1;
    private int T = -1;
    private int e;
    private boolean i;

@@ -8,7 +8,7 @@ public final class w2 {
    private double Y;
    private double Z;
    private long a;
-   private double i = 1.0;
+   private double ChinaHatCodec = 1.0;
    private w2.Type_e H = w2.Type_e.CUBIC_OUT;
 
    public w2(double var1) {

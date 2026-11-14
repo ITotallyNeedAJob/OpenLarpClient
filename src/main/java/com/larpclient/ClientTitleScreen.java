@@ -26,7 +26,7 @@ public final class ClientTitleScreen extends Screen implements xs {
    private static final w9.Type_f N = new w9.Type_f();
    private static final String Z = "Larp Client";
    private final nc D = W.cAsNc();
-   private final List<AnimatedButton> k = new ArrayList<>();
+   private final List<AnimatedButton> GroundSample = new ArrayList<>();
    private final List<ClientTitleScreen.Type_c> r = new ArrayList<>();
    private RootMenuLayout b;
    private AnimatedButton o;
@@ -38,7 +38,7 @@ public final class ClientTitleScreen extends Screen implements xs {
    private boolean e;
    private boolean m;
    private nc.Type_j G;
-   private final AccountSkinPreview f = new AccountSkinPreview();
+   private final AccountSkinPreview MenuPopupProvider = new AccountSkinPreview();
    private final AccountWalkOnAnimation S = new AccountWalkOnAnimation(N.GAsW9());
    private final AccountPopupController R = new AccountPopupController(this);
 
@@ -314,7 +314,7 @@ public final class ClientTitleScreen extends Screen implements xs {
    private void zAsVoid(Screen var1) {
       if (var1 instanceof ClickGuiScreen var2) {
          var2.IAsVoid();
-      } else if (var1 instanceof f var3) {
+      } else if (var1 instanceof MenuPopupProvider var3) {
          var3.larpOpenMenuPopup();
       } else {
          ClientLog.oAsVoid("Menu", "Popup hook unavailable for {}; opening destination directly", var1.getClass().getSimpleName());

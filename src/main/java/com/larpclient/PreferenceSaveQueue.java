@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 final class PreferenceSaveQueue implements AutoCloseable {
    private final PreferenceSaveQueue.Type_l Y;
-   private final Map<Path, String> d = new LinkedHashMap<>();
+   private final Map<Path, String> SahurDanceEngine = new LinkedHashMap<>();
    private final ScheduledThreadPoolExecutor M;
    private ScheduledFuture<?> Z;
    private volatile String r = "";

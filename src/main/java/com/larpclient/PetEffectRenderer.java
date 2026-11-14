@@ -3,7 +3,7 @@ package com.larpclient;
 import net.minecraft.util.math.Vec3d;
 import org.joml.Quaternionf;
 
-final class a {
+final class PetEffectRenderer {
    static void jAsVoid(EffectGeometryRenderer var0, Pets.Type_w var1, boolean var2) {
       if (var1.style().equals("Tung Tung Tung Sahur")) {
          if (!var2) {
@@ -296,6 +296,6 @@ final class a {
       }
    }
 
-   private a() {
+   private PetEffectRenderer() {
    }
 }

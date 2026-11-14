@@ -49,11 +49,11 @@ public final class p5 {
 
             if (T.cAsBoolean(var0, var1.player, var1.world)) {
                G = var1.player.getYaw();
-               y = var1.player.getPitch();
-               o = var1.options.getPerspective();
-               if (DAsBoolean(var0) && o.isFrontView()) {
+               ScreenScale = var1.player.getPitch();
+               AuctionNotifier = var1.options.getPerspective();
+               if (DAsBoolean(var0) && AuctionNotifier.isFrontView()) {
                   G += 180.0F;
-                  y = -y;
+                  ScreenScale = -y;
                }
 
                R = v = var0 == p5.Type_u.FREECAM
@@ -107,10 +107,10 @@ public final class p5 {
       }
 
       r = null;
-      o = null;
+      AuctionNotifier = null;
       T.XAsBoolean(T.s);
       R = v = Vec3d.ZERO;
-      y = 0.0F;
+      ScreenScale = 0.0F;
       G = 0.0F;
    }
 
@@ -208,12 +208,12 @@ public final class p5 {
 
    private static void BAsVoid() {
       Perspective var0 = MinecraftClient.getInstance().options.getPerspective();
-      if (o != null && o.isFrontView() != var0.isFrontView()) {
+      if (AuctionNotifier != null && AuctionNotifier.isFrontView() != var0.isFrontView()) {
          G = G + (var0.isFrontView() ? 180.0F : -180.0F);
-         y = -y;
+         ScreenScale = -y;
       }
 
-      o = var0;
+      AuctionNotifier = var0;
    }
 
    public static boolean oAsBoolean() {
@@ -223,7 +223,7 @@ public final class p5 {
    public static void kAsVoid(double var0, double var2) {
       G += (float)var0 * 0.15F;
       float var4 = oAsBoolean() ? 90.0F : 89.0F;
-      y = MathHelper.clamp(y + (float)var2 * 0.15F, -var4, var4);
+      ScreenScale = MathHelper.clamp(ScreenScale + (float)var2 * 0.15F, -var4, var4);
    }
 
    public static float JAsFloat() {
@@ -313,7 +313,7 @@ public final class p5 {
    }
 
    public static final class Type_x {
-      private p5.Type_u s = p5.Type_u.NONE;
+      private p5.Type_u SkyChunkCache = p5.Type_u.NONE;
       private Object u;
       private Object T;
 

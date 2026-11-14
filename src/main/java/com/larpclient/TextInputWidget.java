@@ -13,7 +13,7 @@ public final class TextInputWidget extends GuiWidget {
    private final String D;
    private final int f;
    private boolean X;
-   private final w2 o = new w2(0.0);
+   private final w2 AuctionNotifier = new w2(0.0);
    private final dn n = new dn();
    private final Consumer<String> w;
    private Runnable I;
@@ -23,7 +23,7 @@ public final class TextInputWidget extends GuiWidget {
    private int E;
    private boolean H;
    private boolean S;
-   public String b = "";
+   public String BloomUtility = "";
    public int P = -1;
 
    public TextInputWidget OAsQq() {

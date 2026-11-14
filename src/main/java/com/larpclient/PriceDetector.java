@@ -7,13 +7,13 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class m {
+public final class PriceDetector {
    private static final Pattern R = Pattern.compile(
       "(?i)(?:\\$\\s*|(?:worth|price|cost)\\s*[:~≈]?\\s*\\$?\\s*)([0-9][0-9,]*(?:\\.[0-9]+)?)\\s*+([kmbt]?)(?![a-z0-9.,])"
    );
    private static final Pattern r = Pattern.compile("^[^\\p{L}\\p{N}]*([0-9][0-9,]*(?:\\.[0-9]+)?)\\s*([kmbt])(?:\\s*/\\s*[0-9]+)?\\s*$");
 
-   public m() {
+   public PriceDetector() {
    }
 
    public static int mAsInt(int var0) {
@@ -21,10 +21,10 @@ public final class m {
    }
 
    public static boolean AAsBoolean(Iterable<String> var0) {
-      return CAsM_Type_i(var0) == m.Type_i.SAFE;
+      return CAsM_Type_i(var0) == PriceDetector.Type_i.SAFE;
    }
 
-   public static m.Type_i CAsM_Type_i(Iterable<String> var0) {
+   public static PriceDetector.Type_i CAsM_Type_i(Iterable<String> var0) {
       byte var1 = 0;
       byte var2 = 0;
 
@@ -50,7 +50,7 @@ public final class m {
             };
             BigDecimal var10_r2 = new BigDecimal(var6.group(1).replace(",", "")).scaleByPowerOfTen(var7);
             if (var10_r2.compareTo(BigDecimal.valueOf(3000000L)) > 0) {
-               return m.Type_i.ABOVE_LIMIT;
+               return PriceDetector.Type_i.ABOVE_LIMIT;
             }
          }
 
@@ -61,7 +61,7 @@ public final class m {
          }
       }
 
-      return var1 != 0 && var2 == 0 ? m.Type_i.SAFE : m.Type_i.UNREADABLE;
+      return var1 != 0 && var2 == 0 ? PriceDetector.Type_i.SAFE : PriceDetector.Type_i.UNREADABLE;
    }
 
    public static enum Type_i {

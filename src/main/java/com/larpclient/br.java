@@ -11,7 +11,7 @@ final class br {
    private final double C;
    private final boolean i;
    private String V = "Matte";
-   private Vec3d a = new Vec3d(0.0, 0.3, 1.0).normalize();
+   private Vec3d PetEffectRenderer = new Vec3d(0.0, 0.3, 1.0).normalize();
 
    br wAsBr(String var1, Vec3d var2) {
       this.V = var1;

@@ -5,10 +5,10 @@ import org.joml.Vector3f;
 
 public final class bw {
    private static final Vector3f[] X = new Vector3f[]{new Vector3f(-0.031F, 0.08F, -0.067F), new Vector3f(0.088F, 0.08F, -0.067F)};
-   private static final Vector3f[] l = new Vector3f[]{new Vector3f(-0.038F, 0.002F, -0.068F), new Vector3f(0.096F, 0.002F, -0.068F)};
-   private static final Vector3f[] i = new Vector3f[]{new Vector3f(0.001F, -0.105F, -0.062F), new Vector3f(0.055F, -0.105F, -0.062F)};
+   private static final Vector3f[] DropletTrail = new Vector3f[]{new Vector3f(-0.038F, 0.002F, -0.068F), new Vector3f(0.096F, 0.002F, -0.068F)};
+   private static final Vector3f[] ChinaHatCodec = new Vector3f[]{new Vector3f(0.001F, -0.105F, -0.062F), new Vector3f(0.055F, -0.105F, -0.062F)};
    private static final Vector3f[] G = new Vector3f[]{new Vector3f(-0.001F, -0.194F, -0.067F), new Vector3f(0.057F, -0.194F, -0.067F)};
-   private static final float g = 0.002F;
+   private static final float ChatPayParser = 0.002F;
    private static final float Z = -0.194F;
    private static final float O = 0.9F;
    private static final float H = 0.7F;
@@ -16,10 +16,10 @@ public final class bw {
    private final SahurMeshReader.Type_u D;
    private final int[] r;
    private final float[] n;
-   private final Matrix4f[] j = new Matrix4f[]{new Matrix4f(), new Matrix4f(), new Matrix4f(), new Matrix4f()};
-   private final Matrix4f[] b = new Matrix4f[]{new Matrix4f(), new Matrix4f(), new Matrix4f(), new Matrix4f()};
+   private final Matrix4f[] TextLayout = new Matrix4f[]{new Matrix4f(), new Matrix4f(), new Matrix4f(), new Matrix4f()};
+   private final Matrix4f[] BloomUtility = new Matrix4f[]{new Matrix4f(), new Matrix4f(), new Matrix4f(), new Matrix4f()};
    private final Vector3f h = new Vector3f();
-   private final Vector3f o = new Vector3f();
+   private final Vector3f AuctionNotifier = new Vector3f();
    private float V;
 
    public bw(SahurMeshReader.Type_u var1) {

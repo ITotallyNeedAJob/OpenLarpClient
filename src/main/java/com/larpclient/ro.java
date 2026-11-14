@@ -9,10 +9,10 @@ public final class ro {
    public static final float n = 0.12F;
    public static final int S = 73;
    private static final int[] Z = new int[]{4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0};
-   private static final float[] g = new float[]{0.27F, 0.2F, 0.2F, 0.1F};
+   private static final float[] ChatPayParser = new float[]{0.27F, 0.2F, 0.2F, 0.1F};
    public static final List<ro.Type_s> L = YAsList();
    public static final List<ro.Type_t> T;
-   public static final List<ro.Type_d> m = List.of(
+   public static final List<ro.Type_d> PriceDetector = List.of(
       new ro.Type_d(0, 1, 0.028F, true),
       new ro.Type_d(1, 2, 0.024F, true),
       new ro.Type_d(2, 3, 0.019F, true),
@@ -25,7 +25,7 @@ public final class ro {
       new ro.Type_d(25, 13, 0.005F, false)
    );
    public static final float h = 1.38F;
-   public static final float a = 0.16F;
+   public static final float PetEffectRenderer = 0.16F;
    public static final float E = 2.0F;
 
    private static List<ro.Type_s> YAsList() {

@@ -6,7 +6,7 @@ import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 
 public final class ot {
-   private PlayerInput d = PlayerInput.DEFAULT;
+   private PlayerInput SahurDanceEngine = PlayerInput.DEFAULT;
    private int C;
    private double S = 1.0;
 

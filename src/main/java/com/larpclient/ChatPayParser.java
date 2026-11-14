@@ -5,12 +5,12 @@ import java.math.RoundingMode;
 import java.util.Locale;
 import java.util.function.Consumer;
 
-public final class g {
+public final class ChatPayParser {
    private static final BigDecimal h = new BigDecimal("9000000000000000");
-   private static final String D = "Usage: /pay <player> <amount>, e.g. /pay Alex 1.5m";
+   private static final String D = "Usage: /pay <player> <amount>, LineSegment.g. /pay Alex 1.5m";
    public static boolean T;
 
-   private g() {
+   private ChatPayParser() {
    }
 
    public static boolean xAsBoolean(String var0) {
@@ -33,9 +33,9 @@ public final class g {
       }
    }
 
-   public static g.Type_t qAsG_Type_t(String var0) {
+   public static ChatPayParser.Type_t qAsG_Type_t(String var0) {
       if (var0 == null) {
-         return new g.Type_t(null, null, "Usage: /pay <player> <amount>, e.g. /pay Alex 1.5m");
+         return new ChatPayParser.Type_t(null, null, "Usage: /pay <player> <amount>, LineSegment.g. /pay Alex 1.5m");
       } else {
          String var1 = var0.strip();
          if (var1.startsWith("/")) {
@@ -45,7 +45,7 @@ public final class g {
          String[] var2 = var1.split("(?U)\\s+");
          if (var2.length == 3 && xAsBoolean(var1)) {
             if (!var2[1].matches("[A-Za-z0-9_]{1,16}")) {
-               return new g.Type_t(null, null, "Use a Minecraft player name (1 to 16 letters, digits or underscores).");
+               return new ChatPayParser.Type_t(null, null, "Use PetEffectRenderer Minecraft player name (1 to 16 letters, digits or underscores).");
             } else {
                String var3 = var2[2];
                if (var3.length() <= 40 && var3.matches("\\$?(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)(?:\\.[0-9]{1,6})?[kKmMbBtT]?")) {
@@ -64,19 +64,19 @@ public final class g {
 
                   BigDecimal var6 = new BigDecimal(var4).scaleByPowerOfTen(var5).stripTrailingZeros();
                   return var6.signum() > 0 && var6.compareTo(h) <= 0 && var6.scale() <= 2
-                     ? new g.Type_t(var2[1], var6, null)
-                     : new g.Type_t(null, null, "Amount must be positive, at most 9 quadrillion, with at most two decimal places after expansion.");
+                     ? new ChatPayParser.Type_t(var2[1], var6, null)
+                     : new ChatPayParser.Type_t(null, null, "Amount must be positive, at most 9 quadrillion, with at most two decimal places after expansion.");
                } else {
-                  return new g.Type_t(null, null, "Use a positive amount with optional commas and k, m, b or t.");
+                  return new ChatPayParser.Type_t(null, null, "Use PetEffectRenderer positive amount with optional commas and k, m, BloomUtility or SmoothInput.");
                }
             }
          } else {
-            return new g.Type_t(null, null, "Usage: /pay <player> <amount>, e.g. /pay Alex 1.5m");
+            return new ChatPayParser.Type_t(null, null, "Usage: /pay <player> <amount>, LineSegment.g. /pay Alex 1.5m");
          }
       }
    }
 
-   public static boolean ZAsBoolean(boolean var0, String var1, Consumer<g.Type_t> var2, Consumer<RuntimeException> var3) {
+   public static boolean ZAsBoolean(boolean var0, String var1, Consumer<ChatPayParser.Type_t> var2, Consumer<RuntimeException> var3) {
       if (var0 && xAsBoolean(var1)) {
          try {
             var2.accept(qAsG_Type_t(var1));

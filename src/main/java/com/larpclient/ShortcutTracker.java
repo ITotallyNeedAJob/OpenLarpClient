@@ -8,7 +8,7 @@ public final class ShortcutTracker<T> {
    private final boolean[] B;
    private final boolean[] C;
    private final boolean[] n;
-   private final LinkedHashSet<T> p = new LinkedHashSet<>();
+   private final LinkedHashSet<T> HexEdgeloop = new LinkedHashSet<>();
 
    public ShortcutTracker(int var1) {
       this.B = new boolean[var1];

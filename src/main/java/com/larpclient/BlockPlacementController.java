@@ -47,7 +47,7 @@ import net.minecraft.world.RaycastContext.FluidHandling;
 import net.minecraft.world.RaycastContext.ShapeType;
 
 public final class BlockPlacementController {
-   private static final Map<Module, BlockPlacementController.Type_e> b = new LinkedHashMap<>();
+   private static final Map<Module, BlockPlacementController.Type_e> BloomUtility = new LinkedHashMap<>();
    private static final Map<Module, String> O = new HashMap<>();
    private static final Map<Module, Long> T = new HashMap<>();
    private static final Direction[] R = new Direction[]{Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST, Direction.DOWN};
@@ -76,18 +76,18 @@ public final class BlockPlacementController {
    }
 
    public static void WAsVoid(Module var0) {
-      b.remove(var0);
+      BloomUtility.remove(var0);
       b_.KAsVoid(var0);
    }
 
    public static void dAsVoid() {
-      b.clear();
+      BloomUtility.clear();
       O.clear();
       T.clear();
    }
 
    public static boolean tAsBoolean(Module var0) {
-      BlockPlacementController.Type_e var1 = b.get(var0);
+      BlockPlacementController.Type_e var1 = BloomUtility.get(var0);
       MinecraftClient var2 = MinecraftClient.getInstance();
       return var1 != null && var2.player != null && rAsBoolean(var1.world, var2.world, var1.player, var2.player, var1.tick, var2.player.age);
    }
@@ -370,7 +370,7 @@ public final class BlockPlacementController {
       BlockPlacementController.Type_e var13 = new BlockPlacementController.Type_e(
          var0, var1.toImmutable(), var2, var3, var4, var6, var7, var9, var10, var11, var12.world, var12.player, var12.player.age
       );
-      b.put(var0, var13);
+      BloomUtility.put(var0, var13);
       b_.UAsVoid(
          var0,
          () -> tAsVoid(var13, var8),
@@ -381,7 +381,7 @@ public final class BlockPlacementController {
 
    private static boolean JAsBoolean(BlockPlacementController.Type_e var0) {
       MinecraftClient var1 = MinecraftClient.getInstance();
-      return b.get(var0.source) == var0
+      return BloomUtility.get(var0.source) == var0
          && rAsBoolean(var0.world, var1.world, var0.player, var1.player, var0.tick, var1.player == null ? 0 : var1.player.age)
          && var0.source.isRuntimeActive()
          && b_.jAsBoolean()
@@ -417,7 +417,7 @@ public final class BlockPlacementController {
    }
 
    public static void wAsVoid() {
-      b.values().removeIf(var0x -> {
+      BloomUtility.values().removeIf(var0x -> {
          if (JAsBoolean(var0x)) {
             return false;
          } else {
@@ -425,7 +425,7 @@ public final class BlockPlacementController {
             return true;
          }
       });
-      Optional var0 = b.values()
+      Optional var0 = BloomUtility.values()
          .stream()
          .filter(var0x -> var0x.visible && JAsBoolean(var0x) && b_.nAsBoolean(var0x.source))
          .max(Comparator.comparingInt(var0x -> b_.bAsInt(var0x.source.getName())));
@@ -481,7 +481,7 @@ public final class BlockPlacementController {
                var0.completed.accept(var7);
             } finally {
                var4.player.getInventory().setSelectedSlot(var5);
-               b.remove(var0.source, var0);
+               BloomUtility.remove(var0.source, var0);
             }
          } else {
             uAsVoid(var0.source, "Execution lost its valid support ray or inventory item");
@@ -514,14 +514,14 @@ public final class BlockPlacementController {
 
    public abstract static class Type_k extends Module implements BlockPlacementController.Type_n {
       protected final NumberSetting h = this.KAsNumberSetting("Range", "Placement reach capped by native block reach", 4.1, 1.0, 6.0, 0.1);
-      protected final NumberSetting p = this.KAsNumberSetting("Target Range", "Search distance for survival opponents", 6.0, 1.0, 12.0, 0.5);
+      protected final NumberSetting HexEdgeloop = this.KAsNumberSetting("Target Range", "Search distance for survival opponents", 6.0, 1.0, 12.0, 0.5);
       protected final NumberSetting d;
       protected final ModeSetting rotation;
       protected final BooleanSetting J;
       protected final BooleanSetting Q;
       protected final BooleanSetting j;
       private long k;
-      private String B = "Waiting for a target";
+      private String B = "Waiting for PetEffectRenderer target";
 
       protected Type_k(String var1, String var2) {
          this(var1, var2, 0);
@@ -656,7 +656,7 @@ public final class BlockPlacementController {
       public void onDisable() {
          BlockPlacementController.WAsVoid(this);
          this.k = 0L;
-         this.B = "Waiting for a target";
+         this.B = "Waiting for PetEffectRenderer target";
          ClientLog.XAsVoid(this.getName(), "Placement intents cleared");
       }
    }

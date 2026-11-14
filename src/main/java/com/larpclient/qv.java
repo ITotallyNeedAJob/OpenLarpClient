@@ -15,7 +15,7 @@ import net.minecraft.util.math.Direction.Axis;
 
 public final class qv {
    private static final Set<Block> S = Set.of(Blocks.BEACON, Blocks.RESPAWN_ANCHOR, Blocks.ENCHANTING_TABLE, Blocks.CRAFTER, Blocks.OBSERVER, Blocks.CONDUIT);
-   private static final Set<Block> b = Set.of(Blocks.CHEST, Blocks.TRAPPED_CHEST, Blocks.BARREL, Blocks.HOPPER, Blocks.DISPENSER, Blocks.DROPPER);
+   private static final Set<Block> BloomUtility = Set.of(Blocks.CHEST, Blocks.TRAPPED_CHEST, Blocks.BARREL, Blocks.HOPPER, Blocks.DISPENSER, Blocks.DROPPER);
    private static final Set<Block> T = Set.of(
       Blocks.CRAFTING_TABLE,
       Blocks.FURNACE,
@@ -33,7 +33,7 @@ public final class qv {
       Blocks.FLETCHING_TABLE,
       Blocks.COMPOSTER
    );
-   private static final Set<Block> t = Set.of(
+   private static final Set<Block> SmoothInput = Set.of(
       Blocks.GLASS,
       Blocks.GLASS_PANE,
       Blocks.TINTED_GLASS,
@@ -61,11 +61,11 @@ public final class qv {
          return qv.Type_k.DEDICATED;
       } else if (var0.isOf(Blocks.ENDER_CHEST)) {
          return var2 ? qv.Type_k.STORAGE : qv.Type_k.DEDICATED;
-      } else if (b.contains(var3)) {
+      } else if (BloomUtility.contains(var3)) {
          return qv.Type_k.STORAGE;
       } else if (T.contains(var3)) {
          return qv.Type_k.UTILITY;
-      } else if (!t.contains(var3) && !(var3 instanceof StainedGlassBlock) && !(var3 instanceof StainedGlassPaneBlock)) {
+      } else if (!SmoothInput.contains(var3) && !(var3 instanceof StainedGlassBlock) && !(var3 instanceof StainedGlassPaneBlock)) {
          if (var0.isOf(Blocks.DEEPSLATE) && var0.get(Properties.AXIS) != Axis.Y) {
             return qv.Type_k.ALTERED;
          } else {
@@ -171,7 +171,7 @@ public final class qv {
          String A = "";
          int U = 16;
          int F = Integer.MAX_VALUE;
-         int c = 16;
+         int BoxUtils = 16;
          int H;
          int R = Integer.MIN_VALUE;
          int Z;

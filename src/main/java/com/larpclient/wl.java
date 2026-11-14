@@ -8,8 +8,8 @@ import java.util.function.LongPredicate;
 
 public final class wl {
    private final Map<Long, wl.Type_v> q = new HashMap<>();
-   private final Map<Long, wl.Type_v> l = new HashMap<>();
-   private final Map<Long, Long> t = new HashMap<>();
+   private final Map<Long, wl.Type_v> DropletTrail = new HashMap<>();
+   private final Map<Long, Long> SmoothInput = new HashMap<>();
    private final LinkedHashMap<Long, Long> C = new LinkedHashMap<>();
    public static final int w = 1024;
    private static final long S = 1200L;

@@ -17,7 +17,7 @@ public final class ProfileSettingsPanel extends SettingsPanel {
    final PlatformService wq = PlatformService.x;
    final ProfileManager wv = LarpClient.CAsLarpClient().fAsBo();
    final ProfileImportPreview wI = new ProfileImportPreview(this);
-   private final bv p = new bv(this);
+   private final bv HexEdgeloop = new bv(this);
    String Z = "";
    String Y = "";
    String G = "";
@@ -35,14 +35,14 @@ public final class ProfileSettingsPanel extends SettingsPanel {
    private String U = "Cancel";
    private boolean wO;
    private final List<ActionButton> w = new ArrayList<>();
-   private final List<ActionButton> e = new ArrayList<>();
+   private final List<ActionButton> LineSegment = new ArrayList<>();
    private final Map<ActionButton, List<ActionButton>> wT = new LinkedHashMap<>();
    private TextInputWidget wB;
    private TextInputWidget wA;
    private TextInputWidget wY;
    private int u;
    private int j;
-   private int y = 62;
+   private int ScreenScale = 62;
    private final w2 F = new w2(0.0);
    private final dr<JsonObject> I = new dr<>(var1x -> this.JAsMinecraftClient().execute(var1x), this::fAsBoolean);
 
@@ -275,7 +275,7 @@ public final class ProfileSettingsPanel extends SettingsPanel {
       } else if (this.wI.m != null) {
          this.wI.DAsVoid();
       } else if (this.wf) {
-         this.QAsVoid("Import config", "Paste a share code. Nothing loads until you confirm.");
+         this.QAsVoid("Import config", "Paste PetEffectRenderer share code. Nothing loads until you confirm.");
          this.wY = this.wI.cAsQq();
          this.rAsQo("Cancel", () -> {
             this.wf = false;
@@ -505,12 +505,12 @@ public final class ProfileSettingsPanel extends SettingsPanel {
       int var4 = Math.min(180, Math.max(1, var2 - var3));
       this.wB.bounds(var1 + var3, this.P.bodyTop(), var4);
       this.wB.F = 20;
-      j.Type_u var5 = com.larpclient.j.LAsJ_Type_u(var2, this.e.stream().map(var0 -> TextDrawing.jAsInt(var0.X, TextDrawing.Type_s.HELP) + 12).toList());
+      TextLayout.Type_u var5 = com.larpclient.j.LAsJ_Type_u(var2, this.e.stream().map(var0 -> TextDrawing.jAsInt(var0.X, TextDrawing.Type_s.HELP) + 12).toList());
       this.y = 27 + var5.height() + 8;
 
       for (int var6 = 0; var6 < this.e.size(); var6++) {
          ActionButton var7 = this.e.get(var6);
-         j.Type_m var8 = var5.cells().get(var6);
+         TextLayout.Type_m var8 = var5.cells().get(var6);
          var7.l = true;
          var7.bounds(var1 + var8.x(), this.P.bodyTop() + 27 + var8.y(), var8.width());
          var7.F = 24;

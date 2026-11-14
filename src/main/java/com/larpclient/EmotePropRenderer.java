@@ -26,9 +26,9 @@ import org.joml.Vector3f;
 public final class EmotePropRenderer {
    private static final String Y = "models/emotes/";
    private static final float z = 0.86F;
-   private static final float f = 2.25F;
-   private static final float t = 0.05F;
-   private static final int l = 9;
+   private static final float MenuPopupProvider = 2.25F;
+   private static final float SmoothInput = 0.05F;
+   private static final int DropletTrail = 9;
    private static final RenderPipeline L = RenderPipeline.builder(new Snippet[]{RenderPipelines.POSITION_TEX_COLOR_SNIPPET})
       .withLocation(AAsIdentifier("emote_prop"))
       .withFragmentShader(AAsIdentifier("particle/sprite"))
@@ -38,7 +38,7 @@ public final class EmotePropRenderer {
       .withoutBlend()
       .withCull(true)
       .build();
-   private static final Map<String, EmotePropRenderer.Type_w> g = new HashMap<>();
+   private static final Map<String, EmotePropRenderer.Type_w> ChatPayParser = new HashMap<>();
    private static final Map<String, RenderLayer> V = new HashMap<>();
    private static EmotePropRenderer.Type_z N;
 
@@ -54,7 +54,7 @@ public final class EmotePropRenderer {
    }
 
    private static EmotePropRenderer.Type_w mAsBs_Type_w(String var0) {
-      EmotePropRenderer.Type_w var1 = g.get(var0);
+      EmotePropRenderer.Type_w var1 = ChatPayParser.get(var0);
       if (var1 != null && var1.V == (long)BloomQuality.J) {
          return var1;
       } else {
@@ -67,7 +67,7 @@ public final class EmotePropRenderer {
                var2.getResourceOrThrow(var3);
                PropMeshReader.Type_a var5 = PropMeshReader.dAsNj_Type_a(var4);
                if (var5.parts().size() != 2) {
-                  throw new IOException("Prop needs a body and a wheel part");
+                  throw new IOException("Prop needs PetEffectRenderer body and PetEffectRenderer wheel part");
                }
 
                WorldLabelLayout.DAsVoid(L);
@@ -75,7 +75,7 @@ public final class EmotePropRenderer {
                   var0, var1x -> RenderLayer.of("larp_emote_prop_" + var1x, RenderSetup.builder(L).texture("Sampler0", var3).build())
                );
                var1 = new EmotePropRenderer.Type_w(var5, var6, (long)BloomQuality.J);
-               g.put(var0, var1);
+               ChatPayParser.put(var0, var1);
                ClientLog.GAsVoid("Emotes", "Prop {} ready: {} triangles, resource generation {}", var0, var5.triangles(), var1.V);
                var7 = var1;
             }

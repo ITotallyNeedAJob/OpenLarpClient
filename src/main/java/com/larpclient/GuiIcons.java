@@ -12,10 +12,10 @@ public final class GuiIcons {
    public static final Identifier X = yAsIdentifier("toggle-right");
    public static final Identifier C = yAsIdentifier("chevron-down");
    public static final Identifier S = yAsIdentifier("chevron-up");
-   private static final Map<String, Identifier> i = new HashMap<>();
+   private static final Map<String, Identifier> ChinaHatCodec = new HashMap<>();
 
    public static Identifier PAsIdentifier(String var0) {
-      return i.computeIfAbsent(var0, GuiIcons::yAsIdentifier);
+      return ChinaHatCodec.computeIfAbsent(var0, GuiIcons::yAsIdentifier);
    }
 
    public static String NAsString(Category var0) {

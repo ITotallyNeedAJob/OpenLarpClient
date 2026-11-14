@@ -7,13 +7,13 @@ import net.minecraft.util.math.Vec3d;
 
 public final class lb {
    public static final int N = 64;
-   private final lb.Type_l[] c = new lb.Type_l[64];
+   private final lb.Type_l[] BoxUtils = new lb.Type_l[64];
    private int r;
    private int h;
    private int y;
    private long O;
    private boolean W;
-   private double u = Double.NaN;
+   private double CropHelper = Double.NaN;
    private float e;
    private Object H;
 

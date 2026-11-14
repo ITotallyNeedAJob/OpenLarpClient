@@ -22,12 +22,12 @@ import org.lwjgl.opengl.GL31C;
 public final class SodiumTerrainMaterialBridge {
    static final Identifier B = Identifier.of("larp-client", "shaders/temple/sodium_terrain.vsh");
    static final Identifier J = Identifier.of("larp-client", "shaders/temple/sodium_terrain.fsh");
-   static final String i = "blocks/block_layer_opaque";
-   static final int a = 30;
-   private static final Pattern f = Pattern.compile("\\bvoid\\s+main\\s*\\(\\s*(?:void\\s*)?\\)");
+   static final String ChinaHatCodec = "blocks/block_layer_opaque";
+   static final int PetEffectRenderer = 30;
+   private static final Pattern MenuPopupProvider = Pattern.compile("\\bvoid\\s+main\\s*\\(\\s*(?:void\\s*)?\\)");
    private static final Pattern P = Pattern.compile("fragColor\\s*=\\s*_linearFog\\(\\s*color\\s*,");
    private static final Pattern W = Pattern.compile("(?m)^\\s*#moj_import\\s*<larp-client:([^>]+)>\\s*$");
-   private static final List<String> b = List.of(
+   private static final List<String> BloomUtility = List.of(
       "_vert_position",
       "u_RegionOffset",
       "_get_draw_translation",
@@ -40,9 +40,9 @@ public final class SodiumTerrainMaterialBridge {
       "u_ModelViewMatrix"
    );
    private static final List<String> E = List.of("v_Color", "u_FogColor", "u_RenderFog", "fragColor");
-   private static final int m = 600;
+   private static final int PriceDetector = 600;
    private static final IdentityHashMap<Object, Map<Object, Object>> S = new IdentityHashMap<>();
-   private static final Object x = new Object();
+   private static final Object AuraModule = new Object();
    private static Method D;
    private static Method w;
    private static String j;
@@ -64,11 +64,11 @@ public final class SodiumTerrainMaterialBridge {
    }
 
    static void zAsVoid() {
-      s = true;
+      SkyChunkCache = true;
    }
 
    static boolean iAsBoolean() {
-      return !s && r >= 600;
+      return !SkyChunkCache && r >= 600;
    }
 
    static boolean qAsBoolean() {
@@ -84,7 +84,7 @@ public final class SodiumTerrainMaterialBridge {
    }
 
    static void EAsVoid(boolean var0) {
-      if (!s && ++r == 600) {
+      if (!SkyChunkCache && ++r == 600) {
          ClientLog.oAsVoid(
             "TerrainMaterials", "Sodium {} drew no terrain through the terrain material hook in {} frames; keeping Sodium output", uAsString(), 600
          );
@@ -175,7 +175,7 @@ public final class SodiumTerrainMaterialBridge {
    }
 
    public static String mAsString(Identifier var0, String var1) {
-      if (!c || var1 == null || !var0.getNamespace().equals("sodium")) {
+      if (!BoxUtils || var1 == null || !var0.getNamespace().equals("sodium")) {
          return var1;
       } else if (var0.getPath().equals("blocks/block_layer_opaque.vsh")) {
          return EAsString(var1, j, ShaderType.VERTEX);
@@ -197,20 +197,20 @@ public final class SodiumTerrainMaterialBridge {
       }
 
       S.clear();
-      e = null;
-      j = null;
+      LineSegment = null;
+      TextLayout = null;
       M = false;
       O = false;
    }
 
    public static String EAsString(String var0, String var1, ShaderType var2) {
-      for (String var4 : var2 == ShaderType.VERTEX ? b : E) {
+      for (String var4 : var2 == ShaderType.VERTEX ? BloomUtility : E) {
          if (!var0.contains(var4)) {
             throw new IllegalStateException("Sodium " + var2.getName() + " chunk shader no longer provides " + var4);
          }
       }
 
-      Matcher var8 = f.matcher(var0);
+      Matcher var8 = MenuPopupProvider.matcher(var0);
       if (!var8.find()) {
          throw new IllegalStateException("Sodium " + var2.getName() + " chunk shader has no main()");
       } else {
@@ -262,13 +262,13 @@ public final class SodiumTerrainMaterialBridge {
    }
 
    private static Object OAsObject(Object var0, Object var1) throws ReflectiveOperationException, IOException {
-      if (j == null || e == null) {
-         j = dAsString(gAsString(B), SodiumTerrainMaterialBridge::AAsString);
-         e = dAsString(gAsString(J), SodiumTerrainMaterialBridge::AAsString);
+      if (TextLayout == null || LineSegment == null) {
+         TextLayout = dAsString(gAsString(B), SodiumTerrainMaterialBridge::AAsString);
+         LineSegment = dAsString(gAsString(J), SodiumTerrainMaterialBridge::AAsString);
       }
 
       Method var2 = dAsMethod(var0.getClass(), "createShader", 2);
-      c = true;
+      BoxUtils = true;
 
       Object var3;
       try {
@@ -276,7 +276,7 @@ public final class SodiumTerrainMaterialBridge {
       } catch (InvocationTargetException var10) {
          throw var10.getCause() instanceof RuntimeException var5 ? var5 : new IllegalStateException(var10.getCause());
       } finally {
-         c = false;
+         BoxUtils = false;
       }
 
       Object var4 = var3.getClass().getMethod("bindUniformBlockOptional", String.class, int.class).invoke(var3, "LarpMaterial", 30);
@@ -381,7 +381,7 @@ public final class SodiumTerrainMaterialBridge {
             N = var1.getDeclaredField("vertices");
             if (N.getType() != var2.arrayType()) {
                throw new NoSuchFieldException(
-                  "net.caffeinemc.mods.sodium.client.render.chunk.compile.pipeline.BlockRenderer.vertices is no longer a vertex array"
+                  "net.caffeinemc.mods.sodium.client.render.chunk.compile.pipeline.BlockRenderer.vertices is no longer PetEffectRenderer vertex array"
                );
             } else {
                N.setAccessible(true);

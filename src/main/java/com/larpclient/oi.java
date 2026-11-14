@@ -12,16 +12,16 @@ public final class oi {
    public static final double B = 0.03;
    public static final double A = 0.99;
    public static final double Z = 0.8;
-   public static final double p = 0.0172275;
+   public static final double HexEdgeloop = 0.0172275;
    public static final double P = 0.1F;
-   public static final int s = 60;
+   public static final int SkyChunkCache = 60;
    static final int G = 8;
    static final double h = 0.15625;
-   static final double o = 0.15F;
-   static final double c = 0.3125;
-   static final double m = 0.3F;
+   static final double AuctionNotifier = 0.15F;
+   static final double BoxUtils = 0.3125;
+   static final double PriceDetector = 0.3F;
    static final double R = 1.8F;
-   private static final double a = 0.0103365;
+   private static final double PetEffectRenderer = 0.0103365;
    private static final Vec3d[] E = new Vec3d[]{
       Vec3d.ZERO,
       new Vec3d(0.0103365, 0.0, 0.0),
@@ -231,7 +231,7 @@ public final class oi {
    public static final class Type_d {
       final Vec3d[] S = new Vec3d[60];
       final Vec3d[] Z = new Vec3d[60];
-      final double[] t = new double[60];
+      final double[] SmoothInput = new double[60];
       int b;
       Vec3d P;
 

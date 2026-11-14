@@ -11,18 +11,18 @@ import net.minecraft.util.math.Vec3d;
 
 public final class ok {
    private final ArrayDeque<ok.Type_o> U = new ArrayDeque<>();
-   private double i = -100.0;
+   private double ChinaHatCodec = -100.0;
    private Vec3d W;
    private boolean d;
-   private List<ok.Type_r> l = List.of();
+   private List<ok.Type_r> DropletTrail = List.of();
    private boolean X;
    public double n = 1.2;
    public double R = 2.4;
-   public double m = 0.45;
-   public int t = 6;
+   public double PriceDetector = 0.45;
+   public int SmoothInput = 6;
    public int Y = -8798209;
    public boolean E = true;
-   public String p = "Original";
+   public String HexEdgeloop = "Original";
    public String h = "Smooth";
 
    public ok() {

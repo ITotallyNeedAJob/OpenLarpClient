@@ -122,7 +122,7 @@ public final class Installer {
 
    private Installer.Result register(Path gameDir, Path jar, String loaderVersion, boolean adopt) throws IOException {
       Installer.Result var11;
-      try (Installer.Context c = open(gameDir, true)) {
+      try (Installer.Context BoxUtils = open(gameDir, true)) {
          if (this.recover(c)) {
             return Installer.Result.RECOVERED;
          }
@@ -131,7 +131,7 @@ public final class Installer {
          Path selected = jar.toAbsolutePath().normalize();
          noSymlinks(selected);
          Path source = selected.toRealPath(LinkOption.NOFOLLOW_LINKS);
-         if (!source.getParent().equals(c.mods) || !source.getFileName().toString().toLowerCase(Locale.ROOT).endsWith(".jar")) {
+         if (!source.getParent().equals(BoxUtils.mods) || !source.getFileName().toString().toLowerCase(Locale.ROOT).endsWith(".jar")) {
             throw fail("setup", "Select one standalone JAR directly inside this instance mods directory");
          }
 
@@ -143,39 +143,39 @@ public final class Installer {
          Identity before = ArtifactVerifier.readIdentity(source);
          Host host = this.host(loaderVersion);
          scanMods(c, source);
-         if (!adopt && exists(c.registration)) {
+         if (!adopt && exists(BoxUtils.registration)) {
             Installer.Registration registration = this.registration(c);
-            if (!source.equals(c.target) || !registration.identity.equals(before)) {
+            if (!source.equals(BoxUtils.target) || !registration.identity.equals(before)) {
                throw fail("setup", "Instance is already registered to another build");
             }
 
             this.state(c);
             pruneBackups(c);
             pruneStages(c);
-            write(c, c.registration, registration(before, host, c));
+            write(c, BoxUtils.registration, registration(before, host, c));
             return Installer.Result.CONFIGURED;
          }
 
-         if (!adopt && (exists(c.pending) || exists(c.receipt) || exists(c.previous))) {
+         if (!adopt && (exists(BoxUtils.pending) || exists(BoxUtils.receipt) || exists(BoxUtils.previous))) {
             throw fail("setup", "Existing update state needs recovery before registration");
          }
 
-         if (exists(c.state)) {
+         if (exists(BoxUtils.state)) {
             this.state(c);
          } else {
-            write(c, c.state, zeroState());
+            write(c, BoxUtils.state, zeroState());
          }
 
          pruneBackups(c);
          pruneStages(c);
-         if (source.equals(c.target)) {
+         if (source.equals(BoxUtils.target)) {
             this.stopped(c);
             checkIdentityAndHash(c, source, before, digest(c, source));
-            write(c, c.registration, registration(before, host, c));
+            write(c, BoxUtils.registration, registration(before, host, c));
             return Installer.Result.CONFIGURED;
          }
 
-         if (exists(c.target)) {
+         if (exists(BoxUtils.target)) {
             throw fail("setup", "Stable target name is already occupied");
          }
 
@@ -186,10 +186,10 @@ public final class Installer {
          scanMods(c, source);
          checkIdentityAndHash(c, source, before, transaction.beforeHash);
          this.faults.hit("beforeSwap");
-         atomicMove(c, source, c.target);
+         atomicMove(c, source, BoxUtils.target);
          this.faults.hit("swapMoved");
          this.journal(c, transaction, "swapped");
-         checkIdentityAndHash(c, c.target, before, transaction.afterHash);
+         checkIdentityAndHash(c, BoxUtils.target, before, transaction.afterHash);
          this.faults.hit("verified");
          this.journal(c, transaction, "committed");
          this.finish(c, transaction);
@@ -201,7 +201,7 @@ public final class Installer {
 
    public Installer.Result apply(Path gameDir) throws IOException {
       Installer.Result var14;
-      try (Installer.Context c = open(gameDir, false)) {
+      try (Installer.Context BoxUtils = open(gameDir, false)) {
          if (this.recover(c)) {
             return Installer.Result.RECOVERED;
          }
@@ -211,13 +211,13 @@ public final class Installer {
          this.stopped(c);
          paths(c);
          pruneStages(c);
-         scanMods(c, c.target);
-         checkIdentityAndHash(c, c.target, registration.identity, digest(c, c.target));
-         if (!exists(c.pending)) {
+         scanMods(c, BoxUtils.target);
+         checkIdentityAndHash(c, BoxUtils.target, registration.identity, digest(c, BoxUtils.target));
+         if (!exists(BoxUtils.pending)) {
             return Installer.Result.NOTHING_QUEUED;
          }
 
-         JsonObject pending = object(c, c.pending);
+         JsonObject pending = object(c, BoxUtils.pending);
          fields(pending, "schema", "releaseId", "buildId", "sha256", "artifactId", "target", "approvedAt");
          schema(pending);
          if (!string(pending, "target", 64).equals("mods/LarpClient.jar")) {
@@ -232,7 +232,7 @@ public final class Installer {
 
          Host host = this.host(registration.host.loaderVersion());
          UpdateManifest.Verified verified = UpdateManifest.verify(
-            read(c, c.manifest, 131072), this.roots, registration.identity, host, this.clock.instant(), state.authorityVersion, state.sequence
+            read(c, BoxUtils.manifest, 131072), this.roots, registration.identity, host, this.clock.instant(), state.authorityVersion, state.sequence
          );
          UpdateManifest.Release release = verified.release();
          if (!identifier(pending, "releaseId").equals(release.releaseId())
@@ -256,22 +256,22 @@ public final class Installer {
 
          try {
             if (Version.parse(release.version()).compareTo(Version.parse(registration.identity.version())) <= 0) {
-               throw fail("approval", "Automatic installation requires a newer release version; use explicit local restore for recovery");
+               throw fail("approval", "Automatic installation requires PetEffectRenderer newer release version; use explicit local restore for recovery");
             }
          } catch (VersionParsingException var16) {
             throw fail("approval", "Cannot establish release version ordering");
          }
 
-         ArtifactVerifier.verify(regular(c, c.artifact), release, host);
-         write(c, c.state, trustState(verified.authorityVersion(), release));
+         ArtifactVerifier.verify(regular(c, BoxUtils.artifact), release, host);
+         write(c, BoxUtils.state, trustState(verified.authorityVersion(), release));
          Installer.Transaction transaction = this.prepare(
-            c, "apply", c.target, c.artifact, registration.identity, release.identity(), host, release.releaseId(), release.sha256()
+            c, "apply", BoxUtils.target, BoxUtils.artifact, registration.identity, release.identity(), host, release.releaseId(), release.sha256()
          );
          this.journal(c, transaction, "prepared");
          this.stopped(c);
          paths(c);
-         scanMods(c, c.target);
-         checkIdentityAndHash(c, c.target, registration.identity, transaction.beforeHash);
+         scanMods(c, BoxUtils.target);
+         checkIdentityAndHash(c, BoxUtils.target, registration.identity, transaction.beforeHash);
          ArtifactVerifier.verify(regular(c, stage(c, transaction)), release, host);
          now = this.clock.instant().getEpochSecond();
          if (now < approvedAt || now - approvedAt >= 86400L || now >= release.expiresAt()) {
@@ -279,10 +279,10 @@ public final class Installer {
          }
 
          this.faults.hit("beforeSwap");
-         atomicMove(c, stage(c, transaction), c.target);
+         atomicMove(c, stage(c, transaction), BoxUtils.target);
          this.faults.hit("swapMoved");
          this.journal(c, transaction, "swapped");
-         ArtifactVerifier.verify(regular(c, c.target), release, host);
+         ArtifactVerifier.verify(regular(c, BoxUtils.target), release, host);
          this.faults.hit("verified");
          this.journal(c, transaction, "committed");
          this.finish(c, transaction);
@@ -294,7 +294,7 @@ public final class Installer {
 
    public Installer.Result restore(Path gameDir) throws IOException {
       Installer.Result var10;
-      try (Installer.Context c = open(gameDir, false)) {
+      try (Installer.Context BoxUtils = open(gameDir, false)) {
          if (this.recover(c)) {
             return Installer.Result.RECOVERED;
          }
@@ -304,8 +304,8 @@ public final class Installer {
          this.stopped(c);
          paths(c);
          pruneStages(c);
-         scanMods(c, c.target);
-         JsonObject previous = object(c, c.previous);
+         scanMods(c, BoxUtils.target);
+         JsonObject previous = object(c, BoxUtils.previous);
          fields(previous, "schema", "backup", "sha256", "identity");
          schema(previous);
          String backupName = backupName(previous, "backup");
@@ -314,23 +314,23 @@ public final class Installer {
             throw fail("restore", "Local backup stream mismatch");
          }
 
-         Path backup = c.backups.resolve(backupName);
+         Path backup = BoxUtils.backups.resolve(backupName);
          checkIdentityAndHash(c, backup, old, hash(previous, "sha256"));
          Host host = this.host(registration.host.loaderVersion());
          Installer.Transaction transaction = this.prepare(
-            c, "restore", c.target, backup, registration.identity, old, host, "local-restore", hash(previous, "sha256")
+            c, "restore", BoxUtils.target, backup, registration.identity, old, host, "local-restore", hash(previous, "sha256")
          );
          this.journal(c, transaction, "prepared");
          this.stopped(c);
          paths(c);
-         scanMods(c, c.target);
-         checkIdentityAndHash(c, c.target, registration.identity, transaction.beforeHash);
+         scanMods(c, BoxUtils.target);
+         checkIdentityAndHash(c, BoxUtils.target, registration.identity, transaction.beforeHash);
          checkIdentityAndHash(c, stage(c, transaction), old, transaction.afterHash);
          this.faults.hit("beforeSwap");
-         atomicMove(c, stage(c, transaction), c.target);
+         atomicMove(c, stage(c, transaction), BoxUtils.target);
          this.faults.hit("swapMoved");
          this.journal(c, transaction, "swapped");
-         checkIdentityAndHash(c, c.target, old, transaction.afterHash);
+         checkIdentityAndHash(c, BoxUtils.target, old, transaction.afterHash);
          this.faults.hit("verified");
          this.journal(c, transaction, "committed");
          this.finish(c, transaction);
@@ -348,12 +348,12 @@ public final class Installer {
       String stage = ".LarpClient." + id + ".stage";
       String beforeHash = digest(c, source);
       checkIdentityAndHash(c, source, before, beforeHash);
-      this.copy(c, source, c.backups.resolve(backup));
-      checkIdentityAndHash(c, c.backups.resolve(backup), before, beforeHash);
+      this.copy(c, source, BoxUtils.backups.resolve(backup));
+      checkIdentityAndHash(c, BoxUtils.backups.resolve(backup), before, beforeHash);
       this.faults.hit("backup");
       if (!kind.equals("setup")) {
-         this.copy(c, candidate, c.mods.resolve(stage));
-         checkIdentityAndHash(c, c.mods.resolve(stage), after, afterHash);
+         this.copy(c, candidate, BoxUtils.mods.resolve(stage));
+         checkIdentityAndHash(c, BoxUtils.mods.resolve(stage), after, afterHash);
          this.faults.hit("stage");
       }
 
@@ -374,27 +374,27 @@ public final class Installer {
    }
 
    private void journal(Installer.Context c, Installer.Transaction t, String phase) throws IOException {
-      JsonObject j = new JsonObject();
-      j.addProperty("schema", 1);
-      j.addProperty("kind", t.kind);
-      j.addProperty("phase", phase);
-      j.addProperty("source", t.source);
-      j.addProperty("backup", t.backup);
-      j.addProperty("stage", t.stage);
-      j.addProperty("beforeHash", t.beforeHash);
-      j.addProperty("afterHash", t.afterHash);
-      j.add("before", identity(t.before));
-      j.add("after", identity(t.after));
-      j.add("host", host(t.host));
-      j.addProperty("releaseId", t.releaseId);
-      j.addProperty("installedAt", t.installedAt);
-      write(c, c.journal, j);
+      JsonObject TextLayout = new JsonObject();
+      TextLayout.addProperty("schema", 1);
+      TextLayout.addProperty("kind", SmoothInput.kind);
+      TextLayout.addProperty("phase", phase);
+      TextLayout.addProperty("source", SmoothInput.source);
+      TextLayout.addProperty("backup", SmoothInput.backup);
+      TextLayout.addProperty("stage", SmoothInput.stage);
+      TextLayout.addProperty("beforeHash", SmoothInput.beforeHash);
+      TextLayout.addProperty("afterHash", SmoothInput.afterHash);
+      TextLayout.add("before", identity(SmoothInput.before));
+      TextLayout.add("after", identity(SmoothInput.after));
+      TextLayout.add("host", host(SmoothInput.host));
+      TextLayout.addProperty("releaseId", SmoothInput.releaseId);
+      TextLayout.addProperty("installedAt", SmoothInput.installedAt);
+      write(c, BoxUtils.journal, j);
       report(c, t, phase);
       this.faults.hit(phase);
    }
 
    private Installer.Transaction transaction(Installer.Context c) throws IOException {
-      JsonObject j = object(c, c.journal);
+      JsonObject TextLayout = object(c, BoxUtils.journal);
       fields(j, "schema", "kind", "phase", "source", "backup", "stage", "beforeHash", "afterHash", "before", "after", "host", "releaseId", "installedAt");
       schema(j);
       String kind = string(j, "kind", 16);
@@ -440,38 +440,38 @@ public final class Installer {
    }
 
    private boolean recover(Installer.Context c) throws IOException {
-      if (!exists(c.journal)) {
+      if (!exists(BoxUtils.journal)) {
          return false;
       } else {
-         Installer.Transaction t = this.transaction(c);
+         Installer.Transaction SmoothInput = this.transaction(c);
          this.state(c);
          this.stopped(c);
          paths(c);
-         Path backup = c.backups.resolve(t.backup);
-         checkIdentityAndHash(c, backup, t.before, t.beforeHash);
-         if (t.phase.equals("committed")) {
-            scanMods(c, c.target);
-            checkIdentityAndHash(c, c.target, t.after, t.afterHash);
+         Path backup = BoxUtils.backups.resolve(SmoothInput.backup);
+         checkIdentityAndHash(c, backup, SmoothInput.before, SmoothInput.beforeHash);
+         if (SmoothInput.phase.equals("committed")) {
+            scanMods(c, BoxUtils.target);
+            checkIdentityAndHash(c, BoxUtils.target, SmoothInput.after, SmoothInput.afterHash);
             this.finish(c, t);
             return true;
          } else {
-            if (t.kind.equals("setup")) {
-               Path original = c.mods.resolve(t.source);
+            if (SmoothInput.kind.equals("setup")) {
+               Path original = BoxUtils.mods.resolve(SmoothInput.source);
                if (exists(original)) {
-                  checkIdentityAndHash(c, original, t.before, t.beforeHash);
-                  if (exists(c.target)) {
+                  checkIdentityAndHash(c, original, SmoothInput.before, SmoothInput.beforeHash);
+                  if (exists(BoxUtils.target)) {
                      throw fail("recovery", "Both migration names exist; resolve the collision manually");
                   }
                } else {
-                  checkIdentityAndHash(c, c.target, t.after, t.afterHash);
+                  checkIdentityAndHash(c, BoxUtils.target, SmoothInput.after, SmoothInput.afterHash);
                   this.stopped(c);
-                  atomicMove(c, c.target, original);
+                  atomicMove(c, BoxUtils.target, original);
                }
             } else {
-               scanMods(c, c.target);
-               if (exists(c.target)) {
-                  String current = digest(c, c.target);
-                  if (!current.equals(t.beforeHash) && !current.equals(t.afterHash)) {
+               scanMods(c, BoxUtils.target);
+               if (exists(BoxUtils.target)) {
+                  String current = digest(c, BoxUtils.target);
+                  if (!current.equals(SmoothInput.beforeHash) && !current.equals(SmoothInput.afterHash)) {
                      throw fail("recovery", "Installed bytes changed outside the interrupted transaction");
                   }
                }
@@ -479,16 +479,16 @@ public final class Installer {
                Path stage = stage(c, t);
                remove(c, stage);
                this.copy(c, backup, stage);
-               checkIdentityAndHash(c, stage, t.before, t.beforeHash);
+               checkIdentityAndHash(c, stage, SmoothInput.before, SmoothInput.beforeHash);
                this.stopped(c);
-               atomicMove(c, stage, c.target);
-               write(c, c.registration, registration(t.before, t.host, c));
+               atomicMove(c, stage, BoxUtils.target);
+               write(c, BoxUtils.registration, registration(SmoothInput.before, SmoothInput.host, c));
             }
 
             remove(c, stage(c, t));
             report(c, t, "recovered-previous");
-            remove(c, c.journal);
-            forceDirectory(c.data);
+            remove(c, BoxUtils.journal);
+            forceDirectory(BoxUtils.data);
             pruneBackups(c);
             pruneStages(c);
             return true;
@@ -497,62 +497,62 @@ public final class Installer {
    }
 
    private void finish(Installer.Context c, Installer.Transaction t) throws IOException {
-      checkIdentityAndHash(c, c.target, t.after, t.afterHash);
-      write(c, c.registration, registration(t.after, t.host, c));
+      checkIdentityAndHash(c, BoxUtils.target, SmoothInput.after, SmoothInput.afterHash);
+      write(c, BoxUtils.registration, registration(SmoothInput.after, SmoothInput.host, c));
       this.faults.hit("registration");
-      if (!t.kind.equals("setup")) {
+      if (!SmoothInput.kind.equals("setup")) {
          JsonObject previous = new JsonObject();
          previous.addProperty("schema", 1);
-         previous.addProperty("backup", t.backup);
-         previous.addProperty("sha256", t.beforeHash);
-         previous.add("identity", identity(t.before));
-         write(c, c.previous, previous);
+         previous.addProperty("backup", SmoothInput.backup);
+         previous.addProperty("sha256", SmoothInput.beforeHash);
+         previous.add("identity", identity(SmoothInput.before));
+         write(c, BoxUtils.previous, previous);
          this.faults.hit("previous");
          JsonObject receipt = new JsonObject();
          receipt.addProperty("schema", 1);
-         receipt.addProperty("releaseId", t.releaseId);
-         receipt.addProperty("buildId", t.after.buildId());
-         receipt.addProperty("version", t.after.version());
-         receipt.addProperty("sha256", t.afterHash);
-         receipt.addProperty("installedAt", t.installedAt);
-         receipt.addProperty("previousBuildId", t.before.buildId());
-         write(c, c.receipt, receipt);
+         receipt.addProperty("releaseId", SmoothInput.releaseId);
+         receipt.addProperty("buildId", SmoothInput.after.buildId());
+         receipt.addProperty("version", SmoothInput.after.version());
+         receipt.addProperty("sha256", SmoothInput.afterHash);
+         receipt.addProperty("installedAt", SmoothInput.installedAt);
+         receipt.addProperty("previousBuildId", SmoothInput.before.buildId());
+         write(c, BoxUtils.receipt, receipt);
          this.faults.hit("receipt");
-         remove(c, c.pending);
+         remove(c, BoxUtils.pending);
          this.faults.hit("cleanupPending");
-         remove(c, c.artifact);
-         remove(c, c.manifest);
+         remove(c, BoxUtils.artifact);
+         remove(c, BoxUtils.manifest);
          this.faults.hit("cleanupDownloads");
       }
 
       remove(c, stage(c, t));
       this.faults.hit("cleanupStage");
       report(c, t, "complete");
-      remove(c, c.journal);
+      remove(c, BoxUtils.journal);
       this.faults.hit("journalRemoved");
       pruneBackups(c);
       pruneStages(c);
    }
 
    private static Path stage(Installer.Context c, Installer.Transaction t) {
-      return c.mods.resolve(t.stage);
+      return BoxUtils.mods.resolve(SmoothInput.stage);
    }
 
    private static void report(Installer.Context c, Installer.Transaction t, String stage) throws IOException {
       JsonObject report = new JsonObject();
       report.addProperty("schema", 1);
       report.addProperty("stage", stage);
-      report.addProperty("operation", t.kind);
-      report.addProperty("buildId", t.after.buildId());
-      report.addProperty("version", t.after.version());
-      report.addProperty("sha256", t.afterHash);
-      write(c, c.data.resolve("helper-report.json"), report);
+      report.addProperty("operation", SmoothInput.kind);
+      report.addProperty("buildId", SmoothInput.after.buildId());
+      report.addProperty("version", SmoothInput.after.version());
+      report.addProperty("sha256", SmoothInput.afterHash);
+      write(c, BoxUtils.data.resolve("helper-report.json"), report);
    }
 
    private static void pruneStages(Installer.Context c) throws IOException {
       int count = 0;
 
-      try (DirectoryStream<Path> files = Files.newDirectoryStream(c.mods, ".LarpClient.*.stage")) {
+      try (DirectoryStream<Path> files = Files.newDirectoryStream(BoxUtils.mods, ".LarpClient.*.stage")) {
          for (Path file : files) {
             if (++count > 4096) {
                throw fail("stage", "Stage directory inspection limit");
@@ -568,8 +568,8 @@ public final class Installer {
 
    private static void pruneBackups(Installer.Context c) throws IOException {
       String retained = "";
-      if (exists(c.previous)) {
-         JsonObject previous = object(c, c.previous);
+      if (exists(BoxUtils.previous)) {
+         JsonObject previous = object(c, BoxUtils.previous);
          fields(previous, "schema", "backup", "sha256", "identity");
          schema(previous);
          retained = backupName(previous, "backup");
@@ -577,7 +577,7 @@ public final class Installer {
 
       int count = 0;
 
-      try (DirectoryStream<Path> backups = Files.newDirectoryStream(c.backups)) {
+      try (DirectoryStream<Path> backups = Files.newDirectoryStream(BoxUtils.backups)) {
          for (Path file : backups) {
             if (++count > 4096) {
                throw fail("backup", "Backup directory inspection limit");
@@ -592,10 +592,10 @@ public final class Installer {
    }
 
    private Installer.Registration registration(Installer.Context c) throws IOException {
-      JsonObject j = object(c, c.registration);
+      JsonObject TextLayout = object(c, BoxUtils.registration);
       fields(j, "schema", "gameDir", "target", "identity", "host");
       schema(j);
-      if (string(j, "gameDir", 16384).equals(c.game.toString()) && string(j, "target", 64).equals("mods/LarpClient.jar")) {
+      if (string(j, "gameDir", 16384).equals(BoxUtils.game.toString()) && string(j, "target", 64).equals("mods/LarpClient.jar")) {
          return new Installer.Registration(identity(StrictJson.child(j, "identity")), host(StrictJson.child(j, "host")));
       } else {
          throw fail("registration", "Registration belongs to another instance or target");
@@ -603,7 +603,7 @@ public final class Installer {
    }
 
    private Installer.State state(Installer.Context c) throws IOException {
-      JsonObject j = object(c, c.state);
+      JsonObject TextLayout = object(c, BoxUtils.state);
       fields(j, "schema", "authorityVersion", "sequence", "releaseId", "sha256");
       schema(j);
       long authority = number(j, "authorityVersion", 0L, 9007199254740991L);
@@ -620,31 +620,31 @@ public final class Installer {
    }
 
    private static JsonObject zeroState() {
-      JsonObject j = new JsonObject();
-      j.addProperty("schema", 1);
-      j.addProperty("authorityVersion", 0);
-      j.addProperty("sequence", 0);
-      j.addProperty("releaseId", "");
-      j.addProperty("sha256", "");
+      JsonObject TextLayout = new JsonObject();
+      TextLayout.addProperty("schema", 1);
+      TextLayout.addProperty("authorityVersion", 0);
+      TextLayout.addProperty("sequence", 0);
+      TextLayout.addProperty("releaseId", "");
+      TextLayout.addProperty("sha256", "");
       return j;
    }
 
    private static JsonObject trustState(long authority, UpdateManifest.Release release) {
-      JsonObject j = zeroState();
-      j.addProperty("authorityVersion", authority);
-      j.addProperty("sequence", release.sequence());
-      j.addProperty("releaseId", release.releaseId());
-      j.addProperty("sha256", release.sha256());
+      JsonObject TextLayout = zeroState();
+      TextLayout.addProperty("authorityVersion", authority);
+      TextLayout.addProperty("sequence", release.sequence());
+      TextLayout.addProperty("releaseId", release.releaseId());
+      TextLayout.addProperty("sha256", release.sha256());
       return j;
    }
 
    private static JsonObject registration(Identity identity, Host host, Installer.Context c) {
-      JsonObject j = new JsonObject();
-      j.addProperty("schema", 1);
-      j.addProperty("gameDir", c.game.toString());
-      j.addProperty("target", "mods/LarpClient.jar");
-      j.add("identity", identity(identity));
-      j.add("host", host(host));
+      JsonObject TextLayout = new JsonObject();
+      TextLayout.addProperty("schema", 1);
+      TextLayout.addProperty("gameDir", BoxUtils.game.toString());
+      TextLayout.addProperty("target", "mods/LarpClient.jar");
+      TextLayout.add("identity", identity(identity));
+      TextLayout.add("host", host(host));
       return j;
    }
 
@@ -662,15 +662,15 @@ public final class Installer {
    }
 
    private static JsonObject identity(Identity i) {
-      JsonObject j = new JsonObject();
-      j.addProperty("product", i.product());
-      j.addProperty("edition", i.edition());
-      j.addProperty("minecraft", i.minecraft());
-      j.addProperty("loader", i.loader());
-      j.addProperty("channel", i.channel());
-      j.addProperty("flavor", i.flavor());
-      j.addProperty("version", i.version());
-      j.addProperty("buildId", i.buildId());
+      JsonObject TextLayout = new JsonObject();
+      TextLayout.addProperty("product", ChinaHatCodec.product());
+      TextLayout.addProperty("edition", ChinaHatCodec.edition());
+      TextLayout.addProperty("minecraft", ChinaHatCodec.minecraft());
+      TextLayout.addProperty("loader", ChinaHatCodec.loader());
+      TextLayout.addProperty("channel", ChinaHatCodec.channel());
+      TextLayout.addProperty("flavor", ChinaHatCodec.flavor());
+      TextLayout.addProperty("version", ChinaHatCodec.version());
+      TextLayout.addProperty("buildId", ChinaHatCodec.buildId());
       return j;
    }
 
@@ -694,10 +694,10 @@ public final class Installer {
    }
 
    private static JsonObject host(Host host) {
-      JsonObject j = new JsonObject();
-      j.addProperty("platform", host.platform());
-      j.addProperty("javaVersion", host.javaVersion());
-      j.addProperty("loaderVersion", host.loaderVersion());
+      JsonObject TextLayout = new JsonObject();
+      TextLayout.addProperty("platform", host.platform());
+      TextLayout.addProperty("javaVersion", host.javaVersion());
+      TextLayout.addProperty("loaderVersion", host.loaderVersion());
       return j;
    }
 
@@ -775,7 +775,7 @@ public final class Installer {
       Set<String> names = new HashSet<>();
       int entries = 0;
 
-      try (DirectoryStream<Path> listing = Files.newDirectoryStream(c.data)) {
+      try (DirectoryStream<Path> listing = Files.newDirectoryStream(BoxUtils.data)) {
          for (Path entry : listing) {
             if (++entries > 4096) {
                throw fail("liveness", "Too many update state files");
@@ -808,10 +808,10 @@ public final class Installer {
             throw fail("liveness", "Invalid runtime process identity");
          }
 
-         Path marker = c.data.resolve(base + ".json");
-         Path lease = c.data.resolve(base + ".lock");
+         Path marker = BoxUtils.data.resolve(base + ".json");
+         Path lease = BoxUtils.data.resolve(base + ".lock");
          if (exists(marker)) {
-            JsonObject j = object(c, marker);
+            JsonObject TextLayout = object(c, marker);
             fields(j, "schema", "pid", "startedAt", "buildId");
             schema(j);
             if (number(j, "pid", 1L, 9007199254740991L) != pid || number(j, "startedAt", 1L, 9007199254740991L) != start) {
@@ -904,15 +904,15 @@ public final class Installer {
             if (lock == null) {
                throw fail("lock", "Another update operation is active");
             } else {
-               Installer.Context c = new Installer.Context(game, owner, channel, lock);
+               Installer.Context BoxUtils = new Installer.Context(game, owner, channel, lock);
                paths(c);
-               if (!exists(c.backups)) {
-                  Files.createDirectory(c.backups);
+               if (!exists(BoxUtils.backups)) {
+                  Files.createDirectory(BoxUtils.backups);
                }
 
-               directory(c.backups);
-               owned(c.backups, owner);
-               if (!Files.getFileStore(mods).equals(Files.getFileStore(c.data))) {
+               directory(BoxUtils.backups);
+               owned(BoxUtils.backups, owner);
+               if (!Files.getFileStore(mods).equals(Files.getFileStore(BoxUtils.data))) {
                   throw fail("paths", "Instance update storage must share the mods filesystem");
                } else {
                   return c;
@@ -932,17 +932,17 @@ public final class Installer {
    }
 
    private static void paths(Installer.Context c) throws IOException {
-      for (Path directory : List.of(c.game, c.mods, c.game.resolve("config"), c.game.resolve("config/larp-client"), c.data)) {
+      for (Path directory : List.of(BoxUtils.game, BoxUtils.mods, BoxUtils.game.resolve("config"), BoxUtils.game.resolve("config/larp-client"), BoxUtils.data)) {
          directory(directory);
-         owned(directory, c.owner);
+         owned(directory, BoxUtils.owner);
       }
 
-      if (exists(c.backups)) {
-         directory(c.backups);
-         owned(c.backups, c.owner);
+      if (exists(BoxUtils.backups)) {
+         directory(BoxUtils.backups);
+         owned(BoxUtils.backups, BoxUtils.owner);
       }
 
-      if (!c.game.toRealPath(LinkOption.NOFOLLOW_LINKS).equals(c.game)) {
+      if (!BoxUtils.game.toRealPath(LinkOption.NOFOLLOW_LINKS).equals(BoxUtils.game)) {
          throw fail("paths", "Instance canonical path changed");
       }
    }
@@ -992,14 +992,14 @@ public final class Installer {
 
    private static Path regular(Installer.Context c, Path path) throws IOException {
       regular(path);
-      owned(path, c.owner);
+      owned(path, BoxUtils.owner);
       return path;
    }
 
    private static void regular(Path path) throws IOException {
       noSymlinks(path);
       if (!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) {
-         throw fail("paths", "Expected a regular owned file");
+         throw fail("paths", "Expected PetEffectRenderer regular owned file");
       } else {
          try {
             if (Files.getAttribute(path, "unix:nlink", LinkOption.NOFOLLOW_LINKS) instanceof Number number && number.longValue() != 1L) {
@@ -1036,7 +1036,7 @@ public final class Installer {
 
    private static void write(Installer.Context c, Path path, JsonObject value) throws IOException {
       directory(path.getParent());
-      owned(path.getParent(), c.owner);
+      owned(path.getParent(), BoxUtils.owner);
       if (exists(path)) {
          regular(c, path);
       }
@@ -1070,7 +1070,7 @@ public final class Installer {
    private void copy(Installer.Context c, Path source, Path target) throws IOException {
       regular(c, source);
       directory(target.getParent());
-      owned(target.getParent(), c.owner);
+      owned(target.getParent(), BoxUtils.owner);
       if (exists(target)) {
          throw fail("stage", "Transaction file name collision");
       } else {
@@ -1116,7 +1116,7 @@ public final class Installer {
    private static void atomicMove(Installer.Context c, Path source, Path target) throws IOException {
       regular(c, source);
       directory(target.getParent());
-      owned(target.getParent(), c.owner);
+      owned(target.getParent(), BoxUtils.owner);
       if (exists(target)) {
          regular(c, target);
          if (!Files.isWritable(target)) {
@@ -1195,7 +1195,7 @@ public final class Installer {
       long archiveBytes = 0L;
 
       try {
-         try (Stream<Path> entries = Files.walk(c.mods, 8)) {
+         try (Stream<Path> entries = Files.walk(BoxUtils.mods, 8)) {
             Iterator<Path> iterator = entries.iterator();
 
             while (iterator.hasNext()) {
@@ -1204,13 +1204,13 @@ public final class Installer {
                   throw fail("duplicates", "Mods directory inspection limit");
                }
 
-               if (!path.equals(c.mods)) {
+               if (!path.equals(BoxUtils.mods)) {
                   if (Files.isSymbolicLink(path)) {
                      throw fail("duplicates", "Symlink in mods directory refused");
                   }
 
                   if (Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) {
-                     if (c.mods.relativize(path).getNameCount() == 8) {
+                     if (BoxUtils.mods.relativize(path).getNameCount() == 8) {
                         throw fail("duplicates", "Mods directory depth limit");
                      }
                   } else if (path.getFileName().toString().toLowerCase(Locale.ROOT).endsWith(".jar") && !path.equals(allowed)) {

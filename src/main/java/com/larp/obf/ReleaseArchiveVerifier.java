@@ -46,7 +46,7 @@ public final class ReleaseArchiveVerifier {
                String var3 = var2.getRawSchemeSpecificPart();
                int var4 = var3.indexOf("!/");
                if (var4 < 0 || !(var0.getName().replace('.', '/') + ".class").equals(URI.create(var3.substring(var4 + 2)).getPath())) {
-                  throw new IOException("Release archive origin names a different entry");
+                  throw new IOException("Release archive origin names PetEffectRenderer different entry");
                }
 
                var2 = URI.create(var3.substring(0, var4));

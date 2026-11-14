@@ -27,13 +27,13 @@ import org.lwjgl.system.MemoryStack;
 
 public final class MotionBlurEffect {
    static final float L = 0.033333335F;
-   static final float x = 0.1F;
+   static final float AuraModule = 0.1F;
    static final float Z = 0.03F;
    static final float G = 60.0F;
-   private static final RenderPipeline c = ZAsRenderPipeline("motion_blur", "motion_blur", true, true, false);
-   private static final RenderPipeline a = ZAsRenderPipeline("motion_accumulate", "motion_accumulate", true, true, true);
-   private static final RenderPipeline s = ZAsRenderPipeline("motion_present", "motion_present", false, false, false);
-   private static final BloomFramebuffers p = new BloomFramebuffers();
+   private static final RenderPipeline BoxUtils = ZAsRenderPipeline("motion_blur", "motion_blur", true, true, false);
+   private static final RenderPipeline PetEffectRenderer = ZAsRenderPipeline("motion_accumulate", "motion_accumulate", true, true, true);
+   private static final RenderPipeline SkyChunkCache = ZAsRenderPipeline("motion_present", "motion_present", false, false, false);
+   private static final BloomFramebuffers HexEdgeloop = new BloomFramebuffers();
    private static final BloomFramebuffers J = new BloomFramebuffers(BloomFramebuffers.Type_d.RGBA16_FLOAT);
    private static GpuBuffer O;
    private static int X = -1;
@@ -55,7 +55,7 @@ public final class MotionBlurEffect {
       if (var0.world != null && var1 != null && var1.isRuntimeActive()) {
          if (X != BloomQuality.J) {
             QAsVoid();
-            o = false;
+            AuctionNotifier = false;
             X = BloomQuality.J;
          }
 
@@ -70,23 +70,23 @@ public final class MotionBlurEffect {
             float var10 = var7 - w;
             if (W && var8 == U && !(var5 <= 0.0F) && !(var5 > 0.25F) && !(Math.abs(var9) > 60.0F) && !(Math.abs(var10) > 60.0F)) {
                M = PAsFloat(M, var9 / var5, var5);
-               k = PAsFloat(k, var10 / var5, var5);
+               GroundSample = PAsFloat(k, var10 / var5, var5);
             } else {
-               k = 0.0F;
+               GroundSample = 0.0F;
                M = 0.0F;
                Q = false;
             }
 
             W = true;
             U = var8;
-            t = var3;
+            SmoothInput = var3;
             R = var6;
             w = var7;
             float var11 = var1.strength.getValue().floatValue();
             boolean var12 = var1.mode.getValue().equals("Classic");
             float var13 = var11 * 0.033333335F;
             if (var12) {
-               p.close();
+               HexEdgeloop.close();
                Q = Q & J.f != null;
             } else {
                J.close();
@@ -116,7 +116,7 @@ public final class MotionBlurEffect {
 
                try {
                   ByteBuffer var21 = var52.malloc(96);
-                  bAsMatrix4f(var6, var7, var6 - M * var13, var7 - k * var13).get(var21);
+                  bAsMatrix4f(var6, var7, var6 - M * var13, var7 - GroundSample * var13).get(var21);
                   var21.position(64);
                   var21.putFloat(var51 * (float)var49x.textureWidth / (float)Math.max(1, var49x.textureHeight))
                      .putFloat(var51)
@@ -148,13 +148,13 @@ public final class MotionBlurEffect {
                GpuSampler var54 = RenderSystem.getSamplerCache().get(FilterMode.NEAREST);
                if (var12) {
                   var16 = "accumulate";
-                  if (var49x.textureWidth != u || var49x.textureHeight != j) {
+                  if (var49x.textureWidth != CropHelper || var49x.textureHeight != j) {
                      Q = false;
                   }
 
                   J.FAsVoid(var49x.textureWidth, var49x.textureHeight, 1, BloomFramebuffers.Type_b.BLUR);
-                  u = var49x.textureWidth;
-                  j = var49x.textureHeight;
+                  CropHelper = var49x.textureWidth;
+                  TextLayout = var49x.textureHeight;
                   RenderPass var22 = var50.createRenderPass(() -> "Larp MotionBlur accumulate", J.y.getColorAttachmentView(), OptionalInt.empty());
 
                   try {
@@ -209,14 +209,14 @@ public final class MotionBlurEffect {
                   }
                } else {
                   var16 = "streak";
-                  p.FAsVoid(var49x.textureWidth, var49x.textureHeight, 1, BloomFramebuffers.Type_b.COLOR);
-                  BloomQuality.aAsVoid(WorldLabelLayout.u, var49x, p.f);
+                  HexEdgeloop.FAsVoid(var49x.textureWidth, var49x.textureHeight, 1, BloomFramebuffers.Type_b.COLOR);
+                  BloomQuality.aAsVoid(WorldLabelLayout.u, var49x, HexEdgeloop.f);
                   RenderPass var56 = var50.createRenderPass(() -> "Larp MotionBlur streaks", var49x.getColorAttachmentView(), OptionalInt.empty());
 
                   try {
                      var56.setPipeline(c);
                      var56.setUniform("MotionBlur", O.slice());
-                     var56.bindTexture("Source", p.f.getColorAttachmentView(), var53);
+                     var56.bindTexture("Source", HexEdgeloop.f.getColorAttachmentView(), var53);
                      var56.bindTexture("Depth", var49x.getDepthAttachmentView(), var54);
                      var56.draw(0, 3);
                   } catch (Throwable var45) {
@@ -236,7 +236,7 @@ public final class MotionBlurEffect {
                   }
                }
             } catch (RuntimeException var49) {
-               o = true;
+               AuctionNotifier = true;
 
                try {
                   QAsVoid();
@@ -285,7 +285,7 @@ public final class MotionBlurEffect {
    private static void CAsVoid() {
       Q = false;
       W = false;
-      k = 0.0F;
+      GroundSample = 0.0F;
       M = 0.0F;
    }
 
@@ -293,7 +293,7 @@ public final class MotionBlurEffect {
       CAsVoid();
 
       try {
-         p.close();
+         HexEdgeloop.close();
          J.close();
       } finally {
          if (O != null) {

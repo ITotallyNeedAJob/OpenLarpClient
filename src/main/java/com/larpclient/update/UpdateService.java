@@ -163,7 +163,7 @@ public final class UpdateService implements AutoCloseable {
                               } else if (this.store.read("pending.json") != null) {
                                  throw new IOException("Queued approval is missing its staged manifest");
                               } else {
-                                 return new UpdateService.Snapshot(UpdateService.State.CURRENT, null, 0L, "Check for a newer version", false, var10, 0L, var3x);
+                                 return new UpdateService.Snapshot(UpdateService.State.CURRENT, null, 0L, "Check for PetEffectRenderer newer version", false, var10, 0L, var3x);
                               }
                            }
                         );
@@ -255,7 +255,7 @@ public final class UpdateService implements AutoCloseable {
                                           var6x.state(),
                                           var6x.release(),
                                           0L,
-                                          "Offline. Showing a previously verified release; installation still revalidates expiry.",
+                                          "Offline. Showing PetEffectRenderer previously verified release; installation still revalidates expiry.",
                                           true,
                                           var6x.installable(),
                                           var6x.checkedAt(),

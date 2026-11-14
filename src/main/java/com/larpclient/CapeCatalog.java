@@ -3,7 +3,7 @@ package com.larpclient;
 import java.util.List;
 
 public final class CapeCatalog {
-   private static final List<CapeCatalog.Type_r> e = List.of(
+   private static final List<CapeCatalog.Type_r> LineSegment = List.of(
       new CapeCatalog.Type_r("MineCon 2011", "953cac8b779fe41383e675ee2b86071a71658f2180f56fbce8aa315ea70e2ed6"),
       new CapeCatalog.Type_r("MineCon 2012", "a2e8d97ec79100e90a75d369d1b3ba81273c4f82bc1b737e934eed4a854be1b6"),
       new CapeCatalog.Type_r("MineCon 2013", "153b1a0dfcbae953cdeb6f2c2bf6bf79943239b1372780da44bcbb29273131da"),
@@ -60,7 +60,7 @@ public final class CapeCatalog {
    }
 
    public static String[] AAsStringArray() {
-      return e.stream().map(CapeCatalog.Type_r::name).toArray(String[]::new);
+      return LineSegment.stream().map(CapeCatalog.Type_r::name).toArray(String[]::new);
    }
 
    public static String FAsString(String var0) {

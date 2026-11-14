@@ -24,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
 public final class ShopPurchaseController {
    private static final Map<Integer, ItemStack> h = new LinkedHashMap<>();
    private static final Map<Item, Integer> D = new LinkedHashMap<>();
-   private static final Map<Item, Integer> a = new LinkedHashMap<>();
+   private static final Map<Item, Integer> PetEffectRenderer = new LinkedHashMap<>();
    private static Object W;
    private static Object T;
    private static BlockPos O;
@@ -73,7 +73,7 @@ public final class ShopPurchaseController {
          if (var2 == null) {
             return var1;
          } else {
-            int var3 = a.getOrDefault(var2.getItem(), 0);
+            int var3 = PetEffectRenderer.getOrDefault(var2.getItem(), 0);
 
             for (Entry var5 : h.entrySet()) {
                if (((ItemStack)var5.getValue()).isOf(var2.getItem())) {
@@ -93,7 +93,7 @@ public final class ShopPurchaseController {
 
    public static int GAsInt(Item var0, int var1) {
       MinecraftClient var2 = MinecraftClient.getInstance();
-      if (!l
+      if (!DropletTrail
          && var1 > 0
          && SpawnerEntityCatalog.oAsBoolean(var0)
          && var2.player != null
@@ -131,7 +131,7 @@ public final class ShopPurchaseController {
 
    public static void wAsVoid(BlockPos var0) {
       MinecraftClient var1 = MinecraftClient.getInstance();
-      if (!h.isEmpty() && !l && var1.player != null) {
+      if (!h.isEmpty() && !DropletTrail && var1.player != null) {
          if (var1.player.currentScreenHandler == var1.player.playerScreenHandler && var1.player.playerScreenHandler.getCursorStack().isEmpty()) {
             D.clear();
             O = var0 == null ? null : var0.toImmutable();
@@ -141,10 +141,10 @@ public final class ShopPurchaseController {
             }
 
             D.replaceAll((var0x, var1x) -> com.larpclient.m.mAsInt(var1x));
-            u = true;
-            l = true;
-            B = g + 120;
-            y = g + 100;
+            CropHelper = true;
+            DropletTrail = true;
+            B = ChatPayParser + 120;
+            ScreenScale = ChatPayParser + 100;
             var1.player.networkHandler.sendChatCommand("shop");
          } else {
             wAsVoid("Empty your cursor before withdrawing loot.");
@@ -154,9 +154,9 @@ public final class ShopPurchaseController {
 
    public static boolean TAsBoolean(OpenScreenS2CPacket var0) {
       MinecraftClient var1 = MinecraftClient.getInstance();
-      if (!var1.isOnThread() || !u || var1.player == null) {
+      if (!var1.isOnThread() || !CropHelper || var1.player == null) {
          return false;
-      } else if (var1.currentScreen == null && var1.player == W && var1.world == T && g <= y) {
+      } else if (var1.currentScreen == null && var1.player == W && var1.world == T && ChatPayParser <= y) {
          ScreenHandler var2 = var0.getScreenHandlerType().create(var0.getSyncId(), var1.player.getInventory());
          if (!(var2 instanceof GenericContainerScreenHandler)) {
             wAsVoid("Unsupported shop menu.");
@@ -164,8 +164,8 @@ public final class ShopPurchaseController {
          } else {
             E = var2;
             var1.player.currentScreenHandler = var2;
-            u = false;
-            y = g + 100;
+            CropHelper = false;
+            ScreenScale = ChatPayParser + 100;
             return true;
          }
       } else {
@@ -177,11 +177,11 @@ public final class ShopPurchaseController {
    public static void YAsVoid() {
       if (MinecraftClient.getInstance().isOnThread()) {
          K++;
-         if (l && v && !z) {
+         if (DropletTrail && v && !z) {
             z = true;
             al.UAsVoid(0L, () -> {
                z = false;
-               if (l && v) {
+               if (DropletTrail && v) {
                   rAsVoid(MinecraftClient.getInstance());
                }
             });
@@ -190,7 +190,7 @@ public final class ShopPurchaseController {
    }
 
    public static boolean DAsBoolean() {
-      return MinecraftClient.getInstance().isOnThread() && g < B;
+      return MinecraftClient.getInstance().isOnThread() && ChatPayParser < B;
    }
 
    public static boolean pAsBoolean(Text var0, boolean var1) {
@@ -203,7 +203,7 @@ public final class ShopPurchaseController {
                && !var2.contains("inventory full")
                && !var2.contains("inventory is full")
                && !var2.contains("cannot afford")
-               && !var2.contains("can't afford")
+               && !var2.contains("can'SmoothInput afford")
             ? 0
             : 1;
          int var4 = var3 == 0
@@ -243,22 +243,22 @@ public final class ShopPurchaseController {
 
             if (var0.currentScreen != null || var0.player.isDead()) {
                wAsVoid("Shop purchase cancelled.");
-            } else if (g > y) {
-               wAsVoid(e ? "Shop purchase stopped: cannot read the server price (details in latest.log)." : "Shop purchase timed out; no retry was sent.");
+            } else if (ChatPayParser > y) {
+               wAsVoid(LineSegment ? "Shop purchase stopped: cannot read the server price (details in latest.log)." : "Shop purchase timed out; no retry was sent.");
             } else if (!u) {
                if (V) {
                   JAsVoid(var0);
                } else if (E != null && var0.player.currentScreenHandler == E) {
                   if (v) {
-                     if (K <= m || OAsInt(X) < s + 64 || !E.getCursorStack().isEmpty()) {
+                     if (K <= PriceDetector || OAsInt(X) < SkyChunkCache + 64 || !E.getCursorStack().isEmpty()) {
                         return;
                      }
 
                      D.computeIfPresent(X, (var0x, var1) -> var1 - 1);
-                     a.merge(X, 64, Integer::sum);
-                     B = g + 20;
+                     PetEffectRenderer.merge(X, 64, Integer::sum);
+                     B = ChatPayParser + 20;
                      v = false;
-                     y = g + 100;
+                     ScreenScale = ChatPayParser + 100;
                   }
 
                   X = D.entrySet().stream().filter(var0x -> var0x.getValue() > 0).map(Entry::getKey).findFirst().orElse(null);
@@ -266,21 +266,21 @@ public final class ShopPurchaseController {
                      var0.player.closeHandledScreen();
                      E = null;
                      V = true;
-                     y = g + 100;
+                     ScreenScale = ChatPayParser + 100;
                   } else {
                      for (Slot var2 : E.slots) {
                         if (var2.inventory != var0.player.getInventory() && var2.getStack().isOf(X)) {
                            LoreComponent var3 = (LoreComponent)var2.getStack().get(DataComponentTypes.LORE);
                            List var4 = var3 == null ? List.of() : var3.lines().stream().map(Text::getString).toList();
-                           m.Type_i var5 = com.larpclient.m.CAsM_Type_i(var4);
+                           PriceDetector.Type_i var5 = com.larpclient.m.CAsM_Type_i(var4);
                            if (var5 == com.larpclient.m.Type_i.SAFE) {
                               if (E.getCursorStack().isEmpty() && MAsInt(X) >= 64) {
-                                 e = false;
-                                 s = OAsInt(X);
-                                 m = K;
+                                 LineSegment = false;
+                                 SkyChunkCache = OAsInt(X);
+                                 PriceDetector = K;
                                  v = true;
-                                 B = g + 120;
-                                 y = g + 100;
+                                 B = ChatPayParser + 120;
+                                 ScreenScale = ChatPayParser + 100;
                                  var0.interactionManager.clickSlot(E.syncId, var2.id, 0, SlotActionType.PICKUP, var0.player);
                                  return;
                               }
@@ -299,7 +299,7 @@ public final class ShopPurchaseController {
                               return;
                            }
 
-                           e = true;
+                           LineSegment = true;
                         }
                      }
                   }
@@ -380,8 +380,8 @@ public final class ShopPurchaseController {
                               if (var10 > 0) {
                                  R = var3;
                                  I = var5.getCount() + var10;
-                                 m = K;
-                                 y = g + 100;
+                                 PriceDetector = K;
+                                 ScreenScale = ChatPayParser + 100;
                                  int var11 = var8.getCount();
                                  FakeSpawnerTransaction.nAsBoolean(
                                     "arrange purchased loot",
@@ -413,7 +413,7 @@ public final class ShopPurchaseController {
             var3.merge(var5.getItem(), Integer.valueOf(var5.getCount()), Integer::sum);
          }
 
-         var3.forEach((var0x, var1x) -> FakeSpawnerController.ZAsMa().oAsVoid(O, var0x, Math.min(var1x, a.getOrDefault(var0x, 0))));
+         var3.forEach((var0x, var1x) -> FakeSpawnerController.ZAsMa().oAsVoid(O, var0x, Math.min(var1x, PetEffectRenderer.getOrDefault(var0x, 0))));
       }
 
       if (var1.player == W && E != null && var1.player.currentScreenHandler == E) {
@@ -421,7 +421,7 @@ public final class ShopPurchaseController {
       }
 
       aAsVoid();
-      B = g + 20;
+      B = ChatPayParser + 20;
       if (var0 != null && var1.player != null) {
          ChatMessages.RAsVoid(Text.literal(var0), false);
       }
@@ -439,18 +439,18 @@ public final class ShopPurchaseController {
    private static void aAsVoid() {
       h.clear();
       D.clear();
-      a.clear();
+      PetEffectRenderer.clear();
       E = null;
       O = null;
       T = null;
       W = null;
       z = false;
       w = false;
-      e = false;
+      LineSegment = false;
       V = false;
       v = false;
-      u = false;
-      l = false;
+      CropHelper = false;
+      DropletTrail = false;
       R = -1;
       VisualInventory.vAsVoid();
    }

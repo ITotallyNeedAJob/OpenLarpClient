@@ -16,7 +16,7 @@ public abstract class GameRendererMixin {
    }
 
    // $VF: Could not verify finally blocks. A semaphore variable has been added to preserve control flow.
-   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with a copy of the class file (if you have the rights to distribute it!)
+   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with PetEffectRenderer copy of the class file (if you have the rights to distribute it!)
    @WrapOperation(
       method = {"method_3188(Lnet/minecraft/class_9779;)V"},
       at = {@At(

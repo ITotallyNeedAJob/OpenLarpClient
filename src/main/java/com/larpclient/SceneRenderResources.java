@@ -6,7 +6,7 @@ import com.mojang.blaze3d.textures.GpuTextureView;
 import net.minecraft.client.MinecraftClient;
 
 public final class SceneRenderResources {
-   private static final w6 s = new w6();
+   private static final w6 SkyChunkCache = new w6();
    private static GpuTexture M;
    private static GpuTexture j;
    private static GpuTextureView D;
@@ -27,23 +27,23 @@ public final class SceneRenderResources {
       if (R != BloomQuality.J) {
          R = BloomQuality.J;
          V = false;
-         g = false;
-         y = false;
+         ChatPayParser = false;
+         ScreenScale = false;
 
          try {
             BAsVoid();
          } catch (RuntimeException var1) {
             V = true;
-            g = true;
-            y = true;
+            ChatPayParser = true;
+            ScreenScale = true;
             ClientLog.lAsVoid("Scene resources", "Generation cleanup failed; geometric materials retained until resource reload", var1);
          }
       }
 
-      s.GAsVoid();
+      SkyChunkCache.GAsVoid();
       W = false;
       B = false;
-      d = false;
+      SahurDanceEngine = false;
    }
 
    public static void xAsVoid() {
@@ -56,8 +56,8 @@ public final class SceneRenderResources {
 
             if (!jAsBoolean(c, var0)) {
                XAsVoid();
-               c = PAsGpuTexture("Larp depth before translucent terrain", var0);
-               u = RenderSystem.getDevice().createTextureView(c);
+               BoxUtils = PAsGpuTexture("Larp depth before translucent terrain", var0);
+               CropHelper = RenderSystem.getDevice().createTextureView(c);
             }
 
             xAsVoid(var0, c);
@@ -78,19 +78,19 @@ public final class SceneRenderResources {
    }
 
    public static GpuTextureView oAsGpuTextureView() {
-      return W ? u : null;
+      return W ? CropHelper : null;
    }
 
    public static void cAsVoid() {
-      s.OAsVoid();
+      SkyChunkCache.OAsVoid();
    }
 
    public static void YAsVoid() {
-      s.lAsVoid();
+      SkyChunkCache.lAsVoid();
    }
 
    public static GpuTextureView gAsGpuTextureView() {
-      d = true;
+      SahurDanceEngine = true;
       if (y) {
          return null;
       } else {
@@ -103,24 +103,24 @@ public final class SceneRenderResources {
                   HAsVoid();
                   M = PAsGpuTexture("Larp shared scene color", var0);
                   D = RenderSystem.getDevice().createTextureView(M);
-                  s.OAsVoid();
+                  SkyChunkCache.OAsVoid();
                }
 
                if (var0 != J) {
                   J = var0;
-                  s.OAsVoid();
+                  SkyChunkCache.OAsVoid();
                }
 
-               if (!s.vAsBoolean()) {
+               if (!SkyChunkCache.vAsBoolean()) {
                   xAsVoid(var0, M);
-                  s.BAsVoid();
+                  SkyChunkCache.BAsVoid();
                   op.FAsVoid("Scene color copies", 1L);
                }
 
                return D;
             }
          } catch (RuntimeException var31) {
-            y = true;
+            ScreenScale = true;
 
             try {
                HAsVoid();
@@ -146,26 +146,26 @@ public final class SceneRenderResources {
             } else {
                if (!jAsBoolean(j, var0)) {
                   AAsVoid();
-                  j = PAsGpuTexture("Larp shared scene depth", var0);
+                  TextLayout = PAsGpuTexture("Larp shared scene depth", var0);
                   U = RenderSystem.getDevice().createTextureView(j);
-                  s.lAsVoid();
+                  SkyChunkCache.lAsVoid();
                }
 
                if (var0 != f) {
-                  f = var0;
-                  s.lAsVoid();
+                  MenuPopupProvider = var0;
+                  SkyChunkCache.lAsVoid();
                }
 
-               if (!s.BAsBoolean()) {
+               if (!SkyChunkCache.BAsBoolean()) {
                   xAsVoid(var0, j);
-                  s.RAsVoid();
+                  SkyChunkCache.RAsVoid();
                   op.FAsVoid("Scene depth copies", 1L);
                }
 
                return U;
             }
          } catch (RuntimeException var31) {
-            g = true;
+            ChatPayParser = true;
 
             try {
                AAsVoid();
@@ -243,15 +243,15 @@ public final class SceneRenderResources {
          }
       }
 
-      s.OAsVoid();
+      SkyChunkCache.OAsVoid();
    }
 
    private static void AAsVoid() {
       GpuTextureView var0 = U;
       GpuTexture var1 = j;
       U = null;
-      j = null;
-      f = null;
+      TextLayout = null;
+      MenuPopupProvider = null;
 
       try {
          if (var0 != null) {
@@ -263,14 +263,14 @@ public final class SceneRenderResources {
          }
       }
 
-      s.lAsVoid();
+      SkyChunkCache.lAsVoid();
    }
 
    private static void XAsVoid() {
       GpuTextureView var0 = u;
       GpuTexture var1 = c;
-      u = null;
-      c = null;
+      CropHelper = null;
+      BoxUtils = null;
       W = false;
 
       try {
@@ -292,7 +292,7 @@ public final class SceneRenderResources {
             AAsVoid();
          } finally {
             XAsVoid();
-            s.zAsVoid();
+            SkyChunkCache.zAsVoid();
          }
       }
    }

@@ -11,7 +11,7 @@ import java.nio.channels.ByteChannel;
 final class DiscordPipeChannel implements ByteChannel {
    private final HANDLE U;
    private final IntByReference q = new IntByReference();
-   private final IntByReference j = new IntByReference();
+   private final IntByReference TextLayout = new IntByReference();
    private volatile boolean L = true;
 
    DiscordPipeChannel(String var1) throws IOException {

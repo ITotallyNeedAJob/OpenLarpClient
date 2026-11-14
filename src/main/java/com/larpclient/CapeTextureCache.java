@@ -21,14 +21,14 @@ public final class CapeTextureCache {
       CompletableFuture var1 = U.get(var0.hash());
       if (var1 == null || var1.isCompletedExceptionally() && MAsBoolean(var0)) {
          MinecraftClient var2 = MinecraftClient.getInstance();
-         if (b == null) {
-            b = new PlayerSkinTextureDownloader(var2.getNetworkProxy(), var2.getTextureManager(), var2);
+         if (BloomUtility == null) {
+            BloomUtility = new PlayerSkinTextureDownloader(var2.getNetworkProxy(), var2.getTextureManager(), var2);
          }
 
          Identifier var3 = Identifier.of("larp-client", "capes/" + var0.hash());
          Path var4 = var2.runDirectory.toPath().resolve("config/larp-client/capes").resolve(var0.hash() + ".png");
          ClientLog.XAsVoid("Capes", "Loading {} from cache or {}", var0.label(), var0.url());
-         CompletableFuture var5 = b.downloadAndRegisterTexture(var3, var4, var0.url(), false).whenCompleteAsync((var2x, var3x) -> {
+         CompletableFuture var5 = BloomUtility.downloadAndRegisterTexture(var3, var4, var0.url(), false).whenCompleteAsync((var2x, var3x) -> {
             if (var3x != null) {
                iAsVoid(var0, var4, var3x);
             }

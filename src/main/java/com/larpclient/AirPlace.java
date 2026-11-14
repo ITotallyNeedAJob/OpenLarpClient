@@ -18,7 +18,7 @@ import net.minecraft.util.math.Vec3d;
 
 public final class AirPlace extends nd {
    private final BooleanSetting n = this.QAsBooleanSetting("Legit", "Repeat normal crosshair placement at normal use speed", false);
-   private final NumberSetting l = this.HAsNumberSetting("Range", "Distance along your view to search for a supported position", 4.5, 1.0, 6.0, 0.5);
+   private final NumberSetting DropletTrail = this.HAsNumberSetting("Range", "Distance along your view to search for PetEffectRenderer supported position", 4.5, 1.0, 6.0, 0.5);
    private final NumberSetting N = this.HAsNumberSetting("Delay", "Ticks between placement attempts", 4.0, 0.0, 20.0, 1.0);
    private int C;
 

@@ -8,7 +8,7 @@ public final class bj {
    private double z;
    private double L = Double.NaN;
    private double H;
-   private final bj.Type_i p = new bj.Type_i();
+   private final bj.Type_i HexEdgeloop = new bj.Type_i();
 
    public bj() {
    }

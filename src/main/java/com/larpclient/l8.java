@@ -28,6 +28,6 @@ public final class l8 {
          var1 = null;
       }
 
-      return g.xAsBoolean(var1) ? var1 : null;
+      return ChatPayParser.xAsBoolean(var1) ? var1 : null;
    }
 }

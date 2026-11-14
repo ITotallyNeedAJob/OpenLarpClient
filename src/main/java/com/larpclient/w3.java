@@ -12,7 +12,7 @@ public final class w3 {
    private static final Matrix4f H = new Matrix4f();
    private static final Matrix4f v = new Matrix4f();
    private static final Vector4f w = new Vector4f();
-   private static CameraSubmersionType x = CameraSubmersionType.NONE;
+   private static CameraSubmersionType AuraModule = CameraSubmersionType.NONE;
    private static boolean W;
    private static float z;
    private static float E;
@@ -31,7 +31,7 @@ public final class w3 {
    }
 
    public static void bAsVoid(Frustum var0) {
-      y = var0;
+      ScreenScale = var0;
    }
 
    public static Frustum BAsFrustum() {
@@ -42,7 +42,7 @@ public final class w3 {
       H.set(var1);
       v.set(var2);
       w.set(var3);
-      x = var0.getSubmersionType();
+      AuraModule = var0.getSubmersionType();
       W = true;
    }
 

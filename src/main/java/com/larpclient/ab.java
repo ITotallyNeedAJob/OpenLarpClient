@@ -12,18 +12,18 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextVisitFactory;
 
 public final class ab {
-   public static final BigDecimal j = new BigDecimal("10000000000000");
+   public static final BigDecimal TextLayout = new BigDecimal("10000000000000");
    private static final Pattern J = Pattern.compile(
       "(?iu)^[^\\p{L}\\p{N}$]*?(?:money\\s*[:»|]?\\s*[$＄]?\\s*|[$＄]\\s*)([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kmbt]?)\\s*$"
    );
    private static final Pattern E = Pattern.compile("(?iu)^\\s*(?:money|balance|cash|[$＄])\\s*[:»|]?\\s*[$＄]?\\s*$");
    private static final Pattern K = Pattern.compile("(?iu)^\\s*([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kmbt]?)\\s*$");
    private static final Pattern P = Pattern.compile("(?i)(?:^|[^a-z])(money|balance|cash)(?:$|[^a-z])");
-   private static final Pattern f = Pattern.compile("^[\\p{Co} ]+([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kKmMbBtT]?) *$");
-   private static final Pattern i = Pattern.compile("^[\\p{Co} ]+$");
+   private static final Pattern MenuPopupProvider = Pattern.compile("^[\\p{Co} ]+([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kKmMbBtT]?) *$");
+   private static final Pattern ChinaHatCodec = Pattern.compile("^[\\p{Co} ]+$");
    private static final Pattern G = Pattern.compile("(?imu)^\\h*[$＄]\\h*([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kmbt]?)\\h*(?=$|[·•▪|⋅●])");
    private static final Pattern n = Pattern.compile("(?iu)^\\s*You\\h+have\\h+[$＄]\\h*([0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[kmbt]?)\\s*$");
-   private BigDecimal t = BigDecimal.ZERO;
+   private BigDecimal SmoothInput = BigDecimal.ZERO;
 
    public ab() {
    }
@@ -57,7 +57,7 @@ public final class ab {
 
    public static boolean sAsBoolean(Text var0, String var1, String var2) {
       String var3 = IAsAb_Type_p(var0).text();
-      return MAsBoolean(var0) || i.matcher(var3).matches() && (RAsBoolean(var1, var2) || vAsBoolean(var0));
+      return MAsBoolean(var0) || ChinaHatCodec.matcher(var3).matches() && (RAsBoolean(var1, var2) || vAsBoolean(var0));
    }
 
    private static boolean RAsBoolean(String var0, String var1) {
@@ -69,9 +69,9 @@ public final class ab {
       if (var1.matches("\\$?0+(?:\\.0+)?[kKmMbBtT]?")) {
          return BigDecimal.ZERO;
       } else {
-         g.Type_t var2 = g.qAsG_Type_t("pay Local " + var1);
+         ChatPayParser.Type_t var2 = ChatPayParser.qAsG_Type_t("pay Local " + var1);
          if (!var2.valid()) {
-            throw new IllegalArgumentException("Enter an amount from 0 to 10T, e.g. 10T, 1B or 61.4.");
+            throw new IllegalArgumentException("Enter an amount from 0 to 10T, LineSegment.g. 10T, 1B or 61.4.");
          } else if (var2.amount().compareTo(j) > 0) {
             throw new IllegalArgumentException("Fake balance must be between 0 and 10T.");
          } else {
@@ -100,7 +100,7 @@ public final class ab {
          Matcher var3 = G.matcher(var2.text());
          return (Text)(!var3.find()
             ? var0
-            : AAsMutableText(var0, var2.positions().get(var3.start(1)), var2.positions().get(var3.end(1) - 1) + 1, g.gAsString(var1)));
+            : AAsMutableText(var0, var2.positions().get(var3.start(1)), var2.positions().get(var3.end(1) - 1) + 1, ChatPayParser.gAsString(var1)));
       }
    }
 
@@ -112,14 +112,14 @@ public final class ab {
          Matcher var3 = n.matcher(var2.text());
          return (Text)(!var3.matches()
             ? var0
-            : AAsMutableText(var0, var2.positions().get(var3.start(1)), var2.positions().get(var3.end(1) - 1) + 1, g.gAsString(var1)));
+            : AAsMutableText(var0, var2.positions().get(var3.start(1)), var2.positions().get(var3.end(1) - 1) + 1, ChatPayParser.gAsString(var1)));
       }
    }
 
    public static MutableText gAsMutableText(MutableText var0, BigDecimal var1) {
       ab.Type_p var2 = IAsAb_Type_p(var0);
       Matcher var3 = J.matcher(var2.text());
-      return !var3.matches() ? var0 : AAsMutableText(var0, var2.positions().get(var3.start(1)), var2.positions().get(var3.end(1) - 1) + 1, g.gAsString(var1));
+      return !var3.matches() ? var0 : AAsMutableText(var0, var2.positions().get(var3.start(1)), var2.positions().get(var3.end(1) - 1) + 1, ChatPayParser.gAsString(var1));
    }
 
    public static MutableText vAsMutableText(MutableText var0, BigDecimal var1, String var2, String var3) {
@@ -132,13 +132,13 @@ public final class ab {
          if (var6 && K.matcher(var5.text()).matches()) {
             return KAsMutableText(var0, var1);
          } else {
-            Matcher var7 = f.matcher(var5.text());
+            Matcher var7 = MenuPopupProvider.matcher(var5.text());
             if (!var7.matches()) {
                return var0;
             } else {
                return !var6 && !vAsBoolean(var0)
                   ? var0
-                  : AAsMutableText(var0, var5.positions().get(var7.start(1)), var5.positions().get(var7.end(1) - 1) + 1, g.gAsString(var1));
+                  : AAsMutableText(var0, var5.positions().get(var7.start(1)), var5.positions().get(var7.end(1) - 1) + 1, ChatPayParser.gAsString(var1));
             }
          }
       }
@@ -197,7 +197,7 @@ public final class ab {
          return var0;
       } else {
          MutableText var2 = gAsMutableText(var0, var1);
-         return var2 != var0 ? var2 : AAsMutableText(var0, 0, dAsString(var0).length(), g.gAsString(var1));
+         return var2 != var0 ? var2 : AAsMutableText(var0, 0, dAsString(var0).length(), ChatPayParser.gAsString(var1));
       }
    }
 

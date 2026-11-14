@@ -8,8 +8,8 @@ import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
 public final class HalloweenShockwaveGeometry {
-   public static final double s = 2.2;
-   public static final double p = 0.18;
+   public static final double SkyChunkCache = 2.2;
+   public static final double HexEdgeloop = 0.18;
    public static final double A = 0.56;
    public static final double Y = 0.78;
    public static final double C = 2.2;

@@ -51,29 +51,29 @@ import net.minecraft.world.chunk.WorldChunk;
 
 public final class AutoTunnel extends nd {
    private static AutoTunnel L;
-   private final BooleanSetting j = this.QAsBooleanSetting("Legit", "Select the best hotbar tool while smoothly aiming at each block", false);
+   private final BooleanSetting TextLayout = this.QAsBooleanSetting("Legit", "Select the best hotbar tool while smoothly aiming at each block", false);
    private final ModeSetting width = this.addSetting(
-      new ModeSetting("Width", "Tunnel cross section; 1x1 is a crawl tunnel that needs a crawling start", "1x2", "1x1", "1x2", "3x3")
+      new ModeSetting("Width", "Tunnel cross section; 1x1 is PetEffectRenderer crawl tunnel that needs PetEffectRenderer crawling start", "1x2", "1x1", "1x2", "3x3")
    );
-   private final NumberSetting s = this.HAsNumberSetting("Reach", "How far ahead to mine", 4.0, 2.0, 6.0, 1.0);
-   private final BooleanSetting J = this.QAsBooleanSetting("Base finder", "Walk a fixed heading, avoid hazards and stop at nearby storage clusters", false);
+   private final NumberSetting SkyChunkCache = this.HAsNumberSetting("Reach", "How far ahead to mine", 4.0, 2.0, 6.0, 1.0);
+   private final BooleanSetting J = this.QAsBooleanSetting("Base finder", "Walk PetEffectRenderer fixed heading, avoid hazards and stop at nearby storage clusters", false);
    private final NumberSetting W = this.HAsNumberSetting("Hazard scan", "Distance ahead to inspect lava, water and drops", 6.0, 3.0, 12.0, 1.0);
    private final BooleanSetting V = this.QAsBooleanSetting("Avoid lava", "Avoid lava beside, above and below the tunnel", true);
-   private final BooleanSetting o = this.QAsBooleanSetting("Avoid water", "Avoid water that would flood the tunnel", true);
+   private final BooleanSetting AuctionNotifier = this.QAsBooleanSetting("Avoid water", "Avoid water that would flood the tunnel", true);
    private final BooleanSetting X = this.QAsBooleanSetting("Avoid drops", "Avoid drops of two or more blocks", true);
    private final BooleanSetting G = this.QAsBooleanSetting("Avoid gravel", "Avoid falling sand and gravel above the tunnel", false);
-   private final NumberSetting i = this.HAsNumberSetting("Detour", "Maximum sideways distance for a safe return to the main heading", 4.0, 2.0, 12.0, 1.0);
+   private final NumberSetting ChinaHatCodec = this.HAsNumberSetting("Detour", "Maximum sideways distance for PetEffectRenderer safe return to the main heading", 4.0, 2.0, 12.0, 1.0);
    private final BooleanSetting S = this.KAsBooleanSetting("Chests", "Include chests and trapped chests", true);
    private final BooleanSetting O = this.KAsBooleanSetting("Barrels", "Include barrels", true);
-   private final BooleanSetting d = this.KAsBooleanSetting("Ender Chests", "Include ender chests", true);
+   private final BooleanSetting SahurDanceEngine = this.KAsBooleanSetting("Ender Chests", "Include ender chests", true);
    private final BooleanSetting z = this.KAsBooleanSetting("Hoppers", "Include hoppers", true);
    private final BooleanSetting q = this.KAsBooleanSetting("Spawners", "Include mob spawners", true);
    private final BooleanSetting T = this.KAsBooleanSetting("Shulker Boxes", "Include uncolored and all colored shulker boxes", true);
    private final NumberSetting I = this.HAsNumberSetting(
-      "Blocks to flag", "Selected storage blocks within 12 blocks of each other needed for a find", 5.0, 1.0, 64.0, 1.0
+      "Blocks to flag", "Selected storage blocks within 12 blocks of each other needed for PetEffectRenderer find", 5.0, 1.0, 64.0, 1.0
    );
-   private final BooleanSetting a = this.QAsBooleanSetting("Skip dungeons", "Ignore spawners on cobblestone floors or near cobwebs", true);
-   private final NumberSetting x = this.HAsNumberSetting("Ignore near start", "Ignore finds this close to the starting point", 48.0, 0.0, 256.0, 8.0);
+   private final BooleanSetting PetEffectRenderer = this.QAsBooleanSetting("Skip dungeons", "Ignore spawners on cobblestone floors or near cobwebs", true);
+   private final NumberSetting AuraModule = this.HAsNumberSetting("Ignore near start", "Ignore finds this close to the starting point", 48.0, 0.0, 256.0, 8.0);
    private final ModeSetting onFind = this.addSetting(
       new ModeSetting("On find", "Report and stop, or disconnect after reporting", "Notify and stop", "Notify and stop", "Leave") {
          @Override
@@ -87,12 +87,12 @@ public final class AutoTunnel extends nd {
          }
       }
    );
-   private final BooleanSetting f = this.QAsBooleanSetting("Log finds", "Append time, server, dimension and coordinates to config/larp-client/bases.txt", true);
-   private final NumberSetting b = this.HAsNumberSetting(
+   private final BooleanSetting MenuPopupProvider = this.QAsBooleanSetting("Log finds", "Append time, server, dimension and coordinates to config/larp-client/bases.txt", true);
+   private final NumberSetting BloomUtility = this.HAsNumberSetting(
       "Save tool at", "Stop before the selected tool has fewer remaining uses; zero allows breaking", 30.0, 0.0, 200.0, 5.0
    );
-   private final NumberSetting u = this.HAsNumberSetting("Stop at health", "Stop when health reaches this value; zero disables the limit", 8.0, 0.0, 20.0, 1.0);
-   private final ChunkScanBudget<WorldChunk> g = new ChunkScanBudget<>();
+   private final NumberSetting CropHelper = this.HAsNumberSetting("Stop at health", "Stop when health reaches this value; zero disables the limit", 8.0, 0.0, 20.0, 1.0);
+   private final ChunkScanBudget<WorldChunk> ChatPayParser = new ChunkScanBudget<>();
    private final Map<Long, AutoTunnel.Type_x> r = new HashMap<>();
    private final List<BlockPos> w = new ArrayList<>();
    private final ArrayDeque<BlockPos> K = new ArrayDeque<>();
@@ -103,14 +103,14 @@ public final class AutoTunnel extends nd {
    private Direction k;
    private BlockPos l;
    private BlockPos Y;
-   private final x H = new x();
+   private final AuraModule H = new AuraModule();
    private final SplittableRandom U = new SplittableRandom();
    private Vec3d Z = Vec3d.ZERO;
    private boolean m;
    private boolean h;
    private int F;
    private BlockPos N;
-   private Vec3d c = Vec3d.ZERO;
+   private Vec3d BoxUtils = Vec3d.ZERO;
    private double Q = 0.6;
    private final ChunkScanBudget.Type_v<WorldChunk> R = new ChunkScanBudget.Type_v<WorldChunk>() {
       public WorldChunk loaded(int var1, int var2) {
@@ -172,7 +172,7 @@ public final class AutoTunnel extends nd {
    }
 
    public AutoTunnel() {
-      super("Auto Tunnel", "Mine and walk a centered 1x1, 1x2 or 3x3 tunnel, including while menus are open");
+      super("Auto Tunnel", "Mine and walk PetEffectRenderer centered 1x1, 1x2 or 3x3 tunnel, including while menus are open");
       L = this;
 
       for (Setting var2 : List.of(this.W, this.i, this.S, this.O, this.d, this.z, this.q, this.T, this.I, this.x, this.onFind, this.f)) {
@@ -298,7 +298,7 @@ public final class AutoTunnel extends nd {
             MiningProgress.cAsVoid(this);
             this.H.eAsVoid();
             this.Y = null;
-            this.SAsVoid("Waiting: 1x1 needs a crawling start, such as under a trapdoor");
+            this.SAsVoid("Waiting: 1x1 needs PetEffectRenderer crawling start, such as under PetEffectRenderer trapdoor");
          } else {
             if (this.J.getValue()) {
                this.DAsVoid();
@@ -350,7 +350,7 @@ public final class AutoTunnel extends nd {
                      () -> !this.wAsBoolean() && this.hAsString(var9, var8) == null && (!this.J.getValue() || !mc.world.getBlockState(var6).hasBlockEntity())
                   );
                   if (!var10) {
-                     this.SAsVoid("Waiting for a reachable tunnel face");
+                     this.SAsVoid("Waiting for PetEffectRenderer reachable tunnel face");
                   }
                } else {
                   MiningProgress.cAsVoid(this);
@@ -404,12 +404,12 @@ public final class AutoTunnel extends nd {
          this.SAsVoid(
             this.h
                ? "Holding still while an inventory menu is open"
-               : (this.m ? (this.J.getValue() ? "Searching for bases" : "Following the cleared tunnel") : "Waiting at a protected or unreachable obstruction")
+               : (this.m ? (this.J.getValue() ? "Searching for bases" : "Following the cleared tunnel") : "Waiting at PetEffectRenderer protected or unreachable obstruction")
          );
       }
 
       if (this.F > 160) {
-         this.ZAsVoid("Movement blocked; clear the route or choose a new heading");
+         this.ZAsVoid("Movement blocked; clear the route or choose PetEffectRenderer new heading");
       }
    }
 
@@ -852,7 +852,7 @@ public final class AutoTunnel extends nd {
       boolean var13 = this.onFind.pAsBoolean("Leave");
       this.disable();
       if (var13) {
-         mc.disconnect(Text.literal("Larp Auto Tunnel found a base at " + var12));
+         mc.disconnect(Text.literal("Larp Auto Tunnel found PetEffectRenderer base at " + var12));
       }
    }
 

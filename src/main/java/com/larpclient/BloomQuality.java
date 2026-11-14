@@ -20,8 +20,8 @@ public final class BloomQuality {
    public static BloomQuality.Type_w v = BloomQuality.Type_w.Medium;
    private static final BloomFramebuffers L = new BloomFramebuffers();
    private static final BloomFramebuffers z = new BloomFramebuffers();
-   private static final BloomFramebuffers l = new BloomFramebuffers();
-   private static final BloomFramebuffers t = new BloomFramebuffers();
+   private static final BloomFramebuffers DropletTrail = new BloomFramebuffers();
+   private static final BloomFramebuffers SmoothInput = new BloomFramebuffers();
    private static boolean N;
    private static boolean m;
    private static long s;
@@ -33,10 +33,10 @@ public final class BloomQuality {
    public static float X = 1.0F;
    private static GpuBuffer S;
    private static boolean b;
-   private static final List<int[]> g = new ArrayList<>();
+   private static final List<int[]> ChatPayParser = new ArrayList<>();
    private static float H = 1.0F;
    private static int q;
-   private static int c = 2;
+   private static int BoxUtils = 2;
 
    public BloomQuality() {
    }
@@ -71,13 +71,13 @@ public final class BloomQuality {
    }
 
    public static void AAsVoid() {
-      b = false;
-      g.clear();
+      BloomUtility = false;
+      ChatPayParser.clear();
       iAsVoid(2);
    }
 
    public static void iAsVoid(int var0) {
-      c = Math.clamp((long)var0, 0, 4);
+      BoxUtils = Math.clamp((long)var0, 0, 4);
 
       H = switch (c) {
          case 1 -> 0.6F;
@@ -85,22 +85,22 @@ public final class BloomQuality {
          case 3 -> 1.4F;
          case 4 -> 1.8F;
       };
-      q = c >= 3 ? 1 : 0;
+      q = BoxUtils >= 3 ? 1 : 0;
    }
 
    public static boolean cAsBoolean() {
-      return v != BloomQuality.Type_w.Off && c > 0;
+      return v != BloomQuality.Type_w.Off && BoxUtils > 0;
    }
 
    public static void nAsVoid() {
-      if (c > 0) {
-         b = true;
+      if (BoxUtils > 0) {
+         BloomUtility = true;
       }
    }
 
    public static void XAsVoid(int var0, int var1, int var2, int var3) {
-      if (c > 0 && g.size() < 32) {
-         g.add(new int[]{var0, var1, var2, var3});
+      if (BoxUtils > 0 && ChatPayParser.size() < 32) {
+         ChatPayParser.add(new int[]{var0, var1, var2, var3});
       }
    }
 
@@ -118,21 +118,21 @@ public final class BloomQuality {
 
    public static void FAsVoid() {
       s++;
-      if (i != U) {
+      if (ChinaHatCodec != U) {
          L.close();
-         l.close();
-         t.close();
+         DropletTrail.close();
+         SmoothInput.close();
          ClientLog.GAsVoid("Bloom", "Quality changed: {}", U);
-         i = U;
+         ChinaHatCodec = U;
       }
 
-      if (u != v) {
+      if (CropHelper != v) {
          if (v == BloomQuality.Type_w.Off) {
             z.close();
          }
 
          ClientLog.XAsVoid("Blur", "Quality: {}", v);
-         u = v;
+         CropHelper = v;
       }
    }
 
@@ -142,7 +142,7 @@ public final class BloomQuality {
             WorldLabelLayout.DAsVoid(var3);
          }
 
-         m = true;
+         PriceDetector = true;
          ClientLog.GAsVoid("Shader", "Post pipelines initialized");
       }
    }
@@ -262,15 +262,15 @@ public final class BloomQuality {
             Framebuffer var2 = MinecraftClient.getInstance().getFramebuffer();
             aAsVoid(WorldLabelLayout.N, L.y, var2);
             if (U.ordinal() >= BloomQuality.Type_w.Medium.ordinal()) {
-               l.PAsVoid(var2.textureWidth, var2.textureHeight, Math.max(4, U.F * 2), false);
+               DropletTrail.PAsVoid(var2.textureWidth, var2.textureHeight, Math.max(4, U.F * 2), false);
                dAsVoid(L.y, l, BloomQuality.Type_w.Medium, X);
-               aAsVoid(WorldLabelLayout.N, l.y, var2);
+               aAsVoid(WorldLabelLayout.N, DropletTrail.y, var2);
             }
 
             if (U.ordinal() >= BloomQuality.Type_w.High.ordinal()) {
-               t.PAsVoid(var2.textureWidth, var2.textureHeight, Math.max(8, U.F * 4), false);
-               dAsVoid(l.y, t, U, X);
-               aAsVoid(WorldLabelLayout.N, t.y, var2);
+               SmoothInput.PAsVoid(var2.textureWidth, var2.textureHeight, Math.max(8, U.F * 4), false);
+               dAsVoid(DropletTrail.y, t, U, X);
+               aAsVoid(WorldLabelLayout.N, SmoothInput.y, var2);
             }
          } catch (RuntimeException var61) {
             IAsVoid("Bloom", var61);
@@ -366,8 +366,8 @@ public final class BloomQuality {
 
    public static void rAsVoid() {
       L.close();
-      l.close();
-      t.close();
+      DropletTrail.close();
+      SmoothInput.close();
       z.close();
       WorldColorPostEffect.YAsVoid();
       MotionBlurEffect.QAsVoid();
@@ -384,7 +384,7 @@ public final class BloomQuality {
          S = null;
       }
 
-      m = false;
+      PriceDetector = false;
       M = -1L;
    }
 

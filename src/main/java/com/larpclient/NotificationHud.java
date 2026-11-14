@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 public class NotificationHud implements HudElement {
    private static final NotificationHud n = new NotificationHud();
-   private final List<NotificationHud.Type_m> j = new ArrayList<>();
+   private final List<NotificationHud.Type_m> TextLayout = new ArrayList<>();
    private static final int v = 5;
    private static final int r = 7;
    private static final int T = 260;
@@ -21,14 +21,14 @@ public class NotificationHud implements HudElement {
    private static final int G = 10;
    private static final int L = 52;
    private static final int S = 14;
-   private static final int i = 5;
+   private static final int ChinaHatCodec = 5;
    private static final int Z = 16;
    private static final int H = 12;
    private static final int D = 7;
    private static final int P = 20;
    private static final int M = 30;
-   private static final int y = 5;
-   private static final double g = 12.0;
+   private static final int ScreenScale = 5;
+   private static final double ChatPayParser = 12.0;
    private static final double J = 9.0;
    private static final int B = 330;
    private static final int U = 280;
@@ -36,10 +36,10 @@ public class NotificationHud implements HudElement {
    private static final int h = 8;
    private static final int X = 14;
    private static final int E = -603321844;
-   private static final int t = -1;
-   private static final int a = -6908266;
-   private static final int b = -5592406;
-   private static final double p = 0.58;
+   private static final int SmoothInput = -1;
+   private static final int PetEffectRenderer = -6908266;
+   private static final int BloomUtility = -5592406;
+   private static final double HexEdgeloop = 0.58;
    public static final String O = "Enabled";
    public static final String W = "Disabled";
    private static final long A = 2000L;

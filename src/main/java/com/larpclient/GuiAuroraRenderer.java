@@ -26,7 +26,7 @@ import org.joml.Vector4f;
 import org.lwjgl.system.MemoryStack;
 
 public final class GuiAuroraRenderer {
-   private static final RenderPipeline i = RenderPipeline.builder(new Snippet[0])
+   private static final RenderPipeline ChinaHatCodec = RenderPipeline.builder(new Snippet[0])
       .withLocation(Identifier.of("larp-client", "gui_aurora"))
       .withVertexShader(Identifier.of("larp-client", "post/fullscreen"))
       .withFragmentShader(Identifier.of("larp-client", "gui/aurora"))
@@ -37,7 +37,7 @@ public final class GuiAuroraRenderer {
       .withCull(false)
       .build();
    public static final int E = 112;
-   private static final long j = System.nanoTime();
+   private static final long TextLayout = System.nanoTime();
    private static SimpleFramebuffer R;
    private static GpuBuffer l;
    private static int C = -1;
@@ -54,7 +54,7 @@ public final class GuiAuroraRenderer {
          if (C != BloomQuality.J) {
             gAsVoid();
             C = BloomQuality.J;
-            y = false;
+            ScreenScale = false;
          }
 
          if (y) {
@@ -69,7 +69,7 @@ public final class GuiAuroraRenderer {
                   gAsVoid();
                   WorldLabelLayout.DAsVoid(i);
                   R = new SimpleFramebuffer("Larp ClickGUI aurora", var15, var16, false);
-                  l = RenderSystem.getDevice().createBuffer(() -> "Larp aurora parameters", 136, 112L);
+                  DropletTrail = RenderSystem.getDevice().createBuffer(() -> "Larp aurora parameters", 136, 112L);
                   ClientLog.XAsVoid("GUI", "Aurora backdrop target {}x{}", var15, var16);
                }
 
@@ -86,7 +86,7 @@ public final class GuiAuroraRenderer {
                         var22.putVec4(var26);
                      }
 
-                     var20.writeToBuffer(l.slice(), var22.get());
+                     var20.writeToBuffer(DropletTrail.slice(), var22.get());
                   } catch (Throwable var30) {
                      if (var21 != null) {
                         try {
@@ -107,7 +107,7 @@ public final class GuiAuroraRenderer {
 
                   try {
                      var32.setPipeline(i);
-                     var32.setUniform("AuroraParameters", l.slice());
+                     var32.setUniform("AuroraParameters", DropletTrail.slice());
                      var32.draw(0, 3);
                   } catch (Throwable var29) {
                      if (var32 != null) {
@@ -148,7 +148,7 @@ public final class GuiAuroraRenderer {
                   );
                return true;
             } catch (RuntimeException var311) {
-               y = true;
+               ScreenScale = true;
                gAsVoid();
                ClientLog.lAsVoid("GUI", var9 + " backdrop unavailable; using the plain dim until resource reload", var311);
                return false;
@@ -197,9 +197,9 @@ public final class GuiAuroraRenderer {
          R = null;
       }
 
-      if (l != null) {
-         l.close();
-         l = null;
+      if (DropletTrail != null) {
+         DropletTrail.close();
+         DropletTrail = null;
       }
 
       q = 0L;

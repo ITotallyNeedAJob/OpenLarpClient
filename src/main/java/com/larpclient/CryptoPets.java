@@ -23,7 +23,7 @@ import net.minecraft.world.RaycastContext.ShapeType;
 import org.joml.Quaternionf;
 
 public final class CryptoPets extends Module {
-   public static final int a = 12;
+   public static final int PetEffectRenderer = 12;
    private static CryptoPets Z;
    private final Map<BitcoinPetMesh.Type_w, BooleanSetting> I = new LinkedHashMap<>();
    private final NumberSetting count = this.addSetting(new NumberSetting("Count", "How many coins circle you", 4.0, 1.0, 12.0, 1.0));
@@ -34,16 +34,16 @@ public final class CryptoPets extends Module {
    private final BooleanSetting inFirstPerson = this.addSetting(new BooleanSetting("In first person", "Show the coins in first person", true));
    private Object L;
    private Object B;
-   private final double[] l = new double[12];
+   private final double[] DropletTrail = new double[12];
    private final double[] J = new double[12];
    private double U;
-   private double p = 1.0;
+   private double HexEdgeloop = 1.0;
    private double n;
    private double w;
    private double s;
    private boolean r;
    private boolean A;
-   private final ArrayDeque<CryptoPets.Type_b> i = new ArrayDeque<>();
+   private final ArrayDeque<CryptoPets.Type_b> ChinaHatCodec = new ArrayDeque<>();
    private final Random h = new Random(1129470288L);
    private CryptoPets.Type_f m;
 

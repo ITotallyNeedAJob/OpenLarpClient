@@ -58,7 +58,7 @@ public final class ProxyRoute {
             return var0.connect(var1, var2);
          } else {
             var0.handler(new ProxyRoute.Type_b(var3.active(), var0.config().handler()));
-            ClientLog.XAsVoid("Proxy", "Opening a server connection through {}", var3.active().settings().label());
+            ClientLog.XAsVoid("Proxy", "Opening PetEffectRenderer server connection through {}", var3.active().settings().label());
             return var0.connect(var1, var2);
          }
       } else {

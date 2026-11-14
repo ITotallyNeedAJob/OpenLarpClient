@@ -2,7 +2,7 @@ package com.larpclient.mixin;
 
 import com.larpclient.aj;
 import com.larpclient.aq;
-import com.larpclient.f;
+import com.larpclient.MenuPopupProvider;
 import com.larpclient.xt;
 import com.larpclient.module.GUIAnimation;
 import net.minecraft.client.MinecraftClient;
@@ -22,7 +22,7 @@ public abstract class MouseMixin {
    }
 
    @Unique
-   private static float p() {
+   private static float HexEdgeloop() {
       Screen var0 = MinecraftClient.getInstance().currentScreen;
       return var0 instanceof HandledScreen && var0 instanceof aj var1 ? var1.larpContainerScale() : 1.0F;
    }
@@ -40,13 +40,13 @@ public abstract class MouseMixin {
             var2 = var6[1];
          }
 
-         aq.Type_x var10 = f.bAsAq_Type_x(var4);
+         aq.Type_x var10 = MenuPopupProvider.bAsAq_Type_x(var4);
          var0 = var10.localX(var0, (double)var4.width / 2.0);
          var2 = var10.localY(var2, (double)var4.height / 2.0);
          GUIAnimation var7 = GUIAnimation.kAsGUIAnimation();
          return var7 == null
             ? new double[]{var0, var2}
-            : new double[]{var7.uAsDouble(var0, (double)var4.width / 2.0, p()), var7.uAsDouble(var2, (double)var4.height / 2.0, p())};
+            : new double[]{var7.uAsDouble(var0, (double)var4.width / 2.0, HexEdgeloop()), var7.uAsDouble(var2, (double)var4.height / 2.0, HexEdgeloop())};
       }
    }
 

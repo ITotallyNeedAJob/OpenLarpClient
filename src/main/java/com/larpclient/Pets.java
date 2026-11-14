@@ -51,7 +51,7 @@ public final class Pets extends Module {
    private Object p;
    private Vec3d J;
    private Vec3d T = Vec3d.ZERO;
-   private float j = Float.NaN;
+   private float TextLayout = Float.NaN;
    private float K;
    private float Z;
    private double F;
@@ -60,14 +60,14 @@ public final class Pets extends Module {
    private double c;
    private double D;
    private double n;
-   private double e = 6.5;
+   private double LineSegment = 6.5;
    private double W;
    private double x;
    private double S;
    private int h;
    private boolean B;
    private String v;
-   private final ArrayDeque<Pets.Type_v> f = new ArrayDeque<>();
+   private final ArrayDeque<Pets.Type_v> MenuPopupProvider = new ArrayDeque<>();
    private final ArrayDeque<Pets.Type_g> V = new ArrayDeque<>();
    private Pets.Type_g s;
    private long C;
@@ -78,7 +78,7 @@ public final class Pets extends Module {
 
    public Pets() {
       super("Pets", "A local companion with reactive motion and speech bubbles", Category.RENDER, -1);
-      y = this;
+      ScreenScale = this;
       this.pet.visibleWhen(() -> !this.realism.getValue());
       this.size.visibleWhen(() -> !this.realism.getValue());
       this.realisticPet.visibleWhen(() -> this.realism.getValue());
@@ -410,7 +410,7 @@ public final class Pets extends Module {
                var1.oAsVoid(var3.shadow, 0.18 * var3.scale, 0.16 * var3.scale, bg.XAsInt(-16777216, var3.shadowAlpha));
             }
 
-            a.jAsVoid(var1, var3, var2);
+            PetEffectRenderer.jAsVoid(var1, var3, var2);
 
             for (Pets.Type_v var5 : var3.sparks) {
                double var6 = Math.clamp(1.0 - (var3.time - var5.birth) / var5.lifetime, 0.0, 1.0);

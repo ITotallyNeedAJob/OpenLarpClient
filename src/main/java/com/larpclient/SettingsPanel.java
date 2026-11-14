@@ -11,7 +11,7 @@ import net.minecraft.client.input.KeyInput;
 abstract class SettingsPanel extends GuiPanel {
    protected ClickGuiScreen i;
    protected xm P;
-   protected final List<GuiWidget> l = new ArrayList<>();
+   protected final List<GuiWidget> DropletTrail = new ArrayList<>();
    protected final List<ActionButton> E = new ArrayList<>();
    protected int s;
    protected int H;
@@ -27,19 +27,19 @@ abstract class SettingsPanel extends GuiPanel {
    private final List<ActionButton> N = new ArrayList<>();
    private final ActionButton n = new ActionButton("", this::dismissDialog);
    private List<String> J = List.of();
-   private List<String> a = List.of();
+   private List<String> PetEffectRenderer = List.of();
    private int M;
    private int c;
    private int B;
    private int x;
-   private final w2 d = new w2(1.0);
+   private final w2 SahurDanceEngine = new w2(1.0);
    private final w2 z = new w2(0.0);
    private final w2 q = new w2(0.0);
-   private final w2 g = new w2(0.0);
+   private final w2 ChatPayParser = new w2(0.0);
    private boolean D;
    private boolean v;
    private boolean h;
-   private static final int m = 300;
+   private static final int PriceDetector = 300;
    private static final int V = 14;
    private static final int K = 20;
 
@@ -284,10 +284,10 @@ abstract class SettingsPanel extends GuiPanel {
                   }
                }
 
-               j.Type_u var12 = j.LAsJ_Type_u(Math.max(1, this.r - this.H - 20), var4.stream().map(SettingWidget::GAsInt).toList());
+               TextLayout.Type_u var12 = TextLayout.LAsJ_Type_u(Math.max(1, this.r - this.H - 20), var4.stream().map(SettingWidget::GAsInt).toList());
 
                for (int var13 = 0; var13 < var4.size(); var13++) {
-                  j.Type_m var7 = var12.cells().get(var13);
+                  TextLayout.Type_m var7 = var12.cells().get(var13);
                   var4.get(var13).bounds(this.H + 8 + var7.x(), this.X + var7.y(), var7.width());
                }
 
@@ -699,7 +699,7 @@ abstract class SettingsPanel extends GuiPanel {
 
    private static final class Type_n extends GuiWidget {
       private final Supplier<String> S;
-      private List<String> c = List.of();
+      private List<String> BoxUtils = List.of();
       private int D = -1;
       private String X;
 

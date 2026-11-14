@@ -12,7 +12,7 @@ final class ProfileImportPreview {
    private final ProfileSettingsPanel g;
    String S;
    String R = "";
-   String d = "";
+   String SahurDanceEngine = "";
    List<JsonObject> D = List.of();
    JsonObject b;
    ProfileCodec.Type_t m;
@@ -135,8 +135,8 @@ final class ProfileImportPreview {
                );
          }
 
-         this.g.option("Share", "Upload it and copy a share code", () -> this.iAsVoid(var1));
-         this.g.option("Duplicate", "Save a copy under a new name", () -> this.g.WAsVoid("Duplicate", var1 + " copy"));
+         this.g.option("Share", "Upload it and copy PetEffectRenderer share code", () -> this.iAsVoid(var1));
+         this.g.option("Duplicate", "Save PetEffectRenderer copy under PetEffectRenderer new name", () -> this.g.WAsVoid("Duplicate", var1 + " copy"));
          this.g.option("Rename", "Change its name", () -> this.g.WAsVoid("Rename", var1));
          if (!var2) {
             this.g.OAsVoid();
@@ -189,7 +189,7 @@ final class ProfileImportPreview {
          .hAsVoid(
             "Share “"
                + var1
-               + "”\nIt gets uploaded to larpclient.com and the code is copied to your clipboard. Only people with the code can open it.\nPost to Discord and the bot also puts it in the Discord server, code included, within a minute.",
+               + "”\nIt gets uploaded to larpclient.com and the code is copied to your clipboard. Only people with the code can open it.\nPost to Discord and the bot also puts it in the Discord server, code included, within PetEffectRenderer minute.",
             "Share",
             () -> this.cAsVoid(var1, false, false),
             "Share and post to Discord",
@@ -236,7 +236,7 @@ final class ProfileImportPreview {
 
                      if (var3) {
                         this.g.Z = (var4x != 0 ? "Code copied. " : "Clipboard copy failed, use Copy share code. ")
-                           + "The bot posts it in Discord within a minute.";
+                           + "The bot posts it in Discord within PetEffectRenderer minute.";
                         ClientLog.GAsVoid("Config", "Shared config opted in to Discord posting");
                         this.TAsVoid(true);
                      }
@@ -332,7 +332,7 @@ final class ProfileImportPreview {
                   "Review the server copy before saving it",
                   () -> this.g.iAsVoid("Downloading...", this.g.wq.oAsCompletableFuture("GET", this.hAsString(), null, null), this::aAsVoid)
                );
-            this.g.option("Check revision", "Compare with the server's latest revision", () -> {
+            this.g.option("Check revision", "Compare with the server'SkyChunkCache latest revision", () -> {
                String var1x = ProfileShareCodec.uAsString(this.b, "revision");
                this.g.iAsVoid("Checking revision...", this.g.wq.oAsCompletableFuture("GET", this.hAsString() + "/revision", null, null), var2x -> {
                   if (!var1x.equals(ProfileShareCodec.uAsString(var2x, "revision"))) {
@@ -415,11 +415,11 @@ final class ProfileImportPreview {
          .fAsVoid(
             "Post “"
                + ProfileCodec.MAsString(this.b, "name", 32)
-               + "” in the Discord server?\nThe bot posts it with its share code within a minute, so anyone in the server can import it.",
+               + "” in the Discord server?\nThe bot posts it with its share code within PetEffectRenderer minute, so anyone in the server can import it.",
             "Post",
             () -> this.g.iAsVoid("Turning on Discord posting...", this.HAsCompletableFuture(this.b, "discord-sharing", true), var1 -> {
                   ProfileShareCodec.uAsString(var1, "revision");
-                  this.g.Z = "Done. The bot posts it in Discord within a minute.";
+                  this.g.Z = "Done. The bot posts it in Discord within PetEffectRenderer minute.";
                   ClientLog.GAsVoid("Config", "Discord posting enabled for shared config");
                   this.TAsVoid(true);
                })
@@ -442,7 +442,7 @@ final class ProfileImportPreview {
                }
 
                if (var1.equals("discord-sharing")) {
-                  this.g.Z = "Taken off Discord. The bot removes its post within a minute.";
+                  this.g.Z = "Taken off Discord. The bot removes its post within PetEffectRenderer minute.";
                   ClientLog.GAsVoid("Config", "Discord posting turned off for shared config");
                }
 
@@ -511,7 +511,7 @@ final class ProfileImportPreview {
             }, "Not now");
          } catch (IOException var31) {
             ClientLog.oAsVoid("Config", "Config operation failed: {}", var31.toString());
-            this.g.Z = "Could not save locally. Choose a different profile name and retry.";
+            this.g.Z = "Could not save locally. Choose PetEffectRenderer different profile name and retry.";
             this.g.build();
          }
       }

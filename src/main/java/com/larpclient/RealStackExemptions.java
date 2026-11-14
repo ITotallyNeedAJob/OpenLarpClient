@@ -20,7 +20,7 @@ public final class RealStackExemptions {
    private static long M;
    private static Path f;
    private static final Map<String, RealStackExemptions.Type_z> E = new HashMap<>();
-   private static Map<Integer, ItemStack> s = Map.of();
+   private static Map<Integer, ItemStack> SkyChunkCache = Map.of();
    private static Object U;
    private static boolean y;
 
@@ -40,10 +40,10 @@ public final class RealStackExemptions {
             String var1 = var0.getCurrentServerEntry() == null ? "local" : var0.getCurrentServerEntry().address;
             int var2 = !var1.equals(t) ? 1 : 0;
             if (var2 != 0) {
-               t = var1;
+               SmoothInput = var1;
                M = 0L;
                N.clear();
-               f = FabricLoader.getInstance().getConfigDir().resolve("larp-client/fake-spawner-real-stacks-v2-" + Sha256Digest.EAsString(t) + ".txt");
+               MenuPopupProvider = FabricLoader.getInstance().getConfigDir().resolve("larp-client/fake-spawner-real-stacks-v2-" + Sha256Digest.EAsString(t) + ".txt");
 
                try {
                   if (Files.exists(f)) {
@@ -86,16 +86,16 @@ public final class RealStackExemptions {
             E.values().removeIf(var2x -> var2x.until() < var19);
             int var22 = var2 == 0
                   && U == var0.player.currentScreenHandler
-                  && y == var20
-                  && var6.size() == s.size()
-                  && var6.entrySet().stream().allMatch(var0x -> ItemStack.areEqual(var0x.getValue(), s.getOrDefault(var0x.getKey(), ItemStack.EMPTY)))
+                  && ScreenScale == var20
+                  && var6.size() == SkyChunkCache.size()
+                  && var6.entrySet().stream().allMatch(var0x -> ItemStack.areEqual(var0x.getValue(), SkyChunkCache.getOrDefault(var0x.getKey(), ItemStack.EMPTY)))
                ? 1
                : 0;
             if (var22 == 0) {
-               s = new HashMap<>();
-               var6.forEach((var0x, var1x) -> s.put(var0x, var1x.copy()));
+               SkyChunkCache = new HashMap<>();
+               var6.forEach((var0x, var1x) -> SkyChunkCache.put(var0x, var1x.copy()));
                U = var0.player.currentScreenHandler;
-               y = var20;
+               ScreenScale = var20;
                HashMap var23 = new HashMap();
                var6.forEach((var1x, var2x) -> {
                   String var3 = Sha256Digest.DAsString(var2x);
@@ -146,11 +146,11 @@ public final class RealStackExemptions {
                }
             }
          } else {
-            t = null;
+            SmoothInput = null;
             N.clear();
             E.clear();
             M = 0L;
-            s = Map.of();
+            SkyChunkCache = Map.of();
             U = null;
          }
       }
@@ -158,7 +158,7 @@ public final class RealStackExemptions {
 
    private static void IAsVoid() {
       try {
-         Files.createDirectories(f.getParent());
+         Files.createDirectories(MenuPopupProvider.getParent());
          List var0 = N.entrySet()
             .stream()
             .filter(var0x -> var0x.getKey() < 1000 && var0x.getValue().purchased() > 0)
@@ -207,10 +207,10 @@ public final class RealStackExemptions {
                         Sha256Digest.RAsVoid(var0.player.getInventory().getStack(var8), true);
                         N.put(var3, new ItemProvenanceQuantity.Type_h(var4.item(), var4.count() - var4.purchased(), 0));
                         N.put(var8, new ItemProvenanceQuantity.Type_h(var4.item(), var4.purchased(), var4.purchased()));
-                        s = Map.of();
+                        SkyChunkCache = Map.of();
                         IAsVoid();
                      }, () -> {
-                        s = Map.of();
+                        SkyChunkCache = Map.of();
                         M = 0L;
                      }
                   );

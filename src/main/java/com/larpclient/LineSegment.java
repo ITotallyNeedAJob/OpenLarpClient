@@ -5,13 +5,13 @@ import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix4fc;
 import org.joml.Vector3f;
 
-public final class e {
+public final class LineSegment {
    private static Vec3d kAsVec3d(Matrix4fc var0, Vec3d var1, int var2) {
       Vector3f var3 = var0.transformPosition(new Vector3f((float)((double)var2 * var1.x), (float)var1.y, (float)var1.z));
       return new Vec3d((double)var3.x, (double)var3.y, (double)var3.z);
    }
 
-   public static e.Type_c dAsE_Type_c(float[] var0) {
+   public static LineSegment.Type_c dAsE_Type_c(float[] var0) {
       double var1 = Double.POSITIVE_INFINITY;
       double var3 = Double.NEGATIVE_INFINITY;
 
@@ -23,7 +23,7 @@ public final class e {
       if (Double.isFinite(var1 + var3) && !(var3 - var1 < 0.02)) {
          Vec3d var7 = zAsVec3d(var0, var1, var1 + (var3 - var1) * 0.055);
          Vec3d var6 = zAsVec3d(var0, var3 - (var3 - var1) * 0.025, var3);
-         return new e.Type_c(var7, var6);
+         return new LineSegment.Type_c(var7, var6);
       } else {
          return null;
       }
@@ -47,7 +47,7 @@ public final class e {
       return new Vec3d(var5 / (double)var11, var7 / (double)var11, var9 / (double)var11);
    }
 
-   public static e.Type_c LAsE_Type_c(List<Vec3d> var0) {
+   public static LineSegment.Type_c LAsE_Type_c(List<Vec3d> var0) {
       if (var0.size() < 4) {
          return null;
       } else {
@@ -118,17 +118,17 @@ public final class e {
 
             var29 = var29.multiply(1.0 / (double)var31);
             Vec3d var33 = var1.add(var25.multiply(var27 + (var17 - var27) * 0.48));
-            return new e.Type_c(var33, var29);
+            return new LineSegment.Type_c(var33, var29);
          }
       }
    }
 
-   private e() {
+   private LineSegment() {
    }
 
    public static record Type_c(Vec3d root, Vec3d tip) {
-      public e.Type_c transform(Matrix4fc var1, int var2) {
-         return new e.Type_c(e.kAsVec3d(var1, this.root, var2), e.kAsVec3d(var1, this.tip, var2));
+      public LineSegment.Type_c transform(Matrix4fc var1, int var2) {
+         return new LineSegment.Type_c(LineSegment.kAsVec3d(var1, this.root, var2), LineSegment.kAsVec3d(var1, this.tip, var2));
       }
 
       public double length() {

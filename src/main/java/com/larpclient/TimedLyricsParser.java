@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class TimedLyricsParser {
-   private static final Pattern d = Pattern.compile("\\[(\\d{1,3}):(\\d{2})(?:[.:](\\d{1,3}))?]");
+   private static final Pattern SahurDanceEngine = Pattern.compile("\\[(\\d{1,3}):(\\d{2})(?:[.:](\\d{1,3}))?]");
    private static final Pattern V = Pattern.compile("(?im)^\\[offset:([+-]?\\d+)]\\s*$");
    private final List<TimedLyricsParser.Type_e> Q;
 
@@ -30,7 +30,7 @@ public final class TimedLyricsParser {
          ArrayList var4 = new ArrayList();
 
          for (String var8 : var0.split("\\R")) {
-            Matcher var9 = d.matcher(var8);
+            Matcher var9 = SahurDanceEngine.matcher(var8);
             ArrayList var10 = new ArrayList();
             int var11 = 0;
 

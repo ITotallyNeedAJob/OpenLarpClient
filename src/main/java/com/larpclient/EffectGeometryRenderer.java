@@ -22,13 +22,13 @@ import org.joml.Quaternionfc;
 import org.joml.Vector3f;
 
 public final class EffectGeometryRenderer implements o_ {
-   public static final RenderLayer x = RenderLayer.of("larp_effects", RenderSetup.builder(WorldLabelLayout.g).translucent().build());
+   public static final RenderLayer AuraModule = RenderLayer.of("larp_effects", RenderSetup.builder(WorldLabelLayout.g).translucent().build());
    private static final RenderLayer[][] I = new RenderLayer[x4.Type_i.values().length][3];
-   private static final RenderLayer[][] j = new RenderLayer[x4.Type_i.values().length][3];
+   private static final RenderLayer[][] TextLayout = new RenderLayer[x4.Type_i.values().length][3];
    private static final RenderLayer m;
-   private static final double[] c = new double[60];
+   private static final double[] BoxUtils = new double[60];
    private final double[] Q = new double[18];
-   private static final RenderLayer[] f = new RenderLayer[3];
+   private static final RenderLayer[] MenuPopupProvider = new RenderLayer[3];
    private static final RenderLayer O = RenderLayer.of(
       "larp_geometry_solid",
       RenderSetup.builder(
@@ -110,7 +110,7 @@ public final class EffectGeometryRenderer implements o_ {
       }
 
       WorldLabelLayout.DAsVoid(O.getRenderPipeline());
-      WorldLabelLayout.DAsVoid(m.getRenderPipeline());
+      WorldLabelLayout.DAsVoid(PriceDetector.getRenderPipeline());
    }
 
    static ImmediateMaterialState aAsPw(ImmediateMaterialState var0) {
@@ -592,7 +592,7 @@ public final class EffectGeometryRenderer implements o_ {
          var21 = var12 == ParticleEmitterEngine.Type_a.Streak ? 3.0 : 1.6;
       }
 
-      VertexConsumer var23 = this.u.XAsVertexConsumer((this.C ? j : I)[var19.ordinal()][this.B.ordinal()]);
+      VertexConsumer var23 = this.u.XAsVertexConsumer((this.C ? TextLayout : I)[var19.ordinal()][this.B.ordinal()]);
       double var24 = Math.cos(var9);
       double var26 = Math.sin(var9);
 
@@ -667,7 +667,7 @@ public final class EffectGeometryRenderer implements o_ {
          .withBlend(BlendFunction.TRANSLUCENT)
          .withCull(true)
          .build();
-      m = RenderLayer.of(
+      PriceDetector = RenderLayer.of(
          "larp_cash", RenderSetup.builder(var0).texture("Sampler0", Identifier.of("larp-client", "textures/particles/cash.png")).translucent().build()
       );
 
@@ -721,7 +721,7 @@ public final class EffectGeometryRenderer implements o_ {
       }
 
       E = new double[65];
-      i = new double[65];
+      ChinaHatCodec = new double[65];
 
       for (int var13 = 0; var13 <= 64; var13++) {
          E[var13] = Math.cos((double)var13 * Math.PI / 32.0);

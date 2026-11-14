@@ -14,7 +14,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ActivationScreen extends Screen {
-   private static final Identifier u = Identifier.of("larp-client", "textures/gui/logo.png");
+   private static final Identifier CropHelper = Identifier.of("larp-client", "textures/gui/logo.png");
    private final Screen b;
    private final ClientWorld j;
    private String T = "";
@@ -24,7 +24,7 @@ public class ActivationScreen extends Screen {
    private ButtonWidget h;
    private ButtonWidget v;
    private ButtonWidget P;
-   private final AccountPopupController o = new AccountPopupController(this);
+   private final AccountPopupController AuctionNotifier = new AccountPopupController(this);
    private int t;
    private int z;
    private int s;

@@ -2,7 +2,7 @@ package com.larpclient;
 
 public interface mc {
    int w = 0;
-   int e = 1;
+   int LineSegment = 1;
    int Z = 2;
 
    int larp$headless();

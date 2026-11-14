@@ -1,7 +1,7 @@
 package com.larpclient.mixin;
 
 import com.larpclient.aq;
-import com.larpclient.f;
+import com.larpclient.MenuPopupProvider;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ClickableWidget;
@@ -24,8 +24,8 @@ public abstract class ClickableWidgetMixin {
    )
    private void larpclient$modifyArgsIIFV(Args var1) {
       Screen var2 = MinecraftClient.getInstance().currentScreen;
-      if (var2 instanceof f var3 && var3.larpDrawingMenuPopup()) {
-         aq.Type_x var4 = f.bAsAq_Type_x(var2);
+      if (var2 instanceof MenuPopupProvider var3 && var3.larpDrawingMenuPopup()) {
+         aq.Type_x var4 = MenuPopupProvider.bAsAq_Type_x(var2);
          var1.set(0, (int)Math.round(var4.screenX((double)((Integer)var1.get(0)).intValue(), (double)var2.width / 2.0)));
          var1.set(1, (int)Math.round(var4.screenY((double)((Integer)var1.get(1)).intValue(), (double)var2.height / 2.0)));
       }

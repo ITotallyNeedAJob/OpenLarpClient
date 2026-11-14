@@ -23,7 +23,7 @@ import net.minecraft.client.input.CharInput;
 import net.minecraft.client.input.KeyInput;
 
 public final class HudEditorScreen extends GuiPanel {
-   private static final List<String> j = List.of(
+   private static final List<String> TextLayout = List.of(
       "Free", "Top left", "Top center", "Top right", "Center left", "Center", "Center right", "Bottom left", "Bottom center", "Bottom right"
    );
    private final Screen D;
@@ -32,10 +32,10 @@ public final class HudEditorScreen extends GuiPanel {
    private WorkspaceSaveStatus.Type_d N = WorkspaceSaveStatus.Type_d.NONE;
    private final List<HudEditorScreen.Type_o> Y = new ArrayList<>();
    private final List<HudEditorScreen.Type_o> C = new ArrayList<>();
-   private final List<GuiWidget> y = new ArrayList<>();
-   private final Set<GuiWidget> a = Collections.newSetFromMap(new IdentityHashMap<>());
+   private final List<GuiWidget> ScreenScale = new ArrayList<>();
+   private final Set<GuiWidget> PetEffectRenderer = Collections.newSetFromMap(new IdentityHashMap<>());
    private final w2 K = new w2(1.0);
-   private final Map<Setting<?>, Object> l = new IdentityHashMap<>();
+   private final Map<Setting<?>, Object> DropletTrail = new IdentityHashMap<>();
    private TextInputWidget z;
    private HudEditorScreen.Type_o o;
    private HudEditorScreen.Type_o T;
@@ -62,7 +62,7 @@ public final class HudEditorScreen extends GuiPanel {
    private int M = -1;
    private int I = -1;
    private static boolean r;
-   private String p = "";
+   private String HexEdgeloop = "";
    private Object g;
 
    public HudEditorScreen(Screen var1) {
@@ -268,10 +268,10 @@ public final class HudEditorScreen extends GuiPanel {
                this.xAsVoid(this.x2, true);
                this.xAsVoid(this.y2, true);
                this.HAsVoid(var8);
-               this.align = new ModeSetting("Align", "Align within the full game viewport", yAsString(var8), j.toArray(String[]::new));
+               this.align = new ModeSetting("Align", "Align within the full game viewport", yAsString(var8), TextLayout.toArray(String[]::new));
                this.align.onChanged(var2x -> {
                   if (!this.L && !this.yAsBoolean(var8) && !var2x.equals("Free")) {
-                     int var3x = j.indexOf(var2x) - 1;
+                     int var3x = TextLayout.indexOf(var2x) - 1;
                      GuiWorkspace.B.put(var8.a, new GuiWorkspace.Type_g((double)(var3x % 3) * 0.5, (double)(var3x / 3) * 0.5));
                   }
                });
@@ -498,7 +498,7 @@ public final class HudEditorScreen extends GuiPanel {
                && var3 <= 2
                && Math.abs(var1.x() - (double)var2 * 0.5) < 0.001
                && Math.abs(var1.y() - (double)var3 * 0.5) < 0.001
-            ? j.get(var3 * 3 + var2 + 1)
+            ? TextLayout.get(var3 * 3 + var2 + 1)
             : "Free";
       }
    }
@@ -1186,7 +1186,7 @@ public final class HudEditorScreen extends GuiPanel {
 
    private final class Type_p extends GuiWidget {
       final HudRenderer.Type_m T;
-      private final w2 f = new w2(0.0);
+      private final w2 MenuPopupProvider = new w2(0.0);
       private final w2 E = new w2(0.0);
 
       Type_p(HudRenderer.Type_m var2) {

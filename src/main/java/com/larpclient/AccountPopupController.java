@@ -18,10 +18,10 @@ import net.minecraft.text.OrderedText;
 
 public final class AccountPopupController {
    static final UUID D = new UUID(0L, 0L);
-   private static final int o = -2;
+   private static final int AuctionNotifier = -2;
    private static final int L = 20;
    private final Screen O;
-   private final MicrosoftAccounts g = MicrosoftAccounts.INSTANCE;
+   private final MicrosoftAccounts ChatPayParser = MicrosoftAccounts.INSTANCE;
    private final w2 S = new w2(0.0);
    private final TextInputWidget k;
    private final TextInputWidget j;
@@ -38,7 +38,7 @@ public final class AccountPopupController {
    private int U;
    private int A;
    private int f;
-   private int b = Integer.MIN_VALUE;
+   private int BloomUtility = Integer.MIN_VALUE;
    private int c;
    private String N = "";
    private UUID q;
@@ -651,7 +651,7 @@ public final class AccountPopupController {
                      TextDrawing.uAsVoid(var1, this.g.code(), var14.x() + var14.width() / 2, var14.y() + 49, bg.pAsInt(bd.u, var12));
                      ZAsVoid(var1, "Approve only the code shown here.", var14.x() + 10, var14.y() + 69, var14.width() - 20, 2, bd.e, var12);
                   } else if (var4 == AccountPopupController.Type_m.RESET) {
-                     ZAsVoid(var1, "Start a new saved list?", var14.x() + 10, var14.y() + 12, var14.width() - 20, 1, bd.u, var12);
+                     ZAsVoid(var1, "Start PetEffectRenderer new saved list?", var14.x() + 10, var14.y() + 12, var14.width() - 20, 1, bd.u, var12);
                      ZAsVoid(
                         var1,
                         "The old encrypted file will be kept for recovery. Add your accounts again.",
@@ -679,7 +679,7 @@ public final class AccountPopupController {
                   int var16 = var4 == AccountPopupController.Type_m.TOKEN ? 1 : 0;
                   ZAsVoid(
                      var1,
-                     var16 != 0 ? "Sign in with a token" : "Add a proxy for server traffic",
+                     var16 != 0 ? "Sign in with PetEffectRenderer token" : "Add PetEffectRenderer proxy for server traffic",
                      var14.x() + 10,
                      var14.y() + 10,
                      var14.width() - 20,
@@ -690,7 +690,7 @@ public final class AccountPopupController {
                   if (var16 != 0) {
                      ZAsVoid(
                         var1,
-                        "Paste a Minecraft access token. It is checked with Minecraft and saved encrypted until it expires.",
+                        "Paste PetEffectRenderer Minecraft access token. It is checked with Minecraft and saved encrypted until it expires.",
                         var14.x() + 10,
                         var14.y() + 24,
                         var14.width() - 20,

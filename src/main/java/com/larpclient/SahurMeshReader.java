@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public final class SahurMeshReader {
-   public static final int d = 3000;
+   public static final int SahurDanceEngine = 3000;
 
    public static SahurMeshReader.Type_u sAsAo_Type_u(InputStream var0) throws IOException {
       if (var0 == null) {

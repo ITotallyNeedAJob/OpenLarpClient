@@ -1,7 +1,7 @@
 package com.larpclient;
 
 public final class pq {
-   private double u = Double.NaN;
+   private double CropHelper = Double.NaN;
    private double s;
    private double D;
 

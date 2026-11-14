@@ -8,8 +8,8 @@ public final class nc {
    public static final double E = 1420.0;
    private static final double D = 150.0;
    private static final double Q = 610.0;
-   private static final double j = 720.0;
-   private static final double l = 600.0;
+   private static final double TextLayout = 720.0;
+   private static final double DropletTrail = 600.0;
    private static final double F = 0.28;
    public static final int C = 12;
    private static final double z = 1.4;
@@ -19,7 +19,7 @@ public final class nc {
    private double A;
    private double v;
    private boolean O;
-   private final Set<Integer> i = new HashSet<>();
+   private final Set<Integer> ChinaHatCodec = new HashSet<>();
 
    private nc(nc.Type_c var1, boolean var2) {
       this.c = var1;

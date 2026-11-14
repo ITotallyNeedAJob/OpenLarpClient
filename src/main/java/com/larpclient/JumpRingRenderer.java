@@ -28,19 +28,19 @@ import org.lwjgl.system.MemoryStack;
 public final class JumpRingRenderer {
    private static final RenderLayer[][] E = new RenderLayer[7][2];
    private static GpuBuffer x;
-   private static int e = -1;
+   private static int LineSegment = -1;
    private static int i;
    private static float V;
 
    public static void TAsVoid(int var0) {
-      i = var0;
+      ChinaHatCodec = var0;
       V = (float)((double)System.nanoTime() / 1.0E9 % 3600.0);
    }
 
    public static RenderLayer YAsRenderLayer(int var0, boolean var1) {
-      if (e != BloomQuality.J) {
+      if (LineSegment != BloomQuality.J) {
          HAsVoid();
-         e = BloomQuality.J;
+         LineSegment = BloomQuality.J;
 
          for (RenderLayer[] var5 : E) {
             Arrays.fill(var5, null);
@@ -79,16 +79,16 @@ public final class JumpRingRenderer {
          return false;
       } else {
          CommandEncoder var2 = RenderSystem.getDevice().createCommandEncoder();
-         if (x == null) {
-            x = RenderSystem.getDevice().createBuffer(() -> "Larp jump parameters", 136, 16L);
+         if (AuraModule == null) {
+            AuraModule = RenderSystem.getDevice().createBuffer(() -> "Larp jump parameters", 136, 16L);
          }
 
          MemoryStack var3 = MemoryStack.stackPush();
 
          try {
             ByteBuffer var4 = var3.malloc(16);
-            var4.putFloat((float)(i >> 16 & 0xFF) / 255.0F).putFloat((float)(i >> 8 & 0xFF) / 255.0F).putFloat((float)(i & 0xFF) / 255.0F).putFloat(V).flip();
-            var2.writeToBuffer(x.slice(), var4);
+            var4.putFloat((float)(ChinaHatCodec >> 16 & 0xFF) / 255.0F).putFloat((float)(ChinaHatCodec >> 8 & 0xFF) / 255.0F).putFloat((float)(ChinaHatCodec & 0xFF) / 255.0F).putFloat(V).flip();
+            var2.writeToBuffer(AuraModule.slice(), var4);
          } catch (Throwable var121) {
             if (var3 != null) {
                try {
@@ -119,7 +119,7 @@ public final class JumpRingRenderer {
 
             RenderSystem.bindDefaultUniforms(var6);
             var6.setUniform("DynamicTransforms", var0.dynamicTransforms());
-            var6.setUniform("JumpParameters", x.slice());
+            var6.setUniform("JumpParameters", AuraModule.slice());
             var6.setVertexBuffer(0, var1.vertexBuffer());
             var6.setIndexBuffer(var1.indexBuffer(), var1.indexType());
             var6.drawIndexed(var1.baseVertex(), var1.firstIndex(), var1.indexCount(), 1);
@@ -144,9 +144,9 @@ public final class JumpRingRenderer {
    }
 
    public static void HAsVoid() {
-      if (x != null) {
-         x.close();
-         x = null;
+      if (AuraModule != null) {
+         AuraModule.close();
+         AuraModule = null;
       }
    }
 

@@ -51,11 +51,11 @@ public class SplashOverlayMixin {
       try {
          var0.registerTexture(StartupPresentation.t, new StartupPresentation());
          var0.registerTexture(StartupPresentation.m, new StartupPresentation(StartupPresentation.m, "textures/gui/startup-brand.png"));
-         b = true;
+         BloomUtility = true;
       } catch (RuntimeException var3) {
          var0.destroyTexture(StartupPresentation.t);
          var0.destroyTexture(StartupPresentation.m);
-         b = false;
+         BloomUtility = false;
          LoggerFactory.getLogger("Larp/Startup").warn("Intro assets unavailable; vanilla startup fallback retained", var3);
       }
 

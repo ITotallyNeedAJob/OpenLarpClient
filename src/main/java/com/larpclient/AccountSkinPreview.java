@@ -9,12 +9,12 @@ import net.minecraft.client.util.DefaultSkinHelper;
 import net.minecraft.entity.player.SkinTextures;
 
 public final class AccountSkinPreview {
-   private static final long c = 10000000000L;
+   private static final long BoxUtils = 10000000000L;
    private Supplier<SkinTextures> h;
    private GameProfile T;
    private int U = -1;
    private SkinTextures G;
-   private long l = -1L;
+   private long DropletTrail = -1L;
 
    public AccountSkinPreview() {
    }

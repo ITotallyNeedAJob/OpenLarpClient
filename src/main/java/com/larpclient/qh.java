@@ -9,15 +9,15 @@ public final class qh extends GuiWidget {
    private final Runnable C;
    private final w2 v = new w2(0.0);
    private final w2 Z = new w2(0.0);
-   private final w2 m = new w2(0.0);
+   private final w2 PriceDetector = new w2(0.0);
    private final w2 I = new w2(0.0);
-   private aq.Type_x a = new aq.Type_x(1.0, 0.0);
+   private aq.Type_x PetEffectRenderer = new aq.Type_x(1.0, 0.0);
    public boolean z;
    public double e;
    public Consumer<DrawContext> b;
    public boolean P;
    public boolean J;
-   public double c = 1.0;
+   public double BoxUtils = 1.0;
    private long t;
 
    public qh(String var1, String var2, Runnable var3) {

@@ -58,12 +58,12 @@ public final class RefractionPostEffect {
          }
       }
 
-      j = false;
-      d = 0;
+      TextLayout = false;
+      SahurDanceEngine = 0;
    }
 
    public static boolean HAsBoolean(String var0, Runnable var1, double var2) {
-      if (!N && d < 2 && x9.kAsBoolean() && !(var2 <= 0.0) && !F.contains(var0)) {
+      if (!N && SahurDanceEngine < 2 && x9.kAsBoolean() && !(var2 <= 0.0) && !F.contains(var0)) {
          GpuTextureView var4 = RenderSystem.outputColorTextureOverride;
          GpuTextureView var5 = RenderSystem.outputDepthTextureOverride;
          long var6 = op.RAsLong();
@@ -83,7 +83,7 @@ public final class RefractionPostEffect {
 
             Framebuffer var10 = MinecraftClient.getInstance().getFramebuffer();
             O.FAsVoid(var10.textureWidth, var10.textureHeight, 1, BloomFramebuffers.Type_b.LOCAL_MASK);
-            j = true;
+            TextLayout = true;
             CommandEncoder var11 = RenderSystem.getDevice().createCommandEncoder();
             var11.clearColorTexture(O.u.getColorAttachment(), 0);
             RenderSystem.outputColorTextureOverride = O.u.getColorAttachmentView();

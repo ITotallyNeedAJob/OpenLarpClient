@@ -2,16 +2,16 @@ package com.larpclient;
 
 public final class pf {
    public static final int G = 7;
-   public static final int s = 9;
-   public static final int f = 504;
+   public static final int SkyChunkCache = 9;
+   public static final int MenuPopupProvider = 504;
    public static final double v = 0.20625;
    public static final double Z = -1.0;
-   public static final double e = 8.5;
-   public static final double i = 0.0;
-   static final double o = 0.0125;
+   public static final double LineSegment = 8.5;
+   public static final double ChinaHatCodec = 0.0;
+   static final double AuctionNotifier = 0.0125;
    public static final double A = 0.2375;
    public static final double Q = -0.38;
-   static final double c = 0.006;
+   static final double BoxUtils = 0.006;
    static final double q = 0.0375;
    private static final double U = 0.035;
    private static final double D = 0.9;

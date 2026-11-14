@@ -26,10 +26,10 @@ public final class DonutAuctionApi {
    private static final DonutAuctionApi z = new DonutAuctionApi();
    private static final String L = "https://api.donutsmp.net/v1/auction/list/";
    private static final long w = 10000L;
-   private static final long p = 600L;
+   private static final long HexEdgeloop = 600L;
    private static final Pattern Y = Pattern.compile("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}");
    private static final Pattern S = Pattern.compile("(?<![A-Za-z0-9])[A-Za-z0-9]{16,}(?![A-Za-z0-9])");
-   private final HttpClient c = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10L)).build();
+   private final HttpClient BoxUtils = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10L)).build();
    private final Map<String, DonutAuctionApi.Type_i> O = new HashMap<>();
    private final ArrayDeque<DonutAuctionApi.Type_n> J = new ArrayDeque<>();
    private long D;

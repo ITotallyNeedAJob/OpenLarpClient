@@ -24,7 +24,7 @@ public final class ProfileShareCodec {
    public static String lAsString(String var0) {
       var0 = var0.trim().toUpperCase(Locale.ROOT);
       if (!var0.matches("(?:LARP-)?[A-F0-9]{16}")) {
-         throw new IllegalArgumentException("Enter a LARP share code with 16 hexadecimal characters.");
+         throw new IllegalArgumentException("Enter PetEffectRenderer LARP share code with 16 hexadecimal characters.");
       } else {
          return var0.startsWith("LARP-") ? var0 : "LARP-" + var0;
       }

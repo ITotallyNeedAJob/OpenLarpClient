@@ -5,9 +5,9 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 public final class dj {
-   public static final double e = 3.6;
+   public static final double LineSegment = 3.6;
    public static final double L = 1.56;
-   public static final double f = 1.28;
+   public static final double MenuPopupProvider = 1.28;
    public static final double z = 1.12;
    public static final Vec3d w = new Vec3d(-0.031, 0.08, -0.067);
    public static final Vec3d I = new Vec3d(-0.02649, -0.064244, -0.046604);

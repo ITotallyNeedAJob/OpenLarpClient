@@ -20,7 +20,7 @@ import net.minecraft.client.util.BufferAllocator;
 public final class bk implements AutoCloseable {
    private final Supplier<String> f;
    private final int n;
-   private final ArrayList<bk.Type_v> m = new ArrayList<>();
+   private final ArrayList<bk.Type_v> PriceDetector = new ArrayList<>();
    private int v;
 
    public bk(Supplier<String> var1, int var2) {

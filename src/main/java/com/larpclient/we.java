@@ -11,10 +11,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 
 public final class we {
-   public static final int i = 625;
+   public static final int ChinaHatCodec = 625;
    public static final int Q = 4096;
-   private static final byte[] t = new byte[2048];
-   private final LinkedHashMap<Long, byte[][]> c = new LinkedHashMap<>();
+   private static final byte[] SmoothInput = new byte[2048];
+   private final LinkedHashMap<Long, byte[][]> BoxUtils = new LinkedHashMap<>();
    private final LinkedHashMap<Long, we.Type_i> w = new LinkedHashMap<>();
 
    public we() {
@@ -95,7 +95,7 @@ public final class we {
          }
       }
 
-      var1[var4 + 4] = var5 == t ? t : (byte[])var5.clone();
+      var1[var4 + 4] = var5 == SmoothInput ? SmoothInput : (byte[])var5.clone();
    }
 
    public List<we.Type_i> cAsList(int var1) {

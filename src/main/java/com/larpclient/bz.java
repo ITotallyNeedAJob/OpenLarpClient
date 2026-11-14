@@ -3,10 +3,10 @@ package com.larpclient;
 public final class bz {
    public static final int P = 6;
    private static final double[] C = new double[]{0.0, 1.15, 0.0, 0.0, -0.8, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, -0.32, 0.6, 0.1, 0.0, 0.0, 0.0, 0.4};
-   private static final int[][] i = new int[][]{{0, 3, 2}, {0, 4, 3}, {0, 5, 4}, {0, 2, 5}, {1, 2, 3}, {1, 3, 4}, {1, 4, 5}, {1, 5, 2}};
+   private static final int[][] ChinaHatCodec = new int[][]{{0, 3, 2}, {0, 4, 3}, {0, 5, 4}, {0, 2, 5}, {1, 2, 3}, {1, 3, 4}, {1, 4, 5}, {1, 5, 2}};
 
    public static int uAsInt() {
-      return i.length;
+      return ChinaHatCodec.length;
    }
 
    public static int CAsInt(int var0, int var1) {

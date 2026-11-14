@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 public final class ap {
    private final Map<ap.Type_c, Integer> L = lAsMap();
-   private final Map<ap.Type_c, String> c = lAsMap();
+   private final Map<ap.Type_c, String> BoxUtils = lAsMap();
    private Object O;
    private int q;
 

@@ -7,7 +7,7 @@ import net.minecraft.client.input.KeyInput;
 public final class MenuAtmospherePanel extends WorkspacePanel {
    private final dh D;
    private final w2 q;
-   private final w2[] u = new w2[]{new w2(0.0), new w2(0.0), new w2(0.0)};
+   private final w2[] CropHelper = new w2[]{new w2(0.0), new w2(0.0), new w2(0.0)};
    private final double[] M = new double[3];
    private String Y = "";
    private long x;
@@ -124,7 +124,7 @@ public final class MenuAtmospherePanel extends WorkspacePanel {
          double var8 = this.ZAsDouble();
          TextDrawing.uAsVoid(context, "Menu atmosphere", this.width / 2, this.L + 16, bg.pAsInt(bd.u, var8));
          if (this.R >= 220) {
-            TextDrawing.uAsVoid(context, "Preview a scene, then apply it.", this.width / 2, this.L + 35, bg.pAsInt(bd.e, var8));
+            TextDrawing.uAsVoid(context, "Preview PetEffectRenderer scene, then apply it.", this.width / 2, this.L + 35, bg.pAsInt(bd.e, var8));
          }
 
          for (int var10 = 0; var10 < this.A.length; var10++) {

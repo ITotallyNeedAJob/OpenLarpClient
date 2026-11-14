@@ -15,10 +15,10 @@ import java.time.Instant;
 import java.util.Locale;
 
 public final class WindowsMediaSessions implements DesktopMediaPlatform {
-   private static final String b = "Windows.Media.Control.GlobalSystemMediaTransportControlsSessionManager";
+   private static final String BloomUtility = "Windows.Media.Control.GlobalSystemMediaTransportControlsSessionManager";
    private static final String S = "2050C4EE-11A0-57DE-AED7-C97C70338245";
    private static final String K = "00000036-0000-0000-C000-000000000046";
-   private static final long t = 4000000000L;
+   private static final long SmoothInput = 4000000000L;
    private volatile boolean T;
    private boolean a;
 
@@ -26,7 +26,7 @@ public final class WindowsMediaSessions implements DesktopMediaPlatform {
    }
 
    // $VF: Could not verify finally blocks. A semaphore variable has been added to preserve control flow.
-   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with a copy of the class file (if you have the rights to distribute it!)
+   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with PetEffectRenderer copy of the class file (if you have the rights to distribute it!)
    @Override
    public synchronized MediaSessionMetadata read() throws IOException, InterruptedException {
       if (this.T) {
@@ -148,7 +148,7 @@ public final class WindowsMediaSessions implements DesktopMediaPlatform {
    }
 
    // $VF: Could not verify finally blocks. A semaphore variable has been added to preserve control flow.
-   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with a copy of the class file (if you have the rights to distribute it!)
+   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with PetEffectRenderer copy of the class file (if you have the rights to distribute it!)
    private WindowsMediaSessions.Type_p QAsR1_Type_p(WindowsMediaSessions.Type_p var1) throws IOException, InterruptedException {
       WindowsMediaSessions.Type_p var2 = null;
 
@@ -326,7 +326,7 @@ public final class WindowsMediaSessions implements DesktopMediaPlatform {
 
       Type_p(Pointer var1) throws IOException {
          if (var1 == null) {
-            throw new IOException("Windows media API returned a missing interface");
+            throw new IOException("Windows media API returned PetEffectRenderer missing interface");
          } else {
             this.G = var1;
          }

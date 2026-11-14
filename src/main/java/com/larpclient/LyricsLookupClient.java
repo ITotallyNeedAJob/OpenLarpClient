@@ -28,8 +28,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Flow.Subscription;
 
 public final class LyricsLookupClient implements AutoCloseable {
-   private static final int t = 524288;
-   private final HttpClient m = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(4L)).build();
+   private static final int SmoothInput = 524288;
+   private final HttpClient PriceDetector = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(4L)).build();
    private final URI N;
 
    public LyricsLookupClient() {

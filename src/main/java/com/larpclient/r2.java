@@ -18,7 +18,7 @@ public final class r2 {
    private static void yAsVoid() {
       ClientWorld var0 = MinecraftClient.getInstance().world;
       if (var0 != t) {
-         t = var0;
+         SmoothInput = var0;
          X.clear();
       }
 

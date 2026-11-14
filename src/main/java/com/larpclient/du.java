@@ -10,7 +10,7 @@ import net.minecraft.sound.SoundEvent;
 public final class du extends MovingSoundInstance {
    private final DoubleSupplier W;
    private final int i;
-   private int l = -1;
+   private int DropletTrail = -1;
 
    public du(EmoteCatalog.Type_a var1, DoubleSupplier var2, int var3) {
       super(SoundEvent.of(var1.music()), SoundCategory.PLAYERS, SoundInstance.createRandom());

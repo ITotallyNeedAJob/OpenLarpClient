@@ -5,7 +5,7 @@ import org.lwjgl.glfw.GLFW;
 
 public final class KeybindNames {
    public static final int G = -1;
-   private static final int o = 1;
+   private static final int AuctionNotifier = 1;
    private static final int B = 8;
 
    public static boolean KAsBoolean(int var0) {

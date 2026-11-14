@@ -27,8 +27,8 @@ import org.joml.Vector3f;
 import org.lwjgl.system.MemoryStack;
 
 public final class DropletSurfaceRenderer {
-   private static final int u = 512;
-   private static final int k = 8240;
+   private static final int CropHelper = 512;
+   private static final int GroundSample = 8240;
    private static final RenderPipeline L = RenderPipeline.builder(new Snippet[0])
       .withLocation(SAsIdentifier("pipeline/temple/droplet_surface"))
       .withVertexShader(SAsIdentifier("temple/droplet_surface"))
@@ -67,10 +67,10 @@ public final class DropletSurfaceRenderer {
                T = new SimpleFramebuffer("Larp volumetric water surface", var1.textureWidth, var1.textureHeight, true);
             }
 
-            if (p == null) {
+            if (HexEdgeloop == null) {
                WorldLabelLayout.DAsVoid(L);
                WorldLabelLayout.DAsVoid(h);
-               p = RenderSystem.getDevice().createBuffer(() -> "Larp volumetric droplet batch", 136, 8240L);
+               HexEdgeloop = RenderSystem.getDevice().createBuffer(() -> "Larp volumetric droplet batch", 136, 8240L);
                ClientLog.GAsVoid("TerrainMaterials", "Volumetric surface ready; {} droplets maximum, {} per draw", 4096, 512);
             }
 
@@ -105,7 +105,7 @@ public final class DropletSurfaceRenderer {
                   var12.putFloat(var7.x).putFloat(var7.y).putFloat(var7.z).putFloat(0.0F);
                   var12.putFloat((float)var1.textureWidth).putFloat((float)var1.textureHeight).putFloat(0.0F).putFloat(0.0F);
                   var12.flip();
-                  var3.writeToBuffer(p.slice(), var12);
+                  var3.writeToBuffer(HexEdgeloop.slice(), var12);
                } catch (Throwable var20) {
                   if (var11 != null) {
                      try {
@@ -129,7 +129,7 @@ public final class DropletSurfaceRenderer {
                try {
                   var23.setPipeline(L);
                   var23.setUniform("LarpMaterial", WetReflectionEffect.MAsGpuBuffer().slice());
-                  var23.setUniform("DropletBatch", p.slice());
+                  var23.setUniform("DropletBatch", HexEdgeloop.slice());
                   var23.draw(0, 6 * var10);
                } catch (Throwable var191) {
                   if (var23 != null) {
@@ -185,9 +185,9 @@ public final class DropletSurfaceRenderer {
          T = null;
       }
 
-      if (p != null) {
-         p.close();
-         p = null;
+      if (HexEdgeloop != null) {
+         HexEdgeloop.close();
+         HexEdgeloop = null;
       }
    }
 

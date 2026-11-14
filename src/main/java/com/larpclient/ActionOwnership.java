@@ -6,8 +6,8 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
 public final class ActionOwnership {
-   public static final float o = 1.15F;
-   public static final double c = 0.35;
+   public static final float AuctionNotifier = 1.15F;
+   public static final double BoxUtils = 0.35;
    public static final double h = -0.3;
    public static final double P = 0.1;
    public static final double U = 16.0;

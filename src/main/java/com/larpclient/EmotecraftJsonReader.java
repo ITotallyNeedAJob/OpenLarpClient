@@ -16,17 +16,17 @@ public final class EmotecraftJsonReader {
    public static final int r = 0;
    public static final int D = 1;
    public static final int q = 2;
-   public static final int t = 3;
+   public static final int SmoothInput = 3;
    public static final int z = 4;
    public static final int L = 5;
    public static final int P = 6;
    public static final int Y = 7;
    public static final int S = 8;
    public static final int C = 9;
-   public static final int j = 10;
+   public static final int TextLayout = 10;
    public static final int O = EmotecraftJsonReader.Type_r.values().length * 10;
    private static final String[] T = new String[]{"x", "y", "z", "pitch", "yaw", "roll", "bend", "scale", "spread", "hold"};
-   private static final float[][] x = new float[][]{
+   private static final float[][] AuraModule = new float[][]{
       {0.0F, 0.0F, 0.0F},
       {0.0F, 0.0F, 0.0F},
       {-5.0F, 2.0F, 0.0F},

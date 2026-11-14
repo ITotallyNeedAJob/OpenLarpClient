@@ -25,7 +25,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
 public final class TerrainMaterialClassifier {
-   private static final int g = 1;
+   private static final int ChatPayParser = 1;
    private static final int J = 2;
    private static final int X = 3;
    private static final int D = 4;
@@ -57,7 +57,7 @@ public final class TerrainMaterialClassifier {
    private static volatile int L = 3;
    public static final int M = 252;
    public static final int B = 251;
-   public static final int f = 249;
+   public static final int MenuPopupProvider = 249;
    private static volatile boolean T;
    private static volatile boolean V;
    private static volatile boolean n;
@@ -66,7 +66,7 @@ public final class TerrainMaterialClassifier {
 
    public static void hAsVoid() {
       SnowGround var0 = SnowGround.vAsSnowGround();
-      b = var0 != null && var0.isRuntimeActive();
+      BloomUtility = var0 != null && var0.isRuntimeActive();
       L = var0 != null && var0.pAsInt() >= 2 ? 3 : 2;
       WavingFoliage var1 = WavingFoliage.DAsWavingFoliage();
       T = var1 != null && var1.isRuntimeActive();
@@ -74,7 +74,7 @@ public final class TerrainMaterialClassifier {
       n = V && var1.trees.getValue();
       C = T && var1.plants.getValue();
       RealisticWater var2 = RealisticWater.tAsRealisticWater();
-      s = var2 != null && var2.isRuntimeActive();
+      SkyChunkCache = var2 != null && var2.isRuntimeActive();
    }
 
    public static void QAsVoid(BlockState var0, float var1, BlockView var2, BlockPos var3) {
@@ -84,7 +84,7 @@ public final class TerrainMaterialClassifier {
    public static void QAsVoid(BlockState var0, float var1, float var2, float var3, BlockView var4, BlockPos var5) {
       O.remove();
       z.remove();
-      if (b && WetReflectionEffect.RAsBoolean() && var0.getFluidState().isEmpty()) {
+      if (BloomUtility && WetReflectionEffect.RAsBoolean() && var0.getFluidState().isEmpty()) {
          VoxelShape var6 = var0.getCollisionShape(var4, var5);
          if (!var6.isEmpty()) {
             float var7 = (float)var6.getMax(Axis.Y);
@@ -141,7 +141,7 @@ public final class TerrainMaterialClassifier {
    }
 
    static boolean gAsBoolean() {
-      return b && WetReflectionEffect.RAsBoolean();
+      return BloomUtility && WetReflectionEffect.RAsBoolean();
    }
 
    public static void NAsVoid(BlockState var0, BlockPos var1, BlockView var2, BlockPos var3) {
@@ -161,17 +161,17 @@ public final class TerrainMaterialClassifier {
    }
 
    static boolean jAsBoolean() {
-      return b && z.get() != null;
+      return BloomUtility && z.get() != null;
    }
 
    public static boolean aAsBoolean() {
       TerrainMaterialClassifier.Type_e var0 = z.get();
-      return b && var0 != null && Float.isFinite(var0.top) && O.get() == null;
+      return BloomUtility && var0 != null && Float.isFinite(var0.top) && O.get() == null;
    }
 
    public static int MAsInt(BakedQuad var0, int[] var1) {
       TerrainMaterialClassifier.Type_e var2 = z.get();
-      if (b && var2 != null && Float.isFinite(var2.top) && var2.solid && O.get() == null && var0.face() != Direction.DOWN) {
+      if (BloomUtility && var2 != null && Float.isFinite(var2.top) && var2.solid && O.get() == null && var0.face() != Direction.DOWN) {
          int var3 = 0;
          int var4 = 0;
 
@@ -244,7 +244,7 @@ public final class TerrainMaterialClassifier {
 
    public static void QAsVoid(BlockView var0, BlockPos var1, FluidState var2) {
       U.remove();
-      if (s && !WetReflectionEffect.NAsBoolean() && var2.isIn(FluidTags.WATER)) {
+      if (SkyChunkCache && !WetReflectionEffect.NAsBoolean() && var2.isIn(FluidTags.WATER)) {
          short var3;
          if (VolumetricWaterEngine.LAsBoolean(var1)) {
             var3 = 150;

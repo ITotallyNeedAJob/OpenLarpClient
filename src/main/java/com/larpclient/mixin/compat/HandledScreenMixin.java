@@ -4,7 +4,7 @@ import com.larpclient.AuctionMenuText;
 import com.larpclient.ChatMessages;
 import com.larpclient.FakeSpawnerController;
 import com.larpclient.VisualInventory;
-import com.larpclient.o;
+import com.larpclient.AuctionNotifier;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import java.util.Set;
@@ -91,7 +91,7 @@ public abstract class HandledScreenMixin {
       } else if (var4 == SlotActionType.PICKUP && FakeSpawnerController.ZAsMa().jAsBoolean(this.field_2797, var1, var3)) {
          var5.cancel();
       } else if (VisualInventory.YAsBoolean(var1)) {
-         ChatMessages.RAsVoid(Text.literal("This slot is reserved or awaiting real items. Free a physical slot or finish the operation first."), true);
+         ChatMessages.RAsVoid(Text.literal("This slot is reserved or awaiting real items. Free PetEffectRenderer physical slot or finish the operation first."), true);
          var5.cancel();
       } else if (var4 == SlotActionType.PICKUP_ALL && FakeSpawnerController.ZAsMa().hAsBoolean(this.field_2797.getCursorStack())) {
          ChatMessages.RAsVoid(Text.literal("These backing stacks are reserved by placed spawners. Move visible stacks individually."), true);
@@ -129,7 +129,7 @@ public abstract class HandledScreenMixin {
       if (var1 != null && var4 == SlotActionType.PICKUP && AuctionMenuText.WAsBoolean(var1.getStack())) {
          long var6 = AuctionMenuText.yAsLong();
          if (var6 > 0L) {
-            o.qAsVoid(var6);
+            AuctionNotifier.qAsVoid(var6);
          }
       }
    }

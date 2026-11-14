@@ -27,13 +27,13 @@ import net.minecraft.util.Identifier;
 import org.lwjgl.system.MemoryStack;
 
 public final class ChamsOutlineEffect implements AutoCloseable {
-   private static final int d = 0;
+   private static final int SahurDanceEngine = 0;
    private static final double F = 1.0;
-   private static final RenderPipeline o = mAsRenderPipeline("chams_edge", false);
-   private static final RenderPipeline k = qAsRenderPipeline();
+   private static final RenderPipeline AuctionNotifier = mAsRenderPipeline("chams_edge", false);
+   private static final RenderPipeline GroundSample = qAsRenderPipeline();
    private static final RenderPipeline N = mAsRenderPipeline("chams_blur", false);
    private static final RenderPipeline C = mAsRenderPipeline("chams_composite", true);
-   private static final RenderPipeline g = RenderPipeline.builder(new Snippet[0])
+   private static final RenderPipeline ChatPayParser = RenderPipeline.builder(new Snippet[0])
       .withLocation(rAsIdentifier("chams_hand_mask"))
       .withVertexShader(rAsIdentifier("post/fullscreen"))
       .withFragmentShader(rAsIdentifier("post/chams_hand_mask"))
@@ -50,7 +50,7 @@ public final class ChamsOutlineEffect implements AutoCloseable {
    private SimpleFramebuffer X;
    private GpuBuffer H;
    private EffectDrawBuffers S;
-   private int a = -1;
+   private int PetEffectRenderer = -1;
    private boolean p;
    private boolean Z;
    private boolean W;

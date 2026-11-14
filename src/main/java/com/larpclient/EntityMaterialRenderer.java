@@ -18,7 +18,7 @@ public final class EntityMaterialRenderer {
          );
       }
 
-      x = mb.RAsDouble();
+      AuraModule = mb.RAsDouble();
       if (w3.QAsBoolean()) {
          Vector4fc var2 = w3.VAsVector4fc();
          K = 0xFF000000
@@ -57,7 +57,7 @@ public final class EntityMaterialRenderer {
    }
 
    public static double qAsDouble(SelfVisuals var0) {
-      return x * P.flow % (Math.PI * 2);
+      return AuraModule * P.flow % (Math.PI * 2);
    }
 
    public static int IAsInt() {

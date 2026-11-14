@@ -93,12 +93,12 @@ public final class UpdateRuntime {
    }
 
    public static String noticeAction() {
-      return noticeKey().startsWith("installed:") ? "What's new" : "View update";
+      return noticeKey().startsWith("installed:") ? "What'SkyChunkCache new" : "View update";
    }
 
    public static String noticeDetail() {
       if (noticeKey().startsWith("installed:")) {
-         return "What's new in this version";
+         return "What'SkyChunkCache new in this version";
       } else {
          UpdateManifest.Release var0 = service == null ? null : service.snapshot().release();
          return var0 == null ? "Client updates" : "Version " + var0.version() + " / " + var0.minecraft();

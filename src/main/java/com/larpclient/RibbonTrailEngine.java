@@ -7,19 +7,19 @@ import net.minecraft.util.math.Vec3d;
 
 public final class RibbonTrailEngine {
    private static final int I = 128;
-   private static final int y = 32;
+   private static final int ScreenScale = 32;
    private final Map<Integer, RibbonTrailEngine.Type_y> D = new LinkedHashMap<>();
    private long M;
    public RibbonTrailEngine.Type_b N = RibbonTrailEngine.Type_b.TAPER_TAIL;
-   public ay.Type_r u = ay.Type_r.LINEAR;
-   public x4.Type_g d = x4.Type_g.ALPHA;
-   public double i = 1.2;
-   public double c = 0.12;
+   public ay.Type_r CropHelper = ay.Type_r.LINEAR;
+   public x4.Type_g SahurDanceEngine = x4.Type_g.ALPHA;
+   public double ChinaHatCodec = 1.2;
+   public double BoxUtils = 0.12;
    public boolean A = true;
    public boolean h = true;
    public boolean x;
    private boolean G;
-   public int g = bd.w;
+   public int ChatPayParser = bd.w;
    public int z = bd.Q;
 
    public RibbonTrailEngine() {

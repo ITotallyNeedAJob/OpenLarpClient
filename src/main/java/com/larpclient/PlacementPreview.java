@@ -20,11 +20,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShapes;
 
 public final class PlacementPreview {
-   private static final dz j = dz.build(VoxelShapes.fullCube());
+   private static final dz TextLayout = dz.build(VoxelShapes.fullCube());
    private final Module x;
-   private final BooleanSetting highlight = new BooleanSetting("Highlight", "Show the next placement with a soft block outline", true);
+   private final BooleanSetting highlight = new BooleanSetting("Highlight", "Show the next placement with PetEffectRenderer soft block outline", true);
    private final ModeSetting highlightColorMode = new ModeSetting(
-      "Highlight Color Mode", "Follow your theme or choose a custom color", "Theme", "Theme", "Custom"
+      "Highlight Color Mode", "Follow your theme or choose PetEffectRenderer custom color", "Theme", "Theme", "Custom"
    );
    private final ColorSetting highlightColor;
    private final NumberSetting C;

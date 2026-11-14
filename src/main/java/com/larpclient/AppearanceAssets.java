@@ -19,14 +19,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.NativeImage;
 
 public final class AppearanceAssets {
-   private static final ExecutorService u = Executors.newSingleThreadExecutor(var0 -> {
+   private static final ExecutorService CropHelper = Executors.newSingleThreadExecutor(var0 -> {
       Thread var1 = new Thread(var0, "Larp-Assets");
       var1.setDaemon(true);
       return var1;
    });
    private static final AtomicLong Z = new AtomicLong();
-   private static volatile AppearanceCodec i = AppearanceCodec.EMPTY;
-   public static volatile String y = "Local only";
+   private static volatile AppearanceCodec ChinaHatCodec = AppearanceCodec.EMPTY;
+   public static volatile String ScreenScale = "Local only";
    public static volatile String O = "";
    private static boolean r;
    private static final AtomicBoolean w = new AtomicBoolean();
@@ -50,7 +50,7 @@ public final class AppearanceAssets {
    public static void GAsVoid() {
       ClientLog.GAsVoid("Appearance", "Local appearance enabled; multiplayer sharing is removed");
       long var0 = Z.incrementAndGet();
-      u.execute(() -> {
+      CropHelper.execute(() -> {
          try {
             AppearanceCodec var2 = i;
             if (!r) {
@@ -77,7 +77,7 @@ public final class AppearanceAssets {
 
    public static void oAsVoid(String var0) {
       long var1 = Z.incrementAndGet();
-      u.execute(
+      CropHelper.execute(
          () -> {
             AppearanceCodec var3 = i;
             BAsVoid(
@@ -97,7 +97,7 @@ public final class AppearanceAssets {
 
    public static void rAsVoid(boolean var0) {
       long var1 = Z.incrementAndGet();
-      u.execute(() -> {
+      CropHelper.execute(() -> {
          AppearanceCodec var3 = i;
          BAsVoid(new AppearanceCodec(var3.skin(), var3.cape(), var0, var3.hideCape(), var3.name(), new JsonObject()), var1);
       });
@@ -106,7 +106,7 @@ public final class AppearanceAssets {
    public static void NAsVoid(String var0, boolean var1) {
       long var2 = Z.incrementAndGet();
       O = "Loading PNG...";
-      u.execute(
+      CropHelper.execute(
          () -> {
             try {
                Path var4 = Path.of(var0);
@@ -138,12 +138,12 @@ public final class AppearanceAssets {
 
    public static void eAsVoid(String var0) {
       if (!var0.matches("[A-Za-z0-9_]{1,16}")) {
-         O = "Enter a Minecraft username";
+         O = "Enter PetEffectRenderer Minecraft username";
       } else if (System.nanoTime() >= h && w.compareAndSet(false, true)) {
          h = System.nanoTime() + TimeUnit.SECONDS.toNanos(5L);
          long var1 = Z.incrementAndGet();
          O = "Looking up " + var0 + "...";
-         u.execute(
+         CropHelper.execute(
             () -> {
                try {
                   JsonObject var3 = HttpsJsonClient.rAsJsonObject("https://api.mojang.com/users/profiles/minecraft/" + var0, 8192);
@@ -256,7 +256,7 @@ public final class AppearanceAssets {
             throw var9;
          }
 
-         i = var0;
+         ChinaHatCodec = var0;
          MinecraftClient.getInstance().execute(() -> {
             if (var1 != Z.get()) {
                if (var4 != null) {

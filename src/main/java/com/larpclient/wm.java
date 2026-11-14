@@ -8,7 +8,7 @@ public final class wm {
    public static final int O = 64;
    public static final double D = 3.0;
    private final IdentityHashMap<Object, Double> Z = new IdentityHashMap<>();
-   private final IdentityHashMap<Object, Double> y = new IdentityHashMap<>();
+   private final IdentityHashMap<Object, Double> ScreenScale = new IdentityHashMap<>();
 
    public wm() {
    }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public final class dd {
    public static final int H = 160;
-   private final dd.Type_r[] f = new dd.Type_r[160];
+   private final dd.Type_r[] MenuPopupProvider = new dd.Type_r[160];
    private long N;
    private double B;
 

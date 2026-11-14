@@ -32,19 +32,19 @@ import net.minecraft.world.RaycastContext.FluidHandling;
 import net.minecraft.world.RaycastContext.ShapeType;
 
 public final class b_ {
-   private static final List<b_.Type_p> s = new ArrayList<>();
+   private static final List<b_.Type_p> SkyChunkCache = new ArrayList<>();
    private static boolean F;
    private static boolean c;
    private static final List<b_.Type_c> L = new ArrayList<>();
    private static b_.Type_c K;
    private static int j;
    private static long M = Long.MIN_VALUE;
-   private static final Set<Integer> y = new HashSet<>();
+   private static final Set<Integer> ScreenScale = new HashSet<>();
    private static String R;
    private static boolean f;
 
    public static void UAsVoid(Module var0, Runnable var1, BooleanSupplier var2) {
-      s.add(new b_.Type_p(var0, var1, var2));
+      SkyChunkCache.add(new b_.Type_p(var0, var1, var2));
    }
 
    public static boolean nAsBoolean(Module var0) {
@@ -60,16 +60,16 @@ public final class b_ {
          && var2.getAsBoolean()
          && K == null
          && !F
-         && y.isEmpty()
+         && ScreenScale.isEmpty()
          && (R == null || R.equals(var0.getName()))) {
          R = var0.getName();
          F = true;
-         c = true;
+         BoxUtils = true;
 
          try {
             var1.run();
          } finally {
-            c = false;
+            BoxUtils = false;
          }
 
          return true;
@@ -93,12 +93,12 @@ public final class b_ {
    public static boolean WAsBoolean(Module var0, Entity var1, Runnable var2) {
       XAsVoid();
       if (var0 != null && var1 != null && var0.isRuntimeActive() && tAsBoolean(var0) && K == null && !F && YAsBoolean(var0.getName(), var1)) {
-         f = true;
+         MenuPopupProvider = true;
 
          try {
             var2.run();
          } finally {
-            f = false;
+            MenuPopupProvider = false;
          }
 
          return true;
@@ -109,13 +109,13 @@ public final class b_ {
 
    public static boolean DAsBoolean(Module var0, Entity var1, Runnable var2) {
       XAsVoid();
-      if (var0 != null && var1 != null && var0.isRuntimeActive() && tAsBoolean(var0) && y.contains(var1.getId())) {
-         f = true;
+      if (var0 != null && var1 != null && var0.isRuntimeActive() && tAsBoolean(var0) && ScreenScale.contains(var1.getId())) {
+         MenuPopupProvider = true;
 
          try {
             var2.run();
          } finally {
-            f = false;
+            MenuPopupProvider = false;
          }
 
          return true;
@@ -125,7 +125,7 @@ public final class b_ {
    }
 
    public static boolean EAsBoolean() {
-      return f || c;
+      return MenuPopupProvider || c;
    }
 
    public static boolean JAsBoolean() {
@@ -173,12 +173,12 @@ public final class b_ {
    }
 
    public static boolean NAsBoolean() {
-      return !L.isEmpty() || !s.isEmpty() || K != null;
+      return !L.isEmpty() || !SkyChunkCache.isEmpty() || K != null;
    }
 
    public static void KAsVoid() {
       L.clear();
-      s.clear();
+      SkyChunkCache.clear();
       XAsVoid();
    }
 
@@ -192,7 +192,7 @@ public final class b_ {
    private static void uAsVoid(long var0) {
       if (M != var0) {
          M = var0;
-         y.clear();
+         ScreenScale.clear();
          R = null;
          F = false;
       }
@@ -202,19 +202,19 @@ public final class b_ {
       db.tAsVoid();
       BlockPlacementController.dAsVoid();
       L.clear();
-      s.clear();
+      SkyChunkCache.clear();
       F = false;
-      c = false;
+      BoxUtils = false;
       K = null;
-      y.clear();
+      ScreenScale.clear();
       R = null;
       M = Long.MIN_VALUE;
-      f = false;
+      MenuPopupProvider = false;
    }
 
    public static void KAsVoid(Module var0) {
       L.removeIf(var1 -> var1.source == var0);
-      s.removeIf(var1 -> var1.source == var0);
+      SkyChunkCache.removeIf(var1 -> var1.source == var0);
       if (K != null && K.source == var0) {
          K = null;
       }
@@ -415,11 +415,11 @@ public final class b_ {
          MinecraftClient var0 = MinecraftClient.getInstance();
          L.sort(Comparator.<b_.Type_c>comparingInt(var0x -> bAsInt(var0x.source.getName())).reversed());
          if (K != null) {
-            int var1 = !s.stream()
+            int var1 = !SkyChunkCache.stream()
                      .anyMatch(var0x -> var0x.source.isRuntimeActive() && var0x.valid.getAsBoolean() && bAsInt(var0x.source.getName()) > bAsInt(iAsString(K)))
                   && xAsBoolean(K)
                   && Criticals.dAsBoolean()
-                  && (var0.player.age == j || !var0.player.isOnGround())
+                  && (var0.player.age == TextLayout || !var0.player.isOnGround())
                   && L.stream().noneMatch(var0x -> xAsBoolean(var0x) && bAsInt(iAsString(var0x)) > bAsInt(iAsString(K)))
                ? 1
                : 0;
@@ -434,18 +434,18 @@ public final class b_ {
                   break;
                case WAIT:
                   L.clear();
-                  s.clear();
+                  SkyChunkCache.clear();
                   return;
             }
          }
 
-         s.sort(Comparator.<b_.Type_p>comparingInt(var0x -> bAsInt(var0x.source.getName())).reversed());
+         SkyChunkCache.sort(Comparator.<b_.Type_p>comparingInt(var0x -> bAsInt(var0x.source.getName())).reversed());
 
          for (b_.Type_c var2 : List.copyOf(L)) {
-            if (s.stream()
+            if (SkyChunkCache.stream()
                .anyMatch(var1x -> var1x.source.isRuntimeActive() && var1x.valid.getAsBoolean() && bAsInt(var1x.source.getName()) > bAsInt(iAsString(var2)))) {
                var2.rejected.accept("interaction ownership");
-            } else if (!LAsBoolean(iAsString(var2), var2.target) || y.size() >= var2.limit) {
+            } else if (!LAsBoolean(iAsString(var2), var2.target) || ScreenScale.size() >= var2.limit) {
                var2.rejected.accept("interaction ownership");
             } else if (xAsBoolean(var2)) {
                if (JAsBoolean(var2)) {
@@ -462,19 +462,19 @@ public final class b_ {
                if (tAsBoolean(var8.source) && var8.source.isRuntimeActive() && var8.valid.getAsBoolean() && (R == null || R.equals(var8.source.getName()))) {
                   R = var8.source.getName();
                   F = true;
-                  c = true;
+                  BoxUtils = true;
 
                   try {
                      var8.action.run();
                      break;
                   } finally {
-                     c = false;
+                     BoxUtils = false;
                   }
                }
             }
          }
 
-         s.clear();
+         SkyChunkCache.clear();
       } else {
          AAsVoid();
       }
@@ -488,7 +488,7 @@ public final class b_ {
       if (var0.target instanceof LivingEntity && Criticals.qAsBoolean()) {
          var0.rejected.accept("critical delay");
          K = var0;
-         j = MinecraftClient.getInstance().player.age;
+         TextLayout = MinecraftClient.getInstance().player.age;
          return true;
       } else {
          return false;
@@ -496,10 +496,10 @@ public final class b_ {
    }
 
    private static void GAsVoid(b_.Type_c var0) {
-      if (xAsBoolean(var0) && y.size() < var0.limit && YAsBoolean(iAsString(var0), var0.target)) {
+      if (xAsBoolean(var0) && ScreenScale.size() < var0.limit && YAsBoolean(iAsString(var0), var0.target)) {
          MinecraftClient var1 = MinecraftClient.getInstance();
          int var2 = var0.aim != null ? 1 : 0;
-         f = true;
+         MenuPopupProvider = true;
 
          try {
             if (var2 != 0) {
@@ -511,7 +511,7 @@ public final class b_ {
             var1.player.swingHand(Hand.MAIN_HAND);
             var0.completed.run();
          } finally {
-            f = false;
+            MenuPopupProvider = false;
             if (var2 != 0) {
                var1.player
                   .networkHandler
@@ -522,7 +522,7 @@ public final class b_ {
    }
 
    private static boolean LAsBoolean(String var0, Entity var1) {
-      return (R == null || R.equals(var0)) && !y.contains(var1.getId());
+      return (R == null || R.equals(var0)) && !ScreenScale.contains(var1.getId());
    }
 
    private static boolean YAsBoolean(String var0, Entity var1) {
@@ -530,7 +530,7 @@ public final class b_ {
          return false;
       } else {
          R = var0;
-         y.add(var1.getId());
+         ScreenScale.add(var1.getId());
          return true;
       }
    }

@@ -18,7 +18,7 @@ public final class KorbloxLegRenderer {
    private static final Identifier v = Identifier.of("larp-client", "dynamic/korblox_leg");
    private static final int r = 15728880;
    private static final int S = 64;
-   private static int m = -1;
+   private static int PriceDetector = -1;
    private static int P = -1;
 
    private KorbloxLegRenderer() {
@@ -26,7 +26,7 @@ public final class KorbloxLegRenderer {
 
    public static boolean DAsBoolean() {
       int var0 = BloomQuality.J;
-      if (m == var0) {
+      if (PriceDetector == var0) {
          return true;
       } else if (P == var0) {
          return false;
@@ -49,7 +49,7 @@ public final class KorbloxLegRenderer {
                throw var51;
             }
 
-            m = var0;
+            PriceDetector = var0;
             ClientLog.GAsVoid("Korblox", "Leg ready: {} faces, generated {}x{} texture, resource generation {}", ms.ZAsMs_Type_w().faces(), 64, 64, var0);
             return true;
          } catch (RuntimeException var61) {
@@ -119,8 +119,8 @@ public final class KorbloxLegRenderer {
    }
 
    private static final class Type_c {
-      static final RenderLayer g = RenderLayers.entityCutout(KorbloxLegRenderer.v);
-      static final RenderLayer p = RenderLayers.eyes(KorbloxLegRenderer.v);
+      static final RenderLayer ChatPayParser = RenderLayers.entityCutout(KorbloxLegRenderer.v);
+      static final RenderLayer HexEdgeloop = RenderLayers.eyes(KorbloxLegRenderer.v);
 
       private Type_c() {
       }

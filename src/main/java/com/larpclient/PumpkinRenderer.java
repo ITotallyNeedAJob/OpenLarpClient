@@ -20,11 +20,11 @@ import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix4f;
 
 public final class PumpkinRenderer {
-   private static final String d = "models/halloween/pumpkin/";
+   private static final String SahurDanceEngine = "models/halloween/pumpkin/";
    private static final RenderLayer V = DAsRenderLayer(false);
-   private static final RenderLayer x = DAsRenderLayer(true);
+   private static final RenderLayer AuraModule = DAsRenderLayer(true);
    private static PumpkinMeshReader.Type_u Q;
-   private static long s = -1L;
+   private static long SkyChunkCache = -1L;
 
    private static Identifier oAsIdentifier(String var0) {
       return Identifier.of("larp-client", var0);
@@ -48,7 +48,7 @@ public final class PumpkinRenderer {
    }
 
    public static void GAsVoid() {
-      if (Q == null || s != (long)BloomQuality.J) {
+      if (Q == null || SkyChunkCache != (long)BloomQuality.J) {
          Q = null;
 
          try (InputStream var0 = MinecraftClient.getInstance()
@@ -60,11 +60,11 @@ public final class PumpkinRenderer {
             var1.getResourceOrThrow(oAsIdentifier("models/halloween/pumpkin/emission.png"));
             PumpkinMeshReader.Type_u var2 = PumpkinMeshReader.XAsA7_Type_u(var0);
             WorldLabelLayout.DAsVoid(V.getRenderPipeline());
-            WorldLabelLayout.DAsVoid(x.getRenderPipeline());
+            WorldLabelLayout.DAsVoid(AuraModule.getRenderPipeline());
             Q = var2;
-            s = (long)BloomQuality.J;
+            SkyChunkCache = (long)BloomQuality.J;
             ClientLog.XAsVoid(
-               "Halloween", "Intact pumpkin ready: {} original triangles, {} static mesh groups, generation={}", var2.triangles(), var2.chunks().size(), s
+               "Halloween", "Intact pumpkin ready: {} original triangles, {} static mesh groups, generation={}", var2.triangles(), var2.chunks().size(), SkyChunkCache
             );
          } catch (IOException var51) {
             throw new IllegalStateException("Halloween pumpkin asset failed; existing cosmetic quarantine retries after resource reload", var51);
@@ -73,7 +73,7 @@ public final class PumpkinRenderer {
    }
 
    public static void gAsVoid(MatrixStack var0, EffectDrawBuffers var1, HalloweenShockwaveGeometry.Type_k var2, Vec3d var3, boolean var4) {
-      if (Q != null && s == (long)BloomQuality.J && var2.pumpkin() != null) {
+      if (Q != null && SkyChunkCache == (long)BloomQuality.J && var2.pumpkin() != null) {
          if (!var4) {
             VAsVoid(var0, var1, var2, var3, false);
          }
@@ -83,7 +83,7 @@ public final class PumpkinRenderer {
    }
 
    private static void VAsVoid(MatrixStack var0, EffectDrawBuffers var1, HalloweenShockwaveGeometry.Type_k var2, Vec3d var3, boolean var4) {
-      VertexConsumer var5 = var1.XAsVertexConsumer(var4 ? x : V);
+      VertexConsumer var5 = var1.XAsVertexConsumer(var4 ? AuraModule : V);
       Matrix4f var6 = new Matrix4f(var0.peek().getPositionMatrix()).mul(HalloweenShockwaveGeometry.JAsMatrix4f(var2, var3));
 
       for (int var7 = 0; var7 < Q.chunks().size(); var7++) {

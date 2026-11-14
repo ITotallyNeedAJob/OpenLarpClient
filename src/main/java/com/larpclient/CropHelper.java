@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.BlockPos.Mutable;
 
-public final class u {
+public final class CropHelper {
    public static boolean gAsBoolean(BlockState var0) {
       return var0.isOf(Blocks.KELP)
          || var0.isOf(Blocks.KELP_PLANT)
@@ -19,21 +19,21 @@ public final class u {
          || var0.isOf(Blocks.POINTED_DRIPSTONE);
    }
 
-   public static u.Type_o IAsU_Type_o(BlockState var0, BlockPos var1, Function<BlockPos, BlockState> var2) {
+   public static CropHelper.Type_o IAsU_Type_o(BlockState var0, BlockPos var1, Function<BlockPos, BlockState> var2) {
       if (!var0.isOf(Blocks.KELP) && !var0.isOf(Blocks.KELP_PLANT)) {
          if (var0.isOf(Blocks.BAMBOO)) {
             if (var2.apply(var1.down()).isOf(Blocks.BAMBOO)) {
                return null;
             } else {
-               return xAsInt(var1, Direction.UP, var2, Blocks.BAMBOO) >= 12 ? u.Type_o.BAMBOO : null;
+               return xAsInt(var1, Direction.UP, var2, Blocks.BAMBOO) >= 12 ? CropHelper.Type_o.BAMBOO : null;
             }
          } else if (var0.isOf(Blocks.SWEET_BERRY_BUSH)) {
-            return var0.get(Properties.AGE_3) == 3 ? u.Type_o.BERRIES : null;
+            return var0.get(Properties.AGE_3) == 3 ? CropHelper.Type_o.BERRIES : null;
          } else if (var0.isOf(Blocks.VINE)) {
             if (var2.apply(var1.up()).isOf(Blocks.VINE)) {
                return null;
             } else {
-               return xAsInt(var1, Direction.DOWN, var2, Blocks.VINE) >= 7 ? u.Type_o.VINES : null;
+               return xAsInt(var1, Direction.DOWN, var2, Blocks.VINE) >= 7 ? CropHelper.Type_o.VINES : null;
             }
          } else if (var0.isOf(Blocks.POINTED_DRIPSTONE) && var0.get(Properties.VERTICAL_DIRECTION) == Direction.DOWN) {
             BlockState var4 = var2.apply(var1.up());
@@ -52,7 +52,7 @@ public final class u {
                         Blocks.POINTED_DRIPSTONE
                      )
                      >= 5
-                  ? u.Type_o.DRIPSTONE
+                  ? CropHelper.Type_o.DRIPSTONE
                   : null;
             }
          } else {
@@ -62,7 +62,7 @@ public final class u {
          return null;
       } else {
          int var3 = xAsInt(var1, Direction.DOWN, var2, Blocks.KELP, Blocks.KELP_PLANT);
-         return var3 >= 14 || var0.isOf(Blocks.KELP) && var0.get(Properties.AGE_25) == 25 && var3 >= 8 ? u.Type_o.KELP : null;
+         return var3 >= 14 || var0.isOf(Blocks.KELP) && var0.get(Properties.AGE_25) == 25 && var3 >= 8 ? CropHelper.Type_o.KELP : null;
       }
    }
 
@@ -114,7 +114,7 @@ public final class u {
       }
    }
 
-   private u() {
+   private CropHelper() {
    }
 
    public static enum Type_o {

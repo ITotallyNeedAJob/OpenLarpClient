@@ -9,9 +9,9 @@ import org.joml.Vector2f;
 public final class GuiDrawing {
    private static final Identifier Q = Identifier.of("larp-client", "textures/gui/glass/fill.png");
    private static final Identifier Y = Identifier.of("larp-client", "textures/gui/glass/rim.png");
-   private static final int[] p = new int[]{0, 48, 80};
+   private static final int[] HexEdgeloop = new int[]{0, 48, 80};
    private static final int[] q = new int[]{48, 32, 48};
-   static final double f = 6.0;
+   static final double MenuPopupProvider = 6.0;
 
    private GuiDrawing() {
    }

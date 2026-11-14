@@ -30,13 +30,13 @@ final class ModuleSettingsPanel extends SettingsPanel {
    private Module p;
    private String w = "";
    private String A = "";
-   private String y = "";
+   private String ScreenScale = "";
    private String G = "";
    private ActionButton U;
    private int o;
    private int Y;
-   private final Set<String> j = new HashSet<>();
-   private final Map<String, ActionButton> e = new HashMap<>();
+   private final Set<String> TextLayout = new HashSet<>();
+   private final Map<String, ActionButton> LineSegment = new HashMap<>();
    private final Map<GuiWidget, BooleanSupplier> Z = new IdentityHashMap<>();
    private String L;
    private ModuleToggleWidget f;
@@ -165,7 +165,7 @@ final class ModuleSettingsPanel extends SettingsPanel {
                      this.AAsVoid(var19);
                      this.U = new ActionButton("Start larping", () -> {
                         if (!this.w.trim().matches("[A-Za-z0-9_]{1,16}")) {
-                           AppearanceAssets.O = "Enter a Minecraft username";
+                           AppearanceAssets.O = "Enter PetEffectRenderer Minecraft username";
                         } else {
                            var15.setEnabled(true);
                            AppearanceAssets.eAsVoid(this.w.trim());
@@ -178,7 +178,7 @@ final class ModuleSettingsPanel extends SettingsPanel {
                      this.AAsVoid(new SectionHeaderWidget("Keybind"));
                      KeybindSetting var16 = new KeybindSetting(
                         var1 instanceof HUD ? "Toggle HUD" : "Keybind",
-                        "Press a key, or a middle or side mouse button. Escape/Delete clears the binding",
+                        "Press PetEffectRenderer key, or PetEffectRenderer middle or side mouse button. Escape/Delete clears the binding",
                         var1.getKeyBind()
                      );
                      var16.onChanged(var1::setKeyBind);
@@ -237,7 +237,7 @@ final class ModuleSettingsPanel extends SettingsPanel {
             for (Setting var21 : var18.settings()) {
                if (var1 instanceof FakePay var6 && var21 == var6.fakeBalance()) {
                   this.AAsVoid(new SectionHeaderWidget("Fake balance"));
-                  TextInputWidget var7 = new TextInputWidget("Amount, e.g. 10T, 1B or 61.4", var1x -> {
+                  TextInputWidget var7 = new TextInputWidget("Amount, LineSegment.g. 10T, 1B or 61.4", var1x -> {
                      this.A = var1x;
                      this.y = "";
                   }, 40);
@@ -356,12 +356,12 @@ final class ModuleSettingsPanel extends SettingsPanel {
 
    private static final class Type_v extends GuiWidget {
       private static final int h = 88;
-      private static final int o = 6;
-      private static final int e = 14;
+      private static final int AuctionNotifier = 6;
+      private static final int LineSegment = 14;
       private static final int T = 15;
       private static final int U = -14999514;
-      private static final int l = -14275533;
-      private static final int t = -13880517;
+      private static final int DropletTrail = -14275533;
+      private static final int SmoothInput = -13880517;
       private static final int O = -12958899;
       private final CustomCrosshair L;
       private boolean q;

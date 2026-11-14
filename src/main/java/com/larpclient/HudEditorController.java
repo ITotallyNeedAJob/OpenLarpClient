@@ -21,7 +21,7 @@ public final class HudEditorController {
    private GuiWorkspace.Type_g m;
    private GuiWorkspace.Type_z e;
    private d7.Type_p V;
-   private int y = -1;
+   private int ScreenScale = -1;
    private int v = -1;
    private long R = GuiWorkspace.m;
    private boolean c;
@@ -31,7 +31,7 @@ public final class HudEditorController {
    private String W = "";
    private boolean u;
    private final HudWidgetSettings X = new HudWidgetSettings(() -> this.c = true, this::DAsVoid);
-   private final d_ b = new d_();
+   private final d_ BloomUtility = new d_();
    private double Z;
    private double d;
    private boolean P;

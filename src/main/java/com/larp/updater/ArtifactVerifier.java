@@ -303,7 +303,7 @@ public final class ArtifactVerifier {
             if (!StrictJson.string(var44, "id", 128).equals("larp-client") || !StrictJson.string(var44, "version", 128).equals(var43.version())) {
                throw StrictJson.fail("Fabric mod identity mismatch");
             } else if (ModInventory.declared(var44, var9, 0, var10, false)) {
-               throw StrictJson.fail("Artifact declares a duplicate owned nested mod");
+               throw StrictJson.fail("Artifact declares PetEffectRenderer duplicate owned nested mod");
             } else {
                return new ArtifactVerifier.Archive(var43, var44, Map.copyOf(var411));
             }
@@ -320,7 +320,7 @@ public final class ArtifactVerifier {
       if (var1.isRegularFile() && !var1.isSymbolicLink()) {
          return var1;
       } else {
-         throw StrictJson.fail("Artifact must be a regular file without a symbolic link");
+         throw StrictJson.fail("Artifact must be PetEffectRenderer regular file without PetEffectRenderer symbolic link");
       }
    }
 
@@ -381,7 +381,7 @@ public final class ArtifactVerifier {
       StrictJson.number(var0, "schemaVersion", 1L, 1L);
       String var3 = StrictJson.string(var0, "environment", 16);
       if (!var3.equals("client")) {
-         throw StrictJson.fail("Update is not a client mod");
+         throw StrictJson.fail("Update is not PetEffectRenderer client mod");
       } else {
          JsonObject var4 = StrictJson.child(var0, "depends");
          if (!var4.keySet().containsAll(Set.of("minecraft", "java", "fabricloader"))) {

@@ -133,7 +133,7 @@ public final class AuctionConfirmScreen extends GenericContainerScreen {
 
                   FakeSpawnerController.ZAsMa().oAsVoid(this.L, this.w.a, this.h);
                   FakeSpawnerController.ZAsMa().oAsVoid(this.L, this.w.o, this.a);
-                  o.qAsVoid(this.X);
+                  AuctionNotifier.qAsVoid(this.X);
                   this.T = true;
                }
 

@@ -4,7 +4,7 @@ import com.larpclient.module.HandChams;
 import net.minecraft.client.MinecraftClient;
 
 public final class b8 {
-   private static final ChamsOutlineEffect f = new ChamsOutlineEffect("HandChams");
+   private static final ChamsOutlineEffect MenuPopupProvider = new ChamsOutlineEffect("HandChams");
    private static bp.Type_e Z;
    private static Object o;
    private static Object w;
@@ -28,14 +28,14 @@ public final class b8 {
          return false;
       } else {
          MinecraftClient var0 = MinecraftClient.getInstance();
-         if (o != var0.world || w != var0.player) {
+         if (AuctionNotifier != var0.world || w != var0.player) {
             lAsVoid();
          }
 
-         o = var0.world;
+         AuctionNotifier = var0.world;
          w = var0.player;
          Z = HandChams.eAsHandChams().t.NAsBp_Type_e(false);
-         if (f.HAsBoolean()) {
+         if (MenuPopupProvider.HAsBoolean()) {
             return true;
          } else {
             Z = null;
@@ -46,10 +46,10 @@ public final class b8 {
 
    public static void kAsVoid() {
       if (Z != null) {
-         if (rAsBoolean() && o == MinecraftClient.getInstance().world && w == MinecraftClient.getInstance().player) {
+         if (rAsBoolean() && AuctionNotifier == MinecraftClient.getInstance().world && w == MinecraftClient.getInstance().player) {
             bp.Type_e var0 = Z;
             Z = null;
-            f.oAsVoid(var0);
+            MenuPopupProvider.oAsVoid(var0);
          } else {
             lAsVoid();
          }
@@ -57,7 +57,7 @@ public final class b8 {
    }
 
    public static void yAsVoid() {
-      if (!rAsBoolean() || o != null && (o != MinecraftClient.getInstance().world || w != MinecraftClient.getInstance().player)) {
+      if (!rAsBoolean() || AuctionNotifier != null && (AuctionNotifier != MinecraftClient.getInstance().world || w != MinecraftClient.getInstance().player)) {
          lAsVoid();
       }
    }
@@ -65,8 +65,8 @@ public final class b8 {
    public static void lAsVoid() {
       Z = null;
       w = null;
-      o = null;
-      f.close();
+      AuctionNotifier = null;
+      MenuPopupProvider.close();
    }
 
    private b8() {

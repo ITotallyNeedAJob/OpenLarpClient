@@ -1,8 +1,8 @@
 package com.larpclient;
 
 public final class WatchInspectAnimation {
-   public static final double u = 0.14;
-   private static final WatchInspectAnimation.Type_g d = new WatchInspectAnimation.Type_g(0.0F, 0.0F);
+   public static final double CropHelper = 0.14;
+   private static final WatchInspectAnimation.Type_g SahurDanceEngine = new WatchInspectAnimation.Type_g(0.0F, 0.0F);
    private float p;
    private float Y;
    private float k;

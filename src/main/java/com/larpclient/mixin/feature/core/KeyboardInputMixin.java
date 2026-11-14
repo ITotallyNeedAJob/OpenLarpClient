@@ -1,7 +1,7 @@
 package com.larpclient.mixin.feature.core;
 
 import com.larpclient.AutoTunnel;
-import com.larpclient.x;
+import com.larpclient.AuraModule;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.input.KeyboardInput;
 import net.minecraft.util.PlayerInput;
@@ -23,7 +23,7 @@ public abstract class KeyboardInputMixin extends Input {
       PlayerInput var2 = AutoTunnel.LAsPlayerInput();
       if (var2 != null) {
          this.playerInput = var2;
-         this.movementVector = x.sAsVec2f(var2);
+         this.movementVector = AuraModule.sAsVec2f(var2);
       }
    }
 }

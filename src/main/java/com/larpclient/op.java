@@ -7,7 +7,7 @@ import java.util.Map;
 public final class op {
    private static final Map<String, Double> Z = new LinkedHashMap<>();
    private static final Map<String, Long> n = new LinkedHashMap<>();
-   private static final Map<String, Long> o = new LinkedHashMap<>();
+   private static final Map<String, Long> AuctionNotifier = new LinkedHashMap<>();
 
    public op() {
    }
@@ -25,16 +25,16 @@ public final class op {
    }
 
    public static void sAsVoid() {
-      o.clear();
+      AuctionNotifier.clear();
       if (Boolean.getBoolean("larp.debug")) {
-         o.putAll(n);
+         AuctionNotifier.putAll(n);
       }
 
       n.clear();
    }
 
    public static Map<String, Long> gAsMap() {
-      return Collections.unmodifiableMap(o.isEmpty() ? n : o);
+      return Collections.unmodifiableMap(AuctionNotifier.isEmpty() ? n : o);
    }
 
    public static long RAsLong() {

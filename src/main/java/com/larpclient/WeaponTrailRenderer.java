@@ -31,9 +31,9 @@ import org.joml.Vector3fc;
 
 public final class WeaponTrailRenderer {
    private static final lb[] R = new lb[]{new lb(), new lb()};
-   private static final ac[] y = new ac[]{new ac(), new ac()};
-   private static final LinkedHashMap<BakedQuad, e.Type_c> x = new LinkedHashMap<>();
-   private static final IdentityHashMap<float[], e.Type_c> X = new IdentityHashMap<>();
+   private static final ac[] ScreenScale = new ac[]{new ac(), new ac()};
+   private static final LinkedHashMap<BakedQuad, LineSegment.Type_c> AuraModule = new LinkedHashMap<>();
+   private static final IdentityHashMap<float[], LineSegment.Type_c> X = new IdentityHashMap<>();
    private static int F = -1;
    private static boolean d;
    private static boolean s;
@@ -47,10 +47,10 @@ public final class WeaponTrailRenderer {
          var7.FAsVoid();
       }
 
-      x.clear();
+      AuraModule.clear();
       X.clear();
-      s = false;
-      d = false;
+      SkyChunkCache = false;
+      SahurDanceEngine = false;
    }
 
    public static void TAsVoid(Hand var0) {
@@ -127,8 +127,8 @@ public final class WeaponTrailRenderer {
          if (var12.Z != null) {
             HAsVoid(var6, var4, var12.E, var12.Z, var7, var7 > 0.0F, var3);
          } else if (!s) {
-            s = true;
-            ClientLog.XAsVoid("WeaponTrails", "No usable native sword blade quads; this model keeps ordinary rendering without a guessed trail attachment");
+            SkyChunkCache = true;
+            ClientLog.XAsVoid("WeaponTrails", "No usable native sword blade quads; this model keeps ordinary rendering without PetEffectRenderer guessed trail attachment");
          }
       } else {
          var0.render(var1, var2, var9, var10, var11);
@@ -138,9 +138,9 @@ public final class WeaponTrailRenderer {
    public static void lAsVoid(Hand var0, ItemStack var1, float[] var2, int var3, MatrixStack var4, float var5, boolean var6, OrderedRenderCommandQueue var7) {
       if (lAsBoolean(var1) && !d) {
          try {
-            e.Type_c var8 = X.get(var2);
+            LineSegment.Type_c var8 = X.get(var2);
             if (var8 == null) {
-               var8 = e.dAsE_Type_c(var2);
+               var8 = LineSegment.dAsE_Type_c(var2);
                if (var8 == null) {
                   return;
                }
@@ -159,7 +159,7 @@ public final class WeaponTrailRenderer {
       }
    }
 
-   private static void HAsVoid(Hand var0, ItemStack var1, e.Type_c var2, e.Type_c var3, float var4, boolean var5, OrderedRenderCommandQueue var6) {
+   private static void HAsVoid(Hand var0, ItemStack var1, LineSegment.Type_c var2, LineSegment.Type_c var3, float var4, boolean var5, OrderedRenderCommandQueue var6) {
       AstralWeaponTrails var7 = AstralWeaponTrails.JAsAstralWeaponTrails();
       if (lAsBoolean(var1) && !d) {
          long var8 = op.RAsLong();
@@ -232,15 +232,15 @@ public final class WeaponTrailRenderer {
          ClientLog.lAsVoid("WeaponTrails", "Native blade capture/submission failed; trails suspended until toggle or resource reload", var0);
       }
 
-      d = true;
+      SahurDanceEngine = true;
    }
 
    private WeaponTrailRenderer() {
    }
 
    private static final class Type_r {
-      e.Type_c Z;
-      e.Type_c E;
+      LineSegment.Type_c Z;
+      LineSegment.Type_c E;
 
       private Type_r() {
       }
@@ -248,7 +248,7 @@ public final class WeaponTrailRenderer {
       void EAsVoid(MatrixStack var1, List<BakedQuad> var2) {
          if (!var2.isEmpty()) {
             BakedQuad var3 = var2.getFirst();
-            e.Type_c var4 = WeaponTrailRenderer.x.get(var3);
+            LineSegment.Type_c var4 = WeaponTrailRenderer.x.get(var3);
             if (var4 == null) {
                ArrayList var5 = new ArrayList(Math.min(4096, var2.size() * 4));
 
@@ -270,7 +270,7 @@ public final class WeaponTrailRenderer {
                   }
                }
 
-               var4 = e.LAsE_Type_c(var5);
+               var4 = LineSegment.LAsE_Type_c(var5);
                if (var4 == null) {
                   return;
                }
@@ -282,7 +282,7 @@ public final class WeaponTrailRenderer {
                WeaponTrailRenderer.x.put(var3, var4);
             }
 
-            e.Type_c var10 = var4.transform(var1.peek().getPositionMatrix(), 1);
+            LineSegment.Type_c var10 = var4.transform(var1.peek().getPositionMatrix(), 1);
             if (this.Z == null || var10.length() > this.Z.length()) {
                this.Z = var10;
                this.E = var4;
@@ -293,8 +293,8 @@ public final class WeaponTrailRenderer {
 
    private static final class Type_x {
       private static final RenderLayer F = FAsRenderLayer(false);
-      private static final RenderLayer u = FAsRenderLayer(true);
-      private static int f = -1;
+      private static final RenderLayer CropHelper = FAsRenderLayer(true);
+      private static int MenuPopupProvider = -1;
 
       private Type_x() {
       }
@@ -311,14 +311,14 @@ public final class WeaponTrailRenderer {
       }
 
       static RenderLayer oAsRenderLayer(boolean var0) {
-         return var0 ? u : F;
+         return var0 ? CropHelper : F;
       }
 
       static void lAsVoid() {
-         if (f != BloomQuality.J) {
+         if (MenuPopupProvider != BloomQuality.J) {
             WorldLabelLayout.DAsVoid(F.getRenderPipeline());
-            WorldLabelLayout.DAsVoid(u.getRenderPipeline());
-            f = BloomQuality.J;
+            WorldLabelLayout.DAsVoid(CropHelper.getRenderPipeline());
+            MenuPopupProvider = BloomQuality.J;
             ClientLog.XAsVoid("WeaponTrails", "Native depth-tested hand ribbon materials validated for generation {}", f);
          }
       }

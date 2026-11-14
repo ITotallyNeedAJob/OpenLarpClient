@@ -29,8 +29,8 @@ public final class PlayerJointTransforms {
    private final ModelPart[] M;
    private final ModelPart[] H;
    private final ModelPart[] f;
-   private final boolean[] d = new boolean[8];
-   private final boolean[] j = new boolean[8];
+   private final boolean[] SahurDanceEngine = new boolean[8];
+   private final boolean[] TextLayout = new boolean[8];
    private boolean Y;
 
    public PlayerJointTransforms(PlayerEntityModel var1) {

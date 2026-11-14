@@ -26,10 +26,10 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public final class FlameParticles {
-   public static final int e = 768;
-   private static final Identifier f = Identifier.of("larp-client", "textures/particles/flame.png");
+   public static final int LineSegment = 768;
+   private static final Identifier MenuPopupProvider = Identifier.of("larp-client", "textures/particles/flame.png");
    private static final Identifier P = Identifier.of("larp-client", "textures/particles/flame_glow.png");
-   private static final FlameParticles.Type_k[] t = new FlameParticles.Type_k[]{
+   private static final FlameParticles.Type_k[] SmoothInput = new FlameParticles.Type_k[]{
       new FlameParticles.Type_k(new Random()), new FlameParticles.Type_k(new Random())
    };
    private static Object F;
@@ -43,7 +43,7 @@ public final class FlameParticles {
          var3.QAsVoid();
       }
 
-      s = null;
+      SkyChunkCache = null;
       F = null;
       w = null;
       v = false;
@@ -51,10 +51,10 @@ public final class FlameParticles {
 
    public static void bAsVoid() {
       MinecraftClient var0 = MinecraftClient.getInstance();
-      if (F != var0.world || s != var0.player || h != BloomQuality.J) {
+      if (F != var0.world || SkyChunkCache != var0.player || h != BloomQuality.J) {
          UAsVoid();
          F = var0.world;
-         s = var0.player;
+         SkyChunkCache = var0.player;
          h = BloomQuality.J;
       }
 
@@ -170,7 +170,7 @@ public final class FlameParticles {
 
    public static final class Type_k {
       private final RandomGenerator v;
-      private final ArrayList<FlameParticles.Type_n> u = new ArrayList<>();
+      private final ArrayList<FlameParticles.Type_n> CropHelper = new ArrayList<>();
       private double Q = Double.NaN;
       private double T;
       private float f;
@@ -313,9 +313,9 @@ public final class FlameParticles {
          .withBlend(BlendFunction.LIGHTNING)
          .withCull(false)
          .build();
-      private static int k = -1;
+      private static int GroundSample = -1;
       private static final RenderLayer H = GAsRenderLayer("bloom", FlameParticles.f);
-      private static final RenderLayer y = GAsRenderLayer("glow", FlameParticles.P);
+      private static final RenderLayer ScreenScale = GAsRenderLayer("glow", FlameParticles.P);
 
       private Type_t() {
       }
@@ -325,13 +325,13 @@ public final class FlameParticles {
       }
 
       private static RenderLayer qAsRenderLayer(boolean var0) {
-         return var0 ? y : H;
+         return var0 ? ScreenScale : H;
       }
 
       private static void uAsVoid() {
-         if (k != BloomQuality.J) {
+         if (GroundSample != BloomQuality.J) {
             WorldLabelLayout.DAsVoid(h);
-            k = BloomQuality.J;
+            GroundSample = BloomQuality.J;
             ClientLog.XAsVoid("FlameHands", "Reference additive sprite material validated for resource generation {}", k);
          }
       }

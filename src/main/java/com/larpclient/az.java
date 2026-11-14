@@ -4,17 +4,17 @@ import net.minecraft.util.math.Vec3d;
 import org.joml.Quaternionfc;
 
 public final class az {
-   public static final int f = 6;
-   public static final double j = 1.25;
+   public static final int MenuPopupProvider = 6;
+   public static final double TextLayout = 1.25;
    public static final double w = 4.6;
    public static final double P = 0.9375;
    public static final double[][] A = new double[][]{{0.0, -4.0, 0.0}, {0.0, 6.0, 0.0}, {-6.0, 6.0, 0.0}, {6.0, 6.0, 0.0}, {-1.9, 18.0, 0.0}, {1.9, 18.0, 0.0}};
-   private final Vec3d[] t = new Vec3d[6];
+   private final Vec3d[] SmoothInput = new Vec3d[6];
    private final Vec3d[] Z = new Vec3d[6];
    private final Vec3d[] h = new Vec3d[6];
-   private final double[] c = new double[6];
-   private final double[] x = new double[6];
-   private final boolean[] m = new boolean[6];
+   private final double[] BoxUtils = new double[6];
+   private final double[] AuraModule = new double[6];
+   private final boolean[] PriceDetector = new boolean[6];
    public final az.Type_f C;
    public final Vec3d X;
    public final double M;
@@ -137,7 +137,7 @@ public final class az {
       } else if (this.C == az.Type_f.TUNG_TUNG) {
          return dj.AAsAz_Type_x(this, var1, var2);
       } else if (this.C == az.Type_f.TUNG_TUNG_FLOSS) {
-         return d.lAsAz_Type_x(this, var1, var2);
+         return SahurDanceEngine.lAsAz_Type_x(this, var1, var2);
       } else {
          Vec3d var7 = this.JAsVec3d(var1);
          double var8 = mAsDouble((4.6 - var2) / 0.75);

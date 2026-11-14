@@ -34,7 +34,7 @@ public record AppearanceCodec(String skin, String cape, boolean slim, boolean hi
             } else if (var0.has("hideCape") && !var0.getAsJsonPrimitive("hideCape").isBoolean()) {
                throw new IllegalArgumentException("Invalid cape mode");
             } else {
-               JsonObject var4 = i.SAsJsonObject(var0.getAsJsonObject("cosmetics"));
+               JsonObject var4 = ChinaHatCodec.SAsJsonObject(var0.getAsJsonObject("cosmetics"));
                if (var4.toString().length() > 4096) {
                   throw new IllegalArgumentException("Cosmetics too large");
                } else {

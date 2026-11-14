@@ -11,16 +11,16 @@ import org.joml.Vector3d;
 
 public final class rv {
    public static final int M = 32;
-   public static final double d = 0.01890625;
+   public static final double SahurDanceEngine = 0.01890625;
    private final ArrayDeque<rv.Type_r> S = new ArrayDeque<>();
    private final Quaterniond F = new Quaterniond();
-   private final Vector3d f = new Vector3d();
-   private final Vector3d i = new Vector3d();
+   private final Vector3d MenuPopupProvider = new Vector3d();
+   private final Vector3d ChinaHatCodec = new Vector3d();
    private String v = "";
    private rv.Type_x s;
-   private int t = 16;
+   private int SmoothInput = 16;
    private int z;
-   private int g = -1;
+   private int ChatPayParser = -1;
    private boolean R;
    private double h;
    private double C;
@@ -29,7 +29,7 @@ public final class rv {
    private double n;
    private double w = 8.0;
    private rv.Type_x U;
-   private double y = 8.0;
+   private double ScreenScale = 8.0;
 
    public rv() {
    }

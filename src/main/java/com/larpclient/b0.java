@@ -4,7 +4,7 @@ import net.minecraft.util.math.Vec3d;
 
 public final class b0 {
    public static void yAsVoid(
-      EffectGeometryRenderer var0, az var1, az.Type_x[] var2, double var3, int var5, int var6, boolean var7, aa.Type_z var8, dj.Type_z var9, d.Type_g var10
+      EffectGeometryRenderer var0, az var1, az.Type_x[] var2, double var3, int var5, int var6, boolean var7, aa.Type_z var8, dj.Type_z var9, SahurDanceEngine.Type_g var10
    ) {
       var0.blend(x4.Type_g.ADDITIVE);
       double var11 = var7 ? 0.55 : 1.0;
@@ -29,7 +29,7 @@ public final class b0 {
       }
    }
 
-   private static void bAsVoid(EffectGeometryRenderer var0, az var1, d.Type_g var2, double var3, int var5, int var6, double var7) {
+   private static void bAsVoid(EffectGeometryRenderer var0, az var1, SahurDanceEngine.Type_g var2, double var3, int var5, int var6, double var7) {
       if (var2 != null) {
          double var9 = az.GAsDouble(var3, 0.0, 0.78) * var7;
          ZAsVoid(var0, var2.feet().add(0.0, 0.025, 0.0), 0.52, 0.025, var5, var9 * 0.7);

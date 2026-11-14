@@ -8,20 +8,20 @@ public final class IslandLyricsPreview {
    public static final int C = 20;
    static final int F = 44;
    static final int U = 10;
-   static final int p = 13;
+   static final int HexEdgeloop = 13;
    static final long n = 380000000L;
    static final long X = 520000000L;
    static final double S = 1.6;
-   private static final int e = -1250068;
-   private static final int b = -4671294;
+   private static final int LineSegment = -1250068;
+   private static final int BloomUtility = -4671294;
    private static final int w = 805306368;
    private static final Identifier z = Identifier.of("larp-client", "textures/gui/logo.png");
    private static final IslandLyricsPreview.Type_a T = new IslandLyricsPreview.Type_a(
       IslandLyricsPreview.Type_m.LYRIC, "Island Lyrics preview line", "sample", true, 0.0
    );
-   private final IslandLyricsPreview.Type_i d = new IslandLyricsPreview.Type_i(44.0F, 170.0F, 19.0F);
+   private final IslandLyricsPreview.Type_i SahurDanceEngine = new IslandLyricsPreview.Type_i(44.0F, 170.0F, 19.0F);
    private final IslandLyricsPreview.Type_i I = new IslandLyricsPreview.Type_i(14.0F, 170.0F, 19.0F);
-   private final IslandLyricsPreview.Type_i t = new IslandLyricsPreview.Type_i(0.0F, 90.0F, 18.0F);
+   private final IslandLyricsPreview.Type_i SmoothInput = new IslandLyricsPreview.Type_i(0.0F, 90.0F, 18.0F);
    private final IslandLyricsPreview.Type_i Y = new IslandLyricsPreview.Type_i(0.0F, 120.0F, 20.0F);
    private IslandLyricsPreview.Type_a L = IslandLyricsPreview.Type_a.IDLE;
    private IslandLyricsPreview.Type_a E = IslandLyricsPreview.Type_a.IDLE;

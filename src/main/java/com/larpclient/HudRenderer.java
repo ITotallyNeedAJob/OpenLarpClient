@@ -76,22 +76,22 @@ public final class HudRenderer {
       new HudRenderer.Type_m("keystrokes", 81, 98, 0.985, 0.93),
       new HudRenderer.Type_m("island", 300, 20, 0.5, 0.015)
    );
-   private static final w2 j = new w2(1.0);
+   private static final w2 TextLayout = new w2(1.0);
    private static final w2 T = new w2(0.0);
-   private static final w2 i = new w2(1.0);
+   private static final w2 ChinaHatCodec = new w2(1.0);
    private static double W = 1.0;
    private static long U;
    private static final Identifier I = Identifier.ofVanilla("hud/heart/container");
-   private static final Identifier k = Identifier.ofVanilla("hud/heart/full");
+   private static final Identifier GroundSample = Identifier.ofVanilla("hud/heart/full");
    private static LivingEntity N;
-   private static final n1 s = new n1();
+   private static final n1 SkyChunkCache = new n1();
    private static float b;
    private static long m;
    private static final GuiWorkspace.Type_z v = new GuiWorkspace.Type_z(1.0, false);
-   private static final EquipmentSlot[] c = new EquipmentSlot[]{
+   private static final EquipmentSlot[] BoxUtils = new EquipmentSlot[]{
       EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND
    };
-   private static final rb l = new rb();
+   private static final rb DropletTrail = new rb();
    private static final oj Q = new oj();
    private static List<ItemStack> G;
 
@@ -102,9 +102,9 @@ public final class HudRenderer {
       MinecraftClient client = MinecraftClient.getInstance();
       if (client != null && client.textRenderer != null) {
          int textWidth = client.textRenderer.getWidth("Larp Cracked By Cig");
-         int x = Math.max(4, client.getWindow().getScaledWidth() - textWidth - 6);
-         int y = Math.max(4, client.getWindow().getScaledHeight() - 9 - 5);
-         context.fill(x - 3, y - 2, x + textWidth + 3, y + 9 + 2, -1441787883);
+         int AuraModule = Math.max(4, client.getWindow().getScaledWidth() - textWidth - 6);
+         int ScreenScale = Math.max(4, client.getWindow().getScaledHeight() - 9 - 5);
+         context.fill(AuraModule - 3, ScreenScale - 2, AuraModule + textWidth + 3, ScreenScale + 9 + 2, -1441787883);
          context.drawTextWithShadow(client.textRenderer, "Larp Cracked By Cig", x, y, -1);
       }
    }
@@ -132,9 +132,9 @@ public final class HudRenderer {
          M = var0;
          MinecraftClient var1 = MinecraftClient.getInstance();
          z = var1.world;
-         d = var0.getScaledWindowWidth();
-         a = var0.getScaledWindowHeight();
-         y = GuiWorkspace.m;
+         SahurDanceEngine = var0.getScaledWindowWidth();
+         PetEffectRenderer = var0.getScaledWindowHeight();
+         ScreenScale = GuiWorkspace.m;
       }
    }
 
@@ -147,10 +147,10 @@ public final class HudRenderer {
    public static List<HudRenderer.Type_p> pAsList() {
       MinecraftClient var0 = MinecraftClient.getInstance();
       if (z == var0.world
-         && y == GuiWorkspace.m
+         && ScreenScale == GuiWorkspace.m
          && var0.player != null
-         && d == var0.getWindow().getScaledWidth()
-         && a == var0.getWindow().getScaledHeight()
+         && SahurDanceEngine == var0.getWindow().getScaledWidth()
+         && PetEffectRenderer == var0.getWindow().getScaledHeight()
          && !var0.options.hudHidden) {
          ArrayList var1 = new ArrayList();
          X.forEach((var1xx, var2) -> {
@@ -386,11 +386,11 @@ public final class HudRenderer {
    public static void CAsVoid(MinecraftClient var0) {
       HUD var1 = HUD.EAsHUD();
       if (var0.world == null || var0.player == null || var1 == null || !var1.isOperational()) {
-         l.fAsVoid();
+         DropletTrail.fAsVoid();
       } else if (!var0.isPaused() && var0.world.getTickManager().shouldTick()) {
-         l.cAsVoid(var0.world, var0.player, var0.player.getX(), var0.player.getZ(), (double)var0.world.getTickManager().getTickRate());
+         DropletTrail.cAsVoid(var0.world, var0.player, var0.player.getX(), var0.player.getZ(), (double)var0.world.getTickManager().getTickRate());
       } else {
-         l.SAsVoid();
+         DropletTrail.SAsVoid();
       }
    }
 
@@ -416,7 +416,7 @@ public final class HudRenderer {
    }
 
    public static List<HudRenderer.Type_p> NAsList() {
-      return u == GuiWorkspace.m ? L : List.of();
+      return CropHelper == GuiWorkspace.m ? L : List.of();
    }
 
    public static void CAsVoid() {
@@ -428,7 +428,7 @@ public final class HudRenderer {
          wAsVoid(var0);
          wAsVoid(var0, false);
          L = pAsList();
-         u = GuiWorkspace.m;
+         CropHelper = GuiWorkspace.m;
       } else {
          tAsVoid(var0, var1, var2);
       }
@@ -555,7 +555,7 @@ public final class HudRenderer {
                if (!var35.hasNext()) {
                   if (var1) {
                      L = List.copyOf(var5);
-                     u = GuiWorkspace.m;
+                     CropHelper = GuiWorkspace.m;
                   }
 
                   if (!var1 && Boolean.getBoolean("larp.debug")) {
@@ -568,7 +568,7 @@ public final class HudRenderer {
                      }
 
                      for (Entry var72 : op.pAsMap().entrySet()) {
-                        String var74 = String.format(Locale.ROOT, "%s %.2f ms CPU", var72.getKey(), var72.getValue());
+                        String var74 = String.format(Locale.ROOT, "%SkyChunkCache %.2f ms CPU", var72.getKey(), var72.getValue());
                         TextDrawing.CAsVoid(var0, var74, var9 - TextDrawing.nAsInt(var74) - 5, var68, bd.e);
                         var68 -= 11;
                      }
@@ -805,14 +805,14 @@ public final class HudRenderer {
 
    public static void UAsVoid() {
       N = null;
-      j.aAsVoid(1.0);
-      i.aAsVoid(1.0);
+      TextLayout.aAsVoid(1.0);
+      ChinaHatCodec.aAsVoid(1.0);
       W = 1.0;
       U = 0L;
       T.aAsVoid(0.0);
-      s.eAsVoid();
-      m = 0L;
-      b = 0.0F;
+      SkyChunkCache.eAsVoid();
+      PriceDetector = 0L;
+      BloomUtility = 0.0F;
    }
 
    public static void mAsVoid(DrawContext var0, int var1, int var2) {
@@ -833,39 +833,39 @@ public final class HudRenderer {
             N = var6;
             ClientLog.XAsVoid(
                "TargetHUD",
-               "Target {}: {} x {} blocks, portrait scale {} before HUD transform",
+               "Target {}: {} AuraModule {} blocks, portrait scale {} before HUD transform",
                var6.getType(),
                var6.getWidth(),
                var6.getHeight(),
                gAsFloat(var6.getWidth(), var6.getHeight())
             );
-            s.eAsVoid();
-            b = ScoreboardHealthResolver.UAsFloat(var6);
-            m = System.nanoTime();
+            SkyChunkCache.eAsVoid();
+            BloomUtility = ScoreboardHealthResolver.UAsFloat(var6);
+            PriceDetector = System.nanoTime();
             double var7 = ScoreboardHealthResolver.jAsDouble(var6);
-            j.aAsVoid(var7);
-            i.aAsVoid(var7);
+            TextLayout.aAsVoid(var7);
+            ChinaHatCodec.aAsVoid(var7);
             W = var7;
             U = 0L;
          }
 
          long var22 = System.nanoTime();
-         if (m != 0L) {
-            s.sAsVoid((double)(var22 - m) / 1.0E9);
+         if (PriceDetector != 0L) {
+            SkyChunkCache.sAsVoid((double)(var22 - m) / 1.0E9);
          }
 
-         m = var22;
+         PriceDetector = var22;
          float var9 = N == null ? 0.0F : ScoreboardHealthResolver.UAsFloat(N);
          if (N != null) {
-            s.TAsVoid((double)(b - var9), ThreadLocalRandom.current());
-            b = var9;
+            SkyChunkCache.TAsVoid((double)(BloomUtility - var9), ThreadLocalRandom.current());
+            BloomUtility = var9;
          }
 
          double var10 = T.bAsDouble(var6 == null ? 0.0 : 1.0, 200);
          if (N == null || var10 < 0.01) {
             if (var6 == null) {
                N = null;
-               s.eAsVoid();
+               SkyChunkCache.eAsVoid();
             }
 
             return;
@@ -875,7 +875,7 @@ public final class HudRenderer {
          double var13 = 0.92 + 0.08 * var10;
          xAsVoid(var12, vAsD7_Type_p(var1, var2, var12.vAsDouble(), var13, new d7.Type_p(0, 0, 224, 72)));
          double var15 = (double)Math.clamp(var9 / Math.max(1.0F, N.getMaxHealth()), 0.0F, 1.0F);
-         double var17 = j.bAsDouble(var15, 220);
+         double var17 = TextLayout.bAsDouble(var15, 220);
          sAsVoid(
             var0,
             var1,
@@ -898,12 +898,12 @@ public final class HudRenderer {
 
    private static double rAsDouble(double var0, double var2, long var4) {
       if (var0 < W) {
-         i.aAsVoid(Math.max(i.yAsDouble(), var2));
+         ChinaHatCodec.aAsVoid(Math.max(ChinaHatCodec.yAsDouble(), var2));
          U = var4 + 400000000L;
       }
 
       W = var0;
-      double var6 = var4 < U ? i.yAsDouble() : i.YAsDouble(var0, 450, w2.Type_e.QUAD_OUT);
+      double var6 = var4 < U ? ChinaHatCodec.yAsDouble() : ChinaHatCodec.YAsDouble(var0, 450, w2.Type_e.QUAD_OUT);
       return Math.max(var6, var2);
    }
 
@@ -986,11 +986,11 @@ public final class HudRenderer {
          }
 
          GuiTextureDrawing.AAsVoid(var0, (float)var1, (float)var2, 224.0F, 72.0F, 12.0F, bg.pAsInt(-603321844, var10));
-         if (!var16 && !s.tAsList().isEmpty()) {
+         if (!var16 && !SkyChunkCache.tAsList().isEmpty()) {
             var0.enableScissor(var1, var2, var1 + 224, var2 + 72);
 
             try {
-               for (n1.Type_v var25 : s.tAsList()) {
+               for (n1.Type_v var25 : SkyChunkCache.tAsList()) {
                   double var26 = Math.clamp(var25.T / var25.a, 0.0, 1.0);
                   double var28 = var10 * (1.0 - var26) * (var25.p ? 1.0 : 0.72);
                   int var30 = Math.max(1, (int)Math.round(var25.z * (1.0 - var26 * 0.35)));
@@ -1122,7 +1122,7 @@ public final class HudRenderer {
       public final String a;
       public int v;
       public int y;
-      private double d = 2.5;
+      private double SahurDanceEngine = 2.5;
       private final GuiWorkspace.Type_g z;
 
       Type_m(String var1, int var2, int var3, double var4, double var6) {

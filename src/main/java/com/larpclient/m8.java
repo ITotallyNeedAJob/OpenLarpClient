@@ -14,15 +14,15 @@ import java.util.function.Consumer;
 
 public final class m8 {
    public static final long V = 60000L;
-   public static final long s = 120000L;
-   public static final int j = 32;
+   public static final long SkyChunkCache = 120000L;
+   public static final int TextLayout = 32;
    private final m8.Type_t e;
    private final Consumer<String> k;
-   private final LinkedHashMap<String, JsonObject> t = new LinkedHashMap<>();
-   private final Map<UUID, Long> m = new LinkedHashMap<>();
+   private final LinkedHashMap<String, JsonObject> SmoothInput = new LinkedHashMap<>();
+   private final Map<UUID, Long> PriceDetector = new LinkedHashMap<>();
    private String w = "";
    private String Y = "";
-   private String a = "";
+   private String PetEffectRenderer = "";
    private boolean d;
    private boolean G;
    private boolean h;

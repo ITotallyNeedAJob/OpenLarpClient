@@ -239,7 +239,7 @@ public final class dx {
    }
 
    public static final class Type_r {
-      private boolean t = true;
+      private boolean SmoothInput = true;
       private int h;
       private int F;
 

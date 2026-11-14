@@ -6,7 +6,7 @@ import com.larpclient.FakeSpawnerTransaction;
 import com.larpclient.RealStackExemptions;
 import com.larpclient.Sha256Digest;
 import com.larpclient.ShopPurchaseController;
-import com.larpclient.o;
+import com.larpclient.AuctionNotifier;
 import com.larpclient.r2;
 import com.larpclient.w0;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -155,7 +155,7 @@ public abstract class ClientPlayNetworkHandlerOnItemPickupAnimationMixin {
          DonutAuctionApi.ZAsA6().IAsVoid(var1.content());
       }
 
-      if (ShopPurchaseController.pAsBoolean(var1.content(), var1.overlay()) || o.KAsBoolean(var1.content(), var1.overlay())) {
+      if (ShopPurchaseController.pAsBoolean(var1.content(), var1.overlay()) || AuctionNotifier.KAsBoolean(var1.content(), var1.overlay())) {
          var2.cancel();
       }
    }
@@ -170,7 +170,7 @@ public abstract class ClientPlayNetworkHandlerOnItemPickupAnimationMixin {
          DonutAuctionApi.ZAsA6().IAsVoid(var1.message());
       }
 
-      if (ShopPurchaseController.pAsBoolean(var1.message(), false) || o.KAsBoolean(var1.message(), false)) {
+      if (ShopPurchaseController.pAsBoolean(var1.message(), false) || AuctionNotifier.KAsBoolean(var1.message(), false)) {
          var2.cancel();
       }
    }
@@ -181,7 +181,7 @@ public abstract class ClientPlayNetworkHandlerOnItemPickupAnimationMixin {
       cancellable = true
    )
    private void larpclient$injectV(OverlayMessageS2CPacket var1, CallbackInfo var2) {
-      if (ShopPurchaseController.pAsBoolean(var1.text(), true) || o.KAsBoolean(var1.text(), true)) {
+      if (ShopPurchaseController.pAsBoolean(var1.text(), true) || AuctionNotifier.KAsBoolean(var1.text(), true)) {
          var2.cancel();
       }
    }

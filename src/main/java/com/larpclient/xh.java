@@ -5,11 +5,11 @@ import java.util.List;
 import org.joml.Matrix4f;
 
 public final class xh {
-   private static final int t = 32;
-   private static final int m = 6;
+   private static final int SmoothInput = 32;
+   private static final int PriceDetector = 6;
    private static final int v = 12;
    public static final List<xh.Type_y> U = dAsList();
-   public static final int g = 16;
+   public static final int ChatPayParser = 16;
 
    private static xh.Type_h AAsXh_Type_h(double var0, double var2, double var4) {
       return new xh.Type_h(var0, Math.sqrt(Math.max(0.0, 1.0 - var0 * var0 - var2 * var2)) + var4, var2);

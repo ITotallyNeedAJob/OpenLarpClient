@@ -7,15 +7,15 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
 public final class CelestialEffectEngine {
-   public static final int f = 256;
+   public static final int MenuPopupProvider = 256;
    public static final int K = 32;
    public static final int V = 12;
    public static final int D = 1024;
    public static final int v = 4;
-   private static final double p = 0.05;
+   private static final double HexEdgeloop = 0.05;
    private final Random U;
    private final ParticleEmitterEngine M = new ParticleEmitterEngine();
-   private final x4 o = new x4();
+   private final x4 AuctionNotifier = new x4();
    private final CelestialEffectEngine.Type_r[] X = new CelestialEffectEngine.Type_r[256];
    private final CelestialEffectEngine.Type_c[] r = new CelestialEffectEngine.Type_c[256];
    private int L;
@@ -453,7 +453,7 @@ public final class CelestialEffectEngine {
    }
 
    private static final class Type_c {
-      final Vec3d[] u = new Vec3d[13];
+      final Vec3d[] CropHelper = new Vec3d[13];
       int i;
       int G;
       int J;
@@ -484,7 +484,7 @@ public final class CelestialEffectEngine {
       Vec3d m;
       Vec3d S;
       Vec3d E;
-      final Vec3d[] o = new Vec3d[12];
+      final Vec3d[] AuctionNotifier = new Vec3d[12];
       int P;
       double H;
       double A;

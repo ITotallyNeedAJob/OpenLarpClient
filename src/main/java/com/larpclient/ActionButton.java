@@ -14,7 +14,7 @@ public final class ActionButton extends GuiWidget {
    public boolean N;
    public Boolean g;
    public Runnable z;
-   public GuiSounds.Type_o a = GuiSounds.Type_o.CLICK;
+   public GuiSounds.Type_o PetEffectRenderer = GuiSounds.Type_o.CLICK;
    public String E = "";
    public String q = "";
    public String D = "";
@@ -29,8 +29,8 @@ public final class ActionButton extends GuiWidget {
    public double H = 1.0;
    public boolean v;
    private final Runnable G;
-   private final w2 b = new w2(0.0);
-   private final w2 f = new w2(0.0);
+   private final w2 BloomUtility = new w2(0.0);
+   private final w2 MenuPopupProvider = new w2(0.0);
    private final w2 J = new w2(0.0);
    private final w2 I = new w2(0.0);
    private boolean U;

@@ -4,7 +4,7 @@ import java.util.function.IntConsumer;
 import net.minecraft.client.gui.DrawContext;
 
 public final class qj extends GuiWidget {
-   private static final int[] f = new int[]{-15198181, -1096636, -429290, -1395960, -14498466, -16337196, -12877066, -5745161, -1292135};
+   private static final int[] MenuPopupProvider = new int[]{-15198181, -1096636, -429290, -1395960, -14498466, -16337196, -12877066, -5745161, -1292135};
    private final IntConsumer U;
    private int a;
 
@@ -15,10 +15,10 @@ public final class qj extends GuiWidget {
 
    @Override
    public void render(DrawContext var1, int var2, int var3) {
-      int var4 = Math.max(1, this.V / f.length);
+      int var4 = Math.max(1, this.V / MenuPopupProvider.length);
       int var5 = Math.min(12, var4 - 1);
 
-      for (int var6 = 0; var6 < f.length; var6++) {
+      for (int var6 = 0; var6 < MenuPopupProvider.length; var6++) {
          int var7 = this.k + var6 * var4;
          GuiDrawing.CAsVoid(var1, var7, this.x + 2, var5, var5, 4, f[var6]);
          RoundedShapePipeline.SAsVoid(var1, (float)var7, (float)(this.x + 2), (float)var5, (float)var5, 4.0F, bg.pAsInt(bd.I, 1.6), bg.pAsInt(bd.a, 2.0));
@@ -35,7 +35,7 @@ public final class qj extends GuiWidget {
    @Override
    public boolean click(double var1, double var3, int var5) {
       if (var5 == 0 && this.contains(var1, var3)) {
-         this.a = Math.clamp((long)((int)(var1 - (double)this.k) / Math.max(1, this.V / f.length)), 0, f.length - 1);
+         this.a = Math.clamp((long)((int)(var1 - (double)this.k) / Math.max(1, this.V / MenuPopupProvider.length)), 0, MenuPopupProvider.length - 1);
          this.U.accept(f[this.a]);
          return true;
       } else {
@@ -48,7 +48,7 @@ public final class qj extends GuiWidget {
       if (var1 != 263 && var1 != 262 && var1 != 32 && var1 != 257) {
          return false;
       } else {
-         this.a = Math.floorMod(this.a + (var1 == 263 ? -1 : (var1 == 262 ? 1 : 0)), f.length);
+         this.a = Math.floorMod(this.a + (var1 == 263 ? -1 : (var1 == 262 ? 1 : 0)), MenuPopupProvider.length);
          this.U.accept(f[this.a]);
          return true;
       }

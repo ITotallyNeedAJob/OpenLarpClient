@@ -48,7 +48,7 @@ public final class RoundedShapePipeline {
    private static boolean G;
    private static boolean C;
    private static boolean w;
-   public static final float f = 64.0F;
+   public static final float MenuPopupProvider = 64.0F;
    private static boolean Q;
    private static boolean W;
    private static boolean N;
@@ -89,13 +89,13 @@ public final class RoundedShapePipeline {
    }
 
    public static void EAsVoid() {
-      if (A && !g && !z) {
+      if (A && !ChatPayParser && !z) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.q);
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.r);
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.G);
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.V);
-            g = true;
+            ChatPayParser = true;
             ClientLog.GAsVoid("UI", "Smooth GUI/HUD fills, one-pixel rims, focus rings and soft glows ready; native batching and clipping retained");
          } catch (RuntimeException var5) {
             z = true;
@@ -103,10 +103,10 @@ public final class RoundedShapePipeline {
          }
       }
 
-      if (S && g && !p && !R) {
+      if (S && ChatPayParser && !HexEdgeloop && !R) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.m);
-            p = true;
+            HexEdgeloop = true;
             ClientLog.GAsVoid("UI", "Selected-card contour light ready");
          } catch (RuntimeException var4) {
             R = true;
@@ -114,7 +114,7 @@ public final class RoundedShapePipeline {
          }
       }
 
-      if (G && g && !C && !w) {
+      if (G && ChatPayParser && !C && !w) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.O);
             C = true;
@@ -125,7 +125,7 @@ public final class RoundedShapePipeline {
          }
       }
 
-      if (Q && g && !W && !N) {
+      if (Q && ChatPayParser && !W && !N) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.j);
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.v);
@@ -139,12 +139,12 @@ public final class RoundedShapePipeline {
          }
       }
 
-      if (Q && W && p && !X && !c) {
+      if (Q && W && HexEdgeloop && !X && !c) {
          try {
             WorldLabelLayout.DAsVoid(RoundedShapePipeline.Type_j.K);
             X = true;
          } catch (RuntimeException var1) {
-            c = true;
+            BoxUtils = true;
             ClientLog.lAsVoid("UI", "World Menu contour light pipeline unavailable; it keeps its four corners until resource reload", var1);
          }
       }
@@ -154,10 +154,10 @@ public final class RoundedShapePipeline {
       w = false;
       C = false;
       R = false;
-      p = false;
+      HexEdgeloop = false;
       z = false;
-      g = false;
-      c = false;
+      ChatPayParser = false;
+      BoxUtils = false;
       X = false;
       N = false;
       W = false;
@@ -432,7 +432,7 @@ public final class RoundedShapePipeline {
       static final RenderPipeline r = iAsRenderPipeline(1, false);
       static final RenderPipeline G = iAsRenderPipeline(2, false);
       static final RenderPipeline V = iAsRenderPipeline(-1, false);
-      static final RenderPipeline m = fAsRenderPipeline(false);
+      static final RenderPipeline PriceDetector = fAsRenderPipeline(false);
       static final RenderPipeline O = RenderPipeline.builder(new Snippet[]{RenderPipelines.GUI_SNIPPET})
          .withLocation(Identifier.of("larp-client", "gui_rounded_ripple"))
          .withVertexShader(Identifier.of("larp-client", "gui/rounded"))
@@ -440,7 +440,7 @@ public final class RoundedShapePipeline {
          .withVertexFormat(RoundedShapePipeline.L, DrawMode.QUADS)
          .withShaderDefine("LARP_UI_RIPPLE")
          .build();
-      static final RenderPipeline j = iAsRenderPipeline(0, true);
+      static final RenderPipeline TextLayout = iAsRenderPipeline(0, true);
       static final RenderPipeline v = iAsRenderPipeline(1, true);
       static final RenderPipeline N = iAsRenderPipeline(2, true);
       static final RenderPipeline S = iAsRenderPipeline(-1, true);

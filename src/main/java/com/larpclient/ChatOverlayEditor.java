@@ -7,7 +7,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.Hand;
 
 public final class ChatOverlayEditor {
-   private static final long g = 750000000L;
+   private static final long ChatPayParser = 750000000L;
    private final BooleanSupplier A;
    private Hand O;
    private Hand K;

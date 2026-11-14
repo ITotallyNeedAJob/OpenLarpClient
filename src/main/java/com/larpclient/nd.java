@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 abstract class nd extends Module {
-   private String y = "Waiting";
+   private String ScreenScale = "Waiting";
 
    nd(String var1, String var2) {
       super(var1, var2, Category.PLAYER, -1);

@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public final class TextDrawing {
    private static int r;
    private static final ap K = new ap();
-   private static final Style[] u = Arrays.stream(TextDrawing.Type_x.values())
+   private static final Style[] CropHelper = Arrays.stream(TextDrawing.Type_x.values())
       .map(
          var0 -> var0 == TextDrawing.Type_x.MINECRAFT
                ? Style.EMPTY

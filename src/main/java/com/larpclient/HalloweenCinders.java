@@ -6,8 +6,8 @@ import net.minecraft.util.math.Vec3d;
 
 public final class HalloweenCinders {
    private final ParticleEmitterEngine C = new ParticleEmitterEngine();
-   private final x4 g = new x4();
-   private final Random o = new Random(184360998L);
+   private final x4 ChatPayParser = new x4();
+   private final Random AuctionNotifier = new Random(184360998L);
    private double a;
    private double y;
    private double h;

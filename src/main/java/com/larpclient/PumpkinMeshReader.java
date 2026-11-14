@@ -8,7 +8,7 @@ import java.util.List;
 import net.minecraft.util.math.Vec3d;
 
 public final class PumpkinMeshReader {
-   public static final int d = 12;
+   public static final int SahurDanceEngine = 12;
    public static final int N = 4000;
    public static final int V = -9416661;
 

@@ -81,7 +81,7 @@ public final class RibbonCapacity {
       final double[] D;
       final int[] O;
       int B;
-      double i = Double.POSITIVE_INFINITY;
+      double ChinaHatCodec = Double.POSITIVE_INFINITY;
 
       public Type_v(int var1) {
          this.W = new Vec3d[var1];

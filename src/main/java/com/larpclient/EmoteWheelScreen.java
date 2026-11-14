@@ -17,7 +17,7 @@ public final class EmoteWheelScreen extends Screen {
    private final w2 h = new w2(0.0);
    private final w2[] X = new w2[]{new w2(0.0), new w2(0.0), new w2(0.0), new w2(0.0)};
    private int r = -1;
-   private double g = Double.NaN;
+   private double ChatPayParser = Double.NaN;
    private float Z = 1.0F;
    private boolean Y;
 

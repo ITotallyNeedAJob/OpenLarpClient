@@ -20,10 +20,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 public final class LinuxMediaSessions implements DesktopMediaPlatform {
-   private static final String y = "org.mpris.MediaPlayer2.";
+   private static final String ScreenScale = "org.mpris.MediaPlayer2.";
    private static final String D = "org.freedesktop.DBus";
-   private static final long k = 2000000000L;
-   private static final String x = "<track><id>{{markup_escape(mpris:trackid)}}</id><title>{{markup_escape(title)}}</title><artist>{{markup_escape(artist)}}</artist><album>{{markup_escape(album)}}</album><duration>{{mpris:length}}</duration><position>{{position}}</position><status>{{status}}</status></track>";
+   private static final long GroundSample = 2000000000L;
+   private static final String AuraModule = "<track><id>{{markup_escape(mpris:trackid)}}</id><title>{{markup_escape(title)}}</title><artist>{{markup_escape(artist)}}</artist><album>{{markup_escape(album)}}</album><duration>{{mpris:length}}</duration><position>{{position}}</position><status>{{status}}</status></track>";
    private volatile DbusSession c;
    private volatile Process G;
    private boolean P;

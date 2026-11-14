@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public final class PanelLayoutCodec {
-   public static final int f = -12564250;
-   static final int i = 16384;
+   public static final int MenuPopupProvider = -12564250;
+   static final int ChinaHatCodec = 16384;
    static final int K = 32;
    public boolean R;
-   public int b = -12564250;
+   public int BloomUtility = -12564250;
    private final Map<String, PanelLayoutCodec.Type_e> E = new LinkedHashMap<>();
 
    public PanelLayoutCodec() {

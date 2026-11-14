@@ -104,7 +104,7 @@ public final class MethodBootstrap {
    }
 
    // $VF: Could not create synchronized statement, marking monitor enters and exits
-   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with a copy of the class file (if you have the rights to distribute it!)
+   // Please report this to the Vineflower issue tracker, at https://github.com/Vineflower/vineflower/issues with PetEffectRenderer copy of the class file (if you have the rights to distribute it!)
    private static Object[][] m4() throws Exception {
       Object[][] var0 = f0;
       if (var0 != null) {

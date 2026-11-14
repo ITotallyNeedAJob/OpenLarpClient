@@ -7,16 +7,16 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
 public final class b9 {
-   private final ParticleEmitterEngine e = new ParticleEmitterEngine();
-   private final RibbonTrailEngine m = new RibbonTrailEngine();
-   private final Random k = new Random();
+   private final ParticleEmitterEngine LineSegment = new ParticleEmitterEngine();
+   private final RibbonTrailEngine PriceDetector = new RibbonTrailEngine();
+   private final Random GroundSample = new Random();
    private final Vec3d[] C = new Vec3d[32];
    private final Vec3d[] r = new Vec3d[32];
    private final Vec3d[] X = new Vec3d[32];
    private final Vec3d[] J = new Vec3d[32];
    private final double[] M = new double[32];
-   private final double[] p = new double[32];
-   private final double[] i = new double[32];
+   private final double[] HexEdgeloop = new double[32];
+   private final double[] ChinaHatCodec = new double[32];
    private final int[] n = new int[32];
    private final b9.Type_u[] O = new b9.Type_u[32];
    private int L;

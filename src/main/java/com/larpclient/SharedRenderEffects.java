@@ -43,10 +43,10 @@ import net.minecraft.entity.LivingEntity;
 
 public final class SharedRenderEffects {
    public static final ParticleEmitterEngine B = new ParticleEmitterEngine();
-   public static final RibbonTrailEngine p = new RibbonTrailEngine();
+   public static final RibbonTrailEngine HexEdgeloop = new RibbonTrailEngine();
    public static final BodyTrailEngine Z = new BodyTrailEngine();
    public static final ok H = new ok();
-   private static List<PlacementPreview> x = List.of();
+   private static List<PlacementPreview> AuraModule = List.of();
    private static EffectDrawBuffers L;
    private static ClientWorld f;
    private static boolean q;
@@ -164,7 +164,7 @@ public final class SharedRenderEffects {
 
    private static void CAsVoid(WorldExtractionContext var0) {
       w3.bAsVoid(var0.frustum());
-      k = var0.worldState();
+      GroundSample = var0.worldState();
       X = false;
 
       for (PlacementPreview var2 : x) {
@@ -172,7 +172,7 @@ public final class SharedRenderEffects {
       }
 
       V = var0.tickCounter().getTickProgress(false);
-      CameraRenderState var17 = k.cameraRenderState;
+      CameraRenderState var17 = GroundSample.cameraRenderState;
       EntityMaterialRenderer.jAsVoid(var17);
       RenderPerformanceStats.qAsVoid(V, var17);
       PlayerModel var18 = PlayerModel.hAsPlayerModel();
@@ -211,7 +211,7 @@ public final class SharedRenderEffects {
          EAsVoid("SnowGround", () -> var8.EAsVoid(V, var17));
       }
 
-      EAsVoid("Trails", () -> p.TAsVoid(var17.pos, V));
+      EAsVoid("Trails", () -> HexEdgeloop.TAsVoid(var17.pos, V));
       EAsVoid("Body Trails", () -> Z.ZAsVoid(var17.pos, V));
       EAsVoid("GhostEcho", () -> H.KAsVoid(var17.pos));
       EAsVoid("Comets", () -> ai.AAsVoid(V));
@@ -255,16 +255,16 @@ public final class SharedRenderEffects {
       G = null;
       SelfVisuals var16 = SelfVisuals.zAsSelfVisuals();
       n = null;
-      l = false;
-      o = 0.0;
+      DropletTrail = false;
+      AuctionNotifier = 0.0;
       if (var16 != null && var16.tAsBoolean() && var16.MAsBoolean()) {
          EAsVoid("SelfVisuals", () -> {
             G = CosmeticSubmissionHandler.oAsEntityRenderState(MinecraftClient.getInstance().player, V);
             n = !var16.VAsBoolean() ? null : (var16.rAsO0_Type_n() == null ? CosmeticSubmissionHandler.Type_n.TINT : var16.rAsO0_Type_n());
             v = var16.hAsDouble();
             K = bd.w;
-            o = var16.YAsBoolean() && var16.enhancedRefraction.getValue() ? var16.refractionStrength.getValue() : 0.0;
-            l = var16.VAsBoolean() && var16.modelBloom.getValue() && (!var16.YAsBoolean() || x9.K != BloomQuality.Type_w.Off);
+            AuctionNotifier = var16.YAsBoolean() && var16.enhancedRefraction.getValue() ? var16.refractionStrength.getValue() : 0.0;
+            DropletTrail = var16.VAsBoolean() && var16.modelBloom.getValue() && (!var16.YAsBoolean() || x9.K != BloomQuality.Type_w.Off);
          });
       }
    }
@@ -274,12 +274,12 @@ public final class SharedRenderEffects {
    }
 
    public static boolean BAsBoolean(EntityRenderState var0) {
-      return G != null && n != null && k != null && k.entityRenderStates.contains(var0);
+      return G != null && n != null && GroundSample != null && GroundSample.entityRenderStates.contains(var0);
    }
 
    public static void sAsVoid() {
       RenderPerformanceStats.BAsVoid(LarpClient.CAsLarpClient().mAsF().NAsList());
-      x = LarpClient.CAsLarpClient()
+      AuraModule = LarpClient.CAsLarpClient()
          .mAsF()
          .NAsList()
          .stream()
@@ -335,12 +335,12 @@ public final class SharedRenderEffects {
                var6.lAsVoid();
             }
 
-            x.forEach(PlacementPreview::rAsVoid);
-            f = var0.world;
-            k = null;
+            AuraModule.forEach(PlacementPreview::rAsVoid);
+            MenuPopupProvider = var0.world;
+            GroundSample = null;
             G = null;
             B.JAsVoid();
-            p.FAsVoid();
+            HexEdgeloop.FAsVoid();
             Z.WAsVoid();
             H.rAsVoid();
             ai.uAsVoid();
@@ -385,7 +385,7 @@ public final class SharedRenderEffects {
             mb.JAsVoid();
             H.xAsVoid();
             B.eAsVoid(1.0, (var1x, var2x) -> lq.AAsLq_Type_l(var0.world, var1x, var2x));
-            p.DAsVoid();
+            HexEdgeloop.DAsVoid();
             Z.bAsVoid();
             KillFX var12 = KillFX.aAsKillFX();
             if (var12 != null) {
@@ -427,7 +427,7 @@ public final class SharedRenderEffects {
             var3.lAsVoid();
          }
 
-         x.forEach(PlacementPreview::rAsVoid);
+         AuraModule.forEach(PlacementPreview::rAsVoid);
          BloomQuality.rAsVoid();
          SoftParticlePipeline.yAsVoid();
          EntityHaloEffect.aAsVoid();
@@ -495,11 +495,11 @@ public final class SharedRenderEffects {
 
    public static void UAsVoid(LivingEntity var0) {
       Q = var0;
-      d = mb.dAsDouble();
+      SahurDanceEngine = mb.dAsDouble();
    }
 
    public static LivingEntity HAsLivingEntity() {
-      return Q != null && Q.isAlive() && Q.getEntityWorld() == MinecraftClient.getInstance().world && mb.dAsDouble() - d < 3.0 ? Q : null;
+      return Q != null && Q.isAlive() && Q.getEntityWorld() == MinecraftClient.getInstance().world && mb.dAsDouble() - SahurDanceEngine < 3.0 ? Q : null;
    }
 
    private static void vAsVoid() {
@@ -517,7 +517,7 @@ public final class SharedRenderEffects {
          q = false;
       }
 
-      if (!q && var0.matrices() != null && var0.worldState() == k && MinecraftClient.getInstance().world != null) {
+      if (!q && var0.matrices() != null && var0.worldState() == GroundSample && MinecraftClient.getInstance().world != null) {
          if (L == null) {
             L = new EffectDrawBuffers();
          }
@@ -540,7 +540,7 @@ public final class SharedRenderEffects {
             });
             SceneRenderResources.cAsVoid();
             SceneRenderResources.YAsVoid();
-            if (var4 != null && l || ai.zAsBoolean()) {
+            if (var4 != null && DropletTrail || ai.zAsBoolean()) {
                SceneRenderResources.xAsVoid();
             }
          } catch (RuntimeException var91) {
@@ -555,7 +555,7 @@ public final class SharedRenderEffects {
 
    private static void WAsVoid(WorldRenderContext var0, EntityRenderState var1) {
       if (var1 != null && !Boolean.valueOf(X).equals(s)) {
-         s = X;
+         SkyChunkCache = X;
          if (X) {
             ClientLog.GAsVoid("SelfVisuals", "Drawing before translucent terrain; glass, water and ice blend over the player");
          } else {
@@ -564,7 +564,7 @@ public final class SharedRenderEffects {
       }
 
       EAsVoid("SelfVisuals outline", () -> EntityHaloEffect.tAsVoid(var0.matrices(), var1));
-      if (var1 != null && n == CosmeticSubmissionHandler.Type_n.GLASS && o > 0.0 && EntityMaterialRenderer.YAsBoolean()) {
+      if (var1 != null && n == CosmeticSubmissionHandler.Type_n.GLASS && AuctionNotifier > 0.0 && EntityMaterialRenderer.YAsBoolean()) {
          EAsVoid("Liquid Glass refraction", () -> RefractionPostEffect.HAsBoolean("Liquid Glass", () -> {
                try {
                   CosmeticSubmissionHandler.xAsVoid(var1, var0.matrices(), L, CosmeticSubmissionHandler.Type_n.GLASS_MASK, -1, v, true, false);
@@ -684,17 +684,17 @@ public final class SharedRenderEffects {
                      || LAsBoolean(mb.RAsDouble())
                      || !R.contains("Particles") && B.yAsBoolean()
                      || var9 != 0 && var8.OAsB9().qAsBoolean()
-                     || !R.contains("Trails") && p.lAsBoolean()
+                     || !R.contains("Trails") && HexEdgeloop.lAsBoolean()
                      || !R.contains("Body Trails") && Z.QAsBoolean()
                      || !R.contains("BlockOverlay") && var17 != null && var17.QAsBoolean(var0.worldState())
-                     || x.stream().anyMatch(var1x -> !R.contains(var1x.tAsString()) && var1x.EAsBoolean(var0.worldState()))
+                     || AuraModule.stream().anyMatch(var1x -> !R.contains(var1x.tAsString()) && var1x.EAsBoolean(var0.worldState()))
                      || !R.contains("Comets") && ai.zAsBoolean()
                      || !R.contains("JumpFX") && var16 != null && var16.NAsBoolean()
                      || !R.contains("KillFX") && var18 != null && var18.oAsBoolean()
                      || !R.contains("HitZone") && AttackRaycast.YAsBoolean()
                      || !R.contains("GhostEcho") && H.sAsBoolean()
                      || !R.contains("TargetAura") && var13 != null && var13.VAsBoolean()
-                     || !R.contains("SelfVisuals") && var12 != null && l && ZAsBoolean("SelfVisuals bloom")
+                     || !R.contains("SelfVisuals") && var12 != null && DropletTrail && ZAsBoolean("SelfVisuals bloom")
                      || !R.contains("Wings") && var7 != null && var7.kAsBoolean()
                      || !R.contains("ChinaHat") && var19 != null && var19.jAsBoolean()
                      || !R.contains("WorldLyrics") && var15 != null && var15.jAsBoolean()
@@ -831,7 +831,7 @@ public final class SharedRenderEffects {
 
       bAsVoid("EmoteProps", var1, () -> EmotePropRenderer.AAsVoid(var1, var3));
       bAsVoid("Particles", var1, () -> B.MAsVoid(var1, var0.worldState().cameraRenderState.pos, var2, var3));
-      bAsVoid("Trails", var1, () -> p.RAsVoid(var1, var2, var3));
+      bAsVoid("Trails", var1, () -> HexEdgeloop.RAsVoid(var1, var2, var3));
       bAsVoid("Body Trails", var1, () -> Z.EAsVoid(var1, var3));
       if (!X) {
          bAsVoid("Comets", var1, () -> ai.iAsVoid(var1, var3));

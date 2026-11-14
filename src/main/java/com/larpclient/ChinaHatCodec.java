@@ -2,8 +2,8 @@ package com.larpclient;
 
 import com.google.gson.JsonObject;
 
-public final class i {
-   public i() {
+public final class ChinaHatCodec {
+   public ChinaHatCodec() {
    }
 
    public static JsonObject SAsJsonObject(JsonObject var0) {

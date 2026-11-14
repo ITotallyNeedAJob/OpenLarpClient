@@ -26,12 +26,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 public final class lj {
-   private static final List<String> e = List.of(
+   private static final List<String> LineSegment = List.of(
       "helper", "admin", "owner", "founder", "manager", "curator", "developer", "staff", "куратор", "админ", "хелпер", "помощн", "стаж", "владел", "разраб"
    );
    private static final String N = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡʏᴢ";
-   private static final String m = "abcdefghijklmnopqrstuvwyz";
-   private static final Pattern p = Pattern.compile("§.?");
+   private static final String PriceDetector = "abcdefghijklmnopqrstuvwyz";
+   private static final Pattern HexEdgeloop = Pattern.compile("§.?");
    private static final Pattern Z = Pattern.compile("[^\\p{L}]+");
    private static final Map<String, Boolean> I = new ConcurrentHashMap<>();
 
@@ -51,7 +51,7 @@ public final class lj {
    }
 
    private static boolean SAsBoolean(String var0) {
-      String var1 = Normalizer.normalize(p.matcher(var0).replaceAll(""), Form.NFKC).toLowerCase(Locale.ROOT);
+      String var1 = Normalizer.normalize(HexEdgeloop.matcher(var0).replaceAll(""), Form.NFKC).toLowerCase(Locale.ROOT);
       StringBuilder var2 = new StringBuilder(var1.length());
 
       for (int var3 = 0; var3 < var1.length(); var3++) {
@@ -60,7 +60,7 @@ public final class lj {
       }
 
       String var8 = var2.toString();
-      if (e.stream().anyMatch(var8::contains)) {
+      if (LineSegment.stream().anyMatch(var8::contains)) {
          return true;
       } else {
          for (String var7 : Z.split(var8)) {
@@ -275,7 +275,7 @@ public final class lj {
    }
 
    private static final class Type_o {
-      static final Set<Item> j = Set.of(Items.ENDER_PEARL, Items.CHORUS_FRUIT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE, Items.SHIELD);
+      static final Set<Item> TextLayout = Set.of(Items.ENDER_PEARL, Items.CHORUS_FRUIT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE, Items.SHIELD);
 
       private Type_o() {
       }

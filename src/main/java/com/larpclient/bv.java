@@ -7,12 +7,12 @@ import java.util.Locale;
 
 final class bv {
    private final ProfileSettingsPanel E;
-   String k = "";
+   String GroundSample = "";
    int y;
    int F;
    long c;
    boolean n;
-   List<JsonObject> p = List.of();
+   List<JsonObject> HexEdgeloop = List.of();
    JsonObject s;
 
    bv(ProfileSettingsPanel var1) {

@@ -6,10 +6,10 @@ public final class da {
    public static final double K = -0.03125;
    public static final int U = 80;
    public static final int X = 40;
-   public static final int o = 2;
-   public static final double c = 0.04;
+   public static final int AuctionNotifier = 2;
+   public static final double BoxUtils = 0.04;
    public static final double P = 0.02;
-   private Vec3d s = Vec3d.ZERO;
+   private Vec3d SkyChunkCache = Vec3d.ZERO;
    private int v;
    private int Y;
    private int w;

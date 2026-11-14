@@ -9,7 +9,7 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public final class m_ {
-   private static final Vector3f x = new Vector3f(0.0F, -0.375F, 0.21F);
+   private static final Vector3f AuraModule = new Vector3f(0.0F, -0.375F, 0.21F);
 
    public static void yAsVoid(MatrixStack var0, int var1, float var2, float var3) {
       float var4 = Float.isFinite(var2) ? Math.clamp(var2, 0.0F, 1.0F) : 0.0F;

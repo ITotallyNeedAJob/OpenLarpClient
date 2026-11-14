@@ -22,7 +22,7 @@ public final class ParticleEmitterEngine {
    private boolean T;
    private static final Comparator<ParticleEmitterEngine.Type_m> S = Comparator.<ParticleEmitterEngine.Type_m>comparingDouble(var0 -> var0.A).reversed();
    public int B = 2048;
-   public double c = 64.0;
+   public double BoxUtils = 64.0;
 
    public ParticleEmitterEngine() {
       for (int var1 = 0; var1 < 2048; var1++) {

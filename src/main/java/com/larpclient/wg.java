@@ -5,7 +5,7 @@ import net.minecraft.util.math.Vec3d;
 
 public final class wg {
    public static final int V = 128;
-   private final ParticleEmitterEngine k = new ParticleEmitterEngine();
+   private final ParticleEmitterEngine GroundSample = new ParticleEmitterEngine();
    private final x4 W = new x4();
 
    public wg() {

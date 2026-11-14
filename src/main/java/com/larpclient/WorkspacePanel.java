@@ -16,9 +16,9 @@ public abstract class WorkspacePanel extends GuiPanel implements xs {
    private boolean j;
    private boolean F;
    private long K;
-   private double g = 1.0;
+   private double ChatPayParser = 1.0;
    private double W;
-   private double s = 1.0;
+   private double SkyChunkCache = 1.0;
 
    protected WorkspacePanel(String var1, Screen var2) {
       super(var1);

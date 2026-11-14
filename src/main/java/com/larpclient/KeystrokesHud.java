@@ -14,11 +14,11 @@ public final class KeystrokesHud {
    public static final int Q = 4;
    public static final int W = 13;
    public static final int T = 4;
-   public static final int g = 10;
-   public static final int j = 7;
-   public static final double x = 34.0;
+   public static final int ChatPayParser = 10;
+   public static final int TextLayout = 7;
+   public static final double AuraModule = 34.0;
    public static final double q = 12.0;
-   private static final Map<String, Float> s = new HashMap<>();
+   private static final Map<String, Float> SkyChunkCache = new HashMap<>();
    private static final KeystrokesHud.Type_z F = new KeystrokesHud.Type_z();
    private static final KeystrokesHud.Type_z J = new KeystrokesHud.Type_z();
    private static Object A;
@@ -74,7 +74,7 @@ public final class KeystrokesHud {
       double var8 = S == 0L ? 0.016666666666666666 : (double)(var6 - S) / 1.0E9;
       S = var6;
       if (A != var5.world) {
-         s.clear();
+         SkyChunkCache.clear();
          F.dAsVoid();
          J.dAsVoid();
          A = var5.world;
@@ -118,8 +118,8 @@ public final class KeystrokesHud {
    }
 
    private static float oAsFloat(String var0, boolean var1, double var2) {
-      float var4 = XAsFloat(s.getOrDefault(var0, 0.0F), var1, var2);
-      s.put(var0, var4);
+      float var4 = XAsFloat(SkyChunkCache.getOrDefault(var0, 0.0F), var1, var2);
+      SkyChunkCache.put(var0, var4);
       return var4;
    }
 
@@ -157,7 +157,7 @@ public final class KeystrokesHud {
 
    public static final class Type_z {
       public static final long W = 1000000000L;
-      private final ArrayDeque<Long> a = new ArrayDeque<>();
+      private final ArrayDeque<Long> PetEffectRenderer = new ArrayDeque<>();
 
       public Type_z() {
       }

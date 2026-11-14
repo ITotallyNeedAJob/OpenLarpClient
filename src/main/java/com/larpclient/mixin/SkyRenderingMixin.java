@@ -45,7 +45,7 @@ public class SkyRenderingMixin {
    }
 
    @Unique
-   private static boolean x() {
+   private static boolean AuraModule() {
       SkyShader var0 = SkyShader.EAsSkyShader();
       return SkyEffectManager.AAsBoolean() || var0 != null && var0.aAsBoolean();
    }
@@ -56,7 +56,7 @@ public class SkyRenderingMixin {
       cancellable = true
    )
    private void larpclient$injectFFV(MatrixStack var1, float var2, float var3, float var4, MoonPhase var5, float var6, float var7, CallbackInfo var8) {
-      if (x()) {
+      if (AuraModule()) {
          var8.cancel();
       }
    }
@@ -99,7 +99,7 @@ public class SkyRenderingMixin {
       cancellable = true
    )
    private void larpclient$injectRenderSkyDark(CallbackInfo var1) {
-      if (CustomSky.yAsBoolean() || x()) {
+      if (CustomSky.yAsBoolean() || AuraModule()) {
          var1.cancel();
       }
    }
@@ -110,7 +110,7 @@ public class SkyRenderingMixin {
       cancellable = true
    )
    private void larpclient$injectFIV(MatrixStack var1, float var2, int var3, CallbackInfo var4) {
-      if (CustomSky.yAsBoolean() || x()) {
+      if (CustomSky.yAsBoolean() || AuraModule()) {
          var4.cancel();
       }
    }

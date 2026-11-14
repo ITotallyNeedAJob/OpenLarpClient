@@ -15,7 +15,7 @@ public final class lc {
    public static final int J = 361;
    public static final int O = 32;
    public static final int D = 128;
-   public static final int f = 4096;
+   public static final int MenuPopupProvider = 4096;
 
    public static List<lc.Type_w> GAsList(Vec3d var0, double var1, lc.Type_x var3) {
       double var4 = Math.clamp(var1, 0.5, 8.0);

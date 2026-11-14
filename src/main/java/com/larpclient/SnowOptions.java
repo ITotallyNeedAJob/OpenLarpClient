@@ -6,7 +6,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.math.Vec3d;
 
 public final class SnowOptions {
-   public static final int l = 3200;
+   public static final int DropletTrail = 3200;
    public static final int S = 8192;
    public static final int h = 128;
    private final double[] M = new double[3200];
@@ -15,14 +15,14 @@ public final class SnowOptions {
    private final double[] O = new double[3200];
    private final double[] A = new double[3200];
    private final double[] J = new double[3200];
-   private final double[] u = new double[3200];
+   private final double[] CropHelper = new double[3200];
    private final double[] G = new double[3200];
-   private final double[] i = new double[3200];
-   private final double[] b = new double[3200];
-   private final double[] c = new double[3200];
-   private final double[] a = new double[3200];
+   private final double[] ChinaHatCodec = new double[3200];
+   private final double[] BloomUtility = new double[3200];
+   private final double[] BoxUtils = new double[3200];
+   private final double[] PetEffectRenderer = new double[3200];
    private final double[] P = new double[3200];
-   private final int[] o = new int[3200];
+   private final int[] AuctionNotifier = new int[3200];
    private final HashMap<Long, SnowOptions.Type_r> V = new HashMap<>();
    private final Random X = new Random(1397641047L);
    private Vec3d n;

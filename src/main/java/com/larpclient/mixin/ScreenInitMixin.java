@@ -2,7 +2,7 @@ package com.larpclient.mixin;
 
 import com.larpclient.aj;
 import com.larpclient.aq;
-import com.larpclient.f;
+import com.larpclient.MenuPopupProvider;
 import com.larpclient.wz;
 import com.larpclient.xt;
 import com.larpclient.module.GUIAnimation;
@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin({Screen.class})
-public abstract class ScreenInitMixin implements aj, f {
+public abstract class ScreenInitMixin implements aj, MenuPopupProvider {
    @Shadow
    public int field_22789;
    @Shadow
@@ -77,7 +77,7 @@ public abstract class ScreenInitMixin implements aj, f {
    private void U(DrawContext var1, int var2, int var3, float var4, Operation<Void> var5) {
       MinecraftClient var6 = MinecraftClient.getInstance();
       if (this.W != null && var6.world == null) {
-         aq.Type_x var7 = this.W.XAsAq_Type_x(System.nanoTime(), var6.getOverlay() == null && var6.isWindowFocused(), f.CAsBoolean());
+         aq.Type_x var7 = this.W.XAsAq_Type_x(System.nanoTime(), var6.getOverlay() == null && var6.isWindowFocused(), MenuPopupProvider.CAsBoolean());
          if (!this.W.LAsBoolean()) {
             var1.getMatrices().pushMatrix();
             var1.getMatrices().mul(var7.matrix((double)this.field_22789 / 2.0, (double)this.field_22790 / 2.0));

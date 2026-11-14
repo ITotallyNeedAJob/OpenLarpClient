@@ -6,7 +6,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
-public final class c {
+public final class BoxUtils {
    public static double NAsDouble(double var0) {
       double var2 = Math.clamp(var0 - 0.5, 0.0, 1.0);
       return var2 * var2 * (3.0 - 2.0 * var2);
@@ -112,6 +112,6 @@ public final class c {
       return var5.test(var7) ? var7 : var1;
    }
 
-   private c() {
+   private BoxUtils() {
    }
 }

@@ -22,7 +22,7 @@ import org.joml.Vector2f;
 public final class ClickGuiScreen extends GuiPanel {
    private final Screen n;
    private final List<ActionButton> D = new ArrayList<>();
-   private final List<ActionButton> k = new ArrayList<>();
+   private final List<ActionButton> GroundSample = new ArrayList<>();
    private final Map<ActionButton, Module> X = new IdentityHashMap<>();
    private final Map<ActionButton, FavoriteModuleWidget> W = new IdentityHashMap<>();
    private boolean q;
@@ -33,12 +33,12 @@ public final class ClickGuiScreen extends GuiPanel {
    private ProfileSettingsPanel R;
    private SettingsPanel B;
    private xm F;
-   private y h;
+   private ScreenScale h;
    private GuiCategory V;
    private Module z;
    private String E = "Modules";
-   private String d = "";
-   private String f = "";
+   private String SahurDanceEngine = "";
+   private String MenuPopupProvider = "";
    private boolean m;
    private boolean a;
    private boolean w;
@@ -59,15 +59,15 @@ public final class ClickGuiScreen extends GuiPanel {
    private ActionButton I;
    private ActionButton u;
    private ActionButton S;
-   private final AccountSkinPreview i = new AccountSkinPreview();
-   private static final DiscordAvatarRenderer j = new DiscordAvatarRenderer();
-   private final w2 g = new w2(0.0);
-   private final w2 y = new w2(0.0);
+   private final AccountSkinPreview ChinaHatCodec = new AccountSkinPreview();
+   private static final DiscordAvatarRenderer TextLayout = new DiscordAvatarRenderer();
+   private final w2 ChatPayParser = new w2(0.0);
+   private final w2 ScreenScale = new w2(0.0);
    private final w2 Z = new w2(0.0);
    private final w2 G = new w2(0.0);
    private boolean M;
    private wz s;
-   private final Matrix3x2f o = new Matrix3x2f();
+   private final Matrix3x2f AuctionNotifier = new Matrix3x2f();
 
    public ClickGuiScreen() {
       this(null);
@@ -211,7 +211,7 @@ public final class ClickGuiScreen extends GuiPanel {
             }
          } else {
             if (var4 != null) {
-               ClientLog.XAsVoid("GUI", "Close effect {}", var4.fAsBoolean() ? "finished" : "stopped by a screen, world or window size change");
+               ClientLog.XAsVoid("GUI", "Close effect {}", var4.fAsBoolean() ? "finished" : "stopped by PetEffectRenderer screen, world or window size change");
             }
 
             QAsVoid();
@@ -228,7 +228,7 @@ public final class ClickGuiScreen extends GuiPanel {
       Y = null;
    }
 
-   private static y uAsY(MinecraftClient var0) {
+   private static ScreenScale uAsY(MinecraftClient var0) {
       return com.larpclient.y.paired(var0.getWindow(), LarpClient.CAsLarpClient().fAsBo().yAsN7().JD);
    }
 
@@ -356,7 +356,7 @@ public final class ClickGuiScreen extends GuiPanel {
          this.HAsVoid();
          this.client.setScreen(new HudEditorScreen(this));
       } else {
-         this.f = "Join a world to edit the HUD.";
+         this.f = "Join PetEffectRenderer world to edit the HUD.";
       }
    }
 
@@ -630,7 +630,7 @@ public final class ClickGuiScreen extends GuiPanel {
    private void qAsVoid() {
       ClientPreferences var1 = LarpClient.CAsLarpClient().fAsBo().yAsN7();
       if (!this.w) {
-         y var2 = uAsY(this.client);
+         ScreenScale var2 = uAsY(this.client);
          if (!var2.equals(this.h)) {
             this.h = var2;
             ClientLog.XAsVoid(
@@ -766,7 +766,7 @@ public final class ClickGuiScreen extends GuiPanel {
                }
 
                if (this.k.isEmpty() && !this.lAsBoolean()) {
-                  String var122 = this.V == GuiCategory.FAVORITES && this.d.isBlank() ? "Star a module to add it here." : "No matches";
+                  String var122 = this.V == GuiCategory.FAVORITES && this.d.isBlank() ? "Star PetEffectRenderer module to add it here." : "No matches";
                   TextDrawing.UAsVoid(
                      context,
                      TextDrawing.HAsString(var122, this.tAsInt() - this.F.contentX() - 16),
@@ -856,7 +856,7 @@ public final class ClickGuiScreen extends GuiPanel {
          }
 
          if (var125.isBlank()) {
-            var125 = "Enter opens settings · Space toggles · Tab navigates · Right click resets a setting";
+            var125 = "Enter opens settings · Space toggles · Tab navigates · Right click resets PetEffectRenderer setting";
          }
 
          int var130 = this.F.profileLeft();
@@ -1081,7 +1081,7 @@ public final class ClickGuiScreen extends GuiPanel {
          }
 
          DiscordPresenceStatus var53 = DiscordPresenceStatus.current();
-         if (!j.CAsBoolean(var1, this.F.left() + 8, this.S.x + 5, 20)) {
+         if (!TextLayout.CAsBoolean(var1, this.F.left() + 8, this.S.x + 5, 20)) {
             this.i.fAsVoid(var1, this.F.left() + 8, this.S.x + 5, 20);
          }
 

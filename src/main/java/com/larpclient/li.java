@@ -14,8 +14,8 @@ import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
 public final class li {
-   private static final long m = 250000000L;
-   private static final li.Type_p[] x = new li.Type_p[]{new li.Type_p(), new li.Type_p()};
+   private static final long PriceDetector = 250000000L;
+   private static final li.Type_p[] AuraModule = new li.Type_p[]{new li.Type_p(), new li.Type_p()};
    private static float s;
    private static float d;
    private static int X;
@@ -35,8 +35,8 @@ public final class li {
          float var2 = w3.CAsFloat();
          if (!(var2 <= 0.0F) && var1.getFramebufferHeight() > 0) {
             float var3 = (float)Math.tan(Math.toRadians((double)var2) / 2.0);
-            d = 1.0F / var3;
-            s = d * (float)var1.getFramebufferHeight() / (float)var1.getFramebufferWidth();
+            SahurDanceEngine = 1.0F / var3;
+            SkyChunkCache = SahurDanceEngine * (float)var1.getFramebufferHeight() / (float)var1.getFramebufferWidth();
             X = var1.getScaledWidth();
             E = var1.getScaledHeight();
             Z++;
@@ -45,7 +45,7 @@ public final class li {
    }
 
    public static void AAsVoid(Hand var0, boolean var1, MatrixStack var2, ItemRenderState var3) {
-      if (nAsBoolean() && d != 0.0F) {
+      if (nAsBoolean() && SahurDanceEngine != 0.0F) {
          Matrix4f var4 = new Matrix4f(RenderSystem.getModelViewStack()).mul(var2.peek().getPositionMatrix());
          li.Type_p var5 = wAsLi_Type_p(var0, var1);
          Vector3f var6 = new Vector3f();
@@ -54,7 +54,7 @@ public final class li {
    }
 
    public static void WAsVoid(Hand var0, boolean var1, MatrixStack var2, ModelPart var3) {
-      if (nAsBoolean() && d != 0.0F) {
+      if (nAsBoolean() && SahurDanceEngine != 0.0F) {
          Matrix4f var4 = new Matrix4f(RenderSystem.getModelViewStack());
          li.Type_p var5 = wAsLi_Type_p(var0, var1);
          MatrixStack var6 = new MatrixStack();
@@ -65,7 +65,7 @@ public final class li {
    }
 
    public static void dAsVoid(Hand var0, boolean var1, MatrixStack var2, float[] var3, int var4) {
-      if (nAsBoolean() && d != 0.0F) {
+      if (nAsBoolean() && SahurDanceEngine != 0.0F) {
          Matrix4f var5 = new Matrix4f(RenderSystem.getModelViewStack()).mul(var2.peek().getPositionMatrix());
          li.Type_p var6 = wAsLi_Type_p(var0, var1);
          Vector3f var7 = new Vector3f();
@@ -89,8 +89,8 @@ public final class li {
             var5,
             Math.max(1, (int)Math.ceil(var1.Y) - var4),
             Math.max(1, (int)Math.ceil(var1.s) - var5),
-            2.0 * var2 / (double)(s * (float)X),
-            2.0 * var2 / (double)(d * (float)E)
+            2.0 * var2 / (double)(SkyChunkCache * (float)X),
+            2.0 * var2 / (double)(SahurDanceEngine * (float)E)
          );
       } else {
          return null;
@@ -111,7 +111,7 @@ public final class li {
    }
 
    private static final class Type_p {
-      long o = -1L;
+      long AuctionNotifier = -1L;
       long v;
       boolean U;
       int d;
